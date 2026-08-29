@@ -35,6 +35,48 @@ A supply set to 5 V, drawing 2 A, fed from a 20 V rail dissipates
 times what it delivers, and it needs a heatsink sized for the worst case, not
 the typical one.
 
+```plot
+title: Where the power goes, as you turn the knob
+xLabel: Output voltage set (V)
+yLabel: Power (W)
+domain: [0, 24]
+parameters:
+  - name: vin
+    label: Input rail
+    min: 8
+    max: 30
+    default: 20
+    step: 0.5
+    unit: V
+  - name: i
+    label: Load current
+    min: 0
+    max: 3
+    default: 2
+    step: 0.1
+    unit: A
+curves:
+  - expression: (vin - x) * i
+    label: Burnt in the pass device
+    colour: amber
+    fill: true
+  - expression: x * i
+    label: Delivered to the load
+    colour: teal
+markers:
+  - at: 5
+    label: 5 V setting
+animate:
+  parameter: vin
+  seconds: 7
+  mode: bounce
+  autoplay: true
+caption: >-
+  Press play, or drag the rail yourself. The amber area is what the regulator
+  destroys as heat, and watching it breathe as the rail sweeps is the whole
+  argument for a pre-regulator — not a sentence you have to take on trust.
+```
+
 ```flash
 question: Same supply, now set to 15 V at 2 A from the same 20 V rail. What does the pass transistor dissipate?
 options:
