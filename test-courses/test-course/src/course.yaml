@@ -1,0 +1,41 @@
+# A course invented to exercise the player.
+#
+# Nothing here is real teaching material. It exists to give the compiler and the
+# app one of everything — every block type, every canvas kind, a glossary in all
+# three shapes, local and shared assets, and a model that arrives as an STL and
+# leaves as a GLB.
+#
+# It is deliberately NOT the first delivery's content. The player must never
+# depend on any one course, and `generic.test.ts` fails the build if it starts to.
+id: bench-psu
+title: Designing a Bench Power Supply
+subtitle: An invented course used to exercise the INSIGHT player
+version: 1.0.0
+languages: [en]
+
+tutor:
+  name: Dr Ada Fenwick
+  photo: tutor/photo.png
+  bio:
+    en: tutor/bio.en.md
+
+footer: The Fenwick Institute for Applied Electronics
+
+# Chapters, not days. This course could be an afternoon or a term; the player
+# must not care, and the calendar belongs to the Offering (§12.2).
+chapters:
+  - id: 01-raw-dc
+    title: 'Part 1: From the wall to raw DC'
+    order: 1
+    scheduledMinutes: 75
+    ads: []
+  - id: 02-regulation
+    title: 'Part 2: Regulation and protection'
+    order: 2
+    scheduledMinutes: 60
+    ads: []
+  - id: 03-build
+    title: 'Part 3: Building and testing the unit'
+    order: 3
+    scheduledMinutes: 90
+    ads: []

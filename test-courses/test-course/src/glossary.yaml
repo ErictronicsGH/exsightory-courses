@@ -1,0 +1,31 @@
+# All three supported shapes, so the resolver is exercised by real content.
+
+# 1. A bare string.
+ripple: The residual AC variation left on a DC supply after smoothing, measured peak-to-peak.
+
+# 2. An object with a display title.
+dropout-voltage:
+  title: Dropout voltage
+  definition: >-
+    The smallest input-to-output difference a linear regulator needs before it
+    stops regulating and its output simply follows the input down.
+
+headroom:
+  title: Headroom
+  definition: >-
+    How much more input voltage a regulator has than it strictly needs. Too
+    little and the supply drops out under load; too much and the extra is spent
+    as heat.
+
+# 3. A localized definition.
+quiescent-current:
+  definition:
+    en: >-
+      The current a regulator draws to run its own internal circuitry, whether or
+      not anything is connected to its output.
+
+foldback:
+  title: Foldback limiting
+  definition: >-
+    A protection scheme where the current limit falls as the fault worsens, so a
+    dead short draws less than a mild overload rather than more.

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" role="img"
+     aria-label="A series-pass regulator: pass transistor, error amplifier, voltage reference and feedback divider">
+  <style>
+    .bg   { fill: #121A22; }
+    .w    { stroke: #7A8A9A; stroke-width: 3; fill: none; }
+    .fb   { stroke: #1FB8A6; stroke-width: 3; fill: none; stroke-dasharray: 9 6; }
+    .part { fill: none; stroke: #D4DEE8; stroke-width: 3; }
+    .lbl  { fill: #D4DEE8; font: 600 17px system-ui, sans-serif; }
+    .sub  { fill: #7A8A9A; font: 400 14px system-ui, sans-serif; }
+    .hot  { fill: #C24B3F; font: 600 15px system-ui, sans-serif; }
+  </style>
+  <rect class="bg" width="1000" height="520" rx="8"/>
+
+  <path class="w" d="M50 120 H330"/>
+  <text class="lbl" x="50" y="104">V-IN  (raw, rippling)</text>
+
+  <rect class="part" x="330" y="80" width="120" height="80" rx="6"/>
+  <text class="lbl" x="346" y="115">PASS</text>
+  <text class="lbl" x="346" y="140">DEVICE</text>
+
+  <path class="w" d="M450 120 H900"/>
+  <circle cx="900" cy="120" r="7" fill="#D4DEE8"/>
+  <text class="lbl" x="820" y="100">V-OUT</text>
+
+  <path class="w" d="M760 120 V210"/>
+  <rect class="part" x="738" y="210" width="44" height="80" rx="4"/>
+  <path class="w" d="M760 290 V330"/>
+  <rect class="part" x="738" y="330" width="44" height="80" rx="4"/>
+  <path class="w" d="M760 410 V460 M700 460 H860"/>
+  <text class="sub" x="800" y="262">R1</text>
+  <text class="sub" x="800" y="382">R2</text>
+  <text class="sub" x="800" y="452">0 V</text>
+
+  <path class="fb" d="M760 310 H540"/>
+  <path class="part" d="M420 250 L540 290 L420 330 Z"/>
+  <text class="lbl" x="440" y="298">ERR</text>
+  <path class="w" d="M420 290 H360 M390 120 V290"/>
+
+  <rect class="part" x="230" y="262" width="130" height="60" rx="6"/>
+  <text class="lbl" x="246" y="299">V-REF</text>
+  <path class="w" d="M360 292 H420"/>
+
+  <text class="hot" x="330" y="196">P = (V-IN - V-OUT) x I-LOAD, and it all becomes heat</text>
+  <text class="sub" x="50" y="490">The loop drives the pass device until the divider matches the reference. It never sends the excess back.</text>
+</svg>

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Dummy load calculator</title>
+<style>
+  :root {
+    --ink: #0E141A; --surface: #121A22; --raised: #18222C;
+    --border: #24303C; --text: #D4DEE8; --muted: #7A8A9A;
+    --amber: #D4A017; --teal: #1FB8A6; --red: #C24B3F;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 20px; background: var(--ink); color: var(--text);
+    font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  h1 { margin: 0 0 4px; font-size: 17px; letter-spacing: .01em; }
+  p.lede { margin: 0 0 18px; color: var(--muted); font-size: 13px; }
+  .row { display: flex; gap: 14px; margin-bottom: 14px; }
+  label { flex: 1; display: block; }
+  span.name { display: block; margin-bottom: 5px; color: var(--muted); font-size: 12px;
+              text-transform: uppercase; letter-spacing: .06em; }
+  input {
+    width: 100%; padding: 9px 11px; background: var(--surface); color: var(--text);
+    border: 1px solid var(--border); border-radius: 5px; font: inherit;
+    font-variant-numeric: tabular-nums;
+  }
+  input:focus { outline: 2px solid var(--teal); outline-offset: 1px; }
+  .out { background: var(--raised); border: 1px solid var(--border);
+         border-radius: 6px; padding: 14px 16px; }
+  .line { display: flex; justify-content: space-between; align-items: baseline;
+          padding: 7px 0; border-bottom: 1px solid var(--border); }
+  .line:last-child { border-bottom: 0; }
+  .line b { font-size: 19px; font-variant-numeric: tabular-nums; }
+  .teal { color: var(--teal); } .amber { color: var(--amber); }
+  .warn { margin-top: 12px; padding: 10px 12px; border-radius: 5px;
+          background: rgb(194 75 63 / 14%); border: 1px solid var(--red);
+          color: var(--text); font-size: 13px; }
+  .warn[hidden] { display: none; }
+</style>
+</head>
+<body>
+  <h1>Dummy load calculator</h1>
+  <p class="lede">Work out the resistance and, more importantly, the wattage.</p>
+
+  <div class="row">
+    <label><span class="name">Voltage (V)</span>
+      <input id="v" type="number" value="12" min="0" step="0.1"></label>
+    <label><span class="name">Target current (A)</span>
+      <input id="i" type="number" value="0.5" min="0" step="0.05"></label>
+  </div>
+
+  <div class="out">
+    <div class="line"><span>Resistance needed</span><b class="teal" id="r">—</b></div>
+    <div class="line"><span>Power in the resistor</span><b class="amber" id="p">—</b></div>
+    <div class="line"><span>Choose a resistor rated at least</span><b id="rating">—</b></div>
+  </div>
+
+  <div class="warn" id="warn" hidden></div>
+
+<script>
+  const $ = (id) => document.getElementById(id)
+  const fmt = (x, unit) =>
+    x >= 1000 ? (x / 1000).toFixed(2) + ' k' + unit : x.toFixed(x < 10 ? 2 : 1) + ' ' + unit
+
+  function update () {
+    const v = parseFloat($('v').value)
+    const i = parseFloat($('i').value)
+
+    if (!isFinite(v) || !isFinite(i) || i <= 0 || v <= 0) {
+      $('r').textContent = $('p').textContent = $('rating').textContent = '—'
+      $('warn').hidden = true
+      return
+    }
+
+    const r = v / i
+    const p = v * i
+    // Derate by two: a resistor run at its rating gets hot enough to matter,
+    // and a dummy load is on for minutes, not milliseconds.
+    const rating = p * 2
+
+    $('r').textContent = fmt(r, 'Ω')
+    $('p').textContent = fmt(p, 'W')
+    $('rating').textContent = fmt(rating, 'W')
+
+    const warn = $('warn')
+    if (p > 25) {
+      warn.hidden = false
+      warn.textContent = 'That is ' + p.toFixed(1) + ' W in one resistor. Use a chassis-mount '
+        + 'wirewound on a heatsink, or split it across several — a bare resistor here will burn.'
+    } else if (p > 5) {
+      warn.hidden = false
+      warn.textContent = 'Over 5 W. This wants a wirewound part, and it will get hot enough to '
+        + 'mark the bench. Stand it off the surface.'
+    } else {
+      warn.hidden = true
+    }
+  }
+
+  for (const el of [$('v'), $('i')]) el.addEventListener('input', update)
+  update()
+</script>
+</body>
+</html>

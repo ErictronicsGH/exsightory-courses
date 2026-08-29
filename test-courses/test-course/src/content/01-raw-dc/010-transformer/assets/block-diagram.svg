@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420" role="img"
+     aria-label="Four stages in series: transformer, rectifier, smoothing capacitor, regulator">
+  <style>
+    .bg    { fill: #121A22; }
+    .box   { fill: #0E141A; stroke-width: 3; }
+    .lbl   { fill: #D4DEE8; font: 600 19px system-ui, sans-serif; }
+    .sub   { fill: #7A8A9A; font: 400 14px system-ui, sans-serif; }
+    .wire  { stroke: #7A8A9A; stroke-width: 3; fill: none; }
+    .trace { fill: none; stroke-width: 2.5; }
+    .cap   { fill: #7A8A9A; font: 400 13px system-ui, sans-serif; }
+  </style>
+  <rect class="bg" width="1000" height="420" rx="8"/>
+
+  <g class="wire">
+    <path d="M20 110 H60"/><path d="M260 110 H300"/>
+    <path d="M500 110 H540"/><path d="M740 110 H780"/><path d="M980 110 H960"/>
+  </g>
+
+  <rect class="box" x="60"  y="60" width="200" height="100" rx="6" stroke="#D4A017"/>
+  <rect class="box" x="300" y="60" width="200" height="100" rx="6" stroke="#1FB8A6"/>
+  <rect class="box" x="540" y="60" width="200" height="100" rx="6" stroke="#7A6ED4"/>
+  <rect class="box" x="780" y="60" width="180" height="100" rx="6" stroke="#C24B3F"/>
+
+  <text class="lbl" x="88"  y="105">TRANSFORMER</text>
+  <text class="sub" x="88"  y="130">steps the voltage down</text>
+  <text class="lbl" x="342" y="105">RECTIFIER</text>
+  <text class="sub" x="342" y="130">one direction only</text>
+  <text class="lbl" x="576" y="105">SMOOTHING</text>
+  <text class="sub" x="576" y="130">bridges the gaps</text>
+  <text class="lbl" x="812" y="105">REGULATOR</text>
+  <text class="sub" x="812" y="130">holds it steady</text>
+
+  <g class="trace">
+    <path stroke="#D4A017" d="M70 300 q 22 -60 45 0 t 45 0 t 45 0 t 45 0"/>
+    <path stroke="#1FB8A6" d="M310 300 q 22 -60 45 0 q 22 -60 45 0 q 22 -60 45 0 q 22 -60 45 0"/>
+    <path stroke="#7A6ED4" d="M550 268 q 30 6 55 14 q 12 -20 30 -26 q 30 6 55 14 q 12 -20 30 -26"/>
+    <path stroke="#C24B3F" d="M790 270 H950"/>
+  </g>
+
+  <text class="cap" x="70"  y="340">high AC</text>
+  <text class="cap" x="310" y="340">low, pulsing, one-sided</text>
+  <text class="cap" x="550" y="340">nearly DC, with ripple</text>
+  <text class="cap" x="790" y="340">flat DC</text>
+
+  <text class="sub" x="70" y="392">Each stage fixes exactly one problem, and each one costs something.</text>
+</svg>

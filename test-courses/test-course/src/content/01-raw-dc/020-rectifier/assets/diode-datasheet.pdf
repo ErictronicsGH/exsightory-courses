@@ -1,0 +1,96 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 6 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 792] /Resources << /Font << /F1 5 0 R /F2 8 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 1516 >>
+stream
+0.07 0.10 0.13 rg 0 0 595 792 re f
+BT /F1 20 Tf 1 1 1 rg 56 760 Td (BR-6208  BRIDGE RECTIFIER  \(INVENTED PART\)) Tj ET
+0.16 0.72 0.65 rg 56 748 m 540 748 l 2 w S
+BT /F1 11 Tf 0.75 0.80 0.86 rg 56 716 Td (Maximum repetitive reverse voltage) Tj ET
+BT /F2 11 Tf 1 1 1 rg 320 716 Td (600 V) Tj ET
+0.20 0.24 0.28 rg 56 708 m 540 708 l 0.5 w S
+BT /F1 11 Tf 0.75 0.80 0.86 rg 56 686 Td (Average forward rectified current) Tj ET
+BT /F2 11 Tf 1 1 1 rg 320 686 Td (8.0 A) Tj ET
+0.20 0.24 0.28 rg 56 678 m 540 678 l 0.5 w S
+BT /F1 11 Tf 0.75 0.80 0.86 rg 56 656 Td (Forward voltage per diode at 4 A) Tj ET
+BT /F2 11 Tf 1 1 1 rg 320 656 Td (1.05 V typical) Tj ET
+0.20 0.24 0.28 rg 56 648 m 540 648 l 0.5 w S
+BT /F1 11 Tf 0.75 0.80 0.86 rg 56 626 Td (Peak forward surge, one cycle) Tj ET
+BT /F2 11 Tf 1 1 1 rg 320 626 Td (200 A) Tj ET
+0.20 0.24 0.28 rg 56 618 m 540 618 l 0.5 w S
+BT /F1 11 Tf 0.75 0.80 0.86 rg 56 596 Td (Operating junction temperature) Tj ET
+BT /F2 11 Tf 1 1 1 rg 320 596 Td (-55 to +150 C) Tj ET
+0.20 0.24 0.28 rg 56 588 m 540 588 l 0.5 w S
+BT /F1 11 Tf 0.75 0.80 0.86 rg 56 566 Td (Thermal resistance, junction to case) Tj ET
+BT /F2 11 Tf 1 1 1 rg 320 566 Td (1.9 C/W) Tj ET
+0.20 0.24 0.28 rg 56 558 m 540 558 l 0.5 w S
+BT /F1 11 Tf 0.75 0.80 0.86 rg 56 536 Td (Package) Tj ET
+BT /F2 11 Tf 1 1 1 rg 320 536 Td (KBPC, chassis mount) Tj ET
+0.20 0.24 0.28 rg 56 528 m 540 528 l 0.5 w S
+BT /F1 9 Tf 0.48 0.54 0.60 rg 56 486 Td (Fictional device. Values are internally consistent and describe no real part.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 792] /Resources << /Font << /F1 5 0 R /F2 8 0 R >> >> /Contents 7 0 R >>
+endobj
+7 0 obj
+<< /Length 1545 >>
+stream
+0.07 0.10 0.13 rg 0 0 595 792 re f
+BT /F1 20 Tf 1 1 1 rg 56 760 Td (BR-6208  SELECTION NOTES) Tj ET
+0.16 0.72 0.65 rg 56 748 m 540 748 l 2 w S
+BT /F1 11 Tf 0.75 0.80 0.86 rg 56 716 Td (Derate average current above) Tj ET
+BT /F2 11 Tf 1 1 1 rg 320 716 Td (60 C case) Tj ET
+0.20 0.24 0.28 rg 56 708 m 540 708 l 0.5 w S
+BT /F1 11 Tf 0.75 0.80 0.86 rg 56 686 Td (Recommended heatsink above 4 A) Tj ET
+BT /F2 11 Tf 1 1 1 rg 320 686 Td (Yes - chassis mount) Tj ET
+0.20 0.24 0.28 rg 56 678 m 540 678 l 0.5 w S
+BT /F1 11 Tf 0.75 0.80 0.86 rg 56 656 Td (Peak charging current, 10000 uF) Tj ET
+BT /F2 11 Tf 1 1 1 rg 320 656 Td (Approx 5x average) Tj ET
+0.20 0.24 0.28 rg 56 648 m 540 648 l 0.5 w S
+BT /F1 11 Tf 0.75 0.80 0.86 rg 56 626 Td (Reverse leakage at rated V, 25 C) Tj ET
+BT /F2 11 Tf 1 1 1 rg 320 626 Td (5 uA typical) Tj ET
+0.20 0.24 0.28 rg 56 618 m 540 618 l 0.5 w S
+BT /F1 11 Tf 0.75 0.80 0.86 rg 56 596 Td (Reverse leakage at rated V, 125 C) Tj ET
+BT /F2 11 Tf 1 1 1 rg 320 596 Td (500 uA typical) Tj ET
+0.20 0.24 0.28 rg 56 588 m 540 588 l 0.5 w S
+BT /F1 11 Tf 0.75 0.80 0.86 rg 56 566 Td (Minimum PIV for 24 V RMS input) Tj ET
+BT /F2 11 Tf 1 1 1 rg 320 566 Td (68 V - choose 200 V or better) Tj ET
+0.20 0.24 0.28 rg 56 558 m 540 558 l 0.5 w S
+BT /F1 11 Tf 0.75 0.80 0.86 rg 56 536 Td (Bridge drop in the supply budget) Tj ET
+BT /F2 11 Tf 1 1 1 rg 320 536 Td (Allow 1.4 V) Tj ET
+0.20 0.24 0.28 rg 56 528 m 540 528 l 0.5 w S
+BT /F1 9 Tf 0.48 0.54 0.60 rg 56 486 Td (Choose PIV against the peak, never the RMS. The margin is the point.) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000127 00000 n 
+0000000263 00000 n 
+0000001831 00000 n 
+0000001901 00000 n 
+0000002037 00000 n 
+0000003634 00000 n 
+trailer
+<< /Size 9 /Root 1 0 R >>
+startxref
+3709
+%%EOF
