@@ -28,7 +28,54 @@ caption: Ripple rises with load and falls with capacitance. Nothing here is free
 For a full-wave rectifier at 50 Hz, the capacitor has about 10 ms to bridge each
 gap. That gives a workable estimate:
 
-**C ≈ (I × t) / V_ripple**
+```equation
+title: Sizing the reservoir capacitor
+statement: C = I / (2 * f * Vr)
+caption: Every symbol here is a design decision except one, and that one is the rectifier you chose.
+symbols:
+  - name: C
+    label: Reservoir capacitance
+    unit: F
+    note: What you are solving for. The number you take to a catalogue.
+  - name: I
+    label: Load current
+    unit: A
+    note: What the circuit downstream draws. Ripple is proportional to it, so a supply that looks clean unloaded can be filthy at full load.
+  - name: f
+    label: Mains frequency
+    unit: Hz
+    note: Fixed by the wall, not by you. 50 Hz here, 60 Hz elsewhere, and the difference is worth about 20 percent of your capacitor.
+  - name: Vr
+    label: Ripple you will accept
+    unit: V
+    note: A budget you set. Halving it doubles the capacitor, so this is where the cost lives.
+  - name: Q
+    label: Charge removed between peaks
+    unit: C
+    note: Only appears in the derivation. It is the bridge between the capacitor equation and the load.
+  - name: t
+    label: Time between peaks
+    unit: s
+    note: How long the capacitor is on its own. Full-wave rectification halves it, which is the whole reason full-wave is worth the extra diodes.
+highlights:
+  - coefficient: f
+    label: The full-wave 2
+    note: A full-wave rectifier refills the capacitor twice per mains cycle, so it only has to bridge half as long. Swap it for a half-wave rectifier and this 2 disappears — and the capacitor you need doubles for exactly the same ripple.
+  - term: 2 * f * Vr
+    label: Everything you are dividing the current by
+    note: Read the formula as one division and it stops being four symbols. More refills per second, or more ripple allowed, and the capacitor gets smaller.
+derivation:
+  - statement: Q = C * Vr
+    note: The defining relation for a capacitor, applied to the droop you are willing to tolerate rather than to the whole voltage.
+  - statement: Q = I * t
+    note: Meanwhile the load removes charge at a steady rate. Over one gap, that is current times time.
+  - statement: C * Vr = I * t
+    note: The same charge, counted twice. Setting the two expressions equal is the only step here that does any work.
+  - statement: t = 1 / (2 * f)
+    note: A full-wave rectifier peaks twice per cycle, so each gap is half a period. This is where the 2 comes from.
+  - statement: C = I / (2 * f * Vr)
+    note: Substituted and rearranged for the thing you have to buy.
+```
 
 At 1 A with 1 V of allowed ripple, that is 0.01 F — 10 000 µF. This is why bench
 supplies have physically large capacitors in them, and why the estimate is only
@@ -56,7 +103,6 @@ parameters:
 curves:
   - expression: 24 - sag * (t / 10 - floor(t / 10))
     label: Capacitor voltage
-    colour: teal
     tangent: true
 markers:
   - at: 10
@@ -89,7 +135,6 @@ series:
 curves:
   - expression: k * x
     label: Predicted, V = I t / C
-    colour: amber
     dashed: true
 parameters:
   - name: k
