@@ -129,3 +129,17 @@ explanation: >-
 ```qa
 scope: subsection
 ```
+
+```multi-select
+question: Which of these raise the dissipation in a linear regulator's pass transistor?
+options:
+  - Raising the input voltage
+  - Raising the output current
+  - Raising the output voltage
+  - Adding a larger smoothing capacitor
+correct: [0, 1]
+explanation: >-
+  Dissipation is (Vin - Vout) x Iout. Raising Vin widens the drop, and raising
+  the current multiplies it. Raising Vout *narrows* the drop and lowers it. The
+  capacitor changes ripple, not the average dissipation.
+```

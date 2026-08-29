@@ -69,3 +69,14 @@ options:
   - Once or twice
   - More times than I want to admit
 ```
+
+```numeric
+question: The supply is set to 12 V out and holds a 500 mA limit into a dead short. The raw DC into the pass transistor is 18 V. What does the transistor dissipate, in watts?
+correctAnswer: 9
+tolerance: 0.5
+unit: W
+explanation: >-
+  Into a short the output is 0 V, so the whole 18 V is across the transistor
+  while the limit holds the current at 500 mA. P = 18 x 0.5 = 9 W. That is the
+  worst case, and it is why the limit and the heatsink are the same decision.
+```

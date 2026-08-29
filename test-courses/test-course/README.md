@@ -13,10 +13,11 @@ source, and this course is deliberately on the other side of that line.
 
 | | |
 |---|---|
-| Block types | all 14 renderable kinds, including POE, checkpoints, polls, flash and short quizzes, and an exit survey |
+| Block types | every renderable kind, including POE, checkpoints, polls, flash and short quizzes, a numeric question with a tolerance, a multiple-select, and an exit survey |
 | Canvas kinds | image, SVG, PDF, video, sandboxed widget, 3D model — all six |
 | Glossary | all three supported shapes: bare string, titled object, localized definition |
 | Assets | local per-subsection and shared (the widget) |
+| Transcripts | a subsection script with all three cue tokens and `includeInExport: true`, plus a chapter-level one its sibling falls back to |
 | Model pipeline | ships an **STL**, so the compiler's mesh-conversion path is exercised end to end and the app loads the resulting GLB |
 
 ## Building it
