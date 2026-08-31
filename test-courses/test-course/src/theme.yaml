@@ -1,0 +1,13 @@
+# Text defaults for this course, by block type.
+#
+# Every key is a block type id from the registry, and every value is the same
+# {size, color, font} an author can write inline as `{size=huge}`. This is a
+# *default*: a block that sets its own wins, field by field.
+#
+# Deliberately small. A theme that restyles everything is a theme that fights
+# the surface it is rendered on — the point of the file is the two or three
+# decisions that are a property of the course rather than of one slide.
+heading:
+  size: large
+analogy:
+  font: serif

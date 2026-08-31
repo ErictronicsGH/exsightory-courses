@@ -67,6 +67,8 @@ explanation: >-
 
 ```quiz
 title: Bring-up check
+number: "2"
+objective: Whether you would bring up an unknown board without destroying it
 timerSeconds: 180
 questions:
   - prompt: The first check on a newly built supply should be...

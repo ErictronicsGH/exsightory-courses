@@ -58,6 +58,9 @@ caption: The rectifier datasheet. We want the forward voltage and the average fo
 
 ```quiz
 title: Check - choosing a rectifier
+number: "1"
+objective: Whether you can pick a rectifier topology and defend the choice
+timerSeconds: 240
 questions:
   - prompt: Compared with half-wave, a full-wave bridge produces ripple at...
     options:

@@ -19,6 +19,7 @@ source, and this course is deliberately on the other side of that line.
 | Assets | local per-subsection and shared (the widget) |
 | Transcripts | a subsection script with all three cue tokens and `includeInExport: true`, plus a chapter-level one its sibling falls back to |
 | Model pipeline | ships an **STL**, so the compiler's mesh-conversion path is exercised end to end and the app loads the resulting GLB |
+| Text style | a `theme.yaml`, a heading and inline spans styled in `01-raw-dc/010-transformer` |
 
 ## Building it
 
@@ -29,6 +30,39 @@ node packages/insight-core/bin/insight-compile.js ../test-course/src --out ../..
 
 Then install it through the app's **Install a course…** button, or copy the
 package into `%APPDATA%/INSIGHT/courses/`.
+
+## Text style
+
+Authors set size, colour and face by name. There are no numbers and no hex
+values in the syntax — see `registry/textStyle.ts` for why — and a misspelt key
+or value is a compile error rather than silence.
+
+```markdown
+# Why the wall is the wrong voltage {size=huge color=primary}
+
+A bench supply gives you a voltage you [chose]{color=amber}, at a current you
+[set]{color=amber}, from a socket that offers neither. {size=large}
+```
+
+A group at the **end of a block** styles the block; a group after a
+**[bracketed span]** styles those words. Braces anywhere else are prose, so a
+set, a formula and a line of C are all safe.
+
+| key | values |
+|---|---|
+| `size` | `small` `normal` `large` `huge` — steps, relative to whatever the surface set |
+| `color` | `body` `primary` `muted` `amber` `teal` — the app's own semantic palette |
+| `font` | `sans` `mono` `serif` |
+
+`theme.yaml` sets a course-wide default per block type, and a block that styles
+itself wins field by field:
+
+```yaml
+heading:
+  size: large
+analogy:
+  font: serif
+```
 
 ## Regenerating the assets
 

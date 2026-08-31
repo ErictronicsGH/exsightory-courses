@@ -2,11 +2,27 @@
 targetMinutes: 25
 ---
 
-# Why the wall is the wrong voltage
+# Why the wall is the wrong voltage {size=huge color=primary}
 
-A bench supply exists to give you a voltage you chose, at a current you set,
-from a socket that offers neither. Everything in Part 1 is about getting from
-one to the other without setting anything on fire.
+A bench supply exists to give you a voltage you [chose]{color=amber}, at a
+current you [set]{color=amber}, from a socket that offers neither. Everything in
+Part 1 is about getting from one to the other without setting anything on fire.
+
+```canvas
+kind: svg
+src: block-diagram.svg
+alt: Four stages in series - transformer, rectifier, smoothing capacitor, regulator - with the waveform sketched beneath each
+caption: The whole supply in four stages. Each one fixes exactly one problem.
+references:
+  - title: Redrawn for this course
+    author: Fenwick Institute for Applied Electronics
+    year: '2026'
+    note: The stage names follow the order a supply is built in, not the order a textbook usually presents them.
+  - title: IEC 60617 graphical symbols for diagrams
+    publisher: International Electrotechnical Commission
+    url: https://std.iec.ch/iec60617
+    note: The symbol conventions the waveform sketches follow.
+```
 
 The mains socket gives you a high alternating voltage. Your circuit wants a low,
 steady, direct one. Four things have to happen in order, and each has its own
@@ -15,7 +31,7 @@ failure mode:
 - **Step down** the voltage, with a transformer
 - **Rectify** it, so current flows one way only
 - **Smooth** it, so it stops collapsing to zero a hundred times a second
-- **Regulate** it, so it holds still when the load changes
+- **Regulate** it, so it holds still when the load changes {color=muted}
 
 ```analogy
 A transformer is a gearbox for voltage. A gearbox does not create torque out of
@@ -28,14 +44,15 @@ heat. Nobody expects a gearbox to produce free horsepower, and nobody should
 expect a transformer to produce free watts.
 ```
 
+## What the turns ratio actually buys you
+
 ```canvas
 kind: svg
 src: block-diagram.svg
-alt: Four stages in series - transformer, rectifier, smoothing capacitor, regulator - with the waveform sketched beneath each
-caption: The whole supply in four stages. Each one fixes exactly one problem.
+alt: The transformer stage of the block diagram, highlighted
+caption: The first stage, and the only one that changes the voltage.
+focus: 0.04 0.10 0.24 0.75
 ```
-
-## What the turns ratio actually buys you
 
 A transformer's ratio is fixed by its windings, so a 230 V primary and a 24 V
 secondary is a ratio of about 9.6 : 1. That ratio applies to current in the
@@ -62,4 +79,5 @@ options:
   - Never
   - Once or twice
   - Regularly
+live: true
 ```
