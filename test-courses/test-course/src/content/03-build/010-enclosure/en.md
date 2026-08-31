@@ -115,6 +115,10 @@ poses:
     name: Open
     joints:
       lid-hinge: 110
+explode:
+  groups:
+    - id: board-stack
+      parts: [board, standoffs]
 section:
   axis: z
   offset: 0.5
@@ -140,6 +144,9 @@ tour:
   - pose: open
     part: standoffs
     note: Eleven millimetres. That gap is the entire cooling path on the underside.
+  - pose: open
+    explode: 0.5
+    note: Take it apart. The board and the standoffs leave together, because the gap is a fact about the pair - not about either one.
   - view: end-on
     section:
       axis: z
