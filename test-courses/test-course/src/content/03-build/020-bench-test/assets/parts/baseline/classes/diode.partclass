@@ -1,0 +1,128 @@
+{
+  "class": "diode",
+  "label": "Diode",
+  "terminals": [
+    {
+      "id": "a",
+      "label": "anode"
+    },
+    {
+      "id": "k",
+      "label": "cathode"
+    }
+  ],
+  "variants": {
+    "signal": {
+      "symbol": "symbols/diode.svg",
+      "label": "Signal diode"
+    },
+    "schottky": {
+      "symbol": "symbols/diode-schottky.svg",
+      "label": "Schottky"
+    },
+    "zener": {
+      "symbol": "symbols/diode-zener.svg",
+      "label": "Zener",
+      "default_reveals": [
+        "breakdown_region"
+      ]
+    },
+    "led": {
+      "symbol": "symbols/led.svg",
+      "label": "LED"
+    }
+  },
+  "fast_model": {
+    "equation": "shockley",
+    "requires": [
+      "is",
+      "n"
+    ],
+    "optional": [
+      "rs",
+      "bv",
+      "cjo",
+      "tt",
+      "alpha_vf",
+      "r_th_ja_c_per_w"
+    ],
+    "outputs": [
+      "i_f",
+      "i_r",
+      "v_f",
+      "p"
+    ]
+  },
+  "characteristic": {
+    "x": "v_ak",
+    "y": "i_a",
+    "sweep": {
+      "from": -60,
+      "to": 1.2,
+      "points": 400
+    },
+    "family": null,
+    "default_scale": {
+      "x": "linear",
+      "y": "log"
+    }
+  },
+  "ideality_axes": {
+    "leakage": {
+      "requires": [
+        "is"
+      ],
+      "default": false,
+      "label": "Reverse leakage"
+    },
+    "vf_tempco": {
+      "requires": [
+        "alpha_vf"
+      ],
+      "default": false,
+      "label": "Forward voltage drift"
+    },
+    "junction_cap": {
+      "requires": [
+        "cjo"
+      ],
+      "default": false,
+      "label": "Junction capacitance"
+    },
+    "recovery": {
+      "requires": [
+        "tt"
+      ],
+      "default": false,
+      "label": "Reverse recovery"
+    }
+  },
+  "capabilities": {
+    "reveals": [
+      "reverse_leakage",
+      "reverse_recovery",
+      "vf_temp_drift",
+      "breakdown_region",
+      "overcurrent"
+    ],
+    "panes": [
+      "operating",
+      "specifying",
+      "model_card",
+      "provenance",
+      "ideality",
+      "characteristic",
+      "curves",
+      "sensitivity"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "scrub",
+      "edit_model_card",
+      "sweep",
+      "substitute",
+      "replace"
+    ]
+  }
+}

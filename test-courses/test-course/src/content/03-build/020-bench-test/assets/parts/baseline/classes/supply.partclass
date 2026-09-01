@@ -1,0 +1,73 @@
+{
+  "class": "supply",
+  "label": "Bench supply",
+  "instrument": true,
+  "non_ideal_requires": [
+    "r_out"
+  ],
+  "terminals": [
+    {
+      "id": "p",
+      "label": "positive"
+    },
+    {
+      "id": "n",
+      "label": "negative"
+    }
+  ],
+  "variants": {
+    "linear": {
+      "symbol": "symbols/supply.svg",
+      "label": "Linear bench supply"
+    }
+  },
+  "fast_model": {
+    "equation": "source",
+    "value_parameter": "v_oc",
+    "requires": [
+      "v_oc"
+    ],
+    "optional": [
+      "r_out",
+      "alpha",
+      "i_limit_a"
+    ],
+    "outputs": [
+      "v",
+      "i",
+      "p",
+      "v_oc",
+      "r_out"
+    ]
+  },
+  "ideality_axes": {
+    "output_impedance": {
+      "requires": [
+        "r_out"
+      ],
+      "default": false,
+      "label": "Output impedance"
+    },
+    "tempco": {
+      "requires": [
+        "alpha"
+      ],
+      "default": false,
+      "label": "Output drift with temperature"
+    }
+  },
+  "capabilities": {
+    "reveals": [],
+    "panes": [
+      "operating",
+      "specifying",
+      "provenance",
+      "ideality"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "substitute"
+    ]
+  }
+}

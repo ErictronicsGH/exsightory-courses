@@ -1,0 +1,88 @@
+{
+  "class": "conductor",
+  "label": "Conductor",
+  "terminals": [
+    {
+      "id": "a",
+      "label": "end A"
+    },
+    {
+      "id": "b",
+      "label": "end B"
+    }
+  ],
+  "variants": {
+    "wire": {
+      "symbol": "symbols/wire.svg",
+      "label": "Wire",
+      "requires": [
+        "rho_ohm_m",
+        "area_mm2"
+      ]
+    },
+    "trace": {
+      "symbol": "symbols/trace.svg",
+      "label": "PCB trace",
+      "requires": [
+        "rho_ohm_m",
+        "width_mm",
+        "copper_oz"
+      ]
+    },
+    "contact": {
+      "symbol": "symbols/contact.svg",
+      "label": "Contact",
+      "requires": [
+        "r_lumped_ohm"
+      ]
+    }
+  },
+  "fast_model": {
+    "equation": "conductor",
+    "requires": [],
+    "optional": [
+      "rho_ohm_m",
+      "area_mm2",
+      "width_mm",
+      "copper_oz",
+      "r_lumped_ohm",
+      "alpha_per_c",
+      "i_rating_a"
+    ],
+    "outputs": [
+      "r",
+      "v",
+      "i",
+      "p",
+      "j"
+    ]
+  },
+  "ideality_axes": {
+    "tempco": {
+      "requires": [
+        "alpha_per_c"
+      ],
+      "default": false,
+      "label": "Copper temperature coefficient"
+    }
+  },
+  "capabilities": {
+    "reveals": [
+      "ir_drop",
+      "lead_resistance",
+      "contact_variability"
+    ],
+    "panes": [
+      "operating",
+      "specifying",
+      "provenance",
+      "ideality"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "scrub",
+      "substitute"
+    ]
+  }
+}

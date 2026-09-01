@@ -1,0 +1,35 @@
+{
+  "id": "insight-baseline",
+  "name": "INSIGHT baseline components",
+  "version": "0.1.0",
+  "author": "Erictronics Systems",
+  "licence": "Proprietary — ships with INSIGHT.",
+  "description": "The components the bench opens with. Every parameter is class-representative rather than traceable to a part, which is what a typical profile is for: a real profile is what a library author adds.",
+  "classes": [
+    "classes/resistor.partclass",
+    "classes/capacitor.partclass",
+    "classes/diode.partclass",
+    "classes/mosfet.partclass",
+    "classes/thermistor.partclass",
+    "classes/dmm.partclass",
+    "classes/conductor.partclass",
+    "classes/supply.partclass"
+  ],
+  "profiles": [
+    "profiles/resistor-typical.partprofile",
+    "profiles/capacitor-mlcc-typical.partprofile",
+    "profiles/diode-typical.partprofile",
+    "profiles/mosfet-typical.partprofile",
+    "profiles/thermistor-ntc-10k.partprofile",
+    "profiles/dmm-budget.partprofile",
+    "profiles/dmm-bench.partprofile",
+    "profiles/wire-cu-awg24.partprofile",
+    "profiles/wire-cu-awg30.partprofile",
+    "profiles/contact-breadboard.partprofile",
+    "profiles/supply-bench.partprofile"
+  ],
+  "curves": [
+    "curves/mlcc-c-vs-vdc.json"
+  ],
+  "symbols": []
+}

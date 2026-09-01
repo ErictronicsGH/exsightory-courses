@@ -65,6 +65,15 @@ explanation: >-
   much as meaningless.
 ```
 
+```circuit
+title: Why the meter changes the reading
+circuit: circuits/divider-loading.benchcircuit
+libraries:
+  - parts/baseline/library.json
+alt: A ten-volt supply across two one-megohm resistors in series, with a handheld multimeter connected across the lower one.
+caption: A 10 MΩ handheld across a 1 MΩ divider. The reading is not the voltage.
+```
+
 ```quiz
 title: Bring-up check
 number: "2"

@@ -1,0 +1,166 @@
+{
+  "profile": "diode-typical",
+  "class": "diode",
+  "variant": "signal",
+  "display_name": "Small-signal diode (typical)",
+  "provenance": {
+    "typical": true
+  },
+  "parameters": {
+    "is": {
+      "value": 2.5e-09,
+      "unit": "A",
+      "conditions": {
+        "t_a_c": 25
+      },
+      "source": {
+        "note": "Class-representative saturation current for a small silicon signal diode."
+      },
+      "confidence": "typical"
+    },
+    "n": {
+      "value": 1.8,
+      "dimensionless": true,
+      "source": {
+        "note": "Emission coefficient, class-representative."
+      },
+      "confidence": "typical"
+    },
+    "rs": {
+      "value": 0.6,
+      "unit": "Ω",
+      "conditions": {
+        "t_a_c": 25
+      },
+      "source": {
+        "note": "Bulk series resistance, class-representative."
+      },
+      "confidence": "typical"
+    },
+    "bv": {
+      "value": 75,
+      "unit": "V",
+      "conditions": {
+        "t_a_c": 25
+      },
+      "source": {
+        "note": "Reverse breakdown, class-representative."
+      },
+      "confidence": "typical"
+    },
+    "alpha_vf": {
+      "value": -0.002,
+      "unit": "V/°C",
+      "conditions": {
+        "i_f_a": 0.01
+      },
+      "source": {
+        "note": "Forward voltage falls about 2 mV/°C in silicon."
+      },
+      "confidence": "typical"
+    }
+  },
+  "limits": {
+    "absolute_max": {
+      "v_r_v": 75,
+      "i_f_a": 0.3,
+      "t_j_c": 175
+    },
+    "recommended": {
+      "v_r_v": 50,
+      "i_f_a": 0.15
+    }
+  },
+  "physical": {
+    "thermal": {
+      "r_th_ja_c_per_w": {
+        "value": 350,
+        "unit": "°C/W",
+        "conditions": {
+          "mount": "DO-35, free air"
+        },
+        "source": {
+          "note": "Class-representative for a glass axial package."
+        },
+        "confidence": "typical"
+      },
+      "c_th_j_per_c": 0.0015
+    },
+    "package": {
+      "code": "DO-35",
+      "mount": "through_hole",
+      "hand_solderable": true
+    }
+  },
+  "damage": {
+    "trigger": {
+      "quantity": "p_ratio",
+      "threshold": 1.0,
+      "hold_s": 1.0
+    },
+    "mode": "short",
+    "confidence": "typical",
+    "note": {
+      "en": "A punched-through junction usually fails short, which is far more dangerous downstream than an open."
+    }
+  },
+  "reveals": [
+    {
+      "bind": "reverse_leakage",
+      "label": {
+        "en": "Reverse leakage current"
+      },
+      "enables_axis": "leakage",
+      "quantity": "i_r",
+      "transform": {
+        "type": "magnitude",
+        "factor": 1000000.0,
+        "badge": "×10⁶"
+      },
+      "visual": {
+        "treatment": "flow_density",
+        "direction": "reverse"
+      },
+      "context": {
+        "typical_display": "≈ 25 nA at 20 V, 25 °C",
+        "comparison": "forward current in this circuit",
+        "note": {
+          "en": "Leakage roughly doubles every 10 °C."
+        }
+      },
+      "teaching_point": {
+        "en": "Reverse current is real, not zero. Negligible in a rectifier; decisive in a sample-and-hold or a long-integration front end."
+      }
+    },
+    {
+      "bind": "vf_temp_drift",
+      "label": {
+        "en": "Forward voltage against temperature"
+      },
+      "enables_axis": "vf_tempco",
+      "quantity": "v_f",
+      "visual": {
+        "treatment": "none"
+      },
+      "teaching_point": {
+        "en": "−2 mV/°C is why a diode makes a usable thermometer and a poor voltage reference."
+      }
+    }
+  ],
+  "panes": [
+    "operating",
+    "specifying",
+    "provenance",
+    "ideality",
+    "characteristic",
+    "sensitivity"
+  ],
+  "interactions": [
+    "probe",
+    "inspect",
+    "scrub",
+    "sweep",
+    "substitute",
+    "replace"
+  ]
+}

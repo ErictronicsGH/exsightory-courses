@@ -1,0 +1,93 @@
+{
+  "id": "divider-loading",
+  "title": "Why the meter changes the reading",
+  "seed": 20261010,
+  "requires": {
+    "insight-baseline": "0.1.0"
+  },
+  "environment": {
+    "t_ambient_c": 25
+  },
+  "instances": [
+    {
+      "id": "V1",
+      "class": "supply",
+      "profile": "supply-bench",
+      "value": 10,
+      "at": [
+        40,
+        150
+      ],
+      "label": "10 V"
+    },
+    {
+      "id": "R1",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 1000000,
+      "at": [
+        160,
+        80
+      ],
+      "label": "1 M"
+    },
+    {
+      "id": "R2",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 1000000,
+      "at": [
+        160,
+        220
+      ],
+      "label": "1 M"
+    },
+    {
+      "id": "M1",
+      "class": "dmm",
+      "profile": "dmm-budget",
+      "at": [
+        340,
+        220
+      ],
+      "label": "DMM"
+    }
+  ],
+  "nets": [
+    {
+      "id": "vin",
+      "terminals": [
+        "R1.a",
+        "V1.p"
+      ]
+    },
+    {
+      "id": "mid",
+      "terminals": [
+        "R1.b",
+        "R2.a",
+        "M1.hi"
+      ]
+    },
+    {
+      "id": "gnd",
+      "terminals": [
+        "R2.b",
+        "M1.lo",
+        "V1.n"
+      ],
+      "is_reference": true
+    }
+  ],
+  "effects": {},
+  "editable": {
+    "topology": false,
+    "values": [
+      "R1",
+      "R2"
+    ],
+    "profiles": [
+      "M1"
+    ]
+  }
+}

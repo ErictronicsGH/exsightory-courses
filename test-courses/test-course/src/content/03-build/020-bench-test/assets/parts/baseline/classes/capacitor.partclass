@@ -1,0 +1,89 @@
+{
+  "class": "capacitor",
+  "label": "Capacitor",
+  "terminals": [
+    {
+      "id": "a",
+      "label": "terminal A"
+    },
+    {
+      "id": "b",
+      "label": "terminal B"
+    }
+  ],
+  "variants": {
+    "ceramic": {
+      "symbol": "symbols/capacitor.svg",
+      "label": "Ceramic"
+    },
+    "electrolytic": {
+      "symbol": "symbols/capacitor-polarised.svg",
+      "label": "Electrolytic"
+    },
+    "film": {
+      "symbol": "symbols/capacitor.svg",
+      "label": "Film"
+    }
+  },
+  "fast_model": {
+    "equation": "capacitive",
+    "value_parameter": "c",
+    "requires": [
+      "c"
+    ],
+    "optional": [
+      "esr",
+      "alpha",
+      "r_th_ja_c_per_w"
+    ],
+    "outputs": [
+      "v",
+      "i",
+      "c_effective"
+    ]
+  },
+  "ideality_axes": {
+    "bias_derating": {
+      "requires": [
+        "curve:c-vs-vdc"
+      ],
+      "default": false,
+      "label": "Capacitance versus DC bias"
+    },
+    "esr": {
+      "requires": [
+        "esr"
+      ],
+      "default": false,
+      "label": "Series resistance"
+    },
+    "tempco": {
+      "requires": [
+        "alpha"
+      ],
+      "default": false,
+      "label": "Temperature coefficient"
+    }
+  },
+  "capabilities": {
+    "reveals": [
+      "bias_collapse",
+      "ripple_heating"
+    ],
+    "panes": [
+      "operating",
+      "specifying",
+      "provenance",
+      "ideality",
+      "curves",
+      "sensitivity"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "scrub",
+      "substitute",
+      "replace"
+    ]
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "class": "mosfet",
+  "label": "MOSFET",
+  "terminals": [
+    {
+      "id": "d",
+      "label": "drain"
+    },
+    {
+      "id": "g",
+      "label": "gate"
+    },
+    {
+      "id": "s",
+      "label": "source"
+    }
+  ],
+  "variants": {
+    "nmos": {
+      "symbol": "symbols/mosfet-n.svg",
+      "label": "N-channel"
+    },
+    "pmos": {
+      "symbol": "symbols/mosfet-p.svg",
+      "label": "P-channel"
+    }
+  },
+  "fast_model": {
+    "equation": "mosfet-square-law",
+    "requires": [
+      "vth",
+      "kp"
+    ],
+    "optional": [
+      "rds_on",
+      "alpha_rds",
+      "cgs",
+      "cgd",
+      "r_th_ja_c_per_w"
+    ],
+    "outputs": [
+      "i_d",
+      "v_ds",
+      "v_gs",
+      "p"
+    ]
+  },
+  "characteristic": {
+    "x": "v_ds",
+    "y": "i_d",
+    "sweep": {
+      "from": 0,
+      "to": 12,
+      "points": 240
+    },
+    "family": {
+      "parameter": "v_gs",
+      "values": [
+        2.5,
+        3.5,
+        4.5,
+        6,
+        10
+      ]
+    },
+    "default_scale": {
+      "x": "linear",
+      "y": "linear"
+    }
+  },
+  "ideality_axes": {
+    "rds_tempco": {
+      "requires": [
+        "alpha_rds"
+      ],
+      "default": false,
+      "label": "On-resistance versus temperature"
+    },
+    "self_heating": {
+      "requires": [
+        "r_th_ja_c_per_w"
+      ],
+      "default": false,
+      "label": "Self-heating"
+    },
+    "gate_charge": {
+      "requires": [
+        "cgs",
+        "cgd"
+      ],
+      "default": false,
+      "label": "Gate capacitance"
+    }
+  },
+  "capabilities": {
+    "reveals": [
+      "rds_runaway",
+      "gate_drive_mismatch",
+      "overpower"
+    ],
+    "panes": [
+      "operating",
+      "specifying",
+      "model_card",
+      "provenance",
+      "ideality",
+      "characteristic",
+      "sensitivity"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "scrub",
+      "edit_model_card",
+      "sweep",
+      "substitute",
+      "replace"
+    ]
+  }
+}
