@@ -13,8 +13,11 @@
   ],
   "variants": {
     "ntc": {
-      "symbol": "symbols/thermistor.svg",
-      "label": "NTC"
+      "symbol": "symbols/iec/thermistor.svg",
+      "label": "NTC",
+      "alternates": {
+        "ansi": "symbols/ansi/thermistor.svg"
+      }
     }
   },
   "fast_model": {

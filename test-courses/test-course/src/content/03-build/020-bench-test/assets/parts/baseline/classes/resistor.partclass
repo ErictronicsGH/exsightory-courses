@@ -13,8 +13,11 @@
   ],
   "variants": {
     "fixed": {
-      "symbol": "symbols/resistor.svg",
-      "label": "Fixed resistor"
+      "symbol": "symbols/iec/resistor.svg",
+      "label": "Fixed resistor",
+      "alternates": {
+        "ansi": "symbols/ansi/resistor.svg"
+      }
     }
   },
   "fast_model": {

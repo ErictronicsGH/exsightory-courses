@@ -17,7 +17,7 @@
   ],
   "variants": {
     "linear": {
-      "symbol": "symbols/supply.svg",
+      "symbol": "symbols/iec/supply.svg",
       "label": "Linear bench supply"
     }
   },

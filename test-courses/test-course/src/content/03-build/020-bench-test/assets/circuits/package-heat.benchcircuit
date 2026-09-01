@@ -1,0 +1,128 @@
+{
+  "id": "package-heat",
+  "title": "Four resistors, one rail, four different lives",
+  "seed": 20261012,
+  "requires": {
+    "insight-baseline": "0.2.0"
+  },
+  "environment": {
+    "t_ambient_c": 25
+  },
+  "display": {
+    "value_notation": "letter",
+    "show_unit": false
+  },
+  "instances": [
+    {
+      "id": "V1",
+      "class": "supply",
+      "profile": "supply-bench",
+      "value": 10,
+      "at": [
+        140,
+        270
+      ],
+      "rotation": 90,
+      "label": "10 V"
+    },
+    {
+      "id": "R1",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 1000,
+      "at": [
+        280,
+        270
+      ],
+      "rotation": 90,
+      "label": "R1 1k"
+    },
+    {
+      "id": "R2",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 2200,
+      "at": [
+        400,
+        270
+      ],
+      "rotation": 90,
+      "label": "R2 2k2"
+    },
+    {
+      "id": "R3",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 4700,
+      "at": [
+        520,
+        270
+      ],
+      "rotation": 90,
+      "label": "R3 4k7"
+    },
+    {
+      "id": "R4",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 10000,
+      "at": [
+        640,
+        270
+      ],
+      "rotation": 90,
+      "label": "R4 10k"
+    },
+    {
+      "id": "R5",
+      "class": "resistor",
+      "profile": "resistor-power",
+      "value": 50,
+      "at": [
+        760,
+        270
+      ],
+      "rotation": 90,
+      "label": "R5 50R"
+    }
+  ],
+  "nets": [
+    {
+      "id": "rail",
+      "terminals": [
+        "V1.p",
+        "R1.a",
+        "R2.a",
+        "R3.a",
+        "R4.a",
+        "R5.a"
+      ]
+    },
+    {
+      "id": "gnd",
+      "terminals": [
+        "V1.n",
+        "R1.b",
+        "R2.b",
+        "R3.b",
+        "R4.b",
+        "R5.b"
+      ],
+      "is_reference": true
+    }
+  ],
+  "effects": {},
+  "editable": {
+    "topology": false,
+    "values": [
+      "R1",
+      "R2",
+      "R3",
+      "R4",
+      "R5"
+    ],
+    "profiles": [
+      "R5"
+    ]
+  }
+}

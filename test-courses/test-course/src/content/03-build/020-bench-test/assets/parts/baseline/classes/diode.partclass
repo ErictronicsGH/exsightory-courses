@@ -13,22 +13,22 @@
   ],
   "variants": {
     "signal": {
-      "symbol": "symbols/diode.svg",
+      "symbol": "symbols/iec/diode.svg",
       "label": "Signal diode"
     },
     "schottky": {
-      "symbol": "symbols/diode-schottky.svg",
+      "symbol": "symbols/iec/diode-schottky.svg",
       "label": "Schottky"
     },
     "zener": {
-      "symbol": "symbols/diode-zener.svg",
+      "symbol": "symbols/iec/diode-zener.svg",
       "label": "Zener",
       "default_reveals": [
         "breakdown_region"
       ]
     },
     "led": {
-      "symbol": "symbols/led.svg",
+      "symbol": "symbols/iec/led.svg",
       "label": "LED"
     }
   },

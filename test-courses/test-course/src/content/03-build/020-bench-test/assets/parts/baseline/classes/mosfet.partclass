@@ -17,11 +17,11 @@
   ],
   "variants": {
     "nmos": {
-      "symbol": "symbols/mosfet-n.svg",
+      "symbol": "symbols/iec/mosfet-n.svg",
       "label": "N-channel"
     },
     "pmos": {
-      "symbol": "symbols/mosfet-p.svg",
+      "symbol": "symbols/iec/mosfet-p.svg",
       "label": "P-channel"
     }
   },

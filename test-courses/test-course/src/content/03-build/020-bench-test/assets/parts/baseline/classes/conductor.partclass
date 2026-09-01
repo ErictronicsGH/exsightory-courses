@@ -13,7 +13,7 @@
   ],
   "variants": {
     "wire": {
-      "symbol": "symbols/wire.svg",
+      "symbol": "symbols/iec/wire.svg",
       "label": "Wire",
       "requires": [
         "rho_ohm_m",
@@ -21,7 +21,7 @@
       ]
     },
     "trace": {
-      "symbol": "symbols/trace.svg",
+      "symbol": "symbols/iec/trace.svg",
       "label": "PCB trace",
       "requires": [
         "rho_ohm_m",
@@ -30,7 +30,7 @@
       ]
     },
     "contact": {
-      "symbol": "symbols/contact.svg",
+      "symbol": "symbols/iec/contact.svg",
       "label": "Contact",
       "requires": [
         "r_lumped_ohm"

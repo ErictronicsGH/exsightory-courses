@@ -18,11 +18,11 @@
   ],
   "variants": {
     "handheld": {
-      "symbol": "symbols/dmm.svg",
+      "symbol": "symbols/iec/dmm.svg",
       "label": "Handheld"
     },
     "bench": {
-      "symbol": "symbols/dmm-bench.svg",
+      "symbol": "symbols/iec/dmm-bench.svg",
       "label": "Bench"
     }
   },

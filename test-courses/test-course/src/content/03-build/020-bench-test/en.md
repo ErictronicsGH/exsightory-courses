@@ -74,6 +74,22 @@ alt: A ten-volt supply across two one-megohm resistors in series, with a handhel
 caption: A 10 MΩ handheld across a 1 MΩ divider. The reading is not the voltage.
 ```
 
+## What a power rating is actually a statement about
+
+Almost everyone reads a wattage on a resistor as an electrical limit. It is not.
+It is a thermal one, and what it is really describing is the package and how it
+is mounted - which is why two parts working equally hard can be sixty degrees
+apart.
+
+```circuit
+title: Four resistors, one rail, four different lives
+circuit: circuits/package-heat.benchcircuit
+libraries:
+  - parts/baseline/library.json
+alt: A ten-volt rail feeding four separate resistor branches - a pair in series, two single resistors of different values, and a fifty-ohm power resistor in a TO-220 package on a heatsink.
+caption: Every one of these is a resistor across the same rail. Ask which is hottest before you switch to IR view.
+```
+
 ```quiz
 title: Bring-up check
 number: "2"

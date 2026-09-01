@@ -1,7 +1,7 @@
 {
   "id": "insight-baseline",
   "name": "INSIGHT baseline components",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Erictronics Systems",
   "licence": "Proprietary — ships with INSIGHT.",
   "description": "The components the bench opens with. Every parameter is class-representative rather than traceable to a part, which is what a typical profile is for: a real profile is what a library author adds.",
@@ -17,6 +17,7 @@
   ],
   "profiles": [
     "profiles/resistor-typical.partprofile",
+    "profiles/resistor-power.partprofile",
     "profiles/capacitor-mlcc-typical.partprofile",
     "profiles/diode-typical.partprofile",
     "profiles/mosfet-typical.partprofile",
@@ -31,5 +32,24 @@
   "curves": [
     "curves/mlcc-c-vs-vdc.json"
   ],
-  "symbols": []
+  "symbols": [
+    "symbols/iec/capacitor-polarised.svg",
+    "symbols/iec/capacitor.svg",
+    "symbols/iec/contact.svg",
+    "symbols/iec/diode-schottky.svg",
+    "symbols/iec/diode-zener.svg",
+    "symbols/iec/diode.svg",
+    "symbols/iec/dmm-bench.svg",
+    "symbols/iec/dmm.svg",
+    "symbols/iec/led.svg",
+    "symbols/iec/mosfet-n.svg",
+    "symbols/iec/mosfet-p.svg",
+    "symbols/iec/resistor.svg",
+    "symbols/iec/supply.svg",
+    "symbols/iec/thermistor.svg",
+    "symbols/iec/trace.svg",
+    "symbols/iec/wire.svg",
+    "symbols/ansi/resistor.svg",
+    "symbols/ansi/thermistor.svg"
+  ]
 }

@@ -13,15 +13,15 @@
   ],
   "variants": {
     "ceramic": {
-      "symbol": "symbols/capacitor.svg",
+      "symbol": "symbols/iec/capacitor.svg",
       "label": "Ceramic"
     },
     "electrolytic": {
-      "symbol": "symbols/capacitor-polarised.svg",
+      "symbol": "symbols/iec/capacitor-polarised.svg",
       "label": "Electrolytic"
     },
     "film": {
-      "symbol": "symbols/capacitor.svg",
+      "symbol": "symbols/iec/capacitor.svg",
       "label": "Film"
     }
   },
