@@ -3,7 +3,7 @@
   "title": "A track is a piece of wire until the edge is fast enough.",
   "seed": 20261010,
   "requires": {
-    "insight-baseline": "1.2.0"
+    "insight-baseline": "1.3.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -15,8 +15,8 @@
       "profile": "supply-bench",
       "value": 10,
       "at": [
-        40,
-        380
+        50.8,
+        482.6
       ],
       "label": "10 V",
       "rotation": 90
@@ -27,8 +27,8 @@
       "profile": "resistor-power-25",
       "value": 22,
       "at": [
-        200,
-        200
+        254,
+        254
       ],
       "label": "22R"
     },
@@ -38,8 +38,8 @@
       "profile": "mosfet-typical",
       "variant": "nmos",
       "at": [
-        480,
-        380
+        609.6,
+        482.6
       ],
       "label": "Q1"
     },
@@ -49,8 +49,8 @@
       "profile": "supply-bench",
       "value": 10,
       "at": [
-        660,
-        380
+        838.2,
+        482.6
       ],
       "label": "10 V gate",
       "rotation": 90

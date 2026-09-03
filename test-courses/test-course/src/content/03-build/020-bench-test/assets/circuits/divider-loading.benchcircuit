@@ -3,7 +3,7 @@
   "title": "Why the meter changes the reading",
   "seed": 20261010,
   "requires": {
-    "insight-baseline": "1.2.0"
+    "insight-baseline": "1.3.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -15,8 +15,8 @@
       "profile": "supply-bench",
       "value": 10,
       "at": [
-        40,
-        240
+        50.8,
+        304.8
       ],
       "label": "10 V",
       "rotation": 90
@@ -27,8 +27,8 @@
       "profile": "resistor-typical",
       "value": 1000000,
       "at": [
-        200,
-        145
+        254,
+        190.5
       ],
       "label": "1 M",
       "rotation": 90
@@ -39,8 +39,8 @@
       "profile": "resistor-typical",
       "value": 1000000,
       "at": [
-        200,
-        300
+        254,
+        381
       ],
       "label": "1 M",
       "rotation": 90
@@ -50,8 +50,8 @@
       "class": "dmm",
       "profile": "dmm-budget",
       "at": [
-        640,
-        430
+        812.8,
+        546.1
       ],
       "label": "DMM"
     },
@@ -60,8 +60,8 @@
       "class": "probe",
       "profile": "probe-x1",
       "at": [
-        300,
-        300
+        381,
+        381
       ],
       "label": "Probe"
     },
@@ -70,8 +70,8 @@
       "class": "test-point",
       "profile": "test-point-post",
       "at": [
-        480,
-        160
+        609.6,
+        203.2
       ],
       "label": "MID",
       "rotation": 270

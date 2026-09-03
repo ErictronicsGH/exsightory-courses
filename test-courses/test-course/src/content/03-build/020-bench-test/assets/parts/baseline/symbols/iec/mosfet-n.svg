@@ -4,8 +4,8 @@
     <rect x="-8" y="-24" width="32" height="48" rx="1" fill="var(--bench-heat)" stroke="none"/>
   </g>
   <g data-layer="flow">
-    <polyline points="16,-45.4 16,-15" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-    <polyline points="16,15 16,45.4" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="12.7,-50.8 12.7,-15" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="12.7,15 12.7,50.8" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
   <g data-layer="body">
     <line x1="-60" y1="0" x2="-18" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
@@ -13,13 +13,13 @@
     <line x1="-8" y1="-20" x2="-8" y2="-10" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
     <line x1="-8" y1="-5" x2="-8" y2="5" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
     <line x1="-8" y1="10" x2="-8" y2="20" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
-    <polyline points="-8,-15 16,-15 16,-45.4" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
-    <polyline points="-8,15 16,15 16,45.4" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
-    <line x1="-8" y1="0" x2="16" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="-8,-15 12.7,-15 12.7,-50.8" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="-8,15 12.7,15 12.7,50.8" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="-8" y1="0" x2="12.7" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
     <polygon points="5,0 -4,-5 -4,5" fill="var(--bench-symbol)" stroke="none"/>
-    <circle data-terminal="d" cx="16" cy="-45.4" r="2.6" fill="var(--bench-terminal)"/>
-    <circle data-terminal="s" cx="16" cy="45.4" r="2.6" fill="var(--bench-terminal)"/>
-    <circle data-terminal="g" cx="-43.4" cy="0" r="2.6" fill="var(--bench-terminal)"/>
+    <circle data-terminal="d" cx="12.7" cy="-50.8" r="2.6" fill="var(--bench-terminal)"/>
+    <circle data-terminal="s" cx="12.7" cy="50.8" r="2.6" fill="var(--bench-terminal)"/>
+    <circle data-terminal="g" cx="-38.1" cy="0" r="2.6" fill="var(--bench-terminal)"/>
   </g>
   <g data-layer="hitbox">
     <rect x="-52" y="-52" width="104" height="104" fill="currentColor" opacity="0"/>

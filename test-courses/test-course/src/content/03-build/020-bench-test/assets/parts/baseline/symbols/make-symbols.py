@@ -28,9 +28,49 @@
 #   leads made every component look like it was on the end of a wire.
 #
 #   The origin is the part's own centre. A two-terminal part is 104 × 52 with
-#   its anchors at (∓47.4, 0); a three-terminal part declares its own box,
+#   its anchors on the grid below; a three-terminal part declares its own box,
 #   because a MOSFET is as tall as it is wide and padding every symbol to the
 #   largest would make a row of resistors look sparse.
+#
+# ## The grid (stage 12k)
+#
+#   **1.27 mm — 12.7 units — and every terminal is a multiple of it.** The owner,
+#   2026-09-03. It follows from the unit above rather than being a second choice:
+#   0.05 inch is what every schematic capture tool defaults to, and a schematic
+#   is drawn on a pitch so that what is on it can be *placed*.
+#
+#   The lead is what gives. Before this stage every terminal was `body_half +
+#   25.4` exactly, so the leads were already two pitches and it was the **bodies**
+#   that were off — a resistor's 22-unit half, a meter's r20 face, a diode's 13.
+#   Landing the bodies on the grid instead fails on the capacitor, whose plates
+#   sit ±5 units apart: the nearest multiple of the pitch is zero, and forcing
+#   12.7 opens a 2.54 mm gap across a 3.6 mm plate, which reads as two unrelated
+#   lines rather than as a capacitor. So the **body keeps the standard's
+#   proportions** — IEC 60617 decides what a resistor looks like, not this file —
+#   and `ends()` snaps the terminal, leaving a lead of 20 to 31 units.
+#
+#   The teaching claim the flat 25.4 was carrying is not lost, it moves and gets
+#   stronger: what a student can lay on stripboard is fixed by **terminal
+#   spacing**, and the old library failed that — a resistor was 9.48 mm pin to
+#   pin, which is 3.73 × 2.54 and fits nothing. On the grid it is 10.16 mm,
+#   exactly four. The pitch itself now lives in `electronics/pitch.ts`, where the
+#   background, the snap and the library check all read the same one.
+#
+# ## Four symbols this file does NOT write
+#
+#   `ammeter`, `current-clamp`, `probe` and `test-point` were drawn by hand in
+#   stages 11d and 11e and are **maintained beside this file, not by it**. Their
+#   prose is the record of six owner corrections and `write()` cannot carry it —
+#   a clamp has one `evenodd` outline and a test point has no thermal layer at
+#   all, and both facts are load-bearing.
+#
+#   That is a real seam and it has already leaked twice: stage 12h added
+#   `data-upright` marks to five symbols and updated this generator for one of
+#   them, so running it un-edited would have silently reverted the supply's
+#   polarity marks, both meters' faces and the polarised capacitor's plus. Hence
+#   `MARK` below, and hence the seam being written down here rather than found
+#   again. What keeps all twenty-two honest about the grid regardless is
+#   `parts-symbol-off-pitch`, which is checked on the files themselves.
 #
 # ## Proportions are the standard's, not a guess
 #
@@ -101,7 +141,13 @@ FILL = 'fill="var(--bench-symbol)" stroke="none"'
 HEAT = 'fill="var(--bench-heat)" stroke="none"'
 FLOW = 'stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"'
 
-# A lead is 2.54 mm — 0.1 inch, the pitch everything through-hole is built on.
+# The schematic grid: 1.27 mm, and every terminal is a multiple of it.
+# Mirrored in `packages/insight-core/src/electronics/pitch.ts`, which is what the
+# renderer and `insight-parts.js` read. Two numbers, one of them in a file
+# nothing runs — so the check is what binds them, not this comment.
+PITCH = 12.7
+# The lead a part reaches out with, nominally: 2.54 mm, 0.1 inch, two pitches.
+# Nominal because the grid binds and the body keeps its proportions; see above.
 LEAD = 25.4
 # Two-terminal parts: the body sits in the middle and a lead reaches each side.
 FLAT = (-52, -26, 104, 52)
@@ -139,9 +185,36 @@ def write(where, name, note, thermal, body, flow, terminals, box=FLAT):
     io.open(os.path.join(folder, name), 'w', encoding='utf-8', newline='\n').write('\n'.join(out) + '\n')
 
 
+def mark(point, note, shapes):
+    """A `<g data-upright>` — shapes that are **read** rather than turned.
+
+    Stage 12h, and the owner: *the text at the center should not rotate with the
+    ammeter rotation*. A symbol carries no text, so a letter or a polarity sign
+    is geometry and rides the part's rotation like the body around it; this is
+    how a symbol says otherwise. `point` is what the mark is read **about**, and
+    it is stated rather than defaulted — the centre of a face, but the pin's own
+    place for a polarity mark, which has to travel round with the terminal it is
+    about or the sheet says the wrong pin is positive.
+
+    Emitted as one string with its own indentation, because `write()` indents
+    each body entry once and a mark is several lines deep.
+    """
+    out = []
+    if note:
+        out += ['<!--'] + [f'      {one}'.rstrip() for one in note] + ['    -->']
+    out += [f'{"    " if out else ""}<g data-upright="{point}">']
+    out += [f'      {one}' for one in shapes]
+    out += ['    </g>']
+    return chr(10).join(out)
+
+
 def ends(half):
-    """Where the two terminals of a part whose body is `2 × half` wide land."""
-    return round(half + LEAD, 1)
+    """Where the terminals of a part whose body is `2 × half` wide land.
+
+    The nearest grid line to a 0.1 inch lead off the body's edge — so a part is
+    as close to the standard lead as the grid allows, and never off the grid.
+    """
+    return round(round((half + LEAD) / PITCH) * PITCH, 2)
 
 
 AB = lambda half: {'a': (-ends(half), 0), 'b': (ends(half), 0)}
@@ -206,16 +279,28 @@ write('iec', 'capacitor.svg', 'Capacitor — two parallel plates, unpolarised.',
        f'<line x1="5" y1="-18" x2="5" y2="18" {INK}/>'] + leads(5),
       flow_around(5), AB(5))
 
+# Both terminals at the plain capacitor's, which the grid makes possible and
+# which is right anyway: the two are the same kind of part, and on a real board
+# they are interchangeable. Before the grid they were at -30.4 and +34.4 — an
+# asymmetry that came from measuring each lead off its own plate and said, on a
+# sheet, that a polarised capacitor is wider than an unpolarised one.
+CAP_END = ends(5)
 write('iec', 'capacitor-polarised.svg', 'Polarised capacitor — one straight plate, one curved, and a plus mark.',
       [f'<rect x="-10" y="-19" width="22" height="38" {HEAT}/>'],
       [f'<line x1="-5" y1="-18" x2="-5" y2="18" {INK}/>',
        f'<path d="M 7 -18 A 24 24 0 0 1 7 18" {INK}/>',
-       f'<line x1="-30.4" y1="0" x2="-5" y2="0" {INK}/>',
-       f'<line x1="9" y1="0" x2="34.4" y2="0" {INK}/>',
-       f'<line x1="-30" y1="-25" x2="-18" y2="-25" {MARK}/>',
-       f'<line x1="-24" y1="-31" x2="-24" y2="-19" {MARK}/>'],
-      [f'<line x1="-30.4" y1="0" x2="-5" y2="0" {FLOW}/>',
-       f'<line x1="9" y1="0" x2="34.4" y2="0" {FLOW}/>'], {'a': (-30.4, 0), 'b': (34.4, 0)})
+       f'<line x1="-{CAP_END}" y1="0" x2="-5" y2="0" {INK}/>',
+       f'<line x1="9" y1="0" x2="{CAP_END}" y2="0" {INK}/>',
+       mark('-24 -25',
+            ['The plus, beside the plate it is about, and a mark for the same reason the',
+             "supply's is: it has to arrive beside terminal `a` at every rotation. That",
+             'it happens to look the same at a quarter turn is not the argument — a',
+             'symbol that is right by symmetry is right until somebody turns it 45',
+             'degrees.'],
+            [f'<line x1="-30" y1="-25" x2="-18" y2="-25" {MARK}/>',
+             f'<line x1="-24" y1="-31" x2="-24" y2="-19" {MARK}/>'])],
+      [f'<line x1="-{CAP_END}" y1="0" x2="-5" y2="0" {FLOW}/>',
+       f'<line x1="9" y1="0" x2="{CAP_END}" y2="0" {FLOW}/>'], AB(5))
 
 # ── Diodes. The triangle's height equals the cathode bar's, as drawn. ──────
 DIODE_THERMAL = [f'<rect x="-16" y="-16" width="32" height="32" rx="1" {HEAT}/>']
@@ -243,6 +328,15 @@ diode('led.svg', 'LED — a diode with the two emission arrows, at 45°, pointin
        f'<polygon points="22,-26 13,-23 19,-17" {FILL}/>'])
 
 # ── MOSFETs. Drain up, source down, gate left. ─────────────────────────────
+# The drain/source column, on the grid. It was at 16; one pitch is 12.7 and is
+# the nearest, which shortens the run from the channel by 3.3 and leaves the
+# proportions the standard cares about — the gate bar, the three channel
+# segments and their gaps — untouched.
+DS = PITCH
+GATE = ends(18)
+END = ends(20)
+
+
 def mosfet(name, note, arrow):
     write('iec', name, note,
           [f'<rect x="-8" y="-24" width="32" height="48" rx="1" {HEAT}/>'],
@@ -251,12 +345,12 @@ def mosfet(name, note, arrow):
            f'<line x1="-8" y1="-20" x2="-8" y2="-10" {INK}/>',
            f'<line x1="-8" y1="-5" x2="-8" y2="5" {INK}/>',
            f'<line x1="-8" y1="10" x2="-8" y2="20" {INK}/>',
-           f'<polyline points="-8,-15 16,-15 16,-45.4" {INK}/>',
-           f'<polyline points="-8,15 16,15 16,45.4" {INK}/>',
-           f'<line x1="-8" y1="0" x2="16" y2="0" {INK}/>'] + arrow,
-          [f'<polyline points="16,-45.4 16,-15" {FLOW}/>',
-           f'<polyline points="16,15 16,45.4" {FLOW}/>'],
-          {'d': (16, -45.4), 's': (16, 45.4), 'g': (-43.4, 0)}, TALL)
+           f'<polyline points="-8,-15 {DS},-15 {DS},-{END}" {INK}/>',
+           f'<polyline points="-8,15 {DS},15 {DS},{END}" {INK}/>',
+           f'<line x1="-8" y1="0" x2="{DS}" y2="0" {INK}/>'] + arrow,
+          [f'<polyline points="{DS},-{END} {DS},-15" {FLOW}/>',
+           f'<polyline points="{DS},15 {DS},{END}" {FLOW}/>'],
+          {'d': (DS, -END), 's': (DS, END), 'g': (-GATE, 0)}, TALL)
 
 
 mosfet('mosfet-n.svg', 'N-channel MOSFET — the bulk arrow points in at the channel.',
@@ -268,34 +362,68 @@ mosfet('mosfet-p.svg', 'P-channel MOSFET — the bulk arrow points out of the ch
 write('iec', 'dmm.svg', 'Handheld multimeter — the round meter face, opaque.',
       [f'<circle cx="0" cy="0" r="22" {HEAT}/>'],
       [f'<circle cx="0" cy="0" r="20" {BODY}/>',
-       f'<line x1="-10" y1="9" x2="10" y2="-8" {MARK}/>'] + leads(20),
+       mark('0 0',
+            ['The needle, and a **mark** rather than part of the body (owner, 2026-09-03).',
+             'A face is a thing you read: a meter stood on end with its pointer leaning',
+             'the other way reads as a broken instrument rather than a turned one. Read',
+             'about the centre of the face, which is where the face is.'],
+            [f'<line x1="-10" y1="9" x2="10" y2="-8" {MARK}/>'])] + leads(20),
       flow_around(20), HL(20))
 
 write('iec', 'dmm-bench.svg', 'Bench multimeter — the box with a display, beside the handheld.',
       [f'<rect x="-29" y="-23" width="58" height="46" rx="2" {HEAT}/>'],
       [f'<rect x="-28" y="-22" width="56" height="44" rx="2" {BODY}/>',
-       f'<rect x="-20" y="-14" width="40" height="15" rx="1" {MARK}/>',
-       f'<line x1="-14" y1="13" x2="14" y2="13" {MARK}/>'] + leads(28),
+       mark('0 0',
+            ['The display window and the row of buttons under it: **one mark, not two**',
+             "(owner, 2026-09-03 — a meter's face is read).",
+             '',
+             'One, because the face is one thing and its arrangement is part of what it',
+             'says. Given a mark each, they would be individually upright and the screen',
+             'would arrive beside the buttons instead of above them at a quarter turn —',
+             'each element right and the instrument wrong. So they are read together,',
+             'about the centre of the enclosure they are set into.',
+             '',
+             "Which is the opposite call from the supply's `+` and `−`, and for a reason",
+             'worth keeping: those are not a face. Each is bound to a *terminal*, so each',
+             'is read about its own place and travels round with the pin it is about.'],
+            [f'<rect x="-20" y="-14" width="40" height="15" rx="1" {MARK}/>',
+             f'<line x1="-14" y1="13" x2="14" y2="13" {MARK}/>'])] + leads(28),
       flow_around(28), HL(28))
 
 write('iec', 'supply.svg', 'Bench supply — a source with its polarity marked in strokes.',
       [f'<circle cx="0" cy="0" r="22" {HEAT}/>'],
       [f'<circle cx="0" cy="0" r="20" {BODY}/>',
-       f'<line x1="-16" y1="0" x2="-6" y2="0" {MARK}/>',
-       f'<line x1="-11" y1="-5" x2="-11" y2="5" {MARK}/>',
-       f'<line x1="6" y1="0" x2="16" y2="0" {MARK}/>'] + leads(20),
+       mark('-11 0',
+            ['The polarity, as **two marks and not one**, each read about its own place',
+             'on the face rather than about the centre.',
+             '',
+             'A supply stood on end is the ordinary case on a sheet, and it is what',
+             'makes this the symbol that proves the rule. The plus survives a quarter',
+             'turn by luck — it is symmetric — but the minus becomes a vertical bar,',
+             'which is not a minus and is read as one anyway. And both have to *travel*:',
+             'the plus belongs beside terminal `p`, so a mark pinned to where this file',
+             'drew it would sit on the left while `p` went to the top, and the drawing',
+             'would then say the wrong pin is positive.'],
+            [f'<line x1="-16" y1="0" x2="-6" y2="0" {MARK}/>',
+             f'<line x1="-11" y1="-5" x2="-11" y2="5" {MARK}/>']),
+       mark('11 0', [],
+            [f'<line x1="6" y1="0" x2="16" y2="0" {MARK}/>'])] + leads(20),
       flow_around(20), PN(20))
 
 # ── Conductors: a family, because the comparison is the lesson. ────────────
+# A conductor has no body, so its ends are the grid line nearest the frame: 50.8
+# rather than 52, which leaves the 104-wide box a unit and a bit of margin it did
+# not have before.
+RUN = ends(52 - LEAD)
 write('iec', 'wire.svg', 'Wire — a plain conductor, drawn as one.',
       [f'<rect x="-34" y="-6" width="68" height="12" rx="6" {HEAT}/>'],
-      [f'<line x1="-52" y1="0" x2="52" y2="0" {INK}/>'],
-      [f'<line x1="-52" y1="0" x2="52" y2="0" {FLOW}/>'], {'a': (-52, 0), 'b': (52, 0)})
+      [f'<line x1="-{RUN}" y1="0" x2="{RUN}" y2="0" {INK}/>'],
+      [f'<line x1="-{RUN}" y1="0" x2="{RUN}" y2="0" {FLOW}/>'], {'a': (-RUN, 0), 'b': (RUN, 0)})
 
 write('iec', 'trace.svg', 'PCB trace — a conductor with a width, which is why it has a rating.',
       [f'<rect x="-34" y="-8" width="68" height="16" {HEAT}/>'],
-      [f'<rect x="-52" y="-6" width="104" height="12" stroke="var(--bench-symbol)" fill="none" stroke-width="{T}"/>'],
-      [f'<line x1="-52" y1="0" x2="52" y2="0" {FLOW}/>'], {'a': (-52, 0), 'b': (52, 0)})
+      [f'<rect x="-{RUN}" y="-6" width="{round(RUN * 2, 2)}" height="12" stroke="var(--bench-symbol)" fill="none" stroke-width="{T}"/>'],
+      [f'<line x1="-{RUN}" y1="0" x2="{RUN}" y2="0" {FLOW}/>'], {'a': (-RUN, 0), 'b': (RUN, 0)})
 
 write('iec', 'contact.svg', 'Breadboard contact — two spring jaws that touch, and a resistance.',
       [f'<rect x="-16" y="-12" width="32" height="24" rx="2" {HEAT}/>'],

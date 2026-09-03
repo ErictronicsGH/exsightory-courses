@@ -3,7 +3,7 @@
   "title": "The leads are in the measurement, until you stop measuring through them",
   "seed": 20261010,
   "requires": {
-    "insight-baseline": "1.2.0"
+    "insight-baseline": "1.3.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -15,8 +15,8 @@
       "profile": "supply-bench",
       "value": 10,
       "at": [
-        40,
-        380
+        50.8,
+        482.6
       ],
       "label": "10 V",
       "rotation": 90
@@ -26,8 +26,8 @@
       "class": "ammeter",
       "profile": "ammeter-bench",
       "at": [
-        240,
-        160
+        304.8,
+        203.2
       ],
       "label": "Excitation"
     },
@@ -37,8 +37,8 @@
       "profile": "resistor-typical",
       "value": 10000,
       "at": [
-        440,
-        280
+        558.8,
+        355.6
       ],
       "label": "10k",
       "rotation": 90
@@ -48,8 +48,8 @@
       "class": "resistor",
       "profile": "rtd-pt100",
       "at": [
-        440,
-        700
+        558.8,
+        889
       ],
       "label": "Pt100",
       "rotation": 90
@@ -59,8 +59,8 @@
       "class": "dmm",
       "profile": "dmm-bench",
       "at": [
-        240,
-        380
+        304.8,
+        482.6
       ],
       "label": "Two-wire",
       "rotation": 90
@@ -70,8 +70,8 @@
       "class": "dmm",
       "profile": "dmm-bench",
       "at": [
-        880,
-        700
+        1117.6,
+        889
       ],
       "label": "Four-wire",
       "rotation": 90

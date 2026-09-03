@@ -3,7 +3,7 @@
   "title": "One jaw, three branches, three different currents",
   "seed": 20261010,
   "requires": {
-    "insight-baseline": "1.2.0"
+    "insight-baseline": "1.3.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -15,8 +15,8 @@
       "profile": "supply-bench",
       "value": 10,
       "at": [
-        40,
-        320
+        50.8,
+        406.4
       ],
       "label": "10 V",
       "rotation": 90
@@ -27,8 +27,8 @@
       "profile": "resistor-power",
       "value": 100,
       "at": [
-        240,
-        140
+        304.8,
+        177.8
       ],
       "label": "100 R",
       "rotation": 90
@@ -38,8 +38,8 @@
       "class": "ammeter",
       "profile": "ammeter-bench",
       "at": [
-        240,
-        380
+        304.8,
+        482.6
       ],
       "label": "Ammeter",
       "rotation": 90
@@ -50,8 +50,8 @@
       "profile": "resistor-power",
       "value": 200,
       "at": [
-        240,
-        560
+        304.8,
+        711.2
       ],
       "label": "200 R",
       "rotation": 90
@@ -62,8 +62,8 @@
       "profile": "resistor-power",
       "value": 600,
       "at": [
-        620,
-        460
+        787.4,
+        584.2
       ],
       "label": "600 R",
       "rotation": 90
@@ -73,8 +73,8 @@
       "class": "current-clamp",
       "profile": "clamp-milliamp",
       "at": [
-        400,
-        300
+        508,
+        381
       ],
       "label": "Clamp",
       "around": "R1.a"

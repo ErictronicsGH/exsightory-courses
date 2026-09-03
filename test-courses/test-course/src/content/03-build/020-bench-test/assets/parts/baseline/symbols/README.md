@@ -5,26 +5,56 @@ difference between a set of drawings and one diagram. A library author — or
 Circuit Studio's symbol editor at stage 15 — has to be able to add a part that
 does not look like it came from somewhere else.
 
-`make-symbols.py` beside this file generated everything here. It is an authoring
-aid rather than part of any build: nothing runs it, and stage 15 supersedes it.
-It is checked in because it is where the proportions below are actually
-expressed, and a rule that lives only in prose drifts from the files it
-describes.
+`make-symbols.py` beside this file generated **eighteen** of the twenty-two
+symbols here. It is an authoring aid rather than part of any build: nothing runs
+it, and stage 15 supersedes it. It is checked in because it is where the
+proportions below are actually expressed, and a rule that lives only in prose
+drifts from the files it describes.
+
+**`ammeter`, `current-clamp`, `probe` and `test-point` it does not write.** They
+were drawn by hand in stages 11d and 11e, their prose is the record of six owner
+corrections, and `write()` cannot carry it — a clamp is one `evenodd` outline and
+a test point has no thermal layer at all. That seam has leaked once already:
+stage 12h added `data-upright` marks to five symbols and updated the generator
+for one of them. What keeps all twenty-two honest about the grid regardless is
+`parts-symbol-off-pitch`, which is checked on the files themselves.
 
 ## The grid, and what a unit is
 
-**One unit is 0.1 mm.**
+**One unit is 0.1 mm**, and **the schematic grid is 1.27 mm — 12.7 units.**
 
-- A **lead is 2.54 mm** — 25.4 units. That is 0.1 inch, the pitch every
+The second follows from the first rather than being a separate choice: 0.05 inch
+is what every schematic capture tool defaults to, and the owner's amendment on
+2026-09-03 was that it is *the only* spacing. It is stated in
+`packages/insight-core/src/electronics/pitch.ts`, which the background, the snap
+and the library check all read, so there is nowhere for a second one to live.
+
+- **Every terminal is a multiple of 12.7.** Checked by `insight-parts.js` with
+  its own code, so a bought library that is off the grid says so at authoring
+  time rather than drawing half a pitch out on a wall. It binds *every*
+  terminal, including ones no net is ever routed to.
+- A **lead is nominally 2.54 mm** — 25.4 units, 0.1 inch, the pitch every
   through-hole part, every breadboard and every piece of stripboard is built on.
-  A schematic whose leads are the pitch of the board is one a student can lay a
-  part on.
+  **Nominally**, because the grid binds and the body keeps the standard's
+  proportions, so the lead is what gives: it runs from about 20 to 31 units.
+
+  Before stage 12k every terminal was `body_half + 25.4` exactly, so the leads
+  were already two pitches and it was the **bodies** that were off the grid. The
+  alternative — moving the bodies instead — fails on the capacitor, whose plates
+  sit ±5 units apart: the nearest multiple of the pitch is zero, and forcing 12.7
+  opens a 2.54 mm gap across a 3.6 mm plate, which reads as two unrelated lines.
+
+  What the flat 25.4 was claiming is not lost. What a student can lay on
+  stripboard is fixed by **terminal spacing**, and the old library failed that
+  test — a resistor was 9.48 mm pin to pin, which is 3.73 × 2.54 and fits
+  nothing. On the grid it is 10.16 mm, exactly four.
 - The **origin is the part's own centre**, so placing an instance is a translate
   with nothing to subtract, and rotating one is a rotate about its own middle.
 - A two-terminal part is `viewBox="-52 -26 104 52"` with its anchors at
-  `(∓47.4, 0)`. A three-terminal part declares its own box — a MOSFET is as tall
-  as it is wide, and padding every symbol to the largest would make a row of
-  resistors look sparse.
+  `(∓50.8, 0)` for a body around 44 units wide, or `(∓38.1, 0)` for a narrower
+  one. A three-terminal part declares its own box — a MOSFET is as tall as it is
+  wide, and padding every symbol to the largest would make a row of resistors
+  look sparse.
 
 ## Proportions are the standard's, not a guess
 

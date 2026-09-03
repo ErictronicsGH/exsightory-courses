@@ -3,7 +3,7 @@
   "title": "Move the probe, and the error moves with it",
   "seed": 20261010,
   "requires": {
-    "insight-baseline": "1.2.0"
+    "insight-baseline": "1.3.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -15,8 +15,8 @@
       "profile": "supply-bench",
       "value": 10,
       "at": [
-        40,
-        300
+        50.8,
+        381
       ],
       "label": "10 V",
       "rotation": 90
@@ -27,8 +27,8 @@
       "profile": "resistor-typical",
       "value": 1000000,
       "at": [
-        240,
-        120
+        304.8,
+        152.4
       ],
       "label": "1 M",
       "rotation": 90
@@ -39,8 +39,8 @@
       "profile": "resistor-typical",
       "value": 1000000,
       "at": [
-        240,
-        300
+        304.8,
+        381
       ],
       "label": "1 M",
       "rotation": 90
@@ -51,8 +51,8 @@
       "profile": "resistor-typical",
       "value": 1000000,
       "at": [
-        240,
-        480
+        304.8,
+        609.6
       ],
       "label": "1 M",
       "rotation": 90
@@ -62,8 +62,8 @@
       "class": "test-point",
       "profile": "test-point-post",
       "at": [
-        520,
-        20
+        660.4,
+        25.4
       ],
       "rotation": 270,
       "label": "IN"
@@ -73,8 +73,8 @@
       "class": "test-point",
       "profile": "test-point-post",
       "at": [
-        520,
-        200
+        660.4,
+        254
       ],
       "rotation": 270,
       "label": "A"
@@ -84,8 +84,8 @@
       "class": "test-point",
       "profile": "test-point-post",
       "at": [
-        520,
-        380
+        660.4,
+        482.6
       ],
       "rotation": 270,
       "label": "B"
@@ -95,8 +95,8 @@
       "class": "probe",
       "profile": "probe-x1",
       "at": [
-        380,
-        60
+        482.6,
+        76.2
       ],
       "label": "Probe"
     },
@@ -105,8 +105,8 @@
       "class": "dmm",
       "profile": "dmm-budget",
       "at": [
-        760,
-        480
+        965.2,
+        609.6
       ],
       "label": "DMM"
     }

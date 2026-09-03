@@ -3,7 +3,7 @@
   "title": "The most this supply could ever give",
   "seed": 20261012,
   "requires": {
-    "insight-baseline": "1.2.0"
+    "insight-baseline": "1.3.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -15,8 +15,8 @@
       "profile": "supply-bench",
       "value": 10,
       "at": [
-        200,
-        160
+        254,
+        203.2
       ],
       "label": "V1",
       "rotation": 90
@@ -27,8 +27,8 @@
       "profile": "resistor-power-25",
       "value": 5,
       "at": [
-        420,
-        460
+        533.4,
+        584.2
       ],
       "label": "RL 5R",
       "rotation": 90

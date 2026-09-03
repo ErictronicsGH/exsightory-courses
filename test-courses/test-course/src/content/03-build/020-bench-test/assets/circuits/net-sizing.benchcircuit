@@ -3,7 +3,7 @@
   "title": "The track never moved. What it has to be did.",
   "seed": 20261010,
   "requires": {
-    "insight-baseline": "1.2.0"
+    "insight-baseline": "1.3.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -14,7 +14,7 @@
       "class": "supply",
       "profile": "supply-bench",
       "value": 10,
-      "at": [40, 380],
+      "at": [50.8, 482.6],
       "label": "10 V",
       "rotation": 90
     },
@@ -23,7 +23,7 @@
       "class": "resistor",
       "profile": "resistor-power-25",
       "value": 8.2,
-      "at": [440, 380],
+      "at": [558.8, 482.6],
       "label": "8R2",
       "rotation": 90
     },
@@ -31,7 +31,7 @@
       "id": "TP1",
       "class": "test-point",
       "profile": "test-point-post",
-      "at": [240, 200],
+      "at": [304.8, 254],
       "label": "rail",
       "rotation": 90
     }

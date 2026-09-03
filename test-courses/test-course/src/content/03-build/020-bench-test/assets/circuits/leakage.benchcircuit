@@ -3,7 +3,7 @@
   "title": "A diode that is switched off, and still conducting",
   "seed": 20261010,
   "requires": {
-    "insight-baseline": "1.2.0"
+    "insight-baseline": "1.3.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -15,8 +15,8 @@
       "profile": "supply-bench",
       "value": 10,
       "at": [
-        200,
-        250
+        254,
+        317.5
       ],
       "rotation": 90,
       "label": "10 V"
@@ -27,8 +27,8 @@
       "profile": "resistor-typical",
       "value": 1000000,
       "at": [
-        420,
-        160
+        533.4,
+        203.2
       ],
       "rotation": 90,
       "label": "R1"
@@ -39,8 +39,8 @@
       "profile": "resistor-typical",
       "value": 1000000,
       "at": [
-        420,
-        340
+        533.4,
+        431.8
       ],
       "rotation": 90,
       "label": "R2"
@@ -51,8 +51,8 @@
       "profile": "diode-typical",
       "variant": "signal",
       "at": [
-        620,
-        340
+        787.4,
+        431.8
       ],
       "rotation": 90,
       "label": "D1"

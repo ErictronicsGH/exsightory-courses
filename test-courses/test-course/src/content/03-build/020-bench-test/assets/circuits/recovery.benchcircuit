@@ -3,7 +3,7 @@
   "title": "Two diodes, one reversal, and a factor of 750",
   "seed": 20261010,
   "requires": {
-    "insight-baseline": "1.2.0"
+    "insight-baseline": "1.3.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -19,8 +19,8 @@
       "profile": "supply-bench",
       "value": 5,
       "at": [
-        40,
-        260
+        50.8,
+        330.2
       ],
       "rotation": 90,
       "label": "5 V"
@@ -31,8 +31,8 @@
       "profile": "resistor-typical",
       "value": 470,
       "at": [
-        240,
-        180
+        304.8,
+        228.6
       ],
       "rotation": 90
     },
@@ -42,8 +42,8 @@
       "profile": "diode-1n4148w",
       "variant": "signal",
       "at": [
-        240,
-        360
+        304.8,
+        457.2
       ],
       "rotation": 90
     },
@@ -53,8 +53,8 @@
       "profile": "resistor-typical",
       "value": 470,
       "at": [
-        440,
-        180
+        558.8,
+        228.6
       ],
       "rotation": 90
     },
@@ -64,8 +64,8 @@
       "profile": "diode-1n4001",
       "variant": "signal",
       "at": [
-        440,
-        360
+        558.8,
+        457.2
       ],
       "rotation": 90
     }

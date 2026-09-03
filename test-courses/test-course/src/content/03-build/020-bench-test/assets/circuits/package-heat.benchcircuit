@@ -3,7 +3,7 @@
   "title": "Four resistors, one rail, four different lives",
   "seed": 20261012,
   "requires": {
-    "insight-baseline": "1.2.0"
+    "insight-baseline": "1.3.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -19,8 +19,8 @@
       "profile": "supply-bench",
       "value": 10,
       "at": [
-        140,
-        270
+        177.8,
+        342.9
       ],
       "rotation": 90,
       "label": "10 V"
@@ -31,8 +31,8 @@
       "profile": "resistor-typical",
       "value": 1000,
       "at": [
-        280,
-        270
+        355.6,
+        342.9
       ],
       "rotation": 90,
       "label": "R1 1k"
@@ -43,8 +43,8 @@
       "profile": "resistor-typical",
       "value": 2200,
       "at": [
-        400,
-        270
+        508,
+        342.9
       ],
       "rotation": 90,
       "label": "R2 2k2"
@@ -55,8 +55,8 @@
       "profile": "resistor-typical",
       "value": 4700,
       "at": [
-        520,
-        270
+        660.4,
+        342.9
       ],
       "rotation": 90,
       "label": "R3 4k7"
@@ -67,8 +67,8 @@
       "profile": "resistor-typical",
       "value": 10000,
       "at": [
-        640,
-        270
+        812.8,
+        342.9
       ],
       "rotation": 90,
       "label": "R4 10k"
@@ -79,8 +79,8 @@
       "profile": "resistor-power",
       "value": 50,
       "at": [
-        760,
-        270
+        965.2,
+        342.9
       ],
       "rotation": 90,
       "label": "R5 50R"
