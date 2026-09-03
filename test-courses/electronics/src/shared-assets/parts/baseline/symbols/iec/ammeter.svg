@@ -1,0 +1,53 @@
+<!-- Ammeter — the IEC circle with an A in it, in series with the branch.
+
+     The same r 20 circle the supply and the handheld multimeter are drawn on,
+     so it sits in the family and reads at the same size from the back of a
+     room. What tells a reader it is an ammeter rather than either of those is
+     the glyph and the fact that the conductor runs *through* it: a meter drawn
+     in line has been soldered into the branch, which is exactly what this one
+     has been, and is the whole difference between it and the clamp.
+
+     The **shunt is not drawn**. It lives inside this part, so it prints as a
+     label row beside the reference and the value, where a supply's `r_out`
+     prints — a schematic's symbols are its topology, and a second body would
+     say the circuit contains a resistor that the circuit being solved does not
+     (owner, 2026-09-02).
+
+     The A is three strokes rather than text: a symbol may only carry geometry,
+     which is the rule that keeps a bought library out of the DOM.
+
+     The terminals are at ∓50.8 — four times the 1.27 mm grid (stage 12k) — which
+     is where the handheld and the supply put theirs, because all three are drawn
+     on the same r 20 face. The lead is 30.8 rather than the nominal 25.4: the
+     grid binds and the body keeps the standard's proportions, so it is the lead
+     that gives. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-52 -26 104 52">
+  <g data-layer="thermal">
+    <circle cx="0" cy="0" r="22" fill="var(--bench-heat)" stroke="none"/>
+  </g>
+  <g data-layer="flow">
+    <line x1="-50.8" y1="0" x2="-20" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="50.8" y1="0" x2="20" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g data-layer="body">
+    <circle cx="0" cy="0" r="20" stroke="var(--bench-symbol)" fill="var(--bench-sheet)" stroke-width="var(--bench-stroke, 2.4)" stroke-linejoin="round"/>
+    <!--
+      The A: two legs and a crossbar, and a **mark** rather than part of the
+      body. It is read about the centre of the face, so it stays the right way
+      up however the instrument is turned — the owner, 2026-09-03, watching this
+      symbol at 90 degrees: *the text at the center should not rotate with the
+      ammeter rotation*. A letter on its side is not a letter.
+    -->
+    <g data-upright="0 0">
+      <polyline points="-8,9 0,-10 8,9" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="-4.2" y1="1.5" x2="4.2" y2="1.5" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round"/>
+    </g>
+    <line x1="-50.8" y1="0" x2="-20" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="50.8" y1="0" x2="20" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle data-terminal="hi" cx="-50.8" cy="0" r="2.6" fill="var(--bench-terminal)"/>
+    <circle data-terminal="lo" cx="50.8" cy="0" r="2.6" fill="var(--bench-terminal)"/>
+  </g>
+  <g data-layer="hitbox">
+    <rect x="-52" y="-26" width="104" height="52" fill="currentColor" opacity="0"/>
+  </g>
+</svg>

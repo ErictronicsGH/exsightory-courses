@@ -1,0 +1,120 @@
+{
+  "id": "recovery",
+  "title": "Two diodes, one reversal, and a factor of 750",
+  "seed": 20261010,
+  "requires": {
+    "insight-baseline": "1.3.0"
+  },
+  "environment": {
+    "t_ambient_c": 25
+  },
+  "display": {
+    "value_notation": "letter",
+    "show_unit": false
+  },
+  "instances": [
+    {
+      "id": "V1",
+      "class": "supply",
+      "profile": "supply-bench",
+      "value": 5,
+      "at": [
+        50.8,
+        330.2
+      ],
+      "rotation": 90,
+      "label": "5 V"
+    },
+    {
+      "id": "R1",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 470,
+      "at": [
+        304.8,
+        228.6
+      ],
+      "rotation": 90
+    },
+    {
+      "id": "D1",
+      "class": "diode",
+      "profile": "diode-1n4148w",
+      "variant": "signal",
+      "at": [
+        304.8,
+        457.2
+      ],
+      "rotation": 90
+    },
+    {
+      "id": "R2",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 470,
+      "at": [
+        558.8,
+        228.6
+      ],
+      "rotation": 90
+    },
+    {
+      "id": "D2",
+      "class": "diode",
+      "profile": "diode-1n4001",
+      "variant": "signal",
+      "at": [
+        558.8,
+        457.2
+      ],
+      "rotation": 90
+    }
+  ],
+  "nets": [
+    {
+      "id": "drive",
+      "terminals": [
+        "V1.p",
+        "R1.a",
+        "R2.a"
+      ]
+    },
+    {
+      "id": "a",
+      "terminals": [
+        "R1.b",
+        "D1.a"
+      ]
+    },
+    {
+      "id": "b",
+      "terminals": [
+        "R2.b",
+        "D2.a"
+      ]
+    },
+    {
+      "id": "gnd",
+      "terminals": [
+        "D1.k",
+        "D2.k",
+        "V1.n"
+      ],
+      "is_reference": true
+    }
+  ],
+  "effects": {},
+  "effects_global": [
+    "recovery"
+  ],
+  "editable": {
+    "topology": false,
+    "values": [
+      "V1"
+    ],
+    "profiles": [
+      "D1",
+      "D2"
+    ]
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "id": "power-transfer",
+  "title": "The most this supply could ever give",
+  "seed": 20261012,
+  "requires": {
+    "insight-baseline": "1.3.0"
+  },
+  "environment": {
+    "t_ambient_c": 25
+  },
+  "instances": [
+    {
+      "id": "V1",
+      "class": "supply",
+      "profile": "supply-bench",
+      "value": 10,
+      "at": [
+        254,
+        203.2
+      ],
+      "label": "V1",
+      "rotation": 90
+    },
+    {
+      "id": "RL",
+      "class": "resistor",
+      "profile": "resistor-power-25",
+      "value": 5,
+      "at": [
+        533.4,
+        584.2
+      ],
+      "label": "RL 5R",
+      "rotation": 90
+    }
+  ],
+  "nets": [
+    {
+      "id": "out",
+      "terminals": [
+        "V1.p",
+        "RL.a"
+      ]
+    },
+    {
+      "id": "gnd",
+      "terminals": [
+        "V1.n",
+        "RL.b"
+      ],
+      "is_reference": true
+    }
+  ],
+  "effects": {},
+  "editable": {
+    "topology": false,
+    "values": [
+      "V1",
+      "RL"
+    ],
+    "profiles": []
+  }
+}

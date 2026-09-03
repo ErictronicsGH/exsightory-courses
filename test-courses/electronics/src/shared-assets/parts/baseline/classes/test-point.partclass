@@ -1,0 +1,35 @@
+{
+  "class": "test-point",
+  "label": "Test point",
+  "terminals": [
+    {
+      "id": "pad",
+      "label": "pad",
+      "role": "terminal",
+      "signal": "bidirectional"
+    }
+  ],
+  "variants": {
+    "post": {
+      "symbol": "symbols/iec/test-point.svg",
+      "label": "Board test point"
+    }
+  },
+  "fast_model": {
+    "equation": "open",
+    "requires": [],
+    "optional": [],
+    "outputs": []
+  },
+  "ideality_axes": {},
+  "capabilities": {
+    "reveals": [],
+    "panes": [
+      "specifying",
+      "provenance"
+    ],
+    "interactions": [
+      "inspect"
+    ]
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "profile": "dmm-bench",
+  "class": "dmm",
+  "variant": "bench",
+  "display_name": "Bench DMM (6½ digit)",
+  "provenance": {
+    "typical": true
+  },
+  "parameters": {
+    "r_in_v_mode": {
+      "value": 10000000000,
+      "unit": "Ω",
+      "conditions": {
+        "range": "≤ 10 V DC"
+      },
+      "source": {
+        "note": "10 GΩ on the low ranges, representative of a bench instrument."
+      },
+      "confidence": "typical"
+    },
+    "r_burden_i_mode": {
+      "value": 0.1,
+      "unit": "Ω",
+      "conditions": {
+        "range": "100 mA"
+      },
+      "source": {
+        "note": "A low-value shunt, representative of a bench instrument."
+      },
+      "confidence": "typical"
+    },
+    "digits": {
+      "value": 6.5,
+      "dimensionless": true,
+      "source": {
+        "note": "A 1999999-count display."
+      },
+      "confidence": "typical"
+    },
+    "accuracy_v_pct": {
+      "value": 0.0035,
+      "dimensionless": true,
+      "source": {
+        "note": "± 0.0035 % of reading, representative of a bench meter."
+      },
+      "confidence": "typical"
+    },
+    "accuracy_v_counts": {
+      "value": 5,
+      "dimensionless": true,
+      "source": {
+        "note": "± 5 counts, representative of a bench meter."
+      },
+      "confidence": "typical"
+    }
+  },
+  "limits": {
+    "absolute_max": {
+      "v_v": 1000,
+      "i_a": 3
+    },
+    "recommended": {
+      "v_v": 750,
+      "i_a": 1
+    }
+  },
+  "demonstration": {
+    "reveals": [
+      {
+        "bind": "input_loading",
+        "label": {
+          "en": "Input impedance loading"
+        },
+        "enables_axis": "input_loading",
+        "quantity": "v",
+        "visual": {
+          "treatment": "none"
+        },
+        "teaching_point": {
+          "en": "10 GΩ across the same 1 MΩ divider changes the reading by 0.01 %. Swap the meters and the error appears and vanishes while the circuit stays put."
+        }
+      }
+    ],
+    "panes": [
+      "operating",
+      "measurement",
+      "specifying",
+      "provenance",
+      "ideality"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "connect",
+      "substitute"
+    ],
+    "availability": {
+      "en": "A bench instrument, and the difference is not the display. 10 GΩ on the low DC ranges means it stops loading what it measures — a thousand times lighter than the handheld — and that is the parameter worth paying for. Six and a half digits and ± 0.0035 % is what the rest of the money buys."
+    }
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "profile": "supply-bench",
+  "class": "supply",
+  "variant": "linear",
+  "display_name": "Bench supply (typical linear)",
+  "provenance": {
+    "typical": true
+  },
+  "parameters": {
+    "v_oc": {
+      "value": 10,
+      "unit": "V",
+      "conditions": {
+        "t_a_c": 25,
+        "i_a": 0
+      },
+      "source": {
+        "note": "Open-circuit output. The circuit sets it per instance; this is only the value an instance inherits when it says nothing."
+      },
+      "confidence": "typical"
+    },
+    "r_out": {
+      "value": 0.05,
+      "unit": "Ω",
+      "conditions": {
+        "i_a": 1,
+        "t_a_c": 25,
+        "f_khz": 0
+      },
+      "source": {
+        "note": "Class-representative DC output impedance for a small linear bench supply, including its own sense-lead drop."
+      },
+      "confidence": "typical"
+    },
+    "alpha": {
+      "value": -0.00005,
+      "unit": "1/°C",
+      "conditions": {
+        "t_a_c": 25
+      },
+      "source": {
+        "note": "Class-representative output drift, −50 ppm/°C."
+      },
+      "confidence": "typical"
+    },
+    "i_limit_a": {
+      "value": 2,
+      "unit": "A",
+      "conditions": {
+        "t_a_c": 25
+      },
+      "source": {
+        "note": "Where the current limit is set. Recorded because a demonstration that trips one should be able to say what it tripped; the limit is not modelled yet."
+      },
+      "confidence": "typical"
+    }
+  },
+  "limits": {
+    "absolute_max": {
+      "i_a": 3,
+      "v_v": 30,
+      "t_j_c": 70
+    },
+    "recommended": {
+      "i_a": 2,
+      "v_v": 24
+    }
+  },
+  "demonstration": {
+    "reveals": [
+      {
+        "bind": "output_resistance",
+        "label": {
+          "en": "The resistor inside the supply"
+        },
+        "enables_axis": "output_impedance",
+        "quantity": "r_out",
+        "transform": {
+          "type": "materialise"
+        },
+        "visual": {
+          "treatment": "outline"
+        },
+        "context": {
+          "comparison": "the load resistance this supply is driving",
+          "note": {
+            "en": "Every source has one. A bench supply hides it behind a regulator; a battery wears it on its terminals."
+          }
+        },
+        "teaching_point": {
+          "en": "A supply is not a voltage — it is a voltage behind a resistance, and the schematic never draws the resistance. Fifty milliohms is nothing at ten milliamps and half a volt at ten amps."
+        }
+      },
+      {
+        "bind": "output_drift",
+        "label": {
+          "en": "Output drift with temperature"
+        },
+        "enables_axis": "tempco",
+        "quantity": "v_oc",
+        "visual": {
+          "treatment": "none"
+        },
+        "teaching_point": {
+          "en": "The rail a whole measurement is referenced to moves with the room. −50 ppm/°C is 0.5 mV on a 10 V rail across a lecture theatre warming up."
+        }
+      }
+    ],
+    "panes": [
+      "operating",
+      "specifying",
+      "provenance",
+      "ideality"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "substitute"
+    ],
+    "availability": {
+      "en": "Any bench supply with a sense terminal behaves like this. A USB brick does not — its output impedance is an order of magnitude worse and its regulation is a different shape."
+    }
+  }
+}

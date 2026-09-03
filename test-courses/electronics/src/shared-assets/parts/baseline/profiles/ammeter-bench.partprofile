@@ -1,0 +1,84 @@
+{
+  "profile": "ammeter-bench",
+  "class": "ammeter",
+  "variant": "bench",
+  "display_name": "Bench ammeter (switchable shunt)",
+  "provenance": {
+    "typical": true
+  },
+  "parameters": {
+    "r_burden_i_mode": {
+      "value": 0.1,
+      "unit": "Ω",
+      "conditions": {
+        "range": "1 A"
+      },
+      "source": {
+        "note": "The shunt the meter starts on. A tenth of an ohm at an amp is a hundred millivolts out of the branch, which is the number a room is meant to notice."
+      },
+      "confidence": "typical"
+    },
+    "r_burden_max": {
+      "value": 10,
+      "unit": "Ω",
+      "conditions": {
+        "range": "10 mA"
+      },
+      "source": {
+        "note": "The largest shunt this instrument can switch in — the low current range, where sensitivity is bought with burden voltage. It is the end of the dial and it is a specification of the instrument rather than a rating: nothing here is damaged by a large shunt, which is why it is stated as a parameter and not in \"limits\"."
+      },
+      "confidence": "typical"
+    },
+    "digits": {
+      "value": 4.5,
+      "dimensionless": true,
+      "source": {
+        "note": "A 19999-count display."
+      },
+      "confidence": "typical"
+    }
+  },
+  "limits": {
+    "absolute_max": {
+      "i_a": 3,
+      "v_v": 60
+    },
+    "recommended": {
+      "i_a": 1,
+      "v_v": 30
+    }
+  },
+  "demonstration": {
+    "reveals": [
+      {
+        "bind": "burden_voltage",
+        "label": {
+          "en": "Burden voltage"
+        },
+        "enables_axis": "burden",
+        "quantity": "v",
+        "visual": {
+          "treatment": "none"
+        },
+        "teaching_point": {
+          "en": "An ammeter is a resistor you put in the branch you are measuring. Turn the shunt up and the reading falls — not because the circuit changed its mind, but because the instrument is now a tenth of the circuit."
+        }
+      }
+    ],
+    "panes": [
+      "operating",
+      "measurement",
+      "specifying",
+      "provenance",
+      "ideality"
+    ],
+    "interactions": [
+      "inspect",
+      "connect",
+      "substitute"
+    ],
+    "availability": {
+      "en": "In the branch, and that is the whole difference. The shunt is on a dial from 10 mΩ to 10 Ω, and every position of it is a trade: a bigger shunt resolves a smaller current and takes more of the voltage that was driving the branch. The clamp beside it takes nothing and cannot see anything small — between them is the reason both are on a bench."
+    }
+  }
+}

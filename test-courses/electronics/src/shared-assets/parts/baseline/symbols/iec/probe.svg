@@ -1,0 +1,74 @@
+<!-- Scope probe — a needle and a barrel, held against the node it is measuring.
+
+     **One connection point, and it is the tip** (the owner, 2026-09-02, twice:
+     *it has to be just one*, and then, of the cable at the back, *why have you
+     brought the second connect again?*). The needle's point is the only terminal
+     drawn on this symbol. It lands on the conductor, snapped there by the bench,
+     and the conductor runs on through the touch unbroken.
+
+     Two things are deliberately not drawn, and both were removed for the same
+     reason: **a wire leaving a probe is what makes it look like part of the
+     circuit**, and no amount of care about the body survives one.
+
+       - The **cable to the instrument**. Which meter a probe feeds is carried
+         the way the owner's rule carries every other link between instruments:
+         *give them the same colour, indicating that they are working together*.
+         The meter behind a probe wears the probe's ink.
+       - The **reference clip**. On ground it is understood; on any other net it
+         is a second one of these, in the same ink, standing on that net.
+
+     Four designs got here, and each failed in a way that was invisible until it
+     was on a wall: a two-terminal body with a lead at either end, which is the
+     drawing of a resistor; the same body routed onto its net with a stub, which
+     is a component *in* the branch; a Multisim-style ring on the conductor,
+     which is a fine marker and is not a probe; and this shape with its cable
+     still attached, which put the second connection point back.
+
+     One closed outline, filled with the sheet, because a body drawn open over a
+     wire lets the wire show through the barrel.
+
+     The tip is at −25.4 — two times the 1.27 mm grid (stage 12k), which is where
+     the needle's point had to land for the bench to snap it onto a conductor
+     that is itself on the grid.
+
+     Drawn tip-left. The bench places it — snapped onto the nearest conductor of
+     the net it measures — and turns it to an absolute 60° to the horizontal
+     with the tip pointing **downwards** onto the wire, because that is how a
+     probe is held: over the work, coming down onto it. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-31.2 -15.6 62.4 31.2">
+  <g data-layer="thermal">
+    <rect x="-9.6" y="-6" width="21.6" height="12" rx="1.8" fill="var(--bench-heat)" stroke="none"/>
+  </g>
+  <g data-layer="body">
+    <!-- The needle and the barrel as one outline: the point, the shoulders, the body. -->
+    <polygon points="-25.4,0 -9.6,-6 12,-6 12,6 -9.6,6" stroke="var(--bench-symbol)" fill="var(--bench-sheet)" stroke-width="var(--bench-stroke, 2.4)" stroke-linejoin="round"/>
+    <!-- The finger guard a probe is held behind, which is what makes it read as one. -->
+    <line x1="-3.6" y1="-6" x2="-3.6" y2="6" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round"/>
+    <circle data-terminal="tip" cx="-25.4" cy="0" r="2.4" fill="var(--bench-terminal)"/>
+    <!--
+      The other two anchors, behind the barrel where a real probe's cable and
+      ground lead leave it, and **drawn as nothing**.
+
+      They have to exist: `parts-symbol-terminal-mismatch` refuses a symbol that
+      cannot say where one of its class's terminals is, and it is right to — a
+      net with nowhere to attach gets drawn through the middle of the part,
+      which reads as a short. But neither is ever routed on any sheet, so a dot
+      for either would be the drawing claiming a connection point that nothing
+      connects to. The owner counted those dots.
+
+      They sit **outside** the barrel, one grid step above and below the axis,
+      and that is the grid's doing (stage 12k): the rule binds every terminal,
+      and the barrel is twelve units tall, so there is no pair of grid points
+      inside it. The alternative was to put both at the same point — legal,
+      since the parser keys terminals by name — and it would have been the
+      drawing saying the cable and the ground lead leave a probe at one place,
+      which is a claim about the part rather than a shrug about where to draw
+      nothing. Off the body is honest; two things at one point is not.
+    -->
+    <circle data-terminal="lead" cx="12.7" cy="-12.7" r="1" fill="none"/>
+    <circle data-terminal="ref" cx="12.7" cy="12.7" r="1" fill="none"/>
+  </g>
+  <g data-layer="hitbox">
+    <rect x="-31.2" y="-15.6" width="62.4" height="31.2" fill="currentColor" opacity="0"/>
+  </g>
+</svg>

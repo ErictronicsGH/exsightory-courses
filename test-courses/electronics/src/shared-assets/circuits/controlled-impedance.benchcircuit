@@ -1,0 +1,128 @@
+{
+  "id": "controlled-impedance",
+  "title": "A track is a piece of wire until the edge is fast enough.",
+  "seed": 20261010,
+  "requires": {
+    "insight-baseline": "1.3.0"
+  },
+  "environment": {
+    "t_ambient_c": 25
+  },
+  "instances": [
+    {
+      "id": "VD",
+      "class": "supply",
+      "profile": "supply-bench",
+      "value": 10,
+      "at": [
+        50.8,
+        482.6
+      ],
+      "label": "10 V",
+      "rotation": 90
+    },
+    {
+      "id": "RD",
+      "class": "resistor",
+      "profile": "resistor-power-25",
+      "value": 22,
+      "at": [
+        254,
+        254
+      ],
+      "label": "22R"
+    },
+    {
+      "id": "Q1",
+      "class": "mosfet",
+      "profile": "mosfet-typical",
+      "variant": "nmos",
+      "at": [
+        609.6,
+        482.6
+      ],
+      "label": "Q1"
+    },
+    {
+      "id": "VG",
+      "class": "supply",
+      "profile": "supply-bench",
+      "value": 10,
+      "at": [
+        838.2,
+        482.6
+      ],
+      "label": "10 V gate",
+      "rotation": 90
+    }
+  ],
+  "nets": [
+    {
+      "id": "rail",
+      "terminals": [
+        "VD.p",
+        "RD.a"
+      ],
+      "junction": "VD.p",
+      "class": "hs-50r"
+    },
+    {
+      "id": "drain",
+      "terminals": [
+        "RD.b",
+        "Q1.d"
+      ],
+      "junction": "RD.b",
+      "class": "hs-signal"
+    },
+    {
+      "id": "gate",
+      "terminals": [
+        "VG.p",
+        "Q1.g"
+      ]
+    },
+    {
+      "id": "gnd",
+      "terminals": [
+        "VD.n",
+        "Q1.s",
+        "VG.n"
+      ],
+      "is_reference": true
+    }
+  ],
+  "segments": [
+    {
+      "id": "TR1",
+      "net": "drain",
+      "between": [
+        "RD.b",
+        "Q1.d"
+      ],
+      "class": "conductor",
+      "profile": "trace-cu-0r5mm",
+      "length_m": 0.1
+    },
+    {
+      "id": "TR2",
+      "net": "rail",
+      "between": [
+        "VD.p",
+        "RD.a"
+      ],
+      "class": "conductor",
+      "profile": "trace-cu-0r5mm",
+      "length_m": 0.1
+    }
+  ],
+  "effects": {},
+  "editable": {
+    "topology": false,
+    "values": [
+      "VD",
+      "VG"
+    ],
+    "profiles": []
+  }
+}

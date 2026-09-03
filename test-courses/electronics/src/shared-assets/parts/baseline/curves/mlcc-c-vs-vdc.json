@@ -1,0 +1,49 @@
+{
+  "id": "c-vs-vdc",
+  "x": {
+    "quantity": "v_dc",
+    "unit": "V"
+  },
+  "y": {
+    "quantity": "c_normalised",
+    "unit": "ratio",
+    "reference": "C at 0 V DC"
+  },
+  "conditions": {
+    "t_a_c": 25,
+    "v_ac_mv": 500,
+    "f_khz": 1
+  },
+  "source": {
+    "note": "Class-representative shape for a 16 V X5R MLCC. Not a specific part."
+  },
+  "method": "class-representative shape, 6 points",
+  "interpolation": "monotone_cubic",
+  "extrapolation": "clamp",
+  "points": [
+    [
+      0,
+      1.0
+    ],
+    [
+      1.6,
+      0.92
+    ],
+    [
+      3.3,
+      0.71
+    ],
+    [
+      6.3,
+      0.48
+    ],
+    [
+      10,
+      0.31
+    ],
+    [
+      16,
+      0.19
+    ]
+  ]
+}

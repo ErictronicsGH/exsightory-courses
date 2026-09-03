@@ -1,0 +1,77 @@
+{
+  "profile": "probe-x1",
+  "class": "probe",
+  "variant": "passive",
+  "display_name": "×1 probe",
+  "provenance": {
+    "typical": true
+  },
+  "parameters": {
+    "r_series": {
+      "value": 50,
+      "unit": "Ω",
+      "conditions": {
+        "note": "DC, tip to connector"
+      },
+      "source": {
+        "note": "A ×1 probe is a lead: the tip, the cable and the connector, and fifty ohms of it. Not zero — a zero-ohm series arm is a short with a division by it, and the honest small number is also the one that solves."
+      },
+      "confidence": "typical"
+    },
+    "r_in_specified": {
+      "value": 10000000,
+      "unit": "Ω",
+      "conditions": {
+        "note": "the instrument this probe is built for"
+      },
+      "source": {
+        "note": "The same handheld the ×10 is built for, which is what makes the pair a substitution and not two different benches."
+      },
+      "confidence": "typical"
+    },
+    "attenuation": {
+      "value": 1,
+      "dimensionless": true,
+      "source": {
+        "note": "Fifty ohms ahead of ten megohms divides by 1.000005, and a probe that says ×1 is telling the truth to every figure anybody can read."
+      },
+      "confidence": "typical"
+    }
+  },
+  "limits": {
+    "absolute_max": {
+      "v_v": 100
+    },
+    "recommended": {
+      "v_v": 60
+    }
+  },
+  "damage": {
+    "trigger": {
+      "quantity": "v_ratio",
+      "threshold": 1,
+      "hold_s": 1
+    },
+    "mode": "open",
+    "confidence": "typical",
+    "note": {
+      "en": "A lead fails open, and it takes the measurement with it rather than the circuit."
+    }
+  },
+  "demonstration": {
+    "reveals": [],
+    "panes": [
+      "operating",
+      "specifying",
+      "provenance"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "substitute"
+    ],
+    "availability": {
+      "en": "A plain lead. It puts the meter's own ten megohms straight across the node, which is the loading the ×10 exists to remove — the same instrument, the same two clips, and the divider sags where it did not before."
+    }
+  }
+}

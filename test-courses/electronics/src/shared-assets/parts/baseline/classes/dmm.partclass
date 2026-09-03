@@ -1,0 +1,87 @@
+{
+  "class": "dmm",
+  "label": "Digital multimeter",
+  "instrument": true,
+  "measures": "voltage",
+  "non_ideal_requires": [
+    "r_in_v_mode",
+    "r_burden_i_mode"
+  ],
+  "terminals": [
+    {
+      "id": "hi",
+      "label": "input HI",
+      "role": "input_high",
+      "signal": "input"
+    },
+    {
+      "id": "lo",
+      "label": "input LO",
+      "role": "input_low",
+      "signal": "reference"
+    }
+  ],
+  "variants": {
+    "handheld": {
+      "symbol": "symbols/iec/dmm.svg",
+      "label": "Handheld"
+    },
+    "bench": {
+      "symbol": "symbols/iec/dmm-bench.svg",
+      "label": "Bench"
+    }
+  },
+  "fast_model": {
+    "equation": "meter",
+    "requires": [
+      "r_in_v_mode",
+      "r_burden_i_mode",
+      "digits"
+    ],
+    "optional": [
+      "accuracy_v_pct",
+      "accuracy_v_counts"
+    ],
+    "outputs": [
+      "reading",
+      "v",
+      "i"
+    ]
+  },
+  "ideality_axes": {
+    "input_loading": {
+      "requires": [
+        "r_in_v_mode"
+      ],
+      "default": false,
+      "label": "Input impedance loading"
+    },
+    "burden": {
+      "requires": [
+        "r_burden_i_mode"
+      ],
+      "default": false,
+      "label": "Burden voltage"
+    }
+  },
+  "capabilities": {
+    "reveals": [
+      "input_loading",
+      "burden_voltage",
+      "resolution_versus_accuracy"
+    ],
+    "panes": [
+      "operating",
+      "measurement",
+      "specifying",
+      "provenance",
+      "ideality"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "connect",
+      "substitute"
+    ]
+  }
+}

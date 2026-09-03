@@ -1,0 +1,17 @@
+<!-- PCB trace — a conductor with a width, which is why it has a rating. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-52 -26 104 52">
+  <g data-layer="thermal">
+    <rect x="-34" y="-8" width="68" height="16" fill="var(--bench-heat)" stroke="none"/>
+  </g>
+  <g data-layer="flow">
+    <line x1="-50.8" y1="0" x2="50.8" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g data-layer="body">
+    <rect x="-50.8" y="-6" width="101.6" height="12" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)"/>
+    <circle data-terminal="a" cx="-50.8" cy="0" r="2.6" fill="var(--bench-terminal)"/>
+    <circle data-terminal="b" cx="50.8" cy="0" r="2.6" fill="var(--bench-terminal)"/>
+  </g>
+  <g data-layer="hitbox">
+    <rect x="-52" y="-26" width="104" height="52" fill="currentColor" opacity="0"/>
+  </g>
+</svg>

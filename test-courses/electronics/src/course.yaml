@@ -1,0 +1,32 @@
+# The Electronics Bench's own driving course (M25-12j).
+#
+# Not teaching material, and not a second copy of `test-course/`. This exists so
+# that driving one circuit loads one circuit's worth of course: five short
+# subsections, thirteen demonstrations, and nothing else at all.
+#
+# `test-course/` remains the *format* fixture — the one place every block type
+# and every canvas kind appear together, which is what M10's publish pipeline
+# and the compiler's own suite need. It keeps its electronics section. What it
+# stops being is where the bench is driven.
+#
+# The rule this file is the first instance of is in
+# `.claude/implementation/standards/bench-fixture-courses.md`.
+id: bench-electronics
+title: The Electronics Bench
+subtitle: The driving fixture for M25 — one bench, thirteen circuits, no other content
+version: 1.0.0
+languages: [en]
+
+tutor:
+  name: Erictronics Systems
+
+footer: A fixture, not a course. Nothing here is written to be taught.
+
+# One chapter. A bench fixture has no pedagogical arc to divide, so the
+# subsections group by *what a circuit demonstrates* — which is also how the
+# M25 stages group, and therefore how a driver script names one.
+chapters:
+  - id: bench
+    title: The Electronics Bench
+    order: 1
+    ads: []

@@ -1,0 +1,104 @@
+{
+  "class": "resistor",
+  "label": "Resistor",
+  "terminals": [
+    {
+      "id": "a",
+      "label": "terminal A",
+      "role": "terminal",
+      "signal": "bidirectional"
+    },
+    {
+      "id": "b",
+      "label": "terminal B",
+      "role": "terminal",
+      "signal": "bidirectional"
+    }
+  ],
+  "variants": {
+    "fixed": {
+      "symbol": "symbols/iec/resistor.svg",
+      "label": "Fixed resistor",
+      "alternates": {
+        "ansi": "symbols/ansi/resistor.svg"
+      }
+    }
+  },
+  "fast_model": {
+    "equation": "resistive",
+    "value_parameter": "r",
+    "requires": [
+      "r"
+    ],
+    "optional": [
+      "alpha",
+      "r_th_ja_c_per_w"
+    ],
+    "outputs": [
+      "v",
+      "i",
+      "p"
+    ]
+  },
+  "characteristic": {
+    "x": "v",
+    "y": "i",
+    "sweep": {
+      "from": -10,
+      "to": 10,
+      "points": 201
+    },
+    "family": null,
+    "default_scale": {
+      "x": "linear",
+      "y": "linear"
+    }
+  },
+  "ideality_axes": {
+    "tempco": {
+      "requires": [
+        "alpha"
+      ],
+      "default": false,
+      "label": "Temperature coefficient"
+    },
+    "tolerance": {
+      "requires": [
+        "r_min",
+        "r_max"
+      ],
+      "default": false,
+      "label": "Tolerance spread"
+    },
+    "self_heating": {
+      "requires": [
+        "r_th_ja_c_per_w"
+      ],
+      "default": false,
+      "label": "Self-heating"
+    }
+  },
+  "capabilities": {
+    "reveals": [
+      "overpower",
+      "tempco_drift",
+      "thermal_settling"
+    ],
+    "panes": [
+      "operating",
+      "specifying",
+      "provenance",
+      "ideality",
+      "characteristic",
+      "sensitivity"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "scrub",
+      "colour_bands",
+      "substitute",
+      "replace"
+    ]
+  }
+}

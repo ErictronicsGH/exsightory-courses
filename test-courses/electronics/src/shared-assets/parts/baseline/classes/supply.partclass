@@ -1,0 +1,90 @@
+{
+  "class": "supply",
+  "label": "Bench supply",
+  "instrument": true,
+  "non_ideal_requires": [
+    "r_out"
+  ],
+  "terminals": [
+    {
+      "id": "p",
+      "label": "positive",
+      "role": "positive",
+      "signal": "power"
+    },
+    {
+      "id": "n",
+      "label": "negative",
+      "role": "negative",
+      "signal": "reference"
+    }
+  ],
+  "variants": {
+    "linear": {
+      "symbol": "symbols/iec/supply.svg",
+      "label": "Linear bench supply"
+    }
+  },
+  "fast_model": {
+    "equation": "source",
+    "value_parameter": "v_oc",
+    "requires": [
+      "v_oc"
+    ],
+    "optional": [
+      "r_out",
+      "alpha",
+      "i_limit_a"
+    ],
+    "outputs": [
+      "v",
+      "i",
+      "p",
+      "v_oc",
+      "r_out"
+    ]
+  },
+  "ideality_axes": {
+    "output_impedance": {
+      "requires": [
+        "r_out"
+      ],
+      "default": false,
+      "label": "Output impedance"
+    },
+    "tempco": {
+      "requires": [
+        "alpha"
+      ],
+      "default": false,
+      "label": "Output drift with temperature"
+    }
+  },
+  "capabilities": {
+    "adjust": {
+      "parameter": "v_oc",
+      "legend": "Output voltage",
+      "from": 0,
+      "to": {
+        "limit": "v_v",
+        "of": "recommended"
+      },
+      "stops": 20
+    },
+    "reveals": [
+      "output_resistance",
+      "output_drift"
+    ],
+    "panes": [
+      "operating",
+      "specifying",
+      "provenance",
+      "ideality"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "substitute"
+    ]
+  }
+}

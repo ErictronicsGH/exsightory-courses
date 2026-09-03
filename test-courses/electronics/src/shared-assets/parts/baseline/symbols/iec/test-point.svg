@@ -1,0 +1,19 @@
+<!-- Test point — a post on a net, and nothing else. A stalk off the conductor
+     with an open ring at its head: open rather than filled, because a filled
+     circle on a schematic is a junction dot and means something a test point
+     does not claim, and larger than one so the two are not read as the same
+     mark from the back of a room.
+
+     No thermal layer and no flow layer, and their absence is the statement: a
+     part with no physics has no current to draw through it and no power to
+     shade it. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-30 -20 60 40">
+  <g data-layer="body">
+    <line x1="-25.4" y1="0" x2="-10" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round"/>
+    <circle cx="0" cy="0" r="10" stroke="var(--bench-symbol)" fill="var(--bench-sheet)" stroke-width="var(--bench-stroke, 2.4)"/>
+    <circle data-terminal="pad" cx="-25.4" cy="0" r="2.6" fill="var(--bench-terminal)"/>
+  </g>
+  <g data-layer="hitbox">
+    <rect x="-30" y="-20" width="60" height="40" fill="currentColor" opacity="0"/>
+  </g>
+</svg>

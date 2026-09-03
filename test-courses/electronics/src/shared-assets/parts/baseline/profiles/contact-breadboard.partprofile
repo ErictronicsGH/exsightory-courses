@@ -1,0 +1,60 @@
+{
+  "profile": "contact-breadboard",
+  "class": "conductor",
+  "variant": "contact",
+  "display_name": "Breadboard contact",
+  "provenance": {
+    "typical": true
+  },
+  "parameters": {
+    "r_lumped_ohm": {
+      "min": 0.01,
+      "typ": 0.05,
+      "max": 0.5,
+      "unit": "Ω",
+      "conditions": {
+        "t_c": 25,
+        "note": "one insertion, unaged strip"
+      },
+      "source": {
+        "note": "Class-representative spread for a solderless breadboard contact."
+      },
+      "confidence": "typical"
+    }
+  },
+  "limits": {
+    "absolute_max": {
+      "i_a": 1
+    },
+    "recommended": {
+      "i_a": 0.3
+    }
+  },
+  "demonstration": {
+    "reveals": [
+      {
+        "bind": "contact_variability",
+        "label": {
+          "en": "Contact resistance, and how much it varies"
+        },
+        "quantity": "r",
+        "visual": {
+          "treatment": "hatch"
+        },
+        "teaching_point": {
+          "en": "A breadboard contact is between 10 mΩ and half an ohm, and which one it is today is not knowable. That is why a prototype works intermittently and the schematic never explains it."
+        }
+      }
+    ],
+    "panes": [
+      "operating",
+      "specifying",
+      "provenance"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "substitute"
+    ]
+  }
+}

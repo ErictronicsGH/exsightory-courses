@@ -1,0 +1,162 @@
+{
+  "profile": "diode-1n4001",
+  "class": "diode",
+  "variant": "signal",
+  "display_name": "1N4001 rectifier (DO-41)",
+  "provenance": {
+    "part": "1N4001",
+    "manufacturer": "Diodes Incorporated",
+    "document": "DI_1N4001 SPICE model",
+    "revision": "as distributed",
+    "retrieved": "2026-09-02"
+  },
+  "parameters": {
+    "alpha_vf": {
+      "value": -0.002,
+      "unit": "V/°C",
+      "conditions": {
+        "i_f_a": 0.01
+      },
+      "source": {
+        "document": "Diodes Incorporated, 1N4001 SPICE model (cards/1n4001.model.sp)",
+        "note": "Not in the card — a SPICE card has no temperature coefficient of forward voltage, and the Diodes Incorporated data sheet prints it only as a curve. Class-representative for silicon, marked as such inside an otherwise traceable profile."
+      },
+      "confidence": "typical"
+    }
+  },
+  "limits": {
+    "absolute_max": {
+      "v_r_v": 50,
+      "i_f_a": 1
+    },
+    "recommended": {
+      "v_r_v": 33.3,
+      "i_f_a": 0.5
+    }
+  },
+  "damage": {
+    "trigger": {
+      "quantity": "i_f_ratio",
+      "threshold": 1,
+      "hold_s": 1
+    },
+    "mode": "short",
+    "confidence": "typical",
+    "note": {
+      "en": "Keyed on forward current rather than power, because neither the card nor its header states a power rating and a threshold on a rating nobody published would be a number this bench invented."
+    }
+  },
+  "demonstration": {
+    "reveals": [
+      {
+        "bind": "reverse_leakage",
+        "label": {
+          "en": "Reverse leakage current"
+        },
+        "enables_axis": "leakage",
+        "quantity": "i_r",
+        "transform": {
+          "type": "magnitude",
+          "factor": 1000000,
+          "badge": "×10⁶"
+        },
+        "visual": {
+          "treatment": "flow_density",
+          "direction": "reverse"
+        },
+        "context": {
+          "typical_display": "≈ 76.9 pA — the card’s saturation current",
+          "comparison": "forward current in this circuit",
+          "note": {
+            "en": "A vendor’s IS is fitted to the forward curve, so it is smaller than the reverse current the part actually leaks: most of that is surface and generation leakage, which the Shockley equation has no term for."
+          }
+        },
+        "teaching_point": {
+          "en": "Reverse current is real, not zero — and the model’s figure for it is not the datasheet’s."
+        }
+      },
+      {
+        "bind": "reverse_recovery",
+        "label": {
+          "en": "Reverse recovery"
+        },
+        "enables_axis": "recovery",
+        "quantity": "i_r",
+        "transform": {
+          "type": "time",
+          "factor": 1000000,
+          "badge": "×10⁶ slower"
+        },
+        "visual": {
+          "treatment": "flow_density",
+          "direction": "reverse"
+        },
+        "context": {
+          "typical_display": "≈ 3 µs, from TT = 4.32 µs",
+          "comparison": "the forward current the moment before the source reversed",
+          "note": {
+            "en": "TT = 4.32 µs — 750 times the 1N4148W’s. Every microsecond of it is the diode conducting backwards while the charge in the junction is swept out."
+          }
+        },
+        "teaching_point": {
+          "en": "A diode does not stop conducting the instant it is reverse-biased. It conducts backwards until the charge stored in the junction is gone, and that interval is what sets the frequency a rectifier stops working at."
+        }
+      },
+      {
+        "bind": "vf_temp_drift",
+        "label": {
+          "en": "Forward voltage against temperature"
+        },
+        "enables_axis": "vf_tempco",
+        "quantity": "v_f",
+        "visual": {
+          "treatment": "none"
+        },
+        "teaching_point": {
+          "en": "−2 mV/°C is why a diode makes a usable thermometer and a poor voltage reference."
+        }
+      }
+    ],
+    "panes": [
+      "operating",
+      "specifying",
+      "model_card",
+      "provenance",
+      "ideality",
+      "characteristic",
+      "sensitivity"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "scrub",
+      "edit_model_card",
+      "sweep",
+      "substitute",
+      "replace"
+    ],
+    "availability": {
+      "en": "The mains-frequency rectifier in every bench drawer, and the wrong part above a few kilohertz. Beside the 1N4148 it is the comparison that makes reverse recovery something a room watches rather than reads: a transit time 750 times longer, in a part that costs the same."
+    }
+  },
+  "spice": {
+    "card": "cards/1n4001.model.sp",
+    "dialect": "spice3",
+    "model_name": "DI_1N4001",
+    "honoured_in_fast": [
+      "is",
+      "n",
+      "rs",
+      "bv",
+      "cjo",
+      "tt"
+    ]
+  },
+  "pcb": {
+    "package": {
+      "code": "DO-41",
+      "mount": "through_hole",
+      "hand_solderable": true
+    }
+  }
+}

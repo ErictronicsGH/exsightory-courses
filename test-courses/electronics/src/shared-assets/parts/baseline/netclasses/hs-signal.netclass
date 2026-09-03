@@ -1,0 +1,19 @@
+{
+  "netclass": "hs-signal",
+  "label": "Fast signal, uncontrolled",
+  "permitted_rise_c": 10,
+  "placement": "external",
+  "copper_oz": 1,
+  "stackup": "fr4-6layer",
+  "critical_length": {
+    "divisor": 2,
+    "rule": "half the rise-time length",
+    "source": {
+      "document": "Why is There a Transmission Line Critical Length? — Altium resources",
+      "note": "The k = 2 case, which is the commonly quoted FR-4 shorthand of three inches per nanosecond of rise time. It is stated here rather than in code because the literature quotes nine divisors — 2, 3, 4, 5, 6, 8, 10, 12 and 20 — and Altium's own 'Can We All Stop Quoting the Critical Length Rule?' calls the rule useless on exactly that ground. Anyone who disagrees with 2 should change it here."
+    }
+  },
+  "note": {
+    "en": "A push-pull signal with no impedance specification — SPI, a chip select, a reset line. This is where the critical-length question is the real one: nobody has asked this net to be fifty ohms, so what matters is whether the run is long enough, at the edge actually driving it, for any of that to matter at all. Short, it is a piece of wire. Long, it is a transmission line, and the divisor above is somebody's opinion about how much ringing is acceptable rather than a fact about physics."
+  }
+}

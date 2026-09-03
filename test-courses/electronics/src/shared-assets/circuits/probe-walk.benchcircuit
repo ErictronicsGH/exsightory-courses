@@ -1,0 +1,173 @@
+{
+  "id": "probe-walk",
+  "title": "Move the probe, and the error moves with it",
+  "seed": 20261010,
+  "requires": {
+    "insight-baseline": "1.3.0"
+  },
+  "environment": {
+    "t_ambient_c": 25
+  },
+  "instances": [
+    {
+      "id": "V1",
+      "class": "supply",
+      "profile": "supply-bench",
+      "value": 10,
+      "at": [
+        50.8,
+        381
+      ],
+      "label": "10 V",
+      "rotation": 90
+    },
+    {
+      "id": "R1",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 1000000,
+      "at": [
+        304.8,
+        152.4
+      ],
+      "label": "1 M",
+      "rotation": 90
+    },
+    {
+      "id": "R2",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 1000000,
+      "at": [
+        304.8,
+        381
+      ],
+      "label": "1 M",
+      "rotation": 90
+    },
+    {
+      "id": "R3",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 1000000,
+      "at": [
+        304.8,
+        609.6
+      ],
+      "label": "1 M",
+      "rotation": 90
+    },
+    {
+      "id": "TP1",
+      "class": "test-point",
+      "profile": "test-point-post",
+      "at": [
+        660.4,
+        25.4
+      ],
+      "rotation": 270,
+      "label": "IN"
+    },
+    {
+      "id": "TP2",
+      "class": "test-point",
+      "profile": "test-point-post",
+      "at": [
+        660.4,
+        254
+      ],
+      "rotation": 270,
+      "label": "A"
+    },
+    {
+      "id": "TP3",
+      "class": "test-point",
+      "profile": "test-point-post",
+      "at": [
+        660.4,
+        482.6
+      ],
+      "rotation": 270,
+      "label": "B"
+    },
+    {
+      "id": "VP1",
+      "class": "probe",
+      "profile": "probe-x1",
+      "at": [
+        482.6,
+        76.2
+      ],
+      "label": "Probe"
+    },
+    {
+      "id": "M1",
+      "class": "dmm",
+      "profile": "dmm-budget",
+      "at": [
+        965.2,
+        609.6
+      ],
+      "label": "DMM"
+    }
+  ],
+  "nets": [
+    {
+      "id": "vin",
+      "terminals": [
+        "V1.p",
+        "R1.a",
+        "TP1.pad",
+        "VP1.tip"
+      ]
+    },
+    {
+      "id": "na",
+      "terminals": [
+        "R1.b",
+        "R2.a",
+        "TP2.pad"
+      ]
+    },
+    {
+      "id": "nb",
+      "terminals": [
+        "R2.b",
+        "R3.a",
+        "TP3.pad"
+      ]
+    },
+    {
+      "id": "sense",
+      "terminals": [
+        "VP1.lead",
+        "M1.hi"
+      ]
+    },
+    {
+      "id": "gnd",
+      "terminals": [
+        "R3.b",
+        "V1.n",
+        "M1.lo",
+        "VP1.ref"
+      ],
+      "is_reference": true
+    }
+  ],
+  "effects": {
+    "M1": [
+      "input_loading"
+    ]
+  },
+  "editable": {
+    "topology": false,
+    "values": [
+      "V1"
+    ],
+    "profiles": [
+      "M1",
+      "VP1"
+    ]
+  }
+}

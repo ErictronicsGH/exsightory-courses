@@ -1,0 +1,114 @@
+{
+  "profile": "dmm-budget",
+  "class": "dmm",
+  "variant": "handheld",
+  "display_name": "Budget DMM (3½ digit)",
+  "provenance": {
+    "typical": true
+  },
+  "parameters": {
+    "r_in_v_mode": {
+      "value": 10000000,
+      "unit": "Ω",
+      "conditions": {
+        "range": "all DC V"
+      },
+      "source": {
+        "note": "10 MΩ is the near-universal figure for a handheld meter."
+      },
+      "confidence": "typical"
+    },
+    "r_burden_i_mode": {
+      "value": 10,
+      "unit": "Ω",
+      "conditions": {
+        "range": "200 mA"
+      },
+      "source": {
+        "note": "Shunt plus fuse plus lead, representative of a handheld."
+      },
+      "confidence": "typical"
+    },
+    "digits": {
+      "value": 3.5,
+      "dimensionless": true,
+      "source": {
+        "note": "A 1999-count display."
+      },
+      "confidence": "typical"
+    },
+    "accuracy_v_pct": {
+      "value": 0.5,
+      "dimensionless": true,
+      "source": {
+        "note": "± 0.5 % of reading, representative of a handheld."
+      },
+      "confidence": "typical"
+    },
+    "accuracy_v_counts": {
+      "value": 2,
+      "dimensionless": true,
+      "source": {
+        "note": "± 2 counts, representative of a handheld."
+      },
+      "confidence": "typical"
+    }
+  },
+  "limits": {
+    "absolute_max": {
+      "v_v": 600,
+      "i_a": 10
+    },
+    "recommended": {
+      "v_v": 400,
+      "i_a": 5
+    }
+  },
+  "demonstration": {
+    "reveals": [
+      {
+        "bind": "input_loading",
+        "label": {
+          "en": "Input impedance loading"
+        },
+        "enables_axis": "input_loading",
+        "quantity": "v",
+        "visual": {
+          "treatment": "none"
+        },
+        "teaching_point": {
+          "en": "10 MΩ across a 1 MΩ divider pulls the reading down by nearly a tenth. The measurement is wrong because you measured it."
+        }
+      },
+      {
+        "bind": "resolution_versus_accuracy",
+        "label": {
+          "en": "Resolution against accuracy"
+        },
+        "quantity": "v",
+        "visual": {
+          "treatment": "none"
+        },
+        "teaching_point": {
+          "en": "Three and a half digits of display and ± 0.5 % ± 2 counts of accuracy are different claims. The last digit is not guaranteed."
+        }
+      }
+    ],
+    "panes": [
+      "operating",
+      "measurement",
+      "specifying",
+      "provenance",
+      "ideality"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "connect",
+      "substitute"
+    ],
+    "availability": {
+      "en": "Any handheld meter you can buy is this instrument. 10 MΩ on the DC volts ranges is near-universal — it is what the input divider is built from — and it is written on the back of the meter, under the ranges, where almost nobody reads it. Three and a half digits and ± 0.5 % ± 2 counts is the accuracy that goes with it."
+    }
+  }
+}

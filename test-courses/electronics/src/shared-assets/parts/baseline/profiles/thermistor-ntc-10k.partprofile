@@ -1,0 +1,106 @@
+{
+  "profile": "thermistor-ntc-10k",
+  "class": "thermistor",
+  "variant": "ntc",
+  "display_name": "NTC thermistor, 10 kΩ at 25 °C",
+  "provenance": {
+    "typical": true
+  },
+  "parameters": {
+    "r0": {
+      "value": 10000,
+      "unit": "Ω",
+      "conditions": {
+        "t_a_c": 25
+      },
+      "source": {
+        "note": "Nominal resistance at 25 °C."
+      },
+      "confidence": "typical"
+    },
+    "beta": {
+      "value": 3950,
+      "unit": "K",
+      "conditions": {
+        "t_range_c": "25 to 85"
+      },
+      "source": {
+        "note": "B(25/85) — the commonest curve for a 10 k NTC."
+      },
+      "confidence": "typical"
+    }
+  },
+  "limits": {
+    "absolute_max": {
+      "p_w": 0.05,
+      "t_j_c": 125
+    },
+    "recommended": {
+      "p_w": 0.005,
+      "t_j_c": 85
+    }
+  },
+  "physical": {
+    "thermal": {
+      "r_th_ja_c_per_w": {
+        "value": 500,
+        "unit": "°C/W",
+        "conditions": {
+          "mount": "bead, free air"
+        },
+        "source": {
+          "note": "Class-representative dissipation constant for a glass bead."
+        },
+        "confidence": "typical"
+      },
+      "c_th_j_per_c": 0.0008
+    }
+  },
+  "damage": {
+    "trigger": {
+      "quantity": "p_ratio",
+      "threshold": 1,
+      "hold_s": 5
+    },
+    "mode": "degraded",
+    "degraded": {
+      "r0": 10800
+    },
+    "confidence": "typical",
+    "note": {
+      "en": "An overdriven NTC shifts permanently rather than failing outright, which is worse: it keeps reading, and reads wrong."
+    }
+  },
+  "demonstration": {
+    "reveals": [
+      {
+        "bind": "self_heating_error",
+        "label": {
+          "en": "Self-heating measurement error"
+        },
+        "enables_axis": "self_heating",
+        "quantity": "t_j",
+        "visual": {
+          "treatment": "heat"
+        },
+        "teaching_point": {
+          "en": "The current you measure it with warms it, so the sensor reads its own excitation. Halve the current and the error falls fourfold — which is the whole argument for a low sense current."
+        }
+      }
+    ],
+    "panes": [
+      "operating",
+      "specifying",
+      "provenance",
+      "ideality",
+      "sensitivity"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "scrub",
+      "substitute",
+      "replace"
+    ]
+  }
+}

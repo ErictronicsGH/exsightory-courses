@@ -1,0 +1,117 @@
+{
+  "profile": "trace-cu-0r5mm",
+  "class": "conductor",
+  "variant": "trace",
+  "display_name": "PCB trace, 0.5 mm on 1 oz",
+  "provenance": {
+    "typical": true
+  },
+  "parameters": {
+    "rho_ohm_m": {
+      "value": 1.68e-8,
+      "unit": "Ω·m",
+      "conditions": {
+        "t_c": 20
+      },
+      "source": {
+        "note": "Annealed copper, the standard textbook value at 20 °C. Electrodeposited foil is within a couple of per cent of it."
+      },
+      "confidence": "typical"
+    },
+    "width_mm": {
+      "value": 0.5,
+      "unit": "mm",
+      "conditions": {
+        "note": "as drawn"
+      },
+      "source": {
+        "note": "A common default track width in every layout tool, and the width somebody uses when they have not yet asked what the track carries."
+      },
+      "confidence": "typical"
+    },
+    "copper_oz": {
+      "value": 1,
+      "unit": "oz/ft²",
+      "conditions": {
+        "note": "outer layer, as finished"
+      },
+      "source": {
+        "note": "One ounce is the standard outer-layer foil on a two-layer board. It is a weight per area being used as a thickness — 1.378 mils of copper."
+      },
+      "confidence": "typical"
+    },
+    "alpha_per_c": {
+      "value": 0.00393,
+      "unit": "1/°C",
+      "conditions": {
+        "t_c": 20
+      },
+      "source": {
+        "note": "Copper, the standard textbook value."
+      },
+      "confidence": "typical"
+    },
+    "i_rating_a": {
+      "value": 1.3,
+      "unit": "A",
+      "conditions": {
+        "note": "external layer, 10 °C rise"
+      },
+      "source": {
+        "note": "What IPC-2221's own curve gives for this cross-section at a 10 °C rise on an outer layer. Stated here so the part carries its rating like every other part; NetClass Mode derives the same number from the net rather than reading it, which is the point of the mode."
+      },
+      "confidence": "typical"
+    }
+  },
+  "limits": {
+    "absolute_max": {
+      "i_a": 3.3,
+      "t_c": 105
+    },
+    "recommended": {
+      "i_a": 1.3,
+      "t_c": 70
+    }
+  },
+  "damage": {
+    "trigger": {
+      "quantity": "i_ratio",
+      "threshold": 2.5,
+      "hold_s": 15
+    },
+    "mode": "open",
+    "confidence": "typical",
+    "note": {
+      "en": "A track that cannot lose its heat lifts off the laminate before it melts. The failure is usually the bond, not the copper."
+    }
+  },
+  "demonstration": {
+    "reveals": [
+      {
+        "bind": "ir_drop",
+        "label": {
+          "en": "The drop along the track itself"
+        },
+        "quantity": "v",
+        "visual": {
+          "treatment": "none"
+        },
+        "teaching_point": {
+          "en": "A 0.5 mm track in 1 oz copper is about 25 mΩ for every 100 mm of it. That is nothing at a milliamp and it is a tenth of a volt at four amps — which is why a rail is drawn wide and a signal is not, and why the regulator's sense point matters."
+        }
+      }
+    ],
+    "panes": [
+      "operating",
+      "specifying",
+      "provenance",
+      "ideality"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "scrub",
+      "substitute"
+    ]
+  }
+}
