@@ -1,0 +1,72 @@
+<!-- Current clamp — one body, with a hole the conductor passes through.
+
+     Chosen from three by the owner, 2026-09-02, from drawings rather than from
+     a driven wall: jaws closed around the wire, against an unbroken ring and
+     against an open horseshoe. Then corrected twice on the sheet — *make it a
+     bit smaller*, and *the handle and the circle overlay needs to be corrected
+     to look like one shape*.
+
+     **That second correction is why this is a single outline.** The first
+     drawing was a ring laid over a slab, and it read as two objects because it
+     was two objects: the handle's leading edge ran on inside the ring, and a
+     seam across a body is the drawing saying there is a join there. So the
+     silhouette — handle, shoulders and jaw — is now **one closed path**, and
+     the hole is a second subpath in the same path under `evenodd`, which is
+     what makes the jaw an annulus with a real inner edge rather than a circle
+     sitting on top of something.
+
+     It is also what makes the instrument honest at a glance: the conductor is
+     visible **inside** the hole and hidden **behind** the body, which is
+     exactly where a real jaw would and would not obscure it. Every other symbol
+     on this bench is filled with the sheet so a wire cannot show through a part
+     — a wire through a resistor is the difference between a resistor and a fuse
+     — and this one keeps that rule while still showing the wire it is measuring,
+     because the hole is a hole rather than an absence of fill.
+
+     The two **notches** at top and bottom are where the jaws part. They are the
+     whole reason this is a clamp and not a current transformer: a thing that
+     opens, and was closed around a conductor it did not cut.
+
+     **The anchor is the jaw's centre**, and that is load-bearing: the bench
+     snaps a touching part so its one terminal lands on the conductor, so an
+     anchor anywhere else would close the jaw beside the wire rather than round
+     it.
+
+     Drawn with the handle along −x, which is the direction that comes out
+     standing **up and to the right** once the bench turns the part to the
+     absolute bearing a probe is held at — where a right hand comes from.
+
+     The direction the reading is positive in is **not drawn here**, and that is
+     not an omission. It has to lie along the conductor, and a symbol turned to a
+     fixed bearing cannot know which way the conductor runs; an arrow baked in
+     here would point the same way on a vertical rail as on a horizontal one and
+     be wrong on one of them. `CircuitBench` draws it inside the hole, along the
+     wire, where the direction is known. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-30 -14 44 28">
+  <g data-layer="body">
+    <!--
+      One shape: the jaw's outer edge and the handle are a single closed
+      subpath, and the hole is a second one. `evenodd` is what turns the two
+      into an annulus with a handle rather than a disc with a ring drawn on it.
+    -->
+    <path d="M -10.54 4.6 A 11.5 11.5 0 1 0 -10.54 -4.6 L -24 -4.6 L -27 -2.6 L -27 2.6 L -24 4.6 Z M 6.8 0 A 6.8 6.8 0 1 1 -6.8 0 A 6.8 6.8 0 1 1 6.8 0 Z" fill-rule="evenodd" stroke="var(--bench-symbol)" fill="var(--bench-sheet)" stroke-width="var(--bench-stroke, 2.4)" stroke-linejoin="round"/>
+    <!-- Where the jaws part, top and bottom. -->
+    <line x1="0" y1="-6.8" x2="0" y2="-11.5" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round"/>
+    <line x1="0" y1="6.8" x2="0" y2="11.5" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round"/>
+    <!-- The trigger they open on, which is what makes it a clamp in the hand. -->
+    <line x1="-15" y1="-4.6" x2="-15" y2="4.6" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round"/>
+    <!--
+      The jaw, at the centre of the hole and **drawn as nothing**.
+
+      It has to exist: `parts-symbol-terminal-mismatch` refuses a symbol that
+      cannot say where one of its class's terminals is. But a clamp is never
+      wired to anything — no net is ever routed to this point — so a terminal
+      dot here would be the drawing claiming a connection that is precisely what
+      this instrument does not make.
+    -->
+    <circle data-terminal="jaw" cx="0" cy="0" r="1" fill="none"/>
+  </g>
+  <g data-layer="hitbox">
+    <rect x="-30" y="-14" width="44" height="28" fill="currentColor" opacity="0"/>
+  </g>
+</svg>

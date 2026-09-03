@@ -1,0 +1,45 @@
+{
+  "class": "current-clamp",
+  "label": "Current clamp",
+  "instrument": true,
+  "measures": "current",
+  "attachment": "touch",
+  "non_ideal_requires": [
+    "accuracy_i_pct",
+    "i_floor_a"
+  ],
+  "terminals": [
+    {
+      "id": "jaw",
+      "label": "jaw",
+      "role": "terminal",
+      "signal": "input"
+    }
+  ],
+  "variants": {
+    "handheld": {
+      "symbol": "symbols/iec/current-clamp.svg",
+      "label": "Clamp-on"
+    }
+  },
+  "fast_model": {
+    "equation": "open",
+    "requires": [],
+    "optional": [],
+    "outputs": []
+  },
+  "ideality_axes": {},
+  "capabilities": {
+    "reveals": [],
+    "panes": [
+      "operating",
+      "measurement",
+      "specifying",
+      "provenance"
+    ],
+    "interactions": [
+      "inspect",
+      "substitute"
+    ]
+  }
+}

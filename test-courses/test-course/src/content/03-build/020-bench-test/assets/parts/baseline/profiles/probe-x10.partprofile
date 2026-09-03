@@ -1,0 +1,77 @@
+{
+  "profile": "probe-x10",
+  "class": "probe",
+  "variant": "passive",
+  "display_name": "×10 probe",
+  "provenance": {
+    "typical": true
+  },
+  "parameters": {
+    "r_series": {
+      "value": 90000000,
+      "unit": "Ω",
+      "conditions": {
+        "note": "DC, at the tip"
+      },
+      "source": {
+        "note": "Nine parts of series resistance to one part of instrument input, which is what makes a passive divider a ×10 — 9 MΩ for the 1 MΩ oscilloscope this convention was named for, and 90 MΩ for the 10 MΩ handheld it is being used with here."
+      },
+      "confidence": "typical"
+    },
+    "r_in_specified": {
+      "value": 10000000,
+      "unit": "Ω",
+      "conditions": {
+        "note": "the instrument this probe is built for"
+      },
+      "source": {
+        "note": "A passive probe divides against the instrument's own input impedance and cannot divide without one. Stating which input it was built for is what makes the ×10 on its body a checkable claim rather than a label."
+      },
+      "confidence": "typical"
+    },
+    "attenuation": {
+      "value": 10,
+      "dimensionless": true,
+      "source": {
+        "note": "What the nameplate says, and what the panel multiplies the instrument's reading by."
+      },
+      "confidence": "typical"
+    }
+  },
+  "limits": {
+    "absolute_max": {
+      "v_v": 300
+    },
+    "recommended": {
+      "v_v": 200
+    }
+  },
+  "damage": {
+    "trigger": {
+      "quantity": "v_ratio",
+      "threshold": 1,
+      "hold_s": 1
+    },
+    "mode": "open",
+    "confidence": "typical",
+    "note": {
+      "en": "The series arm is a resistor like any other, and past its rating it goes open — which on a probe reads as an instrument that has stopped seeing anything at all."
+    }
+  },
+  "demonstration": {
+    "reveals": [],
+    "panes": [
+      "operating",
+      "specifying",
+      "provenance"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "substitute"
+    ],
+    "availability": {
+      "en": "Ninety megohms in the probe body, dividing against the meter's own ten. The meter honestly reads a tenth and the panel puts the ten back, so the number on the wall is the node's — and the divider underneath it is being loaded ten times more lightly than the bare meter loads it."
+    }
+  }
+}

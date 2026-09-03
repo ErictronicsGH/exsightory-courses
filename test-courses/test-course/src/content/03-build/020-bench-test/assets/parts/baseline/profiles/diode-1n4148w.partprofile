@@ -1,0 +1,162 @@
+{
+  "profile": "diode-1n4148w",
+  "class": "diode",
+  "variant": "signal",
+  "display_name": "1N4148W small-signal diode (SOD-123)",
+  "provenance": {
+    "part": "1N4148W",
+    "manufacturer": "Diodes Incorporated",
+    "document": "1N4148W SPICE model",
+    "revision": "as distributed",
+    "retrieved": "2026-09-02"
+  },
+  "parameters": {
+    "alpha_vf": {
+      "value": -0.002,
+      "unit": "V/°C",
+      "conditions": {
+        "i_f_a": 0.01
+      },
+      "source": {
+        "document": "Diodes Incorporated, 1N4148W SPICE model (cards/1n4148w.model.sp)",
+        "note": "Not in the card — a SPICE card has no temperature coefficient of forward voltage, and the Diodes Incorporated data sheet prints it only as a curve. Class-representative for silicon, marked as such inside an otherwise traceable profile."
+      },
+      "confidence": "typical"
+    }
+  },
+  "limits": {
+    "absolute_max": {
+      "v_r_v": 75,
+      "i_f_a": 0.3
+    },
+    "recommended": {
+      "v_r_v": 50,
+      "i_f_a": 0.15
+    }
+  },
+  "damage": {
+    "trigger": {
+      "quantity": "i_f_ratio",
+      "threshold": 1,
+      "hold_s": 1
+    },
+    "mode": "short",
+    "confidence": "typical",
+    "note": {
+      "en": "Keyed on forward current rather than power, because neither the card nor its header states a power rating and a threshold on a rating nobody published would be a number this bench invented."
+    }
+  },
+  "demonstration": {
+    "reveals": [
+      {
+        "bind": "reverse_leakage",
+        "label": {
+          "en": "Reverse leakage current"
+        },
+        "enables_axis": "leakage",
+        "quantity": "i_r",
+        "transform": {
+          "type": "magnitude",
+          "factor": 1000000,
+          "badge": "×10⁶"
+        },
+        "visual": {
+          "treatment": "flow_density",
+          "direction": "reverse"
+        },
+        "context": {
+          "typical_display": "≈ 10.4 nA — the card’s saturation current",
+          "comparison": "forward current in this circuit",
+          "note": {
+            "en": "A vendor’s IS is fitted to the forward curve, so it is smaller than the reverse current the part actually leaks: most of that is surface and generation leakage, which the Shockley equation has no term for."
+          }
+        },
+        "teaching_point": {
+          "en": "Reverse current is real, not zero — and the model’s figure for it is not the datasheet’s."
+        }
+      },
+      {
+        "bind": "reverse_recovery",
+        "label": {
+          "en": "Reverse recovery"
+        },
+        "enables_axis": "recovery",
+        "quantity": "i_r",
+        "transform": {
+          "type": "time",
+          "factor": 1000000,
+          "badge": "×10⁶ slower"
+        },
+        "visual": {
+          "treatment": "flow_density",
+          "direction": "reverse"
+        },
+        "context": {
+          "typical_display": "≈ 4 ns, from TT = 5.76 ns",
+          "comparison": "the forward current the moment before the source reversed",
+          "note": {
+            "en": "TT = 5.76 ns. The stored charge is swept out in nanoseconds, which is why a 1N4148 rectifies happily at 100 kHz and a 1N4001 does not."
+          }
+        },
+        "teaching_point": {
+          "en": "A diode does not stop conducting the instant it is reverse-biased. It conducts backwards until the charge stored in the junction is gone, and that interval is what sets the frequency a rectifier stops working at."
+        }
+      },
+      {
+        "bind": "vf_temp_drift",
+        "label": {
+          "en": "Forward voltage against temperature"
+        },
+        "enables_axis": "vf_tempco",
+        "quantity": "v_f",
+        "visual": {
+          "treatment": "none"
+        },
+        "teaching_point": {
+          "en": "−2 mV/°C is why a diode makes a usable thermometer and a poor voltage reference."
+        }
+      }
+    ],
+    "panes": [
+      "operating",
+      "specifying",
+      "model_card",
+      "provenance",
+      "ideality",
+      "characteristic",
+      "sensitivity"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "scrub",
+      "edit_model_card",
+      "sweep",
+      "substitute",
+      "replace"
+    ],
+    "availability": {
+      "en": "The same die as the through-hole 1N4148, in a surface-mount body — and the reason to reach for it here is that Diodes Incorporated publish a model for it. Substituting it for the DO-35 part is the difference between a diode fitted from a datasheet and a diode a manufacturer has characterised: the reverse recovery axis only exists on this one."
+    }
+  },
+  "spice": {
+    "card": "cards/1n4148w.model.sp",
+    "dialect": "spice3",
+    "model_name": "1N4148W",
+    "honoured_in_fast": [
+      "is",
+      "n",
+      "rs",
+      "bv",
+      "cjo",
+      "tt"
+    ]
+  },
+  "pcb": {
+    "package": {
+      "code": "SOD-123",
+      "mount": "surface_mount",
+      "hand_solderable": true
+    }
+  }
+}

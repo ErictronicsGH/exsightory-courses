@@ -1,0 +1,15 @@
+{
+  "netclass": "hs-50r",
+  "label": "50 Ω controlled",
+  "permitted_rise_c": 10,
+  "placement": "external",
+  "copper_oz": 1,
+  "stackup": "fr4-6layer",
+  "impedance_target": {
+    "ohm": 50,
+    "tolerance_pct": 10
+  },
+  "note": {
+    "en": "A controlled-impedance net: the fabricator is told what this track has to be and tests that it is. Ten per cent is the tolerance one will normally hold to. On the outer layer of this stack-up fifty ohms is a track about a third of a millimetre wide, which is worth knowing before drawing one half a millimetre wide out of habit. There is deliberately no critical-length rule here: on a net that declares a target, the advice from every source is to stop reasoning about critical length and design to the target instead, and the reading follows that — it says what this track actually is against what it was asked to be."
+  }
+}

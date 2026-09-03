@@ -1,0 +1,17 @@
+{
+  "stackup": "fr4-6layer",
+  "label": "1.6 mm FR-4, six layers, ground either side of the inner signals",
+  "external": {
+    "reference": ["L2 — solid ground plane"],
+    "dielectric_constant": 4.3,
+    "dielectric_height_mm": 0.2
+  },
+  "internal": {
+    "reference": ["L2 — solid ground plane", "L4 — solid ground plane"],
+    "dielectric_constant": 4.3,
+    "dielectric_height_mm": 0.2
+  },
+  "note": {
+    "en": "A conventional six-layer board: signal, ground, signal, ground, signal, signal, on 1.6 mm FR-4. Two hundred microns of prepreg is what puts an outer trace one dielectric from L2, and it is the number the whole of controlled impedance turns on — halve it and every track on the board has to be half as wide to stay at the same impedance. Epsilon-r 4.3 is FR-4 at low frequency; it falls towards 4.0 by a gigahertz, which is one of several reasons a real board is measured rather than only computed."
+  }
+}

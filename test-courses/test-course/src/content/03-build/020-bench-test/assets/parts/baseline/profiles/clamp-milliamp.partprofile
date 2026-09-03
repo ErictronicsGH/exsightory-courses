@@ -1,0 +1,80 @@
+{
+  "profile": "clamp-milliamp",
+  "class": "current-clamp",
+  "variant": "handheld",
+  "display_name": "Milliamp clamp (2 A)",
+  "provenance": {
+    "typical": true
+  },
+  "parameters": {
+    "accuracy_i_pct": {
+      "value": 2,
+      "dimensionless": true,
+      "conditions": {
+        "note": "of reading, DC"
+      },
+      "source": {
+        "note": "± 2 % of reading. Worse than the 100 A jaw as a percentage, and far better as a measurement, because a percentage of a reading it can actually see is a smaller number than a percentage of one it cannot."
+      },
+      "confidence": "typical"
+    },
+    "accuracy_i_counts": {
+      "value": 3,
+      "dimensionless": true,
+      "source": {
+        "note": "± 3 counts of the last displayed digit."
+      },
+      "confidence": "typical"
+    },
+    "resolution_a": {
+      "value": 0.00001,
+      "unit": "A",
+      "conditions": {
+        "note": "the last displayed digit, 2 A range"
+      },
+      "source": {
+        "note": "10 µA, which is a thousand times finer than the 100 A jaw and is what a small core and a tighter window buy."
+      },
+      "confidence": "typical"
+    },
+    "i_floor_a": {
+      "value": 0.0001,
+      "unit": "A",
+      "conditions": {
+        "note": "DC, jaw closed"
+      },
+      "source": {
+        "note": "100 µA. The floor is the specification that decides whether an instrument can be used on a branch at all, and moving it is the whole of what this profile is for."
+      },
+      "confidence": "typical"
+    },
+    "digits": {
+      "value": 4.5,
+      "dimensionless": true,
+      "source": {
+        "note": "A 19999-count display."
+      },
+      "confidence": "typical"
+    }
+  },
+  "limits": {
+    "absolute_max": {},
+    "recommended": {}
+  },
+  "demonstration": {
+    "reveals": [],
+    "panes": [
+      "operating",
+      "measurement",
+      "specifying",
+      "provenance"
+    ],
+    "interactions": [
+      "inspect",
+      "substitute"
+    ],
+    "availability": {
+      "en": "The same instrument in every way that touches the circuit — which is none of them — and a different instrument in the only way that matters here. Ten microamps of resolution and a floor at a hundred: fit it in place of the 100 A jaw and the branch that was reading nothing reads a number, while the circuit underneath does not move by so much as a digit."
+    }
+  }
+}

@@ -77,18 +77,13 @@
         "confidence": "typical"
       },
       "c_th_j_per_c": 4
-    },
-    "package": {
-      "code": "TO-220",
-      "mount": "through_hole",
-      "hand_solderable": true
     }
   },
   "damage": {
     "trigger": {
       "quantity": "p_ratio",
-      "threshold": 1.0,
-      "hold_s": 10.0
+      "threshold": 1,
+      "hold_s": 10
     },
     "mode": "open",
     "confidence": "typical",
@@ -96,38 +91,72 @@
       "en": "A wirewound part opens when the element fuses, and the larger thermal mass is why it takes longer to get there."
     }
   },
-  "reveals": [
-    {
-      "bind": "overpower",
-      "label": {
-        "en": "Power dissipation against rating"
+  "demonstration": {
+    "reveals": [
+      {
+        "bind": "overpower",
+        "label": {
+          "en": "Power dissipation against rating"
+        },
+        "quantity": "p",
+        "visual": {
+          "treatment": "heat"
+        },
+        "teaching_point": {
+          "en": "This part and an 0805 can sit at the same fraction of their ratings and be sixty degrees apart. A rating is a thermal statement about a package, not an electrical one about a resistor."
+        }
       },
-      "quantity": "p",
-      "visual": {
-        "treatment": "heat"
-      },
-      "teaching_point": {
-        "en": "This part and an 0805 can sit at the same fraction of their ratings and be sixty degrees apart. A rating is a thermal statement about a package, not an electrical one about a resistor."
+      {
+        "bind": "thermal_settling",
+        "label": {
+          "en": "The climb to failure, slowed"
+        },
+        "quantity": "t_j",
+        "transform": {
+          "type": "time",
+          "factor": 10,
+          "badge": "×10 slower"
+        },
+        "visual": {
+          "treatment": "none"
+        },
+        "context": {
+          "typical_display": "one second of the part’s own time per ten on the transport",
+          "comparison": "the hold time this profile declares before it fails",
+          "note": {
+            "en": "The thermal mass is unchanged. Only the clock the room reads it against is stretched."
+          }
+        },
+        "teaching_point": {
+          "en": "A part that fails three seconds after the rating is crossed fails while somebody is still saying the sentence. Stretched, the room watches the temperature climb and can say where it stops before it does not."
+        }
       }
+    ],
+    "panes": [
+      "operating",
+      "specifying",
+      "provenance",
+      "ideality",
+      "characteristic",
+      "sensitivity"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "scrub",
+      "colour_bands",
+      "substitute",
+      "replace"
+    ],
+    "availability": {
+      "en": "5 W wirewound in TO-220 is a stock item; the heatsink is the part people forget to order."
     }
-  ],
-  "panes": [
-    "operating",
-    "specifying",
-    "provenance",
-    "ideality",
-    "characteristic",
-    "sensitivity"
-  ],
-  "interactions": [
-    "probe",
-    "inspect",
-    "scrub",
-    "colour_bands",
-    "substitute",
-    "replace"
-  ],
-  "availability": {
-    "en": "5 W wirewound in TO-220 is a stock item; the heatsink is the part people forget to order."
+  },
+  "pcb": {
+    "package": {
+      "code": "TO-220",
+      "mount": "through_hole",
+      "hand_solderable": true
+    }
   }
 }

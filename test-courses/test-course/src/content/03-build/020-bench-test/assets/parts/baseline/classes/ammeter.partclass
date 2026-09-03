@@ -1,0 +1,77 @@
+{
+  "class": "ammeter",
+  "label": "Ammeter",
+  "instrument": true,
+  "measures": "current",
+  "non_ideal_requires": [
+    "r_burden_i_mode"
+  ],
+  "terminals": [
+    {
+      "id": "hi",
+      "label": "input HI",
+      "role": "input_high",
+      "signal": "bidirectional"
+    },
+    {
+      "id": "lo",
+      "label": "input LO",
+      "role": "input_low",
+      "signal": "bidirectional"
+    }
+  ],
+  "variants": {
+    "bench": {
+      "symbol": "symbols/iec/ammeter.svg",
+      "label": "Bench ammeter"
+    }
+  },
+  "fast_model": {
+    "equation": "meter",
+    "requires": [
+      "r_burden_i_mode",
+      "digits"
+    ],
+    "optional": [],
+    "outputs": [
+      "reading",
+      "v",
+      "i"
+    ]
+  },
+  "ideality_axes": {
+    "burden": {
+      "requires": [
+        "r_burden_i_mode"
+      ],
+      "default": false,
+      "label": "Burden voltage"
+    }
+  },
+  "capabilities": {
+    "adjust": {
+      "parameter": "r_burden_i_mode",
+      "legend": "Shunt resistance",
+      "from": 0.01,
+      "to": {
+        "parameter": "r_burden_max"
+      },
+      "stops": 20
+    },
+    "reveals": [
+      "burden_voltage"
+    ],
+    "panes": [
+      "operating",
+      "measurement",
+      "specifying",
+      "provenance",
+      "ideality"
+    ],
+    "interactions": [
+      "inspect",
+      "connect",
+      "substitute"
+    ]
+  }
+}

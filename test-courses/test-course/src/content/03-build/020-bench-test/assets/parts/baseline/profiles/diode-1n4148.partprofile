@@ -1,0 +1,223 @@
+{
+  "profile": "diode-1n4148",
+  "class": "diode",
+  "variant": "signal",
+  "display_name": "1N4148 small-signal diode (DO-35)",
+  "provenance": {
+    "part": "1N4148",
+    "manufacturer": "Vishay Semiconductors",
+    "document": "81857",
+    "revision": "Rev. 1.6, 07-Nov-2024",
+    "retrieved": "2026-09-02"
+  },
+  "parameters": {
+    "is": {
+      "value": 2.5e-8,
+      "unit": "A",
+      "conditions": {
+        "t_a_c": 25,
+        "v_r_v": 20
+      },
+      "source": {
+        "document": "Vishay Semiconductors, document 81857",
+        "revision": "Rev. 1.6, 07-Nov-2024",
+        "table": "Electrical characteristics"
+      },
+      "confidence": "derived",
+      "derivation": "IS taken from the reverse point, where the Shockley current saturates at −IS; N then solved from the forward point. Points: VF ≤ 1 V at IF = 10 mA; IR ≤ 25 nA at VR = 20 V. IS = 2.500e-8 A, N = 3.017, at Vt = 25.693 mV.",
+      "note": {
+        "en": "IS is a reverse-current measurement, and a real diode's reverse current is mostly surface and generation leakage that the Shockley equation has no term for. This IS is therefore an upper bound on the junction's true saturation current, not an estimate of it."
+      }
+    },
+    "n": {
+      "value": 3.017,
+      "dimensionless": true,
+      "source": {
+        "document": "Vishay Semiconductors, document 81857",
+        "revision": "Rev. 1.6, 07-Nov-2024",
+        "table": "Electrical characteristics"
+      },
+      "confidence": "derived",
+      "derivation": "IS taken from the reverse point, where the Shockley current saturates at −IS; N then solved from the forward point. Points: VF ≤ 1 V at IF = 10 mA; IR ≤ 25 nA at VR = 20 V. IS = 2.500e-8 A, N = 3.017, at Vt = 25.693 mV.",
+      "note": {
+        "en": "N = 3.017 is outside the 1–2 that silicon allows, so this pair is a bounding envelope rather than a physical model. It reproduces the points it was fitted to and it will read high on forward voltage everywhere else — which for a datasheet's guaranteed maxima is the truthful direction to be wrong in."
+      }
+    },
+    "bv": {
+      "min": 100,
+      "unit": "V",
+      "conditions": {
+        "i_r_a": 0.0001,
+        "t_a_c": 25,
+        "note": "tp/T = 0.01, tp = 0.3 ms"
+      },
+      "source": {
+        "document": "Vishay Semiconductors, document 81857",
+        "revision": "Rev. 1.6, 07-Nov-2024",
+        "table": "Electrical characteristics",
+        "note": "V(BR) ≥ 100 V. A guaranteed minimum, which is the breakdown a worst-case part has."
+      },
+      "confidence": "stated"
+    },
+    "cjo": {
+      "max": 4e-12,
+      "unit": "F",
+      "conditions": {
+        "v_r_v": 0,
+        "f_hz": 1000000,
+        "v_hf_v": 0.05
+      },
+      "source": {
+        "document": "Vishay Semiconductors, document 81857",
+        "revision": "Rev. 1.6, 07-Nov-2024",
+        "table": "Electrical characteristics",
+        "note": "CD ≤ 4 pF."
+      },
+      "confidence": "stated"
+    },
+    "alpha_vf": {
+      "value": -0.002,
+      "unit": "V/°C",
+      "conditions": {
+        "i_f_a": 0.01
+      },
+      "source": {
+        "document": "Vishay Semiconductors, document 81857",
+        "figure": "Forward voltage against junction temperature",
+        "note": "The datasheet prints this only as a family of curves, and digitising a curve is a different confidence from reading a table. Marked \"typical\" inside an otherwise traceable profile, which is what per-parameter confidence is for."
+      },
+      "confidence": "typical"
+    }
+  },
+  "limits": {
+    "absolute_max": {
+      "v_r_v": 75,
+      "i_f_a": 0.3,
+      "p_w": 0.44,
+      "t_j_c": 175
+    },
+    "recommended": {
+      "v_r_v": 50,
+      "i_f_a": 0.15,
+      "p_w": 0.22
+    }
+  },
+  "physical": {
+    "thermal": {
+      "r_th_ja_c_per_w": {
+        "value": 350,
+        "unit": "°C/W",
+        "conditions": {
+          "mount": "DO-35, l = 4 mm leads, TL constant, free air"
+        },
+        "source": {
+          "document": "Vishay Semiconductors, document 81857",
+          "revision": "Rev. 1.6, 07-Nov-2024",
+          "note": "Stated as RthJA = 350 K/W."
+        },
+        "confidence": "stated"
+      }
+    }
+  },
+  "damage": {
+    "trigger": {
+      "quantity": "p_ratio",
+      "threshold": 1,
+      "hold_s": 1
+    },
+    "mode": "short",
+    "confidence": "typical",
+    "note": {
+      "en": "A punched-through junction usually fails short, which is far more dangerous downstream than an open. The trigger is real on this profile for the first time: Ptot = 440 mW is stated, so \"p_ratio\" has a rating to be a ratio of."
+    }
+  },
+  "demonstration": {
+    "reveals": [
+      {
+        "bind": "reverse_leakage",
+        "label": {
+          "en": "Reverse leakage current"
+        },
+        "enables_axis": "leakage",
+        "quantity": "i_r",
+        "transform": {
+          "type": "magnitude",
+          "factor": 1000000,
+          "badge": "×10⁶"
+        },
+        "visual": {
+          "treatment": "flow_density",
+          "direction": "reverse"
+        },
+        "context": {
+          "typical_display": "≤ 25 nA at 20 V and 25 °C — the datasheet’s stated maximum",
+          "comparison": "forward current in this circuit",
+          "note": {
+            "en": "Leakage roughly doubles every 10 °C: the same sheet states ≤ 50 µA at 20 V once the junction reaches 150 °C, two thousand times the figure at room temperature."
+          }
+        },
+        "teaching_point": {
+          "en": "Reverse current is real, not zero. Negligible in a rectifier; decisive in a sample-and-hold or a long-integration front end."
+        }
+      },
+      {
+        "bind": "vf_temp_drift",
+        "label": {
+          "en": "Forward voltage against temperature"
+        },
+        "enables_axis": "vf_tempco",
+        "quantity": "v_f",
+        "visual": {
+          "treatment": "none"
+        },
+        "teaching_point": {
+          "en": "−2 mV/°C is why a diode makes a usable thermometer and a poor voltage reference."
+        }
+      },
+      {
+        "bind": "breakdown_region",
+        "label": {
+          "en": "Reverse breakdown"
+        },
+        "quantity": "i_r",
+        "visual": {
+          "treatment": "outline",
+          "direction": "reverse"
+        },
+        "context": {
+          "typical_display": "V(BR) ≥ 100 V at IR = 100 µA",
+          "comparison": "the 75 V the part is rated to stand off continuously"
+        },
+        "teaching_point": {
+          "en": "The rating and the breakdown are different numbers, and the gap between them is the manufacturer’s margin rather than yours."
+        }
+      }
+    ],
+    "panes": [
+      "operating",
+      "specifying",
+      "provenance",
+      "ideality",
+      "characteristic",
+      "sensitivity"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "scrub",
+      "sweep",
+      "substitute",
+      "replace"
+    ],
+    "availability": {
+      "en": "The through-hole 1N4148 every parts drawer has, and the reason this profile exists: Vishay publishes no SPICE model for it, so its DC parameters are fitted from the datasheet and say so. The SOD-123 1N4148W is the same die with a vendor model behind it."
+    }
+  },
+  "pcb": {
+    "package": {
+      "code": "DO-35",
+      "mount": "through_hole",
+      "hand_solderable": true
+    }
+  }
+}

@@ -78,18 +78,13 @@
         "derivation": "(155 °C − 25 °C) / 0.0625 W"
       },
       "c_th_j_per_c": 0.002
-    },
-    "package": {
-      "code": "0805",
-      "mount": "surface_mount",
-      "hand_solderable": true
     }
   },
   "damage": {
     "trigger": {
       "quantity": "p_ratio",
-      "threshold": 1.0,
-      "hold_s": 3.0
+      "threshold": 1,
+      "hold_s": 3
     },
     "mode": "open",
     "confidence": "typical",
@@ -97,52 +92,86 @@
       "en": "Thick-film resistors usually fail open. A fusible type is designed to."
     }
   },
-  "reveals": [
-    {
-      "bind": "overpower",
-      "label": {
-        "en": "Power dissipation against rating"
+  "demonstration": {
+    "reveals": [
+      {
+        "bind": "overpower",
+        "label": {
+          "en": "Power dissipation against rating"
+        },
+        "quantity": "p",
+        "visual": {
+          "treatment": "heat"
+        },
+        "teaching_point": {
+          "en": "A resistor at 40 % of rating runs warm and lasts; at 120 % it runs hot and does not. The rating is a thermal statement, not an electrical one."
+        }
       },
-      "quantity": "p",
-      "visual": {
-        "treatment": "heat"
+      {
+        "bind": "tempco_drift",
+        "label": {
+          "en": "Resistance drift with temperature"
+        },
+        "enables_axis": "tempco",
+        "quantity": "r",
+        "visual": {
+          "treatment": "none"
+        },
+        "teaching_point": {
+          "en": "100 ppm/°C is 1 % over a 100 °C rise — invisible in a divider and decisive in a precision reference."
+        }
       },
-      "teaching_point": {
-        "en": "A resistor at 40 % of rating runs warm and lasts; at 120 % it runs hot and does not. The rating is a thermal statement, not an electrical one."
+      {
+        "bind": "thermal_settling",
+        "label": {
+          "en": "The climb to failure, slowed"
+        },
+        "quantity": "t_j",
+        "transform": {
+          "type": "time",
+          "factor": 10,
+          "badge": "×10 slower"
+        },
+        "visual": {
+          "treatment": "none"
+        },
+        "context": {
+          "typical_display": "one second of the part’s own time per ten on the transport",
+          "comparison": "the hold time this profile declares before it fails",
+          "note": {
+            "en": "The thermal mass is unchanged. Only the clock the room reads it against is stretched."
+          }
+        },
+        "teaching_point": {
+          "en": "A part that fails three seconds after the rating is crossed fails while somebody is still saying the sentence. Stretched, the room watches the temperature climb and can say where it stops before it does not."
+        }
       }
-    },
-    {
-      "bind": "tempco_drift",
-      "label": {
-        "en": "Resistance drift with temperature"
-      },
-      "enables_axis": "tempco",
-      "quantity": "r",
-      "visual": {
-        "treatment": "none"
-      },
-      "teaching_point": {
-        "en": "100 ppm/°C is 1 % over a 100 °C rise — invisible in a divider and decisive in a precision reference."
-      }
+    ],
+    "panes": [
+      "operating",
+      "specifying",
+      "provenance",
+      "ideality",
+      "characteristic",
+      "sensitivity"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "scrub",
+      "colour_bands",
+      "substitute",
+      "replace"
+    ],
+    "availability": {
+      "en": "E24 values in 1 % thick film are stocked everywhere; E96 usually needs an order."
     }
-  ],
-  "panes": [
-    "operating",
-    "specifying",
-    "provenance",
-    "ideality",
-    "characteristic",
-    "sensitivity"
-  ],
-  "interactions": [
-    "probe",
-    "inspect",
-    "scrub",
-    "colour_bands",
-    "substitute",
-    "replace"
-  ],
-  "availability": {
-    "en": "E24 values in 1 % thick film are stocked everywhere; E96 usually needs an order."
+  },
+  "pcb": {
+    "package": {
+      "code": "0805",
+      "mount": "surface_mount",
+      "hand_solderable": true
+    }
   }
 }

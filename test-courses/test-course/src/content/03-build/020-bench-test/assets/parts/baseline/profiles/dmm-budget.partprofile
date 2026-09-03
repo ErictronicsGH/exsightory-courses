@@ -8,7 +8,7 @@
   },
   "parameters": {
     "r_in_v_mode": {
-      "value": 10000000.0,
+      "value": 10000000,
       "unit": "Ω",
       "conditions": {
         "range": "all DC V"
@@ -64,46 +64,51 @@
       "i_a": 5
     }
   },
-  "reveals": [
-    {
-      "bind": "input_loading",
-      "label": {
-        "en": "Input impedance loading"
+  "demonstration": {
+    "reveals": [
+      {
+        "bind": "input_loading",
+        "label": {
+          "en": "Input impedance loading"
+        },
+        "enables_axis": "input_loading",
+        "quantity": "v",
+        "visual": {
+          "treatment": "none"
+        },
+        "teaching_point": {
+          "en": "10 MΩ across a 1 MΩ divider pulls the reading down by nearly a tenth. The measurement is wrong because you measured it."
+        }
       },
-      "enables_axis": "input_loading",
-      "quantity": "reading",
-      "visual": {
-        "treatment": "none"
-      },
-      "teaching_point": {
-        "en": "10 MΩ across a 1 MΩ divider pulls the reading down by nearly a tenth. The measurement is wrong because you measured it."
+      {
+        "bind": "resolution_versus_accuracy",
+        "label": {
+          "en": "Resolution against accuracy"
+        },
+        "quantity": "v",
+        "visual": {
+          "treatment": "none"
+        },
+        "teaching_point": {
+          "en": "Three and a half digits of display and ± 0.5 % ± 2 counts of accuracy are different claims. The last digit is not guaranteed."
+        }
       }
-    },
-    {
-      "bind": "resolution_versus_accuracy",
-      "label": {
-        "en": "Resolution against accuracy"
-      },
-      "quantity": "reading",
-      "visual": {
-        "treatment": "none"
-      },
-      "teaching_point": {
-        "en": "Three and a half digits of display and ± 0.5 % ± 2 counts of accuracy are different claims. The last digit is not guaranteed."
-      }
+    ],
+    "panes": [
+      "operating",
+      "measurement",
+      "specifying",
+      "provenance",
+      "ideality"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "connect",
+      "substitute"
+    ],
+    "availability": {
+      "en": "Any handheld meter you can buy is this instrument. 10 MΩ on the DC volts ranges is near-universal — it is what the input divider is built from — and it is written on the back of the meter, under the ranges, where almost nobody reads it. Three and a half digits and ± 0.5 % ± 2 counts is the accuracy that goes with it."
     }
-  ],
-  "panes": [
-    "operating",
-    "measurement",
-    "specifying",
-    "provenance",
-    "ideality"
-  ],
-  "interactions": [
-    "probe",
-    "inspect",
-    "connect",
-    "substitute"
-  ]
+  }
 }

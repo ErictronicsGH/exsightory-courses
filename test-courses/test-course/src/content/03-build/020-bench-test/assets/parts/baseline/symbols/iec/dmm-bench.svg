@@ -9,8 +9,24 @@
   </g>
   <g data-layer="body">
     <rect x="-28" y="-22" width="56" height="44" rx="2" stroke="var(--bench-symbol)" fill="var(--bench-sheet)" stroke-width="var(--bench-stroke, 2.4)" stroke-linejoin="round"/>
-    <rect x="-20" y="-14" width="40" height="15" rx="1" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round" stroke-linejoin="round"/>
-    <line x1="-14" y1="13" x2="14" y2="13" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round" stroke-linejoin="round"/>
+    <!--
+      The display window and the row of buttons under it: **one mark, not two**
+      (owner, 2026-09-03 — a meter's face is read).
+
+      One, because the face is one thing and its arrangement is part of what it
+      says. Given a mark each, they would be individually upright and the screen
+      would arrive beside the buttons instead of above them at a quarter turn —
+      each element right and the instrument wrong. So they are read together,
+      about the centre of the enclosure they are set into.
+
+      Which is the opposite call from the supply's `+` and `−`, and for a reason
+      worth keeping: those are not a face. Each is bound to a *terminal*, so each
+      is read about its own place and travels round with the pin it is about.
+    -->
+    <g data-upright="0 0">
+      <rect x="-20" y="-14" width="40" height="15" rx="1" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="-14" y1="13" x2="14" y2="13" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
     <line x1="-53.4" y1="0" x2="-28" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
     <line x1="53.4" y1="0" x2="28" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
     <circle data-terminal="hi" cx="-53.4" cy="0" r="2.6" fill="var(--bench-terminal)"/>

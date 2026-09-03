@@ -12,8 +12,17 @@
     <path d="M 7 -18 A 24 24 0 0 1 7 18" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
     <line x1="-30.4" y1="0" x2="-5" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
     <line x1="9" y1="0" x2="34.4" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
-    <line x1="-30" y1="-25" x2="-18" y2="-25" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round" stroke-linejoin="round"/>
-    <line x1="-24" y1="-31" x2="-24" y2="-19" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round" stroke-linejoin="round"/>
+    <!--
+      The plus, beside the plate it is about, and a mark for the same reason the
+      supply's is: it has to arrive beside terminal `a` at every rotation. That
+      it happens to look the same at a quarter turn is not the argument — a
+      symbol that is right by symmetry is right until somebody turns it 45
+      degrees.
+    -->
+    <g data-upright="-24 -25">
+      <line x1="-30" y1="-25" x2="-18" y2="-25" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="-24" y1="-31" x2="-24" y2="-19" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
     <circle data-terminal="a" cx="-30.4" cy="0" r="2.6" fill="var(--bench-terminal)"/>
     <circle data-terminal="b" cx="34.4" cy="0" r="2.6" fill="var(--bench-terminal)"/>
   </g>

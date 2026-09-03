@@ -8,11 +8,15 @@
   "terminals": [
     {
       "id": "p",
-      "label": "positive"
+      "label": "positive",
+      "role": "positive",
+      "signal": "power"
     },
     {
       "id": "n",
-      "label": "negative"
+      "label": "negative",
+      "role": "negative",
+      "signal": "reference"
     }
   ],
   "variants": {
@@ -57,7 +61,20 @@
     }
   },
   "capabilities": {
-    "reveals": [],
+    "adjust": {
+      "parameter": "v_oc",
+      "legend": "Output voltage",
+      "from": 0,
+      "to": {
+        "limit": "v_v",
+        "of": "recommended"
+      },
+      "stops": 20
+    },
+    "reveals": [
+      "output_resistance",
+      "output_drift"
+    ],
     "panes": [
       "operating",
       "specifying",

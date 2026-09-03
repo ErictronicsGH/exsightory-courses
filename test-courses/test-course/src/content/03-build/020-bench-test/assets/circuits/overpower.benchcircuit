@@ -1,0 +1,97 @@
+{
+  "id": "overpower",
+  "title": "Turn it up until something gives",
+  "seed": 20261012,
+  "requires": {
+    "insight-baseline": "1.2.0"
+  },
+  "environment": {
+    "t_ambient_c": 25
+  },
+  "instances": [
+    {
+      "id": "V1",
+      "class": "supply",
+      "profile": "supply-bench",
+      "value": 10,
+      "at": [
+        200,
+        160
+      ],
+      "label": "V1",
+      "rotation": 90
+    },
+    {
+      "id": "R1",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 470,
+      "at": [
+        420,
+        160
+      ],
+      "label": "R1 470R",
+      "rotation": 90
+    },
+    {
+      "id": "R2",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 2200,
+      "at": [
+        420,
+        340
+      ],
+      "label": "R2 2k2",
+      "rotation": 90
+    },
+    {
+      "id": "R3",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 10000,
+      "at": [
+        300,
+        520
+      ],
+      "rotation": 90,
+      "label": "R3 10k"
+    }
+  ],
+  "nets": [
+    {
+      "id": "vin",
+      "terminals": [
+        "V1.p",
+        "R1.a",
+        "R3.a"
+      ]
+    },
+    {
+      "id": "mid",
+      "terminals": [
+        "R1.b",
+        "R2.a"
+      ]
+    },
+    {
+      "id": "gnd",
+      "terminals": [
+        "R2.b",
+        "V1.n",
+        "R3.b"
+      ],
+      "is_reference": true
+    }
+  ],
+  "effects": {},
+  "editable": {
+    "topology": false,
+    "values": [
+      "V1",
+      "R1",
+      "R2"
+    ],
+    "profiles": []
+  }
+}

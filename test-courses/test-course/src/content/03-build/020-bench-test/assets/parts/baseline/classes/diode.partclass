@@ -4,11 +4,15 @@
   "terminals": [
     {
       "id": "a",
-      "label": "anode"
+      "label": "anode",
+      "role": "anode",
+      "signal": "bidirectional"
     },
     {
       "id": "k",
-      "label": "cathode"
+      "label": "cathode",
+      "role": "cathode",
+      "signal": "bidirectional"
     }
   ],
   "variants": {

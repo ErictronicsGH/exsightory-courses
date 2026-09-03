@@ -1,0 +1,61 @@
+{
+  "class": "probe",
+  "label": "Scope probe",
+  "attachment": "touch",
+  "terminals": [
+    {
+      "id": "tip",
+      "label": "tip",
+      "role": "terminal",
+      "signal": "input"
+    },
+    {
+      "id": "ref",
+      "label": "reference clip",
+      "role": "input_low",
+      "signal": "reference"
+    },
+    {
+      "id": "lead",
+      "label": "lead to the instrument",
+      "role": "terminal",
+      "signal": "output"
+    }
+  ],
+  "variants": {
+    "passive": {
+      "symbol": "symbols/iec/probe.svg",
+      "label": "Passive probe"
+    }
+  },
+  "fast_model": {
+    "equation": "probe",
+    "requires": [
+      "r_series",
+      "attenuation",
+      "r_in_specified"
+    ],
+    "optional": [],
+    "outputs": [
+      "v",
+      "i",
+      "p",
+      "r",
+      "attenuation"
+    ]
+  },
+  "ideality_axes": {},
+  "capabilities": {
+    "reveals": [],
+    "panes": [
+      "operating",
+      "specifying",
+      "provenance"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "substitute"
+    ]
+  }
+}

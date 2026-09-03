@@ -8,7 +8,7 @@
   },
   "parameters": {
     "is": {
-      "value": 2.5e-09,
+      "value": 2.5e-9,
       "unit": "A",
       "conditions": {
         "t_a_c": 25
@@ -85,18 +85,13 @@
         "confidence": "typical"
       },
       "c_th_j_per_c": 0.0015
-    },
-    "package": {
-      "code": "DO-35",
-      "mount": "through_hole",
-      "hand_solderable": true
     }
   },
   "damage": {
     "trigger": {
       "quantity": "p_ratio",
-      "threshold": 1.0,
-      "hold_s": 1.0
+      "threshold": 1,
+      "hold_s": 1
     },
     "mode": "short",
     "confidence": "typical",
@@ -104,63 +99,72 @@
       "en": "A punched-through junction usually fails short, which is far more dangerous downstream than an open."
     }
   },
-  "reveals": [
-    {
-      "bind": "reverse_leakage",
-      "label": {
-        "en": "Reverse leakage current"
-      },
-      "enables_axis": "leakage",
-      "quantity": "i_r",
-      "transform": {
-        "type": "magnitude",
-        "factor": 1000000.0,
-        "badge": "×10⁶"
-      },
-      "visual": {
-        "treatment": "flow_density",
-        "direction": "reverse"
-      },
-      "context": {
-        "typical_display": "≈ 25 nA at 20 V, 25 °C",
-        "comparison": "forward current in this circuit",
-        "note": {
-          "en": "Leakage roughly doubles every 10 °C."
+  "demonstration": {
+    "reveals": [
+      {
+        "bind": "reverse_leakage",
+        "label": {
+          "en": "Reverse leakage current"
+        },
+        "enables_axis": "leakage",
+        "quantity": "i_r",
+        "transform": {
+          "type": "magnitude",
+          "factor": 1000000,
+          "badge": "×10⁶"
+        },
+        "visual": {
+          "treatment": "flow_density",
+          "direction": "reverse"
+        },
+        "context": {
+          "typical_display": "≈ 2.5 nA at 25 °C — this profile’s saturation current",
+          "comparison": "forward current in this circuit",
+          "note": {
+            "en": "Leakage roughly doubles every 10 °C. A datasheet quotes nearer 25 nA at 20 V, because most of a real diode’s reverse current creeps across the surface and no saturation-current model has it."
+          }
+        },
+        "teaching_point": {
+          "en": "Reverse current is real, not zero. Negligible in a rectifier; decisive in a sample-and-hold or a long-integration front end."
         }
       },
-      "teaching_point": {
-        "en": "Reverse current is real, not zero. Negligible in a rectifier; decisive in a sample-and-hold or a long-integration front end."
+      {
+        "bind": "vf_temp_drift",
+        "label": {
+          "en": "Forward voltage against temperature"
+        },
+        "enables_axis": "vf_tempco",
+        "quantity": "v_f",
+        "visual": {
+          "treatment": "none"
+        },
+        "teaching_point": {
+          "en": "−2 mV/°C is why a diode makes a usable thermometer and a poor voltage reference."
+        }
       }
-    },
-    {
-      "bind": "vf_temp_drift",
-      "label": {
-        "en": "Forward voltage against temperature"
-      },
-      "enables_axis": "vf_tempco",
-      "quantity": "v_f",
-      "visual": {
-        "treatment": "none"
-      },
-      "teaching_point": {
-        "en": "−2 mV/°C is why a diode makes a usable thermometer and a poor voltage reference."
-      }
+    ],
+    "panes": [
+      "operating",
+      "specifying",
+      "provenance",
+      "ideality",
+      "characteristic",
+      "sensitivity"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "scrub",
+      "sweep",
+      "substitute",
+      "replace"
+    ]
+  },
+  "pcb": {
+    "package": {
+      "code": "DO-35",
+      "mount": "through_hole",
+      "hand_solderable": true
     }
-  ],
-  "panes": [
-    "operating",
-    "specifying",
-    "provenance",
-    "ideality",
-    "characteristic",
-    "sensitivity"
-  ],
-  "interactions": [
-    "probe",
-    "inspect",
-    "scrub",
-    "sweep",
-    "substitute",
-    "replace"
-  ]
+  }
 }

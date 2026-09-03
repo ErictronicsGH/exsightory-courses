@@ -1,0 +1,10 @@
+{
+  "netclass": "power",
+  "label": "Power rail",
+  "permitted_rise_c": 20,
+  "placement": "external",
+  "copper_oz": 2,
+  "note": {
+    "en": "A rail is allowed to run hotter than a signal, and is usually etched in heavier copper, so it needs less width for the same current on both counts. Twenty degrees over ambient is a common allowance for a rail that is not near anything temperature-sensitive; a rail beside a precision reference is not this class."
+  }
+}

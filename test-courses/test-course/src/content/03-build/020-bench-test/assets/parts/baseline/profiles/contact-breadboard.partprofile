@@ -24,35 +24,37 @@
   },
   "limits": {
     "absolute_max": {
-      "i_a": 1.0
+      "i_a": 1
     },
     "recommended": {
       "i_a": 0.3
     }
   },
-  "reveals": [
-    {
-      "bind": "contact_variability",
-      "label": {
-        "en": "Contact resistance, and how much it varies"
-      },
-      "quantity": "r",
-      "visual": {
-        "treatment": "hatch"
-      },
-      "teaching_point": {
-        "en": "A breadboard contact is between 10 mΩ and half an ohm, and which one it is today is not knowable. That is why a prototype works intermittently and the schematic never explains it."
+  "demonstration": {
+    "reveals": [
+      {
+        "bind": "contact_variability",
+        "label": {
+          "en": "Contact resistance, and how much it varies"
+        },
+        "quantity": "r",
+        "visual": {
+          "treatment": "hatch"
+        },
+        "teaching_point": {
+          "en": "A breadboard contact is between 10 mΩ and half an ohm, and which one it is today is not knowable. That is why a prototype works intermittently and the schematic never explains it."
+        }
       }
-    }
-  ],
-  "panes": [
-    "operating",
-    "specifying",
-    "provenance"
-  ],
-  "interactions": [
-    "probe",
-    "inspect",
-    "substitute"
-  ]
+    ],
+    "panes": [
+      "operating",
+      "specifying",
+      "provenance"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "substitute"
+    ]
+  }
 }

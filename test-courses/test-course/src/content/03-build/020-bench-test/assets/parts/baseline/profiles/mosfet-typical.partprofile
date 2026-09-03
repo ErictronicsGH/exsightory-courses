@@ -75,6 +75,26 @@
         "note": "Class-representative reverse transfer."
       },
       "confidence": "typical"
+    },
+    "t_r": {
+      "value": 5e-08,
+      "unit": "s",
+      "terminal": "d",
+      "band": "10_90",
+      "conditions": {
+        "v_ds_v": 30,
+        "i_d_a": 5,
+        "r_g_ohm": 10,
+        "v_gs_v": 10,
+        "t_j_c": 25
+      },
+      "source": {
+        "note": "Rise time at the drain, class-representative for a standard-level TO-220 part driven from a ten-ohm gate resistor. The conditions matter more here than for almost any other number on this part: halve the gate resistor and the edge roughly halves with it, so a rise time quoted without its drive is not a specification."
+      },
+      "confidence": "typical",
+      "note": {
+        "en": "Ten to ninety per cent, which is how a datasheet quotes it. IBIS quotes its ramp twenty to eighty, and the two are different numbers for the same edge — which is why the band is stored beside the number rather than assumed by whatever reads it."
+      }
     }
   },
   "limits": {
@@ -104,11 +124,6 @@
         "confidence": "typical"
       },
       "c_th_j_per_c": 0.05
-    },
-    "package": {
-      "code": "TO-220",
-      "mount": "through_hole",
-      "hand_solderable": true
     }
   },
   "damage": {
@@ -123,49 +138,58 @@
       "en": "An overheated MOSFET usually fails drain-to-source short, which puts the full supply across whatever it was switching."
     }
   },
-  "reveals": [
-    {
-      "bind": "rds_runaway",
-      "label": {
-        "en": "On-resistance against junction temperature"
+  "demonstration": {
+    "reveals": [
+      {
+        "bind": "rds_runaway",
+        "label": {
+          "en": "On-resistance against junction temperature"
+        },
+        "enables_axis": "rds_tempco",
+        "quantity": "rds_on",
+        "visual": {
+          "treatment": "heat"
+        },
+        "teaching_point": {
+          "en": "Current raises power, power raises temperature, temperature raises resistance, resistance raises power. This is the loop, and it is why real hardware runs away."
+        }
       },
-      "enables_axis": "rds_tempco",
-      "quantity": "rds_on",
-      "visual": {
-        "treatment": "heat"
-      },
-      "teaching_point": {
-        "en": "Current raises power, power raises temperature, temperature raises resistance, resistance raises power. This is the loop, and it is why real hardware runs away."
+      {
+        "bind": "gate_drive_mismatch",
+        "label": {
+          "en": "Gate drive against specified conditions"
+        },
+        "quantity": "v_gs",
+        "visual": {
+          "treatment": "hatch"
+        },
+        "teaching_point": {
+          "en": "On-resistance is specified at 10 V on the gate. Drive it from 3.3 V logic and the stated figure does not apply — which is why so many student projects run hot."
+        }
       }
-    },
-    {
-      "bind": "gate_drive_mismatch",
-      "label": {
-        "en": "Gate drive against specified conditions"
-      },
-      "quantity": "v_gs",
-      "visual": {
-        "treatment": "hatch"
-      },
-      "teaching_point": {
-        "en": "On-resistance is specified at 10 V on the gate. Drive it from 3.3 V logic and the stated figure does not apply — which is why so many student projects run hot."
-      }
+    ],
+    "panes": [
+      "operating",
+      "specifying",
+      "provenance",
+      "ideality",
+      "characteristic",
+      "sensitivity"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "scrub",
+      "sweep",
+      "substitute",
+      "replace"
+    ]
+  },
+  "pcb": {
+    "package": {
+      "code": "TO-220",
+      "mount": "through_hole",
+      "hand_solderable": true
     }
-  ],
-  "panes": [
-    "operating",
-    "specifying",
-    "provenance",
-    "ideality",
-    "characteristic",
-    "sensitivity"
-  ],
-  "interactions": [
-    "probe",
-    "inspect",
-    "scrub",
-    "sweep",
-    "substitute",
-    "replace"
-  ]
+  }
 }

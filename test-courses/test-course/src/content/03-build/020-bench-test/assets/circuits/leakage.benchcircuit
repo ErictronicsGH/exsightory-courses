@@ -1,0 +1,98 @@
+{
+  "id": "leakage",
+  "title": "A diode that is switched off, and still conducting",
+  "seed": 20261010,
+  "requires": {
+    "insight-baseline": "1.2.0"
+  },
+  "environment": {
+    "t_ambient_c": 25
+  },
+  "instances": [
+    {
+      "id": "V1",
+      "class": "supply",
+      "profile": "supply-bench",
+      "value": 10,
+      "at": [
+        200,
+        250
+      ],
+      "rotation": 90,
+      "label": "10 V"
+    },
+    {
+      "id": "R1",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 1000000,
+      "at": [
+        420,
+        160
+      ],
+      "rotation": 90,
+      "label": "R1"
+    },
+    {
+      "id": "R2",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 1000000,
+      "at": [
+        420,
+        340
+      ],
+      "rotation": 90,
+      "label": "R2"
+    },
+    {
+      "id": "D1",
+      "class": "diode",
+      "profile": "diode-typical",
+      "variant": "signal",
+      "at": [
+        620,
+        340
+      ],
+      "rotation": 90,
+      "label": "D1"
+    }
+  ],
+  "nets": [
+    {
+      "id": "vin",
+      "terminals": [
+        "V1.p",
+        "R1.a"
+      ]
+    },
+    {
+      "id": "mid",
+      "terminals": [
+        "R1.b",
+        "R2.a",
+        "D1.k"
+      ]
+    },
+    {
+      "id": "gnd",
+      "terminals": [
+        "R2.b",
+        "D1.a",
+        "V1.n"
+      ],
+      "is_reference": true
+    }
+  ],
+  "effects": {},
+  "editable": {
+    "topology": false,
+    "values": [
+      "R1",
+      "R2"
+    ],
+    "profiles": [
+      "D1"
+    ]
+  }
+}

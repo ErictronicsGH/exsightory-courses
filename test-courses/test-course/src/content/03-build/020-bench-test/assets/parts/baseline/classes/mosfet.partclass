@@ -4,15 +4,21 @@
   "terminals": [
     {
       "id": "d",
-      "label": "drain"
+      "label": "drain",
+      "role": "drain",
+      "signal": "bidirectional"
     },
     {
       "id": "g",
-      "label": "gate"
+      "label": "gate",
+      "role": "gate",
+      "signal": "input"
     },
     {
       "id": "s",
-      "label": "source"
+      "label": "source",
+      "role": "source",
+      "signal": "bidirectional"
     }
   ],
   "variants": {

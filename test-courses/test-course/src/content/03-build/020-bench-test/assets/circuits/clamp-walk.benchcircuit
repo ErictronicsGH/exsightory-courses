@@ -1,0 +1,127 @@
+{
+  "id": "clamp-walk",
+  "title": "One jaw, three branches, three different currents",
+  "seed": 20261010,
+  "requires": {
+    "insight-baseline": "1.2.0"
+  },
+  "environment": {
+    "t_ambient_c": 25
+  },
+  "instances": [
+    {
+      "id": "V1",
+      "class": "supply",
+      "profile": "supply-bench",
+      "value": 10,
+      "at": [
+        40,
+        320
+      ],
+      "label": "10 V",
+      "rotation": 90
+    },
+    {
+      "id": "RS",
+      "class": "resistor",
+      "profile": "resistor-power",
+      "value": 100,
+      "at": [
+        240,
+        140
+      ],
+      "label": "100 R",
+      "rotation": 90
+    },
+    {
+      "id": "A1",
+      "class": "ammeter",
+      "profile": "ammeter-bench",
+      "at": [
+        240,
+        380
+      ],
+      "label": "Ammeter",
+      "rotation": 90
+    },
+    {
+      "id": "R1",
+      "class": "resistor",
+      "profile": "resistor-power",
+      "value": 200,
+      "at": [
+        240,
+        560
+      ],
+      "label": "200 R",
+      "rotation": 90
+    },
+    {
+      "id": "R2",
+      "class": "resistor",
+      "profile": "resistor-power",
+      "value": 600,
+      "at": [
+        620,
+        460
+      ],
+      "label": "600 R",
+      "rotation": 90
+    },
+    {
+      "id": "CP1",
+      "class": "current-clamp",
+      "profile": "clamp-milliamp",
+      "at": [
+        400,
+        300
+      ],
+      "label": "Clamp",
+      "around": "R1.a"
+    }
+  ],
+  "nets": [
+    {
+      "id": "vin",
+      "terminals": [
+        "V1.p",
+        "RS.a"
+      ]
+    },
+    {
+      "id": "mid",
+      "terminals": [
+        "RS.b",
+        "A1.hi",
+        "R2.a"
+      ]
+    },
+    {
+      "id": "shunted",
+      "terminals": [
+        "A1.lo",
+        "R1.a",
+        "CP1.jaw"
+      ]
+    },
+    {
+      "id": "gnd",
+      "terminals": [
+        "R1.b",
+        "R2.b",
+        "V1.n"
+      ],
+      "is_reference": true
+    }
+  ],
+  "effects": {},
+  "editable": {
+    "topology": false,
+    "values": [
+      "A1"
+    ],
+    "profiles": [
+      "CP1"
+    ]
+  }
+}

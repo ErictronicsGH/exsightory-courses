@@ -1,0 +1,128 @@
+{
+  "id": "divider-differential",
+  "title": "Where the clip goes decides what you measured",
+  "seed": 20261010,
+  "requires": {
+    "insight-baseline": "1.2.0"
+  },
+  "environment": {
+    "t_ambient_c": 25
+  },
+  "instances": [
+    {
+      "id": "V1",
+      "class": "supply",
+      "profile": "supply-bench",
+      "value": 10,
+      "at": [
+        40,
+        240
+      ],
+      "label": "10 V",
+      "rotation": 90
+    },
+    {
+      "id": "R1",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 1000000,
+      "at": [
+        200,
+        145
+      ],
+      "label": "1 M",
+      "rotation": 90
+    },
+    {
+      "id": "R2",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 1000000,
+      "at": [
+        200,
+        300
+      ],
+      "label": "1 M",
+      "rotation": 90
+    },
+    {
+      "id": "M1",
+      "class": "dmm",
+      "profile": "dmm-budget",
+      "at": [
+        640,
+        430
+      ],
+      "label": "DMM"
+    },
+    {
+      "id": "VP1",
+      "class": "probe",
+      "profile": "probe-x1",
+      "at": [
+        340,
+        170
+      ],
+      "label": "Probe",
+      "differential": true
+    },
+    {
+      "id": "TP1",
+      "class": "test-point",
+      "profile": "test-point-post",
+      "at": [
+        500,
+        10
+      ],
+      "rotation": 270,
+      "label": "IN"
+    }
+  ],
+  "nets": [
+    {
+      "id": "vin",
+      "terminals": [
+        "R1.a",
+        "V1.p",
+        "VP1.tip",
+        "TP1.pad"
+      ]
+    },
+    {
+      "id": "mid",
+      "terminals": [
+        "R1.b",
+        "R2.a",
+        "VP1.ref",
+        "M1.lo"
+      ]
+    },
+    {
+      "id": "sense",
+      "terminals": [
+        "VP1.lead",
+        "M1.hi"
+      ]
+    },
+    {
+      "id": "gnd",
+      "terminals": [
+        "R2.b",
+        "V1.n"
+      ],
+      "is_reference": true
+    }
+  ],
+  "effects": {},
+  "editable": {
+    "topology": false,
+    "values": [
+      "R1",
+      "R2"
+    ],
+    "profiles": [
+      "M1",
+      "VP1"
+    ]
+  }
+}

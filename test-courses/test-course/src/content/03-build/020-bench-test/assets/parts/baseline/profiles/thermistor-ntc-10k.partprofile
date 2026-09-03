@@ -59,8 +59,8 @@
   "damage": {
     "trigger": {
       "quantity": "p_ratio",
-      "threshold": 1.0,
-      "hold_s": 5.0
+      "threshold": 1,
+      "hold_s": 5
     },
     "mode": "degraded",
     "degraded": {
@@ -71,34 +71,36 @@
       "en": "An overdriven NTC shifts permanently rather than failing outright, which is worse: it keeps reading, and reads wrong."
     }
   },
-  "reveals": [
-    {
-      "bind": "self_heating_error",
-      "label": {
-        "en": "Self-heating measurement error"
-      },
-      "enables_axis": "self_heating",
-      "quantity": "t_j",
-      "visual": {
-        "treatment": "heat"
-      },
-      "teaching_point": {
-        "en": "The current you measure it with warms it, so the sensor reads its own excitation. Halve the current and the error falls fourfold — which is the whole argument for a low sense current."
+  "demonstration": {
+    "reveals": [
+      {
+        "bind": "self_heating_error",
+        "label": {
+          "en": "Self-heating measurement error"
+        },
+        "enables_axis": "self_heating",
+        "quantity": "t_j",
+        "visual": {
+          "treatment": "heat"
+        },
+        "teaching_point": {
+          "en": "The current you measure it with warms it, so the sensor reads its own excitation. Halve the current and the error falls fourfold — which is the whole argument for a low sense current."
+        }
       }
-    }
-  ],
-  "panes": [
-    "operating",
-    "specifying",
-    "provenance",
-    "ideality",
-    "sensitivity"
-  ],
-  "interactions": [
-    "probe",
-    "inspect",
-    "scrub",
-    "substitute",
-    "replace"
-  ]
+    ],
+    "panes": [
+      "operating",
+      "specifying",
+      "provenance",
+      "ideality",
+      "sensitivity"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "scrub",
+      "substitute",
+      "replace"
+    ]
+  }
 }

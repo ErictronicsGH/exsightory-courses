@@ -8,7 +8,7 @@
   },
   "parameters": {
     "r_in_v_mode": {
-      "value": 10000000000.0,
+      "value": 10000000000,
       "unit": "Ω",
       "conditions": {
         "range": "≤ 10 V DC"
@@ -64,33 +64,38 @@
       "i_a": 1
     }
   },
-  "reveals": [
-    {
-      "bind": "input_loading",
-      "label": {
-        "en": "Input impedance loading"
-      },
-      "enables_axis": "input_loading",
-      "quantity": "reading",
-      "visual": {
-        "treatment": "none"
-      },
-      "teaching_point": {
-        "en": "10 GΩ across the same 1 MΩ divider changes the reading by 0.01 %. Swap the meters and the error appears and vanishes while the circuit stays put."
+  "demonstration": {
+    "reveals": [
+      {
+        "bind": "input_loading",
+        "label": {
+          "en": "Input impedance loading"
+        },
+        "enables_axis": "input_loading",
+        "quantity": "v",
+        "visual": {
+          "treatment": "none"
+        },
+        "teaching_point": {
+          "en": "10 GΩ across the same 1 MΩ divider changes the reading by 0.01 %. Swap the meters and the error appears and vanishes while the circuit stays put."
+        }
       }
+    ],
+    "panes": [
+      "operating",
+      "measurement",
+      "specifying",
+      "provenance",
+      "ideality"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "connect",
+      "substitute"
+    ],
+    "availability": {
+      "en": "A bench instrument, and the difference is not the display. 10 GΩ on the low DC ranges means it stops loading what it measures — a thousand times lighter than the handheld — and that is the parameter worth paying for. Six and a half digits and ± 0.0035 % is what the rest of the money buys."
     }
-  ],
-  "panes": [
-    "operating",
-    "measurement",
-    "specifying",
-    "provenance",
-    "ideality"
-  ],
-  "interactions": [
-    "probe",
-    "inspect",
-    "connect",
-    "substitute"
-  ]
+  }
 }

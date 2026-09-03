@@ -1,0 +1,98 @@
+{
+  "id": "branch-current",
+  "title": "Two ways to read a current, and what each one costs",
+  "seed": 20261010,
+  "requires": {
+    "insight-baseline": "1.2.0"
+  },
+  "environment": {
+    "t_ambient_c": 25
+  },
+  "instances": [
+    {
+      "id": "V1",
+      "class": "supply",
+      "profile": "supply-bench",
+      "value": 10,
+      "at": [
+        40,
+        240
+      ],
+      "label": "10 V",
+      "rotation": 90
+    },
+    {
+      "id": "A1",
+      "class": "ammeter",
+      "profile": "ammeter-bench",
+      "at": [
+        240,
+        140
+      ],
+      "label": "Ammeter"
+    },
+    {
+      "id": "CP1",
+      "class": "current-clamp",
+      "profile": "clamp-handheld",
+      "at": [
+        440,
+        140
+      ],
+      "label": "Clamp",
+      "around": "R1.a"
+    },
+    {
+      "id": "R1",
+      "class": "resistor",
+      "profile": "resistor-power",
+      "value": 100,
+      "at": [
+        560,
+        240
+      ],
+      "label": "100 R",
+      "rotation": 90
+    }
+  ],
+  "nets": [
+    {
+      "id": "vin",
+      "terminals": [
+        "V1.p",
+        "A1.hi"
+      ]
+    },
+    {
+      "id": "sense",
+      "terminals": [
+        "A1.lo",
+        "CP1.jaw",
+        "R1.a"
+      ]
+    },
+    {
+      "id": "gnd",
+      "terminals": [
+        "R1.b",
+        "V1.n"
+      ],
+      "is_reference": true
+    }
+  ],
+  "effects": {
+    "A1": [
+      "burden"
+    ]
+  },
+  "editable": {
+    "topology": false,
+    "values": [
+      "R1",
+      "A1"
+    ],
+    "profiles": [
+      "CP1"
+    ]
+  }
+}

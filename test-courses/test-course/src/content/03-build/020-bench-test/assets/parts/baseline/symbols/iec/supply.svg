@@ -9,9 +9,25 @@
   </g>
   <g data-layer="body">
     <circle cx="0" cy="0" r="20" stroke="var(--bench-symbol)" fill="var(--bench-sheet)" stroke-width="var(--bench-stroke, 2.4)" stroke-linejoin="round"/>
-    <line x1="-16" y1="0" x2="-6" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round" stroke-linejoin="round"/>
-    <line x1="-11" y1="-5" x2="-11" y2="5" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round" stroke-linejoin="round"/>
-    <line x1="6" y1="0" x2="16" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round" stroke-linejoin="round"/>
+    <!--
+      The polarity, as **two marks and not one**, each read about its own place
+      on the face rather than about the centre.
+
+      A supply stood on end is the ordinary case on a sheet, and it is what
+      makes this the symbol that proves the rule. The plus survives a quarter
+      turn by luck — it is symmetric — but the minus becomes a vertical bar,
+      which is not a minus and is read as one anyway. And both have to *travel*:
+      the plus belongs beside terminal `p`, so a mark pinned to where this file
+      drew it would sit on the left while `p` went to the top, and the drawing
+      would then say the wrong pin is positive.
+    -->
+    <g data-upright="-11 0">
+      <line x1="-16" y1="0" x2="-6" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="-11" y1="-5" x2="-11" y2="5" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g data-upright="11 0">
+      <line x1="6" y1="0" x2="16" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
     <line x1="-45.4" y1="0" x2="-20" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
     <line x1="45.4" y1="0" x2="20" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
     <circle data-terminal="p" cx="-45.4" cy="0" r="2.6" fill="var(--bench-terminal)"/>

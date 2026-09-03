@@ -1,10 +1,10 @@
 {
   "id": "insight-baseline",
   "name": "INSIGHT baseline components",
-  "version": "0.2.0",
+  "version": "1.2.0",
   "author": "Erictronics Systems",
   "licence": "Proprietary — ships with INSIGHT.",
-  "description": "The components the bench opens with. Every parameter is class-representative rather than traceable to a part, which is what a typical profile is for: a real profile is what a library author adds.",
+  "description": "The components the bench opens with. Most parameters are class-representative rather than traceable to a part, which is what a typical profile is for; the three diodes are real, authored from the manufacturers' own datasheets and SPICE cards, and a profile says which it is parameter by parameter.",
   "classes": [
     "classes/resistor.partclass",
     "classes/capacitor.partclass",
@@ -13,26 +13,54 @@
     "classes/thermistor.partclass",
     "classes/dmm.partclass",
     "classes/conductor.partclass",
-    "classes/supply.partclass"
+    "classes/supply.partclass",
+    "classes/probe.partclass",
+    "classes/test-point.partclass",
+    "classes/ammeter.partclass",
+    "classes/current-clamp.partclass"
   ],
   "profiles": [
     "profiles/resistor-typical.partprofile",
     "profiles/resistor-power.partprofile",
+    "profiles/resistor-power-25.partprofile",
     "profiles/capacitor-mlcc-typical.partprofile",
     "profiles/diode-typical.partprofile",
+    "profiles/diode-1n4148.partprofile",
+    "profiles/diode-1n4148w.partprofile",
+    "profiles/diode-1n4001.partprofile",
     "profiles/mosfet-typical.partprofile",
     "profiles/thermistor-ntc-10k.partprofile",
+    "profiles/rtd-pt100.partprofile",
     "profiles/dmm-budget.partprofile",
     "profiles/dmm-bench.partprofile",
     "profiles/wire-cu-awg24.partprofile",
     "profiles/wire-cu-awg30.partprofile",
+    "profiles/trace-cu-0r5mm.partprofile",
     "profiles/contact-breadboard.partprofile",
-    "profiles/supply-bench.partprofile"
+    "profiles/supply-bench.partprofile",
+    "profiles/probe-x1.partprofile",
+    "profiles/probe-x10.partprofile",
+    "profiles/test-point-post.partprofile",
+    "profiles/ammeter-bench.partprofile",
+    "profiles/clamp-handheld.partprofile",
+    "profiles/clamp-milliamp.partprofile"
+  ],
+  "netclasses": [
+    "netclasses/signal.netclass",
+    "netclasses/power.netclass",
+    "netclasses/bench-wire.netclass",
+    "netclasses/hs-signal.netclass",
+    "netclasses/hs-50r.netclass"
+  ],
+  "stackups": [
+    "stackups/fr4-6layer.stackup"
   ],
   "curves": [
     "curves/mlcc-c-vs-vdc.json"
   ],
   "symbols": [
+    "symbols/ansi/resistor.svg",
+    "symbols/ansi/thermistor.svg",
     "symbols/iec/capacitor-polarised.svg",
     "symbols/iec/capacitor.svg",
     "symbols/iec/contact.svg",
@@ -44,12 +72,18 @@
     "symbols/iec/led.svg",
     "symbols/iec/mosfet-n.svg",
     "symbols/iec/mosfet-p.svg",
+    "symbols/iec/probe.svg",
     "symbols/iec/resistor.svg",
     "symbols/iec/supply.svg",
+    "symbols/iec/test-point.svg",
+    "symbols/iec/ammeter.svg",
+    "symbols/iec/current-clamp.svg",
     "symbols/iec/thermistor.svg",
     "symbols/iec/trace.svg",
-    "symbols/iec/wire.svg",
-    "symbols/ansi/resistor.svg",
-    "symbols/ansi/thermistor.svg"
+    "symbols/iec/wire.svg"
+  ],
+  "cards": [
+    "cards/1n4148w.model.sp",
+    "cards/1n4001.model.sp"
   ]
 }

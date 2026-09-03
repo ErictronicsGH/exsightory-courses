@@ -8,7 +8,7 @@
   },
   "parameters": {
     "c": {
-      "value": 1e-05,
+      "value": 0.00001,
       "unit": "F",
       "conditions": {
         "t_a_c": 25,
@@ -54,50 +54,10 @@
       "t_j_c": 70
     }
   },
-  "curves": [
-    "curves/mlcc-c-vs-vdc.json"
-  ],
-  "reveals": [
-    {
-      "bind": "bias_collapse",
-      "label": {
-        "en": "Capacitance under DC bias"
-      },
-      "enables_axis": "bias_derating",
-      "quantity": "c_effective",
-      "visual": {
-        "treatment": "none"
-      },
-      "context": {
-        "comparison": "10 µF on the packet",
-        "note": {
-          "en": "The derating curve is in every X5R datasheet."
-        }
-      },
-      "teaching_point": {
-        "en": "A 10 µF X5R at half its rated voltage is nearer 5 µF, and at its rating nearer 2. Decisive in a supply filter, invisible in every simulator."
-      }
-    }
-  ],
-  "panes": [
-    "operating",
-    "specifying",
-    "provenance",
-    "ideality",
-    "curves",
-    "sensitivity"
-  ],
-  "interactions": [
-    "probe",
-    "inspect",
-    "scrub",
-    "substitute",
-    "replace"
-  ],
   "damage": {
     "trigger": {
       "quantity": "v_ratio",
-      "threshold": 1.0,
+      "threshold": 1,
       "hold_s": 0.2
     },
     "mode": "short",
@@ -105,5 +65,47 @@
     "note": {
       "en": "An over-voltage ceramic punches through and fails short, which puts the supply straight into whatever it was decoupling."
     }
+  },
+  "demonstration": {
+    "curves": [
+      "curves/mlcc-c-vs-vdc.json"
+    ],
+    "reveals": [
+      {
+        "bind": "bias_collapse",
+        "label": {
+          "en": "Capacitance under DC bias"
+        },
+        "enables_axis": "bias_derating",
+        "quantity": "c_effective",
+        "visual": {
+          "treatment": "none"
+        },
+        "context": {
+          "comparison": "10 µF on the packet",
+          "note": {
+            "en": "The derating curve is in every X5R datasheet."
+          }
+        },
+        "teaching_point": {
+          "en": "A 10 µF X5R at half its rated voltage is nearer 5 µF, and at its rating nearer 2. Decisive in a supply filter, invisible in every simulator."
+        }
+      }
+    ],
+    "panes": [
+      "operating",
+      "specifying",
+      "provenance",
+      "ideality",
+      "curves",
+      "sensitivity"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "scrub",
+      "substitute",
+      "replace"
+    ]
   }
 }

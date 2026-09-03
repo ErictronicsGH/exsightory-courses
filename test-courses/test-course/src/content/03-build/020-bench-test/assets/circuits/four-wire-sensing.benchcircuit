@@ -1,0 +1,173 @@
+{
+  "id": "four-wire-sensing",
+  "title": "The leads are in the measurement, until you stop measuring through them",
+  "seed": 20261010,
+  "requires": {
+    "insight-baseline": "1.2.0"
+  },
+  "environment": {
+    "t_ambient_c": 25
+  },
+  "instances": [
+    {
+      "id": "V1",
+      "class": "supply",
+      "profile": "supply-bench",
+      "value": 10,
+      "at": [
+        40,
+        380
+      ],
+      "label": "10 V",
+      "rotation": 90
+    },
+    {
+      "id": "A1",
+      "class": "ammeter",
+      "profile": "ammeter-bench",
+      "at": [
+        240,
+        160
+      ],
+      "label": "Excitation"
+    },
+    {
+      "id": "RS",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 10000,
+      "at": [
+        440,
+        280
+      ],
+      "label": "10k",
+      "rotation": 90
+    },
+    {
+      "id": "RTD",
+      "class": "resistor",
+      "profile": "rtd-pt100",
+      "at": [
+        440,
+        700
+      ],
+      "label": "Pt100",
+      "rotation": 90
+    },
+    {
+      "id": "M2W",
+      "class": "dmm",
+      "profile": "dmm-bench",
+      "at": [
+        240,
+        380
+      ],
+      "label": "Two-wire",
+      "rotation": 90
+    },
+    {
+      "id": "M4W",
+      "class": "dmm",
+      "profile": "dmm-bench",
+      "at": [
+        880,
+        700
+      ],
+      "label": "Four-wire",
+      "rotation": 90
+    }
+  ],
+  "nets": [
+    {
+      "id": "vin",
+      "terminals": [
+        "V1.p",
+        "A1.hi"
+      ]
+    },
+    {
+      "id": "force",
+      "terminals": [
+        "A1.lo",
+        "RS.a"
+      ]
+    },
+    {
+      "id": "hi",
+      "terminals": [
+        "RS.b",
+        "RTD.a",
+        "M2W.hi",
+        "M4W.hi"
+      ],
+      "junction": "RS.b",
+      "class": "bench-wire"
+    },
+    {
+      "id": "gnd",
+      "terminals": [
+        "V1.n",
+        "RTD.b",
+        "M2W.lo",
+        "M4W.lo"
+      ],
+      "is_reference": true,
+      "junction": "V1.n",
+      "class": "bench-wire"
+    }
+  ],
+  "segments": [
+    {
+      "id": "WF1",
+      "net": "hi",
+      "between": [
+        "RS.b",
+        "RTD.a"
+      ],
+      "class": "conductor",
+      "profile": "wire-cu-awg24",
+      "length_m": 2.0
+    },
+    {
+      "id": "WS1",
+      "net": "hi",
+      "between": [
+        "RTD.a",
+        "M4W.hi"
+      ],
+      "class": "conductor",
+      "profile": "wire-cu-awg30",
+      "length_m": 2.0
+    },
+    {
+      "id": "WF2",
+      "net": "gnd",
+      "between": [
+        "V1.n",
+        "RTD.b"
+      ],
+      "class": "conductor",
+      "profile": "wire-cu-awg24",
+      "length_m": 2.0
+    },
+    {
+      "id": "WS2",
+      "net": "gnd",
+      "between": [
+        "RTD.b",
+        "M4W.lo"
+      ],
+      "class": "conductor",
+      "profile": "wire-cu-awg30",
+      "length_m": 2.0
+    }
+  ],
+  "effects": {},
+  "editable": {
+    "topology": false,
+    "values": [
+      "RS"
+    ],
+    "profiles": []
+  }
+}

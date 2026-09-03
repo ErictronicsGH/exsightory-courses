@@ -2,6 +2,7 @@
   "class": "dmm",
   "label": "Digital multimeter",
   "instrument": true,
+  "measures": "voltage",
   "non_ideal_requires": [
     "r_in_v_mode",
     "r_burden_i_mode"
@@ -9,11 +10,15 @@
   "terminals": [
     {
       "id": "hi",
-      "label": "input HI"
+      "label": "input HI",
+      "role": "input_high",
+      "signal": "input"
     },
     {
       "id": "lo",
-      "label": "input LO"
+      "label": "input LO",
+      "role": "input_low",
+      "signal": "reference"
     }
   ],
   "variants": {

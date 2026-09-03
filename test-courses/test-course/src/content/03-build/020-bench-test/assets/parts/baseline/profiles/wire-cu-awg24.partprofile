@@ -8,7 +8,7 @@
   },
   "parameters": {
     "rho_ohm_m": {
-      "value": 1.68e-08,
+      "value": 1.68e-8,
       "unit": "Ω·m",
       "conditions": {
         "t_c": 20
@@ -18,16 +18,13 @@
       },
       "confidence": "typical"
     },
-    "area_mm2": {
-      "value": 0.205,
-      "unit": "mm²",
-      "conditions": {
-        "standard": "AWG"
-      },
+    "awg": {
+      "value": 24,
+      "dimensionless": true,
       "source": {
-        "note": "AWG 24 cross-section."
+        "note": "The gauge itself, which is what a spool is bought by. The cross-section follows from it and is under \"computed\"."
       },
-      "confidence": "typical"
+      "confidence": "stated"
     },
     "alpha_per_c": {
       "value": 0.00393,
@@ -62,43 +59,58 @@
       "t_c": 70
     }
   },
-  "reveals": [
-    {
-      "bind": "lead_resistance",
-      "label": {
-        "en": "Lead resistance in series with the measurement"
-      },
-      "quantity": "r",
-      "visual": {
-        "treatment": "none"
-      },
-      "teaching_point": {
-        "en": "Two metres of AWG 24 is about 170 mΩ. Against a 100 Ω RTD that is nearly two degrees of error, and it is exactly why four-wire sensing exists."
-      }
-    }
-  ],
-  "panes": [
-    "operating",
-    "specifying",
-    "provenance",
-    "ideality"
-  ],
-  "interactions": [
-    "probe",
-    "inspect",
-    "scrub",
-    "substitute"
-  ],
   "damage": {
     "trigger": {
       "quantity": "i_ratio",
       "threshold": 2.5,
-      "hold_s": 20.0
+      "hold_s": 20
     },
     "mode": "open",
     "confidence": "typical",
     "note": {
       "en": "Copper fuses when it cannot lose the heat. A thin trace deliberately sized to do so is a real design element, not a failure."
+    }
+  },
+  "demonstration": {
+    "reveals": [
+      {
+        "bind": "lead_resistance",
+        "label": {
+          "en": "Lead resistance in series with the measurement"
+        },
+        "quantity": "r",
+        "visual": {
+          "treatment": "none"
+        },
+        "teaching_point": {
+          "en": "Two metres of AWG 24 is about 0.16 Ω. A two-wire measurement counts both leads, so a 100 Ω platinum RTD reads a third of an ohm high — nearly a degree of error on a sensor whose whole span is 0.385 Ω per degree, and it is exactly why four-wire sensing exists."
+        }
+      }
+    ],
+    "panes": [
+      "operating",
+      "specifying",
+      "provenance",
+      "ideality"
+    ],
+    "interactions": [
+      "probe",
+      "inspect",
+      "scrub",
+      "substitute"
+    ]
+  },
+  "computed": {
+    "area_mm2": {
+      "derivation": "awg_to_area_mm2",
+      "inputs": [
+        "awg"
+      ],
+      "value": 0.20473030814712212,
+      "unit": "mm²",
+      "note": {
+        "en": "A printed table's 0.205 mm² beside AWG 24 is this number rounded. The gauge is the declaration — the AWG series fixes the diameter exactly — so the area is derived from it rather than copied from a table and left to drift."
+      }
     }
   }
 }

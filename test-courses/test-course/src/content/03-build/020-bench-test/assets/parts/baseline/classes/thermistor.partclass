@@ -4,11 +4,15 @@
   "terminals": [
     {
       "id": "a",
-      "label": "terminal A"
+      "label": "terminal A",
+      "role": "terminal",
+      "signal": "bidirectional"
     },
     {
       "id": "b",
-      "label": "terminal B"
+      "label": "terminal B",
+      "role": "terminal",
+      "signal": "bidirectional"
     }
   ],
   "variants": {
