@@ -4,6 +4,12 @@
   "version": "1.3.0",
   "author": "Erictronics Systems",
   "licence": "Proprietary — ships with INSIGHT.",
+  "licensing": {
+    "version": 1,
+    "model": "free",
+    "redistribution": "enrolled-students",
+    "terms": "Ships with INSIGHT and may be used in any course, including one that is sold. Its classes, profiles and drawings may be handed to the enrolled students of a course that needs them, and not otherwise."
+  },
   "description": "The components the bench opens with. Most parameters are class-representative rather than traceable to a part, which is what a typical profile is for; the three diodes are real, authored from the manufacturers' own datasheets and SPICE cards, and a profile says which it is parameter by parameter.",
   "classes": [
     "classes/resistor.partclass",
