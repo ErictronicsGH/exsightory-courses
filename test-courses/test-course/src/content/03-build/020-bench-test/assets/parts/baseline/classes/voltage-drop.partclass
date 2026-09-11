@@ -1,0 +1,38 @@
+{
+  "class": "voltage-drop",
+  "label": "Voltage drop",
+  "terminals": [
+    {
+      "id": "at",
+      "label": "at",
+      "role": "terminal",
+      "signal": "bidirectional"
+    }
+  ],
+  "variants": {
+    "callout": {
+      "symbol": "symbols/iec/voltage-drop.svg",
+      "label": "Stated voltage"
+    }
+  },
+  "fast_model": {
+    "equation": "requirement",
+    "value_parameter": "v",
+    "requires": [],
+    "optional": [
+      "v"
+    ],
+    "outputs": []
+  },
+  "ideality_axes": {},
+  "capabilities": {
+    "reveals": [],
+    "panes": [
+      "specifying",
+      "provenance"
+    ],
+    "interactions": [
+      "inspect"
+    ]
+  }
+}

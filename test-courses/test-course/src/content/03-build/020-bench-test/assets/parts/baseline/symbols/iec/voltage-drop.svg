@@ -1,0 +1,47 @@
+<!-- Voltage drop — an author saying what the potential at a point should be.
+
+     **Chosen by the owner, 2026-09-10**, from four drawings offered before any
+     of this was coded, under the standing rule that anything that gets drawn is
+     the owner's call: a drafting dimension callout, against a pennant tag, a
+     target ring and a square spec box.
+
+     The reason it is the right one is the reason it looks unlike everything
+     else on the sheet. **On an engineering drawing a dimension is a
+     requirement** — it is what the part *shall be*, not what somebody measured
+     — and that is exactly what this component is and exactly what every other
+     candidate blurred. A ring reads as a test point. A circle reads as an
+     instrument, and this bench already has four. A tag reads as a net label,
+     which names a net rather than asking anything of it. A leader with an arrow
+     on the feature and the number on its landing is the one mark in either
+     tradition that already means *this shall be so*.
+
+     It is also the only one that could not be mistaken for a part in the
+     branch, and that matters more here than anywhere: the owner corrected this
+     component's design twice on the same point — **it is not a supply and it
+     injects nothing** — and a drawing that reads as a source would put the
+     correction back every time the schematic went up on a wall.
+
+     One terminal, at the arrow's point, on the 1.27 mm grid at −25.4 (stage
+     12k) so the bench can land it on a conductor that is itself on the grid.
+     The arrow touches the node, which is what a leader does.
+
+     No thermal layer and no flow layer, and their absence is the statement, as
+     it is on the test point: a part that adds nothing to the circuit has no
+     current to draw through it and no power to shade.
+
+     Where the number sits is not settled here. Drafting puts it on the landing;
+     this bench's default puts a value below a horizontal part. The landing is
+     drawn long enough for either, and seating the answer on it is `M26b`'s,
+     along with the second row a stated current wants. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-30.48 -20.32 60.96 40.64">
+  <g data-layer="body">
+    <!-- The leader and its landing, as one path: arrow end, elbow, shelf. -->
+    <polyline points="-25.4,0 -6.35,-12.7 25.4,-12.7" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- The arrowhead, touching the node the way a dimension touches a feature. -->
+    <polygon points="-25.4,0 -14.95,-2.64 -18.94,-8.63" fill="var(--bench-symbol)" stroke="none"/>
+    <circle data-terminal="at" cx="-25.4" cy="0" r="2.4" fill="var(--bench-terminal)"/>
+  </g>
+  <g data-layer="hitbox">
+    <rect x="-30.48" y="-20.32" width="60.96" height="40.64" fill="currentColor" opacity="0"/>
+  </g>
+</svg>
