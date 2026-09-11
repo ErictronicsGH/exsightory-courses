@@ -1,0 +1,95 @@
+{
+ "id": "stated-unreachable",
+ "title": "A midpoint stated above the rail",
+ "seed": 1,
+ "requires": {
+  "insight-baseline": "1.4.0"
+ },
+ "environment": {
+  "t_ambient_c": 25
+ },
+ "display": {
+  "value_notation": "decimal",
+  "show_unit": true
+ },
+ "instances": [
+  {
+   "id": "V1",
+   "class": "supply",
+   "profile": "supply-bench",
+   "value": 9,
+   "at": [
+    50.8,
+    152.4
+   ]
+  },
+  {
+   "id": "R1",
+   "class": "resistor",
+   "profile": "resistor-typical",
+   "value": 5600,
+   "at": [
+    203.2,
+    101.6
+   ]
+  },
+  {
+   "id": "R2",
+   "class": "resistor",
+   "profile": "resistor-typical",
+   "value": 3300,
+   "at": [
+    203.2,
+    254.0
+   ]
+  },
+  {
+   "id": "S1",
+   "class": "voltage-drop",
+   "profile": "voltage-drop-stated",
+   "value": 12,
+   "at": [
+    279.4,
+    177.8
+   ],
+   "label_at": [
+    12.7,
+    -63.5
+   ]
+  }
+ ],
+ "nets": [
+  {
+   "id": "vin",
+   "terminals": [
+    "V1.p",
+    "R1.a"
+   ]
+  },
+  {
+   "id": "mid",
+   "terminals": [
+    "R1.b",
+    "R2.a",
+    "S1.at"
+   ]
+  },
+  {
+   "id": "gnd",
+   "terminals": [
+    "R2.b",
+    "V1.n"
+   ],
+   "is_reference": true
+  }
+ ],
+ "effects": {},
+ "editable": {
+  "topology": false,
+  "values": [
+   "R1",
+   "R2"
+  ],
+  "profiles": []
+ }
+}

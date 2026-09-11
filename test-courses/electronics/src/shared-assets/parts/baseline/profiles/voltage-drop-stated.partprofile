@@ -1,0 +1,39 @@
+{
+  "profile": "voltage-drop-stated",
+  "class": "voltage-drop",
+  "variant": "callout",
+  "display_name": "Stated voltage",
+  "provenance": {
+    "typical": true
+  },
+  "parameters": {
+    "v": {
+      "value": 0,
+      "unit": "V",
+      "conditions": {
+        "t_a_c": 25
+      },
+      "source": {
+        "note": "Zero, and deliberately not a plausible number. This entry exists to say that \"v\" is in volts, which is what the sheet needs in order to print 3.3 V rather than a bare 3.3 - a number that is a voltage, a resistance or a count depending on who is reading it. The value itself is never read: a stated point takes its voltage from the instance, and one with no instance value states nothing at all and is refused by circuit-requirement-without-value. So if this number ever does reach a wall it means that refusal has stopped working, and 0 V asked for at a divider's midpoint is wrong in a way a room sees instantly. A plausible default here would not be."
+      },
+      "confidence": "typical"
+    }
+  },
+  "limits": {
+    "absolute_max": {},
+    "recommended": {}
+  },
+  "demonstration": {
+    "reveals": [],
+    "panes": [
+      "specifying",
+      "provenance"
+    ],
+    "interactions": [
+      "inspect"
+    ],
+    "availability": {
+      "en": "Nothing to buy and nothing to fit. It is a designer saying what the voltage at a point ought to be, and the resistors on that net are what the bench then works out."
+    }
+  }
+}
