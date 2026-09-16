@@ -1,6 +1,7 @@
 {
   "class": "dmm",
   "label": "Digital multimeter",
+  "designator": "M",
   "instrument": true,
   "measures": "voltage",
   "non_ideal_requires": [

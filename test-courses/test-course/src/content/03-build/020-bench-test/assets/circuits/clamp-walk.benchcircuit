@@ -18,8 +18,8 @@
         50.8,
         406.4
       ],
-      "label": "10 V",
-      "rotation": 90
+      "rotation": 90,
+      "label": "10 V"
     },
     {
       "id": "RS",
@@ -30,8 +30,8 @@
         304.8,
         177.8
       ],
-      "label": "100 R",
-      "rotation": 90
+      "rotation": 90,
+      "label": "100 R"
     },
     {
       "id": "A1",
@@ -41,8 +41,8 @@
         304.8,
         482.6
       ],
-      "label": "Ammeter",
-      "rotation": 90
+      "rotation": 90,
+      "label": "Ammeter"
     },
     {
       "id": "R1",
@@ -53,8 +53,8 @@
         304.8,
         711.2
       ],
-      "label": "200 R",
-      "rotation": 90
+      "rotation": 90,
+      "label": "200 R"
     },
     {
       "id": "R2",
@@ -65,8 +65,8 @@
         787.4,
         584.2
       ],
-      "label": "600 R",
-      "rotation": 90
+      "rotation": 90,
+      "label": "600 R"
     },
     {
       "id": "CP1",

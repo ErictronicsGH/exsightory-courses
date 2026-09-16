@@ -1,6 +1,7 @@
 {
   "class": "test-point",
   "label": "Test point",
+  "designator": "TP",
   "terminals": [
     {
       "id": "pad",

@@ -1,6 +1,7 @@
 {
   "class": "ammeter",
   "label": "Ammeter",
+  "designator": "A",
   "instrument": true,
   "measures": "current",
   "non_ideal_requires": [

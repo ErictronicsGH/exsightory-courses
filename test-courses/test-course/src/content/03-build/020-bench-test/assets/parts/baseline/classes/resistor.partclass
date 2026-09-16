@@ -1,6 +1,7 @@
 {
   "class": "resistor",
   "label": "Resistor",
+  "designator": "R",
   "terminals": [
     {
       "id": "a",

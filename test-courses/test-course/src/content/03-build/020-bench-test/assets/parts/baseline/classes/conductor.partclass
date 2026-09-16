@@ -1,6 +1,7 @@
 {
   "class": "conductor",
   "label": "Conductor",
+  "designator": "W",
   "terminals": [
     {
       "id": "a",

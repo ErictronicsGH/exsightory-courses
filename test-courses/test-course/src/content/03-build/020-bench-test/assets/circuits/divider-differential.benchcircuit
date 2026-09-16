@@ -18,8 +18,8 @@
         50.8,
         304.8
       ],
-      "label": "10 V",
-      "rotation": 90
+      "rotation": 90,
+      "label": "10 V"
     },
     {
       "id": "R1",
@@ -30,8 +30,8 @@
         254,
         190.5
       ],
-      "label": "1 M",
-      "rotation": 90
+      "rotation": 90,
+      "label": "1 M"
     },
     {
       "id": "R2",
@@ -42,8 +42,8 @@
         254,
         381
       ],
-      "label": "1 M",
-      "rotation": 90
+      "rotation": 90,
+      "label": "1 M"
     },
     {
       "id": "M1",

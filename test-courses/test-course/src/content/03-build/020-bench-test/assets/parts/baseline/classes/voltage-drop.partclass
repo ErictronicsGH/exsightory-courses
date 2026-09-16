@@ -1,6 +1,7 @@
 {
   "class": "voltage-drop",
   "label": "Voltage drop",
+  "designator": "S",
   "terminals": [
     {
       "id": "at",

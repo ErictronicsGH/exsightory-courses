@@ -18,8 +18,8 @@
         254,
         203.2
       ],
-      "label": "V1",
-      "rotation": 90
+      "rotation": 90,
+      "label": "V1"
     },
     {
       "id": "R1",
@@ -30,8 +30,8 @@
         533.4,
         203.2
       ],
-      "label": "R1 470R",
-      "rotation": 90
+      "rotation": 90,
+      "label": "R1 470R"
     },
     {
       "id": "R2",
@@ -42,8 +42,8 @@
         533.4,
         431.8
       ],
-      "label": "R2 2k2",
-      "rotation": 90
+      "rotation": 90,
+      "label": "R2 2k2"
     },
     {
       "id": "R3",

@@ -14,38 +14,54 @@
       "class": "supply",
       "profile": "supply-bench",
       "value": 10,
-      "at": [50.8, 482.6],
-      "label": "10 V",
-      "rotation": 90
+      "at": [
+        50.8,
+        482.6
+      ],
+      "rotation": 90,
+      "label": "10 V"
     },
     {
       "id": "RL",
       "class": "resistor",
       "profile": "resistor-power-25",
       "value": 8.2,
-      "at": [558.8, 482.6],
-      "label": "8R2",
-      "rotation": 90
+      "at": [
+        558.8,
+        482.6
+      ],
+      "rotation": 90,
+      "label": "8R2"
     },
     {
       "id": "TP1",
       "class": "test-point",
       "profile": "test-point-post",
-      "at": [304.8, 254],
-      "label": "rail",
-      "rotation": 90
+      "at": [
+        304.8,
+        254
+      ],
+      "rotation": 90,
+      "label": "rail"
     }
   ],
   "nets": [
     {
       "id": "rail",
-      "terminals": ["V1.p", "TP1.pad", "RL.a"],
+      "terminals": [
+        "V1.p",
+        "TP1.pad",
+        "RL.a"
+      ],
       "junction": "V1.p",
       "class": "signal"
     },
     {
       "id": "gnd",
-      "terminals": ["V1.n", "RL.b"],
+      "terminals": [
+        "V1.n",
+        "RL.b"
+      ],
       "is_reference": true,
       "junction": "V1.n",
       "class": "signal"
@@ -55,7 +71,10 @@
     {
       "id": "TR1",
       "net": "rail",
-      "between": ["V1.p", "RL.a"],
+      "between": [
+        "V1.p",
+        "RL.a"
+      ],
       "class": "conductor",
       "profile": "trace-cu-0r5mm",
       "length_m": 0.1
@@ -63,7 +82,10 @@
     {
       "id": "TR2",
       "net": "gnd",
-      "between": ["V1.n", "RL.b"],
+      "between": [
+        "V1.n",
+        "RL.b"
+      ],
       "class": "conductor",
       "profile": "trace-cu-0r5mm",
       "length_m": 0.1
@@ -72,7 +94,9 @@
   "effects": {},
   "editable": {
     "topology": false,
-    "values": ["V1"],
+    "values": [
+      "V1"
+    ],
     "profiles": []
   }
 }

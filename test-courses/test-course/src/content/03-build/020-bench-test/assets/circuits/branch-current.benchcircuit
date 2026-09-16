@@ -18,8 +18,8 @@
         50.8,
         304.8
       ],
-      "label": "10 V",
-      "rotation": 90
+      "rotation": 90,
+      "label": "10 V"
     },
     {
       "id": "A1",
@@ -51,8 +51,8 @@
         711.2,
         304.8
       ],
-      "label": "100 R",
-      "rotation": 90
+      "rotation": 90,
+      "label": "100 R"
     }
   ],
   "nets": [
