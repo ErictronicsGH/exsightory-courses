@@ -1,6 +1,7 @@
 {
   "class": "probe",
   "label": "Scope probe",
+  "designator": "VP",
   "attachment": "touch",
   "terminals": [
     {

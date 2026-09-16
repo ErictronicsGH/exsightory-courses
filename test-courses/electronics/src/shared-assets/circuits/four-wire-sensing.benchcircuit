@@ -18,8 +18,8 @@
         50.8,
         482.6
       ],
-      "label": "10 V",
-      "rotation": 90
+      "rotation": 90,
+      "label": "10 V"
     },
     {
       "id": "A1",
@@ -40,8 +40,8 @@
         558.8,
         355.6
       ],
-      "label": "10k",
-      "rotation": 90
+      "rotation": 90,
+      "label": "10k"
     },
     {
       "id": "RTD",
@@ -51,8 +51,8 @@
         558.8,
         889
       ],
-      "label": "Pt100",
-      "rotation": 90
+      "rotation": 90,
+      "label": "Pt100"
     },
     {
       "id": "M2W",
@@ -62,8 +62,8 @@
         304.8,
         482.6
       ],
-      "label": "Two-wire",
-      "rotation": 90
+      "rotation": 90,
+      "label": "Two-wire"
     },
     {
       "id": "M4W",
@@ -73,8 +73,8 @@
         1117.6,
         889
       ],
-      "label": "Four-wire",
-      "rotation": 90
+      "rotation": 90,
+      "label": "Four-wire"
     }
   ],
   "nets": [
@@ -126,7 +126,7 @@
       ],
       "class": "conductor",
       "profile": "wire-cu-awg24",
-      "length_m": 2.0
+      "length_m": 2
     },
     {
       "id": "WS1",
@@ -137,7 +137,7 @@
       ],
       "class": "conductor",
       "profile": "wire-cu-awg30",
-      "length_m": 2.0
+      "length_m": 2
     },
     {
       "id": "WF2",
@@ -148,7 +148,7 @@
       ],
       "class": "conductor",
       "profile": "wire-cu-awg24",
-      "length_m": 2.0
+      "length_m": 2
     },
     {
       "id": "WS2",
@@ -159,7 +159,7 @@
       ],
       "class": "conductor",
       "profile": "wire-cu-awg30",
-      "length_m": 2.0
+      "length_m": 2
     }
   ],
   "effects": {},

@@ -18,8 +18,8 @@
         254,
         203.2
       ],
-      "label": "V1",
-      "rotation": 90
+      "rotation": 90,
+      "label": "V1"
     },
     {
       "id": "RL",
@@ -30,8 +30,8 @@
         533.4,
         584.2
       ],
-      "label": "RL 5R",
-      "rotation": 90
+      "rotation": 90,
+      "label": "RL 5R"
     }
   ],
   "nets": [

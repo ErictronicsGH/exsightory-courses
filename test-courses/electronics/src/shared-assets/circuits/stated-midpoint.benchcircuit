@@ -8,10 +8,6 @@
   "environment": {
     "t_ambient_c": 25
   },
-  "display": {
-    "value_notation": "decimal",
-    "show_unit": true
-  },
   "instances": [
     {
       "id": "V1",
@@ -40,14 +36,14 @@
       "value": 3300,
       "at": [
         203.2,
-        254.0
+        254
       ]
     },
     {
       "id": "S1",
       "class": "voltage-drop",
       "profile": "voltage-drop-stated",
-      "value": 4.0,
+      "value": 4,
       "at": [
         279.4,
         177.8

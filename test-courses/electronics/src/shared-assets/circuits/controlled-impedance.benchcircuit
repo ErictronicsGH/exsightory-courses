@@ -18,8 +18,8 @@
         50.8,
         482.6
       ],
-      "label": "10 V",
-      "rotation": 90
+      "rotation": 90,
+      "label": "10 V"
     },
     {
       "id": "RD",
@@ -52,8 +52,8 @@
         838.2,
         482.6
       ],
-      "label": "10 V gate",
-      "rotation": 90
+      "rotation": 90,
+      "label": "10 V gate"
     }
   ],
   "nets": [

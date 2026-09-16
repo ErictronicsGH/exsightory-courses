@@ -1,6 +1,7 @@
 {
   "class": "current-clamp",
   "label": "Current clamp",
+  "designator": "CP",
   "instrument": true,
   "measures": "current",
   "attachment": "touch",

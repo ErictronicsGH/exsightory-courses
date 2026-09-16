@@ -1,0 +1,72 @@
+{
+  "id": "half-drawn",
+  "title": "A supply and two resistors, thirty seconds in",
+  "seed": 20261010,
+  "requires": {
+    "insight-baseline": "1.4.0"
+  },
+  "environment": {
+    "t_ambient_c": 25
+  },
+  "instances": [
+    {
+      "id": "V1",
+      "class": "supply",
+      "profile": "supply-bench",
+      "value": 9,
+      "at": [
+        50.8,
+        304.8
+      ],
+      "rotation": 90,
+      "label": "9 V"
+    },
+    {
+      "id": "R1",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 5600,
+      "at": [
+        254,
+        190.5
+      ],
+      "rotation": 90,
+      "label": "5k6"
+    },
+    {
+      "id": "R2",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 3300,
+      "at": [
+        254,
+        381
+      ],
+      "rotation": 90,
+      "label": "3k3"
+    }
+  ],
+  "nets": [
+    {
+      "id": "vin",
+      "terminals": [
+        "R1.a",
+        "V1.p"
+      ]
+    },
+    {
+      "id": "mid",
+      "terminals": [
+        "R1.b",
+        "R2.a"
+      ]
+    }
+  ],
+  "effects": {},
+  "under_construction": true,
+  "editable": {
+    "topology": false,
+    "values": [],
+    "profiles": []
+  }
+}

@@ -1,6 +1,7 @@
 {
   "class": "mosfet",
   "label": "MOSFET",
+  "designator": "Q",
   "terminals": [
     {
       "id": "d",

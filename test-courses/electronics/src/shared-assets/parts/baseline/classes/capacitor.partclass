@@ -1,6 +1,7 @@
 {
   "class": "capacitor",
   "label": "Capacitor",
+  "designator": "C",
   "terminals": [
     {
       "id": "a",

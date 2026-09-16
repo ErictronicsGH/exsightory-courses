@@ -1,6 +1,7 @@
 {
   "class": "diode",
   "label": "Diode",
+  "designator": "D",
   "terminals": [
     {
       "id": "a",

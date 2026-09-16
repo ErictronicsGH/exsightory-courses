@@ -1,6 +1,7 @@
 {
   "class": "thermistor",
   "label": "Thermistor",
+  "designator": "RT",
   "terminals": [
     {
       "id": "a",
