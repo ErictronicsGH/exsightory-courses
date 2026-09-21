@@ -29,7 +29,7 @@ node packages/insight-core/bin/insight-compile.js ../test-course/src --out ../..
 ```
 
 Then install it through the app's **Install a course…** button, or copy the
-package into `%APPDATA%/INSIGHT/courses/`.
+package into `%APPDATA%/ExSight Studio/courses/`.
 
 ## Text style
 
@@ -53,6 +53,19 @@ set, a formula and a line of C are all safe.
 | `size` | `small` `normal` `large` `huge` — steps, relative to whatever the surface set |
 | `color` | `body` `primary` `muted` `amber` `teal` — the app's own semantic palette |
 | `font` | `sans` `mono` `serif` |
+
+**Subscripts and superscripts** are written in any text, not only prose — a
+heading, a quiz question, an option, an analogy — as `~sub~` and `^super^`:
+
+```markdown
+Water is H~2~O, so V~out~ ≈ V~peak~ − 2V~F~, and the winding loses I^2^R.
+```
+
+The text between the marks has no spaces in it, which is what keeps
+`about ~5 V to ~12 V` and `2^10` as written. Write `\~` or `\^` in a fence for
+the character itself; in prose, put a literal `x^2^` in backticks. A single
+tilde is no longer strikethrough — `~~this~~` still is. The rectifier
+(`01-raw-dc/020-rectifier`) carries both kinds, in prose and in a flash quiz.
 
 `theme.yaml` sets a course-wide default per block type, and a block that styles
 itself wins field by field:

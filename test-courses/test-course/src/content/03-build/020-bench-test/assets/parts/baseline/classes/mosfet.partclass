@@ -2,6 +2,7 @@
   "class": "mosfet",
   "label": "MOSFET",
   "designator": "Q",
+  "category": "semiconductors",
   "terminals": [
     {
       "id": "d",

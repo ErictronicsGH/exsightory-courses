@@ -72,6 +72,9 @@ libraries:
   - parts/baseline/library.json
 alt: A ten-volt supply across two one-megohm resistors in series, with a handheld multimeter connected across the lower one.
 caption: A 10 MΩ handheld across a 1 MΩ divider. The reading is not the voltage.
+# One fence carries the author's choice of analyses (M25-14), so the format
+# fixture has one of the field as it has one of everything else.
+analyses: [voltage, current]
 reveal:
   part: M1
   show: input_loading

@@ -2,6 +2,7 @@
   "class": "test-point",
   "label": "Test point",
   "designator": "TP",
+  "category": "connections",
   "terminals": [
     {
       "id": "pad",

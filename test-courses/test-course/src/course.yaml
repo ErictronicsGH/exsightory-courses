@@ -19,6 +19,10 @@ tutor:
   bio:
     en: tutor/bio.en.md
 
+# The course's picture, for the library card and a listing (M42ae). Drawn, not
+# photographed — a fixture carries nothing real. Relative to this folder.
+cover: shared-assets/cover.png
+
 footer: The Fenwick Institute for Applied Electronics
 
 # Chapters, not days. This course could be an afternoon or a term; the player

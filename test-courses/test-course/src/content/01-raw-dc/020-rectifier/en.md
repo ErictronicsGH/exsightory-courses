@@ -28,11 +28,14 @@ per cycle rather than sitting at zero for half of it. That doubles the ripple
 frequency, which matters more than it sounds: it halves the capacitance you need
 downstream for the same [ripple](glossary:ripple).
 
+### What the bridge costs: 2V~F~ and I^2^R
+
 The cost is two diode drops in the path instead of one — about 1.4 V gone before
-your circuit sees anything.
+your circuit sees anything, so V~out~ ≈ V~peak~ − 2V~F~. The winding pays too: its
+loss grows as I^2^R, so the bridge that halves the ripple does not halve the heat.
 
 ```flash
-question: A bridge rectifier is fed from a 12 V RMS secondary. Roughly what peak DC does the smoothing capacitor charge to?
+question: A bridge rectifier is fed from a 12 V~RMS~ secondary. Roughly what peak DC does the smoothing capacitor charge to?
 options:
   - About 8.6 V
   - About 12 V

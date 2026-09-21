@@ -2,6 +2,7 @@
   "class": "ammeter",
   "label": "Ammeter",
   "designator": "A",
+  "category": "measuring",
   "instrument": true,
   "measures": "current",
   "non_ideal_requires": [

@@ -2,6 +2,7 @@
   "class": "diode",
   "label": "Diode",
   "designator": "D",
+  "category": "semiconductors",
   "terminals": [
     {
       "id": "a",

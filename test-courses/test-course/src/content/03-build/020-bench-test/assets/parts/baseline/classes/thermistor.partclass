@@ -2,6 +2,7 @@
   "class": "thermistor",
   "label": "Thermistor",
   "designator": "RT",
+  "category": "sensors",
   "terminals": [
     {
       "id": "a",

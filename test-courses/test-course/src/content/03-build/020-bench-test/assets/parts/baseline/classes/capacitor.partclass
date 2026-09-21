@@ -2,6 +2,7 @@
   "class": "capacitor",
   "label": "Capacitor",
   "designator": "C",
+  "category": "passives",
   "terminals": [
     {
       "id": "a",

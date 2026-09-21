@@ -2,6 +2,7 @@
   "class": "conductor",
   "label": "Conductor",
   "designator": "W",
+  "category": "connections",
   "terminals": [
     {
       "id": "a",

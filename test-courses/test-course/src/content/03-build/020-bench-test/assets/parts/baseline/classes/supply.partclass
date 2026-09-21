@@ -2,6 +2,7 @@
   "class": "supply",
   "label": "Bench supply",
   "designator": "V",
+  "category": "sources",
   "instrument": true,
   "non_ideal_requires": [
     "r_out"
