@@ -1,0 +1,127 @@
+{
+  "id": "bridge-null",
+  "title": "A bridge, and the circuit the bench had never been shown",
+  "seed": 20260920,
+  "requires": {
+    "insight-baseline": "1.4.0"
+  },
+  "environment": {
+    "t_ambient_c": 25
+  },
+  "instances": [
+    {
+      "id": "V1",
+      "class": "supply",
+      "profile": "supply-bench",
+      "value": 10,
+      "at": [
+        76.2,
+        381
+      ],
+      "rotation": 90,
+      "label": "V1"
+    },
+    {
+      "id": "R1",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 1000,
+      "at": [
+        304.8,
+        228.6
+      ],
+      "rotation": 90,
+      "label": "R1"
+    },
+    {
+      "id": "R2",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 1000,
+      "at": [
+        304.8,
+        533.4
+      ],
+      "rotation": 90,
+      "label": "R2"
+    },
+    {
+      "id": "R3",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 1000,
+      "at": [
+        609.6,
+        228.6
+      ],
+      "rotation": 90,
+      "label": "R3"
+    },
+    {
+      "id": "R4",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 1200,
+      "at": [
+        609.6,
+        533.4
+      ],
+      "rotation": 90,
+      "label": "R4"
+    },
+    {
+      "id": "M1",
+      "class": "dmm",
+      "profile": "dmm-budget",
+      "at": [
+        457.2,
+        381
+      ],
+      "label": "M1",
+      "differential": true
+    }
+  ],
+  "nets": [
+    {
+      "id": "vin",
+      "terminals": [
+        "V1.p",
+        "R1.a",
+        "R3.a"
+      ]
+    },
+    {
+      "id": "a",
+      "terminals": [
+        "R1.b",
+        "R2.a",
+        "M1.hi"
+      ]
+    },
+    {
+      "id": "b",
+      "terminals": [
+        "R3.b",
+        "R4.a",
+        "M1.lo"
+      ]
+    },
+    {
+      "id": "gnd",
+      "terminals": [
+        "V1.n",
+        "R2.b",
+        "R4.b"
+      ],
+      "is_reference": true
+    }
+  ],
+  "effects": {},
+  "editable": {
+    "topology": false,
+    "values": [
+      "R4"
+    ],
+    "profiles": []
+  }
+}

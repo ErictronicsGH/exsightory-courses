@@ -47,3 +47,31 @@ is no answer to find and the honest thing is to say which rail is in the way.
 Notice where that sentence appears: beside the circuit, on the part it is about.
 A box in the middle of the screen would have covered the drawing you are being
 asked to read.
+
+## A circuit the bench had never been shown
+
+Everything so far has been a circuit this bench was built around. A bridge is
+not: two dividers side by side, read against each other rather than against
+ground, with the meter across the middle where nothing is at a rail at all.
+
+```circuit
+title: A bridge, and the circuit the bench had never been shown
+circuit: shared/circuits/bridge-null.benchcircuit
+libraries:
+  - shared/parts/baseline/library.json
+alt: A ten-volt supply across two parallel resistor divider arms - R1 over R2 on the left and R3 over R4 on the right - with a multimeter connected between the two midpoints.
+caption: Three of the four arms are a kilohm and the fourth is 1k2. Ask which way the meter reads before switching anything on, then take R4 back to balance.
+```
+
+Every analysis this bench has is on this circuit too, and each of them says
+something about it rather than about the circuits it was written against. Under
+*Working hard* the four resistors read a percentage and the supply reads zero;
+the meter reads no percentage at all, because its profile states no limit to be
+a fraction of. It still prints what it is dissipating. An absence printed as an
+absence, and not as a zero.
+
+And one analysis has nothing to say here at all. *What the wire has to be* is
+answered from a net's declared class, this circuit declares none, and the bench
+says so in place of the scale rather than drawing a legend over an empty sheet.
+An analysis that is unavailable and an analysis that is merely quiet are two
+different statements, and a room is owed the difference.

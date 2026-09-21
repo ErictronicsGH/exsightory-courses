@@ -15,6 +15,9 @@ libraries:
   - shared/parts/baseline/library.json
 alt: A ten-volt rail feeding four separate resistor branches - a pair in series, two single resistors of different values, and a fifty-ohm power resistor in a TO-220 package on a heatsink.
 caption: Every one of these is a resistor across the same rail. Ask which is hottest before you switch to IR view.
+# The author's choice (M25-14): this beat is about heat, so it offers the two
+# thermal analyses and the power behind them, and not the four that are not.
+analyses: [heat, ir, power]
 ```
 
 ```circuit

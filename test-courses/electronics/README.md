@@ -27,8 +27,8 @@ subsection.
 cd Application/insight
 node packages/insight-core/bin/insight-compile.js ../bench-courses/electronics/src \
   --out ../../.tmp-out/bench-electronics.insightcourse
-rm -rf "$APPDATA/INSIGHT/courses/bench-electronics"
-cp -r ../../.tmp-out/bench-electronics.insightcourse "$APPDATA/INSIGHT/courses/bench-electronics"
+rm -rf "$APPDATA/ExSight Studio/courses/bench-electronics"
+cp -r ../../.tmp-out/bench-electronics.insightcourse "$APPDATA/ExSight Studio/courses/bench-electronics"
 ```
 
 Zero warnings is correct.

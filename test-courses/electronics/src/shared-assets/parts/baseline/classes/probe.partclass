@@ -2,6 +2,7 @@
   "class": "probe",
   "label": "Scope probe",
   "designator": "VP",
+  "category": "measuring",
   "attachment": "touch",
   "terminals": [
     {

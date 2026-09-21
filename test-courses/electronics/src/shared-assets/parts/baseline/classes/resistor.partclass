@@ -2,6 +2,7 @@
   "class": "resistor",
   "label": "Resistor",
   "designator": "R",
+  "category": "passives",
   "terminals": [
     {
       "id": "a",
