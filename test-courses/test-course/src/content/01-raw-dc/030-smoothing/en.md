@@ -84,6 +84,7 @@ features:
     leader-colour: amber
     note: Sized for the primary side, not the secondary. That is the trap the turns ratio sets, and it is why this one is a quarter of the current the load actually draws.
     colour: rose
+    on-click: tour
   - id: charge-path
     arrow:
       from: [0.395, 0.760]
