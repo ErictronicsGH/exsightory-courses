@@ -31,6 +31,17 @@ argument, not the components.
 Which is why the notes on the drawing matter as much as the drawing.
 ```
 
+Two questions from the course's bank, asked by reference and pinned to the
+version this lecture was written against:
+
+```numeric
+ref: heatsink-rise@1
+```
+
+```multi-select
+ref: regulator-heat@1
+```
+
 ## Where this design runs out
 
 Honest limits of what we built:

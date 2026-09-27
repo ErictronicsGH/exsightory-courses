@@ -1,0 +1,82 @@
+# The course's question bank (M17b): one question of each graded type.
+#
+# Invented, like the rest of this fixture. Each version is the same field bag
+# the question's fence would hold inline, and a subsection asks one by
+# reference:
+#
+#   ```numeric
+#   ref: heatsink-rise@1
+#   ```
+#
+# Versions are append-only once a build has shipped them. questions.lock.json,
+# beside this file, records which ones have, and is written by the compiler.
+
+heatsink-rise:
+  type: numeric
+  subjectTags: [thermal, heatsinks]
+  difficulty: medium
+  versions:
+    1:
+      question: >-
+        The pass transistor dissipates 9 W through a heatsink rated 2.5 °C/W,
+        in a 25 °C room. What temperature does the heatsink settle at, in °C?
+      correctAnswer: 47.5
+      tolerance: 1
+      unit: °C
+      explanation: >-
+        The rise is 9 W x 2.5 °C/W = 22.5 °C above the room, so 25 + 22.5 = 47.5 °C.
+        The junction is hotter still, by the dissipation times the junction-to-case
+        and case-to-sink resistances.
+
+smoothing-trade:
+  type: flash
+  subjectTags: [smoothing, ripple]
+  difficulty: easy
+  versions:
+    1:
+      question: Doubling the smoothing capacitor roughly does what to the ripple?
+      options:
+        - Doubles it
+        - Halves it
+        - Leaves it unchanged
+      correct: 1
+      timerSeconds: 30
+
+regulator-heat:
+  type: multi-select
+  subjectTags: [linear-regulators, thermal]
+  difficulty: medium
+  versions:
+    1:
+      question: Which of these would make this supply run cooler at a 2 A load?
+      options:
+        - A switching pre-regulator ahead of the linear stage
+        - A lower raw DC rail, with enough headroom for dropout
+        - A larger output capacitor
+        - Setting a higher output voltage
+      correct: [0, 1, 3]
+      explanation: >-
+        Dissipation is (Vin - Vout) x Iout. A pre-regulator and a lower rail both
+        narrow the drop, and a higher output narrows it too. The output capacitor
+        changes the transient response, not the heat.
+
+fault-cases:
+  type: quiz
+  subjectTags: [protection]
+  difficulty: hard
+  versions:
+    1:
+      title: Check - fault cases
+      questions:
+        - prompt: Into a dead short, the current limit holds 500 mA. The transistor sees...
+          options:
+            - Almost nothing, because the output is at 0 V
+            - The whole raw rail across it, at the limit current
+            - Half the raw rail
+          correct: 1
+        - prompt: A foldback limit exists to...
+          options:
+            - Reduce dissipation during a sustained short
+            - Make the limit faster
+            - Raise the maximum output current
+          correct: 0

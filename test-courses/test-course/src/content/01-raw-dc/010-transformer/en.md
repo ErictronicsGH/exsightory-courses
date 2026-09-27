@@ -44,6 +44,10 @@ heat. Nobody expects a gearbox to produce free horsepower, and nobody should
 expect a transformer to produce free watts.
 ```
 
+Keep [the block diagram](svg:block-diagram.svg) open while we go stage by stage.
+
+***
+
 ## What the turns ratio actually buys you
 
 ```canvas

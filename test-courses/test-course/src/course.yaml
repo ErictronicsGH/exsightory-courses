@@ -41,5 +41,6 @@ chapters:
   - id: 03-build
     title: 'Part 3: Building and testing the unit'
     order: 3
-    scheduledMinutes: 90
+    # 90 for the build, and 40 more for the exam that closes it (M17c).
+    scheduledMinutes: 130
     ads: []
