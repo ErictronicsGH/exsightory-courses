@@ -53,6 +53,16 @@ Three constraints fight each other in this part:
 - The bracket has to **hold the transistor flat** against the pad, because a
   gap filled with air is a thermal insulator no amount of fin area will rescue
 
+Before it is taken apart, here it is shut, as it arrives: a mesh and nothing
+else, to turn over.
+
+```canvas
+kind: model3d
+src: enclosure.glb
+alt: The closed sheet-metal enclosure, with nothing named on it - a model to turn over before it is opened.
+caption: Shut, and unannotated. Turn it round; there is nothing on the outside to tell you what is inside.
+```
+
 ```model
 title: The enclosure, opened
 src: enclosure.glb
