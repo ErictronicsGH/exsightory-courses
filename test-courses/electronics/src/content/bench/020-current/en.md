@@ -20,12 +20,12 @@ reveal:
   part: A1
   show: burden_voltage
 predict:
-  prompt: The ammeter's shunt is turned from ten milliohms to ten ohms. What happens to the current it reports?
+  prompt: The ammeter's shunt goes from ten milliohms to ten ohms. What does it report?
   options:
-    - Nothing - the supply and the resistor decide the current
-    - It falls, because the shunt is now a tenth of the circuit
-    - It rises, because a bigger shunt develops more voltage
-    - It falls, and the clamp beside it reports the fall too
+    - No change - the supply sets it
+    - Less - the shunt is a tenth now
+    - More - more shunt, more voltage
+    - Less, and the clamp agrees
   correct: 1
 ```
 

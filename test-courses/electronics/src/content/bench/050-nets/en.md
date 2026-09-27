@@ -22,10 +22,10 @@ reveal:
 predict:
   prompt: The two force leads are swapped for ten metres of the same wire. Which readings move?
   options:
-    - Both, because the leads are in series with everything
-    - Neither - the excitation current is set by the ten kilohms
-    - The two-wire reading only, and it goes up
-    - The four-wire reading only, because its sense leads got longer too
+    - Both - the leads are in series
+    - Neither - ten kilohms set the current
+    - Only the two-wire one, upward
+    - Only the four-wire one
   correct: 2
 ```
 
