@@ -37,10 +37,10 @@ loss grows as I^2^R, so the bridge that halves the ripple does not halve the hea
 ```flash
 question: A bridge rectifier is fed from a 12 V~RMS~ secondary. Roughly what peak DC does the smoothing capacitor charge to?
 options:
-  - About 8.6 V
-  - About 12 V
-  - About 15.6 V
-  - About 24 V
+  - About 8.6 V, V~RMS~ ÷ √2
+  - About 12 V, V~RMS~ itself
+  - About 15.6 V, V~RMS~ × √2 − 2V~F~
+  - About 24 V, 2 × V~RMS~
 correct: 2
 timerSeconds: 45
 ```
