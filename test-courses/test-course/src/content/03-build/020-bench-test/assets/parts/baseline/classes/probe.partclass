@@ -50,13 +50,10 @@
   "capabilities": {
     "reveals": [],
     "panes": [
-      "operating",
-      "specifying",
-      "provenance"
+      "operating"
     ],
     "interactions": [
       "probe",
-      "inspect",
       "substitute"
     ]
   }

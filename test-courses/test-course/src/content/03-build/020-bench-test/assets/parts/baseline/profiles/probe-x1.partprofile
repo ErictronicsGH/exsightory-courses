@@ -61,13 +61,10 @@
   "demonstration": {
     "reveals": [],
     "panes": [
-      "operating",
-      "specifying",
-      "provenance"
+      "operating"
     ],
     "interactions": [
       "probe",
-      "inspect",
       "substitute"
     ],
     "availability": {

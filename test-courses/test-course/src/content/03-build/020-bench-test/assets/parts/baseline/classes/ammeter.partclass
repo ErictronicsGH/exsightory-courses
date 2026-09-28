@@ -66,13 +66,9 @@
     "panes": [
       "operating",
       "measurement",
-      "specifying",
-      "provenance",
       "ideality"
     ],
     "interactions": [
-      "inspect",
-      "connect",
       "substitute"
     ]
   }

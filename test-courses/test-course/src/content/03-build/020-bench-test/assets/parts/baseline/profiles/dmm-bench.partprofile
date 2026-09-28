@@ -84,14 +84,10 @@
     "panes": [
       "operating",
       "measurement",
-      "specifying",
-      "provenance",
       "ideality"
     ],
     "interactions": [
       "probe",
-      "inspect",
-      "connect",
       "substitute"
     ],
     "availability": {

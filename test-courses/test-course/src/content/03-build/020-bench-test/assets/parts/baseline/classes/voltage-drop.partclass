@@ -29,12 +29,7 @@
   "ideality_axes": {},
   "capabilities": {
     "reveals": [],
-    "panes": [
-      "specifying",
-      "provenance"
-    ],
-    "interactions": [
-      "inspect"
-    ]
+    "panes": [],
+    "interactions": []
   }
 }

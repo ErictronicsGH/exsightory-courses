@@ -108,13 +108,10 @@
     ],
     "panes": [
       "operating",
-      "specifying",
-      "provenance",
       "ideality"
     ],
     "interactions": [
       "probe",
-      "inspect",
       "substitute"
     ],
     "availability": {
