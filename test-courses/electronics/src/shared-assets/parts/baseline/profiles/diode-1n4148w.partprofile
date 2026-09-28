@@ -92,7 +92,7 @@
           "direction": "reverse"
         },
         "context": {
-          "typical_display": "≈ 4 ns, from TT = 5.76 ns",
+          "typical_display": "TT = 5.76 ns, the card’s transit time",
           "comparison": "the forward current the moment before the source reversed",
           "note": {
             "en": "TT = 5.76 ns. The stored charge is swept out in nanoseconds, which is why a 1N4148 rectifies happily at 100 kHz and a 1N4001 does not."
