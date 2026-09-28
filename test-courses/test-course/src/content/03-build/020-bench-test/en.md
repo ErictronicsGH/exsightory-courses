@@ -433,7 +433,7 @@ circuit: circuits/recovery.benchcircuit
 libraries:
   - parts/baseline/library.json
 alt: A five-volt bench supply feeding two parallel branches, each a 470 ohm resistor in series with a diode to ground - a 1N4148W in one branch and a 1N4001 in the other.
-caption: Take the supply negative and watch which diode keeps conducting. The transit times differ by a factor of 750.
+caption: Turn the supply down to zero and watch which diode keeps conducting. The transit times differ by a factor of 750.
 ```
 
 ```quiz

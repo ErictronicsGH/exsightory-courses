@@ -92,7 +92,7 @@
           "direction": "reverse"
         },
         "context": {
-          "typical_display": "≈ 3 µs, from TT = 4.32 µs",
+          "typical_display": "TT = 4.32 µs, the card’s transit time",
           "comparison": "the forward current the moment before the source reversed",
           "note": {
             "en": "TT = 4.32 µs — 750 times the 1N4148W’s. Every microsecond of it is the diode conducting backwards while the charge in the junction is swept out."
