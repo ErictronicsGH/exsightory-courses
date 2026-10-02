@@ -13,14 +13,18 @@
 # `.claude/implementation/standards/bench-fixture-courses.md`.
 id: bench-electronics
 title: The Electronics Bench
-subtitle: The driving fixture for M25 — one bench, thirteen circuits, no other content
+# What a reader sees on the card and under every page. It shipped in the first
+# build (M54b), so it says what the course is to someone opening it, not what it
+# is to a driver script.
+subtitle: Thirteen circuits on one bench, to measure, predict and take apart
+
 version: 1.0.0
 languages: [en]
 
 tutor:
   name: Erictronics Systems
 
-footer: A fixture, not a course. Nothing here is written to be taught.
+footer: Every circuit here is solved by the bench as you change it.
 
 # One chapter. A bench fixture has no pedagogical arc to divide, so the
 # subsections group by *what a circuit demonstrates* — which is also how the
