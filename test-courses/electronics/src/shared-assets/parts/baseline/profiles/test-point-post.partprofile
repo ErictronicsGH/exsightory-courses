@@ -13,13 +13,8 @@
   },
   "demonstration": {
     "reveals": [],
-    "panes": [
-      "specifying",
-      "provenance"
-    ],
-    "interactions": [
-      "inspect"
-    ],
+    "panes": [],
+    "interactions": [],
     "availability": {
       "en": "A place on a net with a name on it. It carries no current, dissipates nothing and changes no reading — what it is for is being somewhere a probe can be sent, by a presenter who can say where out loud and a room that can see where it went."
     }

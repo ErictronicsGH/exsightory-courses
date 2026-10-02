@@ -88,17 +88,10 @@
     ],
     "panes": [
       "operating",
-      "specifying",
-      "provenance",
-      "ideality",
-      "characteristic",
-      "sensitivity"
+      "ideality"
     ],
     "interactions": [
       "probe",
-      "inspect",
-      "scrub",
-      "colour_bands",
       "substitute",
       "replace"
     ]

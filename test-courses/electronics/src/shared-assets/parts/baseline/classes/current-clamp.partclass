@@ -35,12 +35,9 @@
     "reveals": [],
     "panes": [
       "operating",
-      "measurement",
-      "specifying",
-      "provenance"
+      "measurement"
     ],
     "interactions": [
-      "inspect",
       "substitute"
     ]
   }

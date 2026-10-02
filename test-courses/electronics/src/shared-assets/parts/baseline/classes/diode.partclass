@@ -113,20 +113,10 @@
     ],
     "panes": [
       "operating",
-      "specifying",
-      "model_card",
-      "provenance",
-      "ideality",
-      "characteristic",
-      "curves",
-      "sensitivity"
+      "ideality"
     ],
     "interactions": [
       "probe",
-      "inspect",
-      "scrub",
-      "edit_model_card",
-      "sweep",
       "substitute",
       "replace"
     ]

@@ -195,17 +195,10 @@
     ],
     "panes": [
       "operating",
-      "specifying",
-      "provenance",
-      "ideality",
-      "characteristic",
-      "sensitivity"
+      "ideality"
     ],
     "interactions": [
       "probe",
-      "inspect",
-      "scrub",
-      "sweep",
       "substitute",
       "replace"
     ],

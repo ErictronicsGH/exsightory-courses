@@ -25,13 +25,8 @@
   },
   "demonstration": {
     "reveals": [],
-    "panes": [
-      "specifying",
-      "provenance"
-    ],
-    "interactions": [
-      "inspect"
-    ],
+    "panes": [],
+    "interactions": [],
     "availability": {
       "en": "Nothing to buy and nothing to fit. It is a designer saying what the voltage at a point ought to be, and the resistors on that net are what the bench then works out."
     }

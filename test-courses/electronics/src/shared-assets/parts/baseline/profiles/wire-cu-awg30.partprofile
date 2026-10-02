@@ -89,14 +89,10 @@
     ],
     "panes": [
       "operating",
-      "specifying",
-      "provenance",
       "ideality"
     ],
     "interactions": [
       "probe",
-      "inspect",
-      "scrub",
       "substitute"
     ]
   },
