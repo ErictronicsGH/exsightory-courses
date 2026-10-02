@@ -140,6 +140,6 @@ options:
 correct: [0, 1]
 explanation: >-
   Dissipation is (Vin - Vout) x Iout. Raising Vin widens the drop, and raising
-  the current multiplies it. Raising Vout *narrows* the drop and lowers it. The
+  the current multiplies it. Raising Vout narrows the drop and lowers it. The
   capacitor changes ripple, not the average dissipation.
 ```
