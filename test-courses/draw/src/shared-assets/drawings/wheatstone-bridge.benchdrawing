@@ -149,6 +149,11 @@
       "id": "detector",
       "say": "A galvanometer across the middle: it reads zero when the bridge balances",
       "draw": ["bridge", "meter", "label-g"]
+    },
+    {
+      "id": "balance",
+      "say": "Balance: R3 is adjusted until the galvanometer reads zero",
+      "draw": ["meter"]
     }
   ]
 }
