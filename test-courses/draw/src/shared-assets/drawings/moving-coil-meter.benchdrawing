@@ -96,6 +96,16 @@
         "ink": "amber",
         "width": 4,
         "end": "arrow"
+      },
+      "motion": {
+        "zero": {
+          "rotate": -77,
+          "about": {
+            "item": "pivot",
+            "at": "centre"
+          },
+          "pace": "slow"
+        }
       }
     },
     "pivot": {
@@ -165,6 +175,11 @@
       "id": "spring",
       "say": "A hairspring opposes the turn, so the pointer settles where its torque balances the coil's",
       "draw": ["hairspring"]
+    },
+    {
+      "id": "zero",
+      "say": "Switch the current off, and the hairspring swings the pointer back to zero",
+      "play": ["zero"]
     }
   ]
 }

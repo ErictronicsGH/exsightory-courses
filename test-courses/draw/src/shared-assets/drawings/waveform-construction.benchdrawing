@@ -16,7 +16,7 @@
     },
     {
       "id": "wave",
-      "items": ["phasor-circle", "phasor", "label-angle", "wave", "label-equation"]
+      "items": ["phasor-circle", "phasor", "label-angle", "wave", "label-equation", "projector", "dot"]
     }
   ],
   "items": {
@@ -147,6 +147,13 @@
       "stroke": {
         "ink": "teal",
         "cap": "butt"
+      },
+      "enter": {
+        "as": "trace",
+        "by": "x"
+      },
+      "exit": {
+        "as": "erase"
       }
     },
     "phasor": {
@@ -159,6 +166,22 @@
         "ink": "rose",
         "cap": "butt",
         "end": "arrow"
+      },
+      "motion": {
+        "home": {
+          "rotate": 60,
+          "about": {
+            "item": "phasor",
+            "at": "start"
+          }
+        },
+        "turn": {
+          "rotate": -360,
+          "about": {
+            "item": "phasor",
+            "at": "start"
+          }
+        }
       }
     },
     "label-angle": {
@@ -181,6 +204,44 @@
       "at": [8480, 1464],
       "text": "v = Vm sin ωt",
       "role": "title"
+    },
+    "dot": {
+      "shape": "ellipse",
+      "centre": [5500, 4500],
+      "radii": [110, 110],
+      "stroke": "none",
+      "fill": {
+        "ink": "rose"
+      },
+      "enter": {
+        "as": "appear"
+      },
+      "motion": {
+        "ride": {
+          "move": {
+            "along": "wave",
+            "by": "x"
+          }
+        }
+      }
+    },
+    "projector": {
+      "shape": "line",
+      "from": {
+        "item": "phasor",
+        "at": "end"
+      },
+      "to": {
+        "item": "dot",
+        "at": "centre"
+      },
+      "line": "hidden",
+      "stroke": {
+        "ink": "rose"
+      },
+      "enter": {
+        "as": "appear"
+      }
     }
   },
   "steps": [
@@ -209,6 +270,21 @@
       "say": "Join the heights: the sine wave",
       "draw": ["wave", "label-equation"],
       "hide": ["spokes", "projections"]
+    },
+    {
+      "id": "rewind",
+      "say": "Rub the wave out, and turn the phasor back to the start",
+      "hide": ["wave", "label-angle"],
+      "play": ["home"],
+      "in": "together"
+    },
+    {
+      "id": "turn",
+      "say": "Let it turn: its height, carried across, draws the wave point by point",
+      "draw": ["wave", "projector", "dot"],
+      "play": ["turn", "ride"],
+      "in": "linked",
+      "pace": "slow"
     }
   ]
 }
