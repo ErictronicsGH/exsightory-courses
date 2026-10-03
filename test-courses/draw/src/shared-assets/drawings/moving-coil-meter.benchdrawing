@@ -16,7 +16,7 @@
     },
     {
       "id": "movement",
-      "items": ["core", "coil", "pointer", "pivot"]
+      "items": ["core", "coil", "hairspring", "pointer", "pivot"]
     },
     {
       "id": "labels",
@@ -125,6 +125,15 @@
       "at": [1060, 140],
       "text": "full scale",
       "role": "note"
+    },
+    "hairspring": {
+      "shape": "function",
+      "form": "polar",
+      "r": "0.1*theta",
+      "domain": ["2*pi", "8*pi"],
+      "at": [800, 450],
+      "scale": [27, 27],
+      "line": "thin"
     }
   },
   "groups": {
@@ -151,6 +160,11 @@
       "say": "The pointer turns with the coil, and the construction circle goes",
       "draw": ["pointer", "pivot", "label-scale"],
       "hide": ["pole-circle"]
+    },
+    {
+      "id": "spring",
+      "say": "A hairspring opposes the turn, so the pointer settles where its torque balances the coil's",
+      "draw": ["hairspring"]
     }
   ]
 }

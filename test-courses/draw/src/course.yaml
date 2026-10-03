@@ -8,6 +8,8 @@
 # The first four drawings are hand-written: parametric shapes, and one short path (the
 # meter's pointer). `030-imported` holds three drawn in LibreOffice Draw and imported
 # from SVG (M59b); their sources, and the script that made them, are in `../svg/`.
+# `040-function-shapes` holds two drawn from equations with `insight-draw shape`
+# (M59p), and the meter's hairspring is a third.
 #
 # Zero warnings is correct for this course.
 id: bench-draw

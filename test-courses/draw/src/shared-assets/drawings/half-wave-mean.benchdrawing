@@ -1,0 +1,81 @@
+{
+  "format": 1,
+  "artboard": {
+    "width": 1600,
+    "height": 900
+  },
+  "layers": [
+    {
+      "id": "axes",
+      "items": ["t-axis", "label-t"]
+    },
+    {
+      "id": "curves",
+      "items": ["half-cycle", "mean-rect", "label-mean"]
+    }
+  ],
+  "items": {
+    "t-axis": {
+      "shape": "line",
+      "from": [200, 720],
+      "to": [1460, 720],
+      "line": "thin",
+      "stroke": {
+        "end": "arrow"
+      }
+    },
+    "label-t": {
+      "shape": "text",
+      "at": [1440, 770],
+      "text": "t"
+    },
+    "label-mean": {
+      "shape": "text",
+      "at": [1262, 411.69],
+      "text": "mean",
+      "ink": "amber"
+    },
+    "mean-rect": {
+      "shape": "rect",
+      "at": [300, 401.69],
+      "size": [942.48, 318.31],
+      "line": "hidden",
+      "stroke": {
+        "ink": "amber"
+      }
+    },
+    "half-cycle": {
+      "shape": "function",
+      "form": "graph",
+      "y": "sin(x)",
+      "domain": [0, "pi"],
+      "at": [300, 720],
+      "scale": [300, 500],
+      "stroke": {
+        "ink": "teal"
+      },
+      "fill": {
+        "ink": "teal",
+        "tint": "faint",
+        "to": "axis"
+      }
+    }
+  },
+  "steps": [
+    {
+      "id": "axis",
+      "say": "Time runs to the right",
+      "draw": ["t-axis", "label-t"]
+    },
+    {
+      "id": "half-cycle",
+      "say": "Half a cycle of a sine, and the area under it",
+      "draw": ["half-cycle"]
+    },
+    {
+      "id": "mean",
+      "say": "A rectangle of the same area over the same time: its height is the mean, two over pi of the peak",
+      "draw": ["mean-rect", "label-mean"]
+    }
+  ]
+}

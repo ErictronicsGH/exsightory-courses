@@ -1,0 +1,91 @@
+{
+  "format": 1,
+  "artboard": {
+    "width": 1600,
+    "height": 900
+  },
+  "layers": [
+    {
+      "id": "axes",
+      "items": ["t-axis", "label-t"]
+    },
+    {
+      "id": "curves",
+      "items": ["envelope-upper", "envelope-lower", "wave", "label-envelope"]
+    }
+  ],
+  "items": {
+    "t-axis": {
+      "shape": "line",
+      "from": [140, 450],
+      "to": [1540, 450],
+      "line": "thin",
+      "stroke": {
+        "end": "arrow"
+      }
+    },
+    "label-t": {
+      "shape": "text",
+      "at": [1520, 500],
+      "text": "t"
+    },
+    "label-envelope": {
+      "shape": "text",
+      "at": [520, 250],
+      "text": "envelope",
+      "ink": "amber"
+    },
+    "envelope-upper": {
+      "shape": "function",
+      "form": "graph",
+      "y": "exp(-0.25*x)",
+      "domain": [0, 12],
+      "at": [140, 450],
+      "scale": [115, 330],
+      "line": "hidden",
+      "stroke": {
+        "ink": "amber"
+      }
+    },
+    "envelope-lower": {
+      "shape": "function",
+      "form": "graph",
+      "y": "-exp(-0.25*x)",
+      "domain": [0, 12],
+      "at": [140, 450],
+      "scale": [115, 330],
+      "line": "hidden",
+      "stroke": {
+        "ink": "amber"
+      }
+    },
+    "wave": {
+      "shape": "function",
+      "form": "graph",
+      "y": "exp(-0.25*x)*cos(pi*x)",
+      "domain": [0, 12],
+      "at": [140, 450],
+      "scale": [115, 330],
+      "stroke": {
+        "ink": "teal"
+      }
+    }
+  },
+  "steps": [
+    {
+      "id": "axis",
+      "say": "Time runs to the right",
+      "draw": ["t-axis", "label-t"]
+    },
+    {
+      "id": "envelope",
+      "say": "The envelope: the amplitude falls by the same fraction in every equal interval of time",
+      "draw": ["envelope-upper", "envelope-lower", "label-envelope"]
+    },
+    {
+      "id": "wave",
+      "say": "The oscillation stays inside its envelope, touching it once every half-cycle",
+      "draw": ["wave"]
+    }
+  ]
+}

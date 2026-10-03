@@ -9,7 +9,7 @@ Three drawings built up in steps, and one that is simply a picture.
 ```drawing
 title: Inside a moving-coil meter
 src: shared/drawings/moving-coil-meter.benchdrawing
-alt: A moving-coil meter seen end on. Two magnet poles, north on the left and south on the right, face a round soft-iron core with a rectangular coil wound on it, and a pointer rises from the centre to the upper right towards the full-scale mark.
+alt: A moving-coil meter seen end on. Two magnet poles, north on the left and south on the right, face a round soft-iron core with a rectangular coil wound on it, a flat spiral hairspring winds out from the pivot at the centre, and a pointer rises from the centre to the upper right towards the full-scale mark.
 caption: The pole faces are shaped to a circle, so the field across the coil is the same wherever it turns.
 ```
 
