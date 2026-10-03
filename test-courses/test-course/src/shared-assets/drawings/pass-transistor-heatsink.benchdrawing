@@ -1,0 +1,143 @@
+{
+  "format": 1,
+  "artboard": {
+    "width": 1200,
+    "height": 800
+  },
+  "layers": [
+    {
+      "id": "construction",
+      "kind": "construction",
+      "items": ["mounting-plane"]
+    },
+    {
+      "id": "heatsink",
+      "items": ["base", "fin-1", "fin-2", "fin-3", "fin-4"]
+    },
+    {
+      "id": "part",
+      "items": ["tab", "body", "heat-left", "heat-right"]
+    },
+    {
+      "id": "labels",
+      "items": ["label-sink", "label-body"]
+    }
+  ],
+  "items": {
+    "mounting-plane": {
+      "shape": "line",
+      "from": [100, 500],
+      "to": [1100, 500],
+      "line": "construction"
+    },
+    "base": {
+      "shape": "rect",
+      "at": [300, 420],
+      "size": [600, 80],
+      "fill": {
+        "ink": "contrast",
+        "tint": "faint"
+      }
+    },
+    "fin-1": {
+      "shape": "line",
+      "from": [340, 420],
+      "to": [340, 160]
+    },
+    "fin-2": {
+      "shape": "line",
+      "from": [520, 420],
+      "to": [520, 160]
+    },
+    "fin-3": {
+      "shape": "line",
+      "from": [680, 420],
+      "to": [680, 160]
+    },
+    "fin-4": {
+      "shape": "line",
+      "from": [860, 420],
+      "to": [860, 160]
+    },
+    "tab": {
+      "shape": "rect",
+      "at": [480, 500],
+      "size": [240, 30],
+      "fill": {
+        "ink": "contrast",
+        "tint": "half"
+      }
+    },
+    "body": {
+      "shape": "rect",
+      "at": [520, 530],
+      "size": [160, 150],
+      "corner": 10,
+      "stroke": {
+        "ink": "amber",
+        "width": 5
+      },
+      "fill": {
+        "ink": "amber",
+        "tint": "faint"
+      }
+    },
+    "heat-left": {
+      "shape": "line",
+      "from": [200, 420],
+      "to": [200, 160],
+      "stroke": {
+        "ink": "rose",
+        "width": 5,
+        "end": "arrow"
+      }
+    },
+    "heat-right": {
+      "shape": "line",
+      "from": [1000, 420],
+      "to": [1000, 160],
+      "stroke": {
+        "ink": "rose",
+        "width": 5,
+        "end": "arrow"
+      }
+    },
+    "label-sink": {
+      "shape": "text",
+      "at": [930, 470],
+      "text": "heatsink"
+    },
+    "label-body": {
+      "shape": "text",
+      "at": [720, 640],
+      "text": "pass transistor"
+    }
+  },
+  "groups": {
+    "fins": ["fin-1", "fin-2", "fin-3", "fin-4"],
+    "heat": ["heat-left", "heat-right"]
+  },
+  "steps": [
+    {
+      "id": "plane",
+      "say": "The mounting plane, and the heatsink's base on it",
+      "draw": ["mounting-plane", "base"]
+    },
+    {
+      "id": "fins",
+      "say": "Fins, to give the heat a large surface to leave by",
+      "draw": ["fins", "label-sink"]
+    },
+    {
+      "id": "part",
+      "say": "The pass transistor, its metal tab bolted flat against the base",
+      "draw": ["tab", "body", "label-body"]
+    },
+    {
+      "id": "heat",
+      "say": "Its dissipation flows up through the base and out of the fins",
+      "draw": ["heat"],
+      "hide": ["mounting-plane"]
+    }
+  ]
+}

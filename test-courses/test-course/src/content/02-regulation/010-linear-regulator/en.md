@@ -35,6 +35,13 @@ A supply set to 5 V, drawing 2 A, fed from a 20 V rail dissipates
 times what it delivers, and it needs a heatsink sized for the worst case, not
 the typical one.
 
+```drawing
+title: Where the regulator's heat leaves
+src: shared/drawings/pass-transistor-heatsink.benchdrawing
+alt: A finned heatsink drawn side on, with a pass transistor's metal tab bolted flat against the underside of its base, and two arrows rising past the fins to show the heat leaving upward.
+caption: Built up in four steps, the way you would draw it on a board.
+```
+
 ```plot
 title: Where the power goes, as you turn the knob
 xLabel: Output voltage set (V)
