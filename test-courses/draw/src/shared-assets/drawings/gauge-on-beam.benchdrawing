@@ -1,0 +1,284 @@
+{
+  "format": 1,
+  "artboard": {
+    "width": 16000,
+    "height": 9000
+  },
+  "layers": [
+    {
+      "id": "construction",
+      "kind": "construction",
+      "items": ["neutral-axis", "bent-axis"]
+    },
+    {
+      "id": "structure",
+      "items": ["wall", "hatch", "beam", "label-beam"]
+    },
+    {
+      "id": "gauge",
+      "items": ["backing", "grid", "leads", "label-gauge", "label-leads"]
+    },
+    {
+      "id": "forces",
+      "items": ["load", "label-f", "tension", "label-tension", "squeeze-left", "squeeze-right", "label-compression"]
+    }
+  ],
+  "items": {
+    "wall": {
+      "shape": "path",
+      "d": [
+        ["M", 1900, 7200],
+        ["L", 1500, 7200],
+        ["L", 1500, 1800],
+        ["L", 2300, 1800],
+        ["L", 2300, 7200],
+        ["L", 1900, 7200],
+        ["Z"]
+      ],
+      "stroke": {
+        "cap": "butt"
+      },
+      "fill": {
+        "ink": "contrast",
+        "tint": "faint"
+      }
+    },
+    "hatch": {
+      "shape": "path",
+      "d": [
+        ["M", 1500, 1900],
+        ["L", 1000, 2400],
+        ["M", 1500, 2400],
+        ["L", 1000, 2900],
+        ["M", 1500, 2900],
+        ["L", 1000, 3400],
+        ["M", 1500, 3400],
+        ["L", 1000, 3900],
+        ["M", 1500, 3900],
+        ["L", 1000, 4400],
+        ["M", 1500, 4400],
+        ["L", 1000, 4900],
+        ["M", 1500, 4900],
+        ["L", 1000, 5400],
+        ["M", 1500, 5400],
+        ["L", 1000, 5900],
+        ["M", 1500, 5900],
+        ["L", 1000, 6400],
+        ["M", 1500, 6400],
+        ["L", 1000, 6900],
+        ["M", 1500, 6900],
+        ["L", 1000, 7400]
+      ],
+      "line": "thin",
+      "stroke": {
+        "cap": "butt"
+      }
+    },
+    "neutral-axis": {
+      "shape": "path",
+      "d": [
+        ["M", 2300, 4400],
+        ["L", 13200, 4400]
+      ],
+      "line": "construction"
+    },
+    "bent-axis": {
+      "shape": "path",
+      "d": [
+        ["M", 2300, 4400],
+        ["C", 6000, 4400, 9800, 5500, 12500, 5900]
+      ],
+      "line": "construction"
+    },
+    "beam": {
+      "shape": "path",
+      "d": [
+        ["M", 7400, 4800],
+        ["L", 2300, 4800],
+        ["L", 2300, 4000],
+        ["L", 12500, 4000],
+        ["L", 12500, 4800],
+        ["L", 7400, 4800],
+        ["Z"]
+      ],
+      "stroke": {
+        "cap": "butt"
+      },
+      "fill": {
+        "ink": "contrast",
+        "tint": "faint"
+      }
+    },
+    "backing": {
+      "shape": "path",
+      "d": [
+        ["M", 4750, 3980],
+        ["L", 3300, 3980],
+        ["L", 3300, 3700],
+        ["L", 6200, 3700],
+        ["L", 6200, 3980],
+        ["L", 4750, 3980],
+        ["Z"]
+      ],
+      "stroke": "none",
+      "fill": {
+        "ink": "amber"
+      }
+    },
+    "grid": {
+      "shape": "path",
+      "d": [
+        ["M", 3500, 3760],
+        ["L", 3500, 3920],
+        ["L", 3830, 3920],
+        ["L", 3830, 3760],
+        ["L", 4160, 3760],
+        ["L", 4160, 3920],
+        ["L", 4490, 3920],
+        ["L", 4490, 3760],
+        ["L", 4820, 3760],
+        ["L", 4820, 3920],
+        ["L", 5150, 3920],
+        ["L", 5150, 3760],
+        ["L", 5480, 3760],
+        ["L", 5480, 3920],
+        ["L", 5810, 3920],
+        ["L", 5810, 3760]
+      ],
+      "line": "thin",
+      "stroke": {
+        "cap": "butt"
+      }
+    },
+    "leads": {
+      "shape": "path",
+      "d": [
+        ["M", 3500, 3760],
+        ["L", 3500, 2200],
+        ["L", 3000, 1300],
+        ["M", 5810, 3760],
+        ["L", 5810, 2200],
+        ["L", 6300, 1300]
+      ],
+      "line": "thin",
+      "stroke": {
+        "ink": "teal",
+        "cap": "butt"
+      }
+    },
+    "load": {
+      "shape": "path",
+      "d": [
+        ["M", 12100, 1500],
+        ["L", 12100, 3950]
+      ],
+      "stroke": {
+        "ink": "orange",
+        "cap": "butt",
+        "end": "arrow"
+      }
+    },
+    "tension": {
+      "shape": "path",
+      "d": [
+        ["M", 3300, 3250],
+        ["L", 6200, 3250]
+      ],
+      "line": "thin",
+      "stroke": {
+        "ink": "rose",
+        "cap": "butt",
+        "start": "arrow",
+        "end": "arrow"
+      }
+    },
+    "squeeze-left": {
+      "shape": "path",
+      "d": [
+        ["M", 3300, 5300],
+        ["L", 4500, 5300]
+      ],
+      "line": "thin",
+      "stroke": {
+        "ink": "azure",
+        "cap": "butt",
+        "end": "arrow"
+      }
+    },
+    "squeeze-right": {
+      "shape": "path",
+      "d": [
+        ["M", 6200, 5300],
+        ["L", 5000, 5300]
+      ],
+      "line": "thin",
+      "stroke": {
+        "ink": "azure",
+        "cap": "butt",
+        "end": "arrow"
+      }
+    },
+    "label-f": {
+      "shape": "text",
+      "at": [12290, 2564],
+      "text": "F",
+      "role": "title"
+    },
+    "label-beam": {
+      "shape": "text",
+      "at": [7891, 4479],
+      "text": "beam"
+    },
+    "label-gauge": {
+      "shape": "text",
+      "at": [6206, 3849],
+      "text": "gauge"
+    },
+    "label-tension": {
+      "shape": "text",
+      "at": [3701, 3049],
+      "text": "tension"
+    },
+    "label-compression": {
+      "shape": "text",
+      "at": [2996, 5949],
+      "text": "compression"
+    },
+    "label-leads": {
+      "shape": "text",
+      "at": [3109, 1299],
+      "text": "to the bridge"
+    }
+  },
+  "groups": {
+    "compression": ["squeeze-left", "squeeze-right"]
+  },
+  "steps": [
+    {
+      "id": "beam",
+      "say": "A beam, fixed in a wall at one end",
+      "draw": ["wall", "hatch", "beam", "label-beam"]
+    },
+    {
+      "id": "gauge",
+      "say": "A strain gauge bonded to its top face, near the wall",
+      "draw": ["backing", "grid", "leads", "label-gauge", "label-leads"]
+    },
+    {
+      "id": "load",
+      "say": "A load at the free end, and the axis of the beam",
+      "draw": ["load", "label-f", "neutral-axis"]
+    },
+    {
+      "id": "bend",
+      "say": "The beam bends, and its axis curves down",
+      "draw": ["bent-axis"]
+    },
+    {
+      "id": "strain",
+      "say": "The top face stretches and the bottom one squeezes, and the gauge stretches with the top",
+      "draw": ["tension", "label-tension", "compression", "label-compression"],
+      "hide": ["neutral-axis", "bent-axis"]
+    }
+  ]
+}
