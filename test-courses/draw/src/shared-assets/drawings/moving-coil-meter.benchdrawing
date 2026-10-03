@@ -1,0 +1,156 @@
+{
+  "format": 1,
+  "artboard": {
+    "width": 1600,
+    "height": 900
+  },
+  "layers": [
+    {
+      "id": "construction",
+      "kind": "construction",
+      "items": ["pole-circle"]
+    },
+    {
+      "id": "magnet",
+      "items": ["axis", "pole-n", "pole-s"]
+    },
+    {
+      "id": "movement",
+      "items": ["core", "coil", "pointer", "pivot"]
+    },
+    {
+      "id": "labels",
+      "items": ["label-n", "label-s", "label-scale"]
+    }
+  ],
+  "items": {
+    "axis": {
+      "shape": "line",
+      "from": [200, 450],
+      "to": [1400, 450],
+      "line": "centre"
+    },
+    "pole-circle": {
+      "shape": "ellipse",
+      "centre": [800, 450],
+      "radii": [300, 300],
+      "line": "construction"
+    },
+    "pole-n": {
+      "shape": "rect",
+      "at": [260, 250],
+      "size": [220, 400],
+      "corner": 16,
+      "stroke": {
+        "ink": "rose",
+        "width": 6
+      },
+      "fill": {
+        "ink": "rose",
+        "tint": "faint"
+      }
+    },
+    "pole-s": {
+      "shape": "rect",
+      "at": [1120, 250],
+      "size": [220, 400],
+      "corner": 16,
+      "stroke": {
+        "ink": "azure",
+        "width": 6
+      },
+      "fill": {
+        "ink": "azure",
+        "tint": "faint"
+      }
+    },
+    "core": {
+      "shape": "ellipse",
+      "centre": [800, 450],
+      "radii": [120, 120],
+      "fill": {
+        "ink": "ground"
+      }
+    },
+    "coil": {
+      "shape": "rect",
+      "at": [680, 380],
+      "size": [240, 140],
+      "corner": 12,
+      "stroke": {
+        "ink": "teal",
+        "width": 6
+      },
+      "fill": {
+        "ink": "teal",
+        "tint": "faint"
+      }
+    },
+    "pointer": {
+      "shape": "path",
+      "d": [
+        ["M", 800, 450],
+        ["C", 840, 330, 920, 230, 1040, 150]
+      ],
+      "stroke": {
+        "ink": "amber",
+        "width": 4,
+        "end": "arrow"
+      }
+    },
+    "pivot": {
+      "shape": "polygon",
+      "centre": [800, 450],
+      "radius": 18,
+      "sides": 6,
+      "stroke": "none",
+      "fill": {
+        "ink": "contrast"
+      }
+    },
+    "label-n": {
+      "shape": "text",
+      "at": [345, 470],
+      "text": "N",
+      "role": "title"
+    },
+    "label-s": {
+      "shape": "text",
+      "at": [1205, 470],
+      "text": "S",
+      "role": "title"
+    },
+    "label-scale": {
+      "shape": "text",
+      "at": [1060, 140],
+      "text": "full scale",
+      "role": "note"
+    }
+  },
+  "groups": {
+    "poles": ["pole-n", "pole-s", "label-n", "label-s"]
+  },
+  "steps": [
+    {
+      "id": "frame",
+      "say": "The axis, and the circle the pole faces are shaped to",
+      "draw": ["axis", "pole-circle"]
+    },
+    {
+      "id": "poles",
+      "say": "A permanent magnet: north on the left, south on the right",
+      "draw": ["poles"]
+    },
+    {
+      "id": "coil",
+      "say": "A soft-iron core, and the coil wound round it",
+      "draw": ["core", "coil"]
+    },
+    {
+      "id": "pointer",
+      "say": "The pointer turns with the coil, and the construction circle goes",
+      "draw": ["pointer", "pivot", "label-scale"],
+      "hide": ["pole-circle"]
+    }
+  ]
+}

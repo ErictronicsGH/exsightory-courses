@@ -1,0 +1,113 @@
+{
+  "format": 1,
+  "artboard": {
+    "width": 1600,
+    "height": 900
+  },
+  "layers": [
+    {
+      "id": "structure",
+      "items": ["wall", "beam", "bent"]
+    },
+    {
+      "id": "instrument",
+      "items": ["gauge", "force"]
+    },
+    {
+      "id": "labels",
+      "items": ["label-wall", "label-gauge", "label-force"]
+    }
+  ],
+  "items": {
+    "wall": {
+      "shape": "rect",
+      "at": [100, 200],
+      "size": [80, 500],
+      "fill": {
+        "ink": "contrast",
+        "tint": "faint"
+      }
+    },
+    "beam": {
+      "shape": "rect",
+      "at": [180, 380],
+      "size": [1100, 100],
+      "fill": {
+        "ink": "azure",
+        "tint": "faint"
+      }
+    },
+    "bent": {
+      "shape": "line",
+      "from": [180, 480],
+      "to": [1280, 560],
+      "line": "hidden"
+    },
+    "gauge": {
+      "shape": "polyline",
+      "points": [
+        [560, 465],
+        [560, 395],
+        [590, 395],
+        [590, 465],
+        [620, 465],
+        [620, 395],
+        [650, 395],
+        [650, 465],
+        [680, 465],
+        [680, 395],
+        [710, 395],
+        [710, 465]
+      ],
+      "stroke": {
+        "ink": "teal",
+        "width": 4,
+        "join": "miter"
+      }
+    },
+    "force": {
+      "shape": "line",
+      "from": [1230, 150],
+      "to": [1230, 370],
+      "stroke": {
+        "ink": "amber",
+        "width": 6,
+        "end": "arrow"
+      }
+    },
+    "label-wall": {
+      "shape": "text",
+      "at": [100, 760],
+      "text": "fixed end",
+      "role": "note"
+    },
+    "label-gauge": {
+      "shape": "text",
+      "at": [560, 360],
+      "text": "strain gauge"
+    },
+    "label-force": {
+      "shape": "text",
+      "at": [1260, 210],
+      "text": "F",
+      "role": "title"
+    }
+  },
+  "steps": [
+    {
+      "id": "beam",
+      "say": "A beam held at one end",
+      "draw": ["wall", "beam", "label-wall"]
+    },
+    {
+      "id": "gauge",
+      "say": "A strain gauge bonded to its top face, its grid along the beam",
+      "draw": ["gauge", "label-gauge"]
+    },
+    {
+      "id": "load",
+      "say": "Load the free end: the beam bends, and the top face stretches the gauge",
+      "draw": ["force", "label-force", "bent"]
+    }
+  ]
+}

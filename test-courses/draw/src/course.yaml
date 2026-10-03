@@ -1,0 +1,30 @@
+# The Draw Bench's own driving course (M59a).
+#
+# The second instance of `standards/bench-fixture-courses.md`: one bench's
+# drawings and nothing else, so driving one drawing loads one drawing's worth of
+# course. `test-course/` keeps the one drawing that proves the format; this is
+# where the bench is driven.
+#
+# Every drawing here is hand-written: parametric shapes, and one short path (the
+# meter's pointer). Real art, imported from SVG, arrives with `M59b`.
+#
+# Zero warnings is correct for this course.
+id: bench-draw
+title: The Draw Bench
+subtitle: Line art for teaching, drawn one step at a time
+
+version: 1.0.0
+languages: [en]
+
+tutor:
+  name: Erictronics Systems
+
+footer: Every drawing here is made in front of you, one step at a time.
+
+# One chapter, grouped by what a drawing demonstrates, as the electronics
+# bench's is.
+chapters:
+  - id: draw
+    title: The Draw Bench
+    order: 1
+    ads: []

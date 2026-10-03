@@ -1,0 +1,154 @@
+{
+  "format": 1,
+  "artboard": {
+    "width": 1200,
+    "height": 1200
+  },
+  "layers": [
+    {
+      "id": "wiring",
+      "items": ["arms", "supply", "bridge"]
+    },
+    {
+      "id": "parts",
+      "items": ["r1", "r2", "r3", "r4", "meter"]
+    },
+    {
+      "id": "labels",
+      "items": ["label-r1", "label-r2", "label-r3", "label-r4", "label-g", "label-v"]
+    }
+  ],
+  "items": {
+    "arms": {
+      "shape": "polygon",
+      "centre": [600, 600],
+      "radius": 380,
+      "sides": 4
+    },
+    "supply": {
+      "shape": "polyline",
+      "points": [
+        [600, 220],
+        [600, 100],
+        [1100, 100],
+        [1100, 1100],
+        [600, 1100],
+        [600, 980]
+      ]
+    },
+    "bridge": {
+      "shape": "line",
+      "from": [220, 600],
+      "to": [980, 600]
+    },
+    "r1": {
+      "shape": "rect",
+      "at": [350, 350],
+      "size": [120, 120],
+      "corner": 8,
+      "stroke": {
+        "ink": "teal",
+        "width": 5
+      },
+      "fill": {
+        "ink": "ground"
+      }
+    },
+    "r2": {
+      "shape": "rect",
+      "at": [730, 350],
+      "size": [120, 120],
+      "corner": 8,
+      "stroke": {
+        "ink": "teal",
+        "width": 5
+      },
+      "fill": {
+        "ink": "ground"
+      }
+    },
+    "r3": {
+      "shape": "rect",
+      "at": [730, 730],
+      "size": [120, 120],
+      "corner": 8,
+      "stroke": {
+        "ink": "teal",
+        "width": 5
+      },
+      "fill": {
+        "ink": "ground"
+      }
+    },
+    "r4": {
+      "shape": "rect",
+      "at": [350, 730],
+      "size": [120, 120],
+      "corner": 8,
+      "stroke": {
+        "ink": "amber",
+        "width": 5
+      },
+      "fill": {
+        "ink": "amber",
+        "tint": "faint"
+      }
+    },
+    "meter": {
+      "shape": "ellipse",
+      "centre": [600, 600],
+      "radii": [70, 70],
+      "fill": {
+        "ink": "ground"
+      }
+    },
+    "label-r1": {
+      "shape": "text",
+      "at": [380, 425],
+      "text": "R1"
+    },
+    "label-r2": {
+      "shape": "text",
+      "at": [760, 425],
+      "text": "R2"
+    },
+    "label-r3": {
+      "shape": "text",
+      "at": [760, 805],
+      "text": "R3"
+    },
+    "label-r4": {
+      "shape": "text",
+      "at": [380, 805],
+      "text": "Rx"
+    },
+    "label-g": {
+      "shape": "text",
+      "at": [583, 625],
+      "text": "G",
+      "role": "title"
+    },
+    "label-v": {
+      "shape": "text",
+      "at": [1120, 610],
+      "text": "V"
+    }
+  },
+  "steps": [
+    {
+      "id": "arms",
+      "say": "Four arms in a ring: three known resistors and the unknown, Rx",
+      "draw": ["arms", "r1", "r2", "r3", "r4", "label-r1", "label-r2", "label-r3", "label-r4"]
+    },
+    {
+      "id": "supply",
+      "say": "The supply across the top and bottom corners",
+      "draw": ["supply", "label-v"]
+    },
+    {
+      "id": "detector",
+      "say": "A galvanometer across the middle: it reads zero when the bridge balances",
+      "draw": ["bridge", "meter", "label-g"]
+    }
+  ]
+}

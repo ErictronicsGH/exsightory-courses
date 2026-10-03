@@ -1,0 +1,67 @@
+{
+  "format": 1,
+  "artboard": {
+    "width": 1200,
+    "height": 800
+  },
+  "layers": [
+    {
+      "id": "wires",
+      "items": ["chromel", "alumel", "junction"]
+    },
+    {
+      "id": "labels",
+      "items": ["label-chromel", "label-alumel", "label-junction"]
+    }
+  ],
+  "items": {
+    "chromel": {
+      "shape": "polyline",
+      "points": [
+        [100, 300],
+        [700, 300],
+        [900, 400]
+      ],
+      "stroke": {
+        "ink": "rose",
+        "width": 6
+      }
+    },
+    "alumel": {
+      "shape": "polyline",
+      "points": [
+        [100, 500],
+        [700, 500],
+        [900, 400]
+      ],
+      "stroke": {
+        "ink": "azure",
+        "width": 6
+      }
+    },
+    "junction": {
+      "shape": "ellipse",
+      "centre": [900, 400],
+      "radii": [18, 18],
+      "stroke": "none",
+      "fill": {
+        "ink": "contrast"
+      }
+    },
+    "label-chromel": {
+      "shape": "text",
+      "at": [120, 280],
+      "text": "chromel"
+    },
+    "label-alumel": {
+      "shape": "text",
+      "at": [120, 560],
+      "text": "alumel"
+    },
+    "label-junction": {
+      "shape": "text",
+      "at": [940, 410],
+      "text": "hot junction"
+    }
+  }
+}
