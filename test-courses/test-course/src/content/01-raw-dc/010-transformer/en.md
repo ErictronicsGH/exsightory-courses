@@ -1,5 +1,8 @@
 ---
 targetMinutes: 25
+concepts: [step-down]
+objectives:
+  - Choose a transformer's turns ratio for the voltage a supply needs.
 ---
 
 # Why the wall is the wrong voltage {size=huge color=primary}

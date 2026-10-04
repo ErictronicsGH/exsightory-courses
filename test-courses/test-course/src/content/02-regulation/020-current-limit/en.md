@@ -1,5 +1,6 @@
 ---
 targetMinutes: 30
+concepts: [current-limiting]
 ---
 
 # Current limiting: the feature that saves the board

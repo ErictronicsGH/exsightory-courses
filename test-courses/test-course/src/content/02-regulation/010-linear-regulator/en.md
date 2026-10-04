@@ -1,5 +1,6 @@
 ---
 targetMinutes: 30
+concepts: [linear-regulation]
 ---
 
 # The linear regulator, and what it costs

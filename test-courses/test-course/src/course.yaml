@@ -25,6 +25,33 @@ cover: shared-assets/cover.png
 
 footer: The Fenwick Institute for Applied Electronics
 
+# Who the course is for, in a sentence (M63c): the frame the Authoring
+# Compiler reads every suggestion against.
+audience: First-year electronics students who know Ohm's law and have never designed a supply.
+
+# What the course teaches, declared once (M63c). A subsection names the
+# concepts it serves in its frontmatter; its blocks inherit them unless one
+# narrows its own. 030-smoothing does both: it serves two, its opening paragraph
+# narrows to one and its figure to the other, and the analogy between inherits.
+concepts:
+  - id: step-down
+    label: Stepping the mains down
+  - id: rectification
+    label: Rectification
+    prerequisites: [step-down]
+  - id: ripple
+    label: Ripple
+    prerequisites: [rectification]
+  - id: reservoir-capacitor
+    label: Sizing a reservoir capacitor
+    prerequisites: [ripple]
+  - id: linear-regulation
+    label: Linear regulation
+    prerequisites: [ripple]
+  - id: current-limiting
+    label: Current limiting
+    prerequisites: [linear-regulation]
+
 # Chapters, not days. This course could be an afternoon or a term; the player
 # must not care, and the calendar belongs to the Offering (§12.2).
 chapters:

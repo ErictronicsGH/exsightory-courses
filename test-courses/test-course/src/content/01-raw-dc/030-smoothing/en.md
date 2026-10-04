@@ -1,11 +1,15 @@
 ---
 targetMinutes: 25
+concepts: [ripple, reservoir-capacitor]
+objectives:
+  - Say why a supply that looks clean unloaded can be filthy under load.
+  - Size a reservoir capacitor for a given load current and ripple.
 ---
 
 # Smoothing: trading size for steadiness
 
 The rectifier gives you a voltage that is always positive but far from steady.
-The smoothing capacitor's job is to hold the voltage up during the gaps.
+The smoothing capacitor's job is to hold the voltage up during the gaps. {concept=ripple}
 
 ```analogy
 A smoothing capacitor is a header tank on a roof. The pump runs in bursts, but
@@ -17,6 +21,7 @@ that looks clean with nothing plugged in can be filthy under load.
 ```
 
 ```figure
+concepts: [reservoir-capacitor]
 title: The board itself, and the parts you have been sizing
 image: psu-board.jpg
 alt: A photograph of a cassette deck's power supply board. Two large brown electrolytic capacitors stand in the foreground, a finned aluminium heatsink rises behind them, a glass cartridge fuse sits to the left, a blue mains filter capacitor sits to the right, and a row of small rectifier diodes runs along the bottom.
