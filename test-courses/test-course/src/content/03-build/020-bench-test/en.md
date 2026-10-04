@@ -109,7 +109,9 @@ There are two ways to find out what a current is, and the difference between
 them is not accuracy. An ammeter goes *in* the branch, so it is a resistor you
 have added to the circuit you were asking about, and the voltage across that
 resistor is the price of the reading - turn its shunt up and watch the current
-you are measuring fall. A clamp goes *around* the conductor and adds nothing at
+you are measuring fall.
+
+A clamp goes *around* the conductor and adds nothing at
 all: solve the bench with it and without it and every number is identical to the
 digit. What it costs instead is resolution. A hundred-amp jaw reads a hundred
 milliamps in ten-milliamp steps with fifty milliamps of uncertainty around it,
@@ -145,7 +147,9 @@ A probe is not part of the circuit, which is why you may move it while somebody
 is watching. Where the tip sits is not a decision about the drawing - it is
 which node you are measuring - so moving it is the same act as lifting a lead
 off one test post and putting it on the next, and it is the act the whole of
-this page has been building towards. What the room sees is not just a different
+this page has been building towards.
+
+What the room sees is not just a different
 number. It is a different *error*: a ten-megohm meter across a megohm ladder
 drags whichever node it is on, by an amount that node's own impedance decides,
 and on the rail - fifty milliohms behind it - there is nothing to drag at all.
