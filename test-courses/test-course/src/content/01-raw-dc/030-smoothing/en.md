@@ -1,5 +1,6 @@
 ---
 targetMinutes: 25
+motivates: A rectified voltage is always positive, and still falls to nothing a hundred times a second.
 concepts: [ripple, reservoir-capacitor]
 objectives:
   - Say why a supply that looks clean unloaded can be filthy under load.

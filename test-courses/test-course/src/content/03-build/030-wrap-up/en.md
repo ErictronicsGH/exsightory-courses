@@ -1,5 +1,7 @@
 ---
 targetMinutes: 20
+objectives:
+  - Name what each stage of the supply trades, and where the design runs out.
 ---
 
 # What you built, and what you would change

@@ -1,5 +1,8 @@
 ---
 targetMinutes: 25
+objectives:
+  - Tell a half-wave rectifier from a full-wave bridge by the waveform it gives.
+motivates: The transformer’s output still swings both ways, and nothing on the bench runs on that.
 concepts: [rectification]
 ---
 

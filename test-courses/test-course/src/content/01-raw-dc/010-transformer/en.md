@@ -1,5 +1,6 @@
 ---
 targetMinutes: 25
+motivates: The wall offers 230 volts AC, and the circuit on the bench wants a few volts DC that you chose.
 concepts: [step-down]
 objectives:
   - Choose a transformer's turns ratio for the voltage a supply needs.

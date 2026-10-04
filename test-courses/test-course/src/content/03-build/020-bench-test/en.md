@@ -1,5 +1,8 @@
 ---
 targetMinutes: 30
+objectives:
+  - Bring a new supply up in an order that protects it.
+  - Read the ripple on a scope, under load.
 ---
 
 # Bringing it up, without letting the smoke out

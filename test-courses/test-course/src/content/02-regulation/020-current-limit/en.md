@@ -1,5 +1,9 @@
 ---
 targetMinutes: 30
+objectives:
+  - Explain how a current limit turns a shorted probe into an inconvenience.
+  - Tell constant-current limiting from foldback by its curve.
+motivates: A regulated supply pushes whatever current a mistake on the bench asks of it.
 concepts: [current-limiting]
 ---
 

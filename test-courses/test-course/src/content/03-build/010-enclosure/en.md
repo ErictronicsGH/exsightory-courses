@@ -1,5 +1,7 @@
 ---
 targetMinutes: 30
+objectives:
+  - Say why the heatsink sets the size of the box.
 linearDeflection: 0.1
 ---
 

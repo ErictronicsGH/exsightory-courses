@@ -1,5 +1,9 @@
 ---
 targetMinutes: 30
+objectives:
+  - Work out the heat a linear regulator burns from its input, its output and the load current.
+  - Say what dropout is, and why it sets the voltage the transformer must give.
+motivates: Smoothing leaves a ripple, and a load wants a voltage that does not move at all.
 concepts: [linear-regulation]
 ---
 

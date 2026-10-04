@@ -1,5 +1,7 @@
 ---
 targetMinutes: 45
+objectives:
+  - Answer one question each on heat, smoothing, regulation and fault protection.
 ---
 
 # The Part 3 exam
