@@ -1,5 +1,7 @@
 ---
 targetMinutes: 12
+objectives:
+  - Say when a wire’s resistance is part of the measurement, and size copper for a current.
 ---
 
 # The wire is a component

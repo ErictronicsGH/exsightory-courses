@@ -1,5 +1,7 @@
 ---
 targetMinutes: 8
+objectives:
+  - Say why a reverse-biased diode is not a perfect switch, and what its recovery time costs.
 ---
 
 # The part is not the symbol

@@ -1,5 +1,7 @@
 ---
 targetMinutes: 10
+objectives:
+  - Place an ammeter in a circuit, and say what moving it changes.
 ---
 
 # Reading a current, and moving what reads it

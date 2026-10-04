@@ -1,5 +1,7 @@
 ---
 targetMinutes: 4
+objectives:
+  - Read what a sheet that is still being drawn can and cannot tell you.
 ---
 
 # A circuit that is not finished being drawn

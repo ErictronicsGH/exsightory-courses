@@ -1,5 +1,7 @@
 ---
 targetMinutes: 10
+objectives:
+  - Say how a meter’s own resistance changes the voltage it reads.
 ---
 
 # What the instrument costs the circuit

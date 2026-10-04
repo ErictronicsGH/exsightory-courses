@@ -1,5 +1,7 @@
 ---
 targetMinutes: 10
+objectives:
+  - Read a resistor’s wattage as a thermal limit, and find which part gives first.
 ---
 
 # Power, heat, and the limit

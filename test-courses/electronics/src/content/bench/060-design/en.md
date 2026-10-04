@@ -1,5 +1,7 @@
 ---
 targetMinutes: 6
+objectives:
+  - Choose resistors for a divider from the voltage it has to give.
 ---
 
 # Saying what the voltage should be
