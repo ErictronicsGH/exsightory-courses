@@ -26,6 +26,15 @@
     <circle data-terminal="a" cx="-25.4" cy="0" r="2.6" fill="var(--bench-terminal)"/>
     <circle data-terminal="b" cx="25.4" cy="0" r="2.6" fill="var(--bench-terminal)"/>
   </g>
+  <!--
+    Each plate's charge disc at a full charge (M66b-ii-b-iii). The curved plate
+    reaches x = 15.1, so its disc starts there and runs a little past the
+    terminal; both are 8 so the pair reads as one size.
+  -->
+  <g data-layer="charge">
+    <circle data-plate="a" cx="-15.2" cy="0" r="8" fill="none" stroke="none"/>
+    <circle data-plate="b" cx="25.3" cy="0" r="8" fill="none" stroke="none"/>
+  </g>
   <g data-layer="hitbox">
     <rect x="-52" y="-26" width="104" height="52" fill="currentColor" opacity="0"/>
   </g>

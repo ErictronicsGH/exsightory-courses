@@ -3,7 +3,7 @@
   "title": "A divider whose midpoint is stated, not computed",
   "seed": 1,
   "requires": {
-    "insight-baseline": "1.5.0"
+    "insight-baseline": "1.7.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -37,7 +37,8 @@
       "at": [
         203.2,
         254
-      ]
+      ],
+      "rotation": 180
     },
     {
       "id": "S1",
@@ -45,7 +46,7 @@
       "profile": "voltage-drop-stated",
       "value": 4,
       "at": [
-        279.4,
+        355.6,
         177.8
       ],
       "label_at": [

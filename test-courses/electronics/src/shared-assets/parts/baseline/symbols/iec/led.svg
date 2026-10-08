@@ -19,6 +19,14 @@
     <circle data-terminal="a" cx="-38.1" cy="0" r="2.6" fill="var(--bench-terminal)"/>
     <circle data-terminal="k" cx="38.1" cy="0" r="2.6" fill="var(--bench-terminal)"/>
   </g>
+  <!--
+    Where the light comes from, and how far the halo reaches: a quarter pitch
+    past the body and one more pitch, which is EveryCircuit's 1¼ pitches from
+    its edge. Read by the bench and never painted (M66b-ii-b-iii).
+  -->
+  <g data-layer="light">
+    <circle cx="0" cy="0" r="48" fill="none" stroke="none"/>
+  </g>
   <g data-layer="hitbox">
     <rect x="-52" y="-26" width="104" height="52" fill="currentColor" opacity="0"/>
   </g>

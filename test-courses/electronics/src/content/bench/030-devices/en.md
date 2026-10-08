@@ -42,3 +42,25 @@ libraries:
 alt: A five-volt bench supply feeding two parallel branches, each a 470 ohm resistor in series with a diode to ground - a 1N4148W in one branch and a 1N4001 in the other.
 caption: Turn the supply down to zero and watch which diode keeps conducting. The transit times differ by a factor of 750.
 ```
+
+Two parts answer the current where you can see it. An LED lights
+with the current through it, in its own colour; a capacitor holds a charge on its
+plates, and its charge bulbs grow as it fills.
+
+```circuit
+title: Two LEDs, each lit by the current its resistor allows
+circuit: shared/circuits/led-current-limit.benchcircuit
+libraries:
+  - shared/parts/baseline/library.json
+alt: A five-volt bench supply feeding two parallel branches, each a resistor in series with an LED to ground - 150 ohms and a red LED in one branch, 1.5 kilohms and a green LED in the other.
+caption: The red LED's resistor lets twenty milliamps through and the green's about two. Open it in View and turn either resistor.
+```
+
+```circuit
+title: A capacitor charged through a resistor
+circuit: shared/circuits/rc-charging.benchcircuit
+libraries:
+  - shared/parts/baseline/library.json
+alt: A five-volt bench supply in series with a ten-kilohm resistor and a hundred-microfarad capacitor to ground.
+caption: Settled across the supply, it is full. Open it in View to see a charge bulb on each plate, the + on the side the supply drives.
+```

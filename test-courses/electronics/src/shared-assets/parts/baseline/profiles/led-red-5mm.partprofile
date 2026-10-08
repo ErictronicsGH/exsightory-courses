@@ -1,0 +1,123 @@
+{
+  "profile": "led-red-5mm",
+  "class": "diode",
+  "variant": "led",
+  "display_name": "Red LED, 5 mm (typical)",
+  "provenance": {
+    "typical": true
+  },
+  "parameters": {
+    "is": {
+      "value": 1.2e-17,
+      "unit": "A",
+      "conditions": {
+        "t_a_c": 25
+      },
+      "source": {
+        "note": "Fitted so the forward drop is about 2.0 V at 20 mA with n = 2 and r_s = 10 Ω, which is what a 5 mm AlGaInP indicator LED's datasheet quotes."
+      },
+      "confidence": "typical"
+    },
+    "n": {
+      "value": 2,
+      "dimensionless": true,
+      "source": {
+        "note": "Emission coefficient of a wide-bandgap junction, class-representative."
+      },
+      "confidence": "typical"
+    },
+    "rs": {
+      "value": 10,
+      "unit": "Ω",
+      "conditions": {
+        "t_a_c": 25
+      },
+      "source": {
+        "note": "Bulk series resistance of a 5 mm indicator LED, class-representative."
+      },
+      "confidence": "typical"
+    },
+    "bv": {
+      "value": 5,
+      "unit": "V",
+      "conditions": {
+        "t_a_c": 25
+      },
+      "source": {
+        "note": "Reverse voltage rating on an indicator LED datasheet; an LED is not a rectifier."
+      },
+      "confidence": "typical"
+    }
+  },
+  "limits": {
+    "absolute_max": {
+      "v_r_v": 5,
+      "i_f_a": 0.03,
+      "t_j_c": 100
+    },
+    "recommended": {
+      "v_r_v": 5,
+      "i_f_a": 0.02
+    }
+  },
+  "physical": {
+    "thermal": {
+      "r_th_ja_c_per_w": {
+        "value": 400,
+        "unit": "°C/W",
+        "conditions": {
+          "mount": "5 mm through-hole, free air"
+        },
+        "source": {
+          "note": "Class-representative for a 5 mm epoxy LED package."
+        },
+        "confidence": "typical"
+      },
+      "c_th_j_per_c": 0.001
+    }
+  },
+  "damage": {
+    "trigger": {
+      "quantity": "p_ratio",
+      "threshold": 1,
+      "hold_s": 1
+    },
+    "mode": "open",
+    "confidence": "typical",
+    "note": {
+      "en": "An overdriven LED usually fails open: the bond wire or the die gives way, and it goes dark."
+    }
+  },
+  "emission": {
+    "hue": "red",
+    "full": {
+      "value": 0.02,
+      "unit": "A",
+      "conditions": {
+        "t_a_c": 25
+      },
+      "source": {
+        "note": "The test current a 5 mm indicator LED datasheet quotes its brightness at."
+      },
+      "confidence": "typical"
+    }
+  },
+  "demonstration": {
+    "reveals": [],
+    "panes": [
+      "operating"
+    ],
+    "interactions": [
+      "probe",
+      "substitute",
+      "replace"
+    ]
+  },
+  "pcb": {
+    "package": {
+      "code": "T-1 3/4",
+      "mount": "through_hole",
+      "hand_solderable": true
+    }
+  }
+}

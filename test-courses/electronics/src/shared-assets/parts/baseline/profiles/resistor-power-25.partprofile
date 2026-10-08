@@ -40,6 +40,17 @@
       },
       "confidence": "typical"
     },
+    "r_dial_max": {
+      "value": 100000,
+      "unit": "Ω",
+      "conditions": {
+        "t_a_c": 25
+      },
+      "source": {
+        "note": "The top of the dial: 100 kΩ, the top of the range power resistors of this kind are commonly made in. A specification of the range, not a rating."
+      },
+      "confidence": "typical"
+    },
     "alpha": {
       "value": 0.00003,
       "unit": "1/°C",

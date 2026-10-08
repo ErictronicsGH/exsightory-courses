@@ -23,12 +23,20 @@ languages: [en]
 
 tutor:
   name: Erictronics Systems
+  # The details page's few lines (M64): written for it, at most 200 characters.
+  shortBio: >-
+    The team that builds ExSight's benches. Every circuit here is one we solved,
+    measured and took apart first.
 
 footer: Every circuit here is solved by the bench as you change it.
 
 # One chapter. A bench fixture has no pedagogical arc to divide, so the
 # subsections group by *what a circuit demonstrates* — which is also how the
 # M25 stages group, and therefore how a driver script names one.
+# How the course is meant to be delivered (M65a): the presenter's screen and
+# the wall.
+delivery: [multi-screen]
+
 chapters:
   - id: bench
     title: The Electronics Bench

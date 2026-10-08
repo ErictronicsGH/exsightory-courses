@@ -1,0 +1,83 @@
+{
+  "id": "rc-charging",
+  "title": "A capacitor charged through a resistor",
+  "seed": 20261008,
+  "requires": {
+    "insight-baseline": "1.7.0"
+  },
+  "environment": {
+    "t_ambient_c": 25
+  },
+  "display": {
+    "value_notation": "letter",
+    "show_unit": false
+  },
+  "instances": [
+    {
+      "id": "V1",
+      "class": "supply",
+      "profile": "supply-bench",
+      "value": 5,
+      "at": [
+        50.8,
+        330.2
+      ],
+      "rotation": 90,
+      "label": "5 V"
+    },
+    {
+      "id": "R1",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 10000,
+      "at": [
+        304.8,
+        228.6
+      ],
+      "rotation": 90
+    },
+    {
+      "id": "C1",
+      "class": "capacitor",
+      "profile": "capacitor-mlcc-typical",
+      "value": 0.0001,
+      "at": [
+        304.8,
+        457.2
+      ],
+      "rotation": 90
+    }
+  ],
+  "nets": [
+    {
+      "id": "drive",
+      "terminals": [
+        "V1.p",
+        "R1.a"
+      ]
+    },
+    {
+      "id": "top",
+      "terminals": [
+        "R1.b",
+        "C1.a"
+      ]
+    },
+    {
+      "id": "gnd",
+      "terminals": [
+        "C1.b",
+        "V1.n"
+      ],
+      "is_reference": true
+    }
+  ],
+  "effects": {},
+  "editable": {
+    "values": [
+      "V1",
+      "R1"
+    ],
+    "profiles": []
+  }
+}

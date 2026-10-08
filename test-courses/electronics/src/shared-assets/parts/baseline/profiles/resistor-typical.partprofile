@@ -40,6 +40,17 @@
       },
       "confidence": "typical"
     },
+    "r_dial_max": {
+      "value": 10000000,
+      "unit": "Ω",
+      "conditions": {
+        "t_a_c": 25
+      },
+      "source": {
+        "note": "The top of the dial: 10 MΩ, the highest value a thick-film part of this kind is commonly made in. It is the end of the knob, a specification of the range the part comes in rather than a rating, which is why it is a parameter and not in \"limits\"."
+      },
+      "confidence": "typical"
+    },
     "alpha": {
       "value": 0.0001,
       "unit": "1/°C",

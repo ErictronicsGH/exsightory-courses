@@ -1,7 +1,7 @@
 {
   "id": "insight-baseline",
   "name": "INSIGHT baseline components",
-  "version": "1.5.0",
+  "version": "1.7.0",
   "author": "ExSight Africa",
   "licence": "Proprietary — ships with INSIGHT.",
   "licensing": {
@@ -35,6 +35,8 @@
     "profiles/diode-1n4148.partprofile",
     "profiles/diode-1n4148w.partprofile",
     "profiles/diode-1n4001.partprofile",
+    "profiles/led-red-5mm.partprofile",
+    "profiles/led-green-5mm.partprofile",
     "profiles/mosfet-typical.partprofile",
     "profiles/thermistor-ntc-10k.partprofile",
     "profiles/rtd-pt100.partprofile",
