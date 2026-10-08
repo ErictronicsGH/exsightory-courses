@@ -12,6 +12,14 @@ A bench supply exists to give you a voltage you [chose]{color=amber}, at a
 current you [set]{color=amber}, from a socket that offers neither. Everything in
 Part 1 is about getting from one to the other without setting anything on fire.
 
+```flow
+Start with the socket on the wall behind you, and point at it.
+
+[[ask]] Who here has ever plugged something in and smelt it before they saw it?
+
+[[pause]]
+```
+
 ```canvas
 kind: svg
 src: block-diagram.svg
@@ -46,6 +54,12 @@ A transformer trades volts for amps in exactly the same way. Halve the voltage
 and you double the available current, minus what the core and windings waste as
 heat. Nobody expects a gearbox to produce free horsepower, and nobody should
 expect a transformer to produce free watts.
+```
+
+```flow
+The gearbox is the picture to keep: **power in is power out**, less the heat.
+
+[[transition]] Now the ratio itself, and what it costs on the other side.
 ```
 
 Keep [the block diagram](svg:block-diagram.svg) open while we go stage by stage.

@@ -81,6 +81,15 @@
     }
   },
   "capabilities": {
+    "adjust": {
+      "parameter": "r",
+      "legend": "Resistance",
+      "from": 1,
+      "to": {
+        "parameter": "r_dial_max"
+      },
+      "series": "E12"
+    },
     "reveals": [
       "overpower",
       "tempco_drift",
