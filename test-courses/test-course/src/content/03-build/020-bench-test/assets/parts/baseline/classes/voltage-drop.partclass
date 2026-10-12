@@ -3,6 +3,7 @@
   "label": "Voltage drop",
   "designator": "S",
   "category": "annotations",
+  "annotation": true,
   "terminals": [
     {
       "id": "at",

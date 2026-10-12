@@ -1,19 +1,19 @@
 <!-- Capacitor — two parallel plates, unpolarised. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-52 -26 104 52">
   <g data-layer="thermal">
-    <rect x="-10" y="-19" width="20" height="38" fill="var(--bench-heat)" stroke="none"/>
+    <rect x="-17.7" y="-19" width="35.4" height="38" fill="var(--bench-heat)" stroke="none"/>
   </g>
   <g data-layer="flow">
-    <line x1="-25.4" y1="0" x2="-5" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-    <line x1="25.4" y1="0" x2="5" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="-38.1" y1="0" x2="-12.7" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="38.1" y1="0" x2="12.7" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
   <g data-layer="body">
-    <line x1="-5" y1="-18" x2="-5" y2="18" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
-    <line x1="5" y1="-18" x2="5" y2="18" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
-    <line x1="-25.4" y1="0" x2="-5" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
-    <line x1="25.4" y1="0" x2="5" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
-    <circle data-terminal="a" cx="-25.4" cy="0" r="2.6" fill="var(--bench-terminal)"/>
-    <circle data-terminal="b" cx="25.4" cy="0" r="2.6" fill="var(--bench-terminal)"/>
+    <line x1="-12.7" y1="-18" x2="-12.7" y2="18" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="12.7" y1="-18" x2="12.7" y2="18" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="-38.1" y1="0" x2="-12.7" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="38.1" y1="0" x2="12.7" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle data-terminal="a" cx="-38.1" cy="0" r="2.6" fill="var(--bench-terminal)"/>
+    <circle data-terminal="b" cx="38.1" cy="0" r="2.6" fill="var(--bench-terminal)"/>
   </g>
   <!--
     Each plate's charge disc at a full charge, on the outside of the plate and
@@ -21,8 +21,8 @@
     A smaller charge is a smaller disc kept against the plate (M66b-ii-b-iii).
   -->
   <g data-layer="charge">
-    <circle data-plate="a" cx="-16.2" cy="0" r="9" fill="none" stroke="none"/>
-    <circle data-plate="b" cx="16.2" cy="0" r="9" fill="none" stroke="none"/>
+    <circle data-plate="a" cx="-23.9" cy="0" r="9" fill="none" stroke="none"/>
+    <circle data-plate="b" cx="23.9" cy="0" r="9" fill="none" stroke="none"/>
   </g>
   <g data-layer="hitbox">
     <rect x="-52" y="-26" width="104" height="52" fill="currentColor" opacity="0"/>

@@ -18,6 +18,39 @@
       },
       "confidence": "typical"
     },
+    "r0_min": {
+      "value": 9900,
+      "unit": "Ω",
+      "conditions": {
+        "t_a_c": 25
+      },
+      "source": {
+        "note": "±1 % at 25 °C, the F grade: the tolerance a 10 k NTC is most often sold in."
+      },
+      "confidence": "typical"
+    },
+    "r0_max": {
+      "value": 10100,
+      "unit": "Ω",
+      "conditions": {
+        "t_a_c": 25
+      },
+      "source": {
+        "note": "±1 % at 25 °C, the F grade: the tolerance a 10 k NTC is most often sold in."
+      },
+      "confidence": "typical"
+    },
+    "r0_dial_max": {
+      "value": 1000000,
+      "unit": "Ω",
+      "conditions": {
+        "t_a_c": 25
+      },
+      "source": {
+        "note": "The top of the dial: 1 MΩ at 25 °C, the highest nominal a bead NTC of this kind is commonly sold in. It is the end of the knob, a specification of the range the part comes in rather than a rating, which is why it is a parameter and not in \"limits\"."
+      },
+      "confidence": "typical"
+    },
     "beta": {
       "value": 3950,
       "unit": "K",

@@ -20,6 +20,43 @@
       },
       "confidence": "typical"
     },
+    "c_min": {
+      "value": 0.000009,
+      "unit": "F",
+      "conditions": {
+        "t_a_c": 25,
+        "v_dc": 0,
+        "f_khz": 1
+      },
+      "source": {
+        "note": "±10 %, the K code: the tolerance most X5R and X7R parts are sold in. Around the nominal at zero bias, as the nominal is."
+      },
+      "confidence": "typical"
+    },
+    "c_max": {
+      "value": 0.000011,
+      "unit": "F",
+      "conditions": {
+        "t_a_c": 25,
+        "v_dc": 0,
+        "f_khz": 1
+      },
+      "source": {
+        "note": "±10 %, the K code: the tolerance most X5R and X7R parts are sold in. Around the nominal at zero bias, as the nominal is."
+      },
+      "confidence": "typical"
+    },
+    "c_dial_max": {
+      "value": 0.0001,
+      "unit": "F",
+      "conditions": {
+        "t_a_c": 25
+      },
+      "source": {
+        "note": "The top of the dial: 100 µF, the largest value a multilayer ceramic of this kind is commonly made in (a 1210 case). It is the end of the knob, a specification of the range the part comes in rather than a rating, which is why it is a parameter and not in \"limits\"."
+      },
+      "confidence": "typical"
+    },
     "esr": {
       "value": 0.01,
       "unit": "Ω",

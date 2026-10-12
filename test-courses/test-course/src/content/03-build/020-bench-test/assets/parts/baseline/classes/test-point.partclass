@@ -3,6 +3,7 @@
   "label": "Test point",
   "designator": "TP",
   "category": "connections",
+  "annotation": true,
   "terminals": [
     {
       "id": "pad",

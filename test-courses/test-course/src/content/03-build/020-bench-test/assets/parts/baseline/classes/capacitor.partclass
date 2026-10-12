@@ -69,9 +69,26 @@
       ],
       "default": false,
       "label": "Temperature coefficient"
+    },
+    "tolerance": {
+      "requires": [
+        "c_min",
+        "c_max"
+      ],
+      "default": false,
+      "label": "Tolerance spread"
     }
   },
   "capabilities": {
+    "adjust": {
+      "parameter": "c",
+      "legend": "Capacitance",
+      "from": 1e-12,
+      "to": {
+        "parameter": "c_dial_max"
+      },
+      "series": "E12"
+    },
     "reveals": [
       "bias_collapse",
       "ripple_heating"

@@ -21,16 +21,16 @@
      on the same r 20 face. The lead is 30.8 rather than the nominal 25.4: the
      grid binds and the body keeps the standard's proportions, so it is the lead
      that gives. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-52 -26 104 52">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-52 -28 104 56">
   <g data-layer="thermal">
-    <circle cx="0" cy="0" r="22" fill="var(--bench-heat)" stroke="none"/>
+    <circle cx="0" cy="0" r="27.4" fill="var(--bench-heat)" stroke="none"/>
   </g>
   <g data-layer="flow">
-    <line x1="-50.8" y1="0" x2="-20" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-    <line x1="50.8" y1="0" x2="20" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="-50.8" y1="0" x2="-25.4" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="50.8" y1="0" x2="25.4" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
   <g data-layer="body">
-    <circle cx="0" cy="0" r="20" stroke="var(--bench-symbol)" fill="var(--bench-sheet)" stroke-width="var(--bench-stroke, 2.4)" stroke-linejoin="round"/>
+    <circle cx="0" cy="0" r="25.4" stroke="var(--bench-symbol)" fill="var(--bench-sheet)" stroke-width="var(--bench-stroke, 2.4)" stroke-linejoin="round"/>
     <!--
       The A: two legs and a crossbar, and a **mark** rather than part of the
       body. It is read about the centre of the face, so it stays the right way
@@ -39,15 +39,15 @@
       ammeter rotation*. A letter on its side is not a letter.
     -->
     <g data-upright="0 0">
-      <polyline points="-8,9 0,-10 8,9" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round" stroke-linejoin="round"/>
-      <line x1="-4.2" y1="1.5" x2="4.2" y2="1.5" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round"/>
+      <polyline points="-10.2,11.4 0,-12.7 10.2,11.4" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="-5.3" y1="1.9" x2="5.3" y2="1.9" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round"/>
     </g>
-    <line x1="-50.8" y1="0" x2="-20" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
-    <line x1="50.8" y1="0" x2="20" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="-50.8" y1="0" x2="-25.4" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="50.8" y1="0" x2="25.4" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
     <circle data-terminal="hi" cx="-50.8" cy="0" r="2.6" fill="var(--bench-terminal)"/>
     <circle data-terminal="lo" cx="50.8" cy="0" r="2.6" fill="var(--bench-terminal)"/>
   </g>
   <g data-layer="hitbox">
-    <rect x="-52" y="-26" width="104" height="52" fill="currentColor" opacity="0"/>
+    <rect x="-52" y="-28" width="104" height="56" fill="currentColor" opacity="0"/>
   </g>
 </svg>

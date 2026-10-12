@@ -40,15 +40,15 @@
   },
   "limits": {
     "absolute_max": {
-      "v_v": 100
+      "v_in_v": 100
     },
     "recommended": {
-      "v_v": 60
+      "v_in_v": 60
     }
   },
   "damage": {
     "trigger": {
-      "quantity": "v_ratio",
+      "quantity": "v_in_ratio",
       "threshold": 1,
       "hold_s": 1
     },

@@ -53,6 +53,7 @@
     "absolute_max": {
       "v_r_v": 5,
       "i_f_a": 0.03,
+      "p_w": 0.075,
       "t_j_c": 100
     },
     "recommended": {
@@ -85,7 +86,7 @@
     "mode": "open",
     "confidence": "typical",
     "note": {
-      "en": "An overdriven LED usually fails open: the bond wire or the die gives way, and it goes dark."
+      "en": "An overdriven LED usually fails open: the bond wire or the die gives way, and it goes dark. The trigger has a rating to be a ratio of since library 1.9.0: PD = 75 mW, from a representative 5 mm red indicator LED's datasheet (Kingbright WP7113ID, spec DSAF0012, Rev. V.14A, 01/08/2026). Before that \"p_ratio\" had no \"p_w\" to divide by and this part could never fail."
     }
   },
   "emission": {

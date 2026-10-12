@@ -1,17 +1,17 @@
 <!-- Polarised capacitor — one straight plate, one curved, and a plus mark. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-52 -26 104 52">
   <g data-layer="thermal">
-    <rect x="-10" y="-19" width="22" height="38" fill="var(--bench-heat)" stroke="none"/>
+    <rect x="-17.7" y="-19" width="35.4" height="38" fill="var(--bench-heat)" stroke="none"/>
   </g>
   <g data-layer="flow">
-    <line x1="-25.4" y1="0" x2="-5" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-    <line x1="9" y1="0" x2="25.4" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="-38.1" y1="0" x2="-12.7" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="12.7" y1="0" x2="38.1" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
   <g data-layer="body">
-    <line x1="-5" y1="-18" x2="-5" y2="18" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M 7 -18 A 24 24 0 0 1 7 18" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
-    <line x1="-25.4" y1="0" x2="-5" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
-    <line x1="9" y1="0" x2="25.4" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="-12.7" y1="-18" x2="-12.7" y2="18" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 4.57 -18 A 24 24 0 0 1 4.57 18" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="-38.1" y1="0" x2="-12.7" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="12.7" y1="0" x2="38.1" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
     <!--
       The plus, beside the plate it is about, and a mark for the same reason the
       supply's is: it has to arrive beside terminal `a` at every rotation. That
@@ -19,21 +19,21 @@
       symbol that is right by symmetry is right until somebody turns it 45
       degrees.
     -->
-    <g data-upright="-24 -25">
-      <line x1="-30" y1="-25" x2="-18" y2="-25" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round" stroke-linejoin="round"/>
-      <line x1="-24" y1="-31" x2="-24" y2="-19" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round" stroke-linejoin="round"/>
+    <g data-upright="-25 -16">
+      <line x1="-31" y1="-16" x2="-19" y2="-16" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="-25" y1="-22" x2="-25" y2="-10" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round" stroke-linejoin="round"/>
     </g>
-    <circle data-terminal="a" cx="-25.4" cy="0" r="2.6" fill="var(--bench-terminal)"/>
-    <circle data-terminal="b" cx="25.4" cy="0" r="2.6" fill="var(--bench-terminal)"/>
+    <circle data-terminal="a" cx="-38.1" cy="0" r="2.6" fill="var(--bench-terminal)"/>
+    <circle data-terminal="b" cx="38.1" cy="0" r="2.6" fill="var(--bench-terminal)"/>
   </g>
   <!--
     Each plate's charge disc at a full charge (M66b-ii-b-iii). The curved plate
-    reaches x = 15.1, so its disc starts there and runs a little past the
-    terminal; both are 8 so the pair reads as one size.
+    reaches x = 12.7, where its lead begins, so its disc starts there, clear
+    of the terminal; both are 8 so the pair reads as one size.
   -->
   <g data-layer="charge">
-    <circle data-plate="a" cx="-15.2" cy="0" r="8" fill="none" stroke="none"/>
-    <circle data-plate="b" cx="25.3" cy="0" r="8" fill="none" stroke="none"/>
+    <circle data-plate="a" cx="-22.9" cy="0" r="8" fill="none" stroke="none"/>
+    <circle data-plate="b" cx="22.9" cy="0" r="8" fill="none" stroke="none"/>
   </g>
   <g data-layer="hitbox">
     <rect x="-52" y="-26" width="104" height="52" fill="currentColor" opacity="0"/>
