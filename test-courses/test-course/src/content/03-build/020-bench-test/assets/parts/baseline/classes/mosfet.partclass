@@ -76,6 +76,36 @@
       "y": "linear"
     }
   },
+  "regions": [
+    {
+      "id": "cutoff",
+      "label": "Cutoff",
+      "tone": "off",
+      "when": [
+        {
+          "of": "v_gs - vth",
+          "below": 0
+        }
+      ]
+    },
+    {
+      "id": "triode",
+      "label": "Triode",
+      "tone": "on",
+      "when": [
+        {
+          "of": "v_ds - (v_gs - vth)",
+          "below": 0
+        }
+      ]
+    },
+    {
+      "id": "saturation",
+      "label": "Saturation",
+      "tone": "edge",
+      "when": []
+    }
+  ],
   "ideality_axes": {
     "rds_tempco": {
       "requires": [

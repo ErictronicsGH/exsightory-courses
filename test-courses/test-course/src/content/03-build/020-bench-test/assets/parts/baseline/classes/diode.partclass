@@ -86,6 +86,36 @@
       "y": "log"
     }
   },
+  "regions": [
+    {
+      "id": "breakdown",
+      "label": "Breakdown",
+      "tone": "edge",
+      "when": [
+        {
+          "of": "v_ak + bv",
+          "below": 0
+        }
+      ]
+    },
+    {
+      "id": "forward",
+      "label": "Forward",
+      "tone": "on",
+      "when": [
+        {
+          "of": "v_ak",
+          "above": 0
+        }
+      ]
+    },
+    {
+      "id": "reverse",
+      "label": "Reverse",
+      "tone": "off",
+      "when": []
+    }
+  ],
   "ideality_axes": {
     "leakage": {
       "requires": [
