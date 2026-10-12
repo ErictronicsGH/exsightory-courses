@@ -1,16 +1,16 @@
 <!-- Resistor — ANSI / IEEE Std 315 zigzag, three full triangles. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-52 -26 104 52">
   <g data-layer="thermal">
-    <rect x="-22" y="-8" width="44" height="16" rx="1" fill="var(--bench-heat)" stroke="none"/>
+    <rect x="-25.4" y="-9" width="50.8" height="18" rx="1" fill="var(--bench-heat)" stroke="none"/>
   </g>
   <g data-layer="flow">
-    <line x1="-50.8" y1="0" x2="-22" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-    <line x1="50.8" y1="0" x2="22" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="-50.8" y1="0" x2="-25.4" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="50.8" y1="0" x2="25.4" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
   <g data-layer="body">
-    <polyline points="-22,0 -18.3,12 -11.0,-12 -3.7,12 3.7,-12 11.0,12 18.3,-12 22,0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
-    <line x1="-50.8" y1="0" x2="-22" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
-    <line x1="50.8" y1="0" x2="22" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="-25.4,0 -21.17,12 -12.7,-12 -4.23,12 4.23,-12 12.7,12 21.17,-12 25.4,0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="-50.8" y1="0" x2="-25.4" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="50.8" y1="0" x2="25.4" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
     <circle data-terminal="a" cx="-50.8" cy="0" r="2.6" fill="var(--bench-terminal)"/>
     <circle data-terminal="b" cx="50.8" cy="0" r="2.6" fill="var(--bench-terminal)"/>
   </g>

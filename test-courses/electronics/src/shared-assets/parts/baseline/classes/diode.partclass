@@ -3,6 +3,19 @@
   "label": "Diode",
   "designator": "D",
   "category": "semiconductors",
+  "typical": {
+    "source": {
+      "document": "Vishay Semiconductors, document 81857 (1N4148)",
+      "revision": "Rev. 1.6, 07-Nov-2024",
+      "note": "Ptot = 440 mW, the class representative a small-signal glass diode (DO-35) is rated at. Absolute maximum only: a recommended figure is a profile's own choice of margin, and the class guessing one would print a rated power on a card that no datasheet gave."
+    },
+    "limits": {
+      "absolute_max": {
+        "p_w": 0.44
+      },
+      "recommended": {}
+    }
+  },
   "terminals": [
     {
       "id": "a",

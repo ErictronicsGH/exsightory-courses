@@ -51,9 +51,26 @@
       ],
       "default": false,
       "label": "Self-heating error"
+    },
+    "tolerance": {
+      "requires": [
+        "r0_min",
+        "r0_max"
+      ],
+      "default": false,
+      "label": "Tolerance spread"
     }
   },
   "capabilities": {
+    "adjust": {
+      "parameter": "r0",
+      "legend": "Resistance at 25 °C",
+      "from": 10,
+      "to": {
+        "parameter": "r0_dial_max"
+      },
+      "series": "E12"
+    },
     "reveals": [
       "self_heating_error"
     ],

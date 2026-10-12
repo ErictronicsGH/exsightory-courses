@@ -27,11 +27,31 @@
   "limits": {
     "absolute_max": {
       "v_r_v": 75,
-      "i_f_a": 0.3
+      "i_f_a": 0.3,
+      "p_w": 0.4,
+      "t_j_c": 150
     },
     "recommended": {
       "v_r_v": 50,
       "i_f_a": 0.15
+    }
+  },
+  "physical": {
+    "thermal": {
+      "r_th_ja_c_per_w": {
+        "value": 315,
+        "unit": "°C/W",
+        "conditions": {
+          "mount": "SOD-123 on FR-4, double-sided, 3 oz copper, 2 in × 2 in anode and cathode pads"
+        },
+        "source": {
+          "document": "Diodes Incorporated, DS30086 (1N4148W)",
+          "revision": "Rev. 31 - 2",
+          "table": "Thermal Characteristics",
+          "note": "Stated as RθJA = 315 °C/W (Note 5); PD = 400 mW and TJ to +150 °C in the same tables."
+        },
+        "confidence": "stated"
+      }
     }
   },
   "damage": {

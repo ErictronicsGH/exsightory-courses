@@ -4,14 +4,14 @@
     <rect x="-16" y="-12" width="32" height="24" rx="2" fill="var(--bench-heat)" stroke="none"/>
   </g>
   <g data-layer="flow">
-    <line x1="-38.1" y1="0" x2="-14" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-    <line x1="38.1" y1="0" x2="14" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="-38.1" y1="0" x2="-12.7" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="38.1" y1="0" x2="12.7" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
   <g data-layer="body">
-    <line x1="-39.4" y1="0" x2="-14" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
-    <line x1="14" y1="0" x2="39.4" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M -14 -11 A 14 14 0 0 1 -14 11" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M 14 -11 A 14 14 0 0 0 14 11" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="-38.1" y1="0" x2="-12.7" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="12.7" y1="0" x2="38.1" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M -12.7 -11 A 14 14 0 0 1 -12.7 11" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 12.7 -11 A 14 14 0 0 0 12.7 11" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round" stroke-linejoin="round"/>
     <circle data-terminal="a" cx="-38.1" cy="0" r="2.6" fill="var(--bench-terminal)"/>
     <circle data-terminal="b" cx="38.1" cy="0" r="2.6" fill="var(--bench-terminal)"/>
   </g>

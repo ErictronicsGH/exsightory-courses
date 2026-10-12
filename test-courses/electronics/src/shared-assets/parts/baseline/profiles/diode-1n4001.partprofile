@@ -27,11 +27,30 @@
   "limits": {
     "absolute_max": {
       "v_r_v": 50,
-      "i_f_a": 1
+      "i_f_a": 1,
+      "t_j_c": 150
     },
     "recommended": {
       "v_r_v": 33.3,
       "i_f_a": 0.5
+    }
+  },
+  "physical": {
+    "thermal": {
+      "r_th_ja_c_per_w": {
+        "value": 100,
+        "unit": "°C/W",
+        "conditions": {
+          "mount": "DO-41, free air"
+        },
+        "source": {
+          "document": "Diodes Incorporated, DS28002 (1N4001-1N4007)",
+          "revision": "Rev. 11 - 3",
+          "table": "Thermal Characteristics",
+          "note": "Stated as a typical RθJA = 100 K/W, with TJ to +150 °C. The datasheet rates no power dissipation, so this profile states none: its stress is its forward current against IO = 1.0 A."
+        },
+        "confidence": "stated"
+      }
     }
   },
   "damage": {

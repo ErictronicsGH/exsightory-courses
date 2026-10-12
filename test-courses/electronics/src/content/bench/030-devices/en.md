@@ -54,6 +54,9 @@ libraries:
   - shared/parts/baseline/library.json
 alt: A five-volt bench supply feeding two parallel branches, each a resistor in series with an LED to ground - 150 ohms and a red LED in one branch, 1.5 kilohms and a green LED in the other.
 caption: The red LED's resistor lets twenty milliamps through and the green's about two. Open it in View and turn either resistor.
+opens:
+  tool: iv
+  part: D1
 ```
 
 ```circuit
