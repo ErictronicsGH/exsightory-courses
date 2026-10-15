@@ -76,6 +76,19 @@
       "y": "linear"
     }
   },
+  "transfer": {
+    "x": "v_gs",
+    "y": "i_d",
+    "sweep": {
+      "from": 0,
+      "to": 10,
+      "points": 240
+    },
+    "default_scale": {
+      "x": "linear",
+      "y": "linear"
+    }
+  },
   "regions": [
     {
       "id": "cutoff",
