@@ -3,7 +3,7 @@
   "title": "Move the probe, and the error moves with it",
   "seed": 20261010,
   "requires": {
-    "insight-baseline": "1.12.0"
+    "insight-baseline": "1.13.0"
   },
   "environment": {
     "t_ambient_c": 25
