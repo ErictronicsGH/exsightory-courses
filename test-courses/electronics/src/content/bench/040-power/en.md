@@ -20,6 +20,19 @@ caption: Every one of these is a resistor across the same rail. Ask which is hot
 # The author's choice (M25-14): this beat is about heat, so it offers the two
 # thermal analyses and the power behind them, and not the four that are not.
 analyses: [heat, ir, power]
+# The prediction the IR view answers (M64h-iv): until the reveal fires, no part is drawn past
+# its limit, so the room guesses from the temperatures and the scale alone. R5 is the hottest
+# and well inside its 5 W; R1 dissipates 100 mW of a 62.5 mW rating.
+question: Which of these resistors gives first?
+reveal: { part: R1, show: overpower }
+predict:
+  prompt: Five resistors on one ten-volt rail. Which one is past its limit?
+  options:
+    - R5, the 50 Ω power resistor - it runs hottest
+    - R1, the 1 kΩ
+    - R4, the 10 kΩ
+    - None of them
+  correct: 1
 ```
 
 ```circuit
