@@ -78,6 +78,8 @@ caption: A 10 MΩ handheld across a 1 MΩ divider. The reading is not the voltag
 # One fence carries the author's choice of analyses (M25-14), so the format
 # fixture has one of the field as it has one of everything else.
 analyses: [voltage, current]
+# And one question (M64h-iv), which a classroom wall says in place of the title.
+question: Why does the meter read less than the divider gives?
 reveal:
   part: M1
   show: input_loading
