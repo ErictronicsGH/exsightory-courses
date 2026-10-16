@@ -8,7 +8,7 @@
     <line x1="38.1" y1="0" x2="12.7" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
   <g data-layer="body">
-    <polygon points="-12.7,-14 12.7,0 -12.7,14" stroke="var(--bench-symbol)" fill="var(--bench-symbol)" stroke-width="var(--bench-stroke, 2.4)" stroke-linejoin="round"/>
+    <polygon points="-12.7,-14 12.7,0 -12.7,14" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linejoin="round"/>
     <line x1="12.7" y1="-14" x2="12.7" y2="14" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
     <line x1="-38.1" y1="0" x2="-12.7" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
     <line x1="38.1" y1="0" x2="12.7" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>

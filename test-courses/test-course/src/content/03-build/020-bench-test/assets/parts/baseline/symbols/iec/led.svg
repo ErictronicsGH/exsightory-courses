@@ -1,4 +1,4 @@
-<!-- LED — a diode with the two emission arrows, at 45°, pointing away. -->
+<!-- LED — a diode, an outline, with its two emission arrows pointing away, as the owner's reference draws them (M64h-v-e). -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-52 -26 104 52">
   <g data-layer="thermal">
     <rect x="-16" y="-16" width="32" height="32" rx="1" fill="var(--bench-heat)" stroke="none"/>
@@ -8,16 +8,24 @@
     <line x1="38.1" y1="0" x2="12.7" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
   <g data-layer="body">
-    <polygon points="-12.7,-14 12.7,0 -12.7,14" stroke="var(--bench-symbol)" fill="var(--bench-symbol)" stroke-width="var(--bench-stroke, 2.4)" stroke-linejoin="round"/>
+    <polygon points="-12.7,-14 12.7,0 -12.7,14" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linejoin="round"/>
     <line x1="12.7" y1="-14" x2="12.7" y2="14" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
     <line x1="-38.1" y1="0" x2="-12.7" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
     <line x1="38.1" y1="0" x2="12.7" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
-    <line x1="-1" y1="-19" x2="10" y2="-30" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round" stroke-linejoin="round"/>
-    <polygon points="12,-32 3,-29 9,-23" fill="var(--bench-symbol)" stroke="none"/>
-    <line x1="9" y1="-13" x2="20" y2="-24" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke-mark, 1.6)" stroke-linecap="round" stroke-linejoin="round"/>
-    <polygon points="22,-26 13,-23 19,-17" fill="var(--bench-symbol)" stroke="none"/>
     <circle data-terminal="a" cx="-38.1" cy="0" r="2.6" fill="var(--bench-terminal)"/>
     <circle data-terminal="k" cx="38.1" cy="0" r="2.6" fill="var(--bench-terminal)"/>
+  </g>
+  <!--
+    The light it gives off, drawn as the owner's reference draws it: two parallel arrows at 45°, up and
+    away, 14 units from tail to tip with solid 8 × 7 heads, their tails over the triangle's middle and over
+    the bar and clear of both. Their own layer, because the bench keeps it up and to the right on screen
+    whichever way the part is turned (above a horizontal LED, right of a vertical one); the body turns.
+  -->
+  <g data-layer="emission">
+    <line x1="-6" y1="-20" x2="-1.76" y2="-24.24" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <polygon points="3.9,-29.9 0.72,-21.77 -4.23,-26.72" fill="var(--bench-symbol)" stroke="none"/>
+    <line x1="5" y1="-16" x2="9.24" y2="-20.24" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <polygon points="14.9,-25.9 11.72,-17.77 6.77,-22.72" fill="var(--bench-symbol)" stroke="none"/>
   </g>
   <!--
     Where the light comes from, and how far the halo reaches: a quarter pitch
