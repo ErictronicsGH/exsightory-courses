@@ -24,7 +24,7 @@ subsection.
 ## Compile and install
 
 ```sh
-cd Application/insight
+cd src/insight
 node packages/insight-core/bin/insight-compile.js ../bench-courses/electronics/src \
   --out ../../.tmp-out/bench-electronics.insightcourse
 rm -rf "$APPDATA/ExSight Studio/courses/bench-electronics"
@@ -55,7 +55,7 @@ renamed circuit fails a suite rather than a screenshot.
 patch bump to `libraries/baseline/` sweeps every `.benchcircuit` pin here too. Re-copy it:
 
 ```sh
-rm -rf Application/bench-courses/electronics/src/shared-assets/parts/baseline
-cp -r Application/insight/libraries/baseline \
-      Application/bench-courses/electronics/src/shared-assets/parts/baseline
+rm -rf src/bench-courses/electronics/src/shared-assets/parts/baseline
+cp -r src/insight/libraries/baseline \
+      src/bench-courses/electronics/src/shared-assets/parts/baseline
 ```
