@@ -24,7 +24,7 @@ source, and this course is deliberately on the other side of that line.
 ## Building it
 
 ```sh
-# From Application/insight/
+# From src/insight/
 node packages/insight-core/bin/insight-compile.js ../test-course/src --out ../../.tmp-out/bench-psu.insightcourse
 ```
 
@@ -98,7 +98,7 @@ seekable. Chromium decodes it, and the app plays it.
 
 ## Watching the app render it
 
-From `Application/insight/apps/desktop/`:
+From `src/insight/apps/desktop/`:
 
 ```sh
 npm run build
