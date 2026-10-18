@@ -1,0 +1,286 @@
+{
+  "title": {
+    "en": "Setting a bench supply",
+    "fr": "Régler une alimentation de laboratoire"
+  },
+  "sentence": {
+    "en": "Set 5 V with the current limited to 0.1 A, then load it.",
+    "fr": "Régler 5 V avec un courant limité à 0,1 A, puis charger."
+  },
+  "version": 1,
+  "lesson": {
+    "presented": {
+      "run": [
+        "view",
+        "edit"
+      ],
+      "adjust": [
+        "view",
+        "edit"
+      ],
+      "probes": [
+        "view",
+        "edit"
+      ],
+      "edit": [
+        "edit"
+      ],
+      "camera": [
+        "view",
+        "edit"
+      ],
+      "overlays": [
+        "preview",
+        "view",
+        "edit"
+      ],
+      "faults": [
+        "edit"
+      ]
+    },
+    "study": {
+      "run": [
+        "view",
+        "edit"
+      ],
+      "adjust": [
+        "view",
+        "edit"
+      ],
+      "probes": [
+        "view",
+        "edit"
+      ],
+      "edit": [
+        "edit"
+      ],
+      "camera": [
+        "preview",
+        "view",
+        "edit"
+      ],
+      "overlays": [
+        "view",
+        "edit"
+      ]
+    },
+    "scope": {
+      "run": [
+        "view"
+      ],
+      "adjust": [
+        "view"
+      ],
+      "camera": [
+        "view"
+      ],
+      "overlays": [
+        "view"
+      ]
+    }
+  },
+  "design": {
+    "view": "3d",
+    "others": [
+      "2d"
+    ]
+  },
+  "mat": {
+    "tone": "blue"
+  },
+  "instances": [
+    {
+      "instance": "PSU1",
+      "component": "exsight.supply.sw3005@0.2.3",
+      "place": {
+        "on": "shelf",
+        "at": [
+          -615,
+          191
+        ],
+        "rotation": 0
+      },
+      "start": {
+        "power": "off",
+        "output": "off",
+        "vSet": 5,
+        "iLim": 0.1
+      },
+      "constraints": {
+        "vSet": {
+          "cap": [
+            0,
+            12
+          ]
+        },
+        "iLim": {
+          "lock": 0.1
+        },
+        "ovpLevel": {
+          "lock": 13
+        },
+        "trace": {
+          "current": "after-measuring",
+          "convention": {
+            "lock": "conventional"
+          }
+        },
+        "damage": "graded",
+        "representation": "auto",
+        "turnScale": {
+          "encVCoarse": "range",
+          "encVFine": "vernier",
+          "encACoarse": "range",
+          "encAFine": "vernier"
+        },
+        "faults": [],
+        "faultsInSession": [
+          "ventsBlocked",
+          "mainsFuse",
+          "loosePost",
+          "calibrationDrift"
+        ]
+      }
+    },
+    {
+      "instance": "BB1",
+      "component": "exsight.breadboard.full-830@1.0.0",
+      "place": {
+        "on": "worktop",
+        "at": [
+          -300,
+          -80
+        ],
+        "rotation": 0
+      }
+    },
+    {
+      "instance": "LDR1",
+      "component": "exsight.ldr.5mm-5528@1.0.0",
+      "place": {
+        "on": "BB1",
+        "at": [
+          -288,
+          -86
+        ],
+        "rotation": 0,
+        "holes": {
+          "lead_a": "d35",
+          "lead_b": "d37"
+        }
+      },
+      "start": {},
+      "constraints": {},
+      "mount": {
+        "leadPitch": 5.08,
+        "leads": {
+          "lead_a": {
+            "start": [
+              -1.5,
+              0,
+              26.715
+            ],
+            "dir": [
+              0,
+              0,
+              -1
+            ],
+            "ref": [
+              0,
+              -1,
+              0
+            ],
+            "elements": [
+              {
+                "turn": 0,
+                "roll": 0,
+                "len": 3
+              },
+              {
+                "turn": 90,
+                "roll": 11.57,
+                "len": 5.1854
+              },
+              {
+                "turn": 89.8062,
+                "roll": 179.0533,
+                "len": 23.7184
+              }
+            ]
+          },
+          "lead_b": {
+            "start": [
+              1.5,
+              0,
+              26.715
+            ],
+            "dir": [
+              0,
+              0,
+              -1
+            ],
+            "ref": [
+              0,
+              -1,
+              0
+            ],
+            "elements": [
+              {
+                "turn": 0,
+                "roll": 0,
+                "len": 3
+              },
+              {
+                "turn": 90,
+                "roll": -11.57,
+                "len": 5.1854
+              },
+              {
+                "turn": 89.8062,
+                "roll": -179.0533,
+                "len": 23.7184
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "wires": [
+    {
+      "instance": "W1",
+      "conductor": "jumper-22awg",
+      "colour": "kit",
+      "ends": [
+        {
+          "on": "BB1",
+          "at": "a5"
+        },
+        {
+          "on": "BB1",
+          "at": "a12"
+        }
+      ]
+    },
+    {
+      "instance": "TL1",
+      "conductor": "testlead-1mm2",
+      "length": 1000,
+      "colour": "red",
+      "plugs": [
+        "banana-4mm",
+        "pin-0.65"
+      ],
+      "ends": [
+        {
+          "on": "PSU1",
+          "at": "pos"
+        },
+        {
+          "on": "BB1",
+          "at": "front+3"
+        }
+      ]
+    }
+  ]
+}

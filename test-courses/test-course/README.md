@@ -17,6 +17,7 @@ source, and this course is deliberately on the other side of that line.
 | Canvas kinds | image, SVG, PDF, video, sandboxed widget, 3D model — all six |
 | Glossary | all three supported shapes: bare string, titled object, localized definition |
 | Assets | local per-subsection and shared (the widget) |
+| Bench works | a `bench` block with a work (`02-regulation/020-current-limit`, a `.breadboard` copied from Benches' example) and one without (`03-build/020-bench-test`); `bench-catalogue.json` beside `course.yaml` holds the Breadboard's catalogue entry, so the fixture compiles with no `--benches` |
 | Transcripts | a subsection script with all three cue tokens and `includeInExport: true`, plus a chapter-level one its sibling falls back to |
 | Model pipeline | ships an **STL**, so the compiler's mesh-conversion path is exercised end to end and the app loads the resulting GLB |
 | Text style | a `theme.yaml`, a heading and inline spans styled in `01-raw-dc/010-transformer` |

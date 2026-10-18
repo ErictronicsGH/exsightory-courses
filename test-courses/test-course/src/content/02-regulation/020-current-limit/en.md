@@ -29,6 +29,14 @@ load demands. Set 1 A into a short and you get 1 A at nearly 0 V.
 That is safe for the load, but it is the **worst case for the regulator** — full
 current at full input-to-output difference, which is maximum dissipation.
 
+```bench
+title: Set the limit, then load it
+package: "@exsight/bench-breadboard@0.1.0"
+work: shared/benches/bench-supply.breadboard
+alt: A bench supply on a breadboard, set to 5 V with its current limit at 0.1 A, and a load across its leads.
+caption: The limit you set is the most the load can draw, whatever it asks for.
+```
+
 ```poe
 prompt: A supply set to 20 V with a 1 A limit is shorted at its output terminals. Input rail is 25 V. What does the pass transistor now dissipate?
 options:

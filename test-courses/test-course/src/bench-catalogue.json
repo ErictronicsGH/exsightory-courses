@@ -1,0 +1,21 @@
+{
+  "about": "The bench catalogue entries this course's bench blocks name, in exsight-benches' catalogue/catalogue.json shape (M68f). Copied from that file, never edited by hand: the compiler checks a work against them when a build is given no --benches.",
+  "packages": [
+    {
+      "name": "@exsight/bench-breadboard",
+      "kind": "bench",
+      "version": "0.1.0",
+      "works": [
+        {
+          "ext": "breadboard",
+          "media": "application/json",
+          "maxBytes": 1048576,
+          "title": {
+            "en": "Breadboard build",
+            "fr": "Montage sur plaque"
+          }
+        }
+      ]
+    }
+  ]
+}
