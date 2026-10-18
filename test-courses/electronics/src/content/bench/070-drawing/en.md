@@ -7,8 +7,10 @@ objectives:
 # A circuit that is not finished being drawn
 
 Every other circuit in this fixture is finished. It has a ground, every pin goes
-somewhere, and the bench solves it. This subsection holds the other state — the
+somewhere, and the bench solves it. This section holds the other state — the
 one a sheet is in for the whole time somebody is drawing on it.
+
+## Thirty seconds in {#half-drawn}
 
 ```circuit
 title: Thirty seconds in
@@ -19,16 +21,14 @@ alt: A nine-volt supply and two resistors placed on the sheet. One wire joins th
 caption: The parts are placed and two wires are drawn. The bench names what is still missing and prints no numbers at all.
 ```
 
+## Unfinished is not a failure {#not-a-failure}
+
 Nothing here has gone wrong. There is no ground yet because no ground has been
 drawn yet, and two legs go nowhere because they have not been wired up yet. What
 the bench must not do is call any of that a failure — and what it must not do
 either is put a number under a part on the strength of a circuit this incomplete.
 
 ## A section that is not joined to the rest
-
-The second state is harder to see and easier to be wrong about. This divider is
-finished: it has a ground, every pin is wired, and on its own it would solve. The
-pair beside it is wired to itself and to nothing else.
 
 ```circuit
 title: Two resistors waiting to be connected
@@ -38,6 +38,12 @@ libraries:
 alt: On the left, a nine-volt supply across two resistors in series with the lower end marked as ground. On the right, two ten-kilohm resistors wired to each other at both ends and to nothing else on the sheet.
 caption: Every pin on the right-hand pair goes somewhere. Where none of them goes is back to the ground on the left.
 ```
+
+The second state is harder to see and easier to be wrong about. The divider is
+finished: it has a ground, every pin is wired, and on its own it would solve. The
+pair beside it is wired to itself and to nothing else.
+
+## A path back to the ground {#a-path-to-ground}
 
 Every terminal is connected, so *is this pin wired* has nothing to say about it.
 The question that catches it is a different one — whether there is a path from

@@ -9,6 +9,8 @@ objectives:
 Two demonstrations, both about the same thing: a meter is a component, and where
 you put it decides what you measured.
 
+## Why the meter changes the reading {#divider-loading}
+
 ```circuit
 title: Why the meter changes the reading
 circuit: shared/circuits/divider-loading.benchcircuit
@@ -29,8 +31,7 @@ predict:
   correct: 1
 ```
 
-Move the reference clip and you have not adjusted the measurement, you have
-changed which measurement it is.
+## Where the clip goes decides what you measured {#divider-differential}
 
 ```circuit
 title: Where the clip goes decides what you measured
@@ -40,3 +41,6 @@ libraries:
 alt: A ten-volt supply across two one-megohm resistors in series. A probe touches the top node at right angles to the wire, and its reference lead runs to the junction between the two resistors rather than to the circuit reference, so the handheld reads the drop across the upper resistor.
 caption: The same divider, the same meter. The clip is on the mid-node, so the reading is the top resistor's - and the sheet is where you can see that.
 ```
+
+Move the reference clip and you have not adjusted the measurement, you have
+changed which measurement it is.

@@ -10,6 +10,8 @@ A reverse-biased diode is the easiest thing in electronics to draw as a perfect
 switch, and every schematic does. It is not one — and two diodes at the same
 price differ by a factor of 750 in how long they take to stop conducting.
 
+## A diode that is switched off, and still conducting {#leakage}
+
 ```circuit
 title: A diode that is switched off, and still conducting
 circuit: shared/circuits/leakage.benchcircuit
@@ -30,9 +32,7 @@ predict:
   correct: 1
 ```
 
-The two diodes below are the profiles in this library with a manufacturer's own
-SPICE model behind them, which is what lets the bench show reverse recovery at
-all.
+## Two diodes, one reversal, and a factor of 750 {#recovery}
 
 ```circuit
 title: Two diodes, one reversal, and a factor of 750
@@ -43,9 +43,11 @@ alt: A five-volt bench supply feeding two parallel branches, each a 470 ohm resi
 caption: Turn the supply down to zero and watch which diode keeps conducting. The transit times differ by a factor of 750.
 ```
 
-Two parts answer the current where you can see it. An LED lights
-with the current through it, in its own colour; a capacitor holds a charge on its
-plates, and its charge bulbs grow as it fills.
+These two diodes are the profiles in this library with a manufacturer's own
+SPICE model behind them, which is what lets the bench show reverse recovery at
+all.
+
+## An LED lit by the current through it {#led-current-limit}
 
 ```circuit
 title: Two LEDs, each lit by the current its resistor allows
@@ -59,6 +61,11 @@ opens:
   part: D1
 ```
 
+Some parts answer the current where you can see it. An LED lights with the
+current through it, in its own colour.
+
+## A capacitor charged through a resistor {#rc-charging}
+
 ```circuit
 title: A capacitor charged through a resistor
 circuit: shared/circuits/rc-charging.benchcircuit
@@ -67,3 +74,6 @@ libraries:
 alt: A five-volt bench supply in series with a ten-kilohm resistor and a hundred-microfarad capacitor to ground.
 caption: Settled across the supply, it is full. Open it in View to see a charge bulb on each plate, the + on the side the supply drives.
 ```
+
+A capacitor holds a charge on its plates, and its charge bulbs grow as it
+fills.

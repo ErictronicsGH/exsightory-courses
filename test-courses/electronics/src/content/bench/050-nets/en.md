@@ -11,6 +11,8 @@ three circuits are where that stops being true: first because the leads are in
 the measurement, then because the copper has to be sized, and finally because
 the edge is fast enough that the track is a transmission line.
 
+## The leads are in the measurement, until you stop measuring through them {#four-wire-sensing}
+
 ```circuit
 title: The leads are in the measurement, until you stop measuring through them
 circuit: shared/circuits/four-wire-sensing.benchcircuit
@@ -31,11 +33,15 @@ predict:
   correct: 2
 ```
 
+## What each net has to be {#netclass-mode}
+
 Turn **NetClass Mode** on and the analysis stops asking what each part is doing
-and asks what each *net* has to be. The rail below is a half-millimetre track in
-one-ounce copper, declared a `signal` net. Turn the supply up and watch the
-reading on the rail fall through 100 %, without one thing on the schematic
-moving.
+and asks what each *net* has to be. The rail on the next sheet is a
+half-millimetre track in one-ounce copper, declared a `signal` net. Turn the
+supply up and watch the reading on the rail fall through 100 %, without one
+thing on the schematic moving.
+
+## The track never moved. What it has to be did {#net-sizing}
 
 ```circuit
 title: The track never moved. What it has to be did.
@@ -57,11 +63,15 @@ predict:
   correct: 2
 ```
 
-The rail above was sized by how hot it is allowed to get. That is the only
-question a DC bench can ask of a piece of copper, and it is not the question a
-fast board is designed around. Press the drain net's length and watch: while it
-is short the reading is its heating margin, and past four metres it becomes
-`2.4× critical length`.
+## Heat is not the question a fast board asks {#fast-board}
+
+That rail was sized by how hot it is allowed to get. That is the only question a
+DC bench can ask of a piece of copper, and it is not the question a fast board
+is designed around. On the next sheet, press the drain net's length and watch:
+while it is short the reading is its heating margin, and past four metres it
+becomes `2.4× critical length`.
+
+## A track is a piece of wire until the edge is fast enough {#controlled-impedance}
 
 ```circuit
 title: A track is a piece of wire until the edge is fast enough.
