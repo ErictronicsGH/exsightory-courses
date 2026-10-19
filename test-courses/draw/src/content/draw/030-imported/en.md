@@ -8,6 +8,8 @@ Three drawings made in LibreOffice Draw, exported as SVG and imported with
 `insight-draw import`. Their names, layers and steps were added by hand
 afterwards. The sources are in `bench-courses/draw/svg/`.
 
+## The moving-coil meter cut through
+
 ```drawing
 title: A moving-coil meter in section
 src: shared/drawings/meter-section.benchdrawing
@@ -15,12 +17,16 @@ alt: A moving-coil meter cut through. A permanent magnet's north pole on the lef
 caption: The pole faces and the core keep the gap even, so the field the coil turns in is the same at every angle.
 ```
 
+## Where the gauge sits on a cantilever
+
 ```drawing
 title: A strain gauge on a loaded cantilever
 src: shared/drawings/gauge-on-beam.benchdrawing
 alt: A beam fixed in a hatched wall on the left, a strain gauge with a zig-zag grid bonded to its top face near the wall, its two leads running up to the bridge, and a downward load F at the free end. Arrows above the gauge pull outwards for tension, and arrows below the beam push inwards for compression.
 caption: The gauge sits where the bending is greatest, and stretches with the face it is bonded to.
 ```
+
+## Building a sine wave from a turning phasor
 
 ```drawing
 title: A sine wave drawn from its phasor
