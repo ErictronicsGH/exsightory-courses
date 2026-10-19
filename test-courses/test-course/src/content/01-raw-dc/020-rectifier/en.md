@@ -12,6 +12,8 @@ A rectifier is the first place a beginner's supply usually goes wrong, because
 two of the three common arrangements look almost identical on paper and behave
 very differently on the bench.
 
+## The same input through three arrangements
+
 ```canvas
 kind: image
 src: rectifier-waveforms.png
@@ -32,11 +34,13 @@ per cycle rather than sitting at zero for half of it. That doubles the ripple
 frequency, which matters more than it sounds: it halves the capacitance you need
 downstream for the same [ripple](glossary:ripple).
 
-### What the bridge costs: 2V~F~ and I^2^R
+## What the bridge costs: 2V~F~ and I^2^R
 
 The cost is two diode drops in the path instead of one — about 1.4 V gone before
 your circuit sees anything, so V~out~ ≈ V~peak~ − 2V~F~. The winding pays too: its
 loss grows as I^2^R, so the bridge that halves the ripple does not halve the heat.
+
+## How high does the capacitor charge?
 
 ```flash
 question: A bridge rectifier is fed from a 12 V~RMS~ secondary. Roughly what peak DC does the smoothing capacitor charge to?
@@ -49,6 +53,8 @@ correct: 2
 timerSeconds: 45
 ```
 
+## A bridge is a turnstile with a toll
+
 ```analogy
 A bridge rectifier is a turnstile that funnels people walking in both directions
 into a single corridor going one way. Nobody is turned away, which is the whole
@@ -56,12 +62,16 @@ point — but every person pays the turnstile a small toll on the way through, a
 with a bridge each one pays twice.
 ```
 
+## What to read off the diode datasheet
+
 ```canvas
 kind: pdf
 src: diode-datasheet.pdf
 page: 1
 caption: The rectifier datasheet. We want the forward voltage and the average forward current.
 ```
+
+## Can you choose a rectifier and defend it?
 
 ```quiz
 title: Check - choosing a rectifier

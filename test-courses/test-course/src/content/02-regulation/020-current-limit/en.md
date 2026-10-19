@@ -13,6 +13,8 @@ A bench supply without a current limit is a device for converting small mistakes
 into expensive ones. The limit is what turns a shorted probe from a destroyed
 prototype into an inconvenience.
 
+## Two ways to limit the current
+
 ```canvas
 kind: image
 src: limit-curves.png
@@ -29,6 +31,8 @@ load demands. Set 1 A into a short and you get 1 A at nearly 0 V.
 That is safe for the load, but it is the **worst case for the regulator** — full
 current at full input-to-output difference, which is maximum dissipation.
 
+## Try the limit on a breadboard
+
 ```bench
 title: Set the limit, then load it
 package: "@exsight/bench-breadboard@0.1.0"
@@ -36,6 +40,8 @@ work: shared/benches/bench-supply.breadboard
 alt: A bench supply on a breadboard, set to 5 V with its current limit at 0.1 A, and a load across its leads.
 caption: The limit you set is the most the load can draw, whatever it asks for.
 ```
+
+## What happens into a dead short?
 
 ```poe
 prompt: A supply set to 20 V with a 1 A limit is shorted at its output terminals. Input rail is 25 V. What does the pass transistor now dissipate?
@@ -63,6 +69,8 @@ The catch: foldback can fail to start a load that draws a large inrush, because
 the supply reads the inrush as a fault, folds back, and never gets the output up.
 Lamps and capacitive loads are the usual victims.
 
+## Set our limit and prove it
+
 ```checkpoint
 instructions: |
   Set the limit for the supply we are building, and prove it works.
@@ -75,6 +83,8 @@ items:
   - Calculate the pass transistor dissipation at that moment
 ```
 
+## Has a limit ever saved you?
+
 ```poll
 question: On your own bench, how often has a current limit actually saved you?
 options:
@@ -82,6 +92,8 @@ options:
   - Once or twice
   - More times than I want to admit
 ```
+
+## What our supply burns into a short
 
 ```numeric
 question: The supply is set to 12 V out and holds a 500 mA limit into a dead short. The raw DC into the pass transistor is 18 V. What does the transistor dissipate, in watts?

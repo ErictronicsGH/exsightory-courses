@@ -13,6 +13,8 @@ A linear regulator holds its output steady by burning the difference. That
 sentence is the entire design trade, and everything else in this subsection is a
 consequence of it.
 
+## How the feedback loop holds the output
+
 ```canvas
 kind: svg
 src: regulator-schematic.svg
@@ -24,7 +26,9 @@ The error amplifier compares a fraction of the output against a fixed reference
 and drives the pass transistor to keep them equal. If the output sags, the
 amplifier turns the transistor on harder. If it rises, it backs off.
 
-That loop runs whether or not anything is connected, which is what the
+## The price of staying awake
+
+The feedback loop runs whether or not anything is connected, which is what the
 [quiescent current](glossary:quiescent-current) figure on a datasheet is
 telling you: the price of keeping the regulator awake, paid continuously.
 
@@ -35,10 +39,14 @@ the full load current. That is real power, and it leaves as heat:
 
 **P = (V_in − V_out) × I_load**
 
+## Thirty watts burnt to deliver ten
+
 A supply set to 5 V, drawing 2 A, fed from a 20 V rail dissipates
 (20 − 5) × 2 = **30 W**. The load receives 10 W. The regulator wastes three
 times what it delivers, and it needs a heatsink sized for the worst case, not
 the typical one.
+
+## Getting the heat off the transistor
 
 ```drawing
 title: Where the regulator's heat leaves
@@ -46,6 +54,8 @@ src: shared/drawings/pass-transistor-heatsink.benchdrawing
 alt: A finned heatsink drawn side on, with a pass transistor's metal tab bolted flat against the underside of its base, and two arrows rising past the fins to show the heat leaving upward.
 caption: Built up in four steps, the way you would draw it on a board.
 ```
+
+## Turn the knob and watch the heat
 
 ```plot
 title: Where the power goes, as you turn the knob
@@ -89,6 +99,8 @@ caption: >-
   argument for a pre-regulator — not a sentence you have to take on trust.
 ```
 
+## What does it burn at 15 V?
+
 ```flash
 question: Same supply, now set to 15 V at 2 A from the same 20 V rail. What does the pass transistor dissipate?
 options:
@@ -99,9 +111,13 @@ correct: 0
 timerSeconds: 30
 ```
 
+## Hottest at the lowest setting
+
 The dissipation is worst when the output is set *low*, which is the opposite of
 what most people expect. A bench supply is at its hottest delivering 1 V into a
 short-tempered load, not 30 V into an easy one.
+
+## A tap, not a gearbox
 
 ```analogy
 A linear regulator is a tap on a fixed-pressure water main. You get the flow you
@@ -124,6 +140,8 @@ capacitor's ripple eats into it. It is not enough for the *average* input to
 clear dropout; the input at the **bottom of every ripple trough** has to clear
 it too.
 
+## Does this one regulate cleanly?
+
 ```poe
 prompt: A regulator with a 2 V dropout must output 12 V. Its input averages 14.5 V with 2 V peak-to-peak of ripple. Does it regulate cleanly?
 options:
@@ -138,9 +156,13 @@ explanation: >-
   output. Design against the trough, never the average.
 ```
 
+## Your questions on the regulator
+
 ```qa
 scope: subsection
 ```
+
+## What raises the dissipation?
 
 ```multi-select
 question: Which of these raise the dissipation in a linear regulator's pass transistor?

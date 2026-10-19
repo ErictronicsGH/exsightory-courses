@@ -12,11 +12,15 @@ protects — and, more usefully, you know what each stage costs.
 The through-line worth keeping: **every stage in this supply trades one thing
 for another, and none of them is free.**
 
+## What each stage trades away
+
 - The transformer trades volts for amps
 - The bridge trades two diode drops for half the smoothing capacitance
 - The capacitor trades ripple for peak diode current
 - The regulator trades heat for steadiness
 - The current limit trades a working supply under fault for a survivable one
+
+## The finished unit under load
 
 ```canvas
 kind: video
@@ -24,6 +28,11 @@ src: full-load-test.mp4
 timestamp: 0
 caption: The finished unit under a 2 A step load, with the output on the scope.
 ```
+
+Two questions from the course's bank follow the analogy, asked by reference and
+pinned to the version this lecture was written against.
+
+## An instrument is an argument about compromises
 
 ```analogy
 A finished instrument is an argument about which compromises you were willing to
@@ -33,12 +42,13 @@ argument, not the components.
 Which is why the notes on the drawing matter as much as the drawing.
 ```
 
-Two questions from the course's bank, asked by reference and pinned to the
-version this lecture was written against:
+## How far does the heatsink rise
 
 ```numeric
 ref: heatsink-rise@1
 ```
+
+## Where the regulator's heat comes from
 
 ```multi-select
 ref: regulator-heat@1
@@ -56,9 +66,13 @@ Honest limits of what we built:
 - **The limit is not fast.** It protects against a sustained short, not against
   a nanosecond-scale transient.
 
+## Questions on anything we covered
+
 ```qa
 scope: all
 ```
+
+## Before you go
 
 ```exit-survey
 title: Before you go

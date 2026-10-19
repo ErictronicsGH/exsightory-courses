@@ -12,6 +12,8 @@ objectives:
 The rectifier gives you a voltage that is always positive but far from steady.
 The smoothing capacitor's job is to hold the voltage up during the gaps. {concept=ripple}
 
+## A capacitor is a tank on the roof
+
 ```analogy
 A smoothing capacitor is a header tank on a roof. The pump runs in bursts, but
 the tap runs steadily, because the tank covers the gaps between bursts.
@@ -20,6 +22,8 @@ Make the tank bigger and the pressure at the tap varies less. Open the tap
 wider and it varies more. That is the whole design trade, and it is why a supply
 that looks clean with nothing plugged in can be filthy under load.
 ```
+
+## The parts you have been sizing, on a real board
 
 ```figure
 concepts: [reservoir-capacitor]
@@ -132,6 +136,8 @@ tour:
     note: Last, the part nobody sizes carefully. It is on the primary side, so it is a fifth of the current you might expect.
 ```
 
+## Three parts lifted off the board
+
 ```figure
 title: Three regions, lifted off the board
 aspect: 1.5
@@ -186,6 +192,8 @@ features:
     colour: magenta
 ```
 
+## Ripple rises with load and falls with capacitance
+
 ```canvas
 kind: image
 src: ripple-vs-load.png
@@ -196,7 +204,9 @@ caption: Ripple rises with load and falls with capacitance. Nothing here is free
 ## The rule of thumb, and where it breaks
 
 For a full-wave rectifier at 50 Hz, the capacitor has about 10 ms to bridge each
-gap. That gives a workable estimate:
+gap. That gives a workable estimate.
+
+## How big the reservoir capacitor has to be
 
 ```equation
 title: Sizing the reservoir capacitor
@@ -331,15 +341,19 @@ simulate:
   note: A load that switches on and off — and the capacitor you would need, tracking it.
 ```
 
-This is why bench supplies have physically large capacitors in them.
-
 Open the bench and step through it: the worked example computes the number, the
 Assumptions pane says when to stop trusting it, and the graph draws the family
 of curves for 50, 60, 100 and 400 Hz at once.
 
-That charging pulse is the part that bites. The capacitor only draws current
+## The charging pulse is the part that bites
+
+That equation is why bench supplies have physically large capacitors in them.
+
+The charging pulse is the part that bites. The capacitor only draws current
 near the peaks, so it draws a *lot* for a short time. Your transformer and
 diodes see peak currents several times the average.
+
+## The slope of the droop is the load current
 
 ```plot
 title: The capacitor's voltage, and the current that follows from its slope
@@ -368,6 +382,8 @@ caption: >-
   capacitance — so the slope is not a decoration, it is the reading.
 readout: true
 ```
+
+## Does the model match the bench readings?
 
 ```plot
 title: Ripple against capacitance, measured and modelled
@@ -404,6 +420,8 @@ caption: >-
   sits on the data, and compare what you chose with the fitted value below.
 ```
 
+## What does a bigger capacitor do to the diodes?
+
 ```poe
 prompt: You double the smoothing capacitance to halve the ripple. What happens to the peak current the rectifier diodes have to survive?
 options:
@@ -419,6 +437,8 @@ explanation: >-
   Smoothing is not free; you pay for it in diode and transformer stress.
 ```
 
+## Size the capacitor for our supply
+
 ```checkpoint
 instructions: |
   Work out the smoothing capacitor for the supply we are building.
@@ -430,6 +450,8 @@ items:
   - Round up to the nearest standard value
   - Check the voltage rating against the peak, not the RMS
 ```
+
+## Questions before we move on
 
 ```qa
 scope: chapter

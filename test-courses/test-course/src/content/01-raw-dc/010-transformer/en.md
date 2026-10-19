@@ -20,6 +20,8 @@ Start with the socket on the wall behind you, and point at it.
 [[pause]]
 ```
 
+## Four stages between the socket and your circuit
+
 ```canvas
 kind: svg
 src: block-diagram.svg
@@ -36,6 +38,10 @@ references:
     note: The symbol conventions the waveform sketches follow.
 ```
 
+Keep [the block diagram](svg:block-diagram.svg) open while we go stage by stage.
+
+## Step down, rectify, smooth, regulate
+
 The mains socket gives you a high alternating voltage. Your circuit wants a low,
 steady, direct one. Four things have to happen in order, and each has its own
 failure mode:
@@ -44,6 +50,8 @@ failure mode:
 - **Rectify** it, so current flows one way only
 - **Smooth** it, so it stops collapsing to zero a hundred times a second
 - **Regulate** it, so it holds still when the load changes {color=muted}
+
+## A transformer is a gearbox for voltage
 
 ```analogy
 A transformer is a gearbox for voltage. A gearbox does not create torque out of
@@ -62,10 +70,6 @@ The gearbox is the picture to keep: **power in is power out**, less the heat.
 [[transition]] Now the ratio itself, and what it costs on the other side.
 ```
 
-Keep [the block diagram](svg:block-diagram.svg) open while we go stage by stage.
-
-***
-
 ## What the turns ratio actually buys you
 
 ```canvas
@@ -81,6 +85,8 @@ secondary is a ratio of about 9.6 : 1. That ratio applies to current in the
 opposite direction, which is the part people forget when they size the fuse on
 the wrong side.
 
+## Which side carries the bigger current?
+
 ```poe
 prompt: A transformer steps 230 V down to 23 V. The load draws 2 A from the secondary. Ignoring losses, roughly what current flows in the primary?
 options:
@@ -94,6 +100,8 @@ explanation: >-
   down by ten, so the current went up by ten - on the secondary side. A fuse
   chosen for 2 A and fitted to the primary would never blow.
 ```
+
+## Have you ever wound a transformer?
 
 ```poll
 question: Before we go on - have you wound or rewound a transformer yourself?

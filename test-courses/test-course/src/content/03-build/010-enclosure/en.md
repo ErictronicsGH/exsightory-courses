@@ -10,6 +10,8 @@ linearDeflection: 0.1
 The mechanical design of a bench supply is thermal design wearing a different
 hat. The heatsink is the reason the box is the size it is.
 
+## The part the box is built around
+
 ```model
 title: The heatsink bracket
 src: heatsink-bracket.stl
@@ -47,6 +49,8 @@ tour:
     note: And this face has to be flat. A gap filled with air is an insulator.
 ```
 
+## Three constraints that fight each other
+
 Three constraints fight each other in this part:
 
 - The pass transistor needs **contact area** and a short thermal path to the fins
@@ -55,8 +59,7 @@ Three constraints fight each other in this part:
 - The bracket has to **hold the transistor flat** against the pad, because a
   gap filled with air is a thermal insulator no amount of fin area will rescue
 
-Before it is taken apart, here it is shut, as it arrives: a mesh and nothing
-else, to turn over.
+## The box, shut, as it arrives
 
 ```canvas
 kind: model3d
@@ -64,6 +67,11 @@ src: enclosure.glb
 alt: The closed sheet-metal enclosure, with nothing named on it - a model to turn over before it is opened.
 caption: Shut, and unannotated. Turn it round; there is nothing on the outside to tell you what is inside.
 ```
+
+Before it is taken apart, here it is shut, as it arrives: a mesh and nothing
+else, to turn over.
+
+## Opening the box is the lesson
 
 ```model
 title: The enclosure, opened
@@ -172,6 +180,8 @@ The bench supply has one moving part worth talking about, and it is not in the
 enclosure: it is the wiper on the coarse adjustment. So here is the general
 case, on a linear stage — because a leadscrew is the only mechanism in the kit
 that turns one number into two motions at once.
+
+## One control, two motions
 
 ```model
 title: A linear stage
@@ -284,8 +294,12 @@ and that is not a convenience: it is what a bolt does. The `lead` is the travel
 per revolution - the number stamped on the part - so three turns at 4 mm a turn
 advances the screw twelve millimetres, and the carriage goes the same distance.
 
+## The probe moves because the carriage did
+
 The probe has no control of its own. It is `fixed` **on** the carriage, so it
 moves because the carriage did, which is what a chain is for.
+
+## A heatsink is a chimney, not a sponge
 
 ```analogy
 A heatsink is not a sponge that soaks heat up. It is a chimney.
@@ -306,6 +320,8 @@ If the total is 2 °C/W and the room is 25 °C, the junction sits at
 25 + (30 × 2) = **85 °C** — inside spec for most parts, with very little margin
 for a warm room or a blocked vent.
 
+## What does a better heatsink buy you
+
 ```flash
 question: The same 30 W through a heatsink of 1.2 C/W, in a 25 C room. Roughly what junction temperature?
 options:
@@ -315,6 +331,8 @@ options:
 correct: 1
 timerSeconds: 40
 ```
+
+## Check the bracket before anything is cut
 
 ```checkpoint
 instructions: |
