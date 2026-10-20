@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>U019 brief — D2·010 interfaces</title>
+<style>
+:root{color-scheme:dark;--bg:#0E1217;--panel:#151B22;--ink:#E8EAED;--muted:#9AA3AD;--faint:#3A424C;--teal:#2DD4BF;--amber:#F5B942;--violet:#A78BFA;--lime:#A3E635;--rose:#F472B6;--azure:#60A5FA}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,Segoe UI,Roboto,sans-serif}
+main{max-width:1180px;margin:0 auto;padding:16px}h1{font-size:22px;margin:8px 0 4px}h2{font-size:18px;margin:0 0 6px}
+section{background:var(--panel);border:1px solid var(--faint);border-radius:10px;padding:14px 16px;margin:14px 0}
+.top{position:sticky;top:0;z-index:5;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid var(--faint)}
+button{background:#1C242D;color:var(--ink);border:1px solid var(--faint);border-radius:6px;padding:5px 10px;font:inherit;font-size:13px;cursor:pointer;text-align:left}
+button:hover{border-color:var(--muted)}button.on{border-color:var(--teal);color:var(--teal)}
+.tag{display:inline-block;font-size:12px;border-radius:4px;padding:1px 7px;margin-right:6px;border:1px solid}
+.t-plot{color:var(--teal);border-color:var(--teal)}.t-eq{color:var(--violet);border-color:var(--violet)}.t-draw{color:var(--amber);border-color:var(--amber)}
+.t-anim{color:var(--rose);border-color:var(--rose)}.t-fig{color:var(--azure);border-color:var(--azure)}.t-act{color:var(--lime);border-color:var(--lime)}
+.map{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px}
+.map a{display:block;background:#10161C;border:1px solid var(--faint);border-radius:8px;padding:8px;color:var(--ink);text-decoration:none;font-size:13px}
+.map a b{display:block;font-size:14px;margin:2px 0}
+svg{width:100%;height:auto;display:block;background:#0B0F14;border-radius:8px}
+.sl{display:flex;flex-wrap:wrap;gap:14px;margin:10px 0}
+.sl label{flex:1 1 200px;font-size:13px;color:var(--muted)}.sl label span{float:right;color:var(--ink);font-variant-numeric:tabular-nums}
+.sl input{width:100%}
+.row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0}
+.note{color:var(--muted);font-size:13px}
+textarea{width:100%;min-height:54px;background:#0B0F14;color:var(--ink);border:1px solid var(--faint);border-radius:6px;padding:6px;font:inherit;font-size:14px}
+.fb label{font-size:13px;color:var(--amber)}
+.q{margin:12px 0 4px}.block{display:inline-block;font-size:11px;color:#0E1217;background:var(--rose);border-radius:3px;padding:0 5px;margin:0 6px}
+.bar{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0}
+table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-bottom:1px solid var(--faint);padding:5px 6px;text-align:left;vertical-align:top}
+.pass{color:var(--lime)}.mono{font-family:ui-monospace,Consolas,monospace}
+.ro{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.ro div{background:#10161C;border:1px solid var(--faint);border-radius:6px;padding:6px 10px;font-size:12px;color:var(--muted)}.ro b{display:block;font-size:16px;color:var(--ink);font-variant-numeric:tabular-nums}
+.ok{color:var(--lime)!important}.bad{color:var(--rose)!important}
+@media (max-width:600px){main{padding:10px}}
+</style></head><body><main>
+<h1>U019 brief: D2·010 The code leaves the converter: open-drain, pull-ups and I²C</h1>
+<p class="note">30 minutes, ten cards, the first module of Day 2. Each card below shows the visual this unit proposes for its bench, drawn from the card's PLAN with real numbers, and most of them are live. Nothing is built on a bench yet. <b>The accuracy check ran first and found five points (F1–F5).</b> They are open, so the unit is blocked until you choose. The naming and design points come after them. Your choices and notes are saved on this page.</p>
+<div class="top"><span class="note">Feedback</span><button onclick="showFb()">Show what I've entered</button><button onclick="clearFb()">Clear</button><span id="fbsum" class="note"></span></div>
+<pre id="fbout" style="display:none;white-space:pre-wrap;background:#0B0F14;border:1px solid var(--faint);border-radius:8px;padding:10px;font-size:13px"></pre>
+
+<section><h2>The module at a glance</h2>
+<div class="map">
+<a href="#c1">Card 1<b>The code has to travel</b><span class="tag t-draw">Draw (course path)</span></a>
+<a href="#c2">Card 2<b>Both digital — so compatible?</b><span class="tag t-fig">Figure</span><span class="tag t-act">poll</span></a>
+<a href="#c3">Card 3<b>Level shifting</b><span class="tag t-anim">Electronics → D1</span><span class="tag t-act">poe</span></a>
+<a href="#c4">Card 4<b>An interface is not a protocol</b><span class="tag t-fig">Figure</span><span class="tag t-act">multi-select</span></a>
+<a href="#c5">Card 5<b>A floating input</b><span class="tag t-anim">Electronics → D1</span><span class="tag t-act">poe</span></a>
+<a href="#c6">Card 6<b>Open-drain</b><span class="tag t-anim">Electronics → D1</span><span class="tag t-act">poe, analogy</span></a>
+<a href="#c7">Card 7<b>Choosing the pull-up</b><span class="tag t-plot">Plot, centrepiece</span><span class="tag t-eq">Equation</span><span class="tag t-act">poe, numeric</span></a>
+<a href="#c8">Card 8<b>Two outputs on one wire</b><span class="tag t-anim">Electronics → D1</span><span class="tag t-draw">Draw</span><span class="tag t-fig">Figure</span><span class="tag t-act">poe</span></a>
+<a href="#c9">Card 9<b>No best interface</b><span class="tag t-fig">Figure (proposal)</span><span class="tag t-act">poll</span></a>
+<a href="#c10">Card 10<b>Logical and electrical</b><span class="tag t-plot">Plot (card 7 again)</span><span class="tag t-act">checkpoint</span></a>
+<a href="#find">Findings<b>5 accuracy (open), 3 naming, 5 design</b><span class="tag t-act">≈33 of 30 min</span></a>
+</div>
+<p class="note"><b>Time: the module runs over.</b> The Flow is 2,626 words, which is 20.2 min at 130 wpm (cards 300, 363, 174, 258, 206, 198, 293, 224, 423, 187 words). Ten activities add about 9.5 min: two polls, five poe, the multi-select and the numeric at about 1 min each, and the checkpoint at about 1.5. Bench moves add about 3 min more. That makes <b>about 33 of 30 minutes, ≈ 3 over</b>. This is reported only; nothing is trimmed. The longest cards are 9 (3.3 min of speech, the two lists) and 2 (2.8).</p>
+<p class="note">Cross-references checked (A4): S14 against D1·040's seed (“high in, low out”) ✓; S50 against D2·020's harvest ✓; “the ADC's sampling capacitor yesterday” against D1·070 ✓; “Day 1's insertion error” against D1·020/D1·040 ✓. There is no “this morning” in this module (DAY23-F1 doesn't touch it).</p>
+</section>
+
+<section id="c1"><h2>Card 1 · The code has to travel</h2>
+<p><span class="tag t-draw">Draw</span>The PLAN wants D1·010's course path with the code's own leg added. Retrace Day 1, stop at the ADC with nothing after it, then draw the new leg one box at a time and light DIGITAL INTERFACE amber. The course path is the drawing crossing 511 asks Benches to build, so this card is its next growth.</p>
+<svg id="p1" viewBox="0 0 1100 250"></svg>
+<div class="row"><button id="b1p">◀ Previous</button><button id="b1n">Next ▶</button><span class="note" id="t1"></span></div>
+<p class="note">The Flow speaks a different path (p5): <i>Physical quantity → Sensor → Electrical signal → Signal conditioning → ADC → Digital data → Digital interface → Processor → Engineering value</i>. The course's PATH line has ten stages with other names (loading, ADC input, conversion, reference; firmware and number). See N3.</p>
+<div class="fb"><label>Your feedback on card 1</label><textarea data-k="c1"></textarea></div></section>
+
+<section id="c2"><h2>Card 2 · Both digital — so compatible?</h2>
+<p><span class="tag t-fig">Figure</span><span class="tag t-act">poll</span>Our own figure: two chips facing each other with nine labelled lines between them. After the poll, “3.3 V logic” lights teal (the one point they agree on), then the other eight light amber, one per Flow bullet.</p>
+<svg id="p2" viewBox="0 0 1100 380"></svg>
+<div class="row"><button id="b2p">◀ Previous</button><button id="b2n">Next ▶</button><span class="note" id="t2"></span></div>
+<div class="fb"><label>Your feedback on card 2</label><textarea data-k="c2"></textarea></div></section>
+
+<section id="c3"><h2>Card 3 · Level shifting: 5 V logic into a 3.3 V pin</h2>
+<p><span class="tag t-anim">Electronics widget deferred → demonstration (D1)</span><span class="tag t-act">poe</span>The PLAN's fixture <code>level-shift</code>: a 5 V output behind its own 47 Ω, into a 3.3 V input whose clamp diode (a 1N4148 model) goes to the 3.3 V rail. Try the direct wire, then the 10 k / 20 k divider, then the FAULT (the resistors swapped). Values are from the diode's SPICE model, with the 10 MΩ meter on the pin.</p>
+<svg id="p3" viewBox="0 0 1100 320"></svg>
+<div class="row"><button id="s3a" class="on">Direct wire</button><button id="s3b">Divider 10 k over 20 k</button><button id="s3c">FAULT: swapped, 20 k over 10 k</button></div>
+<div class="ro" id="ro3"></div>
+<p class="note"><b>F1:</b> wired straight, the meter does <i>not</i> read “about 3.3 V” as the PLAN's Look for says. It reads 4.03 V, a diode-drop above the rail, and 20.6 mA flows into the 3.3 V rail, which must have a load to absorb it. <b>F5:</b> the swapped divider gives 1.66 V, not 1.67, once the 47 Ω is counted. The input thresholds drawn are 0.25 and 0.75 of V<sub>DD</sub> (0.825 and 2.475 V), those of the 3.3 V MCU the card names.</p>
+<div class="fb"><label>Your feedback on card 3</label><textarea data-k="c3"></textarea></div></section>
+
+<section id="c4"><h2>Card 4 · An interface is not a protocol</h2>
+<p><span class="tag t-fig">Figure</span><span class="tag t-act">multi-select</span>SPI between the ADC and the MCU: SCLK, MOSI, MISO and CS, with 10110110 on MISO against SCLK. The tour runs CS → SCLK → MISO. Then the same strip is read MSB-first (182) and LSB-first (109).</p>
+<svg id="p4" viewBox="0 0 1100 300"></svg>
+<div class="row"><span class="note">Read as</span><button id="m4a" class="on">MSB first</button><button id="m4b">LSB first</button></div>
+<div class="ro" id="ro4"></div>
+<div class="fb"><label>Your feedback on card 4</label><textarea data-k="c4"></textarea></div></section>
+
+<section id="c5"><h2>Card 5 · What does a floating input read?</h2>
+<p><span class="tag t-anim">Electronics widget deferred → demonstration (D1)</span><span class="tag t-act">poe</span>A logic input with nothing driving it. On the left is the input's band: low below 0.825 V, high above 2.475 V, undefined between. Floating, the pin's level wanders, and here it is drawn wandering across the whole range, rails included (F2). Then come the meter (the meter becomes the pull-down), the pull-up and the pull-down.</p>
+<svg id="p5" viewBox="0 0 1100 280"></svg>
+<div class="row"><button id="f5a" class="on">Floating</button><button id="f5b">+ a meter on it</button><button id="f5c">Pull-up 10 kΩ to 3.3 V</button><button id="f5d">Pull-down 10 kΩ</button></div>
+<div class="ro" id="ro5"></div>
+<p class="note"><b>F2:</b> the Flow says the floating pin “sits somewhere between a guaranteed low and a guaranteed high”. The card's own FAULT (a button that “reads HIGH on the bench every time”) needs it to sit near a rail. With the meter on: an input leaking ≤ 50 nA into 10 MΩ gives ≤ 0.5 V, and typically millivolts, so it reads “0 V, quite steadily” ✓.</p>
+<div class="fb"><label>Your feedback on card 5</label><textarea data-k="c5"></textarea></div></section>
+
+<section id="c6"><h2>Card 6 · Open-drain: pull low or let go</h2>
+<p><span class="tag t-anim">Electronics widget deferred → demonstration (D1)</span><span class="tag t-act">poe, analogy</span>The PLAN's <code>open-drain-bus</code>: an N-MOSFET as the output, a meter on the bus, and the 4.7 kΩ pull-up added last. Drive it as the PLAN does: on → let go (no pull-up: nothing defines the bus) → add the pull-up → on again, 0.70 mA.</p>
+<svg id="p6" viewBox="0 0 1100 300"></svg>
+<div class="row"><span class="note">Output</span><button id="g6a" class="on">pulls low (gate 5 V)</button><button id="g6b">lets go (gate 0 V)</button><span class="note" style="margin-left:12px">Pull-up</span><button id="r6a" class="on">none</button><button id="r6b">4.7 kΩ to 3.3 V</button></div>
+<div class="ro" id="ro6"></div>
+<div class="fb"><label>Your feedback on card 6</label><textarea data-k="c6"></textarea></div></section>
+
+<section id="c7"><h2>Card 7 · Choosing the pull-up value (the centrepiece)</h2>
+<p><span class="tag t-plot">Plot</span><span class="tag t-eq">Equation</span><span class="tag t-act">poe, numeric</span>The PLAN's Plot: the bus voltage as the pull-up charges the bus capacitance, with R and C sliders, the 30 % and 70 % lines, and the 300 ns (Fast) and 1000 ns (Standard) limits. Beside it is the sink current, (3.3 − 0.4) V / R, against Fast mode's 3 mA. The presets are the PLAN's Drive plus the numeric's answer, 1.77 kΩ. <b>Switch the time axis</b> to see F4: measured from the release, the 1.77 kΩ edge reaches 70 % at 426 ns, not on the 300 ns marker. The I²C limit is the time from 30 % to 70 %.</p>
+<svg id="p7" viewBox="0 0 1100 400"></svg>
+<div class="sl"><label>Pull-up (R)<span id="v7r"></span><input id="s7r" type="range" min="500" max="20000" step="10" value="4700"></label><label>Bus capacitance (C)<span id="v7c"></span><input id="s7c" type="range" min="50" max="400" step="5" value="200"></label></div>
+<div class="row"><span class="note">Presets (C = 200 pF)</span><button data-r="10000">10 kΩ</button><button data-r="4700">4.7 kΩ</button><button data-r="1500">1.5 kΩ</button><button data-r="820">820 Ω</button><button data-r="1770">1.77 kΩ (the numeric)</button><span class="note" style="margin-left:12px">Time axis</span><button id="x7a" class="on">from the 30 % crossing (F4, recommended)</button><button id="x7b">from the release (the PLAN)</button></div>
+<div class="ro" id="ro7"></div>
+<p class="note">Checked: 30 %→70 % = R·C·ln(0.7/0.3) = 0.8473·R·C. At 200 pF: 10 kΩ 1695 ns (0.29 mA), 4.7 kΩ 796.5 ns (0.62 mA), 1.5 kΩ 254.2 ns (1.93 mA), 820 Ω 139.0 ns (3.54 mA). R<sub>max</sub> = 300 ns/(0.8473 × 200 pF) = 1.770 kΩ; R<sub>min</sub> = 2.9 V/3 mA = 0.967 kΩ. These are the rules UM10204 gives for I²C (t<sub>r</sub> 1000/300 ns, V<sub>OL</sub> 0.4 V at 3 mA, C<sub>b</sub> ≤ 400 pF).</p>
+<div class="fb"><label>Your feedback on card 7</label><textarea data-k="c7"></textarea></div></section>
+
+<section id="c8"><h2>Card 8 · Two outputs on one wire</h2>
+<p><span class="tag t-anim">Electronics widget deferred → demonstration (D1)</span><span class="tag t-draw">Draw</span><span class="tag t-fig">Figure</span><span class="tag t-act">poe</span>Two open-drain outputs on one pulled-up line, with the truth table filled in as each case is stepped (the PLAN's Draw), then one I²C byte with its ACK (the PLAN's Figure). The push-pull FAULT shows a short: 3.3 V across two on-transistors.</p>
+<svg id="p8" viewBox="0 0 1100 300"></svg>
+<div class="row"><span class="note">Output 1</span><button id="a8a" class="on">lets go</button><button id="a8b">pulls</button><span class="note" style="margin-left:12px">Output 2</span><button id="b8a" class="on">lets go</button><button id="b8b">pulls</button></div>
+<svg id="p8b" viewBox="0 0 1100 170"></svg>
+<p class="note">The byte with its ACK: eight data bits from the transmitter (0x90 here: a 7-bit address 1001000 and the write bit), then the transmitter lets go of SDA in the 9th clock, and the receiver pulls it low (rose).</p>
+<div class="fb"><label>Your feedback on card 8</label><textarea data-k="c8"></textarea></div></section>
+
+<section id="c9"><h2>Card 9 · There is no best interface, only a suited one</h2>
+<p><span class="tag t-fig">Figure (proposal, D3)</span><span class="tag t-act">poll</span>The PLAN gives this card only the poll. Every card gets a demonstration, so the proposal is a Figure: the same MCU and three peripherals wired by SPI and by I²C, side by side, with the cost counted in lines. SPI uses SCLK, MOSI and MISO plus one CS each, 6 lines; I²C uses SDA and SCL, 2 lines plus two pull-ups.</p>
+<svg id="p9" viewBox="0 0 1100 300"></svg>
+<div class="fb"><label>Your feedback on card 9</label><textarea data-k="c9"></textarea></div></section>
+
+<section id="c10"><h2>Card 10 · A logical problem and an electrical one</h2>
+<p><span class="tag t-plot">Plot (card 7's, reused)</span><span class="tag t-act">checkpoint</span>The PLAN puts card 7's Plot back on the Canvas while the room ticks its list. Pull-ups, input capacitance and rise times are the three that fought. No new library; the spec names the state it returns to (D4).</p>
+<div class="fb"><label>Your feedback on card 10</label><textarea data-k="c10"></textarea></div></section>
+
+<section id="find"><h2>Findings: your choice</h2>
+<p class="note">The first button of each item is my recommendation, and it is selected until you pick another. The <span class="block">accuracy</span> items are open in <code>.claude/tracking/ACCURACY.md</code> and block the unit until you decide. Your words stay yours: nothing in <code>en.md</code> changes until you choose.</p>
+<div id="fd"></div>
+<div class="fb"><label>Anything else on this unit</label><textarea data-k="general"></textarea></div></section>
+
+<section id="gates"><h2>Six-gate report for this page</h2>
+<table><tr><th>Gate</th><th>Result</th><th>This pass</th></tr>
+<tr><td>1 Realism ≥ 95 %</td><td class="pass">pass (plot and schematic level)</td><td>The 1N4148's SPICE model (I<sub>S</sub> 2.52 nA, n 1.752, R<sub>S</sub> 0.57 Ω); a 10 MΩ meter; I²C's own limits (UM10204); the input thresholds 0.25 and 0.75·V<sub>DD</sub>; real wiring counts.</td></tr>
+<tr><td>2 Science 100 %</td><td class="pass">pass for this page; the module has F1, F2, F3 open</td><td>The clamp holds the pin a diode-drop above the rail (F1). A floating input can sit anywhere, rails included (F2). Wired-AND, the ACK and the push-pull short are drawn as they work.</td></tr>
+<tr><td>3 Maths 100 %</td><td class="pass">pass for this page; F4, F5 open</td><td>Recomputed in Node: 20.6 mA, 4.03 V; 3.328 V and 2 nA; 1.664 V; 182 and 109; 0.702 mA, 3.298 V; 1695, 796.5, 254.2, 139.0 ns; 0.29, 0.62, 1.93, 3.54 mA; 1.770 and 0.967 kΩ; 126 and 426 ns crossings at 1.77 kΩ.</td></tr>
+<tr><td>4 Visualization 100 %</td><td class="pass">pass</td><td>Each card's key variable is the one that moves: the connection (card 3), the bit order (card 4), what holds the pin (card 5), the gate and the pull-up (card 6), R and C (card 7), the two outputs (card 8).</td></tr>
+<tr><td>5 Consistency</td><td class="pass">pass</td><td>One palette: the line or pin teal, the HIGH source (pull-ups) amber, a fault rose, the meter azure. One 3.3 V MCU input throughout. The duplicate demo numbers are N2.</td></tr>
+<tr><td>6 Professional design</td><td class="pass">pass (EN only)</td><td>IEC symbols; no glows or charge dots; sliders in one row with words and symbols. Labels checked at 1100 px and at phone width. French comes with the libraries.</td></tr></table></section>
+</main>
+<script>
+const $=id=>document.getElementById(id),NS='http://www.w3.org/2000/svg';
+const C={bg:'#0B0F14',ink:'#E8EAED',muted:'#9AA3AD',faint:'#3A424C',grid:'#1E262F',teal:'#2DD4BF',amber:'#F5B942',violet:'#A78BFA',lime:'#A3E635',rose:'#F472B6',azure:'#60A5FA',grey:'#7B8794'};
+function el(p,t,a){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p.appendChild(e);return e}
+function tx(p,x,y,s,o={}){const e=el(p,'text',{x,y,fill:o.fill||C.muted,'font-size':o.size||13,'text-anchor':o.anchor||'middle','font-family':o.mono?'ui-monospace,Consolas,monospace':'system-ui,Segoe UI,sans-serif'});if(o.weight)e.setAttribute('font-weight',o.weight);e.textContent=s;return e}
+function path(p,d,col,w,dash){return el(p,'path',{d,fill:'none',stroke:col,'stroke-width':w||2,'stroke-dasharray':dash||'none','stroke-linejoin':'round'})}
+function box(p,x,y,w,h,col,fill){return el(p,'rect',{x,y,width:w,height:h,rx:6,fill:fill||'#10161C',stroke:col||C.faint,'stroke-width':2})}
+function res(p,x,y,w,h,col){el(p,'rect',{x,y,width:w,height:h,fill:C.bg,stroke:col||C.ink,'stroke-width':2})}
+function fmt(v){return Math.abs(v)<1e-12?'0':(Math.abs(v)>=100?v.toFixed(0):+v.toPrecision(3)+'')}
+function axes(svg,b,xr,yr,xt,yt,xl,yl){const X=x=>b.x0+(b.x1-b.x0)*(x-xr[0])/(xr[1]-xr[0]),Y=y=>b.y1-(b.y1-b.y0)*(y-yr[0])/(yr[1]-yr[0]);
+ for(const t of yt){el(svg,'line',{x1:b.x0,y1:Y(t),x2:b.x1,y2:Y(t),stroke:C.grid});tx(svg,b.x0-8,Y(t)+4,fmt(t),{anchor:'end'})}
+ for(const t of xt){tx(svg,X(t),b.y1+18,fmt(t))}
+ el(svg,'line',{x1:b.x0,y1:b.y1,x2:b.x1,y2:b.y1,stroke:C.muted});el(svg,'line',{x1:b.x0,y1:b.y0,x2:b.x0,y2:b.y1,stroke:C.muted});
+ if(xl)tx(svg,(b.x0+b.x1)/2,b.y1+38,xl);if(yl)tx(svg,b.x0,b.y0-10,yl,{anchor:'start'});return{X,Y}}
+function radio(ids,cb){ids.forEach(id=>$(id).onclick=()=>{ids.forEach(j=>$(j).classList.toggle('on',j===id));cb(id)})}
+/* ---------- storage ---------- */
+const ST={get(k){try{return localStorage.getItem('u019:'+k)}catch(e){return null}},set(k,v){try{localStorage.setItem('u019:'+k,v)}catch(e){}},keys(){try{return Object.keys(localStorage).filter(k=>k.startsWith('u019:'))}catch(e){return[]}}};
+window.u019Feedback=()=>Object.fromEntries(ST.keys().sort().map(k=>[k.slice(5),ST.get(k.slice(5))]));
+function sum(){const n=ST.keys().length;$('fbsum').textContent=n?n+' saved':''}
+function showFb(){const f=u019Feedback(),k=Object.keys(f);$('fbout').style.display='block';$('fbout').textContent=k.length?k.map(x=>x+': '+f[x]).join('\n'):'Nothing entered yet.'}
+function clearFb(){ST.keys().forEach(k=>{try{localStorage.removeItem(k)}catch(e){}});document.querySelectorAll('textarea').forEach(t=>t.value='');document.querySelectorAll('.bar button').forEach(b=>b.classList.remove('on'));sum()}
+/* ---------- card 1 ---------- */
+const P1a=['quantity','sensor','loading','conditioning','ADC input','conversion','REFERENCE'],P1b=['digital data','DIGITAL INTERFACE','firmware','number'];let k1=0;
+function draw1(){const svg=$('p1');svg.innerHTML='';const W=128,G=26;
+ P1a.forEach((s,i)=>{const x=20+i*(W+G)*0.92,y=40,on=k1>=1;box(svg,x,y,W*0.92-4,46,on?C.muted:C.faint);tx(svg,x+(W*0.92-4)/2,y+28,s,{fill:on?(s==='REFERENCE'?C.rose:C.ink):C.faint,size:13});if(i)path(svg,`M${x-G*0.92+2} ${y+23}H${x-2}`,C.faint,2)});
+ tx(svg,20,26,k1===0?'Day 1, retraced':'Day 1: the code stops at the converter',{anchor:'start'});
+ P1b.forEach((s,i)=>{if(k1<2+i)return;const x=160+i*230,y=160,amb=s==='DIGITAL INTERFACE';box(svg,x,y,200,50,amb?C.amber:C.muted);tx(svg,x+100,y+31,s,{fill:amb?C.amber:C.ink,size:14,weight:amb?600:400});
+  path(svg,i?`M${x-30} ${y+25}H${x-2}`:`M${20+6*(W+G)*0.92+40} 86V${y+25}H${x-2}`,C.muted,2)});
+ if(k1===1)tx(svg,560,190,'… and nothing after it: the path is not finished when the converter is',{fill:C.amber,size:14});
+ $('t1').textContent=['Step 0: the Day 1 path, retraced','Step 1: stop on the converter, a gap after it','Step 2: digital data','Step 3: DIGITAL INTERFACE, lit amber','Step 4: firmware','Step 5: number'][k1]}
+$('b1p').onclick=()=>{k1=Math.max(0,k1-1);draw1()};$('b1n').onclick=()=>{k1=Math.min(5,k1+1);draw1()};
+/* ---------- card 2 ---------- */
+const L2=['voltage levels: 3.3 V logic','timing','clocking','bit order','word size','protocol','framing','direction','electrical characteristics'];let k2=0;
+function draw2(){const svg=$('p2');svg.innerHTML='';box(svg,60,40,200,300,C.muted);tx(svg,160,190,'ADC',{fill:C.ink,size:20});box(svg,840,40,200,300,C.muted);tx(svg,940,190,'MCU',{fill:C.ink,size:20});
+ L2.forEach((s,i)=>{const y=62+i*32,col=k2===0?C.faint:(i===0?C.teal:(k2>i?C.amber:C.faint));el(svg,'line',{x1:260,y1:y,x2:840,y2:y,stroke:col,'stroke-width':2.5});tx(svg,550,y-6,s,{fill:col===C.faint?C.muted:col,size:13})});
+ $('t2').textContent=k2===0?'Before the poll: nine lines, unlabelled in colour':k2===1?'They agree on one: 3.3 V logic (teal)':'Open question '+(k2-1)+' of 8: '+L2[k2-1]}
+$('b2p').onclick=()=>{k2=Math.max(0,k2-1);draw2()};$('b2n').onclick=()=>{k2=Math.min(9,k2+1);draw2()};
+/* ---------- card 3 ---------- */
+const D={Is:2.52e-9,n:1.752,Vt:0.025852,Rs:0.568};let m3='a';
+function solve3(){const R1=47,Rm=10e6;let rt=0,rb=Infinity;if(m3==='b'){rt=10e3;rb=20e3}if(m3==='c'){rt=20e3;rb=10e3}
+ const rbe=rb===Infinity?Rm:rb*Rm/(rb+Rm);const Id=V=>{const vd=V-3.3;let I=0;if(vd<=0)return D.Is*(Math.exp(vd/(D.n*D.Vt))-1);let lo=0,hi=1;for(let k=0;k<80;k++){const m=(lo+hi)/2;const v=D.n*D.Vt*Math.log(m/D.Is+1)+m*D.Rs;v>vd?hi=m:lo=m}return lo};
+ const f=V=>(5-V)/(R1+rt)-V/rbe-Id(V);let lo=0,hi=5;for(let k=0;k<100;k++){const m=(lo+hi)/2;f(m)>0?lo=m:hi=m}return{V:lo,Id:Id(lo),Is:(5-lo)/(R1+rt)}}
+function draw3(){const svg=$('p3');svg.innerHTML='';const r=solve3(),T=80,G=270;
+ el(svg,'circle',{cx:90,cy:175,r:24,fill:'none',stroke:C.ink,'stroke-width':2});el(svg,'line',{x1:90,y1:151,x2:90,y2:199,stroke:C.ink,'stroke-width':2});tx(svg,122,170,'5 V',{anchor:'start',fill:C.ink});tx(svg,122,188,'module output',{anchor:'start',size:12});
+ path(svg,`M90 151V${T}H150M230 ${T}H300`,C.ink);path(svg,`M90 199V${G}`,C.ink);res(svg,150,T-10,80,20,C.ink);tx(svg,190,T-18,'R1 47 Ω (its own)');
+ if(m3==='a'){path(svg,`M300 ${T}H560`,C.ink)}else{const top=m3==='b'?'10 kΩ':'20 kΩ',bot=m3==='b'?'20 kΩ':'10 kΩ';res(svg,330,T-10,90,20,m3==='c'?C.rose:C.ink);tx(svg,375,T-18,'R2 '+top,{fill:m3==='c'?C.rose:C.muted});path(svg,`M420 ${T}H560M470 ${T}V140M470 220V${G}`,C.ink);res(svg,460,140,20,80,m3==='c'?C.rose:C.ink);tx(svg,490,185,'R3 '+bot,{anchor:'start',fill:m3==='c'?C.rose:C.muted});el(svg,'circle',{cx:470,cy:T,r:4,fill:C.ink})}
+ el(svg,'circle',{cx:560,cy:T,r:4,fill:C.ink});tx(svg,560,T-14,r.V.toFixed(3)+' V',{fill:C.teal,size:15});
+ box(svg,620,50,300,200,C.violet);tx(svg,770,72,'3.3 V MCU input',{fill:C.violet});path(svg,`M560 ${T}H700`,C.ink);
+ /* clamp diode to the rail: IEC triangle and bar, anode at the pin */
+ path(svg,`M700 ${T}V120`,C.ink);el(svg,'path',{d:'M688 120L712 120L700 140Z',fill:'none',stroke:C.ink,'stroke-width':2});el(svg,'line',{x1:688,y1:140,x2:712,y2:140,stroke:C.ink,'stroke-width':2});
+ path(svg,'M700 140V190H990',C.ink);tx(svg,720,135,'clamp diode (1N4148 model)',{anchor:'start',size:12});
+ const hot=r.Id>1e-4;if(hot){tx(svg,820,182,(r.Id*1e3).toFixed(1)+' mA into the rail',{fill:C.rose,size:14})}
+ el(svg,'circle',{cx:990,cy:225,r:22,fill:'none',stroke:C.ink,'stroke-width':2});el(svg,'line',{x1:990,y1:203,x2:990,y2:247,stroke:C.ink,'stroke-width':2});path(svg,`M990 190V203M990 247V${G}`,C.ink);tx(svg,1022,222,'3.3 V rail',{anchor:'start',fill:C.ink,size:12});tx(svg,1022,238,'+ MCU load',{anchor:'start',size:12});
+ path(svg,`M80 ${G}H1000`,C.ink);
+ const st=r.V<0.825?'LOW':r.V>2.475?'HIGH':'undefined';
+ $('ro3').innerHTML=`<div>pin voltage (meter)<b>${r.V.toFixed(3)} V</b></div><div>above the 3.3 V rail by<b class="${r.V>3.31?'bad':''}">${r.V>3.3?((r.V-3.3)*1e3).toFixed(0)+' mV':'— (below it)'}</b></div><div>clamp current into the rail<b class="${hot?'bad':''}">${r.Id>1e-6?(r.Id*1e3).toFixed(1)+' mA':(r.Id*1e9).toFixed(1)+' nA'}</b></div><div>the input reads<b class="${st==='undefined'?'bad':''}">${st}</b></div><div>current from the 5 V output<b>${(r.Is*1e3).toFixed(2)} mA</b></div>`}
+radio(['s3a','s3b','s3c'],id=>{m3={s3a:'a',s3b:'b',s3c:'c'}[id];draw3()});
+/* ---------- card 4 ---------- */
+let msb=true;const B4='10110110';
+function draw4(){const svg=$('p4');svg.innerHTML='';const x0=150,w=100;const rows=[['CS',C.azure],['SCLK',C.muted],['MISO',C.teal]];
+ rows.forEach(([n,c],i)=>tx(svg,120,70+i*80,n,{anchor:'end',fill:c,size:15}));
+ path(svg,`M60 ${50}H${x0-20}V90H${x0+8*w+20}V50H1080`,C.azure,2);
+ let d='M'+(x0-20)+' 170';for(let k=0;k<8;k++){const x=x0+k*w;d+=`H${x+w/2}V130H${x+w}V170`}path(svg,d+'H1080',C.muted,2);
+ let dm='';for(let k=0;k<8;k++){const x=x0+k*w,b=B4[k]==='1',y=b?210:250;dm+=(k?'L':'M')+x+' '+y+'H'+(x+w)}path(svg,dm,C.teal,2.5);
+ for(let k=0;k<8;k++){const x=x0+k*w;tx(svg,x+w/2,236,B4[k],{fill:C.ink,size:16,mono:true});const wt=msb?7-k:k;tx(svg,x+w/2,285,'2^'+wt,{size:12,fill:C.muted});el(svg,'line',{x1:x+w/2,y1:120,x2:x+w/2,y2:260,stroke:C.faint,'stroke-dasharray':'2 4'})}
+ tx(svg,x0,24,'each bit sampled on the rising SCLK edge (dotted), while CS is low',{anchor:'start'});
+ const v=msb?parseInt(B4,2):parseInt(B4.split('').reverse().join(''),2);$('ro4').innerHTML=`<div>the same eight edges, read ${msb?'MSB':'LSB'} first<b>${v}</b></div><div>the other reading<b>${msb?parseInt(B4.split('').reverse().join(''),2):parseInt(B4,2)}</b></div>`}
+radio(['m4a','m4b'],id=>{msb=id==='m4a';draw4()});
+/* ---------- card 5 ---------- */
+let m5='a',t5=0,an5=null;
+function lvl5(){if(m5==='c')return 3.3*10e6/(10e6+10e3);if(m5==='d')return 0;if(m5==='b')return 0.004;const s=Math.sin(t5*0.7)+0.6*Math.sin(t5*1.9+1)+0.35*Math.sin(t5*4.3+2);return Math.max(0,Math.min(3.3,1.65+1.0*s))}
+function draw5(){const svg=$('p5');svg.innerHTML='';const b={x0:120,y0:30,y1:250},Y=v=>b.y1-(b.y1-b.y0)*v/3.3;
+ el(svg,'rect',{x:b.x0,y:Y(3.3),width:60,height:Y(2.475)-Y(3.3),fill:'rgba(163,230,53,.15)'});el(svg,'rect',{x:b.x0,y:Y(2.475),width:60,height:Y(0.825)-Y(2.475),fill:'rgba(244,114,182,.15)'});el(svg,'rect',{x:b.x0,y:Y(0.825),width:60,height:Y(0)-Y(0.825),fill:'rgba(96,165,250,.15)'});
+ tx(svg,b.x0-8,Y(2.9),'HIGH',{anchor:'end',fill:C.lime});tx(svg,b.x0-8,Y(1.65),'undefined',{anchor:'end',fill:C.rose});tx(svg,b.x0-8,Y(0.4),'LOW',{anchor:'end',fill:C.azure});
+ for(const [v,s] of [[3.3,'3.3 V'],[2.475,'V_IH 2.475'],[0.825,'V_IL 0.825'],[0,'0 V']])tx(svg,b.x0+66,Y(v)+4,s,{anchor:'start',size:12});
+ const v=lvl5();el(svg,'line',{x1:b.x0-4,y1:Y(v),x2:b.x0+64,y2:Y(v),stroke:C.teal,'stroke-width':4});
+ /* the pin and what is attached */
+ const px=520,py=140;el(svg,'circle',{cx:px,cy:py,r:5,fill:C.teal});tx(svg,px,py-14,'pin',{fill:C.teal});path(svg,`M${px} ${py}H640`,C.ink);box(svg,640,100,180,80,C.violet);tx(svg,730,145,'CMOS input',{fill:C.violet});
+ if(m5==='b'){path(svg,`M${px} ${py}V200`,C.azure);box(svg,470,200,100,40,C.azure);tx(svg,520,225,'meter 10 MΩ',{fill:C.azure,size:12})}
+ if(m5==='c'){path(svg,`M${px} ${py}V110`,C.ink);res(svg,510,40,20,70,C.amber);path(svg,`M${px} 40V20`,C.ink);tx(svg,px+20,30,'10 kΩ to 3.3 V',{anchor:'start',fill:C.amber,size:12})}
+ if(m5==='d'){path(svg,`M${px} ${py}V170`,C.ink);res(svg,510,170,20,70,C.amber);tx(svg,px+20,215,'10 kΩ to ground',{anchor:'start',fill:C.amber,size:12})}
+ const st=v<0.825?'LOW':v>2.475?'HIGH':'undefined';
+ $('ro5').innerHTML=`<div>pin level<b>${v.toFixed(3)} V</b></div><div>the input reads<b class="${st==='undefined'?'bad':''}">${st}</b></div><div>what sets it<b>${{a:'nothing: leakage, charge, a finger',b:'the meter (it is the pull-down)',c:'the pull-up',d:'the pull-down'}[m5]}</b></div>`}
+function tick5(){t5+=0.03;draw5();an5=requestAnimationFrame(tick5)}
+radio(['f5a','f5b','f5c','f5d'],id=>{m5={f5a:'a',f5b:'b',f5c:'c',f5d:'d'}[id];if(m5==='a'&&!an5)an5=requestAnimationFrame(tick5);if(m5!=='a'&&an5){cancelAnimationFrame(an5);an5=null}draw5()});
+/* ---------- card 6 ---------- */
+let on6=true,pu6=false;
+function draw6(){const svg=$('p6');svg.innerHTML='';const G=260,B=110;
+ path(svg,`M200 ${B}H760`,C.teal,3);tx(svg,200,B-12,'bus',{anchor:'start',fill:C.teal});
+ /* N-MOSFET drawn as a switch-like IEC symbol: channel, gate */
+ const mx=420;path(svg,`M${mx} ${B}V160M${mx} 200V${G}`,C.ink);el(svg,'line',{x1:mx,y1:160,x2:mx,y2:200,stroke:on6?C.ink:C.faint,'stroke-width':4});path(svg,`M${mx-14} 162V198M${mx-14} 180H${mx-60}`,C.ink);
+ tx(svg,mx-66,184,'gate '+(on6?'5 V':'0 V'),{anchor:'end',fill:on6?C.ink:C.muted});tx(svg,mx+12,184,on6?'on: pulls low':'off: an open switch',{anchor:'start',size:12});
+ if(pu6){path(svg,`M640 ${B}V90M640 20V10`,C.ink);res(svg,630,20,20,70,C.amber);tx(svg,662,50,'4.7 kΩ to 3.3 V',{anchor:'start',fill:C.amber,size:12})}
+ path(svg,`M760 ${B}V150`,C.azure);box(svg,710,150,100,40,C.azure);tx(svg,760,175,'meter',{fill:C.azure,size:12});path(svg,`M760 190V${G}`,C.azure);
+ path(svg,`M150 ${G}H900`,C.ink);
+ let v,I,what;if(on6){I=pu6?3.3/(4.7e3+0.5):0;v=I*0.5;what=pu6?'the transistor (sinks the pull-up\'s current)':'the transistor'}else if(pu6){v=3.3*10e6/(10e6+4.7e3);I=0;what='the pull-up: the HIGH comes from R1'}else{v=0;I=0;what='nothing: the bus floats (the meter reads 0 V because it is the only path)'}
+ tx(svg,480,B-12,v.toFixed(3)+' V',{fill:C.ink,size:15});
+ $('ro6').innerHTML=`<div>bus (meter)<b>${v<0.01?v.toFixed(4):v.toFixed(3)} V</b></div><div>current through the pull-up<b>${(I*1e3).toFixed(2)} mA</b></div><div>what decides the level<b style="font-size:14px">${what}</b></div>`}
+radio(['g6a','g6b'],id=>{on6=id==='g6a';draw6()});radio(['r6a','r6b'],id=>{pu6=id==='r6b';draw6()});
+/* ---------- card 7 ---------- */
+let from30=true;const LN=Math.log(7/3);
+function draw7(){const svg=$('p7');svg.innerHTML='';const R=+$('s7r').value,Cb=+$('s7c').value*1e-12,RC=R*Cb,tr=RC*LN*1e9,Is=2.9/R*1e3,t30=RC*Math.log(1/0.7)*1e9,t70=RC*Math.log(1/0.3)*1e9;
+ $('v7r').textContent=R>=1000?(R/1000).toFixed(2)+' kΩ':R+' Ω';$('v7c').textContent=(Cb*1e12).toFixed(0)+' pF';
+ const b={x0:80,x1:760,y0:30,y1:330},tmax=2000,A=axes(svg,b,[0,tmax],[0,3.3],[0,250,500,750,1000,1250,1500,1750,2000],[0,0.99,1.65,2.31,3.3],from30?'time from the 30 % crossing (ns)':'time from the release (ns)','bus (V)');
+ for(const f of [0.3,0.7]){el(svg,'line',{x1:b.x0,y1:A.Y(3.3*f),x2:b.x1,y2:A.Y(3.3*f),stroke:C.violet,'stroke-dasharray':'5 5'});tx(svg,b.x1+4,A.Y(3.3*f)+4,(f*100)+' %',{anchor:'start',fill:C.violet})}
+ for(const [t,s] of [[300,'Fast 300 ns'],[1000,'Standard 1000 ns']]){el(svg,'line',{x1:A.X(t),y1:b.y0,x2:A.X(t),y2:b.y1,stroke:C.rose,'stroke-dasharray':'6 5'});tx(svg,A.X(t)+4,b.y0+12,s,{anchor:'start',fill:C.rose,size:12})}
+ let d='';const off=from30?t30:0;for(let i=0;i<=400;i++){const t=tmax*i/400,tt=(t+off)*1e-9,v=3.3*(1-Math.exp(-tt/RC));d+=(i?'L':'M')+A.X(t)+' '+A.Y(v)}path(svg,d,C.teal,3);
+ if(!from30){el(svg,'circle',{cx:A.X(t30),cy:A.Y(0.99),r:5,fill:C.amber});el(svg,'circle',{cx:A.X(Math.min(t70,tmax)),cy:A.Y(2.31),r:5,fill:C.amber})}
+ else{el(svg,'circle',{cx:A.X(0),cy:A.Y(0.99),r:5,fill:C.amber});if(tr<=tmax)el(svg,'circle',{cx:A.X(tr),cy:A.Y(2.31),r:5,fill:C.amber})}
+ /* the sink-current gauge (the Equation beside it) */
+ const gx=840,gy0=40,gy1=330,Ymax=6,Yg=i=>gy1-(gy1-gy0)*Math.min(i,Ymax)/Ymax;el(svg,'rect',{x:gx,y:gy0,width:60,height:gy1-gy0,fill:'#10161C',stroke:C.faint});
+ el(svg,'rect',{x:gx,y:Yg(Is),width:60,height:gy1-Yg(Is),fill:Is>3?'rgba(244,114,182,.6)':'rgba(245,185,66,.6)'});el(svg,'line',{x1:gx-6,y1:Yg(3),x2:gx+66,y2:Yg(3),stroke:C.rose,'stroke-width':2});tx(svg,gx+70,Yg(3)+4,'3 mA Fast-mode limit',{anchor:'start',fill:C.rose,size:12});
+ tx(svg,gx+30,gy0-10,'sink current',{size:12});tx(svg,gx+30,gy1+18,'(3.3 − 0.4) V / R',{size:12});tx(svg,gx+70,Yg(Is)+4,Is.toFixed(2)+' mA',{anchor:'start',fill:C.ink,size:14});
+ const fast=tr<=300,std=tr<=1000,cur=Is<=3;
+ $('ro7').innerHTML=`<div>R·C<b>${(RC*1e9).toFixed(0)} ns</b></div><div>30 % → 70 % (0.8473·R·C)<b>${tr.toFixed(1)} ns</b></div><div>crosses 30 % / 70 % after release<b>${t30.toFixed(0)} / ${t70.toFixed(0)} ns</b></div><div>Standard (≤ 1000 ns)<b class="${std?'ok':'bad'}">${std?'meets':'misses'}</b></div><div>Fast (≤ 300 ns)<b class="${fast?'ok':'bad'}">${fast?'meets':'misses'}</b></div><div>sink (≤ 3 mA)<b class="${cur?'ok':'bad'}">${Is.toFixed(2)} mA, ${cur?'within':'past'} Fast's 3 mA</b></div>`}
+['s7r','s7c'].forEach(i=>$(i).oninput=draw7);document.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{$('s7r').value=b.dataset.r;$('s7c').value=200;draw7()});radio(['x7a','x7b'],id=>{from30=id==='x7a';draw7()});
+/* ---------- card 8 ---------- */
+let p1=false,p2=false;
+function draw8(){const svg=$('p8');svg.innerHTML='';const B=90,G=250;path(svg,`M120 ${B}H700`,C.teal,3);path(svg,`M160 ${B}V40`,C.ink);res(svg,150,20,20,60,C.amber);path(svg,'M160 20V10',C.ink);tx(svg,180,40,'pull-up to 3.3 V',{anchor:'start',fill:C.amber,size:12});
+ [[320,p1,'output 1'],[520,p2,'output 2']].forEach(([x,on,n])=>{path(svg,`M${x} ${B}V150M${x} 190V${G}`,C.ink);el(svg,'line',{x1:x,y1:150,x2:x,y2:190,stroke:on?C.ink:C.faint,'stroke-width':4});path(svg,`M${x-14} 152V188M${x-14} 170H${x-50}`,C.ink);tx(svg,x+12,174,n+(on?': pulls':': lets go'),{anchor:'start',size:12,fill:on?C.ink:C.muted})});
+ path(svg,`M100 ${G}H720`,C.ink);const low=p1||p2;tx(svg,640,B-12,low?'LOW':'HIGH',{fill:low?C.azure:C.lime,size:18,weight:600});
+ const tb=[[0,0,'HIGH'],[0,1,'LOW'],[1,0,'LOW'],[1,1,'LOW']];tx(svg,900,40,'truth table (1 = pulls)',{size:12});
+ tb.forEach(([a,c,o],i)=>{const cur=(+p1===a&&+p2===c),y=70+i*34;el(svg,'rect',{x:800,y:y-22,width:220,height:30,rx:4,fill:cur?'rgba(45,212,191,.15)':'none',stroke:cur?C.teal:C.faint});tx(svg,840,y,String(a),{mono:true,fill:C.ink});tx(svg,900,y,String(c),{mono:true,fill:C.ink});tx(svg,970,y,o,{fill:o==='LOW'?C.azure:C.lime})});
+ tx(svg,840,232,'out 1',{size:11});tx(svg,900,232,'out 2',{size:11});tx(svg,970,232,'line',{size:11});
+ const svg2=$('p8b');svg2.innerHTML='';const x0=110,w=100;tx(svg2,90,55,'SCL',{anchor:'end'});tx(svg2,90,125,'SDA',{anchor:'end'});
+ let d='M'+(x0-30)+' 70';for(let k=0;k<9;k++){const x=x0+k*w;d+=`H${x+30}V40H${x+70}V70`}path(svg2,d+'H1080',C.muted,2);
+ const bits='10010000';let ds='';for(let k=0;k<8;k++){const x=x0+k*w,y=bits[k]==='1'?100:140;ds+=(k?'L':'M')+x+' '+y+'H'+(x+w)}path(svg2,ds,C.teal,2.5);path(svg2,`M${x0+8*w} 140H${x0+9*w}`,C.rose,3);
+ for(let k=0;k<8;k++)tx(svg2,x0+k*w+w/2,165,bits[k],{mono:true,fill:C.ink});tx(svg2,x0+8*w+w/2,165,'ACK',{fill:C.rose});tx(svg2,x0+8*w+w/2,92,'receiver pulls',{fill:C.rose,size:11});tx(svg2,x0+3.5*w,22,'transmitter: address 1001000 + write',{fill:C.teal,size:12})}
+radio(['a8a','a8b'],id=>{p1=id==='a8b';draw8()});radio(['b8a','b8b'],id=>{p2=id==='b8b';draw8()});
+/* ---------- card 9 ---------- */
+function draw9(){const svg=$('p9');svg.innerHTML='';
+ const side=(x0,title,lines,col)=>{tx(svg,x0+240,28,title,{fill:C.ink,size:15});box(svg,x0+10,60,110,180,C.muted);tx(svg,x0+65,155,'MCU',{fill:C.ink});
+  [0,1,2].forEach(i=>{box(svg,x0+360,50+i*72,110,52,C.muted);tx(svg,x0+415,82+i*72,'peripheral '+(i+1),{size:12,fill:C.ink})});
+  lines.forEach(([y,lab,targets,c],j)=>{path(svg,`M${x0+120} ${y}H${x0+330}`,c,2);targets.forEach(t=>path(svg,`M${x0+330} ${y}V${76+t*72}H${x0+360}`,c,1.5));tx(svg,x0+128,y-4,lab,{anchor:'start',fill:c,size:11})});};
+ side(0,'SPI: 6 lines (3 shared + one CS each)',[[80,'SCLK',[0,1,2],C.muted],[100,'MOSI',[0,1,2],C.muted],[120,'MISO',[0,1,2],C.muted],[160,'CS1',[0],C.azure],[180,'CS2',[1],C.azure],[200,'CS3',[2],C.azure]]);
+ side(560,'I²C: 2 lines + two pull-ups, addressed',[[100,'SDA',[0,1,2],C.teal],[140,'SCL',[0,1,2],C.teal]]);
+ tx(svg,550,280,'the cost the Flow names, counted: pins, wires, PCB space; then speed, addressing and electrical needs differ',{size:12})}
+/* ---------- findings ---------- */
+const F=[
+['F1',true,'Card 3, PLAN Look for: “the pin reads about 3.3 V both times; the meter alone hides the harm”','Wired straight, the clamp diode holds the pin a diode-drop above its rail: 20.6 mA (the explain\'s “some 21 mA” ✓) and the pin at 4.03 V. So the meter shows the pin 0.7 V above its supply, and the current overlay shows the harm. Also, the 20.6 mA has to go into the 3.3 V rail. A bench supply can\'t sink it, so the rail needs the MCU\'s own load. (Studio\'s own 1N4148 profile is a worst-case envelope, V_F 1 V at 10 mA; under it the fixture would show 14.3 mA and 4.33 V, so the demonstration uses the typical model.)',['Look for: “direct: the pin at about 4.0 V, a diode-drop above its own rail, and about 21 mA into it; with the divider, 3.33 V and almost nothing. The meter shows the pin above its rail; the current overlay shows the harm.” The rail is drawn with the MCU\'s load','Keep the Look for; draw it as the numbers fall','Other (say below)']],
+['F2',true,'Card 5, Flow p3: “the pin sits somewhere between a guaranteed low and a guaranteed high”','A floating CMOS input is not kept between V_IL and V_IH. Leakage and stray charge often hold it near a rail for minutes. The card\'s own FAULT relies on this: the button “reads HIGH on the bench every time”.',['p3: “With nothing connected, nothing holds the pin at any level: it may sit between a guaranteed low and a guaranteed high, or drift to either, and it can change while you watch.”','Keep']],
+['F3',true,'Card 1, Flow p0–p1: the code reaching the processor through SPI, I²C…','This assumes the converter is a separate chip, but doesn\'t say so. Day 1\'s converter is inside the MCU, and its code reaches the CPU through a register. The module\'s own transition says so.',['p1: “…For example, when the ADC is a separate chip, ADC → microcontroller may communicate through interfaces such as:”','Keep']],
+['F4',true,'Card 7, the centrepiece: “vertical markers at 300 ns and 1000 ns”, and “the 70 % crossing lands on the 300 ns marker”','The limits are durations from 30 % to 70 %, but the plot measures time from the release. At 1.77 kΩ the edge crosses 70 % at 426 ns. On that axis the 300 ns marker would say the numeric\'s answer fails. The Flow\'s numbers are right.',['Put t = 0 at the 30 % crossing (axis “time from the 30 % crossing”); the 70 % crossing then lands on 300 ns at 1.77 kΩ (as drawn above). PLAN SHOW and reveal reworded to match','Keep t from the release and draw the limit as a bracket starting at the 30 % crossing (needs X13, a marker that moves with R)']],
+['F5',true,'Card 3, FAULT: “the pin sits at 1.67 V”','With the fixture\'s own 47 Ω in series it is 1.664 V (1.663 V with the meter), which rounds to 1.66. It is still in the undefined band ✓.',['“…the pin sits at about 1.66 V…”','Keep 1.67 (the divider alone)']],
+['N1',false,'Card 3: the ESP32 is named (statement and Flow p1, three times)','A product name on a teaching surface, against the unbranded rule (D1·070-F1, D1·080-N2, D1·090-N2 removed theirs). The facts stay the same unbranded: a 3.3 V MCU whose GPIOs aren\'t 5 V-tolerant.',['Unbranded: “a 3.3 V microcontroller, whose GPIOs operate at 3.3 V and are not designed to tolerate a 5 V signal” (statement: “…wired straight to a 3.3 V microcontroller\'s GPIO…”)','Keep the name (an exception)']],
+['N2',false,'Cards 5, 6, 7: demo cues “(#1d)”, “(#1e)”, “Plot Bench (#1e)”','Old demo numbers, and #1e is used for two different demos.',['Drop the numbers: “[[demo]] Electronics Bench — …”, “[[demo]] Plot Bench — …”','Renumber them']],
+['N3',false,'Card 1: the spoken path against the drawn path','The Flow reads the transcript\'s nine stages (…Electrical signal… ADC… Processor → Engineering value). The course\'s drawing has ten (…loading, ADC input, conversion, REFERENCE… firmware → number). Both are true descriptions, but the room sees one and hears the other.',['Keep the Flow; the drawing shows the course path, with the Flow\'s names on the new leg (digital data, DIGITAL INTERFACE) and “firmware → number” as the drawing\'s own','Draw the Flow\'s nine names instead of the course path']],
+['D1',false,'Cards 3, 5, 6, 8: the Electronics widgets','The Electronics Bench is still in development, so its widgets stay deferred. The cards still get a demonstration, as D1·090 card 4 did.',['Animation Bench demonstrations by Benches: one scene library (a 3.3 V input with its clamp; the open-drain bus, one and two outputs; the meter), specs here and one crossing','Electronics Bench specs now (the PLAN calls 3, 6, 8 “ready” from existing parts)','No demonstration until the Electronics Bench lands']],
+['D2',false,'Cards 1, 2, 4, 7, 8, 10 on the PLAN\'s benches','Card 1 Draw (the course path, crossing 511); cards 2 and 4 Figures (ours to draw); card 7 Plot plus the sink-current Equation; card 8 Draw (wired-AND) and Figure (byte and ACK); card 10 card 7\'s Plot again.',['Yes, specs now','Other']],
+['D3',false,'Card 9: a demonstration for the poll card','The PLAN gives it none. Proposed: the SPI and I²C wiring compared for three peripherals (6 lines against 2), as drawn above.',['The wiring Figure','No bench (the poll only)']],
+['D4',false,'Card 7: the Equation “beside” the Plot','Two blocks side by side on one card is Studio\'s to build (as with D1·080 card 7). Until then, the sink current can be a second band or a readout in the Plot.',['The sink current as a second curve band in the same Plot (a gauge, as drawn), and the Equation on its own slide after the numeric','Ask Studio for side by side (to you, to route)']],
+['D5',false,'The module runs ≈ 3 min over','≈ 33 of 30 minutes. Reported only; nothing is trimmed.',['Noted: the owner cuts if needed','Other (say below)']]];
+const render=(L)=>L.map(([k,acc,t,w,opts])=>`<div><div class="q"><b>${k} · ${t}.</b>${acc?'<span class="block">accuracy</span>':''} ${w}</div><div class="bar" data-c="${k}">${opts.map(o=>`<button>${o}</button>`).join('')}</div><textarea data-k="${k}" placeholder="Optional note"></textarea></div>`).join('');
+$('fd').innerHTML=render(F);
+document.querySelectorAll('.bar[data-c]').forEach(b=>{const k=b.dataset.c+'-choice',v=ST.get(k)||b.querySelector('button').textContent;b.querySelectorAll('button').forEach(btn=>{if(btn.textContent===v)btn.classList.add('on');btn.onclick=()=>{b.querySelectorAll('button').forEach(x=>x.classList.remove('on'));btn.classList.add('on');ST.set(k,btn.textContent);sum()}})});
+document.querySelectorAll('textarea[data-k]').forEach(t=>{t.value=ST.get(t.dataset.k)||'';t.oninput=()=>{ST.set(t.dataset.k,t.value);sum()}});
+draw1();draw2();draw3();draw4();an5=requestAnimationFrame(tick5);draw6();draw7();draw8();draw9();sum();
+</script></body></html>

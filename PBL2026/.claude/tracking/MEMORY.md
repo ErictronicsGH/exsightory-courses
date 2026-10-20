@@ -36,3 +36,12 @@ Building any bench or asset. Changing the owner's card text or Flow (report anyt
 - 2026-10-20: loaded after U018 (U016 still parked on crossing 505). Start: list crossings from the worktree
   (510–512 are ours, open); run the accuracy check A1–A7 on D2·010 (watch *"this morning"*: DAY23-F1), then brief the
   owner as `bench-work/previews/u019-preview.html` and wait for design direction.
+- 2026-10-20: crossings listed from the worktree (none to pbl2026; ours 510–512 open). Accuracy check A1–A7 on D2·010:
+  five findings **open** (F1 card 3: wired straight the pin sits at 4.03 V, not "about 3.3 V", 20.6 mA into a rail that
+  must have a load; Studio's 1N4148 profile is a max envelope giving 14.3 mA; F2 card 5 "sits between" vs its FAULT;
+  F3 card 1 assumes a separate ADC chip; F4 the centrepiece's 300 ns marker measured from release (1.77 kΩ crosses 70 %
+  at 426 ns); F5 swapped divider 1.66 V, not 1.67). Brief page `bench-work/previews/u019-preview.html` (all ten cards
+  live, N1 ESP32 named, N2 duplicate demo numbers, N3 spoken vs drawn path, D1 Electronics cards 3/5/6/8 as one
+  Animation library by Benches, D2 benches, D3 card 9 wiring Figure, D4 the Equation beside the Plot, D5 overrun).
+  Flow 2,626 words (20.2 min); module ≈ 33 of 30 min. **Next:** read the owner's choices (`u019Feedback()`), apply to
+  `en.md`, re-check, write the specs.
