@@ -70,3 +70,11 @@ Building any bench or asset. Changing the owner's card text or Flow (report anyt
   card; asks whether cards 1 and 5 join). **Cards 2, 3, 4, 7, 8 wait for 505's answer.** Cards 1, 5, 6 specified from
   their PLAN (Draw, Draw, Equation) meanwhile. Still to raise: the bench-level Symbols switch (IEC/US), unless 505's
   answer takes it.
+- 2026-10-20 (session 3, end): specs **D1-070-01** (Draw, `adc-input-inside-the-pin`, 1.4/3.0 min), **-05** (Draw,
+  `mux-one-capacitor`, 1.7 min), **-06** (Equation, `max-source-impedance`, 1.4/2.3 min) written (spec-draft; README rows
+  added). They raised F9, F10, F11, which the owner decided and which are applied (no open finding on D1·070). Their
+  design proposals (each spec's §14) are still open for the owner. Page updated (findings decided, the full-scale ghost on
+  cards 2 and 7, card 1's strip one sample) and re-verified. Committed and pushed (4a3ce69). **Next session: list crossings;
+  when 505 is answered, write specs 02 (holds D1·070's module time table: cards 1 3.0, 5 1.7, 6 2.3 so far), 03, 04, 07,
+  08 to Benches' shape (each with the Plot stand-in), revise 01 and 05 if they join the family, then raise the Symbols
+  switch (and `{en, fr}` text in a `.benchdrawing`) as crossings unless 505 took them.**
