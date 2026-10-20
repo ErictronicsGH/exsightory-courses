@@ -353,7 +353,7 @@ The charging pulse is the part that bites. The capacitor only draws current
 near the peaks, so it draws a *lot* for a short time. Your transformer and
 diodes see peak currents several times the average.
 
-## The slope of the droop is the load current
+## The slope of the droop is the load current {layout=split}
 
 ```plot
 title: The capacitor's voltage, and the current that follows from its slope
