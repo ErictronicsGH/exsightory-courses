@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>U017 brief — D1·080 conversion</title>
+<style>
+:root{color-scheme:dark;--bg:#0E1217;--panel:#151B22;--ink:#E8EAED;--muted:#9AA3AD;--faint:#3A424C;--teal:#2DD4BF;--amber:#F5B942;--violet:#A78BFA;--lime:#A3E635;--rose:#F472B6;--azure:#60A5FA}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,Segoe UI,Roboto,sans-serif}
+main{max-width:1180px;margin:0 auto;padding:16px}h1{font-size:22px;margin:8px 0 4px}h2{font-size:18px;margin:0 0 6px}
+section{background:var(--panel);border:1px solid var(--faint);border-radius:10px;padding:14px 16px;margin:14px 0}
+.top{position:sticky;top:0;z-index:5;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid var(--faint)}
+button{background:#1C242D;color:var(--ink);border:1px solid var(--faint);border-radius:6px;padding:5px 10px;font:inherit;font-size:13px;cursor:pointer}
+button:hover{border-color:var(--muted)}button.on{border-color:var(--teal);color:var(--teal)}
+.tag{display:inline-block;font-size:12px;border-radius:4px;padding:1px 7px;margin-right:6px;border:1px solid}
+.t-plot{color:var(--teal);border-color:var(--teal)}.t-eq{color:var(--violet);border-color:var(--violet)}.t-draw{color:var(--amber);border-color:var(--amber)}
+.t-anim{color:var(--rose);border-color:var(--rose)}.t-fig{color:var(--azure);border-color:var(--azure)}.t-act{color:var(--lime);border-color:var(--lime)}
+.map{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px}
+.map a{display:block;background:#10161C;border:1px solid var(--faint);border-radius:8px;padding:8px;color:var(--ink);text-decoration:none;font-size:13px}
+.map a b{display:block;font-size:14px;margin:2px 0}
+svg{width:100%;height:auto;display:block;background:#0B0F14;border-radius:8px}
+.sl{display:flex;flex-wrap:wrap;gap:14px;margin:10px 0}
+.sl label{flex:1 1 200px;font-size:13px;color:var(--muted)}.sl label span{float:right;color:var(--ink);font-variant-numeric:tabular-nums}
+.sl input{width:100%}
+.row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0}
+.note{color:var(--muted);font-size:13px}.flow{border-left:3px solid var(--faint);padding-left:10px;color:#C9CED4;font-size:14px}
+textarea{width:100%;min-height:54px;background:#0B0F14;color:var(--ink);border:1px solid var(--faint);border-radius:6px;padding:6px;font:inherit;font-size:14px}
+.fb label{font-size:13px;color:var(--amber)}
+.q{margin:10px 0 4px}.block{display:inline-block;font-size:11px;color:#0E1217;background:var(--rose);border-radius:3px;padding:0 5px;margin:0 6px}
+.bar{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0}
+table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-bottom:1px solid var(--faint);padding:5px 6px;text-align:left;vertical-align:top}
+.pass{color:var(--lime)}.mono{font-family:ui-monospace,Consolas,monospace}
+.ro{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.ro div{background:#10161C;border:1px solid var(--faint);border-radius:6px;padding:6px 10px;font-size:12px;color:var(--muted)}.ro b{display:block;font-size:16px;color:var(--ink);font-variant-numeric:tabular-nums}
+@media (max-width:600px){main{padding:10px}}
+</style></head><body><main>
+<h1>U017 brief: D1·080 Conversion (sampling, quantization, architecture and ENOB)</h1>
+<p class="note">30 minutes, eight cards. Each card below shows the visual this unit proposes for its bench, drawn from the card's PLAN with real numbers. Several are live. Nothing is built on a bench yet. The accuracy check ran first: nine findings in your text, and two faults in our own earlier SAR spec, are listed at the end. Your choices and notes are saved on this page.</p>
+<div class="top"><span class="note">Feedback</span><button onclick="showFb()">Show what I've entered</button><button onclick="clearFb()">Clear</button><span id="fbsum" class="note"></span></div>
+<pre id="fbout" style="display:none;white-space:pre-wrap;background:#0B0F14;border:1px solid var(--faint);border-radius:8px;padding:10px;font-size:13px"></pre>
+
+<section><h2>The module at a glance</h2>
+<div class="map">
+<a href="#c1">Card 1 · ≈3.7 min<b>When, and which level</b><span class="tag t-plot">Plot</span></a>
+<a href="#c2">Card 2 · ≈2.1 min<b>Resolution</b><span class="tag t-eq">Equation</span><span class="tag t-act">numeric</span></a>
+<a href="#c3">Card 3 · ≈3.0 min<b>Quantization error is a floor</b><span class="tag t-plot">Plot, centrepiece</span><span class="tag t-act">poe</span></a>
+<a href="#c4">Card 4 · ≈1.2 min<b>More bits, not more accuracy</b><span class="tag t-act">flash, no bench</span></a>
+<a href="#c5">Card 5 · ≈2.7 min<b>SAR: a binary search</b><span class="tag t-anim">Animation</span><span class="tag t-draw">Draw stand-in</span></a>
+<a href="#c6">Card 6 · ≈1.8 min<b>Sigma-delta</b><span class="tag t-plot">Plot (Coding not built)</span></a>
+<a href="#c7">Card 7 · ≈3.2 min<b>The datasheet table</b><span class="tag t-fig">Figure</span><span class="tag t-plot">Plot</span><span class="tag t-act">multi-select</span></a>
+<a href="#c8">Card 8 · ≈3.2 min<b>ENOB</b><span class="tag t-eq">Equation</span><span class="tag t-act">numeric</span></a>
+<a href="#find">Findings<b>9 accuracy · 4 naming · 4 design</b><span class="tag t-act">≈20 of 30 min</span></a>
+</div>
+<p class="note">Time: the Flow is 1,781 words (13.7 min at 130 wpm). With the activities and the bench moves, the module comes to about 20 minutes, leaving about 10 of the 30 free (reported, nothing trimmed).</p>
+</section>
+
+<section id="c1"><h2>Card 1 · When, and which level</h2>
+<p><span class="tag t-plot">Plot</span>The PLAN's plot: one slow waveform (grey), its sampled-and-held version (teal, steps in time), and that held value quantized (amber, steps in amplitude). Lower f_s and the steps widen in time. Lower N and they coarsen in amplitude: two independent kinds of coarseness, one on each axis. Proposal: a <b>Rounding | Truncating</b> switch, because the course's converter truncates (F2).</p>
+<svg id="p1" viewBox="0 0 1100 380"></svg>
+<div class="sl"><label>Sampling rate (f<sub>s</sub>)<span id="v1f"></span><input id="s1f" type="range" min="2" max="40" step="1" value="8"></label><label>Resolution (N)<span id="v1n"></span><input id="s1n" type="range" min="2" max="8" step="1" value="3"></label></div>
+<div class="row"><span class="note">Quantizer</span><button id="q1r" class="on">Rounding</button><button id="q1t">Truncating (our MCU)</button></div>
+<p class="note">The waveform is 1.65 + 1.2·sin(2π·0.5 Hz·t) V on a 0–3.3 V converter: slow on purpose (the PLAN's "one slow waveform"). Low N values are used so the levels can be seen; at 12 bits one level is 0.806 mV, far finer than the line.</p>
+<div class="fb"><label>Your feedback on card 1</label><textarea data-k="c1"></textarea></div></section>
+
+<section id="c2"><h2>Card 2 · Resolution: how many levels</h2>
+<p><span class="tag t-eq">Equation</span>LSB = range / 2<sup>N</sup>, with N as a slider and the PLAN's two worked examples. The numeric fires first (8 bits on 0–10 V).</p>
+<div class="sl"><label>Resolution (N)<span id="v2n"></span><input id="s2n" type="range" min="4" max="16" step="1" value="8"></label><label>Range<span id="v2r"></span><input id="s2r" type="range" min="0" max="1" step="1" value="0"></label></div>
+<div class="ro" id="ro2"></div>
+<p class="note">Worked examples: 8 bits on 10 V → 39.06 mV (a datasheet that divides by 255 gives 39.22 mV); 12 bits on 3.3 V → 0.806 mV. Every extra bit halves the step.</p>
+<div class="fb"><label>Your feedback on card 2</label><textarea data-k="c2"></textarea></div></section>
+
+<section id="c3"><h2>Card 3 · Quantization error is a floor (the centrepiece)</h2>
+<p><span class="tag t-plot">Plot</span>Top: the staircase, input against the level it is given. Bottom: the error, input minus level, with ±½ LSB lines. The marker sits at 8.540 V. <b>Zoom near 8.5 V</b> shows code 219's band, 8.535 to 8.574 V. N runs 4 to 12, and the sawtooth's height shrinks with every bit but never reaches zero. The Rounding | Truncating switch (proposal) shows truncation's band, 0 to −1 LSB: the same width, shifted.</p>
+<svg id="p3" viewBox="0 0 1100 520"></svg>
+<div class="sl"><label>Resolution (N)<span id="v3n"></span><input id="s3n" type="range" min="4" max="12" step="1" value="8"></label></div>
+<div class="row"><button id="z3">Zoom near 8.5 V</button><span class="note">Quantizer</span><button id="q3r" class="on">Rounding</button><button id="q3t">Truncating</button></div>
+<div class="ro" id="ro3"></div>
+<div class="fb"><label>Your feedback on card 3</label><textarea data-k="c3"></textarea></div></section>
+
+<section id="c4"><h2>Card 4 · More bits are not more accuracy</h2>
+<p><span class="tag t-act">flash, no bench</span>The PLAN gives this card only the flash quiz (a 16-bit ADC on a ±1 % reference: is it accurate to one part in 65,536? No, to about 1 %). Its steps are 0.0015 % each; the reference moves all of them together by up to 1 %, about 655 steps. Proposal: no bench. The seed S34 is answered by card 8.</p>
+<div class="fb"><label>Your feedback on card 4</label><textarea data-k="c4"></textarea></div></section>
+
+<section id="c5"><h2>Card 5 · SAR: a binary search</h2>
+<p><span class="tag t-anim">Animation</span><span class="tag t-draw">Draw stand-in</span>The PLAN's search at 4 bits on 0–3.3 V for an input of 2.17 V: each step draws a trial level on the bar, keeps or drops the bit, and halves the window. The spec already exists from the template's dry run and is revised in this unit (see D3 below).</p>
+<svg id="p5" viewBox="0 0 1100 300"></svg>
+<div class="row"><button id="b5p">◀ Previous</button><button id="b5n">Next ▶</button><span class="note" id="t5"></span></div>
+<div class="fb"><label>Your feedback on card 5</label><textarea data-k="c5"></textarea></div></section>
+
+<section id="c6"><h2>Card 6 · Sigma-delta: fast and coarse, then filtered</h2>
+<p><span class="tag t-plot">Plot</span>A first-order modulator: the input in, a 1-bit stream out (ticks), and running averages over the last 16, 64 and 256 bits converging on the input. The density of 1s is the value; the resolution comes from how many bits you average. The PLAN names a Coding Bench, which is not built. Its own fallback is <b>a Plot with a precomputed series</b>, and that is what this shows (D2).</p>
+<svg id="p6" viewBox="0 0 1100 360"></svg>
+<div class="row"><span class="note">Input</span><button id="x6a" class="on">0.30 of full scale (the PLAN)</button><button id="x6b">2.17 V = 0.658 (card 5's input, F8)</button></div>
+<div class="ro" id="ro6"></div>
+<div class="fb"><label>Your feedback on card 6</label><textarea data-k="c6"></textarea></div></section>
+
+<section id="c7"><h2>Card 7 · The table everyone scrolls past</h2>
+<p><span class="tag t-fig">Figure</span><span class="tag t-plot">Plot</span>Left: an accuracy table drawn as our own unbranded datasheet page, with values typical of a 12-bit MCU converter (N4). Right: the transfer line. Each row of the table switches on its error; <b>Two-point line</b> lays the calibration line through the two ends (the multi-select's reveal). The converter is shown at 3 bits with the errors exaggerated so they can be seen. That is stated on the stage (A6).</p>
+<div style="display:grid;grid-template-columns:minmax(260px,1fr) 2fr;gap:12px" id="g7">
+<table id="tb7"><tr><th>Parameter</th><th>Typ</th><th>Max</th><th></th></tr>
+<tr><td>Offset error</td><td>±1</td><td>±3 LSB</td><td><button data-e="off">show</button></td></tr>
+<tr><td>Gain error</td><td>±1.5</td><td>±4 LSB</td><td><button data-e="gain">show</button></td></tr>
+<tr><td>Integral nonlinearity (INL)</td><td>±1.5</td><td>±2.5 LSB</td><td><button data-e="inl">show</button></td></tr>
+<tr><td>Differential nonlinearity (DNL)</td><td>±0.5</td><td>±1 LSB</td><td><button data-e="dnl">show</button></td></tr>
+<tr><td colspan="4" class="note">12 bits, V<sub>REF</sub> = 3.3 V, 25 °C. Typical of the class; the spec cites the datasheets these values come from.</td></tr></table>
+<svg id="p7" viewBox="0 0 700 460"></svg></div>
+<div class="row"><button id="tp7">Two-point line</button><button id="rs7">Ideal only</button></div>
+<div class="fb"><label>Your feedback on card 7</label><textarea data-k="c7"></textarea></div></section>
+
+<section id="c8"><h2>Card 8 · ENOB: the honest number of bits</h2>
+<p><span class="tag t-eq">Equation</span>ENOB = (SINAD − 1.76) / 6.02, graphed against SINAD from 40 to 100 dB, with the PLAN's two examples marked: the ideal 12-bit converter, 74.0 dB → 12 bits, and the datasheet's 62 dB → 10.0 bits. Every 6.02 dB is one bit.</p>
+<svg id="p8" viewBox="0 0 1100 340"></svg>
+<div class="sl"><label>SINAD<span id="v8"></span><input id="s8" type="range" min="40" max="100" step="0.5" value="62"></label></div>
+<div class="fb"><label>Your feedback on card 8</label><textarea data-k="c8"></textarea></div></section>
+
+<section id="find"><h2>Findings to decide</h2>
+<p class="note">Nothing in your text has been changed. <span class="block">accuracy</span> marks something the text as written would teach that is untrue, or that contradicts another card. Under the course's rule each must be decided before the module is ready. Each finding's first button is the recommendation.</p>
+<div id="fd"></div>
+<div class="fb"><label>Anything else on this unit</label><textarea data-k="general"></textarea></div></section>
+
+<section id="gates"><h2>Six-gate report for this page</h2>
+<table><tr><th>Gate</th><th>Result</th><th>This pass</th></tr>
+<tr><td>1 Realism ≥ 95 %</td><td class="pass">pass (plot level)</td><td>Real values: 0–3.3 V and 12 bits for the MCU; the PLAN's 8-bit 0–10 V converter; the datasheet table uses typical values of the class, unbranded. Card 7's 3-bit exaggeration is labelled on the stage.</td></tr>
+<tr><td>2 Science 100 %</td><td class="pass">pass</td><td>The first-order sigma-delta is the standard loop (integrate input minus feedback, 1-bit quantizer); SAR keeps a bit when the trial is at or below the input; INL as a bow a·x·(1 − x), DNL as unequal step widths.</td></tr>
+<tr><td>3 Maths 100 %</td><td class="pass">pass</td><td>Recomputed in Node: 2.17 V → 2693; 39.0625 mV (39.216 by 255); 8.540 V = 218.62 steps → 219 = 8.5547 V, band 8.5352–8.5742 V, ±19.53 mV; truncating 218, band 8.5156–8.5547 V; SAR 1000 keep, 1100 drop, 1010 keep, 1011 drop → 10 (2.0625 V); 74.0 dB; ENOB 10.01.</td></tr>
+<tr><td>4 Visualization 100 %</td><td class="pass">pass</td><td>Each card's one key variable is the one that moves: f_s and N (card 1), N and the zoom (card 3), the trial level (card 5), the averaging length (card 6), one error at a time (card 7).</td></tr>
+<tr><td>5 Consistency</td><td class="pass">pass</td><td>One palette: input grey, sampled teal, quantized amber, error violet, references rose. The same 2.17 V in cards 1 and 5; the same 0–3.3 V, 12-bit converter as D1·070.</td></tr>
+<tr><td>6 Professional design</td><td class="pass">pass (EN only)</td><td>Sliders in one row with words and symbols; labels checked for collisions at 1100 px and on a phone width. French comes with the libraries.</td></tr></table></section>
+</main>
+<script>
+const $=id=>document.getElementById(id),NS='http://www.w3.org/2000/svg';
+const C={bg:'#0B0F14',ink:'#E8EAED',muted:'#9AA3AD',faint:'#3A424C',grid:'#1E262F',teal:'#2DD4BF',amber:'#F5B942',violet:'#A78BFA',lime:'#A3E635',rose:'#F472B6',azure:'#60A5FA',grey:'#7B8794'};
+function el(p,t,a){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p.appendChild(e);return e}
+function tx(p,x,y,s,o={}){const e=el(p,'text',{x,y,fill:o.fill||C.muted,'font-size':o.size||13,'text-anchor':o.anchor||'middle','font-family':'system-ui,Segoe UI,sans-serif'});e.textContent=s;return e}
+function path(p,d,col,w,dash){return el(p,'path',{d,fill:'none',stroke:col,'stroke-width':w||2,'stroke-dasharray':dash||'none','stroke-linejoin':'round'})}
+function axes(svg,b,xr,yr,xt,yt,xl,yl){const X=x=>b.x0+(b.x1-b.x0)*(x-xr[0])/(xr[1]-xr[0]),Y=y=>b.y1-(b.y1-b.y0)*(y-yr[0])/(yr[1]-yr[0]);
+ for(const t of yt){el(svg,'line',{x1:b.x0,y1:Y(t),x2:b.x1,y2:Y(t),stroke:C.grid});tx(svg,b.x0-8,Y(t)+4,fmt(t),{anchor:'end'})}
+ for(const t of xt){tx(svg,X(t),b.y1+18,fmt(t))}
+ el(svg,'line',{x1:b.x0,y1:b.y1,x2:b.x1,y2:b.y1,stroke:C.muted});el(svg,'line',{x1:b.x0,y1:b.y0,x2:b.x0,y2:b.y1,stroke:C.muted});
+ if(xl)tx(svg,(b.x0+b.x1)/2,b.y1+38,xl);if(yl)tx(svg,b.x0,b.y0-10,yl,{anchor:'start'});return{X,Y}}
+function fmt(v){return Math.abs(v)<1e-12?'0':(Math.abs(v)>=100?v.toFixed(0):+v.toPrecision(3)+'')}
+/* ---------- storage ---------- */
+const ST={get(k){try{return localStorage.getItem('u017:'+k)}catch(e){return null}},set(k,v){try{localStorage.setItem('u017:'+k,v)}catch(e){}},keys(){try{return Object.keys(localStorage).filter(k=>k.startsWith('u017:'))}catch(e){return[]}}};
+window.u017Feedback=()=>Object.fromEntries(ST.keys().sort().map(k=>[k.slice(5),localStorage.getItem(k)]));
+function sum(){const n=ST.keys().length;$('fbsum').textContent=n?n+' saved':''}
+function showFb(){const f=u017Feedback(),k=Object.keys(f);$('fbout').style.display='block';$('fbout').textContent=k.length?k.map(x=>x+': '+f[x]).join('\n'):'Nothing entered yet.'}
+function clearFb(){ST.keys().forEach(k=>{try{localStorage.removeItem(k)}catch(e){}});document.querySelectorAll('textarea').forEach(t=>t.value='');document.querySelectorAll('.bar button').forEach(b=>b.classList.remove('on'));sum()}
+/* ---------- card 1 ---------- */
+let q1='r';
+function draw1(){const svg=$('p1');svg.innerHTML='';const fs=+$('s1f').value,N=+$('s1n').value;$('v1f').textContent=fs+' S/s';$('v1n').textContent=N+' bits ('+(1<<N)+' levels)';
+ const b={x0:70,x1:1080,y0:30,y1:330},{X,Y}=axes(svg,b,[0,2],[0,3.3],[0,0.5,1,1.5,2],[0,1.1,2.2,3.3],'time (s)','volts');
+ const v=t=>1.65+1.2*Math.sin(2*Math.PI*0.5*t),q=3.3/(1<<N),Q=x=>Math.min((1<<N)-1,q1==='r'?Math.round(x/q):Math.floor(x/q))*q;
+ for(let k=1;k<(1<<N);k++)if(N<=5)el(svg,'line',{x1:b.x0,y1:Y(k*q),x2:b.x1,y2:Y(k*q),stroke:'#2A2440','stroke-dasharray':'2 4'});
+ let d='';for(let i=0;i<=600;i++){const t=2*i/600;d+=(i?'L':'M')+X(t)+' '+Y(v(t))}path(svg,d,C.grey,2);
+ let ds='',dq='';const n=Math.ceil(2*fs);for(let k=0;k<n;k++){const t0=k/fs,t1=Math.min(2,(k+1)/fs),h=v(t0),hq=Q(h);ds+=`M${X(t0)} ${Y(h)}H${X(t1)}`;dq+=`M${X(t0)} ${Y(hq)}H${X(t1)}`;el(svg,'circle',{cx:X(t0),cy:Y(h),r:3,fill:C.teal})}
+ path(svg,ds,C.teal,2.5);path(svg,dq,C.amber,3);
+ tx(svg,1080,22,'input (grey) · sampled and held (teal) · quantized, '+(q1==='r'?'rounding':'truncating')+' (amber)',{anchor:'end',size:13})}
+['s1f','s1n'].forEach(i=>$(i).oninput=draw1);$('q1r').onclick=()=>{q1='r';$('q1r').classList.add('on');$('q1t').classList.remove('on');draw1()};$('q1t').onclick=()=>{q1='t';$('q1t').classList.add('on');$('q1r').classList.remove('on');draw1()};
+/* ---------- card 2 ---------- */
+function draw2(){const N=+$('s2n').value,R=+$('s2r').value?3.3:10,l=R/2**N;$('v2n').textContent=N+' bits';$('v2r').textContent=R===10?'0–10 V':'0–3.3 V';
+ $('ro2').innerHTML=`<div>levels<b>${(2**N).toLocaleString('en')}</b></div><div>one LSB = ${R} V / ${(2**N).toLocaleString('en')}<b>${l>=1e-3?(l*1e3).toPrecision(4)+' mV':(l*1e6).toPrecision(4)+' µV'}</b></div><div>dividing by 2<sup>N</sup> − 1 instead<b>${(R/(2**N-1)*1e3).toPrecision(4)} mV</b></div>`}
+['s2n','s2r'].forEach(i=>$(i).oninput=draw2);
+/* ---------- card 3 ---------- */
+let z3=false,q3='r';
+function draw3(){const svg=$('p3');svg.innerHTML='';const N=+$('s3n').value,q=10/2**N;$('v3n').textContent=N+' bits ('+(2**N)+' levels, '+(q*1e3).toPrecision(4)+' mV)';
+ const xr=z3?[8.40,8.70]:[0,10],code=x=>Math.min(2**N-1,q3==='r'?Math.round(x/q):Math.floor(x/q)),lev=x=>code(x)*q;
+ const bA={x0:80,x1:1080,y0:30,y1:280},bB={x0:80,x1:1080,y0:350,y1:470};
+ const xt=z3?[8.4,8.45,8.5,8.55,8.6,8.65,8.7]:[0,2,4,6,8,10];
+ const A=axes(svg,bA,xr,z3?[8.40,8.70]:[0,10],xt,z3?[8.4,8.5,8.6,8.7]:[0,2.5,5,7.5,10],null,'level given (V)');
+ const B=axes(svg,bB,xr,[-q*1.15,q*1.15],xt,[],'input (V)','error = input − level');
+ const s=v=>(v*1e3).toPrecision(3)+' mV';tx(svg,bB.x0-8,B.Y(q/2)+4,'+½ LSB',{anchor:'end'});tx(svg,bB.x0-8,B.Y(-q/2)+4,'−½ LSB',{anchor:'end'});tx(svg,bB.x0-8,B.Y(-q)+4,'−1 LSB',{anchor:'end'});
+ for(const y of [q/2,-q/2])el(svg,'line',{x1:bB.x0,y1:B.Y(y),x2:bB.x1,y2:B.Y(y),stroke:C.rose,'stroke-dasharray':'6 5'});
+ el(svg,'line',{x1:bB.x0,y1:B.Y(0),x2:bB.x1,y2:B.Y(0),stroke:C.faint});
+ const n=2400;let da='',db='',pc=null;for(let i=0;i<=n;i++){const x=xr[0]+(xr[1]-xr[0])*i/n,c=code(x);da+=(i&&c===pc?'L':'M')+A.X(x)+' '+A.Y(c*q);db+=(i&&c===pc?'L':'M')+B.X(x)+' '+B.Y(x-c*q);pc=c}
+ path(svg,da,C.amber,2.5);path(svg,db,C.violet,2);
+ const xm=8.540,cm=code(xm),lo=(q3==='r'?cm-0.5:cm)*q,hi=(q3==='r'?cm+0.5:cm+1)*q;
+ el(svg,'rect',{x:A.X(Math.max(lo,xr[0])),y:bA.y0,width:Math.max(1,A.X(Math.min(hi,xr[1]))-A.X(Math.max(lo,xr[0]))),height:bA.y1-bA.y0,fill:'rgba(96,165,250,.10)'});
+ el(svg,'line',{x1:A.X(xm),y1:bA.y0,x2:A.X(xm),y2:bB.y1,stroke:C.azure,'stroke-width':1.5,'stroke-dasharray':'4 4'});tx(svg,A.X(xm)+6,bA.y0+14,'8.540 V',{anchor:'start',fill:C.azure});
+ $('ro3').innerHTML=`<div>8.540 V in steps<b>${(xm/q).toFixed(2)}</b></div><div>code (${q3==='r'?'rounded':'truncated'})<b>${cm}</b></div><div>its level<b>${(cm*q).toFixed(4)} V</b></div><div>every input in<b>${lo.toFixed(4)} – ${hi.toFixed(4)} V</b></div><div>error band<b>${q3==='r'?'±'+s(q/2):'0 to −'+s(q)}</b></div>`}
+$('s3n').oninput=draw3;$('z3').onclick=()=>{z3=!z3;$('z3').classList.toggle('on',z3);draw3()};
+$('q3r').onclick=()=>{q3='r';$('q3r').classList.add('on');$('q3t').classList.remove('on');draw3()};$('q3t').onclick=()=>{q3='t';$('q3t').classList.add('on');$('q3r').classList.remove('on');draw3()};
+/* ---------- card 5 ---------- */
+let k5=0;const VIN=2.17,LS=3.3/16;
+function sar(k){let c=0;const rows=[];for(let b=3;b>=4-k;b--){const t=c|(1<<b),v=t*LS,keep=v<=VIN;rows.push({t,v,keep});if(keep)c=t}return{c,rows}}
+function draw5(){const svg=$('p5');svg.innerHTML='';const {c,rows}=sar(k5);const X=v=>80+940*v/3.3;
+ el(svg,'rect',{x:80,y:120,width:940,height:36,fill:'#10161C',stroke:C.faint});for(let i=0;i<=16;i++){el(svg,'line',{x1:X(i*LS),y1:156,x2:X(i*LS),y2:i%4?162:168,stroke:C.muted});if(i%4===0)tx(svg,X(i*LS),186,(i*LS).toFixed(2)+' V')}
+ let lo=0,hi=3.3;rows.forEach(r=>{if(r.keep)lo=r.v;else hi=r.v});
+ el(svg,'rect',{x:X(lo),y:120,width:X(hi)-X(lo),height:36,fill:'rgba(45,212,191,.18)'});
+ el(svg,'line',{x1:X(VIN),y1:96,x2:X(VIN),y2:160,stroke:C.azure,'stroke-width':3});tx(svg,X(VIN),88,'input held: 2.17 V',{fill:C.azure});
+ rows.forEach((r,i)=>{const last=i===rows.length-1;el(svg,'line',{x1:X(r.v),y1:112,x2:X(r.v),y2:164,stroke:last?C.amber:C.faint,'stroke-width':last?3:1.5});
+  tx(svg,X(r.v),last?232:212+0,'',{})});
+ const bits=[3,2,1,0].map((b,i)=>i<rows.length?(rows[i].keep?'1':'0'):'·').join('');
+ tx(svg,80,40,'register: '+bits,{anchor:'start',size:20,fill:C.ink});
+ const r=rows[rows.length-1];
+ tx(svg,80,250,k5===0?'Before the first comparison: the window is the whole 0–3.3 V range.':`Trial ${r.t.toString(2).padStart(4,'0')} = ${r.v.toFixed(3)} V: ${r.keep?'at or below 2.17 V, keep the bit':'above 2.17 V, drop the bit'}. Window now ${lo.toFixed(3)} – ${hi.toFixed(3)} V.`,{anchor:'start',size:15,fill:C.ink});
+ if(k5===4)tx(svg,80,278,`Result 1010 = code ${c} = ${(c*LS).toFixed(4)} V: the level at or below the input (truncating), closed on from below.`,{anchor:'start',size:15,fill:C.lime});
+ $('t5').textContent='step '+k5+' of 4'}
+$('b5p').onclick=()=>{k5=Math.max(0,k5-1);draw5()};$('b5n').onclick=()=>{k5=Math.min(4,k5+1);draw5()};
+/* ---------- card 6 ---------- */
+let x6=0.30;
+function sd(x,n){let u=0,y=0;const b=[];for(let i=0;i<n;i++){u+=x-y;y=u>=0?1:0;b.push(y)}return b}
+function draw6(){const svg=$('p6');svg.innerHTML='';const n=512,b=sd(x6,n),b0={x0:70,x1:1080,y0:40,y1:300};
+ const {X,Y}=axes(svg,b0,[0,n],[0,1],[0,64,128,192,256,320,384,448,512],[0,0.25,0.5,0.75,1],'bit number (each a modulator clock)','running average of the 1-bit stream');
+ b.forEach((v,i)=>{if(v)el(svg,'line',{x1:X(i+0.5),y1:b0.y1-2,x2:X(i+0.5),y2:b0.y1-14,stroke:C.faint})});
+ el(svg,'line',{x1:b0.x0,y1:Y(x6),x2:b0.x1,y2:Y(x6),stroke:C.rose,'stroke-dasharray':'6 5'});tx(svg,b0.x1,Y(x6)-6,'input '+x6.toFixed(3),{anchor:'end',fill:C.rose});
+ const ro=[];[[16,C.amber],[64,C.teal],[256,C.violet]].forEach(([K,col])=>{let d='';for(let i=K;i<=n;i++){let s=0;for(let j=i-K;j<i;j++)s+=b[j];d+=(i>K?'L':'M')+X(i)+' '+Y(s/K)}path(svg,d,col,2.2);
+  let s=0;for(let j=n-K;j<n;j++)s+=b[j];ro.push(`<div style="border-color:${col}">average of the last ${K}<b>${(s/K).toFixed(4)}</b>step ${(1/K).toFixed(4)}</div>`)});
+ tx(svg,b0.x0,24,'ticks: the 1s of the stream · amber: last 16 · teal: last 64 · violet: last 256',{anchor:'start'});
+ $('ro6').innerHTML=ro.join('')+`<div>first 32 bits<b class="mono" style="font-size:13px">${b.slice(0,32).join('')}</b></div>`}
+$('x6a').onclick=()=>{x6=0.30;$('x6a').classList.add('on');$('x6b').classList.remove('on');draw6()};$('x6b').onclick=()=>{x6=2.17/3.3;$('x6b').classList.add('on');$('x6a').classList.remove('on');draw6()};
+/* ---------- card 7 ---------- */
+const E7={off:false,gain:false,inl:false,dnl:false};let tp7=false;
+function draw7(){const svg=$('p7');svg.innerHTML='';const b={x0:60,x1:680,y0:30,y1:400},{X,Y}=axes(svg,b,[0,1],[0,8],[0,0.25,0.5,0.75,1],[0,2,4,6,8],'input (fraction of full scale)','code');
+ // transition levels of an exaggerated 3-bit converter; ideal transitions at k/8
+ const T=[];for(let k=1;k<8;k++){let t=k/8;if(E7.dnl)t+=[0,0.035,-0.03,0.04,-0.045,0.02,0][k-1];if(E7.inl)t-=0.32*t*(1-t)*0.5;if(E7.gain)t*=0.9;if(E7.off)t+=0.06;T.push(t)}
+ const code=x=>{let c=0;for(const t of T)if(x>=t)c++;return c};
+ let d='',pc=null;for(let i=0;i<=1400;i++){const x=i/1400,c=code(x);d+=(i&&c===pc?'L':'M')+X(x)+' '+Y(c);pc=c}
+ let di='';for(let i=0;i<=1400;i++){const x=i/1400,c=Math.min(7,Math.floor(x*8));di+=(i&&c===Math.min(7,Math.floor((i-1)/1400*8))?'L':'M')+X(x)+' '+Y(c)}path(svg,di,C.muted,1.6,'5 5');
+ path(svg,d,C.amber,3);
+ if(tp7){const a=T[0],z=T[6],m=6/(z-a),xa=Math.max(0,a-1/m),xb=Math.min(1,a+7/m);el(svg,'line',{x1:X(xa),y1:Y(1+(xa-a)*m),x2:X(xb),y2:Y(1+(xb-a)*m),stroke:C.lime,'stroke-width':2});tx(svg,X(0.98),Y(0.6),'two-point line: through the first and last transitions',{anchor:'end',fill:C.lime})}
+ tx(svg,680,18,'3 bits, errors exaggerated to be seen · ideal dashed grey',{anchor:'end'})}
+document.querySelectorAll('#tb7 button').forEach(bt=>bt.onclick=()=>{const k=bt.dataset.e;E7[k]=!E7[k];bt.classList.toggle('on',E7[k]);draw7()});
+$('tp7').onclick=()=>{tp7=!tp7;$('tp7').classList.toggle('on',tp7);draw7()};$('rs7').onclick=()=>{for(const k in E7)E7[k]=false;tp7=false;document.querySelectorAll('#tb7 button,#tp7').forEach(b=>b.classList.remove('on'));draw7()};
+/* ---------- card 8 ---------- */
+function draw8(){const svg=$('p8');svg.innerHTML='';const S=+$('s8').value,b={x0:70,x1:1080,y0:30,y1:290},{X,Y}=axes(svg,b,[40,100],[0,16],[40,50,60,70,80,90,100],[0,4,8,12,16],'SINAD (dB)','ENOB (bits)');
+ const f=s=>(s-1.76)/6.02;path(svg,`M${X(40)} ${Y(f(40))}L${X(100)} ${Y(f(100))}`,C.violet,2.5);
+ for(const [s,l] of [[74.0,'ideal 12-bit: 74.0 dB → 12.0'],[62,'datasheet: 62 dB → 10.0']]){el(svg,'circle',{cx:X(s),cy:Y(f(s)),r:5,fill:C.amber});tx(svg,X(s)+8,Y(f(s))+18,l,{anchor:'start',fill:C.amber})}
+ el(svg,'circle',{cx:X(S),cy:Y(f(S)),r:6,fill:'none',stroke:C.teal,'stroke-width':2});$('v8').textContent=S.toFixed(1)+' dB → ENOB '+f(S).toFixed(2)+' bits'}
+$('s8').oninput=draw8;
+/* ---------- findings ---------- */
+const F=[
+['F1',true,'Card 1: 2.17 V → “2714”','On the course\'s converter (12 bits, 3.3 V) 2.17 V is code 2693; 2714 needs a 3.275 V reference. Card 5 uses the same 2.17 V.',['Use 2693: “…a code such as 2693 on a 12-bit, 3.3 V converter…”','Keep 2714 (the hedge stays)','Other (say below)']],
+['F2',true,'Card 1: “assigns … to the closest available level”','The course\'s converter truncates (the level at or below: D1·070\'s 2047, 1759). “Closest” is rounding.',['“…to one of the available levels: the nearest, or the one just below, depending on the converter.”','Keep, card 3 covers truncation','Other']],
+['F3',true,'Card 2: “binary 1001 represents decimal 5”','1001 is 9. 5 is 0101. (Your CHECK note says so.)',['“…while binary 1001 represents decimal 9.”','“…while binary 0101 represents decimal 5.”']],
+['F4',true,'Card 3: “8.502, 8.41 or 8.880 V … ±0.039 V”','8.41 and 8.880 V are 3.3 and 8.7 steps from 8.540 V; ±0.039 V is ±1 LSB, not the ±½ LSB the reveal teaches. “39.0 mV” is 39.06 (rounds to 39.1).',['“…steps of 39.06 mV … The code it gets may stand for any voltage in a band one step wide around its level.” (leaves the numbers to the reveal)','Cut the sentence','Other']],
+['F5',true,'Card 3 statement: “an error of up to half an LSB”','On a truncating converter (ours) the error is up to one LSB, below: 0 to −1 LSB. ±½ LSB is the rounding case. The Flow ends by saying so; the statement does not.',['“That error, a band one LSB wide (±½ LSB when the converter rounds, 0 to −1 LSB when it truncates), is built into every conversion…”','Keep the statement','Other']],
+['F6',true,'Card 3: “no circuit removes it”','True of one conversion; D2·040 teaches that averaging many (with enough noise or dither) buys resolution “the converter does not have”.',['Add “from a single conversion” (statement and Flow p4)','Keep: D2·040 presents itself as the surprise','Other']],
+['F7',true,'Card 3: “the sawtooth … never reaches zero”','The sawtooth passes through zero at every level; its height (±½ LSB) is what never reaches zero.',['“The sawtooth shrinks, step by step, and its height never reaches zero.” (and the Look for)','Keep']],
+['F8',true,'Card 6: “the same input through the sigma-delta visualiser”','The last input was card 5\'s 2.17 V (0.658 of full scale); the PLAN uses 0.30. Also the old “Widget” name.',['Use card 5\'s 2.17 V (0.658) so it is the same input; “[[demo]] Plot Bench: the same input through a sigma-delta modulator.”','Keep 0.30 and say “an input” instead','Other']],
+['F9',true,'Card 8 statement: “A 12-bit converter delivers closer to ten useful bits”','A rule of thumb stated as a law: 12-bit MCU converters typically specify ENOB of about 10 to 11 bits; good standalone ones reach 11.5 or more.',['“A typical 12-bit MCU converter delivers closer to ten useful bits.”','Keep']],
+['N1',false,'Card 5: “[[demo]] Widget: a SAR conversion animated…”','An old bench name.',['“[[demo]] Animation Bench: a SAR conversion, one comparison per bit.”','Remove the line','Keep']],
+['N2',false,'Card 5: “The ATmega328P and the classic ESP32 both use SAR ADCs.”','Product names on a teaching surface (the unbranded rule; D1·070\'s F1 did the same).',['“Most microcontrollers\' built-in converters are SAR ADCs.”','Keep the names (an exception)']],
+['N3',false,'Card 6: “The ADS1115, which we meet on Day 2…”','D2·020 is built around that converter by name (its title and datasheet tour). This is a course-wide question, decided best with D2·020.',['Keep for now; decide with D2·020 (U020)','Unbranded now: “the 16-bit converter we meet on Day 2 is a sigma-delta ADC”']],
+['N4',false,'Card 7: “the ADC accuracy table from a real MCU datasheet”','A real datasheet page carries its maker\'s name.',['Our own unbranded table with class values, sourced in the spec (as drawn above)','A real page, its marks kept (an exception, as the UNO photo)']],
+['D1',false,'Which bench carries the Plot and Equation cards (1, 2, 3, 7, 8)?','They are ready on Studio\'s Plot and Equation benches today (sliders, presets not mirrored: X12). D1·070 chose an Animation demonstration and is waiting on Benches (505).',['The PLAN\'s Plot and Equation benches, ready today (specs now)','Animation demonstrations by Benches, Plot/Equation as stand-ins (ask Benches first, as 505)']],
+['D2',false,'Card 6: sigma-delta without a Coding Bench','The Coding Bench is not built. The PLAN\'s fallback is a Plot with a precomputed series (as drawn above).',['Plot with the precomputed bitstream and running averages (16, 64, 256)','Ask Benches for an Animation demonstration','Wait for the Coding Bench']],
+['D3',false,'Card 5: our own SAR spec (the template\'s dry run)','It names the ATmega328P as the real thing and paces at its 8 µs per bit, which disagrees with the course\'s 12-bit converter and 1 µs conversion (D1·070). Ours to fix.',['Revise: “a 12-bit MCU SAR on 3.3 V, shown at 4 bits”, paced to the course\'s converter','Other']],
+['D4',false,'Card 4 has no bench','The PLAN gives it only the flash quiz.',['No bench (the flash only)','A still: the 16-bit steps against the reference\'s ±1 % band']]];
+$('fd').innerHTML=F.map(([k,acc,t,w,opts])=>`<div><div class="q"><b>${k} · ${t}.</b>${acc?'<span class="block">accuracy</span>':''} ${w}</div><div class="bar" data-c="${k}">${opts.map(o=>`<button>${o}</button>`).join('')}</div><textarea data-k="${k}" placeholder="Optional note"></textarea></div>`).join('');
+document.querySelectorAll('.bar[data-c]').forEach(b=>{const k=b.dataset.c+'-choice',v=ST.get(k);b.querySelectorAll('button').forEach(btn=>{if(btn.textContent===v)btn.classList.add('on');btn.onclick=()=>{b.querySelectorAll('button').forEach(x=>x.classList.remove('on'));btn.classList.add('on');ST.set(k,btn.textContent);sum()}})});
+document.querySelectorAll('textarea[data-k]').forEach(t=>{t.value=ST.get(t.dataset.k)||'';t.oninput=()=>{ST.set(t.dataset.k,t.value);sum()}});
+draw1();draw2();draw3();draw5();draw6();draw7();draw8();sum();
+</script></body></html>
