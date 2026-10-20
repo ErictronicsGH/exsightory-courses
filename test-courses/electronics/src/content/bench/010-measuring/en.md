@@ -31,7 +31,7 @@ predict:
   correct: 1
 ```
 
-## Where the clip goes decides what you measured {#divider-differential}
+## The reference clip on the mid-node {#divider-differential}
 
 ```circuit
 title: Where the clip goes decides what you measured
