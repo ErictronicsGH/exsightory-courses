@@ -1,0 +1,6 @@
+.qm-root { position:absolute; left:0; top:0; width:1920px; height:1080px; }
+.qm-root svg { display:block; }
+
+/* the scene (painted once) and, above it, the moving layer on a compositor layer of its own */
+.qm-root svg, .qm-svg svg { position:absolute; left:0; top:0; }
+.qm-root svg:first-child, .qm-svg svg:first-child { will-change:transform; }

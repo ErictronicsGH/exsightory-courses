@@ -1,0 +1,134 @@
+<!doctype html>
+<!-- Mock-up for the owner's direction (01-user-made-components §6): "My requests" and one request's tracking page.
+     The real page is the product's (InsightDemo: crossing 220, P24e, P15e). ?theme=dark|light, ?lang=en (EN only for now). -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Component requests</title>
+<style>
+  :root {
+    --f-bg: #EBF2F1; --f-surface: #FFFFFF; --f-surface2: #E3EDEC; --f-raised: #F0F7F6; --f-border: #C9D9D7;
+    --f-text: #0F1A18; --f-muted: #445753; --f-faint: #778A87; --f-danger: #B3372B; --f-ok: #15803D; --f-warn: #A16207;
+    --f-teal: #0B6B64; --f-teal-ink: #F0FDFA; --f-work: #4A5FB8;
+    --f-font: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif; --f-mono: "IBM Plex Mono", Consolas, monospace;
+  }
+  :root[data-theme="dark"] {
+    --f-bg: #0A0E0D; --f-surface: #111816; --f-surface2: #172120; --f-raised: #1D2826; --f-border: #283532;
+    --f-text: #E8F0ED; --f-muted: #93A69F; --f-faint: #62736D; --f-danger: #E0675B; --f-ok: #4ADE80; --f-warn: #F7B93E;
+    --f-teal: #17C2CC; --f-teal-ink: #04262A; --f-work: #8EA1EA;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--f-bg); color: var(--f-text); font: 14px/1.45 var(--f-font); }
+  header.top { display: flex; align-items: center; gap: 14px; padding: 12px 24px; border-bottom: 1px solid var(--f-border); background: var(--f-surface); }
+  header.top b.brand { font-size: 18px; } header.top b.brand span { color: var(--f-teal); }
+  header.top .crumb { color: var(--f-muted); } header.top .sp { flex: 1; }
+  .btn { height: 34px; padding: 0 14px; border-radius: 8px; border: 1px solid var(--f-border); background: var(--f-surface); color: var(--f-text); font: 600 13px var(--f-font); cursor: pointer; }
+  .btn.primary { background: var(--f-teal); border-color: var(--f-teal); color: var(--f-teal-ink); }
+  main { display: grid; grid-template-columns: 360px 1fr; gap: 20px; padding: 20px 24px; max-width: 1400px; margin: 0 auto; }
+  @media (max-width: 900px) { main { grid-template-columns: 1fr; padding: 16px; } }
+  .card { background: var(--f-surface); border: 1px solid var(--f-border); border-radius: 12px; }
+  .list h2, .req h2 { margin: 0; font-size: 15px; }
+  .list header { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid var(--f-border); }
+  .row { display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; padding: 12px 16px; border-bottom: 1px solid var(--f-border); cursor: pointer; }
+  .row:last-child { border-bottom: 0; }
+  .row.on { background: var(--f-raised); box-shadow: inset 3px 0 0 var(--f-teal); }
+  .row b { font-weight: 600; } .row small { color: var(--f-muted); grid-column: 1 / -1; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 9px; border-radius: 999px; font: 600 11.5px var(--f-font); border: 1px solid currentColor; white-space: nowrap; }
+  .pill.prog { color: var(--f-work); } .pill.info { color: var(--f-warn); } .pill.ok { color: var(--f-ok); } .pill.no { color: var(--f-faint); }
+  .req { padding: 20px 22px; display: flex; flex-direction: column; gap: 18px; }
+  .req .head { display: flex; gap: 14px; align-items: flex-start; flex-wrap: wrap; }
+  .req .head .t { flex: 1; min-width: 240px; }
+  .req .head h1 { margin: 0 0 4px; font-size: 20px; }
+  .meta { color: var(--f-muted); font-size: 13px; } .mono { font-family: var(--f-mono); font-size: 12.5px; }
+  .ladder { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; position: relative; margin: 4px 0 0; }
+  .step { text-align: center; position: relative; padding-top: 26px; font-size: 12px; color: var(--f-faint); }
+  .step::before { content: ""; position: absolute; top: 9px; left: -50%; right: 50%; height: 2px; background: var(--f-border); }
+  .step:first-child::before { display: none; }
+  .step i { position: absolute; top: 2px; left: 50%; transform: translateX(-50%); width: 16px; height: 16px; border-radius: 50%; background: var(--f-surface); border: 2px solid var(--f-border); }
+  .step.done { color: var(--f-muted); } .step.done i { background: var(--f-teal); border-color: var(--f-teal); } .step.done::before { background: var(--f-teal); }
+  .step.now { color: var(--f-text); font-weight: 600; } .step.now i { border-color: var(--f-teal); box-shadow: 0 0 0 4px color-mix(in srgb, var(--f-teal) 22%, transparent); } .step.now::before { background: var(--f-teal); }
+  .grid2 { display: grid; grid-template-columns: 1.3fr 1fr; gap: 18px; }
+  @media (max-width: 1100px) { .grid2 { grid-template-columns: 1fr; } }
+  .box { border: 1px solid var(--f-border); border-radius: 10px; padding: 14px 16px; background: var(--f-raised); }
+  .box h3 { margin: 0 0 10px; font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--f-muted); }
+  .kv { display: grid; grid-template-columns: 130px 1fr; gap: 6px 12px; font-size: 13px; } .kv dt { color: var(--f-muted); } .kv dd { margin: 0; }
+  .tl { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+  .tl li { display: grid; grid-template-columns: 92px 1fr; gap: 10px; font-size: 13px; }
+  .tl time { color: var(--f-faint); font-variant-numeric: tabular-nums; }
+  .tl .who { font-weight: 600; } .tl p { margin: 2px 0 0; color: var(--f-muted); }
+  .msg { display: flex; gap: 8px; margin-top: 12px; } .msg input { flex: 1; height: 34px; border-radius: 8px; border: 1px solid var(--f-border); background: var(--f-surface); color: var(--f-text); padding: 0 10px; font: 13px var(--f-font); }
+  .note { font-size: 12.5px; color: var(--f-muted); margin: 6px 0 0; }
+  .ok { color: var(--f-ok); } .warn { color: var(--f-warn); }
+</style>
+</head>
+<body>
+<header class="top">
+  <b class="brand">Ex<span>Sight</span></b><span class="crumb">Account › My component requests</span><span class="sp"></span>
+  <button class="btn">Browse the libraries</button><button class="btn primary">＋ Request a component</button>
+</header>
+<main>
+  <section class="card list" aria-label="My requests">
+    <header><h2>My requests</h2><span class="meta">5 open of 5 allowed</span></header>
+    <div class="row on"><b>Light-dependent resistor, 5 mm, 10–20 kΩ</b><span class="pill prog">In review</span><small>GL5528 · Senba · asked 2026-10-12 · 37 others follow it</small></div>
+    <div class="row"><b>Hall-effect sensor, linear, ratiometric</b><span class="pill info">Needs information</span><small>DRV5055A3 · TI · asked 2026-10-09 · the datasheet's package page is missing</small></div>
+    <div class="row"><b>Digital multimeter, 4½ digits</b><span class="pill prog">In progress</span><small>bench instrument · asked 2026-10-02 · new class: planned with the roadmap</small></div>
+    <div class="row"><b>NTC thermistor, 10 kΩ, B 3977</b><span class="pill ok">Shipped</span><small>NTCLE100E3103JB0 · Vishay · in Sensors 1.2.0 · 2026-10-05</small></div>
+    <div class="row"><b>Piezo buzzer, 12 mm</b><span class="pill no">Merged</span><small>into "Piezo transducer, 12 mm" (asked by 112 people)</small></div>
+  </section>
+
+  <section class="card req" aria-label="Request">
+    <div class="head">
+      <div class="t">
+        <h1>Light-dependent resistor, 5 mm, 10–20 kΩ</h1>
+        <div class="meta"><span class="mono">REQ-2026-004812</span> · Senba Optical &amp; Electronic · <span class="mono">GL5528</span> · Electronics Bench · for my course <b>From Sensor to Number</b>, needed by 2026-10-20</div>
+      </div>
+      <span class="pill prog">In review</span>
+      <button class="btn">Follow (38)</button>
+    </div>
+
+    <div class="ladder" role="list" aria-label="Status">
+      <div class="step done" role="listitem"><i></i>Received<br><small>10-12 09:14</small></div>
+      <div class="step done" role="listitem"><i></i>Accepted<br><small>10-12 10:02</small></div>
+      <div class="step done" role="listitem"><i></i>In progress<br><small>10-12 10:05</small></div>
+      <div class="step now" role="listitem"><i></i>In review<br><small>since 10-12 13:40</small></div>
+      <div class="step" role="listitem"><i></i>Shipped<br><small>target 10-14</small></div>
+      <div class="step" role="listitem"><i></i>In your library<br><small>&nbsp;</small></div>
+    </div>
+    <p class="note">A part on an existing class: target <b>2 working days</b> from acceptance. Requests are ranked by followers and needed-by dates. Email on every change.</p>
+
+    <div class="grid2">
+      <div class="box">
+        <h3>What happened</h3>
+        <ol class="tl">
+          <li><time>10-12 13:40</time><div><span class="who">ExSight review</span> · checks pass, golden cases 3/3 on the law and on a unit<p>Two contradictions in the datasheet are recorded for the reviewer: the figure numbers in its table, and its γ (0.6) against its own curve (≈ 0.69).</p></div></li>
+          <li><time>10-12 10:31</time><div><span class="who">ExSight draft</span> · made with ExSight's AI guide 0.2, from the datasheet you sent<p>Every value sourced to a page; the 1 lx point read off Fig. 2 is the independent check.</p></div></li>
+          <li><time>10-12 10:02</time><div><span class="who">Accepted</span> · fits the class <span class="mono">sensor.resistive-curve@1</span> and the body family <span class="mono">radial-disc</span></div></li>
+          <li><time>10-12 09:40</time><div><span class="who">Merged in</span> · 37 requests for the same part joined this one as followers</div></li>
+          <li><time>10-12 09:14</time><div><span class="who">You</span> · asked, with the datasheet (PDF, 412 kB) and your own draft (private, 28 notes)</div></li>
+        </ol>
+        <div class="msg"><input placeholder="Write to ExSight about this request…" aria-label="Message"><button class="btn">Send</button></div>
+      </div>
+      <div class="box">
+        <h3>The request</h3>
+        <dl class="kv">
+          <dt>Part</dt><dd>GL5528 · Senba Optical &amp; Electronic</dd>
+          <dt>Datasheet</dt><dd>GL55 Series CdS Photoresistor Manual (PDF) <span class="ok">✓</span></dd>
+          <dt>Purpose</dt><dd>A light sensor in a voltage divider read by an ADC (day 1, the measurement chain)</dd>
+          <dt>Your draft</dt><dd><span class="mono">user.prof.ldr-5mm</span> · private · attached</dd>
+          <dt>Class</dt><dd>exists <span class="ok">✓</span> (no new behaviour needed)</dd>
+          <dt>When shipped</dt><dd>Official library <b>Sensors</b>, a new version; your courses can pin it</dd>
+          <dt>Visibility</dt><dd>Public in "requested and planned" (part number only)</dd>
+        </dl>
+        <p class="note">Can't wait? <b>Make it yourself</b> from your draft: it stays private until it passes the checks.</p>
+      </div>
+    </div>
+  </section>
+</main>
+<script>
+  const q = new URLSearchParams(location.search);
+  if (q.get('theme') === 'dark') document.documentElement.dataset.theme = 'dark';
+  window.ready = true;
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "id": "quantity-and-method",
+  "name": "Quantity and method",
+  "title": "The quantity sets the method",
+  "description": "Five physical quantities, each beside the real instrument that suits it and the principle it works by: light emitted (a desk lamp dimming and brightening over a light meter), its colour (a tunable source and a spectrometer), weight (calibration weights set down one by one on a precision balance, up to 2000.0 g), how fast it turns (a motor, reflective tape and an optical tachometer), how hot (a beaker on a hotplate, from ice water to a rolling boil, a type-K probe). Readings illustrative.",
+  "card": "D1·020 card 1 (¶3)",
+  "course": "PBL2026 · From Sensor to Number",
+  "kind": "2D",
+  "version": "0.4.1",
+  "bench": { "type": "animation", "contract": 2 },
+  "stage": { "width": 1920, "height": 1080 },
+  "features": { "explore": false, "cards": false },
+  "css": ["unit.css"],
+  "scripts": ["svgkit.js", "unit.js"]
+}

@@ -1,0 +1,20 @@
+# Every course is a top-level folder; these rules apply inside each one.
+
+# Source material used to make bench libraries (STEP models and the like): never loaded by a bench, kept on disk only
+# (owner, 2026-10-20: "every file put in resources should be ignored"). Both spellings: PBL2026's is resoureces.
+/*/resoureces/
+/*/resources/
+
+# Film frames: stills only since 2026-10-11 (owner: "no need for films, just stills going forward")
+/*/**/film/
+
+# Staging folders left by a move or a decoupling; nothing in them belongs to the course
+/*/_decoupled-*/
+/*/_moved-*/
+
+# Scratch
+*.log
+__pycache__/
+.tmp*/
+Thumbs.db
+desktop.ini

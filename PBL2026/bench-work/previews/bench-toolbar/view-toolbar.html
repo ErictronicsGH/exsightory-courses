@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>View toolbar placement</title>
+<!-- A preview of View mode's 3D control toolbar (owner, 2026-10-11: "should be at the extreme left or top center"),
+     drawn over a real capture of the bench (its current bar hidden). ?v=left or ?v=top. -->
+<style>
+:root { --glass: rgb(17 24 22 / 86%); --edge: rgb(255 255 255 / 11%); --ink: #a9b8b2; --text: #e8f0ed; --on: #2dd4bf; --wash: rgb(45 212 191 / 15%); }
+* { box-sizing: border-box; }
+html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #0a0e0d; font: 500 13px/1.3 "IBM Plex Sans", "Segoe UI", system-ui, sans-serif; color: var(--text); }
+.bg { position: absolute; inset: 0; width: 1920px; height: 1007px; background: url(bg-view.png) no-repeat; background-size: 1920px auto; }
+svg.i { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.bar { position: absolute; display: flex; gap: 2px; padding: 5px; border-radius: 12px; background: var(--glass); border: 1px solid var(--edge); box-shadow: 0 8px 26px rgb(0 0 0 / 35%); backdrop-filter: blur(12px); }
+.bar.top { top: 128px; left: 50%; transform: translateX(-50%); flex-direction: row; align-items: center; }
+.bar.left { left: 22px; top: 50%; transform: translateY(-50%); flex-direction: column; align-items: center; width: 50px; }
+.b { display: inline-flex; align-items: center; gap: 7px; height: 38px; padding: 0 12px; border-radius: 9px; color: var(--ink); border: 1px solid transparent; font-weight: 600; font-size: 12.5px; white-space: nowrap; position: relative; }
+.left .b { width: 40px; height: 40px; padding: 0; justify-content: center; }
+.left .b > span:not(.fly) { display: none; }
+.b.on { color: var(--on); background: var(--wash); border-color: rgb(45 212 191 / 55%); }
+.b.hover { color: var(--text); background: rgb(255 255 255 / 7%); }
+.b.sel { border: 1px solid var(--edge); color: var(--text); font: 650 12px/1 ui-monospace, Consolas, monospace; gap: 10px; }
+.left .b.sel { height: 26px; border-radius: 7px; } .left .b.sel .chev { display: none; }
+.sep { background: var(--edge); }
+.top .sep { width: 1px; height: 24px; margin: 0 5px; } .left .sep { width: 26px; height: 1px; margin: 4px 0; }
+.fly { position: absolute; left: 50px; top: 50%; transform: translateY(-50%); display: flex; gap: 8px; align-items: center; padding: 7px 11px; border-radius: 8px; background: var(--glass); border: 1px solid var(--edge); white-space: nowrap; color: var(--text); font-size: 12.5px; box-shadow: 0 6px 18px rgb(0 0 0 / 35%); }
+.fly kbd, .tip kbd { font: 600 11px ui-monospace, Consolas, monospace; padding: 2px 6px; border-radius: 4px; border: 1px solid var(--edge); color: var(--ink); }
+.fly em, .tip em { font-style: normal; color: var(--ink); }
+.tip { position: absolute; top: 48px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; align-items: center; padding: 7px 11px; border-radius: 8px; background: var(--glass); border: 1px solid var(--edge); white-space: nowrap; color: var(--text); font-size: 12.5px; }
+.cap { position: absolute; left: 50%; transform: translateX(-50%); bottom: 26px; max-width: 760px; padding: 10px 14px; border-radius: 10px; background: rgb(10 14 13 / 88%); border: 1px solid var(--edge); font-size: 13px; line-height: 1.45; color: var(--ink); text-align: center; }
+.cap b { color: var(--text); }
+.tag { position: absolute; top: 126px; right: 190px; padding: 4px 10px; border-radius: 999px; border: 1px dashed rgb(255 255 255 / 25%); color: var(--ink); font-size: 12px; background: rgb(10 14 13 / 70%); }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<span class="tag">Preview · not built</span>
+<div class="bar" id="bar"></div>
+<div class="cap" id="cap"></div>
+<script>
+const I = {
+  orbit: '<ellipse cx="12" cy="12" rx="9" ry="4"/><path d="M17 8.6l2.6-.4-.6 2.6"/><circle cx="12" cy="12" r="1.6"/>',
+  pan: '<path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V12M11 11V4.5a1.5 1.5 0 0 1 3 0V12M14 11.5V6a1.5 1.5 0 0 1 3 0v8a6 6 0 0 1-6 6h-.5a6 6 0 0 1-4.6-2.2L4 15.5a1.6 1.6 0 0 1 2.4-2L8 15"/>',
+  zoom: '<circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.4-4.4M11 8v6M8 11h6"/>',
+  fit: '<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/><rect x="9" y="9" width="6" height="6" rx="1"/>',
+  grid: '<path d="M4 4h16v16H4zM4 9.3h16M4 14.6h16M9.3 4v16M14.6 4v16"/>',
+  shot: '<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>', full: '<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>',
+  more: '<circle cx="12" cy="5.5" r="1.3" fill="currentColor"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/><circle cx="12" cy="18.5" r="1.3" fill="currentColor"/>',
+  chev: '<path d="M7 10l5 5 5-5"/>',
+};
+const pos = new URLSearchParams(location.search).get('v') === 'left' ? 'left' : 'top';
+const items = [['orbit', 'Orbit', 'O'], ['pan', 'Pan', 'P'], ['zoom', 'Zoom', 'Z'], '|', ['fit', 'Fit', 'F'], '|', ['grid', 'Grid', 'G'], 'step', '|', ['shot', 'Screenshot'], ['full', 'Full screen'], ['more', 'More']];
+const bar = document.getElementById('bar'); bar.className = `bar ${pos}`;
+bar.innerHTML = items.map((it) => it === '|' ? '<i class="sep"></i>' : it === 'step'
+  ? `<span class="b sel">10 mm<svg class="i chev" viewBox="0 0 24 24" style="width:14px;height:14px">${I.chev}</svg></span>`
+  : `<span class="b${it[0] === 'orbit' ? ' on' : ''}${it[0] === 'pan' ? ' hover' : ''}"><svg class="i" viewBox="0 0 24 24">${I[it[0]]}</svg>${(pos === 'top' && ['shot', 'full', 'more'].includes(it[0])) ? '' : `<span>${it[1]}</span>`}${it[0] === 'pan' && pos === 'left' ? `<span class="fly">Pan <em>· drag to move the view</em> <kbd>P</kbd></span>` : ''}${it[0] === 'pan' && pos === 'top' ? `<span class="tip">Pan <em>· drag to move the view</em> <kbd>P</kbd></span>` : ''}</span>`).join('');
+document.getElementById('cap').innerHTML = pos === 'top'
+  ? '<b>Top centre</b>: one bar with words (Orbit, Pan, Zoom, Fit, Grid, its step; Screenshot, Full screen and More as icons). Learners read the tool, not guess it; it sits in the same place in every view. It covers a strip of the back wall above the shelf.'
+  : '<b>Extreme left</b>: a slim rail, icons only, each named on hover. The scene stays open across the top; the orb stays alone on the right. In Authoring and Edit it would sit just inside the stage, beside the component library.';
+</script>
+</body>
+</html>

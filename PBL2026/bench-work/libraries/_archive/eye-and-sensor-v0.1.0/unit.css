@@ -1,0 +1,8 @@
+/* D1·020 card 3's units (the direct-indirect-null kit): the scene (painted once), the moving layer above it, and the
+   controls built into the hardware (a knob turned, a jockey slid) */
+.dk-root { position:absolute; left:0; top:0; width:1920px; height:1080px; }
+.dk-root svg, .dk-svg svg { position:absolute; left:0; top:0; display:block; }
+.dk-root svg:first-child, .dk-svg svg:first-child { will-change:transform; }
+.dk-ctl { position:absolute; cursor:grab; touch-action:none; z-index:3; }
+.dk-ctl:hover { box-shadow:0 0 0 2px rgba(46,230,197,.55), 0 0 18px rgba(46,230,197,.35); }
+.dk-ctl:active { cursor:grabbing; }

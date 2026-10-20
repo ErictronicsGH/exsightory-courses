@@ -1,0 +1,1298 @@
+{
+  "$schema": "../schema/component.schema.json",
+  "standard": "exsight.component/0.1",
+  "status": "draft",
+  "identity": {
+    "id": "exsight.supply.sw3005",
+    "version": "0.2.0",
+    "class": "instrument.dc-supply.switching@1",
+    "names": {
+      "en": "Bench power supply, 0–30 V 0–5 A",
+      "fr": "Alimentation de laboratoire, 0–30 V 0–5 A"
+    },
+    "category": "power",
+    "tags": [
+      "supply",
+      "switching",
+      "programmable",
+      "CV",
+      "CC",
+      "OVP",
+      "OCP",
+      "instrument"
+    ],
+    "licence": "ExSight course content",
+    "source": {
+      "note": "Our own unbranded design after the owner's reference photo (2026-10-11): a tall programmable switching bench supply with V, A and W rows, coarse and fine encoders, OCP/OVP/OUTPUT keys, USB-A and USB-C charging ports. Figures follow current 30 V / 5 A to 60 V / 5 A units of this class (research 08 §C; the listings cited in research 08 §D). Brands are cited in the research only.",
+      "research": "bench-work/research/08-component-manifest-research.md",
+      "kit": "bench-work/components/classes/dc-supply-switching.mjs"
+    }
+  },
+  "body": {
+    "dimensions": {
+      "w": 110,
+      "d": 220,
+      "h": 176,
+      "unit": "mm"
+    },
+    "mass": {
+      "value": 1500,
+      "unit": "g"
+    },
+    "zeroPose": "origin at the base centre (under the feet); front panel faces -Y (the user); Z up; feet on z = 0; the case 170 mm tall on 6 mm feet",
+    "bounds": {
+      "box": [
+        [
+          -55,
+          -110,
+          0
+        ],
+        [
+          55,
+          110,
+          176
+        ]
+      ]
+    },
+    "feet": [
+      [
+        -40,
+        -95,
+        0
+      ],
+      [
+        40,
+        -95,
+        0
+      ],
+      [
+        -40,
+        95,
+        0
+      ],
+      [
+        40,
+        95,
+        0
+      ]
+    ],
+    "clearance": {
+      "back": 50,
+      "sides": 20,
+      "unit": "mm",
+      "why": "the fan draws air in through the side slots and blows it out of the back grille"
+    },
+    "faces": {
+      "front": {
+        "origin": [
+          -55,
+          -110,
+          6
+        ],
+        "size": [
+          110,
+          170
+        ],
+        "normal": [
+          0,
+          -1,
+          0
+        ]
+      }
+    }
+  },
+  "behaviour": {
+    "model": "dc-supply.switching@1",
+    "parameters": {
+      "cOut": {
+        "value": 0.00094,
+        "unit": "F",
+        "names": {
+          "en": "Output capacitance",
+          "fr": "Capacité de sortie"
+        },
+        "why": "two 470 µF output capacitors; design value, to confirm"
+      },
+      "rBleed": {
+        "value": 2200,
+        "unit": "Ω",
+        "names": {
+          "en": "Bleed resistor",
+          "fr": "Résistance de décharge"
+        }
+      },
+      "tSoftStart": {
+        "value": 0.05,
+        "unit": "s"
+      },
+      "tSelfTest": {
+        "value": 1,
+        "unit": "s"
+      },
+      "tFade": {
+        "value": 0.3,
+        "unit": "s"
+      },
+      "rippleCV": {
+        "value": 0.03,
+        "unit": "V",
+        "basis": "pp",
+        "why": "≤ 30 mV peak to peak, typical of this class"
+      },
+      "rippleCC": {
+        "value": 0.02,
+        "unit": "A",
+        "basis": "pp"
+      },
+      "loadRegulation": {
+        "pct": 0.1,
+        "plus": 0.01,
+        "unit": "V"
+      },
+      "efficiency": {
+        "value": 0.88,
+        "unit": "",
+        "why": "at full load; design value, to confirm"
+      },
+      "pIdle": {
+        "value": 2,
+        "unit": "W",
+        "why": "the converter, the displays and the fan with no load"
+      },
+      "rTh": {
+        "value": 1.8,
+        "unit": "K/W",
+        "why": "inside to room with the fan running; design value, to confirm"
+      },
+      "tAmb": {
+        "value": 25,
+        "unit": "°C"
+      },
+      "tThermal": {
+        "value": 120,
+        "unit": "s",
+        "why": "the inside's thermal time constant; design value, to confirm"
+      },
+      "tResetBelow": {
+        "value": 60,
+        "unit": "°C",
+        "why": "after an over-temperature trip, the output may come back once the inside is below this"
+      },
+      "refreshHz": {
+        "value": 4,
+        "unit": "Hz"
+      }
+    }
+  },
+  "properties": {
+    "vSet": {
+      "kind": "setting",
+      "quantity": "voltage",
+      "unit": "V",
+      "range": [
+        0,
+        30
+      ],
+      "resolution": 0.01,
+      "default": 0,
+      "variability": "tunable",
+      "control": "encVCoarse",
+      "authorable": [
+        "cap",
+        "lock",
+        "preset"
+      ],
+      "names": {
+        "en": "Voltage setting",
+        "fr": "Réglage de tension"
+      },
+      "symbol": "V_set"
+    },
+    "iLim": {
+      "kind": "setting",
+      "quantity": "current",
+      "unit": "A",
+      "range": [
+        0,
+        5
+      ],
+      "resolution": 0.001,
+      "default": 0.1,
+      "variability": "tunable",
+      "control": "encACoarse",
+      "authorable": [
+        "cap",
+        "lock",
+        "preset"
+      ],
+      "names": {
+        "en": "Current limit",
+        "fr": "Limite de courant"
+      },
+      "symbol": "I_lim"
+    },
+    "ovpLevel": {
+      "kind": "setting",
+      "group": "ovp",
+      "quantity": "voltage",
+      "unit": "V",
+      "range": [
+        1,
+        33
+      ],
+      "resolution": 0.01,
+      "default": 33,
+      "variability": "tunable",
+      "control": "encVCoarse",
+      "authorable": [
+        "cap",
+        "lock",
+        "preset"
+      ],
+      "rules": [
+        {
+          "op": ">=",
+          "other": "vSet",
+          "factor": 1.05
+        }
+      ],
+      "names": {
+        "en": "Overvoltage protection level",
+        "fr": "Seuil de protection contre les surtensions"
+      },
+      "symbol": "V_OVP"
+    },
+    "ovp": {
+      "kind": "state",
+      "group": "ovp",
+      "values": [
+        "armed",
+        "setting"
+      ],
+      "default": "armed",
+      "control": "keyOvp",
+      "authorable": [
+        "preset",
+        "lock"
+      ],
+      "names": {
+        "en": "Overvoltage protection",
+        "fr": "Protection contre les surtensions"
+      }
+    },
+    "ocp": {
+      "kind": "state",
+      "group": "ocp",
+      "values": [
+        "off",
+        "on"
+      ],
+      "default": "off",
+      "control": "keyOcp",
+      "authorable": [
+        "preset",
+        "lock"
+      ],
+      "names": {
+        "en": "Overcurrent protection (cut instead of limit)",
+        "fr": "Protection contre les surintensités (coupure au lieu de limitation)"
+      }
+    },
+    "power": {
+      "kind": "state",
+      "values": [
+        "off",
+        "selfTest",
+        "on"
+      ],
+      "default": "off",
+      "control": "btnPower",
+      "authorable": [
+        "preset",
+        "lock"
+      ],
+      "names": {
+        "en": "Power",
+        "fr": "Marche"
+      }
+    },
+    "output": {
+      "kind": "state",
+      "values": [
+        "off",
+        "on"
+      ],
+      "default": "off",
+      "control": "keyOutput",
+      "authorable": [
+        "preset",
+        "lock"
+      ],
+      "names": {
+        "en": "Output",
+        "fr": "Sortie"
+      }
+    },
+    "beeper": {
+      "kind": "state",
+      "values": [
+        "on",
+        "muted"
+      ],
+      "default": "on",
+      "control": "pushVFine",
+      "authorable": [
+        "preset"
+      ],
+      "names": {
+        "en": "Beeper",
+        "fr": "Bip"
+      }
+    },
+    "mode": {
+      "kind": "state",
+      "values": [
+        "CV",
+        "CC"
+      ],
+      "names": {
+        "en": "Regulation mode",
+        "fr": "Mode de régulation"
+      }
+    },
+    "vOut": {
+      "kind": "reading",
+      "quantity": "voltage",
+      "unit": "V",
+      "range": [
+        0,
+        30
+      ],
+      "resolution": 0.01,
+      "accuracy": {
+        "pct": 0.5,
+        "digits": 2
+      },
+      "display": "dispV",
+      "names": {
+        "en": "Output voltage",
+        "fr": "Tension de sortie"
+      }
+    },
+    "iOut": {
+      "kind": "reading",
+      "quantity": "current",
+      "unit": "A",
+      "range": [
+        0,
+        5
+      ],
+      "resolution": 0.001,
+      "accuracy": {
+        "pct": 0.5,
+        "digits": 3
+      },
+      "display": "dispA",
+      "names": {
+        "en": "Output current",
+        "fr": "Courant de sortie"
+      }
+    },
+    "pOut": {
+      "kind": "reading",
+      "quantity": "power",
+      "unit": "W",
+      "range": [
+        0,
+        155
+      ],
+      "resolution": 0.001,
+      "display": "dispW",
+      "names": {
+        "en": "Output power, V × I",
+        "fr": "Puissance de sortie, V × I"
+      }
+    },
+    "tInt": {
+      "kind": "reading",
+      "group": "thermal",
+      "quantity": "temperature",
+      "unit": "°C",
+      "hidden": true,
+      "names": {
+        "en": "Temperature inside",
+        "fr": "Température interne"
+      }
+    },
+    "vOutMax": {
+      "kind": "rating",
+      "quantity": "voltage",
+      "unit": "V",
+      "value": 31
+    },
+    "iOutMax": {
+      "kind": "rating",
+      "quantity": "current",
+      "unit": "A",
+      "value": 5.2
+    },
+    "pOutMax": {
+      "kind": "rating",
+      "quantity": "power",
+      "unit": "W",
+      "value": 155
+    }
+  },
+  "controls": {
+    "encVCoarse": {
+      "form": "encoder",
+      "property": "vSet",
+      "node": "enc_v_coarse",
+      "role": "coarse",
+      "travel": {
+        "detents": 20,
+        "step": 1
+      },
+      "alt": {
+        "when": "ovp = setting",
+        "property": "ovpLevel",
+        "step": 1
+      },
+      "gestures": {
+        "drag": "round",
+        "wheel": 1,
+        "wheelFine": 1,
+        "typed": true,
+        "keys": null
+      },
+      "onCap": "clampBlink",
+      "onLock": "freeze",
+      "names": {
+        "en": "V - COARSE",
+        "fr": "V - COARSE"
+      }
+    },
+    "encVFine": {
+      "form": "encoder",
+      "property": "vSet",
+      "node": "enc_v_fine",
+      "role": "fine",
+      "travel": {
+        "detents": 20,
+        "step": 0.01,
+        "span": 0.2
+      },
+      "alt": {
+        "when": "ovp = setting",
+        "property": "ovpLevel",
+        "step": 0.01
+      },
+      "gestures": {
+        "drag": "round",
+        "wheel": 0.01,
+        "wheelFine": 0.01,
+        "typed": false,
+        "keys": null
+      },
+      "onCap": "clampBlink",
+      "onLock": "freeze",
+      "names": {
+        "en": "V - FINE",
+        "fr": "V - FINE"
+      }
+    },
+    "pushVFine": {
+      "form": "key",
+      "property": "beeper",
+      "node": "enc_v_fine_push",
+      "gestures": {
+        "click": true,
+        "keys": null
+      },
+      "enabledWhen": "power = on",
+      "names": {
+        "en": "V - FINE (press: beeper)",
+        "fr": "V - FINE (appui : bip)"
+      }
+    },
+    "encACoarse": {
+      "form": "encoder",
+      "property": "iLim",
+      "node": "enc_a_coarse",
+      "role": "coarse",
+      "travel": {
+        "detents": 20,
+        "step": 0.1
+      },
+      "gestures": {
+        "drag": "round",
+        "wheel": 0.1,
+        "wheelFine": 0.1,
+        "typed": true,
+        "keys": null
+      },
+      "onCap": "clampBlink",
+      "onLock": "freeze",
+      "names": {
+        "en": "A - COARSE",
+        "fr": "A - COARSE"
+      }
+    },
+    "encAFine": {
+      "form": "encoder",
+      "property": "iLim",
+      "node": "enc_a_fine",
+      "role": "fine",
+      "travel": {
+        "detents": 20,
+        "step": 0.001,
+        "span": 0.02
+      },
+      "gestures": {
+        "drag": "round",
+        "wheel": 0.001,
+        "wheelFine": 0.001,
+        "typed": false,
+        "keys": null
+      },
+      "onCap": "clampBlink",
+      "onLock": "freeze",
+      "names": {
+        "en": "A - FINE",
+        "fr": "A - FINE"
+      }
+    },
+    "btnPower": {
+      "form": "key",
+      "property": "power",
+      "node": "btn_power",
+      "lit": false,
+      "gestures": {
+        "click": true,
+        "keys": null
+      },
+      "onLock": "freeze",
+      "names": {
+        "en": "POWER",
+        "fr": "POWER"
+      }
+    },
+    "keyOutput": {
+      "form": "key",
+      "property": "output",
+      "node": "key_output",
+      "lit": "ledOutput",
+      "gestures": {
+        "click": true,
+        "keys": null
+      },
+      "enabledWhen": "power = on",
+      "onLock": "freeze",
+      "names": {
+        "en": "OUTPUT",
+        "fr": "OUTPUT"
+      }
+    },
+    "keyOcp": {
+      "form": "key",
+      "property": "ocp",
+      "node": "key_ocp",
+      "lit": "ledOcp",
+      "gestures": {
+        "click": true,
+        "keys": null
+      },
+      "enabledWhen": "power = on",
+      "onLock": "freeze",
+      "names": {
+        "en": "OCP",
+        "fr": "OCP"
+      }
+    },
+    "keyOvp": {
+      "form": "key",
+      "property": "ovp",
+      "node": "key_ovp",
+      "lit": "ledOvp",
+      "gestures": {
+        "click": true,
+        "keys": null
+      },
+      "enabledWhen": "power = on",
+      "onLock": "freeze",
+      "names": {
+        "en": "OVP",
+        "fr": "OVP"
+      }
+    }
+  },
+  "indicators": {
+    "dispV": {
+      "kind": "7seg",
+      "digits": 4,
+      "decimals": 2,
+      "colour": "white",
+      "refreshHz": 4,
+      "wander": {
+        "counts": 1
+      },
+      "node": "disp_v",
+      "shows": {
+        "off": "blank",
+        "selfTest": "all",
+        "on.outputOff": "vSet",
+        "on.outputOn": "vOut",
+        "on.editing": "vSet, flashing",
+        "on.ovpSetting": "ovpLevel, flashing",
+        "fault.ovpTrip": "OUP, flashing",
+        "fault.overTemp": "OtP, flashing"
+      }
+    },
+    "dispA": {
+      "kind": "7seg",
+      "digits": 4,
+      "decimals": 3,
+      "colour": "white",
+      "refreshHz": 4,
+      "wander": {
+        "counts": 1
+      },
+      "node": "disp_a",
+      "shows": {
+        "off": "blank",
+        "selfTest": "all",
+        "on.outputOff": "iLim",
+        "on.outputOn": "iOut",
+        "on.editing": "iLim, flashing",
+        "on.ovpSetting": "OUP",
+        "fault.ocpTrip": "OCP, flashing"
+      }
+    },
+    "dispW": {
+      "kind": "7seg",
+      "digits": 4,
+      "decimals": 3,
+      "colour": "white",
+      "refreshHz": 4,
+      "node": "disp_w",
+      "shows": {
+        "off": "blank",
+        "selfTest": "all",
+        "on.outputOff": "0.000",
+        "on.outputOn": "pOut, auto-ranging"
+      }
+    },
+    "dotCV": {
+      "kind": "lamp",
+      "colour": "red",
+      "node": "dot_cv",
+      "on": "power = on and output = on and mode = CV"
+    },
+    "dotCC": {
+      "kind": "lamp",
+      "colour": "red",
+      "node": "dot_cc",
+      "on": "power = on and output = on and mode = CC"
+    },
+    "dotLock": {
+      "kind": "lamp",
+      "colour": "amber",
+      "node": "dot_lock",
+      "on": "the activity caps or locks a control; flashes when one is refused"
+    },
+    "iconMute": {
+      "kind": "lamp",
+      "colour": "amber",
+      "node": "icon_mute",
+      "on": "beeper = muted"
+    },
+    "ledOcp": {
+      "kind": "lamp",
+      "colour": "green",
+      "node": "key_ocp_led",
+      "on": "ocp = on"
+    },
+    "ledOvp": {
+      "kind": "lamp",
+      "colour": "green",
+      "node": "key_ovp_led",
+      "on": "ovp = armed; flashes while ovp = setting"
+    },
+    "ledOutput": {
+      "kind": "lamp",
+      "colour": "green",
+      "node": "key_output_led",
+      "on": "output = on"
+    }
+  },
+  "terminals": {
+    "neg": {
+      "kind": "binding-post-4mm",
+      "node": "-",
+      "role": "return",
+      "signal": "dc",
+      "polarity": "-",
+      "colour": "black",
+      "position": [
+        -37,
+        -121.5,
+        24
+      ],
+      "accepts": [
+        "banana-4mm",
+        "spade",
+        "bare-wire-2.5mm2",
+        "croc-clip"
+      ],
+      "rating": 5,
+      "traceAt": [
+        -37,
+        -130,
+        24
+      ],
+      "modelNode": "post_neg"
+    },
+    "earth": {
+      "kind": "binding-post-4mm",
+      "node": "earth",
+      "role": "earth",
+      "signal": "ground",
+      "colour": "green",
+      "position": [
+        -5,
+        -121.5,
+        24
+      ],
+      "accepts": [
+        "banana-4mm",
+        "spade",
+        "bare-wire-2.5mm2",
+        "croc-clip"
+      ],
+      "rating": 5,
+      "traceAt": [
+        -5,
+        -130,
+        24
+      ],
+      "modelNode": "post_earth"
+    },
+    "pos": {
+      "kind": "binding-post-4mm",
+      "node": "+",
+      "role": "power",
+      "signal": "dc",
+      "polarity": "+",
+      "colour": "red",
+      "position": [
+        29,
+        -121.5,
+        24
+      ],
+      "accepts": [
+        "banana-4mm",
+        "spade",
+        "bare-wire-2.5mm2",
+        "croc-clip"
+      ],
+      "rating": 5,
+      "traceAt": [
+        29,
+        -130,
+        24
+      ],
+      "modelNode": "post_pos"
+    },
+    "usbA": {
+      "kind": "usb",
+      "node": "usb_a_vbus",
+      "role": "power",
+      "signal": "dc",
+      "colour": "grey",
+      "position": [
+        -19,
+        -110.7,
+        48.4
+      ],
+      "rating": 3,
+      "modelNode": "usb_a"
+    },
+    "usbC": {
+      "kind": "usb",
+      "node": "usb_c_vbus",
+      "role": "power",
+      "signal": "dc",
+      "colour": "grey",
+      "position": [
+        0.5,
+        -110.6,
+        48.3
+      ],
+      "rating": 3,
+      "modelNode": "usb_c"
+    }
+  },
+  "representations": {
+    "model": {
+      "source": "code:supply.sw3005",
+      "lods": [
+        {
+          "maxPx": 80,
+          "detail": "box"
+        },
+        {
+          "maxPx": 400,
+          "detail": "panel"
+        },
+        {
+          "detail": "full"
+        }
+      ],
+      "variants": [
+        "off",
+        "on",
+        "fuseBlown"
+      ],
+      "profiles": [
+        "2d",
+        "2.5d",
+        "3d",
+        "custom"
+      ]
+    },
+    "panel": {
+      "face": "front",
+      "dock": "beside-stage",
+      "profiles": [
+        "measure-tile"
+      ]
+    },
+    "symbol": {
+      "ref": "profile:symbol.dc-source"
+    },
+    "icon": {
+      "from": "model",
+      "angle": "isometric"
+    }
+  },
+  "views": {
+    "2d": {
+      "face": "front",
+      "azimuth": 0,
+      "elevation": 0,
+      "projection": "orthographic",
+      "stands": "on-front-edge",
+      "legible": {
+        "what": {
+          "en": "the smallest legends (key and knob names)",
+          "fr": "les plus petites inscriptions (touches et boutons)"
+        },
+        "mm": 2.6,
+        "minPx": 9
+      },
+      "operable": true,
+      "why": "Its working face is the front: from above only the top of the case shows, so in 2D it shows its interface, face-on, operable where it stands."
+    },
+    "2.5d": {
+      "face": "front",
+      "azimuth": 0,
+      "elevation": 13.5,
+      "projection": "orthographic",
+      "stands": "on-footprint",
+      "legible": {
+        "what": {
+          "en": "the smallest legends (key and knob names)",
+          "fr": "les plus petites inscriptions (touches et boutons)"
+        },
+        "mm": 2.6,
+        "minPx": 9
+      },
+      "operable": true,
+      "why": "Front-dominant at the bench's 2.5D elevation: the glass, the knobs and the posts read, and the top shows enough to read it as a box."
+    }
+  },
+  "trace": {
+    "quantities": {
+      "terminals": [
+        "V",
+        "I"
+      ]
+    },
+    "internal": "opaque",
+    "convention": "conventional",
+    "colours": "terminal",
+    "speedLaw": "proportional-to-current, labelled, approximate"
+  },
+  "failures": {
+    "ovpTrip": {
+      "group": "ovp",
+      "trigger": {
+        "quantity": "vOut",
+        "op": ">",
+        "value": "ovpLevel",
+        "for_s": 0.001
+      },
+      "effect": {
+        "set": {
+          "output": "off"
+        }
+      },
+      "signs": {
+        "display": "OUP",
+        "lamp": "ledOvp",
+        "sound": "beep"
+      },
+      "latch": true,
+      "reset": "lower V under the OVP level, then press OUTPUT",
+      "plantable": false,
+      "say": {
+        "en": "The output rose above the protection level, so the supply cut its output.",
+        "fr": "La sortie a dépassé le seuil de protection : l’alimentation a coupé sa sortie."
+      }
+    },
+    "ocpTrip": {
+      "group": "ocp",
+      "trigger": {
+        "quantity": "iOut",
+        "op": ">=",
+        "value": "iLim",
+        "for_s": 0.01
+      },
+      "effect": {
+        "set": {
+          "output": "off"
+        }
+      },
+      "signs": {
+        "display": "OCP",
+        "lamp": "ledOcp",
+        "sound": "beep"
+      },
+      "latch": true,
+      "reset": "remove the cause, then press OUTPUT",
+      "plantable": false,
+      "say": {
+        "en": "With OCP on, reaching the current limit cuts the output instead of holding the current.",
+        "fr": "Avec OCP active, atteindre la limite de courant coupe la sortie au lieu de maintenir le courant."
+      }
+    },
+    "overTemp": {
+      "group": "thermal",
+      "trigger": {
+        "quantity": "tInt",
+        "op": ">",
+        "value": 85,
+        "unit": "°C",
+        "for_s": 1
+      },
+      "effect": {
+        "set": {
+          "output": "off"
+        }
+      },
+      "signs": {
+        "display": "OtP",
+        "sound": "fan-high"
+      },
+      "latch": true,
+      "reset": "switch off and let it cool for about a minute",
+      "plantable": false,
+      "design": "values to confirm",
+      "say": {
+        "en": "The inside got too hot: the converter loses P_out (1/η − 1) as heat and the fan could not carry it away.",
+        "fr": "L’intérieur a trop chauffé : le convertisseur perd P_out (1/η − 1) en chaleur et le ventilateur n’a pas suffi."
+      }
+    },
+    "ventsBlocked": {
+      "trigger": {
+        "event": "armed"
+      },
+      "effect": {
+        "parameter": "rTh",
+        "factor": 4
+      },
+      "signs": {},
+      "latch": true,
+      "reset": "clear the side slots",
+      "plantable": true,
+      "say": {
+        "en": "The side slots were covered: the fan could not draw air, so the inside warmed four times as much.",
+        "fr": "Les fentes latérales étaient couvertes : l’intérieur a chauffé quatre fois plus."
+      }
+    },
+    "mainsFuse": {
+      "trigger": {
+        "event": "internal-fault"
+      },
+      "effect": {
+        "set": {
+          "power": "off"
+        },
+        "damage": "open"
+      },
+      "signs": {
+        "variant": "fuseBlown",
+        "display": "blank"
+      },
+      "latch": true,
+      "reset": "replace the 3.15 A T fuse in the inlet's drawer",
+      "plantable": true,
+      "say": {
+        "en": "Nothing lights: the mains fuse has blown.",
+        "fr": "Rien ne s’allume : le fusible secteur a fondu."
+      }
+    },
+    "loosePost": {
+      "trigger": {
+        "event": "armed"
+      },
+      "effect": {
+        "terminal": "pos",
+        "damage": "degraded",
+        "rContact": 2
+      },
+      "signs": {},
+      "latch": true,
+      "reset": "tighten the post",
+      "plantable": true,
+      "say": {
+        "en": "The red post was loose: 2 Ω in series drops the voltage under load.",
+        "fr": "La borne rouge était desserrée : 2 Ω en série font chuter la tension en charge."
+      }
+    },
+    "calibrationDrift": {
+      "trigger": {
+        "event": "armed"
+      },
+      "effect": {
+        "reading": "vOut",
+        "gain": 1.03
+      },
+      "signs": {},
+      "latch": true,
+      "reset": "recalibrate",
+      "plantable": true,
+      "say": {
+        "en": "The voltage display reads 3 % high: check it against a meter.",
+        "fr": "L’afficheur de tension lit 3 % trop haut : vérifiez avec un multimètre."
+      }
+    }
+  },
+  "orientation": {
+    "surfaces": [
+      "worktop",
+      "shelf"
+    ],
+    "rotations": {
+      "about": "z",
+      "set": [
+        0,
+        90,
+        180,
+        270
+      ],
+      "free": true,
+      "snap": 15
+    },
+    "tilt": "none",
+    "flip": false,
+    "mount": "stands-on-feet",
+    "stack": false
+  },
+  "authorPolicy": {
+    "defaults": {
+      "exposed": [
+        "encVCoarse",
+        "encVFine",
+        "encACoarse",
+        "encAFine",
+        "btnPower",
+        "keyOutput"
+      ],
+      "trace": "off",
+      "damage": "graded",
+      "turnScale": "range"
+    },
+    "overlays": {
+      "trace": [
+        "off",
+        "on",
+        "after-measuring"
+      ],
+      "convention": [
+        "lock"
+      ],
+      "turnScale": [
+        "range",
+        "angle",
+        "vernier",
+        "off"
+      ]
+    },
+    "failures": {
+      "arm": [
+        "ventsBlocked",
+        "mainsFuse",
+        "loosePost",
+        "calibrationDrift"
+      ]
+    }
+  },
+  "labels": {
+    "button": "on-part",
+    "items": [
+      "dispV",
+      "dispA",
+      "dispW",
+      "encVCoarse",
+      "encVFine",
+      "encACoarse",
+      "encAFine",
+      "keyOcp",
+      "keyOvp",
+      "keyOutput",
+      "btnPower",
+      "dotCV",
+      "dotCC",
+      "dotLock",
+      "neg",
+      "earth",
+      "pos",
+      "usbA",
+      "usbC"
+    ]
+  },
+  "sounds": {
+    "btnPower": "push-click",
+    "keyOutput": "beep",
+    "keyOcp": "beep",
+    "keyOvp": "beep",
+    "encVCoarse": "detent-tick",
+    "fan": "fan-low"
+  },
+  "verification": {
+    "golden": [
+      {
+        "given": {
+          "vSet": 12,
+          "iLim": 1,
+          "load": 24
+        },
+        "expect": {
+          "vOut": 12,
+          "iOut": 0.5,
+          "pOut": 6,
+          "mode": "CV"
+        }
+      },
+      {
+        "given": {
+          "vSet": 12,
+          "iLim": 0.1,
+          "load": 24
+        },
+        "expect": {
+          "vOut": 2.4,
+          "iOut": 0.1,
+          "pOut": 0.24,
+          "mode": "CC"
+        }
+      },
+      {
+        "given": {
+          "vSet": 12,
+          "iLim": 0.1,
+          "load": 120
+        },
+        "expect": {
+          "vOut": 12,
+          "iOut": 0.1,
+          "mode": "CV",
+          "note": "the crossover: R = V_set / I_lim = 120 Ω"
+        }
+      },
+      {
+        "given": {
+          "vSet": 5,
+          "iLim": 1,
+          "load": "open"
+        },
+        "expect": {
+          "vOut": 5,
+          "iOut": 0,
+          "pOut": 0,
+          "mode": "CV"
+        }
+      },
+      {
+        "given": {
+          "vSet": 5,
+          "iLim": 0.1,
+          "load": 68
+        },
+        "expect": {
+          "vOut": 5,
+          "iOut": 0.07352941176470588,
+          "pOut": 0.36764705882352944,
+          "mode": "CV",
+          "note": "the preview's still 5"
+        }
+      },
+      {
+        "given": {
+          "vSet": 5,
+          "iLim": 0.1,
+          "load": 22
+        },
+        "expect": {
+          "vOut": 2.2,
+          "iOut": 0.1,
+          "pOut": 0.22,
+          "mode": "CC",
+          "note": "the preview's still 6"
+        }
+      },
+      {
+        "given": {
+          "vSet": 5,
+          "iLim": 0.1,
+          "load": 22,
+          "ocp": "on"
+        },
+        "expect": {
+          "output": "off",
+          "fault": "ocpTrip",
+          "note": "OCP armed: cut instead of CC"
+        }
+      },
+      {
+        "given": {
+          "vSet": 12,
+          "iLim": 1,
+          "load": "open",
+          "ovpLevel": 11
+        },
+        "expect": {
+          "output": "off",
+          "fault": "ovpTrip",
+          "note": "set above the OVP level: the output trips"
+        }
+      },
+      {
+        "given": {
+          "vSet": 12,
+          "iLim": 0.1,
+          "load": 100,
+          "ovpLevel": 11
+        },
+        "expect": {
+          "vOut": 10,
+          "mode": "CC",
+          "output": "on",
+          "note": "in CC the output stays under the OVP level: no trip"
+        }
+      }
+    ],
+    "gates": {}
+  }
+}

@@ -1,0 +1,75 @@
+- [PBL2026 course structure](pbl2026-course-structure.md) — From Sensor to Number, Oct 10–12 2026; notes in EAC format along the measurement path
+- [Natural order](feedback-natural-order.md) — lessons flow organically along the signal path; intros hand off to what follows
+- [EAC format reference](eac-format-reference.md) — where the EAC spec, refine guide, example course and compiler live; Studio facts
+- [No trimming](feedback-no-trimming.md) — never shorten the owner's content; report overruns and let them cut
+- [Project files stay local](project-files-stay-local.md) — memory and tracking live in PBL2026/.claude/, never the global profile
+- [Authoring first, a spec per bench activity](authoring-first-specs-per-activity.md) — benches not ready; one spec per bench card with its minutes, in bench-work/specs/
+- [Bench quality bar](bench-quality-bar.md) — interactive, intuitive, beautiful, ≥ 95 % faithful to the real thing
+- [The 3D Bench is for modelling](three-d-bench-is-modelling.md) — 3D Bench = CAD/STEP models; Animation Bench (M62) = anything from an animation library (three.js, Manim…), 2D and 3D; a picture built up → Draw
+- [Research before bench features](research-before-bench-features.md) — research the teaching need, list capabilities, owner renders UI in ChatGPT, then build
+- [Design rules from the start](design-rules-from-the-start.md) — every bench list/spec obeys the bench design rules (one copy since 2026-10-20: C:\ExSightory\.claude\benches\standards\bench-design-rules.md); Electronics Bench frame; repo wins, departures go to the owner
+- [Say safe to clear](say-safe-to-clear.md) — end every session with whether it is safe to /clear and the file that carries it
+- [Prototype capture](prototype-capture.md) — rasterising preview SVGs with shoot-svg.js; capturing and driving a bench is the Benches lane's since 2026-10-20 (its own memory)
+- [Bench versus library](bench-versus-library.md) — bench = platform, interface, controls; library = a unit of content loaded into it (e.g. the eye three.js animation); specs name both; 'a library is data, never code' tension open
+- [Electronics Bench in development](electronics-bench-in-development.md) — being built now; defer Electronics widgets (no spec, no stand-in, no gap hunting); the card itself still gets its demonstration (card 3 built)
+- [Render visual milestones](render-visual-milestones.md) — when a spec fixes a drawing, plot or layout, render a preview (bench-work/previews/) and send it to the owner
+- [Real but unbranded](real-but-unbranded.md) — no brand/product names on any teaching surface; our own realistic designs count as real; specs may cite products as sources only
+- [Design direction before building](design-direction-before-building.md) — describe any visual's plan (scenes, look, motion) and wait for the owner's direction before building it
+- [Brief before each unit](brief-before-each-unit.md) — start every unit by briefing the owner (cards, benches, design choices), then wait for their design direction
+- [Visualize every card, in lecture order](visualize-every-card-in-lecture-order.md) — build visuals in teaching order after the eye; every card gets a demonstration, even "Show: none" ones
+- [Animation player controls](animation-player-controls.md) — Prev/Play-Stop/Next; Cards toggle off by default; context panels toggle and hide on Play; every signal traced
+- [Animation follows the Flow](animation-follows-the-flow.md) — stops map to the teleprompter's paragraphs; each interface shown as it physically happens, in zoom panels
+- [Eye intro, then electronics zoom](eye-intro-then-electronics-zoom.md) — card 4: eye only as a mapped still above the chain; Play hides it; steps zoom to their zone; end = full chain, all signals flowing
+- [Controls built into the hardware](controls-built-into-the-hardware.md) — controls are the real object's own (cord switch-dimmer, tuner head, board switches), never floating cards; light follows the shade's cone
+- [Input drives every output](input-drives-every-output.md) — the input's strength (via the object's own control) changes every value in every stop, caption and panel; guided walk too, not only Explore
+- [Player controls are the bench's](player-controls-are-the-bench.md) — each demonstration is a library loaded into the Animation Bench; Play/Prev/Reset/Next/speed/Explore are bench controls (transport: …Next | Speed · Autoplay), hardware controls stay in the library
+- [Libraries decoupled from the bench](libraries-decoupled-from-the-bench.md) — a library is its own folder with library.json; the bench has no registry and configures itself from the library's metadata
+- [One block at a time](one-block-at-a-time.md) — each Flow step promotes one block to the full stage; blocks are reusable unit libraries joined by a sequence library; only the bench's transport, no in-block buttons
+- [Reference designs set the look](reference-designs-set-the-look.md) — match the owner's reference renders closely (lit objects, reflections, cards, glow) but keep physics and values right and name the reference's errors
+- [Instruments read live](instruments-read-live.md) — last digit wanders a count or two a few times a second (K.counts), vapour curls up from the surface; scales/calipers steady
+- [Scene libraries and assemblies](scene-libraries-and-assemblies.md) — each instrument scene its own library; an assembly lays them out and owns numbers, order, titles, frames
+- [Languages follow the parent app](languages-follow-the-parent-app.md) — every visible text {en, fr}, English fallback, numbers/units never translated, bench EN|FR switch that hides when hosted by the main app
+- [Real electronics → BreadBoard Bench](real-electronics-belong-to-breadboard-bench.md) — pictured parts and instruments (breadboard, supply, meters) are BreadBoard Bench material with true electrical behaviour; for now built in the Animation Bench as animation tools
+- [Components standalone, labels on a button](components-standalone-labels-on-a-button.md) — one library per instrument/component (kit file = master), circuits separate; part labels only via a quiet round icon-only button on the part itself (L); labels are numbered tags + a key, never leader lines
+- [Signal cues only when needed](signal-cues-only-when-needed.md) — no decorative pulses; when the path is the point: whole route, wire's colour, weak→strong for gain, each domain as itself, continuous and varying
+- [Test controls with a real drag](test-controls-with-a-real-drag.md) — drag the drawn part with the pointer tool; a hold must sit over the whole visible part
+- [Visual accuracy: same scale](visual-accuracy-same-scale.md) — compared series share one symbol size and step (one ball = one reading), curves are expected counts (area true), never equal-height; mappings reused card-wide
+- [Views arrive at their first frame](views-arrive-at-first-frame.md) — standing rule: a view opens at its first frame, Play/Replay per view (hold at its end), Reset whole library, Autoplay presenter's switch
+- [Drawing and numbers agree](drawing-and-numbers-agree.md) — values from the drawn geometry (gauges where drawn), one law for a drawn mechanism and its hand control, instruments with a small in-spec error, no elastic numbers past yield
+- [First-class requirements](first-class-requirements.md) — realism ≥ 95 %, science and maths 100 %, visualization/intuition 100 %, consistency, professional design: gates for every animation
+- [Real process, not glyphs](real-process-not-glyphs.md) — observers, eyes and processes drawn as they really are from their real viewpoint (3a parallax: what the eye sees + seen from above), never symbolic glyphs
+- [Labels never cross](labels-never-cross.md) — leaders through empty space, tags ride moving parts, cables meet their traces at the same height, moving parts stay on stage; checked on full-size captures EN + FR
+- [Glass reads as made](glass-reads-as-made.md) — a 3½-digit display shows " .100" on 2 V (half digit only a 1), zeros kept, bargraph per range; settled captures hold still
+- [Hand on turned controls](hand-on-turned-controls.md) — a turned knob/dial gets a realistic hand (stage + enlarged view): the owner's image via spec-kit/prep_hand.py, never a drawn SVG hand; pasted images are read off the clipboard
+- [Screens and devices (parked)](screens-and-devices-parked.md) — any screen incl. phone/tablet students; parked 2026-10-10 until bench work; bench is fixed-stage scale-to-fit, standards §9/C6 and the parent's pane-filling benches say re-compose
+- [One scale per scene](one-scale-per-scene.md) — every object on a bench to one stated scale; close camera or magnifiers, never oversized parts; devices of very different sizes: follow the owner's reference, enlarge the main one and say so on the stage (4e)
+- [Reuse done scenes](reuse-done-scenes.md) — a scene already built is reused (its files unchanged, a thin unit around it), never redrawn; check for one before every brief
+- [Image-based component libraries](image-based-component-libraries.md) — owner's base image → rectified plan drawn through the bench camera (2.5D), functions overlaid; one standalone library per component
+- [Owner's models, rebuilt where simplified](owner-models-rebuilt-where-simplified.md) — use the owner's 3D models; rebuild parts a cut shows that the model fakes (solid cone, solid magnet) at its own size; real materials
+- [Sound the physics makes](sound-the-physics-makes.md) — animations get the sound their own physics makes (bench Sound switch, features.sound); silent where the real thing is; level/time scaling said
+- [Check wiring against the silkscreen](check-wiring-against-the-silkscreen.md) — every lead's socket read off a close render of the board's labels; card 1's AREF had been in GND (a short)
+- [Motion repeats while held](motion-repeats-while-held.md) — a continuing process keeps cycling after its words (card 2's servo loop every 12 s); real device limits modelled
+- [Stills, not films](stills-not-films.md) — no recorded films of demonstrations; stills (EN + FR, key moments) only
+- [Solid objects rendered 2.5D](solid-objects-rendered-2-5d.md) — in 2D libraries every solid object is a 3D render through the bench camera; live parts overlaid; the reading must visibly change
+
+- [Benches load in Studio as widgets](benches-load-in-studio-as-widgets.md) — every bench prototype must load in Studio: `canvas` kind:widget folder, one script, no fetch, textures in code, no storage; checked by compile + sandbox run
+- [Worktop is the reference plane](worktop-is-the-reference-plane.md) — Breadboard Bench: z = 0 at the top of the worktop, origin its centre, X right, Y away, Z up, mm; grid, snapping and placements measured from it
+- [The lab is reusable](the-lab-is-reusable.md) — one ExSight Laboratory for every lab-type bench: createLab({active, plugin}); only the active station workable, all signed (same size, only active lit); dark mode = dark paint, lights on
+- [Room name versus Studio name](room-name-versus-studio-name.md) — the lab's "Electronics Bench" is Studio's Breadboard Bench (M49); Studio's Electronics Bench is the schematic simulation
+- [Camera profiles standard](camera-profiles-standard.md) — 2D and 3D only since 2026-10-12 (2.5D, Custom dropped); 3D is the author's (angle by looking, six freedoms Free/Range/Locked, activity camera['3d']); isometric is a projection
+- [Component standard](component-standard.md) — every bench component is a data manifest (class → component → activity → session; authors only narrow); the supply is now the programmable switching sw3005 (owner's photo), built in 3D
+- [Instrument digits contained](instrument-digits-contained.md) — lit digits white and sharp, no bloom fog or grey glass veil; one body paint, only the glass black
+- [Tidy bench bar](tidy-bench-bar.md) — four controls on the bar (folded groups show their state, open on hover), the rest behind an ellipsis that opens on hover or click
+- [Bench frame: three regions, four views](select-drag-and-property-pane.md) — library (left, folded by default) | bench in focus | properties floating over the stage on selection; Authoring all, Edit as allowed, View interactions only, Preview a clean thumbnail
+- [Scrollbars hidden, thin, themed](scrollbars-hidden-thin-themed.md) — hidden until hover/focus, then a 4 px thumb in the theme's faint ink; no track or arrows
+- [Component Editor](component-editor.md) — ExSight-only editor for bench components (?editor=<id>); stages 1–4 built; golden on law + unit, Try it, gates signed per content digest, Publish; never sign/publish the real file in tests
+- [Model components first](model-components-first.md) — any component a lecture needs is modelled first to the standard; one supply only (sw3005); lectures grow the server's library
+- [Components made by users](components-made-by-users.md) — owner 2026-10-12: users make components as data on ExSight's classes + requests with a tracking page; AI on their tokens with ExSight's guide; approach 01-user-made-components.md
+- [Market versions, locked](market-versions-locked.md) — parts sold in standard types (LDRs: 40 versions) ship ready-made and locked; users pick, never type values (C21)
+- [Connections: snap and click](connections-snap-and-click.md) — ends lock magnetically (compatible only, grip wins); click end then place; multi-terminal parts connect once the whole map is done; collisions refused, never made
+- [Design view](design-view.md) — a bench is built in one view the author picks (2D/2.5D/3D); the others look-only (camera only, instruments still work)
+- [Ratings, sourced](ratings-sourced.md) — conductors, connectors, terminals carry current/voltage/insulation ratings with source; unstated = null + reason
+- [Error logger is Studio's](error-logger-is-studios.md) — app-wide logger on the Core lane (X18, L1–L4 decided); benches post X18 records via report.js and add physics/maths checks (watch.js per component)
+- [Cameras: one list](cameras-one-list.md) — Room/Bench/Ceiling/Floor/2D/3D/saved in lab.js rig; picker, saved cameras (activity camera.saved), Render from chosen cameras (ZIP + sheet; fly-through/cuts)
+- [Benches live in exsight-benches](benches-live-in-exsight-benches.md) — since 2026-10-13 every bench, library and kit is in exsight-benches (C:\ExSightory\src\exsight-benches), built by ExSightory's Benches lane on a crossing from pbl2026; old bench-work/ paths map there; only specs, previews and evidence stay here
+- [Talk to Benches by crossing](talk-to-benches-by-crossing.md) — owner 2026-10-20: every demonstration or bench need is a crossing to ExSightory's Benches lane (party pbl2026), written and pushed only from C:\ExSightory\lanes\pbl2026-x; list it at every session start

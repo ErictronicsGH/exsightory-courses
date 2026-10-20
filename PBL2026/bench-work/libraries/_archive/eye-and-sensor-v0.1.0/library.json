@@ -1,0 +1,165 @@
+{
+  "id": "eye-and-sensor",
+  "name": {
+    "en": "Like the eye for the brain",
+    "fr": "Comme l’œil pour le cerveau"
+  },
+  "title": {
+    "en": "Like the eye for the brain",
+    "fr": "Comme l’œil pour le cerveau"
+  },
+  "description": {
+    "en": "D1·010’s eye and visual pathway recalled above the card’s bench: the eye turns light into signals on the optic nerve, and the brain handles only those signals, never the light. Below it the same arrangement in electronics: the desk lamp’s light, the LDR sensor, a voltage on the lead, the microcontroller. In electronics, measurements mostly begin with sensing. The lamp’s dimmer sets the light; every value follows.",
+    "fr": "L’œil et la voie visuelle de D1·010 rappelés au-dessus de l’établi de la carte : l’œil change la lumière en signaux sur le nerf optique, et le cerveau ne traite que ces signaux, jamais la lumière. En dessous, la même organisation en électronique : la lumière de la lampe de bureau, le capteur LDR, une tension sur le fil, le microcontrôleur. En électronique, la plupart des mesures commencent par la captation. Le variateur de la lampe règle la lumière ; toutes les valeurs suivent."
+  },
+  "card": "D1·030 card 1 (¶0)",
+  "course": "PBL2026 · From Sensor to Number",
+  "kind": "2D",
+  "version": "0.1.0",
+  "bench": {
+    "type": "animation",
+    "contract": 4
+  },
+  "languages": [
+    "en",
+    "fr"
+  ],
+  "stage": {
+    "width": 1920,
+    "height": 1080
+  },
+  "features": {
+    "explore": false,
+    "cards": false
+  },
+  "params": {
+    "dim": {
+      "type": "number",
+      "min": 0,
+      "max": 1,
+      "default": 0.7504,
+      "unit": "",
+      "label": "the lamp dimmer’s wheel, 0 … 1 of its travel (a log taper: 1 … 2000 lux at the sensor; 0.7504 is 300 lux)"
+    }
+  },
+  "keys": {
+    "en": "",
+    "fr": ""
+  },
+  "strings": {
+    "dimTip": {
+      "en": "The lamp’s dimmer: roll its wheel (Shift: fine)",
+      "fr": "Le variateur de la lampe : tournez sa molette (Maj : fin)"
+    },
+    "atBench": {
+      "en": "{lux} lux at the bench",
+      "fr": "{lux} lux sur l’établi"
+    },
+    "section": {
+      "en": "The same arrangement",
+      "fr": "La même organisation"
+    },
+    "eyeT": {
+      "en": "THE EYE · D1·010",
+      "fr": "L’ŒIL · D1·010"
+    },
+    "sysT": {
+      "en": "AN ELECTRONIC MEASUREMENT SYSTEM",
+      "fr": "UN SYSTÈME DE MESURE ÉLECTRONIQUE"
+    },
+    "same": {
+      "en": "the same arrangement",
+      "fr": "la même organisation"
+    },
+    "rLight": {
+      "en": "light",
+      "fr": "la lumière"
+    },
+    "rEye": {
+      "en": "the eye",
+      "fr": "l’œil"
+    },
+    "rNerve": {
+      "en": "signals on the optic nerve",
+      "fr": "des signaux sur le nerf optique"
+    },
+    "rBrain": {
+      "en": "the brain",
+      "fr": "le cerveau"
+    },
+    "rSensor": {
+      "en": "the sensor",
+      "fr": "le capteur"
+    },
+    "rWire": {
+      "en": "a voltage on the lead",
+      "fr": "une tension sur le fil"
+    },
+    "rMcu": {
+      "en": "the microcontroller",
+      "fr": "le microcontrôleur"
+    },
+    "never": {
+      "en": "The brain never handles light itself: it handles what the sense organ made of it.",
+      "fr": "Le cerveau ne manipule jamais la lumière elle-même : il manipule ce que l’organe des sens en a fait."
+    },
+    "mcuNever": {
+      "en": "The microcontroller never handles light either: only the voltage the sensor made of it.",
+      "fr": "Le microcontrôleur ne manipule pas non plus la lumière : seulement la tension que le capteur en a faite."
+    },
+    "sensing": {
+      "en": "SENSING",
+      "fr": "LA CAPTATION"
+    },
+    "sensingS": {
+      "en": "in electronics, measurements mostly begin here",
+      "fr": "en électronique, la plupart des mesures commencent ici"
+    },
+    "jar": {
+      "en": "SUGAR",
+      "fr": "SUCRE"
+    },
+    "headNote": {
+      "en": "D1·010’s eye and visual pathway · not to the bench’s scale",
+      "fr": "l’œil et la voie visuelle de D1·010 · pas à l’échelle de l’établi"
+    },
+    "vals": {
+      "en": "{lux} lux → LDR {r} → {v} V → code {c}",
+      "fr": "{lux} lux → LDR {r} → {v} V → code {c}"
+    },
+    "s1Title": {
+      "en": "Like the eye for the brain",
+      "fr": "Comme l’œil pour le cerveau"
+    },
+    "s1Caption": {
+      "en": [
+        [
+          "The brain never handles light: "
+        ],
+        [
+          "in electronics, measurement begins with sensing",
+          "#FFC24D"
+        ]
+      ],
+      "fr": [
+        [
+          "Le cerveau ne manipule jamais la lumière : "
+        ],
+        [
+          "en électronique, la mesure commence par la captation",
+          "#FFC24D"
+        ]
+      ]
+    }
+  },
+  "css": [
+    "unit.css"
+  ],
+  "scripts": [
+    "svgkit.js",
+    "dinkit.js",
+    "srckit.js",
+    "senkit.js",
+    "unit.js"
+  ]
+}

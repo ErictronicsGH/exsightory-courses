@@ -1,0 +1,218 @@
+# From Sensor to Number — Profesir's Birthday Lectures 2026
+#
+# The course's backbone, in the ExSightory (EAC) course format. The modules live in
+# notes/Day01..Day03, one folder per subsection: en.md is the wall (what the room
+# sees), transcript.en.md is what the presenter says. To compile, notes/ becomes
+# content/ beside this file.
+#
+# The spine of the whole course is the path a measurement travels:
+#
+#   quantity → sensor → source/loading → conditioning → ADC input → conversion
+#            → reference → digital interface → firmware → number
+#
+# It is walked twice. Day 1 and the first half of Day 2 walk it with a quantity
+# that stands still (DC), ending in a number the firmware has earned. The second
+# half of Day 2 and Day 3 walk it again with a quantity that moves (AC), where time
+# enters and the errors DC could not show appear. The concept list below is in
+# that order, and every prerequisite points backwards along it, so the compiler's
+# concept-used-before-introduced rule checks the pedagogy, not just the syntax.
+
+id: from-sensor-to-number
+title: From Sensor to Number
+subtitle: Trustworthy DC and AC measurement with ADCs and microcontrollers
+version: 0.1.0
+languages: [en]
+
+tutor:
+  name: Profesir — Eric Obeng
+  shortBio: >-
+    Profesir teaches measurement and embedded electronics with TECH Foundation
+    Africa and Erictronics Systems.
+
+footer: Profesir's Birthday Lectures 2026 · TECH Foundation Africa · Erictronics Systems
+
+audience: >-
+  Embedded and firmware developers, electronics and EE students, hardware engineers,
+  technicians and makers who know Ohm's law, can read a basic schematic and C-style
+  code, and have put an analog sensor on an ADC pin and hoped the number was right.
+
+# Live online over screen-share: share the window named "ExSight wall", never the
+# whole screen. With a second monitor that is multi-screen; on one laptop it is
+# single-screen, and Flow opens in a content-protected teleprompter window that
+# screen-share and recording do not capture. Never board: Flow would be hidden.
+delivery: [multi-screen, single-screen]
+
+concepts:
+  # ── Day 1 · the quantity and the sensor ─────────────────────────────────────
+  - id: measurement-chain
+    label: The measurement chain, from quantity to number
+  - id: measurand
+    label: The measurand, and direct, indirect and null measurement
+    prerequisites: [measurement-chain]
+  - id: measurement-error
+    label: Error, accuracy, precision and resolution
+    prerequisites: [measurand]
+  - id: uncertainty-budget
+    label: Stacking tolerances — worst case and RSS
+    prerequisites: [measurement-error]
+  - id: transduction
+    label: Transduction — a physical quantity becomes an electrical one
+    prerequisites: [measurand]
+  - id: sensor-classes
+    label: Modulating and self-generating sensors
+    prerequisites: [transduction]
+  - id: interfering-inputs
+    label: Interfering and modifying inputs, and how to compensate
+    prerequisites: [transduction]
+  # ── Day 1 · the sensor as a source, and its signal on the way in ───────────
+  - id: source-impedance
+    label: Source impedance and input impedance
+    prerequisites: [sensor-classes]
+  - id: loading
+    label: Loading and insertion error
+    prerequisites: [source-impedance, measurement-error]
+  - id: voltage-divider
+    label: Dividers that feed an ADC without lying to it
+    prerequisites: [loading]
+  - id: shunt-sensing
+    label: Current sensing with a shunt — high side and low side
+    prerequisites: [loading]
+  - id: kelvin-connection
+    label: The Kelvin (4-wire) connection
+    prerequisites: [shunt-sensing]
+  - id: burden-voltage
+    label: Burden voltage
+    prerequisites: [shunt-sensing]
+  - id: signal-conditioning
+    label: What signal conditioning does
+    prerequisites: [source-impedance]
+  - id: decibels
+    label: Ratios in decibels
+  - id: differential-gain
+    label: Differential gain and CMRR
+    prerequisites: [signal-conditioning, shunt-sensing, decibels]
+  - id: input-offset
+    label: Offset voltage and bias current, amplified with the signal
+    prerequisites: [differential-gain]
+  # ── Day 1 · the converter ──────────────────────────────────────────────────
+  - id: sample-and-hold
+    label: Sample-and-hold, acquisition time and maximum source impedance
+    prerequisites: [loading]
+  - id: sampling
+    label: Sampling — when the converter looks
+    prerequisites: [sample-and-hold]
+  - id: quantization
+    label: Quantization, resolution and the LSB
+    prerequisites: [sampling, measurement-error]
+  - id: adc-architecture
+    label: SAR and sigma-delta conversion
+    prerequisites: [quantization]
+  - id: adc-datasheet-errors
+    label: Offset, gain, INL and DNL in an ADC datasheet
+    prerequisites: [quantization]
+  - id: enob
+    label: Effective number of bits
+    prerequisites: [quantization, decibels]
+  - id: voltage-reference
+    label: The reference voltage — what the code is a ratio to
+    prerequisites: [quantization]
+  - id: ratiometric
+    label: Ratiometric measurement
+    prerequisites: [voltage-reference, voltage-divider]
+  # ── Day 2 · the code leaves the converter ──────────────────────────────────
+  - id: digital-interface
+    label: Digital is not automatically compatible — levels, timing, protocol
+    prerequisites: [quantization]
+  - id: open-drain
+    label: Open-drain outputs and pull-ups
+    prerequisites: [digital-interface, source-impedance]
+  - id: i2c
+    label: The I²C bus
+    prerequisites: [open-drain]
+  - id: external-adc
+    label: External ADCs as a design choice
+    prerequisites: [i2c, adc-architecture, differential-gain]
+  # ── Day 2 · firmware earns the number ──────────────────────────────────────
+  - id: noise
+    label: Thermal, coupled and self-inflicted noise
+    prerequisites: [source-impedance, quantization]
+  - id: oversampling
+    label: Oversampling and dither
+    prerequisites: [noise]
+  - id: digital-filtering
+    label: Averages and digital filters — mean, median, moving average, IIR
+    prerequisites: [oversampling]
+  - id: scaling
+    label: Scaling a code to engineering units
+    prerequisites: [voltage-reference]
+  - id: calibration
+    label: Two-point calibration and correction
+    prerequisites: [scaling, adc-datasheet-errors]
+  - id: fixed-point-maths
+    label: Conversion arithmetic that keeps its precision
+    prerequisites: [scaling]
+  # ── Day 2 · time enters: AC, from the quantity inwards ─────────────────────
+  - id: rms
+    label: RMS and crest factor
+    prerequisites: [measurand]
+  - id: isolation
+    label: Galvanic isolation and measurement categories
+    prerequisites: [signal-conditioning]
+  - id: ground-impedance
+    label: Ground as an impedance
+    prerequisites: [source-impedance]
+  - id: ground-loop
+    label: Ground loops and differential sensing
+    prerequisites: [ground-impedance, differential-gain]
+  # ── Day 3 · the AC path, the converter, and the number ─────────────────────
+  - id: parasitics
+    label: Parasitic C and L in probes and wiring
+    prerequisites: [source-impedance]
+  - id: ac-biasing
+    label: Biasing and scaling AC into the ADC's range
+    prerequisites: [signal-conditioning, rms]
+  - id: aliasing
+    label: Aliasing and the Nyquist limit
+    prerequisites: [sampling]
+  - id: anti-alias-filter
+    label: The anti-alias filter
+    prerequisites: [aliasing, decibels]
+  - id: sampling-jitter
+    label: Sampling instants and jitter
+    prerequisites: [sampling]
+  - id: true-rms
+    label: True RMS in firmware, and why average-responding meters lie
+    prerequisites: [rms, sampling]
+  - id: ac-power
+    label: Real, reactive and apparent power, and power factor
+    prerequisites: [true-rms]
+  - id: mux-phase-error
+    label: The phase error of sequential V and I sampling
+    prerequisites: [ac-power, sampling-jitter]
+
+chapters:
+  - id: Day01
+    title: 'Day 1: From quantity to code'
+    summary: >-
+      The DC chain from the physical quantity, through the sensor, its loading
+      and conditioning, to the ADC and its reference — every error source located.
+    order: 1
+    scheduledMinutes: 300
+    ads: []
+  - id: Day02
+    title: 'Day 2: From code to number — then time enters'
+    summary: >-
+      The code leaves the converter and firmware earns the number: interfaces,
+      noise, oversampling, calibration and the DC lab. Then the quantity starts to
+      move: RMS, getting at the mains safely, and ground.
+    order: 2
+    scheduledMinutes: 300
+    ads: []
+  - id: Day03
+    title: 'Day 3: The AC chain, power, and the capstone'
+    summary: >-
+      The AC signal through probes, conditioning and the converter, to true RMS
+      and real power in firmware — then the AC power meter capstone.
+    order: 3
+    scheduledMinutes: 300
+    ads: []

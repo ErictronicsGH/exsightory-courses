@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bench tool rail</title>
+<!-- A preview of the bench's tool rail (owner, 2026-10-11: "vertically at the right side beneath the orb"), drawn over
+     real captures of the bench (its current bar hidden). ?v=view shows View's rail, otherwise Authoring's. -->
+<style>
+:root { --glass: rgb(17 24 22 / 86%); --edge: rgb(255 255 255 / 11%); --ink: #a9b8b2; --text: #e8f0ed; --on: #2dd4bf; --wash: rgb(45 212 191 / 15%); --gold: #f7b93e; }
+* { box-sizing: border-box; }
+html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #0a0e0d; font: 500 13px/1.3 "IBM Plex Sans", "Segoe UI", system-ui, sans-serif; color: var(--text); }
+.bg { position: absolute; inset: 0; width: 1920px; height: 1007px; background-size: 1920px auto; background-repeat: no-repeat; }
+svg.i { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.rail { position: absolute; left: 1783px; width: 50px; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 5px; border-radius: 12px; background: var(--glass); border: 1px solid var(--edge); box-shadow: 0 8px 26px rgb(0 0 0 / 35%); backdrop-filter: blur(12px); }
+.rb { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 9px; color: var(--ink); border: 1px solid transparent; position: relative; }
+.rb.on { color: var(--on); background: var(--wash); border-color: rgb(45 212 191 / 55%); }
+.rb.hover { color: var(--text); background: rgb(255 255 255 / 7%); }
+.rb.chip { height: 26px; font: 650 11px/1 ui-monospace, Consolas, monospace; color: var(--text); border: 1px solid var(--edge); border-radius: 7px; }
+.sep { width: 26px; height: 1px; background: var(--edge); margin: 4px 0; }
+.fly { position: absolute; right: 50px; top: 50%; transform: translateY(-50%); display: flex; align-items: center; gap: 8px; padding: 7px 11px; border-radius: 8px; background: var(--glass); border: 1px solid var(--edge); white-space: nowrap; color: var(--text); font-size: 12.5px; box-shadow: 0 6px 18px rgb(0 0 0 / 35%); }
+.fly kbd { font: 600 11px ui-monospace, Consolas, monospace; padding: 2px 6px; border-radius: 4px; border: 1px solid var(--edge); color: var(--ink); }
+.fly em { font-style: normal; color: var(--ink); }
+.xyz { position: absolute; right: 22px; top: 330px; white-space: nowrap; display: flex; gap: 10px; padding: 6px 10px; border-radius: 8px; background: var(--glass); border: 1px solid var(--edge); font: 600 11.5px ui-monospace, Consolas, monospace; }
+.xyz b { font-weight: 700; } .xyz .x { color: #e5534b; } .xyz .y { color: #3fb950; } .xyz .z { color: #4c8dff; } .xyz em { font-style: normal; color: var(--ink); }
+.cap { position: absolute; left: 24px; bottom: 26px; max-width: 640px; padding: 10px 14px; border-radius: 10px; background: rgb(10 14 13 / 88%); border: 1px solid var(--edge); font-size: 13px; line-height: 1.45; color: var(--ink); }
+.cap b { color: var(--text); }
+.tag { position: absolute; top: 126px; left: 360px; padding: 4px 10px; border-radius: 999px; border: 1px dashed rgb(255 255 255 / 25%); color: var(--ink); font-size: 12px; background: rgb(10 14 13 / 70%); }
+</style>
+</head>
+<body>
+<div class="bg" id="bg"></div>
+<span class="tag">Preview · not built: the bar that sat top-left is gone</span>
+<div id="xyz" class="xyz"><span><b class="x">X</b> 142</span><span><b class="y">Y</b> −36</span><span><b class="z">Z</b> 0</span><em>mm · worktop</em></div>
+<div class="rail" id="rail"></div>
+<div class="cap" id="cap"></div>
+<script>
+const I = {
+  select: '<path d="M5 3l6 16 2.2-6.6L20 10z"/><path d="M14 14l5 5"/>',
+  move: '<path d="M12 3v18M3 12h18"/><path d="M12 3l-3 3M12 3l3 3M12 21l-3-3M12 21l3-3M3 12l3-3M3 12l3 3M21 12l-3-3M21 12l-3 3"/>',
+  orbit: '<ellipse cx="12" cy="12" rx="9" ry="4"/><path d="M17 8.6l2.6-.4-.6 2.6"/><circle cx="12" cy="12" r="1.6"/>',
+  pan: '<path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V12M11 11V4.5a1.5 1.5 0 0 1 3 0V12M14 11.5V6a1.5 1.5 0 0 1 3 0v8a6 6 0 0 1-6 6h-.5a6 6 0 0 1-4.6-2.2L4 15.5a1.6 1.6 0 0 1 2.4-2L8 15"/>',
+  zoom: '<circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.4-4.4M11 8v6M8 11h6"/>',
+  fit: '<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/><rect x="9" y="9" width="6" height="6" rx="1"/>',
+  zin: '<circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.4-4.4M8 11h6M11 8v6"/>', zout: '<circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.4-4.4M8 11h6"/>',
+  grid: '<path d="M4 4h16v16H4zM4 9.3h16M4 14.6h16M9.3 4v16M14.6 4v16"/>',
+  snap: '<path d="M6 4v7a6 6 0 0 0 12 0V4"/><path d="M6 4h4v7a2 2 0 0 0 4 0V4h4"/><path d="M6 8h4M14 8h4"/>',
+  shot: '<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>', full: '<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>',
+  more: '<circle cx="12" cy="5.5" r="1.3" fill="currentColor"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/><circle cx="12" cy="18.5" r="1.3" fill="currentColor"/>',
+};
+const view = new URLSearchParams(location.search).get('v') === 'view';
+document.getElementById('bg').style.backgroundImage = `url(${view ? 'bg-view.png' : 'bg-authoring.png'})`;
+const A = [['select', 'Select', 'S', 'click a part'], ['move', 'Move', 'M', 'drag a part'], ['orbit', 'Orbit', 'O'], ['pan', 'Pan', 'P'], '|', ['fit', 'Fit the bench', 'F'], ['zin', 'Zoom in', '+'], ['zout', 'Zoom out', '−'], '|', ['grid', 'Grid on the mat', 'G'], ['10', 'Snap step 10 mm'], ['snap', 'Snap', 'Alt frees'], '|', ['shot', 'Screenshot'], ['full', 'Full screen'], '|', ['more', 'More: room, tour, lights, render, sound, language']];
+const V = [['orbit', 'Orbit', 'O'], ['pan', 'Pan', 'P'], ['zoom', 'Zoom', 'Z', 'drag up and down'], '|', ['fit', 'Fit the bench', 'F'], '|', ['grid', 'Grid on the mat', 'G'], ['10', 'Grid step 10 mm'], '|', ['shot', 'Screenshot'], ['full', 'Full screen'], '|', ['more', 'More']];
+const items = view ? V : A, on = view ? 'orbit' : 'move', hover = view ? 'zoom' : 'move';
+const rail = document.getElementById('rail');
+rail.style.top = view ? '336px' : '372px';
+rail.innerHTML = items.map((it) => it === '|' ? '<i class="sep"></i>' : it[0] === '10'
+  ? `<span class="rb chip">10</span>`
+  : `<span class="rb${it[0] === on ? ' on' : ''}${it[0] === hover && it[0] !== on ? ' hover' : ''}"><svg class="i" viewBox="0 0 24 24">${I[it[0]]}</svg>${it[0] === hover ? `<span class="fly">${it[1]}${it[3] ? ` <em>· ${it[3]}</em>` : ''}${it[2] ? ` <kbd>${it[2]}</kbd>` : ''}</span>` : ''}</span>`).join('');
+document.getElementById('xyz').style.display = view ? 'none' : 'flex';
+document.getElementById('cap').innerHTML = view
+  ? '<b>View</b>: Orbit · Pan · Zoom, Fit, the grid and its step, Screenshot, Full screen, More. The orb keeps its four camera profiles (2D, 2.5D, 3D, Custom) right above the rail. Icons only; each says its name, what it does and its key on hover (here: Zoom).'
+  : '<b>Authoring</b> (and Edit, with what the lesson allows): Select · Move · Orbit · Pan, Fit and zoom, the grid, its 10 mm step and snapping, Screenshot, Full screen, More. Under the orb: where the pointer is on the worktop, in mm. Hovering a button names it (here: Move).';
+</script>
+</body>
+</html>

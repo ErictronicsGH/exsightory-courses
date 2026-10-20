@@ -1,0 +1,31 @@
+---
+id: U029
+title: Bench specs for D3·020 — Conditioning AC for the ADC: bias, aliasing and the anti-alias filter
+status: not-started
+depends_on: [U002, U003]
+refs:
+  - .claude/standards/bench-spec-template.md
+  - .claude/standards/bench-quality-bar.md
+  - .claude/standards/authoring-digest.md
+  - notes/Day03/020-ac-conditioning-and-aliasing/en.md
+  - elements-by-section.md
+---
+
+## Goal
+
+Write one spec in `bench-work/specs/` for every card of D3·020 (45 min) that shows a bench, so each
+activity can be built straight from its file when its bench is ready.
+
+Elements in this module (from elements-by-section.md): Plot Bench ×4, Predict–observe–explain ×3, Numeric answer ×2, Flash quiz ×2, Equation Bench ×2, Draw Bench ×2, Figure Bench ×1, Analogy ×1, Checkpoint ×1.
+
+## Acceptance criteria
+
+- [ ] One spec per bench card, in the template's shape, named `D<day>-<module>-<card>-<slug>.md`.
+- [ ] Each spec gives the minutes on the bench, inside the module's budget, and says where they come from.
+- [ ] Each spec meets the quality bar: real values and units, the faithfulness checklist filled, the four views named.
+- [ ] Each spec's steps follow the card's Flow paragraph by paragraph; nothing in the owner's text is trimmed or reworded.
+- [ ] `bench-work/README.md` lists every new spec with bench, minutes and status.
+
+## Out of scope
+
+Building any bench or asset. Changing the owner's card text or Flow (report anything that looks wrong).

@@ -1,0 +1,1092 @@
+{
+  "$schema": "../schema/component.schema.json",
+  "standard": "exsight.component/0.1",
+  "status": "draft",
+  "identity": {
+    "id": "exsight.supply.ls3005",
+    "version": "0.1.0",
+    "class": "instrument.dc-supply.linear@1",
+    "names": {
+      "en": "Bench power supply, 0–30 V 0–5 A",
+      "fr": "Alimentation de laboratoire, 0–30 V 0–5 A"
+    },
+    "category": "power",
+    "tags": [
+      "supply",
+      "linear",
+      "CV",
+      "CC",
+      "instrument"
+    ],
+    "licence": "ExSight course content",
+    "source": {
+      "note": "Our own unbranded design; behaviour and figures follow current 0–30 V / 0–5 A linear lab supplies (research 08 §C). Brands are cited in the research only.",
+      "research": "bench-work/research/08-component-manifest-research.md",
+      "kit": "bench-work/libraries/bench-supply/psukit.js"
+    }
+  },
+  "body": {
+    "dimensions": {
+      "w": 160,
+      "d": 250,
+      "h": 120,
+      "unit": "mm"
+    },
+    "mass": {
+      "value": 4200,
+      "unit": "g"
+    },
+    "zeroPose": "origin at the base centre; front panel faces -Y (the user); Z up; base on z = 0",
+    "bounds": {
+      "box": [
+        [
+          -80,
+          -125,
+          0
+        ],
+        [
+          80,
+          125,
+          120
+        ]
+      ]
+    },
+    "feet": [
+      [
+        -65,
+        -105,
+        0
+      ],
+      [
+        65,
+        -105,
+        0
+      ],
+      [
+        -65,
+        105,
+        0
+      ],
+      [
+        65,
+        105,
+        0
+      ]
+    ],
+    "clearance": {
+      "back": 50,
+      "sides": 20,
+      "unit": "mm",
+      "why": "ventilation of the pass transistor's heatsink"
+    },
+    "faces": {
+      "front": {
+        "origin": [
+          -80,
+          -125,
+          0
+        ],
+        "size": [
+          160,
+          120
+        ],
+        "normal": [
+          0,
+          -1,
+          0
+        ]
+      }
+    }
+  },
+  "variants": {
+    "compact": {
+      "default": true,
+      "names": {
+        "en": "Compact, single knobs",
+        "fr": "Compacte, boutons simples"
+      },
+      "controls": {
+        "exclude": [
+          "knobVFine",
+          "knobIFine"
+        ]
+      }
+    },
+    "fine": {
+      "names": {
+        "en": "With fine tuners (coarse and fine knobs)",
+        "fr": "Avec réglages fins (boutons grossier et fin)"
+      },
+      "body": {
+        "dimensions": {
+          "w": 200,
+          "d": 290,
+          "h": 145,
+          "unit": "mm"
+        },
+        "mass": {
+          "value": 5500,
+          "unit": "g"
+        },
+        "zeroPose": "origin at the base centre; front panel faces -Y (the user); Z up; base on z = 0",
+        "bounds": {
+          "box": [
+            [
+              -100,
+              -145,
+              0
+            ],
+            [
+              100,
+              145,
+              145
+            ]
+          ]
+        },
+        "feet": [
+          [
+            -80,
+            -125,
+            0
+          ],
+          [
+            80,
+            -125,
+            0
+          ],
+          [
+            -80,
+            125,
+            0
+          ],
+          [
+            80,
+            125,
+            0
+          ]
+        ],
+        "clearance": {
+          "back": 50,
+          "sides": 20,
+          "unit": "mm",
+          "why": "ventilation of the pass transistor's heatsink"
+        },
+        "faces": {
+          "front": {
+            "origin": [
+              -100,
+              -145,
+              0
+            ],
+            "size": [
+              200,
+              145
+            ],
+            "normal": [
+              0,
+              -1,
+              0
+            ]
+          }
+        }
+      },
+      "terminals": {
+        "pos": {
+          "position": [
+            25,
+            -146,
+            23
+          ],
+          "traceAt": [
+            25,
+            -160,
+            23
+          ]
+        },
+        "earth": {
+          "position": [
+            50,
+            -146,
+            23
+          ],
+          "traceAt": [
+            50,
+            -160,
+            23
+          ]
+        },
+        "neg": {
+          "position": [
+            75,
+            -146,
+            23
+          ],
+          "traceAt": [
+            75,
+            -160,
+            23
+          ]
+        }
+      }
+    }
+  },
+  "behaviour": {
+    "model": "dc-supply.linear@1",
+    "parameters": {
+      "cOut": {
+        "value": 0.0047,
+        "unit": "F",
+        "names": {
+          "en": "Output capacitance",
+          "fr": "Capacité de sortie"
+        }
+      },
+      "rBleed": {
+        "value": 1000,
+        "unit": "Ω",
+        "names": {
+          "en": "Bleed resistor",
+          "fr": "Résistance de décharge"
+        }
+      },
+      "tSoftStart": {
+        "value": 0.06,
+        "unit": "s"
+      },
+      "tSelfTest": {
+        "value": 0.7,
+        "unit": "s"
+      },
+      "tFade": {
+        "value": 0.35,
+        "unit": "s"
+      },
+      "rippleCV": {
+        "value": 0.001,
+        "unit": "V",
+        "basis": "rms"
+      },
+      "rippleCC": {
+        "value": 0.004,
+        "unit": "A",
+        "basis": "rms"
+      },
+      "loadRegulation": {
+        "pct": 0.01,
+        "plus": 0.002,
+        "unit": "V"
+      },
+      "rails": {
+        "value": [
+          {
+            "vOutUpTo": 15,
+            "vIn": 20
+          },
+          {
+            "vOutUpTo": 30,
+            "vIn": 36
+          }
+        ],
+        "unit": "V",
+        "why": "relay tap switching keeps the pass transistor's dissipation down; design values, to confirm"
+      }
+    }
+  },
+  "properties": {
+    "vSet": {
+      "kind": "setting",
+      "quantity": "voltage",
+      "unit": "V",
+      "range": [
+        0,
+        30
+      ],
+      "resolution": 0.01,
+      "default": 0,
+      "variability": "tunable",
+      "control": "knobV",
+      "authorable": [
+        "cap",
+        "lock",
+        "preset"
+      ],
+      "names": {
+        "en": "Voltage setting",
+        "fr": "Réglage de tension"
+      },
+      "symbol": "V_set"
+    },
+    "iLim": {
+      "kind": "setting",
+      "quantity": "current",
+      "unit": "A",
+      "range": [
+        0,
+        5
+      ],
+      "resolution": 0.001,
+      "default": 0.1,
+      "variability": "tunable",
+      "control": "knobI",
+      "authorable": [
+        "cap",
+        "lock",
+        "preset"
+      ],
+      "names": {
+        "en": "Current limit",
+        "fr": "Limite de courant"
+      },
+      "symbol": "I_lim"
+    },
+    "ovpLevel": {
+      "kind": "setting",
+      "group": "ovp",
+      "quantity": "voltage",
+      "unit": "V",
+      "range": [
+        1,
+        33
+      ],
+      "resolution": 0.1,
+      "default": 33,
+      "variability": "tunable",
+      "control": "trimOvp",
+      "authorable": [
+        "cap",
+        "lock",
+        "hide",
+        "preset"
+      ],
+      "rules": [
+        {
+          "op": ">=",
+          "other": "vSet",
+          "factor": 1.05
+        }
+      ],
+      "names": {
+        "en": "Overvoltage protection level",
+        "fr": "Seuil de protection contre les surtensions"
+      },
+      "symbol": "V_OVP"
+    },
+    "power": {
+      "kind": "state",
+      "values": [
+        "off",
+        "selfTest",
+        "on"
+      ],
+      "default": "off",
+      "control": "rockerPower",
+      "authorable": [
+        "preset",
+        "lock"
+      ],
+      "names": {
+        "en": "Power",
+        "fr": "Marche"
+      }
+    },
+    "output": {
+      "kind": "state",
+      "values": [
+        "off",
+        "on"
+      ],
+      "default": "off",
+      "control": "keyOutput",
+      "authorable": [
+        "preset",
+        "lock"
+      ],
+      "names": {
+        "en": "Output",
+        "fr": "Sortie"
+      }
+    },
+    "mode": {
+      "kind": "state",
+      "values": [
+        "CV",
+        "CC"
+      ],
+      "names": {
+        "en": "Regulation mode",
+        "fr": "Mode de régulation"
+      }
+    },
+    "vOut": {
+      "kind": "reading",
+      "quantity": "voltage",
+      "unit": "V",
+      "range": [
+        0,
+        30
+      ],
+      "resolution": 0.01,
+      "accuracy": {
+        "pct": 0.5,
+        "digits": 2
+      },
+      "display": "dispV",
+      "names": {
+        "en": "Output voltage",
+        "fr": "Tension de sortie"
+      }
+    },
+    "iOut": {
+      "kind": "reading",
+      "quantity": "current",
+      "unit": "A",
+      "range": [
+        0,
+        5
+      ],
+      "resolution": 0.001,
+      "accuracy": {
+        "pct": 0.5,
+        "digits": 2
+      },
+      "display": "dispI",
+      "names": {
+        "en": "Output current",
+        "fr": "Courant de sortie"
+      }
+    },
+    "pPass": {
+      "kind": "reading",
+      "quantity": "power",
+      "unit": "W",
+      "hidden": true,
+      "names": {
+        "en": "Pass transistor dissipation",
+        "fr": "Dissipation du transistor ballast"
+      }
+    },
+    "vOutMax": {
+      "kind": "rating",
+      "quantity": "voltage",
+      "unit": "V",
+      "value": 31
+    },
+    "iOutMax": {
+      "kind": "rating",
+      "quantity": "current",
+      "unit": "A",
+      "value": 5.2
+    }
+  },
+  "controls": {
+    "knobV": {
+      "form": "knob.single-turn",
+      "property": "vSet",
+      "node": "knob_v",
+      "travel": {
+        "angle": 270,
+        "law": "linear"
+      },
+      "gestures": {
+        "drag": "round",
+        "wheel": 0.1,
+        "wheelFine": 0.01,
+        "typed": true,
+        "keys": null
+      },
+      "onCap": "endStop",
+      "onLock": "freeze",
+      "names": {
+        "en": "VOLTAGE",
+        "fr": "VOLTAGE"
+      },
+      "role": "coarse"
+    },
+    "knobVFine": {
+      "form": "knob.single-turn",
+      "property": "vSet",
+      "node": "knob_v_fine",
+      "role": "fine",
+      "travel": {
+        "angle": 270,
+        "law": "linear",
+        "span": 1.0
+      },
+      "gestures": {
+        "drag": "round",
+        "wheel": 0.01,
+        "wheelFine": 0.01,
+        "typed": false,
+        "keys": null
+      },
+      "onCap": "endStop",
+      "onLock": "freeze",
+      "names": {
+        "en": "FINE",
+        "fr": "FIN"
+      }
+    },
+    "knobI": {
+      "form": "knob.single-turn",
+      "property": "iLim",
+      "node": "knob_i",
+      "travel": {
+        "angle": 270,
+        "law": "linear"
+      },
+      "gestures": {
+        "drag": "round",
+        "wheel": 0.01,
+        "wheelFine": 0.001,
+        "typed": true,
+        "keys": null
+      },
+      "onCap": "endStop",
+      "onLock": "freeze",
+      "names": {
+        "en": "CURRENT",
+        "fr": "CURRENT"
+      },
+      "role": "coarse"
+    },
+    "knobIFine": {
+      "form": "knob.single-turn",
+      "property": "iLim",
+      "node": "knob_i_fine",
+      "role": "fine",
+      "travel": {
+        "angle": 270,
+        "law": "linear",
+        "span": 0.2
+      },
+      "gestures": {
+        "drag": "round",
+        "wheel": 0.001,
+        "wheelFine": 0.001,
+        "typed": false,
+        "keys": null
+      },
+      "onCap": "endStop",
+      "onLock": "freeze",
+      "names": {
+        "en": "FINE",
+        "fr": "FIN"
+      }
+    },
+    "rockerPower": {
+      "form": "rocker",
+      "property": "power",
+      "node": "rocker_power",
+      "lit": true,
+      "gestures": {
+        "click": true,
+        "keys": "P"
+      },
+      "onLock": "freeze",
+      "names": {
+        "en": "POWER",
+        "fr": "POWER"
+      }
+    },
+    "keyOutput": {
+      "form": "key",
+      "property": "output",
+      "node": "key_output",
+      "lit": "lampOut",
+      "gestures": {
+        "click": true,
+        "keys": "O"
+      },
+      "enabledWhen": "power = on",
+      "onLock": "freeze",
+      "names": {
+        "en": "OUTPUT",
+        "fr": "OUTPUT"
+      }
+    },
+    "trimOvp": {
+      "form": "knob.single-turn",
+      "property": "ovpLevel",
+      "node": "trim_ovp",
+      "role": "only",
+      "travel": {
+        "angle": 270,
+        "law": "linear"
+      },
+      "gestures": {
+        "drag": "round",
+        "wheel": 0.5,
+        "wheelFine": 0.1,
+        "typed": true,
+        "keys": null
+      },
+      "onCap": "endStop",
+      "onLock": "freeze",
+      "names": {
+        "en": "OVP ADJ",
+        "fr": "OVP ADJ"
+      }
+    }
+  },
+  "indicators": {
+    "dispV": {
+      "kind": "7seg",
+      "digits": 4,
+      "decimals": 2,
+      "colour": "red",
+      "refreshHz": 4,
+      "wander": {
+        "counts": 1
+      },
+      "node": "disp_v",
+      "shows": {
+        "off": "blank",
+        "selfTest": "all",
+        "on.outputOff": "vSet",
+        "on.outputOn": "vOut",
+        "on.ovpAdjust": "ovpLevel"
+      }
+    },
+    "dispI": {
+      "kind": "7seg",
+      "digits": 4,
+      "decimals": 3,
+      "colour": "green",
+      "refreshHz": 4,
+      "wander": {
+        "counts": 1
+      },
+      "node": "disp_i",
+      "shows": {
+        "off": "blank",
+        "selfTest": "all",
+        "on.outputOff": "iLim",
+        "on.outputOn": "iOut"
+      }
+    },
+    "lampCV": {
+      "kind": "lamp",
+      "colour": "green",
+      "node": "lamp_cv",
+      "on": "power = on and output = on and mode = CV"
+    },
+    "lampCC": {
+      "kind": "lamp",
+      "colour": "red",
+      "node": "lamp_cc",
+      "on": "power = on and output = on and mode = CC"
+    },
+    "lampOut": {
+      "kind": "lamp",
+      "colour": "green",
+      "node": "lamp_out",
+      "on": "output = on"
+    },
+    "lampSet": {
+      "kind": "lamp",
+      "colour": "amber",
+      "node": "lamp_set",
+      "on": "power = on and output = off"
+    },
+    "lampLock": {
+      "kind": "lamp",
+      "colour": "amber",
+      "node": "lamp_lock",
+      "on": "any control locked by the activity"
+    },
+    "lampOvp": {
+      "kind": "lamp",
+      "colour": "amber",
+      "node": "lamp_ovp",
+      "on": "ovp tripped"
+    }
+  },
+  "terminals": {
+    "pos": {
+      "kind": "binding-post-4mm",
+      "node": "+",
+      "role": "power",
+      "signal": "dc",
+      "polarity": "+",
+      "colour": "red",
+      "position": [
+        18,
+        -126,
+        18
+      ],
+      "accepts": [
+        "banana-4mm",
+        "spade",
+        "bare-wire-2.5mm2",
+        "croc-clip"
+      ],
+      "rating": 5,
+      "traceAt": [
+        18,
+        -140,
+        18
+      ]
+    },
+    "earth": {
+      "kind": "binding-post-4mm",
+      "node": "earth",
+      "role": "earth",
+      "signal": "ground",
+      "colour": "green",
+      "position": [
+        40,
+        -126,
+        18
+      ],
+      "accepts": [
+        "banana-4mm",
+        "spade",
+        "bare-wire-2.5mm2",
+        "croc-clip"
+      ],
+      "rating": 5,
+      "traceAt": [
+        40,
+        -140,
+        18
+      ]
+    },
+    "neg": {
+      "kind": "binding-post-4mm",
+      "node": "-",
+      "role": "return",
+      "signal": "dc",
+      "polarity": "-",
+      "colour": "black",
+      "position": [
+        62,
+        -126,
+        18
+      ],
+      "accepts": [
+        "banana-4mm",
+        "spade",
+        "bare-wire-2.5mm2",
+        "croc-clip"
+      ],
+      "rating": 5,
+      "traceAt": [
+        62,
+        -140,
+        18
+      ]
+    }
+  },
+  "representations": {
+    "model": {
+      "source": "code:supply.ls3005",
+      "lods": [
+        {
+          "maxPx": 80,
+          "detail": "box"
+        },
+        {
+          "maxPx": 400,
+          "detail": "panel"
+        },
+        {
+          "detail": "full"
+        }
+      ],
+      "variants": [
+        "off",
+        "on",
+        "fuseBlown"
+      ],
+      "profiles": [
+        "2.5d",
+        "3d",
+        "custom"
+      ]
+    },
+    "plan": {
+      "outline": "bounds",
+      "profiles": [
+        "2d"
+      ],
+      "whenCut": "panel"
+    },
+    "panel": {
+      "face": "front",
+      "dock": "beside-stage",
+      "profiles": [
+        "2d",
+        "measure-tile"
+      ]
+    },
+    "symbol": {
+      "ref": "profile:symbol.dc-source"
+    },
+    "icon": {
+      "from": "model",
+      "angle": "isometric"
+    }
+  },
+  "trace": {
+    "quantities": {
+      "terminals": [
+        "V",
+        "I"
+      ]
+    },
+    "internal": "opaque",
+    "convention": "conventional",
+    "colours": "terminal",
+    "speedLaw": "proportional-to-current, labelled, approximate"
+  },
+  "failures": {
+    "ovpTrip": {
+      "group": "ovp",
+      "trigger": {
+        "quantity": "vOut",
+        "op": ">",
+        "value": "ovpLevel",
+        "for_s": 0.001
+      },
+      "effect": {
+        "set": {
+          "output": "off"
+        }
+      },
+      "signs": {
+        "display": "OVP",
+        "lamp": "lampOvp"
+      },
+      "latch": true,
+      "reset": "lower the voltage, then press OUTPUT",
+      "plantable": false,
+      "say": {
+        "en": "The output rose above the protection level, so the supply switched its output off.",
+        "fr": "La sortie a dépassé le seuil de protection : l’alimentation a coupé sa sortie."
+      }
+    },
+    "thermalShutdown": {
+      "trigger": {
+        "quantity": "pPass",
+        "op": ">",
+        "value": 100,
+        "unit": "W",
+        "for_s": 60
+      },
+      "effect": {
+        "set": {
+          "output": "off"
+        }
+      },
+      "signs": {
+        "display": "OTP",
+        "sound": "fan-high"
+      },
+      "latch": true,
+      "reset": "switch off, let it cool for 30 s",
+      "plantable": false,
+      "design": "values to confirm",
+      "say": {
+        "en": "The pass transistor got too hot: it burns (V_in − V_out) × I as heat, 105 W at 15 V out from the 36 V rail at 5 A.",
+        "fr": "Le transistor ballast a trop chauffé : il dissipe (V_in − V_out) × I, soit 105 W à 15 V en sortie sur le rail de 36 V à 5 A."
+      }
+    },
+    "mainsFuse": {
+      "trigger": {
+        "event": "internal-fault"
+      },
+      "effect": {
+        "set": {
+          "power": "off"
+        },
+        "damage": "open"
+      },
+      "signs": {
+        "variant": "fuseBlown",
+        "display": "blank"
+      },
+      "latch": true,
+      "reset": "replace the 2 A T fuse",
+      "plantable": true,
+      "say": {
+        "en": "Nothing lights: the mains fuse has blown.",
+        "fr": "Rien ne s’allume : le fusible secteur a fondu."
+      }
+    },
+    "loosePost": {
+      "trigger": {
+        "event": "armed"
+      },
+      "effect": {
+        "terminal": "pos",
+        "damage": "degraded",
+        "rContact": 2.0
+      },
+      "signs": {},
+      "latch": true,
+      "reset": "tighten the post",
+      "plantable": true,
+      "say": {
+        "en": "The red post was loose: 2 Ω in series drops the voltage under load.",
+        "fr": "La borne rouge était desserrée : 2 Ω en série font chuter la tension en charge."
+      }
+    },
+    "calibrationDrift": {
+      "trigger": {
+        "event": "armed"
+      },
+      "effect": {
+        "reading": "vOut",
+        "gain": 1.03
+      },
+      "signs": {},
+      "latch": true,
+      "reset": "recalibrate",
+      "plantable": true,
+      "say": {
+        "en": "The voltage display reads 3 % high: check it against a meter.",
+        "fr": "L’afficheur de tension lit 3 % trop haut : vérifiez avec un multimètre."
+      }
+    }
+  },
+  "orientation": {
+    "surfaces": [
+      "worktop",
+      "shelf"
+    ],
+    "rotations": {
+      "about": "z",
+      "set": [
+        0,
+        90,
+        180,
+        270
+      ],
+      "free": true,
+      "snap": 15
+    },
+    "tilt": "none",
+    "flip": false,
+    "mount": "stands-on-feet",
+    "stack": false
+  },
+  "authorPolicy": {
+    "defaults": {
+      "exposed": [
+        "knobV",
+        "knobVFine",
+        "knobI",
+        "knobIFine",
+        "rockerPower",
+        "keyOutput"
+      ],
+      "trace": "off",
+      "damage": "graded"
+    },
+    "overlays": {
+      "trace": [
+        "off",
+        "on",
+        "after-measuring"
+      ],
+      "convention": [
+        "lock"
+      ]
+    },
+    "failures": {
+      "arm": [
+        "mainsFuse",
+        "loosePost",
+        "calibrationDrift"
+      ]
+    }
+  },
+  "labels": {
+    "button": "on-part",
+    "items": [
+      "dispV",
+      "dispI",
+      "knobV",
+      "knobVFine",
+      "knobI",
+      "knobIFine",
+      "lampCV",
+      "trimOvp",
+      "rockerPower",
+      "keyOutput",
+      "pos"
+    ]
+  },
+  "sounds": {
+    "rockerPower": "rocker-click",
+    "keyOutput": "relay-click",
+    "fan": "fan-low"
+  },
+  "verification": {
+    "golden": [
+      {
+        "given": {
+          "vSet": 12,
+          "iLim": 1,
+          "load": 24
+        },
+        "expect": {
+          "vOut": 12,
+          "iOut": 0.5,
+          "mode": "CV"
+        }
+      },
+      {
+        "given": {
+          "vSet": 12,
+          "iLim": 0.1,
+          "load": 24
+        },
+        "expect": {
+          "vOut": 2.4,
+          "iOut": 0.1,
+          "mode": "CC"
+        }
+      },
+      {
+        "given": {
+          "vSet": 12,
+          "iLim": 0.1,
+          "load": 120
+        },
+        "expect": {
+          "vOut": 12,
+          "iOut": 0.1,
+          "mode": "CV",
+          "note": "the crossover: R = V_set / I_lim = 120 Ω"
+        }
+      },
+      {
+        "given": {
+          "vSet": 5,
+          "iLim": 1,
+          "load": "open"
+        },
+        "expect": {
+          "vOut": 5,
+          "iOut": 0,
+          "mode": "CV"
+        }
+      },
+      {
+        "given": {
+          "vSet": 12,
+          "iLim": 1,
+          "load": "open",
+          "ovpLevel": 11
+        },
+        "expect": {
+          "output": "off",
+          "fault": "ovpTrip",
+          "note": "set above the OVP level: the output trips"
+        }
+      }
+    ],
+    "gates": "six-gates checklist on release (standard §8)"
+  }
+}

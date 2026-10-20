@@ -1,0 +1,25 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "animation-bench",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "C:/ExSightory/src/exsight-benches/tools/serve.mjs",
+        "animation",
+        "8791"
+      ],
+      "port": 8791
+    },
+    {
+      "name": "breadboard-bench",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "C:/ExSightory/src/exsight-benches/tools/serve.mjs",
+        "breadboard",
+        "8790"
+      ],
+      "port": 8790
+    }
+  ]
+}

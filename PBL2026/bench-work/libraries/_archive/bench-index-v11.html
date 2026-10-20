@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Animation Bench</title>
+<link rel="icon" href="data:,">
+<style>
+  /* The Animation Bench (prototype): the frame and the player every library is played in.
+     The library draws only inside #stage; everything else on this page is the bench's. */
+  :root { color-scheme: dark; --bg:#05070B; --panel:#0B0F16; --line:#1C2430; --text:#E6EDF5; --muted:#8B97A8; --teal:#2EE6C5; --amber:#FFC24D; }
+  html, body { margin:0; height:100%; background:var(--bg); overflow:hidden; font-family:'IBM Plex Sans','Segoe UI',system-ui,sans-serif; color:var(--text); }
+  #app { position:absolute; left:0; top:0; width:1920px; height:1080px; transform-origin:0 0; background:var(--bg); user-select:none; }
+  #stage { position:absolute; left:0; top:0; width:1920px; height:1080px; }
+  /* a sequence's blocks: one holds the stage; the next comes in as the last gives way */
+  #stage > .block { position:absolute; left:0; top:0; width:1920px; height:1080px; transform-origin:960px 512px;
+    transition:opacity .75s ease, transform .9s cubic-bezier(.2,.7,.2,1); }
+  #stage > .block.before { opacity:0; transform:scale(.965); pointer-events:none; }
+  #stage > .block.after { opacity:0; transform:scale(1.035); pointer-events:none; }
+  #stage > .block.on { opacity:1; transform:none; }
+  #stage > .block.instant { transition:none; }
+  #top { position:absolute; left:12px; top:6px; width:1896px; height:54px; box-sizing:border-box; background:linear-gradient(180deg,#0F1621,#0A0F17); border:1.4px solid #1E2B3A; border-radius:16px;
+    box-shadow:0 6px 24px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.04); display:flex; align-items:center; }
+  #top .logo { width:30px; height:30px; margin:0 14px 0 20px; border:2px solid var(--teal); border-radius:50%; position:relative; box-sizing:border-box; flex:none; }
+  #top .logo::after { content:''; position:absolute; inset:7px; background:var(--teal); border-radius:50%; }
+  #top h1 { font-size:22px; font-weight:700; margin:0 24px 0 0; white-space:nowrap; }
+  #top .sub { color:#9FB0C4; font-size:15.5px; white-space:nowrap; }
+  #top .sub i { font-style:normal; color:#4C5A6C; margin:0 9px; }
+  #libBtn { height:32px; margin-right:18px; padding:0 12px; font-size:14px; border-radius:16px; display:flex; align-items:center; gap:8px; color:var(--muted); letter-spacing:1px; }
+  #libBtn b { color:var(--text); letter-spacing:0; font-weight:600; }
+  #libMenu { position:absolute; left:64px; top:58px; width:560px; background:var(--panel); border:1.4px solid #2A3A48; border-radius:12px; padding:8px; display:none; z-index:5;
+    box-shadow:0 12px 40px rgba(0,0,0,.6); }
+  #libMenu.open { display:block; }
+  #libMenu .cap { font-size:11.5px; color:var(--muted); font-weight:700; letter-spacing:1.4px; padding:10px 12px 6px; }
+  #libMenu .loaded { padding:2px 12px 8px; }
+  #libMenu .loaded .t { font-size:17px; font-weight:700; color:var(--teal); }
+  #libMenu .mono { font:13px 'IBM Plex Mono',Consolas,monospace; color:var(--muted); margin-top:3px; }
+  #libMenu .loaded .d { font-size:13.5px; line-height:1.45; margin-top:6px; color:var(--text); }
+  #libMenu .it { display:flex; align-items:baseline; gap:14px; width:100%; text-align:left; padding:10px 12px; border:0; border-radius:8px; background:none; font-size:16px; }
+  #libMenu .it:hover { background:#121a24; }
+  #libMenu .it .card { width:120px; color:var(--muted); font:600 13px 'IBM Plex Mono',Consolas,monospace; flex:none; }
+  #libMenu .it .note { margin-left:auto; color:var(--muted); font-size:13px; font-weight:400; }
+  #libMenu .loc { display:flex; gap:8px; padding:4px 12px 8px; }
+  #libMenu .loc input { flex:1; height:36px; background:var(--bg); color:var(--text); border:1.4px solid var(--line); border-radius:8px; padding:0 10px; font:14px 'IBM Plex Mono',Consolas,monospace; }
+  #libMenu .loc input:focus { outline:none; border-color:var(--teal); }
+  #libMenu .loc button { height:36px; padding:0 16px; font-size:15px; }
+  /* no library loaded: the stage says so, and offers the way in */
+  #empty { position:absolute; left:0; top:64px; width:1920px; height:896px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px; }
+  #empty .ring { width:84px; height:84px; border:3px solid var(--line); border-radius:50%; position:relative; box-sizing:border-box; }
+  #empty .ring::after { content:''; position:absolute; inset:22px; border:3px dashed #2A3A48; border-radius:50%; }
+  #emptyMsg { font-size:22px; color:var(--muted); text-align:center; line-height:1.5; max-width:1000px; }
+  #emptyMsg b { color:var(--text); }
+  #emptyOpen { height:52px; padding:0 26px; font-size:18px; }
+  #state { position:absolute; left:24px; top:14px; height:32px; padding:0 16px 0 14px; border:1.4px solid var(--amber); border-radius:16px; display:flex; align-items:center; gap:10px; font-size:16px; font-weight:600; box-sizing:border-box; }
+  #state i { width:10px; height:10px; border-radius:50%; background:var(--amber); }
+  #state.moving { border-color:var(--teal); } #state.moving i { background:var(--teal); }
+  #tchip { position:absolute; left:24px; top:54px; height:30px; width:506px; border:1.4px solid var(--line); border-radius:16px; color:var(--muted); font-size:13.5px; display:flex; align-items:center; padding:0 16px; box-sizing:border-box; transition:opacity .4s; }
+  #caption { position:absolute; top:880px; left:960px; transform:translateX(-50%); height:54px; padding:0 30px; display:flex; align-items:center; font-size:22px; font-weight:600; white-space:nowrap;
+    background:linear-gradient(180deg,rgba(14,21,32,.97),rgba(9,13,20,.97)); border:1.4px solid #1E2B3A; border-radius:14px; box-shadow:0 8px 28px rgba(0,0,0,.5); transition:opacity .3s; }
+  #caption.none { opacity:0; }
+  #caption .ci { width:26px; height:26px; margin-right:16px; flex:none; border-radius:50%; background:#2F8CFF; color:#fff; font:700 17px 'Segoe UI',system-ui,sans-serif; display:flex; align-items:center; justify-content:center; box-shadow:0 0 12px rgba(47,140,255,.55); }
+  #caption .seg { white-space:pre; }
+  button { background:var(--panel); color:var(--text); border:1.6px solid var(--line); border-radius:10px; font:600 18px 'IBM Plex Sans','Segoe UI',system-ui,sans-serif; cursor:pointer; }
+  button:hover { border-color:#3A4656; } button:focus-visible { outline:2px solid var(--teal); outline-offset:2px; }
+  button.primary { background:var(--teal); color:var(--bg); border-color:var(--teal); }
+  button:disabled { opacity:.4; cursor:default; }
+  button.on { border-color:var(--teal); }
+  #bar { position:absolute; left:0; top:960px; width:1920px; height:120px; background:var(--panel); border-top:1px solid var(--line); }
+  #bar .b { position:absolute; top:22px; height:52px; display:flex; align-items:center; justify-content:center; gap:10px; font-size:17px; }
+  /* the transport (owner, 2026-10-08): at the right of the top bar, icons only, each in its colour
+     (Play green, Stop red, Reset amber, Previous and Next blue); names in the tooltips and for screen readers */
+  #transport { position:absolute; right:10px; top:4px; display:flex; gap:2px; padding:0 8px; height:44px; align-items:center; border:1.4px solid #22324A; border-radius:22px;
+    background:rgba(9,14,22,.9); box-shadow:inset 0 1px 0 rgba(255,255,255,.04); }
+  #transport .round { width:46px; height:40px; padding:0; border:0; border-radius:50%; background:none; display:flex; align-items:center; justify-content:center;
+    transition:filter .15s, transform .1s, background .15s; }
+  #transport .round svg { width:30px; height:30px; fill:currentColor; display:block; filter:drop-shadow(0 0 6px currentColor); }
+  #transport .round:hover { background:rgba(255,255,255,.06); filter:brightness(1.15); } #transport .round:active { transform:scale(.92); }
+  #transport .round:disabled { filter:grayscale(.8); opacity:.35; }
+  #prev, #next { color:#4C8DFF; }
+  #reset { color:#FFB020; }
+  #play { color:#22C55E; } #play svg { width:34px; height:34px; }
+  #play.stop { color:#EF4444; }
+  #bar .hint { position:absolute; top:94px; left:24px; width:506px; text-align:left; font-size:13px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  #rail { position:absolute; left:556px; top:0; height:120px; }
+  #rail .dot { position:absolute; top:40px; width:16px; height:16px; margin-left:-8px; border-radius:50%; border:2px solid var(--muted); background:var(--bg); box-sizing:border-box; cursor:pointer; transition:all .3s; padding:0; }
+  #rail .dot.small { width:12px; height:12px; margin-left:-6px; top:42px; }
+  #rail .dot.done { background:var(--teal); border-color:var(--teal); }
+  #rail .dot.cur { width:22px; height:22px; margin-left:-11px; top:37px; background:var(--amber); border-color:var(--amber); box-shadow:0 0 12px var(--amber); }
+  #rail .num { position:absolute; top:62px; width:30px; margin-left:-15px; text-align:center; font-size:12px; color:var(--muted); }
+  #rail .num.cur { color:var(--text); font-weight:700; }
+  #rail .ch { position:absolute; top:8px; font-size:11.5px; color:var(--muted); font-weight:600; text-align:center; border-bottom:1px solid var(--muted); padding-bottom:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  #rail .fill { position:absolute; top:46px; height:3px; left:0; background:var(--teal); transition:width .5s; }
+  #rail .track { position:absolute; top:46px; height:3px; left:0; background:var(--line); }
+  #title { position:absolute; left:556px; top:90px; font-size:17px; font-weight:600; white-space:nowrap; }
+  #holdinfo { position:absolute; top:93px; text-align:right; font-size:13px; color:var(--muted); white-space:nowrap; }
+  /* the right of the bar: the bench's own switches, then a tray the loaded library fills with its own */
+  #right { position:absolute; right:28px; top:22px; height:52px; display:flex; align-items:center; gap:12px; }
+  #right button { height:52px; padding:0 18px; font-size:16px; white-space:nowrap; }
+  #right #speed { width:76px; padding:0; font-size:17px; }
+  #tray { display:flex; gap:12px; align-items:center; position:relative; padding-left:24px; border-left:1.4px solid var(--line); height:52px; }
+  #tray:empty { display:none; }
+  #trayCap { position:absolute; top:93px; right:28px; font-size:11px; color:var(--muted); font-weight:700; letter-spacing:1.4px; text-align:center; }
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="stage"></div>
+  <div id="empty"><div class="ring"></div><div id="emptyMsg">No library loaded.<br>A library is a folder with a <b>library.json</b>: the bench takes its name, title and settings from it.</div>
+    <button class="primary" id="emptyOpen">Load a library…</button></div>
+  <div id="top"><div class="logo"></div>
+    <button id="libBtn" title="What is loaded; load a library">LIBRARY <b>▾</b></button>
+    <h1 id="libTitle">Animation Bench</h1><span class="sub" id="libSub">loading…</span>
+    <div id="transport">
+    <button class="round" id="prev" aria-label="Previous stop" title="Previous stop (←)"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg></button>
+    <button class="round" id="play" aria-label="Play" title="Play (Space)"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+    <button class="round" id="reset" aria-label="Reset" title="Reset: back to the beginning (R); in Explore, the scene as it was set up"><svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg></button>
+    <button class="round" id="next" aria-label="Next stop" title="Next stop (→)"><svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></button>
+    </div></div>
+  <div id="libMenu"></div>
+  <input type="file" id="folderIn" webkitdirectory multiple hidden>
+  <div id="caption"></div>
+  <div id="bar">
+    <div id="state"><i></i><span id="stateText">Holding</span></div><div id="tchip"></div>
+    <div class="hint" id="hint"></div>
+    <div id="rail"><div class="track" id="railTrack"></div><div class="fill" id="railFill"></div></div>
+    <div id="title"></div><div id="holdinfo"></div>
+    <div id="right">
+      <button id="xBtn" title="Explore the scene's controls (X)">Explore</button>
+      <button id="cardsBtn" title="Numbered cards on the scene (C)">Cards: off</button>
+      <button id="speed" title="Motion speed">1×</button>
+      <div id="tray"></div>
+    </div>
+    <div id="trayCap"></div>
+  </div>
+</div>
+<script src="bench.js?v=11"></script>
+</body>
+</html>
