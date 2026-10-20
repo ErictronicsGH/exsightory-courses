@@ -41,8 +41,8 @@ of Day 1 the ADC had produced a code, and we knew what that code was a ratio to.
 But it is still sitting inside the converter.
 
 Once an ADC has produced digital data, that data still needs to reach the processor or whatever
-system is going to use it. For example, **ADC → microcontroller** may communicate through interfaces
-such as:
+system is going to use it. For example, when the ADC is a separate chip, **ADC → microcontroller** may
+communicate through interfaces such as:
 
 - **SPI**
 - **I²C**
@@ -143,16 +143,18 @@ devices can communicate correctly.
 
 ## Level shifting: 5 V logic into a 3.3 V pin
 
-A 5 V digital output wired straight to an ESP32 GPIO may damage the input. The signal has to be
+A 5 V digital output wired straight to a 3.3 V microcontroller's GPIO may damage the input. The signal has to be
 shifted to the 3.3 V logic level first, with resistors, diodes, transistors or a level-shifter IC.
 
 <!-- PLAN
 SHOW     Electronics — new fixture `level-shift`: a 5 V supply V1 behind R1 (47 Ω, the module output's own
-         resistance) wired to the GPIO, modelled as a 1N4148 clamp diode D1 from the pin to a 3.3 V rail V2;
+         resistance) wired to the GPIO, modelled as a 1N4148 clamp diode D1 from the pin to a 3.3 V rail V2 (carrying the MCU's own load, so the clamp
+         current has somewhere to go);
          a DMM on the pin; current overlay on. Drive: (1) direct connection: watch D1 and V2 carry current;
          (2) insert the divider R2 10 kΩ over R3 20 kΩ: the clamp current falls to nothing, the pin sits at
-         3.33 V. Look for: the pin "reads about 3.3 V" both times; the meter alone hides the harm, the current
-         overlay shows it.
+         3.33 V. Look for: direct: the pin at about 4.0 V, a diode-drop above its own rail, and about 21 mA
+         into it; with the divider, 3.33 V and almost nothing. The meter shows the pin above its rail; the
+         current overlay shows the harm.
          Status: ready (fixture from existing parts: supply-bench ×2, resistor-typical, diode-1n4148,
                  dmm-budget) · ideal: needs Electronics: logic-input part with clamp diodes and an
                  injection-current limit
@@ -165,7 +167,7 @@ ASK      poe (before the statement) — "A 5 V output is wired straight to a 3.3
          explain: A CMOS input is high impedance only between its rails; above the rail its protection diode
          conducts, and about (5 − 3.3 − 0.7) V across 47 Ω pushes some 21 mA into the pin and the 3.3 V rail.
          depth: understand    practice: constructing explanations
-FAULT    The divider's resistors swapped (20 kΩ over 10 kΩ): the pin sits at 1.67 V, inside the band between
+FAULT    The divider's resistors swapped (20 kΩ over 10 kΩ): the pin sits at about 1.66 V, inside the band between
          V_IL and V_IH, and reads HIGH, LOW or both.
 -->
 
@@ -176,12 +178,12 @@ operating range.
 
 For instance, moving a digital signal from a **5 V logic range** to a **3.3 V logic range**. Imagine
 you are using a sensor with a digital output that is already mounted on a module and operates at
-**5 V**. Unfortunately, we want to connect its output to an **ESP32 microcontroller**, whose GPIOs
+**5 V**. Unfortunately, we want to connect its output to a **3.3 V microcontroller**, whose GPIOs
 operate at **3.3 V** and are not designed to tolerate a 5 V signal.
 
-If we connect the sensor output directly to the ESP32 digital pin, the voltage may be too high and
+If we connect the sensor output directly to the microcontroller's digital pin, the voltage may be too high and
 could damage the input. We therefore need to shift the sensor's output from the **5 V logic level to
-the 3.3 V logic level** before connecting it to the ESP32.
+the 3.3 V logic level** before connecting it to the microcontroller.
 
 We can achieve this using discrete components such as **resistors, diodes or transistors**, or by
 using an integrated **level-shifter IC** designed for this purpose.
@@ -282,14 +284,15 @@ FAULT    A button input with its pull-up left off: reads HIGH on the bench every
 <!-- FILLED 2026-10-07: drafted from training-overview Day 3 Module 1; tutor to review -->
 
 ```flow
-[[demo]] Electronics Bench (#1d) — a logic input with nothing connected to it.
+[[demo]] Electronics Bench — a logic input with nothing connected to it.
 
 [[ask]] Nothing is driving this pin. What level does it read: high, low, or something else?
 
 [[pause]]
 
-[[reveal]] It reads neither, reliably. With nothing connected, the pin sits somewhere between a
-guaranteed low and a guaranteed high, and nothing holds it there.
+[[reveal]] It reads neither, reliably. With nothing connected, nothing holds the pin at any level: it
+may sit between a guaranteed low and a guaranteed high, or drift to either, and it can change while you
+watch.
 
 A CMOS input draws almost no current. So with no source connected, nothing sets its voltage. Leakage,
 stray charge, even your finger near the pin will decide it, and it can change while you watch.
@@ -342,7 +345,7 @@ ANALOGY  A door on a spring: anyone holding it can pull it shut (LOW), and the s
 <!-- FILLED 2026-10-07: drafted from training-overview Day 3 Module 1; tutor to review -->
 
 ```flow
-[[demo]] Electronics Bench (#1e) — an open-drain output, first with no pull-up.
+[[demo]] Electronics Bench — an open-drain output, first with no pull-up.
 
 [[ask]] The output transistor has let go. What decides the voltage on the line now?
 
@@ -373,7 +376,8 @@ The pull-up's value is a real trade between edge rate and drive current. There i
 wins both.
 
 <!-- PLAN
-SHOW (centrepiece) Plot — the bus voltage after release, v = 3.3·(1 − exp(−t/(R·C))), t in ns; sliders R
+SHOW (centrepiece) Plot — the bus voltage after release, v = 3.3·(1 − 0.7·exp(−t/(R·C))), t in ns from the
+         30 % crossing (I²C times the rise from 30 % to 70 %); sliders R
          (0.5–20 kΩ) and C (50–400 pF); horizontal markers at 0.3 and 0.7 of 3.3 V (I²C's rise-time
          thresholds); vertical markers at 300 ns (Fast-mode limit) and 1000 ns (Standard-mode limit).
          Beside it an Equation: sink current = (3.3 V − 0.4 V)/R, with the 3 mA Fast-mode limit marked.
@@ -411,7 +415,7 @@ current the output has to sink when it pulls the line low?
 
 [[pause]]
 
-[[demo]] Plot Bench (#1e) — sweep the pull-up value and watch the edge and the current together.
+[[demo]] Plot Bench — sweep the pull-up value and watch the edge and the current together.
 
 [[reveal]] Both change, and in opposite directions.
 

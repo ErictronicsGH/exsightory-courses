@@ -206,7 +206,7 @@ Plus on every card: wall text and **Flow**. Not authored, because the compiler e
 | 4 | An interface is not a protocol | Figure Bench: SPI between ADC and MCU: SCLK, MOSI, MISO, CS/SS, with a timing strip of 10110110 on MISO against SCLK. | Multi-select |  |
 | 5 | What does a floating input read? | Electronics Bench: a logic input (the pin node) with nothing driving it and a DMM on it; | Predict–observe–explain | Staged fault |
 | 6 | Open-drain: pull low or let go | Electronics Bench: new fixture `open-drain-bus`: an N-MOSFET M1 (mosfet-typical) as the open-drain output, drain to the bus node,… | Predict–observe–explain | S14, Analogy |
-| 7 | Choosing the pull-up value | ★ Plot Bench: the bus voltage after release, v = 3.3·(1 − exp(−t/(R·C))), t in ns; | Predict–observe–explain, Numeric answer | Staged fault |
+| 7 | Choosing the pull-up value | ★ Plot Bench: the bus voltage after release, v = 3.3·(1 − 0.7·exp(−t/(R·C))), t in ns from the 30 % crossing; | Predict–observe–explain, Numeric answer | Staged fault |
 | 8 | Two outputs on one wire | Electronics Bench: `open-drain-bus` with a second MOSFET M2 (gate from V3) on the same pulled-up bus. | Predict–observe–explain | Staged fault |
 | 9 | There is no best interface, only a suited one | — | Poll | S50 |
 | 10 | A logical problem and an electrical one | Plot Bench: the centrepiece rise-time Plot back on the Canvas while the room ticks its list, so three of the requirements … | Checkpoint |  |
