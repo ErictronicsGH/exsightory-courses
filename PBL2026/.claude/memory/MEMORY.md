@@ -79,3 +79,4 @@
 - [Sliders side by side](sliders-side-by-side.md) — one row of sliders, each labelled on top in words with the symbol in parentheses and its value at the right; wraps on a phone
 - [IEC symbols, US on a switch](iec-symbols-us-switch.md) — IEC 60617 by default in every drawing; US set on a bench-level Symbols switch beside Speed and Autoplay
 - [Circuit effects are the bench's](circuit-effects-are-the-benchs.md) — no charge dots or glows in previews/libraries; circuits show state and values, the bench draws signal effects; specs state the need
+- [Script panel follows en.md](script-panel-follows-en-md.md) — transcript.en.md repeats statements, SHOW first lines and the transition; sync it after every en.md change
