@@ -8,9 +8,9 @@ dimensions: 2D
 stand_in: "none: the Plot carries the card; the Coding Bench is the later target (§12, §13)"
 optional_benches: [Coding]        # the PLAN's own target: a first-order modulator with its bitstream and an averaging decimator
 real_thing: "a first-order sigma-delta modulator (integrator, 1-bit quantizer, 1-bit feedback DAC) with a moving-average (sinc¹) decimator, on a steady 2.17 V input with a 3.3 V reference; a real 16-bit sigma-delta reports 8 to 860 samples per second"
-minutes: 1.2                      # on the bench (§2); 1.5 with F3 (b) driven, 1.7 with the F4 prediction
-card_minutes: 2.4                 # the whole card, Flow and bench
-status: spec-draft
+minutes: 1.7                      # on the bench (§2); 1.5 with F3 (b) driven, 1.7 with the F4 prediction
+card_minutes: 2.9                 # the whole card, Flow and bench
+status: spec-ready
 learner_action: none              # the PLAN has no ASK on this card; a prediction is proposed (§7b, F4)
 predictions: []                   # [s1-density] if the owner accepts F4
 seeds: [S19]                      # planted here; harvested in D2·040 (see F1)
@@ -526,6 +526,8 @@ Bench library's acceptance data.
   reading column.
 - **F10 — Note: `src` is not drawn.** On the decided version Plot B's 1,203 point lines (24.8 kB) go inline in
   `en.md`, because the viewer draws only `points` (§12, would be X22). F3 (b) removes the need.
+
+**Decided 2026-10-20** (owner, in the course's chat: *"go with the recommendations"* on the brief's findings, F10–F18 and the specs' proposals): every **Proposal** in this spec and every option marked **recommended** in this §14 is taken; options marked *not recommended* are not. F1 is ACCURACY D2·040-F1, open for U022. F2: the PLAN now reads *"…each settling within one step (1/K) of 0.658."* F3 (b): curves with the `vin` slider on both plots replace the series (driven in Study; the lecture uses the presets, so the +0.3 is not counted). F4's prediction at s1 adds 0.5 min: **2.9 min for the card, 1.7 on the bench.** F7 (a): the generator stays in this spec only. F9: to confirm in Studio.
 
 ## 15. Acceptance: how we know it is built right
 

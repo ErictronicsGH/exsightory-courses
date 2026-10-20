@@ -10,7 +10,7 @@ optional_benches: [Coding]        # the PLAN's optional SAR step-through for any
 real_thing: "a 12-bit MCU SAR converter on a 3.3 V reference (the course's converter: truncating, 1 µs of conversion), shown at 4 bits; drawn in IEC 60617 symbols, unbranded"
 minutes: 2.0                      # on the bench, the prediction at s2 included (F3 decided); 1.5 without it (§2)
 card_minutes: 3.1                 # the whole card; 2.6 without the prediction (§2)
-status: spec-draft                # revised 2026-10-20 by U017
+status: spec-ready                # revised 2026-10-20 by U017
 learner_action: numeric
 predictions: [s2]                 # F3, decided 2026-10-20
 seeds: []
@@ -377,6 +377,8 @@ direction, not spoken, so the room hears nothing false when the Draw stand-in ca
 No accuracy finding in the owner's text of this card (A1–A7 run on 2026-10-20 against the current en.md). Two faults
 in our own earlier spec were fixed here before sending: the per-bit time and the product name (D3), and the bar's
 3.300 V tick, which is the range's top and not a code (§3).
+
+**Decided 2026-10-20** (owner, in the course's chat: *"go with the recommendations"* on the brief's findings, F10–F18 and the specs' proposals): every **Proposal** in this spec and every option marked **recommended** in this §14 is taken; options marked *not recommended* are not. The step-2 prediction stays in (owner, 2026-10-20). Minutes unchanged (2.0 / 3.1).
 
 ## 15. Acceptance: how we know it is built right
 

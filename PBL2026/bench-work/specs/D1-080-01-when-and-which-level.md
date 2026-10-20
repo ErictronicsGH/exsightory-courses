@@ -8,9 +8,9 @@ dimensions: 2D
 stand_in: "the presenter drags the sliders on the wall window until X12 (named presets, mirrored); the quantizer is a 0–1 slider until X-switch (a labelled switch)"
 optional_benches: []
 real_thing: "a 12-bit MCU converter on a 3.3 V reference (the course's: truncating) sampling a slow sensor signal, shown at 2–8 bits and 2–40 S/s so that both kinds of step can be seen"
-minutes: 3.8                      # on the bench: the plot is on the Canvas for the whole card (§2)
-card_minutes: 3.8
-status: spec-draft
+minutes: 3.9                      # on the bench: the plot is on the Canvas for the whole card (§2)
+card_minutes: 3.9
+status: spec-ready
 learner_action: none
 predictions: []
 seeds: [S12 (harvest), S18 (plant)]
@@ -303,6 +303,8 @@ converter (D1·080-F1, F2, applied).
 - **F5 — Proposals**: the prediction aloud before s2 (+0.1 min), the teacher tip (§7d), the explore task (§7e).
 - **F6 — Colour.** The preview drew the input grey; the Plot's six series colours have no grey, so the input is azure
   and dashed. The same input colour and dash are used on card 3.
+
+**Decided 2026-10-20** (owner, in the course's chat: *"go with the recommendations"* on the brief's findings, F10–F18 and the specs' proposals): every **Proposal** in this spec and every option marked **recommended** in this §14 is taken; options marked *not recommended* are not. F5's prediction aloud before s2 adds 0.1 min: **the card is 3.9 min, all on the bench.**
 
 ## 15. Acceptance: how we know it is built right
 

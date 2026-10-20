@@ -10,7 +10,7 @@ optional_benches: []
 real_thing: "the code width of an ideal N-bit converter: the PLAN's 8 bits on 0–10 V, and the course's 12-bit MCU converter on a 3.3 V reference (one LSB = 0.806 mV)"
 minutes: 0.8                      # on the bench: from p5 (after the numeric) to the end of the card
 card_minutes: 2.5
-status: spec-draft
+status: spec-ready
 learner_action: numeric
 predictions: []                   # the numeric comes before the bench and is answered at s0
 seeds: []
@@ -288,6 +288,8 @@ None needed: every field it uses exists.
   each. Take, or leave?
 
 No accuracy finding on this card: the statement, PLAN, Flow and the decided F3 (binary 1001 = 9) recompute (§8).
+
+**Decided 2026-10-20** (owner, in the course's chat: *"go with the recommendations"* on the brief's findings, F10–F18 and the specs' proposals): every **Proposal** in this spec and every option marked **recommended** in this §14 is taken; options marked *not recommended* are not. F1: N on the x axis with a log y axis and `compare` range [3.3, 10]. Minutes unchanged (0.8 / 2.5).
 
 ## 15. Acceptance: how we know it is built right
 

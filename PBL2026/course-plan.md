@@ -124,7 +124,7 @@ should only half-notice it, until it comes back.
 | S18 | D1·080 | "With a still quantity, how often we sample hardly matters — today." | D3·020 (aliasing) |
 | S19 | D1·080 | A sigma-delta oversamples inside itself. | D2·040 (oversampling in firmware is the same trick) |
 | S20 | D1·080 | More bits are not more accuracy; ENOB is the honest number. | D2·020 (the ADS1115 noise table); D2·040 (buying bits with time) |
-| S21 | D1·080 | Offset and gain shift the line; INL and DNL bend it. | D2·050 (two points fix the first, nothing fixes the second) |
+| S21 | D1·080 | Offset and gain shift the line; INL and DNL bend it. | D2·050 (two points fix the first, no pair of constants fixes the second) |
 | S22 | D1·090 | Reference error passes through one-for-one. | D2·050 (a gain calibration absorbs it) |
 | S23 | D2·030 | Return current makes a voltage in the ground path. | D2·090 (ground as an impedance) |
 | S24 | D2·040 | Mean, median, mode: which "average"? | D2·070 (RMS is another average); D3·040 (an average-responding meter) |

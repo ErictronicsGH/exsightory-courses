@@ -45,7 +45,7 @@ table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-bottom:1px
 <a href="#c6">Card 6 · ≈1.8 min<b>Sigma-delta</b><span class="tag t-plot">Plot (Coding not built)</span></a>
 <a href="#c7">Card 7 · ≈3.2 min<b>The datasheet table</b><span class="tag t-fig">Figure</span><span class="tag t-plot">Plot</span><span class="tag t-act">multi-select</span></a>
 <a href="#c8">Card 8 · ≈3.2 min<b>ENOB</b><span class="tag t-eq">Equation</span><span class="tag t-act">numeric</span></a>
-<a href="#find">Findings<b>all decided (your recommendations)</b><span class="tag t-act">≈20 of 30 min</span></a>
+<a href="#find">Findings<b>all decided (your recommendations)</b><span class="tag t-act">≈24 of 30 min</span></a>
 </div>
 <p class="note">Time: the Flow is 1,781 words (13.7 min at 130 wpm). With the activities and the bench moves, the module comes to about 20 minutes, leaving about 10 of the 30 free (reported, nothing trimmed).</p>
 </section>
@@ -110,7 +110,8 @@ table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-bottom:1px
 <div class="fb"><label>Your feedback on card 8</label><textarea data-k="c8"></textarea></div></section>
 
 <section id="find"><h2>Findings: decided</h2>
-<p class="note"><b>You chose the recommendations (the first button of each) in the chat on 2026-10-20.</b> F1–F9, N1 and N2 are applied to <code>notes/Day01/080-adc-conversion/en.md</code>, and the accuracy register shows no open finding on D1·080. One difference from the recommended wording: in F4 the words “around its level” were left out, because on a truncating converter the band sits above its level, not around it. N3 waits for D2·020. N4 and D1–D4 are written into the specs now being drafted.</p>
+<p class="note"><b>You chose the recommendations (the first button of each) in the chat on 2026-10-20.</b> F1–F9, N1 and N2 are applied to <code>notes/Day01/080-adc-conversion/en.md</code>, and the accuracy register shows no open finding on D1·080. One difference from the recommended wording: in F4 the words “around its level” were left out, because on a truncating converter the band sits above its level, not around it. N3 waits for D2·020. N4 and D1–D4 are in the specs.</p>
+<p class="note"><b>Then, writing the specs:</b> nine more accuracy points (F10–F18) were found, and you chose their recommendations: the 1.76 dB is what a full-scale sine scores on top, not a loss; seed S20 reworded; the error is the level minus the input throughout; <i>“from about 8.535 V”</i>; <i>“below full scale”</i>; <i>“the instrument's other errors”</i>; <i>“…or the smallest inputs all read 0”</i>; <i>“Most MCU datasheets”</i>; <i>“No pair of constants fixes the second”</i>. All applied. The seven specs are <b>spec-ready</b>, and the module comes to about 24 of its 30 minutes. Two points for Day 2's units are logged: D2·020's two definitions of effective bits, and D2·040's “exactly” about the sigma-delta.</p>
 <div id="fd"></div>
 <div class="fb"><label>Anything else on this unit</label><textarea data-k="general"></textarea></div></section>
 

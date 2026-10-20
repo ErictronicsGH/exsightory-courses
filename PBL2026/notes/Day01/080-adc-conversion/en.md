@@ -142,17 +142,18 @@ ASK      poe (at the Flow's [[ask]]) — "A sensor gives 8.540 V into the 8-bit,
                   of 8.540 V | anything from 8.41 to 8.88 V
          answer: any voltage in a band one step (39 mV) wide
          reveal: the centrepiece Plot at N = 8, zoomed near 8.5 V.
-         explain: With rounding, 8.540 V lands on level 219 (8.555 V), and every input from 8.535 to 8.574 V
+         explain: With rounding, 8.540 V lands on level 219 (8.555 V), and every input from about 8.535 to 8.574 V
                   gives that same code: ±½ LSB, ±19.5 mV.
          depth: understand    practice: analysing data
-SHOW (centrepiece) Plot — the quantizer staircase q·round(x/q) and its error sawtooth x − q·round(x/q), x from
+SHOW (centrepiece) Plot — the quantizer staircase q·round(x/q) and its error sawtooth q·round(x/q) − x, x from
          0 to 10 V, q = 10/2^N with an N slider (4 to 12), a marker at 8.540 V and ±½ LSB lines on the
          error.
-         Drive: N = 8, zoom near 8.5 V (code 219 covers 8.535 to 8.574 V); then N from 4 to 12.
-         Look for: the sawtooth staying inside ±½ LSB at every N, shrinking, its height never reaching zero.
+         Drive: N = 8, zoom near 8.5 V (code 219 covers about 8.535 to 8.574 V); then N from 4 to 12.
+         Look for: the sawtooth staying inside ±½ LSB at every N below full scale, shrinking, its height never
+                   reaching zero.
          Status: ready.
          Note: resolved 2026-10-20 (ACCURACY D1·080-F4): the Flow now says "a band one step wide"; the reveal
-         gives 8.535 to 8.574 V.
+         gives about 8.535 to 8.574 V (ACCURACY F13).
 FAULT    Firmware that divides by 2^N in one place and by 2^N − 1 in another: a gain error of one part in
          2^N (0.39 % at 8 bits). Truncating instead of rounding: a steady −½ LSB offset.
 -->
@@ -165,7 +166,7 @@ FAULT    Firmware that divides by 2^N in one place and by 2^N − 1 in another: 
      what training-overview Day 1 Module 5 teaches. -->
 
 ```flow
-For a digital system, we must add to the resolution error a **quantization error**, which comes from the
+For a digital system, we must add to the instrument's other errors a **quantization error**, which comes from the
 fact that the output can take only certain discrete values.
 
 [[ask]] A weight sensor outputs 8.540 V on a 10 V scale. It is digitized by the 8-bit converter we just
@@ -177,11 +178,11 @@ With 8 bits over 0–10 V, the range is broken into discrete steps of 39.06 mV. 
 those steps is assigned to one or the other, according to the rounding rule the measurement process
 uses. The code it gets may stand for any voltage in a band one step wide.
 
-[[demo]] On the Plot Bench: the staircase for 8 bits over 0 to 10 V, and under it the error, the input
-minus the level it was given. I'll zoom in near 8.5 V.
+[[demo]] On the Plot Bench: the staircase for 8 bits over 0 to 10 V, and under it the error, the level it
+was given minus the input. I'll zoom in near 8.5 V.
 
 [[reveal]] 8.540 V is 218.6 steps of 39.06 mV. Rounded, that is level 219, which is 8.555 V. And every
-input from 8.535 V to 8.574 V gives that same code. A code does not stand for one voltage. It stands for
+input from about 8.535 V to 8.574 V gives that same code. A code does not stand for one voltage. It stands for
 a band one step wide: ±½ LSB, here ±19.5 mV.
 
 Now slide N from 4 bits to 12. The sawtooth shrinks, step by step, and its height never reaches zero.
@@ -269,7 +270,8 @@ digitally to reach high resolution for slow signals.
 
 <!-- PLAN
 SHOW     Coding Bench — a first-order sigma-delta modulator: card 5's input (2.17 V, 0.658 of full scale) in, the
-         1-bit stream out, and a running average over the last 16, 64 and 256 bits converging on 0.658.
+         1-bit stream out, and a running average over the last 16, 64 and 256 bits, each settling within one step (1/K) of
+         0.658.
          Decided 2026-10-20: the Plot fallback (a precomputed series) carries it until a Coding Bench exists.
          Drive: run; change the input; change the averaging length.
          Look for: the density of 1s is the value, and the resolution comes from how many bits you average.
@@ -305,13 +307,14 @@ An ADC datasheet lists offset error, gain error, INL and DNL. Offset and gain mo
 transfer line; INL and DNL bend it and make its steps unequal.
 
 <!-- PLAN
-SHOW     Figure — the ADC accuracy table from a real MCU datasheet (offset error, gain error, INL, DNL, absolute
+SHOW     Figure — the ADC accuracy table of our own unbranded datasheet page (values of the class, sourced in the
+         spec: offset error, gain error, INL, DNL, absolute
          accuracy, in LSB), toured row by row; beside it a Plot of the transfer line: the ideal staircase,
          then offset (a shift), gain error (a tilt), INL (a bow, a·x·(1 − x)) and DNL (uneven steps), each a
          curve that can be shown on its own.
          Drive: tour a row; show its curve.
          Look for: two rows move the whole line, two bend it.
-         Status: Plot ready · needs asset: the datasheet's ADC-characteristics page (PDF).
+         Status: Plot ready · Figure ready · needs asset: our own datasheet page (SVG).
 ASK      multi-select (after the tour) — "Which of these can a two-point calibration remove?"
          options: offset error | gain error | INL | DNL | quantization error
          answer: offset error; gain error
@@ -320,19 +323,19 @@ ASK      multi-select (after the tour) — "Which of these can a two-point calib
                   — a shift or a tilt; a bend or an uneven step is still there between the points.
          depth: understand    practice: arguing from evidence
 SEED     plants S21 — "Offset and gain shift the line; INL and DNL bend it. Tomorrow, two points will fix the
-         first. Nothing fixes the second."
+         first. No pair of constants fixes the second."
 -->
 
 <!-- FILLED 2026-10-07: drafted from training-overview Day 1 Module 2 (moved to conversion) and standard ADC-datasheet terminology; tutor to review -->
 
 ```flow
-Every MCU datasheet has a table in its ADC section that most people scroll straight past: offset error,
+Most MCU datasheets have a table in their ADC section that most people scroll straight past: offset error,
 gain error, integral nonlinearity and differential nonlinearity, usually given in LSB.
 
 [[demo]] Here is one, beside the converter's transfer line: input voltage along the bottom, code up the
 side. The ideal is a perfect staircase on a straight line from zero to full scale.
 
-**Offset error** shifts the whole line up or down: 0 V no longer gives code 0. **Gain error** tilts it:
+**Offset error** shifts the whole line up or down: 0 V no longer gives code 0, or the smallest inputs all read 0. **Gain error** tilts it:
 the line reaches full scale at the wrong input. Both are straight-line errors.
 
 **Integral nonlinearity**, INL, bends the line: it is the worst distance between the real transfer line
@@ -349,7 +352,7 @@ straight line: a shift or a tilt. A bend, or an uneven step, is still there betw
 quantization floor stays where it was.
 
 So read the table in two halves. Offset and gain tell you what calibration will have to fix. INL and DNL
-tell you what it cannot.
+tell you what two points cannot.
 ```
 
 ***
@@ -363,8 +366,8 @@ MCU converter delivers closer to ten useful bits.
 ASK      numeric (before the reveal) — "A 12-bit ADC's datasheet gives a SINAD of 62 dB. What is its ENOB?"
          answer: 10.0 ± 0.1 bits
          reveal: the Equation below.
-         explain: Each bit is worth 6.02 dB; 62 dB less the 1.76 dB a perfect quantizer already loses leaves
-                  60.2 dB, which is ten bits' worth.
+         explain: Each bit is worth 6.02 dB; take off the 1.76 dB that a full-scale sine scores on top of that even
+                  on a perfect converter, and 62 dB leaves 60.2 dB, which is ten bits' worth.
          depth: use    practice: computational thinking
 SHOW     Equation — ENOB = (SINAD − 1.76 dB) / 6.02 dB, graphed against SINAD; worked examples: an ideal
          12-bit converter, 6.02 × 12 + 1.76 = 74.0 dB; a real one at 62 dB → 10.0 bits.
@@ -373,8 +376,8 @@ SHOW     Equation — ENOB = (SINAD − 1.76 dB) / 6.02 dB, graphed against SINA
 HARVEST  S15 — "The decibels from conditioning: here they buy us an honest count of bits."
 HARVEST  S34 — "We asked how much of that fineness is true. Here is the honest answer: about ten bits of
          twelve."
-SEED     plants S20 — "More bits are not more accuracy. ENOB is the honest number. Tomorrow we read one off a
-         real noise table, and then buy bits back with time."
+SEED     plants S20 — "More bits are not more accuracy. ENOB is the honest number. Tomorrow we read a real
+         noise table in bits, and then buy bits back with time."
 -->
 
 <!-- FILLED 2026-10-07: drafted from training-overview Day 1 Module 5 and the standard ENOB definition; tutor to review -->

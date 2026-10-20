@@ -10,7 +10,7 @@ optional_benches: []
 real_thing: "an ideal 8-bit converter over 0–10 V digitizing a weight sensor's 8.540 V (rounding, as the Flow says; truncating by the switch, as the course's MCU converter does); N = 12 is the course's resolution at another range"
 minutes: 1.4                      # on the bench: from the Flow's [[demo]] to the card's end (§2)
 card_minutes: 3.0
-status: spec-draft
+status: spec-ready
 learner_action: poe
 predictions: []                   # the PLAN's poe fires before the bench appears and is answered at s1
 seeds: []
@@ -41,12 +41,13 @@ paper, to be checked on the built plot.
   wide (±½ LSB when the converter rounds, 0 to −1 LSB when it truncates), is built into every conversion, and no circuit
   removes it from a single conversion.*
 - **SHOW (centrepiece)** (verbatim from the PLAN): *Plot — the quantizer staircase q·round(x/q) and its error sawtooth
-  x − q·round(x/q), x from 0 to 10 V, q = 10/2^N with an N slider (4 to 12), a marker at 8.540 V and ±½ LSB lines on the
+  q·round(x/q) − x, x from 0 to 10 V, q = 10/2^N with an N slider (4 to 12), a marker at 8.540 V and ±½ LSB lines on the
   error.*
-- **Drive** (verbatim): *N = 8, zoom near 8.5 V (code 219 covers 8.535 to 8.574 V); then N from 4 to 12.*
-- **Look for** (verbatim): *the sawtooth staying inside ±½ LSB at every N, shrinking, its height never reaching zero.*
+- **Drive** (verbatim): *N = 8, zoom near 8.5 V (code 219 covers about 8.535 to 8.574 V); then N from 4 to 12.*
+- **Look for** (verbatim): *the sawtooth staying inside ±½ LSB at every N below full scale, shrinking, its height never
+  reaching zero.*
 - **Status** (verbatim): *ready.* **Note** (verbatim): *resolved 2026-10-20 (ACCURACY D1·080-F4): the Flow now says "a
-  band one step wide"; the reveal gives 8.535 to 8.574 V.*
+  band one step wide"; the reveal gives about 8.535 to 8.574 V (ACCURACY F13).*
 - **FAULT** (verbatim): *Firmware that divides by 2^N in one place and by 2^N − 1 in another: a gain error of one part in
   2^N (0.39 % at 8 bits). Truncating instead of rounding: a steady −½ LSB offset.*
 - **Bench and library.** The **bench** is the Plot Bench (the viewer, sliders, legend, readout, framings). The
@@ -91,20 +92,19 @@ leaves **1,662 words spoken outside the activities = 12.8 min.**
 
 | Card | Flow spoken | Beyond the Flow | Card | Source |
 |---|---|---|---|---|
-| 1 When, and which level | 3.58 | the HARVEST S12 line 0.11; slider moves 0.12 | **3.8** | `D1-080-01-when-and-which-level.md` §2 |
+| 1 When, and which level | 3.58 | the HARVEST S12 line 0.11; slider moves 0.12; the prediction aloud before s2 0.1 | **3.9** | `D1-080-01-when-and-which-level.md` §2 |
 | 2 Resolution: how many levels | 1.22 | numeric ≈ 0.75 (its question included); the powers read aloud, s2's line and pane moves ≈ 0.5 | **2.5** | `D1-080-02-resolution.md` §2 |
 | 3 Quantization error is a floor | 1.76 | poe ≈ 1.0; framings and the sweep 0.25 | **3.0** | this spec |
 | 4 More bits are not more accuracy | 0.45 | flash ≈ 0.75 (its question is not in the Flow) | **≈ 1.2** | estimate (no bench; owner D4) |
 | 5 SAR: a binary search | 0.64 | numeric ≈ 0.75; the four bits' motion and the step-2 prediction ≈ 1.7 | **3.1** | `D1-080-05-sar-binary-search.md` §2 (2.6 without the prediction) |
-| 6 Sigma-delta: fast and coarse, then filtered | 1.24 | the presenter's unscripted lines over the two plots and their moves ≈ 1.2 | **2.4** | `D1-080-06-sigma-delta.md` §2 |
+| 6 Sigma-delta: fast and coarse, then filtered | 1.24 | the presenter's unscripted lines over the two plots and their moves ≈ 1.2; the prediction at s1 0.5 | **2.9** | `D1-080-06-sigma-delta.md` §2 |
 | 7 The table everyone scrolls past | 1.63 | multi-select ≈ 0.9 (its question included); the table's tour and the slider moves ≈ 0.9 | **3.5** | `D1-080-07-datasheet-table.md` §2 |
-| 8 ENOB: the honest number of bits | 2.25 | numeric ≈ 0.75 (its question included); pane moves ≈ 0.4 | **3.4** | `D1-080-08-enob.md` §2 |
-| **Module** | **12.8** | **10.1** | **22.9** | |
+| 8 ENOB: the honest number of bits | 2.25 | numeric ≈ 0.75 (its question included); pane moves ≈ 0.4; the Proof before the numeric 0.05 | **3.5** | `D1-080-08-enob.md` §2 |
+| **Module** | **12.8** | **10.8** | **23.6** | |
 
-**D1·080 uses ≈ 23 of its 30 minutes, leaving ≈ 7 min unused** (F11). Reported only; the owner cuts or adds, nothing is
-trimmed here. The cards' own figures replaced the brief's estimates on 2026-10-20 (the brief said ≈ 20). Proposals still
-open in the specs would add up to ≈ +1.6 (card 1 F5's prediction aloud +0.1; card 6's F3 slider driven +0.3 and F4
-prediction +0.5; card 8's F2 proof steps +0.7).
+**D1·080 uses ≈ 24 of its 30 minutes, leaving ≈ 6 min unused** (F11). Reported only; the owner cuts or adds, nothing is
+trimmed here. The cards' own figures replaced the brief's estimates on 2026-10-20 (the brief said ≈ 20), with the
+proposals the owner took the same day (card 1 +0.1, card 6 +0.5, card 8 +0.05).
 
 ## 3. The scene: what is on the bench
 
@@ -247,7 +247,7 @@ panels.
   converter. Which voltages could the resulting code stand for?" · options: exactly 8.540 V | any voltage in a band one
   step (39 mV) wide | any voltage within ±39 mV of 8.540 V | anything from 8.41 to 8.88 V · answer: any voltage in a band
   one step (39 mV) wide · reveal: the centrepiece Plot at N = 8, zoomed near 8.5 V. · explain: With rounding, 8.540 V lands
-  on level 219 (8.555 V), and every input from 8.535 to 8.574 V gives that same code: ±½ LSB, ±19.5 mV. · depth:
+  on level 219 (8.555 V), and every input from about 8.535 to 8.574 V gives that same code: ±½ LSB, ±19.5 mV. · depth:
   understand · practice: analysing data.* It fires at p1, **before the bench appears**; **s1 reveals it**.
 - **7b. Prediction point**: the poe is the prediction. **Proposal** (F9): before s4, ask aloud *"If this converter
   truncated, would the band get narrower?"* (no: the same width, shifted); +0.1 min.
@@ -416,6 +416,8 @@ tread.
   band 0 to −1 LSB, so its truncated sawtooth sat above zero under a "−1 LSB" line. Our error: this spec draws level −
   input (F3 (a)); the preview is corrected with F3's decision.
 - **F11 — The module runs ≈ 9 min short of its 30** (§2). Reported only.
+
+**Decided 2026-10-20** (owner, in the course's chat: *"go with the recommendations"* on the brief's findings, F10–F18 and the specs' proposals): every **Proposal** in this spec and every option marked **recommended** in this §14 is taken; options marked *not recommended* are not. Its accuracy findings F3–F6 are ACCURACY D1·080-F12–F15, **applied** to en.md (level − input; *"from about 8.535 V"*; *"below full scale"*; *"the instrument's other errors"*); the plot draws level − input and the real top code. Minutes unchanged (1.4 / 3.0); the module table above is updated.
 
 ## 15. Acceptance: how we know it is built right
 

@@ -10,7 +10,7 @@ optional_benches: [Figure]        # the PLAN's second bench; both are this card'
 real_thing: "the accuracy table of a 12-bit MCU SAR converter on a 3.3 V reference (offset, gain, INL, DNL and total unadjusted error in LSB, typical and maximum at 25 °C), and that converter's truncating transfer function, drawn at 3 bits with each error exaggerated"
 minutes: 2.3                      # on the bench: from p1's [[demo]] to the card's end, less the multi-select (§2)
 card_minutes: 3.5
-status: spec-draft
+status: spec-ready
 learner_action: multi-select
 predictions: []                   # the PLAN's multi-select is the prediction: it fires after s4, before the reveal s5
 seeds: [S21]                      # planted by p7 (the PLAN's SEED line); harvested in D2·050 "What two points can fix"
@@ -61,7 +61,7 @@ The card's Flow is **228 words**. p4, the `[[ask]]` (16 words), is counted in th
 
 | Beat | Minutes | Source of the number |
 |---|---|---|
-| p0 *"Every MCU datasheet has a table…"* (29), before the bench | 0.22 | 29 ÷ 130 |
+| p0 *"Most MCU datasheets have a table…"* (29), before the bench | 0.22 | 29 ÷ 130 |
 | s0: p1 *"[[demo]] Here is one, beside the converter's transfer line…"* (32) | 0.25 | 32 ÷ 130 |
 | s0: the Figure's tour, the conditions and five rows, unscripted (≈ 40 words: *"offset, gain, INL, DNL and the total; typical and maximum, in LSB; one LSB here is 0.8 mV"*) | 0.31 | estimate, 40 ÷ 130 |
 | s1–s2: p2 *"**Offset error** shifts the whole line…"* (33) | 0.25 | 33 ÷ 130 |
@@ -219,7 +219,7 @@ label tell them apart as well as hue.
 
 | # | id | Flow paragraph | What changes (`say`) | Overlay for the room | Presenter's control |
 |---|---|---|---|---|---|
-| — | p0 *"Every MCU datasheet has a table…"* | before the bench | — | — | — |
+| — | p0 *"Most MCU datasheets have a table…"* | before the bench | — | — | — |
 | 0 | `s0-table-and-line` | p1 *"[[demo]] Here is one, beside the converter's transfer line…"* | The accuracy table, row by row; then the ideal converter: a staircase on a straight line from zero to full scale. | the Figure's row highlight and note; then the Plot at s0 | the Figure's tour steps; then the Plot |
 | 1 | `s1-offset` | p2 *"**Offset error** shifts the whole line…"* (first two sentences) | Offset shifts the whole staircase: here 0 V now reads code 1. | E_O slider at 1 | slider eo 0 → 1 |
 | 2 | `s2-gain` | p2 (*"**Gain error** tilts it…"* to *"…straight-line errors."*) | Gain tilts it: the top code arrives at the wrong input. | E_G at 1 | eo → 0; eg 0 → 1 |
@@ -482,6 +482,8 @@ the accuracy ones when they are logged.
   upward (0 V reads code 1, as the Flow says); the INL bow 0.5625 LSB from the end-point line instead of 0.18; the DNL
   slider closes code 4 at its end (the Flow's missing code); the two-point line labelled *"two points near the ends"*.
   Options: (a) as specified (**recommended**); (b) the brief page's values.
+
+**Decided 2026-10-20** (owner, in the course's chat: *"go with the recommendations"* on the brief's findings, F10–F18 and the specs' proposals): every **Proposal** in this spec and every option marked **recommended** in this §14 is taken; options marked *not recommended* are not. Its accuracy findings C7-1–C7-3 are ACCURACY D1·080-F16–F18, **applied** to en.md (*"…or the smallest inputs all read 0"*; *"Most MCU datasheets"*; *"No pair of constants fixes the second"*, *"…what two points cannot"*, and course-plan.md's register). F-c7-4 (a): two blocks side by side on one card is Studio's, so it goes to the owner to route; §13 stands in. F-c7-5 (a): the E_T row and the footnotes. F-c7-6: the PLAN's SHOW and Status now name our own datasheet page (SVG). F-c7-8 (a). Minutes unchanged (2.3 / 3.5).
 
 ## 15. Acceptance: how we know it is built right
 
