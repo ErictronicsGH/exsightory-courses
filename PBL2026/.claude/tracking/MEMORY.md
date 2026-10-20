@@ -38,4 +38,14 @@ Building any bench or asset. Changing the owner's card text or Flow (report anyt
   ENOB, from D1·080; and DAY23-F1's *"this morning"* at l. 392; the title's product names under *real but unbranded*);
   check `transcript.en.md` against `en.md`; then brief the owner as `bench-work/previews/u020-preview.html` and wait
   for design direction.
+- 2026-10-20 (session 2): crossings listed from the worktree (nothing open for pbl2026; next free 522). **Accuracy check
+  A1–A7 done**: every number recomputed ✓ (Node); ADS1115 values read off SBAS444E (Dec 2024; Tables 6-1/6-2, §5.5,
+  Table 7-3, MUX[2:0]) and INA226 off SBOS547C (Aug 2026), both PDFs fetched into the session scratchpad (not kept).
+  **Open: D2·020-F1 (widened: RMS column flat at 1 LSB, only p-p grows; 7.81 → 35.83 µV pp on ±0.256 V, 13.80
+  noise-free bits at 860 SPS) and F2–F7** (staircase floor; card 2 Look for; *differential* impedance; *"extend"* the
+  chain; *"all of it signal"*; *"this morning's firmware jobs"* come later, so DAY23-F1's *"earlier today"* is false
+  here). Script panel card-4 arc line fixed (cut mid-word). **Brief page `bench-work/previews/u020-preview.html`**
+  (live visual per card; F1–F7 plus D1 named parts vs unbranded, D2 redrawn extracts, D3 benches/crossing, D4 the
+  FAULT on the figure, N1, N2; ≈ 29 of 30 min). **Next: read the owner's choices off the page (`u020Feedback()`) or
+  the chat, apply, re-check, then write the seven specs.**
 

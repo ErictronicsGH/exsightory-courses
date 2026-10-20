@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>U020 brief — D2·020 external ADCs</title>
+<style>
+:root{color-scheme:dark;--bg:#0E1217;--panel:#151B22;--ink:#E8EAED;--muted:#9AA3AD;--faint:#3A424C;--teal:#2DD4BF;--amber:#F5B942;--violet:#A78BFA;--lime:#A3E635;--rose:#F472B6;--azure:#60A5FA}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,Segoe UI,Roboto,sans-serif}
+main{max-width:1180px;margin:0 auto;padding:16px}h1{font-size:22px;margin:8px 0 4px}h2{font-size:18px;margin:0 0 6px}h3{font-size:15px;margin:12px 0 4px}
+section{background:var(--panel);border:1px solid var(--faint);border-radius:10px;padding:14px 16px;margin:14px 0}
+.top{position:sticky;top:0;z-index:5;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid var(--faint)}
+button{background:#1C242D;color:var(--ink);border:1px solid var(--faint);border-radius:6px;padding:5px 10px;font:inherit;font-size:13px;cursor:pointer;text-align:left}
+button:hover{border-color:var(--muted)}button.on{border-color:var(--teal);color:var(--teal)}
+.tag{display:inline-block;font-size:12px;border-radius:4px;padding:1px 7px;margin-right:6px;border:1px solid}
+.t-plot{color:var(--teal);border-color:var(--teal)}.t-eq{color:var(--violet);border-color:var(--violet)}.t-draw{color:var(--amber);border-color:var(--amber)}
+.t-fig{color:var(--azure);border-color:var(--azure)}.t-act{color:var(--lime);border-color:var(--lime)}.t-acc{color:var(--rose);border-color:var(--rose)}
+.map{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px}
+.map a{display:block;background:#10161C;border:1px solid var(--faint);border-radius:8px;padding:8px;color:var(--ink);text-decoration:none;font-size:13px}
+.map a b{display:block;font-size:14px;margin:2px 0}
+svg{width:100%;height:auto;display:block;background:#0B0F14;border-radius:8px}
+.sl{display:flex;flex-wrap:wrap;gap:14px;margin:10px 0}
+.sl label{flex:1 1 220px;font-size:13px;color:var(--muted)}.sl label span{float:right;color:var(--ink);font-variant-numeric:tabular-nums}
+.sl input{width:100%}
+.row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0}
+.note{color:var(--muted);font-size:13px}
+textarea{width:100%;min-height:54px;background:#0B0F14;color:var(--ink);border:1px solid var(--faint);border-radius:6px;padding:6px;font:inherit;font-size:14px}
+.fb label{font-size:13px;color:var(--amber)}
+.q{margin:14px 0 4px}.block{display:inline-block;font-size:11px;color:#0E1217;background:var(--rose);border-radius:3px;padding:0 5px;margin:0 6px}
+.bar{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0}
+table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-bottom:1px solid var(--faint);padding:5px 6px;text-align:left;vertical-align:top}
+.pass{color:var(--lime)}.wait{color:var(--amber)}.mono{font-family:ui-monospace,Consolas,monospace}
+.ro{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.ro div{background:#10161C;border:1px solid var(--faint);border-radius:6px;padding:6px 10px;font-size:12px;color:var(--muted)}.ro b{display:block;font-size:16px;color:var(--ink);font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+@media (max-width:600px){main{padding:10px}}
+</style></head><body><main>
+<h1>U020 brief: D2·020 External ADCs as a design choice</h1>
+<p class="note">30 minutes, seven cards, Day 2 at 12:30 GMT, straight after the interfaces. Each card below shows the visual this unit proposes for its bench, drawn from the card's PLAN with real numbers, and most of them are live. Nothing is built on a bench yet. <b>The accuracy check ran first.</b> Every number in the module recomputes (6.21 codes, 640, 187.5 and 7.8125 µV, 1.389 %, 160 kbit/s, 27 clocks, 270 kHz, 3,704 and 14,815 reads/s, 23.2 kHz, 8,000 counts, 81.92 mV). The ADS1115 and INA226 values were read off their datasheets (TI SBAS444E, Dec 2024; SBOS547C, Aug 2026). <b>Seven accuracy points are open (F1–F7)</b>: wording and model points, none of them arithmetic. They block the specs until you choose. One larger choice is yours as well: the module is built on four named parts (D1).</p>
+<div class="top"><span class="note">Feedback</span><button onclick="showFb()">Show what I've entered</button><button onclick="clearFb()">Clear</button><span id="fbsum" class="note"></span></div>
+<pre id="fbout" style="display:none;white-space:pre-wrap;background:#0B0F14;border:1px solid var(--faint);border-radius:8px;padding:10px;font-size:13px"></pre>
+
+<section><h2>The module at a glance</h2>
+<div class="map">
+<a href="#c1">Card 1<b>When the integrated converter is not enough</b><span class="tag t-plot">Plot</span><span class="tag t-acc">F2</span></a>
+<a href="#c2">Card 2<b>Three converters side by side</b><span class="tag t-fig">Figure</span><span class="tag t-act">poe</span><span class="tag t-acc">F3</span></a>
+<a href="#c3">Card 3<b>Not “which has the most bits?”</b><span class="tag t-plot">Plot (card 1)</span><span class="tag t-act">flash</span></a>
+<a href="#c4">Card 4<b>The selection checklist</b><span class="tag t-draw">Draw (course path)</span><span class="tag t-act">checkpoint</span></a>
+<a href="#c5">Card 5<b>Inside the ADS1115</b><span class="tag t-fig">Figure, centrepiece</span><span class="tag t-eq">Equation</span><span class="tag t-act">poe, numeric</span><span class="tag t-acc">F1, F4</span></a>
+<a href="#c6">Card 6<b>Can the bus keep up?</b><span class="tag t-eq">Equation</span><span class="tag t-act">2 numeric</span><span class="tag t-acc">F5</span></a>
+<a href="#c7">Card 7<b>INA226: build or buy?</b><span class="tag t-fig">Figure</span><span class="tag t-act">poll</span><span class="tag t-acc">F6, F7</span></a>
+<a href="#find">Findings and decisions<b>F1–F7 open, D1–D5</b><span class="tag t-act">≈ 29 of 30 min</span></a>
+</div>
+<p class="note"><b>Time: at the budget, with little slack.</b> The Flow is 2,006 words, 15.4 min at 130 wpm (cards 231, 414, 45, 278, 356, 330, 352 words). The eight activities add about 10.5 min: two poe, the flash and three numerics at about 1 min each, the poll with its chat reasons about 1.5, and the paired checkpoint about 3. Bench moves add about 3 min more, most of them over speech. That makes <b>about 29 of 30 minutes</b>. If F1's and F4's recommended wordings are taken, they add about 70 words (0.5 min). This is reported only; nothing is trimmed.</p>
+<p class="note"><b>Cross-references checked (A4).</b> ✓ S50 against D2·010's seed. ✓ S16 against D1·060 (the in-amp ignores what both inputs share). ✓ S20 against D1·080's seed, now “a real noise table in bits” (F1 is about what that table shows). ✓ S52 against D2·030's harvest: noise grows as √bandwidth, and the table agrees (860/250 SPS gives √ = 1.85, and the ±0.256 V peak-to-peak ratio is 1.93). ✓ S51 against D2·090's harvest (“eight thousand counts of signal”; F6 brings this card in line with it). ✓ S58 against D2·040. ✓ “The meter on Day 1” against D1·040. ✓ “We met sigma-delta … (080)” against D1·080 card 6. One crossed with the time: <b>F7</b>. The script panel's card-4 arc line was cut mid-word (“single-e”). That line is derived text, so it is fixed. The rest of the panel matches <code>en.md</code>.</p>
+</section>
+
+<section id="c1"><h2>Card 1 · When the integrated converter is not enough</h2>
+<p><span class="tag t-plot">Plot</span>The PLAN wants a 0–5 mV bridge ramp on two quantizer staircases: the MCU's 12-bit, 3.3 V converter first, then the ADS1115 on ±0.256 V. Proposed: the MCU staircase alone, then the second one drawn over it, then a magnifier on the bottom 60 µV to show that the “straight line” is a staircase too. <b>F2:</b> the MCU curve is drawn as the course's truncating converter, q·⌊x/q⌋, not the round(x/q)·q the PLAN names. That doesn't change the count: 6.21 steps either way, so “about six”.</p>
+<svg id="p1" viewBox="0 0 1100 380"></svg>
+<div class="row"><button id="b1a" class="on">MCU (12-bit, 3.3 V)</button><button id="b1b">+ the ADS1115 (±0.256 V)</button><button id="b1c">+ magnifier, bottom 60 µV</button></div>
+<div class="ro"><div>MCU step<b>0.806 mV</b></div><div>codes across 5 mV<b id="r1a">6</b></div><div>ADS1115 step<b>7.81 µV</b></div><div>codes across 5 mV<b id="r1b">—</b></div></div>
+<p class="note">The ramp stands for the strain-gauge bridge of D1·030's pressure chain (a 350 Ω bridge at 2 mV/V on 3.3 V gives 6.6 mV full load, so “a few millivolts” ✓). The MCU can't take the bridge's two outputs as a difference. The card says so in its last line, and the plot shows only step size.</p>
+<div class="fb"><label>Your feedback on card 1</label><textarea data-k="c1"></textarea></div></section>
+
+<section id="c2"><h2>Card 2 · Three converters side by side</h2>
+<p><span class="tag t-fig">Figure</span>The owner's comparison table, drawn as our own figure, with the values checked against the three datasheets in the spec. The poe comes first; then Drive spotlights the resolution row, then the rate row, with rank chips. <b>F3:</b> the two rankings are not opposite. Resolution runs 16 &gt; 12 &gt; 10, and speed runs ESP32 &gt; ATmega328P &gt; ADS1115. The most bits sit on by far the slowest part, but between the two SARs the finer one is also the faster.</p>
+<div class="scroll"><svg id="p2" viewBox="0 0 1100 470" style="min-width:720px"></svg></div>
+<div class="row"><button id="b2a" class="on">Table</button><button id="b2b">Spotlight: resolution</button><button id="b2c">Spotlight: rate</button></div>
+<p class="note">Rates: the ATmega328P reaches “up to 76.9 kSPS, up to 15 kSPS at maximum resolution” (its datasheet). The classic ESP32 has no single figure; its continuous (DMA) mode runs to hundreds of kSPS. The table's cell says “depends on mode”, so the rank chip says “fastest” without a number. The ESP32's differential cell (“Not the same differential-input architecture…”) is vague. Its SAR units are single-ended in Espressif's ADC documentation, and the spec sources this before the figure is drawn (N1).</p>
+<div class="fb"><label>Your feedback on card 2</label><textarea data-k="c2"></textarea></div></section>
+
+<section id="c3"><h2>Card 3 · Not “which has the most bits?”</h2>
+<p><span class="tag t-plot">Plot</span>Card 1's plot comes back on the Canvas at its last view, with both staircases and the magnifier, while the flash quiz runs. Nothing new is drawn; the two staircases are the evidence for the answer. The explain checks out: 7.8 µV steps, 640 codes against about six, and a slow bridge needs far less than 860 SPS.</p>
+<div class="fb"><label>Your feedback on card 3</label><textarea data-k="c3"></textarea></div></section>
+
+<section id="c4"><h2>Card 4 · The selection checklist</h2>
+<p><span class="tag t-draw">Draw</span>The course path (crossing 511's drawing) with the checklist's nineteen items pinned to the stage where the room met each one. The PLAN names six homes; this proposal homes all nineteen, so that “almost every line… the path we walked yesterday” can be counted on the wall. <b>16 of 19</b> have a Day 1 home. The interface is the last module's D2·010, calibration is still to come (D2·050), and power has no stage. The PLAN's “acquisition → ADC input” isn't an item on the list, so D1·070 takes channels, multiplexing and latency instead (my proposal).</p>
+<div class="scroll"><svg id="p4" viewBox="0 0 1100 420" style="min-width:720px"></svg></div>
+<div class="row"><button id="b4p">◀ Previous</button><button id="b4n">Next ▶</button><span class="note" id="t4"></span></div>
+<div class="fb"><label>Your feedback on card 4</label><textarea data-k="c4"></textarea></div></section>
+
+<section id="c5"><h2>Card 5 · Inside the ADS1115 (centrepiece)</h2>
+<p><span class="tag t-fig">Figure</span>The PLAN asks for the datasheet as a tour in five stops: the block diagram, the MUX pairs, the PGA ranges, the input impedance, and the noise table last. Proposed: <b>our own redrawn extracts</b> of each page, set to the datasheet's values and citing its document number, instead of TI's page images (D2). <b>F1:</b> the table's RMS column stays at one count at every rate. Only the peak-to-peak figures grow, so the tour reads the ±0.256 V column in peak-to-peak. <b>F4:</b> only the <i>differential</i> impedance falls as the gain rises; the common-mode impedance does the opposite.</p>
+<svg id="p5" viewBox="0 0 1100 430"></svg>
+<div class="row"><button id="b5p">◀ Previous</button><button id="b5n">Next ▶</button><span class="note" id="t5"></span></div>
+<div class="row" id="r5x" style="display:none"><button id="b5rms">RMS (µV)</button><button id="b5pp" class="on">Peak-to-peak (µV)</button><button id="b5bits">Noise-free bits</button></div>
+<h3><span class="tag t-eq">Equation</span>The numeric's reveal: the loaded divider from D1·040</h3>
+<div class="sl"><label>Full-scale range (FSR) <span id="v5f">±0.256 V</span><input id="s5f" type="range" min="0" max="5" step="1" value="5"></label><label>Source resistance (R<sub>s</sub>) <span id="v5r">10 kΩ</span><input id="s5r" type="range" min="0" max="3" step="1" value="2"></label></div>
+<div class="ro"><div>Z<sub>diff</sub><b id="o5z">710 kΩ</b></div><div>loading error R<sub>s</sub>/(R<sub>s</sub>+Z<sub>diff</sub>)<b id="o5e">1.39 %</b></div><div>LSB<b id="o5l">7.81 µV</b></div></div>
+<p class="note">The slider steps through the datasheet's values: 22, 15, 4.9 and 2.4 MΩ, then 710 kΩ twice. A 10 kΩ bridge (four 10 kΩ arms, so 10 kΩ between its outputs) loses 1.389 % on the two finest ranges, so the numeric's 1.4 % ± 0.2 % holds. A 350 Ω strain-gauge bridge would lose 0.05 %. The card's 10 kΩ bridge is not card 1's strain-gauge bridge, and the spec labels it as a 10 kΩ bridge (N2).</p>
+<div class="fb"><label>Your feedback on card 5</label><textarea data-k="c5"></textarea></div></section>
+
+<section id="c6"><h2>Card 6 · Can the bus keep up?</h2>
+<p><span class="tag t-eq">Equation</span>The PLAN wants the payload term first (samples/s × 16 bits), then the I²C overhead switched on (27 clocks per read), against markers at 100 kHz and 400 kHz. Proposed: one log–log line plot of the required clock against samples per second, live. The two numerics land on it: 160 kbit/s, then 270 kHz.</p>
+<svg id="p6" viewBox="0 0 1100 380"></svg>
+<div class="sl"><label>Samples per second (f<sub>s</sub>) <span id="v6">10,000</span><input id="s6" type="range" min="2" max="5" step="0.01" value="4"></label></div>
+<div class="row"><button id="b6a" class="on">Payload only</button><button id="b6b">+ I²C overhead (27 clocks per read)</button></div>
+<div class="ro"><div>payload<b id="o6a">160 kbit/s</b></div><div>I²C clock needed<b id="o6b">—</b></div><div>100 kHz bus tops out at<b>3,704 reads/s</b></div><div>400 kHz bus tops out at<b>14,815 reads/s</b></div></div>
+<p class="note">27 clocks means the pointer register already holds the conversion register, as it does in continuous mode: an address byte and two data bytes, each with its ACK. START, STOP and the gaps between transactions come on top, as the explain says. <b>F5:</b> the chain this card shows is word for word D2·010 card 1's, so “extend” promises an addition the room won't find.</p>
+<div class="fb"><label>Your feedback on card 6</label><textarea data-k="c6"></textarea></div></section>
+
+<section id="c7"><h2>Card 7 · INA226: build or buy?</h2>
+<p><span class="tag t-fig">Figure</span>The INA226's block diagram laid beside the Day 1 chain, each block paired with the stage it replaces. The shunt stays outside. The in-amp (D1·060), the converter (D1·070–080) and the reference (D1·090) fold into the package. Two of today's firmware jobs still to come, averaging (D2·040) and calibration (D2·050), are already in its registers. Proposed: the FAULT shown live on the same figure, with the calibration register written for 10 mΩ on a 5 mΩ board, and the registers reading half.</p>
+<div class="scroll"><svg id="p7" viewBox="0 0 1100 400" style="min-width:720px"></svg></div>
+<div class="row"><button id="b7a" class="on">Fitted 10 mΩ (as calibrated)</button><button id="b7b">FAULT: fitted 5 mΩ, CAL still for 10 mΩ</button></div>
+<div class="ro"><div>true current<b>2.000 A</b></div><div>shunt voltage<b id="o7v">20.00 mV</b></div><div>shunt register (2.5 µV)<b id="o7s">8000</b></div><div>current register → reads<b id="o7i">2.000 A</b></div><div>power at 12.00 V → reads<b id="o7p">24.00 W</b></div></div>
+<p class="note">The register maths is the datasheet's: CAL = 0.00512 / (Current_LSB × R<sub>shunt</sub>) = 5120 for 100 µA and 10 mΩ; current = shunt × CAL / 2048; power = current × bus / 20000 at 25 × Current_LSB. The current and the power both read exactly half, steadily, and nothing complains ✓. <b>F6:</b> “all of it signal” — the part's own offset (≤ 4 counts) and gain error (≤ 8 counts at 8,000) are not signal. <b>F7:</b> “this morning's firmware jobs” — they come later today.</p>
+<div class="fb"><label>Your feedback on card 7</label><textarea data-k="c7"></textarea></div></section>
+
+<section id="find"><h2>Findings and decisions</h2>
+<p class="note">The first button of each is the recommendation, and it starts selected. Change any you disagree with, or reply “apply all recommendations” in the chat. <b>F1–F7 are accuracy points and block the specs</b> (<code>.claude/tracking/ACCURACY.md</code>). Your words change only where you choose. Word counts are given against the Flow.</p>
+<div id="fd"></div>
+<div class="fb"><label>Anything else on this unit</label><textarea data-k="general"></textarea></div></section>
+
+<section id="gates"><h2>Six-gate report for this page</h2>
+<table><tr><th>Gate</th><th>Result</th><th>This pass</th></tr>
+<tr><td>1 Realism ≥ 95 %</td><td class="pass">pass (plot and figure level)</td><td>Every value comes from the parts' own datasheets (SBAS444E Tables 6-1, 6-2, §5.5, Table 7-3, MUX[2:0]; SBOS547C §5.5 and the register equations), the I²C framing (9 clocks a byte) and the course's 12-bit, 3.3 V truncating converter.</td></tr>
+<tr><td>2 Science 100 %</td><td class="wait">pass for the drawings; F1, F4 open in the text</td><td>The noise table drawn as published, in both columns (F1). The differential and common-mode impedances drawn apart (F4). The register fault computed through the part's own equations.</td></tr>
+<tr><td>3 Maths 100 %</td><td class="wait">pass; F2, F3 open in the PLAN</td><td>Recomputed in Node: 0.8057 mV, 6.21 codes, codes 0–6 either way; 7.8125 µV, 640; 187.5 µV; 1.389 %; 160,000, 270,000, ×1.69, 3,704, 14,815, 23,220; 8,000, 81.92 mV, 4 and 8 counts; noise-free 14.80, 14.91, 15.08, 14.96, 14.62, 13.80 bits at 860 SPS; 1.79 bits; CAL 5120, 20000 → 2.000 A, 9600 → 24.00 W, halves to 1.000 A and 12.00 W.</td></tr>
+<tr><td>4 Visualization 100 %</td><td class="pass">pass</td><td>On each card, the variable that moves is the card's point: the step size (card 1), the row (card 2), the stage each item lives at (card 4), the range against noise and load (card 5), the samples per second (card 6), the fitted shunt (card 7).</td></tr>
+<tr><td>5 Consistency</td><td class="pass">pass</td><td>One palette: the MCU teal, the external converter amber, the bus violet, a fault rose. One converter model, truncating. Card 3 reuses card 1; card 7 pairs with the Day 1 stages by their module numbers. The script panel is synced (card 4).</td></tr>
+<tr><td>6 Professional design</td><td class="pass">pass (EN only)</td><td>Our own redrawn datasheet extracts, with no vendor page images. Labels were checked at 1100 px, and wide figures scroll at phone width. French comes with the libraries. Product names appear on this page as the module's own subject; D1 decides whether they reach the wall.</td></tr></table></section>
+</main>
+<script>
+const $=id=>document.getElementById(id),NS='http://www.w3.org/2000/svg';
+const C={bg:'#0B0F14',ink:'#E8EAED',muted:'#9AA3AD',faint:'#3A424C',grid:'#1E262F',teal:'#2DD4BF',amber:'#F5B942',violet:'#A78BFA',lime:'#A3E635',rose:'#F472B6',azure:'#60A5FA'};
+function el(p,t,a){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p.appendChild(e);return e}
+function tx(p,x,y,s,o={}){const e=el(p,'text',{x,y,fill:o.fill||C.muted,'font-size':o.size||13,'text-anchor':o.anchor||'middle','font-family':o.mono?'ui-monospace,Consolas,monospace':'system-ui,Segoe UI,sans-serif'});if(o.weight)e.setAttribute('font-weight',o.weight);e.textContent=s;return e}
+function path(p,d,col,w,dash){return el(p,'path',{d,fill:'none',stroke:col,'stroke-width':w||2,'stroke-dasharray':dash||'none','stroke-linejoin':'round'})}
+function box(p,x,y,w,h,col,fill){return el(p,'rect',{x,y,width:w,height:h,rx:6,fill:fill||'#10161C',stroke:col||C.faint,'stroke-width':2})}
+function radio(ids,cb){ids.forEach(id=>$(id).onclick=()=>{ids.forEach(j=>$(j).classList.toggle('on',j===id));cb(id)})}
+/* ---------- storage ---------- */
+const ST={get(k){try{return localStorage.getItem('u020:'+k)}catch(e){return null}},set(k,v){try{localStorage.setItem('u020:'+k,v)}catch(e){}},keys(){try{return Object.keys(localStorage).filter(k=>k.startsWith('u020:'))}catch(e){return[]}}};
+window.u020Feedback=()=>Object.fromEntries(ST.keys().sort().map(k=>[k.slice(5),ST.get(k.slice(5))]));
+function sum(){const n=ST.keys().length;$('fbsum').textContent=n?n+' saved':''}
+function showFb(){const f=u020Feedback(),k=Object.keys(f);$('fbout').style.display='block';$('fbout').textContent=k.length?k.map(x=>x+': '+f[x]).join('\n'):'Nothing entered yet.'}
+function clearFb(){ST.keys().forEach(k=>{try{localStorage.removeItem(k)}catch(e){}});document.querySelectorAll('textarea').forEach(t=>t.value='');document.querySelectorAll('.bar').forEach(b=>b.querySelectorAll('button').forEach((x,i)=>x.classList.toggle('on',i===0)));sum()}
+
+/* ---------- card 1: two staircases ---------- */
+const q12=3.3/4096,q16=0.256/32768;let m1=0;
+function stair(q,x0,x1,X,Y){let d='',x=x0;d+=`M${X(x0)} ${Y(Math.floor(x0/q+1e-9)*q)}`;let k=Math.floor(x0/q+1e-9);while(true){const xn=(k+1)*q;if(xn>=x1){d+=`H${X(x1)}`;break}d+=`H${X(xn)}V${Y((k+1)*q)}`;k++}return d}
+function draw1(){const s=$('p1');s.innerHTML='';const b={x0:80,x1:1060,y0:40,y1:320},xm=5e-3;
+ const X=x=>b.x0+(b.x1-b.x0)*x/xm,Y=y=>b.y1-(b.y1-b.y0)*y/xm;
+ for(let v=0;v<=5;v++){el(s,'line',{x1:b.x0,y1:Y(v*1e-3),x2:b.x1,y2:Y(v*1e-3),stroke:C.grid});tx(s,b.x0-8,Y(v*1e-3)+4,v+'',{anchor:'end'});tx(s,X(v*1e-3),b.y1+18,v+'')}
+ el(s,'line',{x1:b.x0,y1:b.y1,x2:b.x1,y2:b.y1,stroke:C.muted});el(s,'line',{x1:b.x0,y1:b.y0,x2:b.x0,y2:b.y1,stroke:C.muted});
+ tx(s,(b.x0+b.x1)/2,b.y1+40,'bridge output, input to the converter (mV)');tx(s,b.x0,b.y0-14,'code × step (mV)',{anchor:'start'});
+ path(s,`M${X(0)} ${Y(0)}L${X(xm)} ${Y(xm)}`,C.faint,1.5,'5 5');
+ path(s,stair(q12,0,xm,X,Y),C.teal,2.5);
+ tx(s,X(2.9e-3),Y(1.0e-3),'MCU: q·⌊x/q⌋, q = 0.806 mV, 6 steps',{fill:C.teal,anchor:'start'});
+ $('r1b').textContent='—';
+ if(m1>=1){path(s,stair(q16,0,xm,X,Y),C.amber,1.6);tx(s,X(0.3e-3),Y(3.6e-3),'ADS1115 ±0.256 V: q = 7.81 µV, 640 steps',{fill:C.amber,anchor:'start'});$('r1b').textContent='640'}
+ if(m1>=2){const z={x:620,y:58,w:300,h:160},zm=60e-6;box(s,z.x,z.y,z.w,z.h,C.amber,'#0B0F14');
+  const ZX=x=>z.x+12+(z.w-24)*x/zm,ZY=y=>z.y+z.h-14-(z.h-34)*y/zm;
+  path(s,`M${ZX(0)} ${ZY(0)}L${ZX(zm)} ${ZY(zm)}`,C.faint,1,'4 4');path(s,stair(q16,0,zm,ZX,ZY),C.amber,2);path(s,`M${ZX(0)} ${ZY(0)}H${ZX(zm)}`,C.teal,2.5);
+  tx(s,z.x+10,z.y+18,'magnifier: 0 – 60 µV',{anchor:'start',fill:C.amber,size:12});tx(s,z.x+z.w-10,z.y+z.h-20,'MCU still at code 0',{anchor:'end',fill:C.teal,size:12});
+  el(s,'rect',{x:X(0)-2,y:Y(zm)-4,width:X(zm)-X(0)+6,height:Y(0)-Y(zm)+8,fill:'none',stroke:C.amber,'stroke-width':1.5});path(s,`M${X(zm)+4} ${Y(zm)}L${z.x} ${z.y+z.h}`,C.amber,1,'3 3')}
+}
+radio(['b1a','b1b','b1c'],id=>{m1={b1a:0,b1b:1,b1c:2}[id];draw1()});
+
+/* ---------- card 2: the comparison table ---------- */
+const T2=[['Architecture','SAR','SAR','Sigma-delta'],['Resolution','10-bit','12-bit','16-bit'],['Max conversion/data rate','~15 kSPS (at 10 bits)','much higher; depends on mode','860 SPS'],['Inputs','multiplexed','multiplexed','multiplexed: 4 single-ended or 2 differential'],['Differential','no','see N1','yes'],['PGA','none','input attenuation','yes, ±6.144 to ±0.256 V'],['Reference','AVCC, 1.1 V internal, external','internal, calibrated','internal, low-drift'],['Interface to CPU','internal','internal','I²C']];
+const R2={1:['3rd','2nd','1st'],2:['2nd','1st','3rd']};let m2=0;
+function draw2(){const s=$('p2');s.innerHTML='';const x0=20,cw=[230,260,270,300],rh=44,y0=20;
+ const head=['Feature','ATmega328P ADC','Classic ESP32 ADC','ADS1115'],cols=[C.muted,C.teal,C.teal,C.amber];let x=x0;
+ head.forEach((h,i)=>{tx(s,x+10,y0+26,h,{anchor:'start',fill:cols[i],weight:600,size:14});x+=cw[i]});
+ T2.forEach((r,j)=>{const y=y0+rh*(j+1),spot=(m2===1&&j===1)||(m2===2&&j===2),dim=m2&&!spot;
+  if(spot)el(s,'rect',{x:x0,y:y+2,width:1060,height:rh-4,rx:6,fill:'#1A2430',stroke:C.amber});
+  let x=x0;r.forEach((c,i)=>{tx(s,x+10,y+28,c,{anchor:'start',fill:dim?C.faint:(i?C.ink:C.muted),size:13});
+   if(spot&&i)  {const rk=R2[m2][i-1];box(s,x+cw[i]-62,y+10,50,24,rk==='1st'?C.lime:C.faint);tx(s,x+cw[i]-37,y+27,rk,{fill:rk==='1st'?C.lime:C.ink,size:12})}x+=cw[i]});
+  el(s,'line',{x1:x0,y1:y+rh,x2:x0+1060,y2:y+rh,stroke:C.grid})});
+ const msg={0:'The owner\'s table, our own figure; values sourced in the spec.',1:'Resolution: ADS1115 > ESP32 > ATmega328P.',2:'Rate: ESP32 > ATmega328P > ADS1115. The most bits sit on by far the slowest part; between the two SARs, the finer one is also the faster.'}[m2];
+ tx(s,x0+10,y0+rh*9+30,msg,{anchor:'start',fill:m2?C.amber:C.muted,size:14})}
+radio(['b2a','b2b','b2c'],id=>{m2={b2a:0,b2b:1,b2c:2}[id];draw2()});
+
+/* ---------- card 4: checklist pinned to the path ---------- */
+const ST4=[['D1·020','uncertainty',['Accuracy']],['D1·030','sensing',['Operating environment']],['D1·040','source, loading',['Input impedance and loading']],['D1·060','conditioning',['Single-ended or differential','Gain/PGA']],['D1·070','ADC input',['Number of channels','Multiplexing','Latency']],['D1·080','conversion',['Resolution','Sampling rate','Bandwidth','Linearity','Noise','Conversion architecture']],['D1·090','reference',['Reference accuracy, stability','Input range']],['D2·010','digital interface',['Interface']],['D2·050','calibrate (later today)',['Calibration requirements']]];
+let k4=0;const K4=ST4.length+1;
+function draw4(){const s=$('p4');s.innerHTML='';const n=ST4.length,w=112,g=7,x0=14,y=40;let day1=0;
+ ST4.forEach(([m,name,items],i)=>{const x=x0+i*(w+g),shown=i<k4,d1=m.startsWith('D1'),col=!shown?C.faint:(d1?C.teal:(m==='D2·010'?C.violet:C.amber));
+  box(s,x,y,w,52,col);tx(s,x+w/2,y+20,m,{fill:shown?col:C.faint,size:12,weight:600});tx(s,x+w/2,y+40,name,{fill:shown?C.ink:C.faint,size:11});
+  if(i)path(s,`M${x-g} ${y+26}H${x}`,C.faint,2);
+  if(shown){if(d1)day1+=items.length;items.forEach((it,j)=>{const yy=y+80+j*42;path(s,`M${x+w/2} ${y+52}V${yy}`,C.faint,1);box(s,x+2,yy,w-4,34,col,'#121A22');
+   const words=it.split(' ');let l1='',l2='';words.forEach(wd=>{(l1+' '+wd).trim().length<=15&&!l2?l1=(l1+' '+wd).trim():l2=(l2+' '+wd).trim()});
+   tx(s,x+w/2,yy+(l2?14:21),l1,{fill:C.ink,size:11});if(l2)tx(s,x+w/2,yy+28,l2,{fill:C.ink,size:11})})}});
+ if(k4>=K4){const x=x0+n*(w+g)-g-150;box(s,940,330,150,46,C.rose);tx(s,1015,350,'Power consumption',{fill:C.rose,size:12});tx(s,1015,367,'no stage',{fill:C.muted,size:11})}
+ tx(s,x0,24,k4===0?'The course path; the checklist pins go to the stage where the room met each item':`${day1} of 19 items pinned to Day 1 so far`,{anchor:'start',fill:k4?C.lime:C.muted});
+ $('t4').textContent=k4>=K4?'16 of 19 on Day 1; 1 from the last module (interface); 1 still to come (calibration); 1 with no stage (power).':`stop ${k4} of ${K4}`}
+$('b4p').onclick=()=>{k4=Math.max(0,k4-1);draw4()};$('b4n').onclick=()=>{k4=Math.min(K4,k4+1);draw4()};
+
+/* ---------- card 5: the datasheet tour ---------- */
+const FSR=[6.144,4.096,2.048,1.024,0.512,0.256],ZD=[22e6,15e6,4.9e6,2.4e6,710e3,710e3],ZC=[10e6,6e6,6e6,3e6,100e6,100e6];
+const RATES=[8,16,32,64,128,250,475,860];
+const RMS=[187.5,125,62.5,31.25,15.62,7.81];
+const PP=[[187.5,187.5,187.5,187.5,187.5,252.09,266.92,430.06],[125,125,125,125,125,148.28,227.38,266.93],[62.5,62.5,62.5,62.5,62.5,84.03,79.08,118.63],[31.25,31.25,31.25,31.25,31.25,39.54,56.84,64.26],[15.62,15.62,15.62,15.62,15.62,16.06,32.13,40.78],[7.81,7.81,7.81,7.81,12.35,18.53,25.95,35.83]];
+const NF=[[16,16,16,16,16,15.57,15.49,14.8],[16,16,16,16,16,15.75,15.13,14.9],[16,16,16,16,16,15.57,15.66,15.07],[16,16,16,16,16,15.66,15.13,14.95],[16,16,16,16,16,15.96,14.95,14.61],[16,16,16,16,15.33,14.75,14.26,13.8]];
+let k5=0,m5='pp';const STOPS5=['The block diagram','The MUX pairs its inputs','The PGA sets the full-scale range','The input impedance (F4)','The noise table, last (F1)'];
+function fmtZ(z){return z>=1e6?(+(z/1e6).toPrecision(2))+' MΩ':(z/1e3).toFixed(0)+' kΩ'}
+function draw5(){const s=$('p5');s.innerHTML='';$('t5').textContent=`stop ${k5+1} of 5: ${STOPS5[k5]}`;$('r5x').style.display=k5===4?'flex':'none';
+ tx(s,20,26,'Our own extract, values from TI SBAS444E (Dec 2024)',{anchor:'start',size:12});
+ if(k5<=1){const y=150,bw=130,bh=60;const B=[['MUX',200],['PGA',370],['ΔΣ modulator',540],['digital filter',710],['I²C interface',880]];
+  ['AIN0','AIN1','AIN2','AIN3'].forEach((a,i)=>{const yy=y-48+i*36;tx(s,70,yy+5,a,{fill:C.ink,anchor:'end'});path(s,`M78 ${yy}H200`,k5===1&&(i<2)?C.amber:(k5===1?C.violet:C.muted),2)});
+  B.forEach(([n,x],i)=>{box(s,x,y-bh/2,bw,bh,i===0&&k5===1?C.amber:C.muted);tx(s,x+bw/2,y+5,n,{fill:C.ink});if(i)path(s,`M${x-40} ${y}H${x}`,C.muted,2)});
+  path(s,`M1010 ${y}H1090`,C.violet,2);tx(s,1060,y-10,'SDA, SCL',{size:12,fill:C.violet});
+  box(s,540,280,130,46,C.faint);tx(s,605,308,'reference',{fill:C.ink});box(s,710,280,130,46,C.faint);tx(s,775,308,'oscillator',{fill:C.ink});
+  path(s,`M605 280V${y+bh/2}`,C.faint,2,'4 3');path(s,`M775 280V${y+bh/2}`,C.faint,2,'4 3');
+  el(s,'rect',{x:180,y:60,width:850,height:290,rx:12,fill:'none',stroke:C.faint,'stroke-dasharray':'6 4'});tx(s,1020,80,'inside the chip',{anchor:'end',size:12});
+  if(k5===1){tx(s,200,385,'Pairs AIN0–AIN1 and AIN2–AIN3 measure a difference: “ignore what both inputs share” (S16). MUX[2:0] also allows AIN0–AIN3, AIN1–AIN3 and four single-ended.',{anchor:'start',fill:C.amber,size:13})}
+  else tx(s,200,385,'Four inputs → MUX → PGA → ΔΣ modulator (250 kHz) → digital filter → I²C; reference and clock inside the chip.',{anchor:'start',fill:C.muted,size:13})}
+ if(k5===2){const x0=80,cw=[200,200,260];tx(s,x0,70,'FSR',{anchor:'start',fill:C.muted,weight:600});tx(s,x0+cw[0],70,'LSB = FSR / 2¹⁵',{anchor:'start',fill:C.muted,weight:600});tx(s,x0+cw[0]+cw[1],70,'5 mV of bridge spans',{anchor:'start',fill:C.muted,weight:600});
+  FSR.forEach((f,i)=>{const y=105+i*44,l=f/32768;if(i===5)el(s,'rect',{x:x0-10,y:y-26,width:700,height:38,rx:6,fill:'#1A2430',stroke:C.amber});
+   tx(s,x0,y,'±'+f.toFixed(3)+' V',{anchor:'start',fill:C.ink,mono:true});tx(s,x0+cw[0],y,(l*1e6).toFixed(l*1e6<10?4:1).replace(/0+$/,'').replace(/\.$/,'')+' µV',{anchor:'start',fill:C.ink,mono:true});tx(s,x0+cw[0]+cw[1],y,Math.round(5e-3/l)+' codes',{anchor:'start',fill:i===5?C.amber:C.ink,mono:true})});
+  tx(s,800,180,'16 bits, signed:',{anchor:'start',fill:C.muted});tx(s,800,204,'one count = FSR / 32,768',{anchor:'start',fill:C.ink});tx(s,800,240,'±6.144 V: not reachable;',{anchor:'start',fill:C.muted,size:12});tx(s,800,258,'inputs stay within the supply',{anchor:'start',fill:C.muted,size:12})}
+ if(k5===3){const b={x0:140,x1:1040,y0:60,y1:340},L=v=>Math.log10(v),Y=v=>b.y1-(b.y1-b.y0)*(L(v)-5)/(L(2e8)-5);
+  [1e5,1e6,1e7,1e8].forEach(v=>{el(s,'line',{x1:b.x0,y1:Y(v),x2:b.x1,y2:Y(v),stroke:C.grid});tx(s,b.x0-8,Y(v)+4,fmtZ(v),{anchor:'end'})});
+  const cw=(b.x1-b.x0)/6;FSR.forEach((f,i)=>{const x=b.x0+i*cw+cw/2;tx(s,x,b.y1+20,'±'+f+' V',{fill:C.ink,size:12});
+   el(s,'rect',{x:x-34,y:Y(ZD[i]),width:30,height:b.y1-Y(ZD[i]),fill:C.amber,opacity:.85});tx(s,x-19,Y(ZD[i])-6,fmtZ(ZD[i]),{fill:C.amber,size:11});
+   el(s,'rect',{x:x+4,y:Y(ZC[i]),width:30,height:b.y1-Y(ZC[i]),fill:C.azure,opacity:.45});tx(s,x+19,Y(ZC[i])-6,fmtZ(ZC[i]),{fill:C.azure,size:11})});
+  tx(s,b.x0,46,'■ differential (falls as the gain rises: the load the bridge sees)',{anchor:'start',fill:C.amber});tx(s,620,46,'■ common-mode (rises on the finest ranges)',{anchor:'start',fill:C.azure});
+  tx(s,b.x0,b.y1+46,'gain rises →',{anchor:'start',fill:C.muted,size:12})}
+ if(k5===4){const x0=150,y0=84,cw=150,rh=36;tx(s,x0-20,y0-30,'data rate',{anchor:'end',size:12});
+  FSR.forEach((f,i)=>tx(s,x0+i*cw+cw/2,y0-30,'±'+f+' V',{fill:i===5?C.amber:C.ink,size:12,weight:i===5?600:400}));
+  el(s,'rect',{x:x0+5*cw+4,y:y0-48,width:cw-8,height:rh*8+34,rx:6,fill:'#1A2430',stroke:C.amber});
+  RATES.forEach((r,j)=>{const y=y0+j*rh;tx(s,x0-20,y,r+' SPS',{anchor:'end',fill:C.ink,mono:true,size:12});
+   FSR.forEach((f,i)=>{const v=m5==='rms'?RMS[i]:(m5==='pp'?PP[i][j]:NF[i][j]),base=m5==='rms'?RMS[i]:(m5==='pp'?RMS[i]:16),moved=Math.abs(v-base)>1e-6;
+    tx(s,x0+i*cw+cw/2,y,m5==='bits'?(v===16?'16':v.toFixed(2)):String(v),{fill:moved?C.rose:(i===5?C.ink:C.muted),mono:true,size:13})})});
+  const msg={rms:'RMS: one count at every rate and range. The table never reports less than one count, so “effective resolution” reads 16 bits everywhere.',pp:'Peak-to-peak: grows with the rate, 7.81 → 35.83 µV on ±0.256 V (rose = above one count).',bits:'Noise-free resolution = log₂(FSR / V_pp): 16 bits at 8 SPS, 13.80 at 860 SPS on ±0.256 V.'}[m5];
+  tx(s,40,y0+8*rh+20,msg,{anchor:'start',fill:C.amber,size:13})}
+}
+$('b5p').onclick=()=>{k5=Math.max(0,k5-1);draw5()};$('b5n').onclick=()=>{k5=Math.min(4,k5+1);draw5()};
+radio(['b5rms','b5pp','b5bits'],id=>{m5={b5rms:'rms',b5pp:'pp',b5bits:'bits'}[id];draw5()});
+const RS=[350,1000,10e3,100e3];
+function upd5(){const i=+$('s5f').value,r=RS[+$('s5r').value];$('v5f').textContent='±'+FSR[i]+' V';$('v5r').textContent=r>=1e3?(r/1e3)+' kΩ':r+' Ω';
+ $('o5z').textContent=fmtZ(ZD[i]);const e=r/(r+ZD[i])*100;$('o5e').textContent=(e<0.1?e.toFixed(3):e.toFixed(2))+' %';const l=FSR[i]/32768*1e6;$('o5l').textContent=(l<10?l.toFixed(2):l.toFixed(1))+' µV'}
+$('s5f').oninput=upd5;$('s5r').oninput=upd5;
+
+/* ---------- card 6: the bus budget ---------- */
+let m6=0;
+function draw6(){const s=$('p6');s.innerHTML='';const b={x0:110,x1:1050,y0:40,y1:310},lx=[2,5],ly=[3,6.5];
+ const X=v=>b.x0+(b.x1-b.x0)*(Math.log10(v)-lx[0])/(lx[1]-lx[0]),Y=v=>b.y1-(b.y1-b.y0)*(Math.log10(v)-ly[0])/(ly[1]-ly[0]);
+ [1e3,1e4,1e5,1e6].forEach(v=>{el(s,'line',{x1:b.x0,y1:Y(v),x2:b.x1,y2:Y(v),stroke:C.grid});tx(s,b.x0-8,Y(v)+4,v>=1e6?'1 MHz':(v/1e3)+' k',{anchor:'end'})});
+ [100,1e3,1e4,1e5].forEach(v=>{el(s,'line',{x1:X(v),y1:b.y0,x2:X(v),y2:b.y1,stroke:C.grid});tx(s,X(v),b.y1+18,v>=1e3?(v/1e3)+'k':v+'')});
+ tx(s,(b.x0+b.x1)/2,b.y1+40,'samples per second');tx(s,b.x0,b.y0-14,'bits or clocks per second',{anchor:'start'});
+ [[1e5,'100 kHz (Standard mode)'],[4e5,'400 kHz (Fast mode)']].forEach(([v,t])=>{path(s,`M${b.x0} ${Y(v)}H${b.x1}`,C.violet,1.5,'6 4');tx(s,b.x0+8,Y(v)-6,t,{anchor:'start',fill:C.violet,size:12})});
+ path(s,`M${X(100)} ${Y(1600)}L${X(1e5)} ${Y(1.6e6)}`,C.teal,2.5);tx(s,X(1.2e4),Y(1.6e4*16)+28,'payload: f_s × 16 bits',{fill:C.teal,anchor:'start',size:12});
+ if(m6)path(s,`M${X(100)} ${Y(2700)}L${X(1e5)} ${Y(2.7e6)}`,C.amber,2.5),tx(s,X(1.5e3),Y(1.5e3*27)-12,'I²C: f_s × 27 clocks',{fill:C.amber,anchor:'end',size:12});
+ const fs=Math.pow(10,+$('s6').value);path(s,`M${X(fs)} ${b.y0}V${b.y1}`,C.muted,1,'3 3');
+ el(s,'circle',{cx:X(fs),cy:Y(fs*16),r:5,fill:C.teal});if(m6)el(s,'circle',{cx:X(fs),cy:Y(fs*27),r:5,fill:C.amber});
+ el(s,'circle',{cx:X(860),cy:Y(860*27),r:4,fill:'none',stroke:C.amber,'stroke-width':2});tx(s,X(860)+8,Y(860*27)+18,'ADS1115 at 860 SPS: 23 kHz',{anchor:'start',fill:C.amber,size:12});
+ $('v6').textContent=Math.round(fs).toLocaleString('en-GB');$('o6a').textContent=(fs*16/1e3).toFixed(fs*16<1e4?2:0)+' kbit/s';
+ const c=fs*27;$('o6b').textContent=m6?(c/1e3).toFixed(c<1e4?2:0)+' kHz'+(c>4e5?' (beyond Fast mode)':(c>1e5?' (needs Fast mode)':'')):'—'}
+$('s6').oninput=draw6;radio(['b6a','b6b'],id=>{m6=id==='b6b'?1:0;draw6()});
+
+/* ---------- card 7: build or buy ---------- */
+let m7=0;
+function draw7(){const s=$('p7');s.innerHTML='';
+ const D1=[['shunt','D1·050',C.teal],['in-amp, common mode','D1·060',C.teal],['ADC input, conversion','D1·070–080',C.teal],['reference','D1·090',C.teal],['averaging','D2·040 (later)',C.amber],['calibrate, scale','D2·050 (later)',C.amber]];
+ const IN=[['external shunt','you choose it',m7?C.rose:C.ink],['IN+, IN−: 0–36 V CM','±81.92 mV, 2.5 µV LSB',C.ink],['16-bit ΔΣ ADC','shunt and bus',C.ink],['internal reference','',C.ink],['AVG: 1 … 1024','register',C.ink],['CAL, current, power','registers',m7?C.rose:C.ink]];
+ tx(s,20,30,'Day 1 chain, built by hand',{anchor:'start',fill:C.teal,weight:600});tx(s,20,226,'The INA226: one package and an outside shunt',{anchor:'start',fill:C.azure,weight:600});
+ const w=160,g=16,x0=20;
+ D1.forEach(([n,m,c],i)=>{const x=x0+i*(w+g);box(s,x,48,w,64,c);tx(s,x+w/2,76,n,{fill:C.ink,size:12});tx(s,x+w/2,96,m,{fill:c,size:12});if(i)path(s,`M${x-g} 80H${x}`,C.faint,2)});
+ el(s,'rect',{x:x0+(w+g)-8,y:236,width:5*(w+g)-8,height:110,rx:12,fill:'none',stroke:C.azure,'stroke-width':2});
+ IN.forEach(([n,sub,c],i)=>{const x=x0+i*(w+g);box(s,x,252,w,64,c===C.rose?C.rose:C.muted);tx(s,x+w/2,280,n,{fill:c,size:12});tx(s,x+w/2,300,sub,{fill:C.muted,size:11});if(i)path(s,`M${x-g} 284H${x}`,C.faint,2);
+  path(s,`M${x+w/2} 112V252`,C.faint,1,'3 4')});
+ path(s,`M${x0+6*(w+g)-g} 284H1090`,C.violet,2);tx(s,1096,306,'I²C',{anchor:'end',fill:C.violet,size:12});
+ const R=m7?5e-3:10e-3,I=2,V=I*R,sh=Math.round(V/2.5e-6),cal=5120,cur=Math.floor(sh*cal/2048),bus=9600,pw=Math.floor(cur*bus/20000);
+ $('o7v').textContent=(V*1e3).toFixed(2)+' mV';$('o7s').textContent=sh;$('o7i').textContent=(cur*100e-6).toFixed(3)+' A';$('o7p').textContent=(pw*2.5e-3).toFixed(2)+' W';
+ tx(s,20,380,m7?'CAL = 5120 was written for 10 mΩ; the board has 5 mΩ. The current and power read exactly half, steadily and plausibly, and nothing complains.':'CAL = 0.00512 / (100 µA × 10 mΩ) = 5120: current = shunt × CAL / 2048, power = current × bus / 20000.',{anchor:'start',fill:m7?C.rose:C.muted,size:13})}
+radio(['b7a','b7b'],id=>{m7=id==='b7b'?1:0;draw7()});
+
+/* ---------- findings and decisions ---------- */
+const F=[
+['F1',true,'Card 5: the noise table (the POE “It rises”, the reveal, the Look for, the close and S20)','Its RMS column is one count at every rate and range, so “effective resolution” reads 16 bits everywhere and the RMS noise does not rise. Only the peak-to-peak figures in brackets grow: 7.81 → 35.83 µV on ±0.256 V, and noise-free bits 16 → 13.80. ENOB is one name for two definitions, and the effective resolution reads 1.79 bits above D1·080\'s. Your close says the table shows “how many of them are noise”; that is true only of the noise-free column. (+≈ 45 words)',['Read the ±0.256 V column in peak-to-peak. Reveal: “The noise rises with the data rate, in the peak-to-peak figures. Let us see why…”. Close: “Sixteen bits on the cover, and a table inside showing how many of them stay free of noise at each data rate: all sixteen at 8 samples a second, under fourteen at 860 on the most sensitive range. Yesterday we said ENOB is the honest number. Here is a datasheet saying so itself, under its own name: noise-free resolution, read from the peak-to-peak noise.” The POE explain adds the RMS column; S20 is matched; the 1.79 bits go in the teacher tip','Keep the Flow; the bench shows only the peak-to-peak column and the teacher tip carries the rest','Keep everything (not recommended: the table on the wall contradicts it)']],
+['F2',true,'Card 1 PLAN: “D1·080\'s quantizer staircase round(x/q)·q” for the MCU','The course\'s MCU converter truncates. round puts its transitions half a step early. The count is unchanged (6.21 steps, codes 0–6), so nothing spoken changes.',['PLAN: “q·⌊x/q⌋ (the course\'s truncating converter)” for both curves (as drawn above)','Keep round (a departure from the course model)']],
+['F3',true,'Card 2 PLAN Look for: “the two rows ordered in opposite directions”','Resolution runs ADS1115 > ESP32 > ATmega328P, and rate runs ESP32 > ATmega328P > ADS1115: only the extreme flips. The POE answer “Roughly reversed” can stay.',['Look for: “the most bits on by far the slowest part, while between the two SARs the finer one is also the faster”; explain + “Between the two SARs, more bits did not cost speed: the ESP32 is both finer and faster than the ATmega328P.”','Change the POE\'s options too (“Same order | Not the same order | No relation”)','Keep']],
+['F4',true,'Card 5 Flow: “Now the input impedance… it is lowest on the most sensitive ranges”','That is true of the differential impedance only. The common-mode impedance on the same page is highest there (100 MΩ), and the tour shows both rows. (+8 words)',['“Now the differential input impedance, the load between the two inputs. It is not one number.”; Look for “the differential input impedance falling as the gain rises”','Keep the Flow; the figure shows only the differential row']],
+['F5',true,'Card 6 Flow: “We can now extend our measurement chain:”','The chain that follows is D2·010 card 1\'s, word for word, shown half an hour earlier. Nothing is extended. (+1 word)',['“Recall our measurement chain from the last module:”','Add a new stage to the chain (say which below)','Keep']],
+['F6',true,'Card 7 Flow “eight thousand counts, all of it signal” and SEED S51 “every one of them signal”','The part\'s own offset is up to ±10 µV (4 counts) and its gain error up to 0.1 % (8 counts at 8,000), right after a card on noise counts. D2·090\'s harvest already says “eight thousand counts of signal”. (−3 words)',['“…is 20 mV: eight thousand counts of signal.” and S51 “…eight thousand of the INA226\'s 2.5-microvolt counts of signal.”','Keep (a figure of speech for “the signal fills the counts”)']],
+['F7',true,'Card 7 PLAN Look for: “two of this morning\'s firmware jobs, averaging and calibration”','This is DAY23-F1\'s D2·020 line. Averaging (D2·040, 13:50) and calibration (D2·050, 14:30) come after this module (12:30), so the general fix “earlier today” would be false here.',['“two of today\'s firmware jobs still to come, averaging and calibration, already in its registers”','Other (say below)']],
+['D1',false,'Four named parts: the title, the statements, the Flow and the wall (real but unbranded)','The rule (2026-10-08) keeps product names off every teaching surface. This module is built on reading two named datasheets, and D1·080 card 6 deferred its own ADS1115 mention to this choice.',['An exception for this module: the names stay in the title, the Flow and the figures, because the learner must be able to find and read the same datasheets afterwards. The figures are our own redrawn extracts citing the document numbers (D2); no logos','Unbrand everything: “an 8-bit MCU\'s 10-bit SAR”, “a Wi-Fi MCU\'s 12-bit SAR”, “a 16-bit ΔΣ I²C converter”, “a current and power monitor”; the Flow reworded by you','Names in the Flow only; the figures unbranded']],
+['D2',false,'Card 5 (and 7): the datasheet pages','The PLAN asks for “the ADS1115 datasheet PDF”. TI\'s pages are copyrighted, and their look is TI\'s own.',['Our own redrawn extracts in the course\'s style, values read off SBAS444E and SBOS547C and cited in the spec (as drawn above)','The real PDF pages, spotlighted (licensing to check, and the brand stays in)']],
+['D3',false,'Benches and crossings','Cards 1 and 3: Plot. Cards 2, 5 and 7: Figures (ours to draw, from the spec). Card 4: Draw, a growth of crossing 511\'s course path. Cards 5 and 6: Equation. No Electronics widget is needed.',['Specs now for all seven; one crossing to Benches for card 4\'s pinned path (with 511), and the Figures and Plots as library requests when their benches are ready','Other']],
+['D4',false,'Card 7: the FAULT shown live on the figure','The PLAN names the FAULT but gives it no bench. Proposed: the register readouts on the INA226 figure, with a “fitted shunt” switch (as above).',['Yes, on the figure','Spoken only']],
+['N1',false,'Card 2: two cells of the owner\'s table','The ESP32 differential cell is vague, and its rate cell has no number. The spec sources both (Espressif docs); the cells change only if you choose.',['Keep your cells; the spec sources them and offers wording if needed','Rewrite now: “No differential input (single-ended)”']],
+['N2',false,'Card 5: “a 10 kΩ bridge” beside card 1\'s strain-gauge bridge','A strain-gauge bridge is usually 350 Ω (0.05 % loading). The card\'s 10 kΩ bridge is right as its own source; the room may simply take it for card 1\'s.',['The figure labels it “a bridge of 10 kΩ arms (10 kΩ between its outputs)”; the Flow unchanged','Also say in the Flow “a 10 kΩ sensor bridge, not a strain gauge”']]];
+const render=(L)=>L.map(([k,acc,t,w,opts])=>`<div><div class="q"><b>${k} · ${t}.</b>${acc?'<span class="block">accuracy</span>':''} ${w}</div><div class="bar" data-c="${k}">${opts.map((o,i)=>`<button>${i===0?'(recommended) ':''}${o}</button>`).join('')}</div><textarea data-k="${k}" placeholder="Optional note"></textarea></div>`).join('');
+$('fd').innerHTML=render(F);
+document.querySelectorAll('.bar[data-c]').forEach(b=>{const k=b.dataset.c+'-choice',v=ST.get(k)||b.querySelector('button').textContent;b.querySelectorAll('button').forEach(btn=>{if(btn.textContent===v)btn.classList.add('on');btn.onclick=()=>{b.querySelectorAll('button').forEach(x=>x.classList.remove('on'));btn.classList.add('on');ST.set(k,btn.textContent);sum()}})});
+document.querySelectorAll('textarea[data-k]').forEach(t=>{t.value=ST.get(t.dataset.k)||'';t.oninput=()=>{ST.set(t.dataset.k,t.value);sum()}});
+draw1();draw2();draw4();draw5();upd5();draw6();draw7();sum();
+</script></body></html>

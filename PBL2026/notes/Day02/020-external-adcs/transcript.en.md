@@ -22,7 +22,7 @@ Still the DIGITAL INTERFACE, now with the converter itself outside the chip. The
 1. **When the integrated converter is not enough** — An external ADC earns its place when the microcontroller's built-in converter is not sufficient: when we need higher resolution, differential measurement, or precision-oriented sensor measurement.
 2. **Three converters side by side** — The ATmega328P has a 10-bit SAR ADC, the classic ESP32 a 12-bit SAR, and the ADS1115 a 16-bit sigma-delta over I²C at up to 860 samples per second.
 3. **Not "which has the most bits?"** — The question is not "Which ADC has the most bits?" but "What does my signal require?"
-4. **The selection checklist** — ADC selection is a matter of matching the converter to the signal and the measurement objective: resolution, rate, bandwidth, accuracy, linearity, noise, reference, input range and impedance, single-e
+4. **The selection checklist** — ADC selection is a matter of matching the converter to the signal and the measurement objective: resolution, rate, bandwidth, accuracy, linearity, noise, reference, input range and impedance, single-ended or differential, gain, channels, multiplexing, architecture, latency, power, interface, calibration and environment.
 5. **Inside the ADS1115** — The ADS1115 is a sigma-delta converter with a programmable gain amplifier in front of it.
 6. **Can the bus keep up?** — The useful data rate is lower than the signalling speed, because addressing, framing and other overhead share the wire.
 7. **INA226: build or buy?** — The INA226 is the build-versus-buy decision for current sensing: the shunt-and-in-amp channel we built on Day 1, offered as one part with a digital interface.
