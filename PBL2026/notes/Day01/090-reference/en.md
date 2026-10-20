@@ -61,7 +61,8 @@ ASK      numeric ×2 (at the Flow's [[ask]]) — "The code is 2047, from a 12-bi
          explain: The same code is the same fraction, 2047/4096 or about 0.4998, of whatever the reference
                   happens to be.
          depth: use    practice: computational thinking
-HARVEST  S30 — "Our 2047 from this morning: 1.649 V, if the reference really is 3.3 V."
+HARVEST  S30 — "Our 2047 from this morning stands for 1.649 V, if the reference really is 3.3 V. The pin was at
+         1.79 V; 070 told us why."
 -->
 
 ```flow
@@ -123,24 +124,25 @@ which is why tomorrow a gain calibration can absorb it, as long as the reference
 
 ## VDD: the default, and usually the worst
 
-Using the supply as the reference is convenient, and the supply is the noisiest, least accurate
-voltage on the board.
+Using the supply as the reference is convenient, and the supply is usually the noisiest, least accurate
+voltage on the board to measure against.
 
 <!-- PLAN
-SHOW     Electronics — the bench supply as a 3.3 V rail that feeds the MCU's own load and references the ADC,
-         with a fixed 1.65 V input from a separate reference; reveal output_resistance (50 mΩ), then
-         output_drift.
+SHOW     Electronics — a 3.3 V rail that feeds the MCU's own load and references the ADC, with a fixed 1.65 V
+         input from a separate reference; reveal the rail's source resistance (50 mΩ: the regulator and its
+         wiring, as the MCU's pin sees them), then output_drift.
          Drive: load from 10 mA to 200 mA; add a PCB trace (trace-cu-0r5mm) in the rail and repeat.
          Look for: the rail drooping 10 mV and the fixed input's code climbing about 6 counts; more with the
          trace.
          Status: needs Electronics: ADC-input block with a selectable reference (VDD / internal / external),
                  a stepped load (a switch) and a precision-reference source part.
-ASK      poll (after the SHOW) — "An ATmega328P on 5 V reads a 0–1 V signal. Which reference would you use:
+ASK      poll (after the SHOW) — "An 8-bit MCU on 5 V reads a 0–1 V signal. Which reference would you use:
          AVCC, the internal 1.1 V, or an external 2.5 V reference?"
          options: AVCC | internal 1.1 V | external 2.5 V
          (no single answer: AVCC uses a fifth of the range and moves with the supply; the internal 1.1 V
          uses 91 % of it and is stable, but its datasheet value can sit anywhere from about 1.0 to 1.2 V, so
-         it needs calibrating; an external 2.5 V is accurate and uses 40 %)
+         it needs calibrating, and on a part near 1.0 V the top of the signal reaches full scale; an external
+         2.5 V is accurate and uses 40 %)
          depth: create    practice: designing solutions
 -->
 
@@ -157,24 +159,24 @@ initial tolerance, often a percent or two. It drifts with temperature. And it sa
 draws current: the radio transmits, a motor starts, an LED comes on.
 
 On the bench: a 3.3 V rail that feeds the MCU's own load and references the ADC, and a fixed 1.65 V input
-from a separate reference. Switch on the supply's output resistance, 50 mΩ, and step the load from 10 mA
-to 200 mA.
+from a separate reference. Switch on the rail's source resistance, 50 mΩ: the regulator and its wiring, as
+the MCU's pin sees them, and step the load from 10 mA to 200 mA.
 
 The rail drops about 10 mV, and the code for the fixed input climbs by about 6. Put a thin PCB trace in
 the rail and do it again: the drop grows, and so does the error. Nothing changed at the input.
 
-Most MCUs offer alternatives. The ATmega328P, for example, can use AVCC, an internal reference of
-nominally 1.1 V, or an external reference on its AREF pin. Look up what yours offers.
+Most MCUs offer alternatives. A common 8-bit MCU, for example, can use its analog supply (AVCC), an
+internal reference of nominally 1.1 V, or an external one on its AREF pin. Look up what yours offers.
 
-[[ask]] An ATmega328P on 5 V reads a 0 to 1 V signal. Which reference would you use: AVCC, the internal
+[[ask]] An 8-bit MCU on 5 V reads a 0 to 1 V signal. Which reference would you use: AVCC, the internal
 1.1 V, or an external 2.5 V reference?
 
 [[pause]]
 
 There is no single answer. AVCC uses only a fifth of the range, and moves with the supply. The internal
 1.1 V uses 91 % of it and is stable, but its datasheet allows its actual value to sit anywhere from about
-1.0 to 1.2 V, so it needs calibrating once. A good external 2.5 V reference is accurate from the start,
-and uses 40 % of the range.
+1.0 to 1.2 V, so it needs calibrating once, and on a part near 1.0 V the top of the signal reaches full
+scale. A good external 2.5 V reference is accurate from the start, and uses 40 % of the range.
 ```
 
 ***
@@ -195,7 +197,7 @@ ASK      poe (before the reveal) — "Now the thermistor divider, the 10 k NTC u
                   code; only the resistance ratio, which is the temperature, is left.
          depth: understand    practice: developing models
 SHOW (centrepiece) Plot — the code against the rail voltage V_dd from 3.0 to 3.6 V for two inputs: an absolute
-         one, a fixed 1.65 V (code = 1.65/V_dd·4096: falls from 2253 to 1877), and the ratiometric
+         one, a fixed 1.65 V (code = 1.65/V_dd·4096: falls from 2252 to 1877), and the ratiometric
          thermistor divider (code = R_T/(R_T + 10 kΩ)·4096: flat at 2048 at 25 °C); sliders: temperature,
          and the rail (animate).
          Drive: animate the rail; then move the temperature.
@@ -214,8 +216,6 @@ FAULT    A filter resistor between the rail and the divider that is not in the r
 <!-- FILLED 2026-10-07: drafted from training-overview Day 1 Module 6 and standard reference/ratiometric practice; tutor to review -->
 
 ```flow
-[[demo]] Widget: the rail-voltage slider — the absolute reading moves, the ratiometric one does not.
-
 There is an escape, and it is the excitation from the sensing module.
 
 [[ask]] Power the thermistor divider, the 10 k NTC under a 10 kΩ resistor, from the same rail that
@@ -224,7 +224,7 @@ references the ADC. At 25 °C the rail moves from 3.0 V to 3.6 V. What does the 
 [[pause]]
 
 [[demo]] On the Plot Bench: the code against the rail voltage, for two inputs. The falling line is a
-fixed 1.65 V measured against the rail: about 2253 at 3.0 V, down to about 1877 at 3.6 V. The other is
+fixed 1.65 V measured against the rail: about 2252 at 3.0 V, down to about 1877 at 3.6 V. The other is
 the thermistor divider, powered from that same rail. I'll sweep the rail.
 
 [[reveal]] The thermistor's code stays put at 2048. The rail moves; the code does not.
@@ -263,8 +263,8 @@ HARVEST  S30 — "Look back at the 2047 we started the day with. Name every stag
 ```flow
 This morning we met the modulating sensor: one that needs an excitation before it can say anything. We
 chose its excitation as a matter of sensitivity. Now we see that the excitation and the converter's
-reference are really one design decision. Make them the same voltage, and the most stubborn error on
-the converter's side of the path stops mattering.
+reference are really one design decision. Make them the same voltage, and the reference's error, sag
+and drift included, stops mattering for that sensor.
 
 [[ask]] Look back at the 2047 we started the day with. Name every stage it passed through. Which one do
 you now suspect?
