@@ -128,9 +128,9 @@ Plus on every card: wall text and **Flow**. Not authored, because the compiler e
 |---|---|---|---|---|
 | 1 | A shunt turns current into voltage | Equation Bench: I = V_sh / R_sh, with a worked example: 20 mV across 10 mΩ → 2 A. | — | S37 |
 | 2 | Sizing a shunt: signal against disturbance | Equation Bench: V = I·R and P = I²·R, graphed against R from 1 mΩ to 100 mΩ at I = 2 A, with the signal also shown in codes at… | Numeric answer |  |
-| 3 | Low side or high side | Electronics Bench: two copies of a 12 V supply driving a 6 Ω load (resistor-power-25) through a 10 mΩ shunt: at the bottom in one… | Flash quiz | S33 |
+| 3 | Low side or high side | Electronics Bench: two copies of a 12 V supply driving a 6 Ω load (resistor-power-25, on its heatsink plate) through a 10 mΩ shunt: at the bottom in one… | Flash quiz | S33 |
 | 4 | The leads are part of the shunt | Electronics Bench: four-wire-sensing (the same fixture as the next card), opened on the two-wire meter. | Circuit predict |  |
-| 5 | Kelvin: separate the current from the measurement | ★ Electronics Bench: four-wire-sensing: 10 V through 10 kΩ into a Pt100 (1 mA), two metres of AWG 24 in each force lead; | Circuit predict | Staged fault, Staged fault |
+| 5 | Kelvin: separate the current from the measurement | ★ Electronics Bench: four-wire-sensing: a precision 1 mA source into a Pt100, two metres of AWG 24 in each force lead; | Circuit predict | Staged fault, Staged fault |
 | 6 | Burden voltage: the drop your ammeter inserts | Electronics Bench: branch-current re-valued: V1 = 3.3 V, R1 = 66 Ω (a load drawing 50 mA), ammeter A1 on its shunt dial, clamp CP… | Circuit predict | S6, S36, Staged fault |
 
 ### 1·060 Signal conditioning: in-amps, gain, offset and bias current · 40 min

@@ -8,8 +8,8 @@ dimensions: 2D
 stand_in: none
 optional_benches: []
 real_thing: "a 10 mΩ current-sense resistor (a four-terminal metal-element shunt, 1 % class) carrying 2 A"
-minutes: 0.7                      # on the bench: the Equation is up for the whole card
-card_minutes: 0.7
+minutes: 0.8                      # on the bench: the Equation is up for the whole card
+card_minutes: 0.8
 status: spec-draft
 learner_action: none
 predictions: []
@@ -54,7 +54,8 @@ The card's Flow is 67 words, all spoken: **0.52 min**.
 | s1 the shunt: p1 *"That known resistance is a **shunt**…"* (29) | 0.22 | 29 ÷ 130 |
 | s2 the example: unscripted (≈ 12 words: *"Twenty millivolts across ten milliohms: two amps. We measured a voltage."*) | 0.09 | estimate |
 | s2 held: the HARVEST S37 line (16 words; in the PLAN, not the Flow: F2) | 0.12 | 16 ÷ 130 |
-| **Card total / of which on the bench** | **0.7 / 0.7** | |
+| The rearrangement opened (F3, decided) | 0.05 | estimate |
+| **Card total / of which on the bench** | **0.8 / 0.8** | |
 
 ### The module, card by card (U014's measure; D1·050 `targetMinutes: 40`)
 
@@ -67,18 +68,19 @@ are counted in their activities. The other `[[demo]]` lines are spoken sentences
 
 | Card | Flow spoken | Beyond the Flow | Card | Source |
 |---|---|---|---|---|
-| 1 A shunt turns current into voltage | 0.52 | the example read 0.09; the HARVEST S37 line 0.12 | **0.7** | this spec |
-| 2 Sizing a shunt: signal against disturbance | 1.51 | numeric ×2 ≈ 1.5 (their question included); moves between the two equations and the examples 0.1 | **3.1** | `D1-050-02-shunt-signal-and-power.md` §2 |
+| 1 A shunt turns current into voltage | 0.52 | the example read 0.09; the HARVEST S37 line 0.12; the rearrangement 0.05 | **0.8** | this spec |
+| 2 Sizing a shunt: signal against disturbance | 1.51 | numeric ×2 ≈ 1.5 (their question included); moves between the two equations and the examples 0.1; the two boundaries 0.15 | **3.3** | `D1-050-02-shunt-signal-and-power.md` §2 |
 | 3 Low side or high side | 1.59 | the drive (probe both shunts, then the load's lower terminal) ≈ 0.8; flash quiz ≈ 0.75 | **3.1** | estimate (**Electronics widget deferred**; demonstration asked of Benches, crossing 493) |
 | 4 The leads are part of the shunt | 1.31 | circuit predict ≈ 1.0; switching on the lead resistance ≈ 0.3 | **2.6** | estimate (**Electronics widget deferred**; crossing 494) |
 | 5 Kelvin: separate the current from the measurement | 1.56 | circuit predict ≈ 1.0; the drive (2 m → 10 m, the breadboard contact) ≈ 0.6 | **3.2** | estimate (**Electronics widget deferred**; crossing 494) |
 | 6 Burden voltage: the drop your ammeter inserts | 2.29 | circuit predict ≈ 1.0; the drive (10 mΩ → 10 Ω, burden on, probe, 0.1 Ω) ≈ 0.8; the HARVEST S36 question not in the Flow (*"Whose band are you standing in?"*) 0.04 | **4.1** | estimate (**Electronics widget deferred**; crossing 495) |
-| **Module** | **8.8** | **8.1** | **16.9** | |
+| **Module** | **8.8** | **8.3** | **17.1** | |
 
-**D1·050 uses ≈ 17 of its 40 minutes, leaving ≈ 23 min unused** (F4). That is the pattern of D1·040 and D1·060 (≈ 21
+**D1·050 uses ≈ 17 of its 40 minutes, leaving ≈ 23 min unused** (F4; the proposals taken on 2026-10-20 included). That is the pattern of D1·040 and D1·060 (≈ 21
 min unused each). The owner cuts or adds; nothing is trimmed here. The Electronics estimates belong to those cards'
-specs when the widgets are written, and live circuit demos tend to run long. This module's proposals add ≈ +0.2 min if
-all are taken (card 1 F3 +0.05; card 2 F5 +0.15).
+specs when the widgets are written, and live circuit demos tend to run long.
+The proposals (card 1 F3 +0.05; card 2 F5 +0.15) were taken on 2026-10-20 and are counted above. Card 6's Flow
+gained 20 spoken words with F10 (+0.15 min, not yet in its estimate).
 
 ## 3. The scene: what is on the bench
 
@@ -211,6 +213,9 @@ None needed.
 - **F4 — The module runs short (A7 of the schedule, not of the physics).** D1·050 uses ≈ 17 of its 40 minutes (§2),
   ≈ 23 min unused, as D1·040 and D1·060. Reported; nothing is trimmed or added here.
 
+**Decided 2026-10-20** (owner: *"go with your recommendations on the findings"*): F1 the subscripts kept; F2 both kept;
+F3 the proposals taken (rearrangement, Look for, teacher tip); F4 reported, nothing cut or added.
+
 ### Findings on the module's Electronics cards (3–6)
 
 Their widgets are deferred (Electronics in development), so they have no spec; their numbers were checked here, and
@@ -264,3 +269,20 @@ changed until the owner answers.
 - B1 one pane or pin per step; B5 each `say` in the notes; B6 the pinned V_sh and R_sh lit; B13 statement and terms
   only; B16 values readable; B17 formula and rearrangement in one block.
 - C2 legible at 1920 × 1080 and 1024 × 768; C4 V_sh and R_sh labelled; C5 pane keys; C6 at 320; C8 the notes.
+
+**Decided 2026-10-20** (owner: *"go with your recommendations on the findings"*), and applied to
+`notes/Day01/050-current-sensing/en.md` (with `transcript.en.md`, `elements-by-section.md` and `course-plan.md` where they
+quote it):
+- **F5 (a)**: card 3's PLAN draws the load *on its heatsink plate: it burns 23.9 W of its 25 W*.
+- **F6**: card 4's reveal reads 100.34 Ω.
+- **F7 (a)**: card 5's direction reads *"…measurements of the same sensor, side by side."*
+- **F8**: card 5's PLAN reads *"a precision 1 mA source into a Pt100"*, and the ASK's distractor *"neither — ten kilohms
+  set the current"* became *"neither — the source sets the current"* (it named the 10 kΩ that is gone).
+- **F10 (b), at 2.5 Ω** (a 1 Ω shunt with its fuse and leads): I = 3.3 / 68.5 = **48.2 mA**; burden 0.04818 × 2.5 =
+  **0.12 V**; load **3.18 V**; 2.5 / 68.5 = **3.6 %** less; a 300 mA burst × 2.5 Ω = **0.75 V**, rail **2.55 V** < 2.7 V.
+  Changed in the PLAN (Drive, Look for, the predict's option, answer and explain) and the Flow (p1 *"I turn it to 2.5 Ω,
+  … fuse and leads included."*; the direction p4 *"the meter's 200 mA range in circuit; later, a microcontroller in the
+  resistor's place browns out on its radio bursts"*; the reveal *"48.2 mA … 0.12 V … 3.18 V … 3.6 % less"*; p7 gains
+  *"300 mA through the same 2.5 Ω takes 0.75 V, and leaves the board 2.55 V"*). The predict's *"yes, to within the
+  meter's accuracy"* is now a closer distractor: a handheld's DC current accuracy is ≈ ±(1–1.5 % + a few counts), and
+  3.6 % is outside it. Crossings 493–495 carry the decisions.

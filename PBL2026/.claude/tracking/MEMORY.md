@@ -34,4 +34,4 @@ Building any bench or asset. Changing the owner's card text or Flow (report anyt
 
 - 2026-10-20: loaded after U014. Not started. **Start by briefing the owner** (memory brief-before-each-unit): D1·070's
   cards, their benches, what is deferred (Electronics ×1), the visuals and design choices, then wait for direction.
-  Check crossings 493–495 first.
+  Check crossings 493–496 first (D1·050's findings were decided and appended to them on 2026-10-20).

@@ -97,7 +97,8 @@ Low-side sensing is easy to measure and lifts the load off ground. High-side kee
 intact and puts the small signal on top of a large common-mode voltage.
 
 <!-- PLAN
-SHOW     Electronics — two copies of a 12 V supply driving a 6 Ω load (resistor-power-25) through a 10 mΩ shunt:
+SHOW     Electronics — two copies of a 12 V supply driving a 6 Ω load (resistor-power-25, on its heatsink plate: it
+         burns 23.9 W of its 25 W) through a 10 mΩ shunt:
          at the bottom in one, at the top in the other; Voltage overlay on.
          Drive: probe both ends of each shunt; then the load's lower terminal in the low-side copy.
          Look for: low side — 0 and 20 mV, and the load's return lifted 20 mV off ground; high side — 12.00 V
@@ -154,7 +155,7 @@ ASK      circuit + predict (at the Flow's [[ask]]) — "A 10 mΩ shunt, measured
          reading be high, low, or right?"
          options: high | low | right
          answer: high
-         reveal: four-wire-sensing with lead_resistance on WF1: the two-wire meter M2W reads 100.33 Ω for the
+         reveal: four-wire-sensing with lead_resistance on WF1: the two-wire meter M2W reads 100.34 Ω for the
                  Pt100, against 100.00 Ω on M4W.
          explain: The meter reads every resistance between its two contacts, and the leads and contacts are in
                   series with the shunt, so the reading can only come out larger; a 10 mΩ shunt on 10 cm of
@@ -195,7 +196,7 @@ Force the current through one pair of connections and sense the voltage with ano
 almost no current. The lead resistance drops out of the reading.
 
 <!-- PLAN
-SHOW (centrepiece) Electronics — four-wire-sensing: 10 V through 10 kΩ into a Pt100 (1 mA), two metres of AWG 24
+SHOW (centrepiece) Electronics — four-wire-sensing: a precision 1 mA source into a Pt100, two metres of AWG 24
          in each force lead; M2W across the near ends of the leads, M4W on its own AWG 30 sense pair at the
          RTD's terminals.
          Drive: read both meters → take the ASK → force leads 2 m → 10 m → add a contact-breadboard in the
@@ -204,7 +205,7 @@ SHOW (centrepiece) Electronics — four-wire-sensing: 10 V through 10 kΩ into a
          Status: ready (the fixture, its reveal and predict, the lead-length dial).
 ASK      circuit + predict (the fixture's own) — "The two force leads are swapped for ten metres of the same
          wire. Which readings move?"
-         options: both — the leads are in series | neither — ten kilohms set the current | only the two-wire
+         options: both — the leads are in series | neither — the source sets the current | only the two-wire
                   one, upward | only the four-wire one
          answer: only the two-wire one, upward
          explain: The sense pair carries almost no current, so its own resistance drops almost no voltage and
@@ -218,7 +219,7 @@ FAULT    A breadboard contact in the force path: the two-wire reading jumps betw
 <!-- FILLED 2026-10-07: drafted from training-overview Day 1 Module 7 and standard current-sensing practice; tutor to review -->
 
 ```flow
-[[demo]] Electronics Bench: 2-wire and 4-wire measurements of the same shunt, side by side.
+[[demo]] Electronics Bench: 2-wire and 4-wire measurements of the same sensor, side by side.
 
 The fix is to stop measuring through the wires that carry the current.
 
@@ -255,20 +256,23 @@ supply voltages that can be enough to change what you are measuring.
 <!-- PLAN
 SHOW     Electronics — branch-current re-valued: V1 = 3.3 V, R1 = 66 Ω (a load drawing 50 mA), ammeter A1 on
          its shunt dial, clamp CP1 on the same conductor.
-         Drive: A1 at 10 mΩ → take the ASK → dial to 10 Ω (a handheld's 200 mA range) → reveal
-         burden_voltage → probe the load → dial to 0.1 Ω (a bench meter's shunt).
-         Look for: A1 reports 43.4 mA and the load now sits at 2.87 V; at 0.1 Ω the load loses 5 mV.
+         Drive: A1 at 10 mΩ → take the ASK → dial to 2.5 Ω (a handheld's 200 mA range: its 1 Ω shunt, fuse
+         and leads) → reveal burden_voltage → probe the load → the load swapped for a microcontroller that
+         transmits → dial to 0.1 Ω (a bench meter's shunt).
+         Look for: A1 reports 48.2 mA and the load now sits at 3.18 V; the microcontroller's 300 mA radio burst
+         takes 0.75 V and drops its rail to 2.55 V, below its brown-out; at 0.1 Ω the load loses 5 mV.
          Status: ready (the fixture, re-valued) · needs Electronics: an MCU-style load with a brown-out
                  threshold (resets below about 2.7 V), so the circuit browns out on the bench instead of in
                  words.
 ASK      circuit + predict (at the Flow's [[ask]]) — "The meter reads a perfectly sensible current. Is the
          circuit still doing what it did before you connected the meter?"
          options: yes — an ammeter changes nothing | yes, to within the meter's accuracy | no — the load lost
-                  about 0.4 V and 13 % of its current | no, but only the clamp can tell
-         answer: no — the load lost about 0.4 V and 13 % of its current
+                  about 0.12 V and 3.6 % of its current | no, but only the clamp can tell
+         answer: no — the load lost about 0.12 V and 3.6 % of its current
          reveal: burden_voltage on A1, and the probe on the load.
-         explain: The 10 Ω shunt takes 0.43 V of the 3.3 V that was the load's, so the load runs at 2.87 V and
-                  draws 43.4 mA instead of 50 mA.
+         explain: The 2.5 Ω shunt takes 0.12 V of the 3.3 V that was the load's, so the load runs at 3.18 V and
+                  draws 48.2 mA instead of 50 mA; a microcontroller's 300 mA radio burst through the same 2.5 Ω
+                  would take 0.75 V.
          depth: understand    practice: arguing from evidence
 HARVEST  S6 — "Insertion error again, on the current side: the ammeter's own shunt is now part of the circuit."
 HARVEST  S36 — "Same display, two meters, two different circuits underneath. Whose band are you standing in?"
@@ -285,24 +289,26 @@ from the circuit. No measuring device has zero effect on the system being measur
 knowing how much effect, and choosing it.
 
 On the bench: a 3.3 V supply and a load that draws 50 mA, an ammeter in the branch, and a clamp on the
-same wire. The ammeter's shunt starts at 10 mΩ. I turn it to 10 Ω, which is about what a handheld meter
-puts in circuit on its 200 mA range.
+same wire. The ammeter's shunt starts at 10 mΩ. I turn it to 2.5 Ω, which is about what a handheld meter
+puts in circuit on its 200 mA range, fuse and leads included.
 
 [[ask]] The meter reads a perfectly sensible current. Is the circuit still doing what it did before you
 connected the meter?
 
 [[pause]]
 
-[[demo]] Electronics Bench: increase the meter's shunt resistance until the circuit under test browns out.
+[[demo]] Electronics Bench: the meter's 200 mA range in circuit; later, a microcontroller in the resistor's place
+browns out on its radio bursts.
 
 [[demo]] Switch on the burden voltage, and probe the load.
 
-[[reveal]] The meter says 43.4 mA. A perfectly sensible number. But its shunt is now taking 0.43 V of the
-3.3 V, so the load runs on 2.87 V and draws 13 % less than it did before you measured it.
+[[reveal]] The meter says 48.2 mA. A perfectly sensible number. But its shunt is now taking 0.12 V of the
+3.3 V, so the load runs on 3.18 V and draws 3.6 % less than it did before you measured it.
 
 A resistor just draws less. A microcontroller is worse: below its brown-out threshold, often somewhere
 around 2.7 V (check yours), it resets. Every radio burst pulls more current, the burden grows, the rail
-sags, and the board reboots. Take the meter out and the fault disappears.
+sags, and the board reboots: 300 mA through the same 2.5 Ω takes 0.75 V, and leaves the board 2.55 V. Take
+the meter out and the fault disappears.
 
 Turn the shunt down to 0.1 Ω, as in a bench meter, and the load loses only 5 mV. The same reading on the
 display; a different circuit underneath. Before you trust an ammeter, ask what its burden voltage took

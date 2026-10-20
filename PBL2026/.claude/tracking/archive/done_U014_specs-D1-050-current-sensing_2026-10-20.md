@@ -75,3 +75,10 @@ browns the board out; changes card 6's numbers, so crossing 495 waits on it). `D
 answers F10, append the choice to crossing 495 (or answer Benches if it asks).
 
 **Next unit needs.** Check crossings at session start (`crossings.mjs pbl2026`): Benches may answer 493–495 or ask.
+
+**After closing (2026-10-20).** Owner: *"go with your recommendations on the findings"*. Applied to `en.md` (and where
+`transcript.en.md`, `elements-by-section.md` and `course-plan.md` quote it): F5 heatsink, F6 100.34 Ω, F7 "same sensor",
+F8 a 1 mA source, F10 at 2.5 Ω (48.2 mA, 0.12 V, 3.18 V, 3.6 %; burst 0.75 V → 2.55 V). Spec proposals taken (card 1 0.8 min,
+card 2 3.3 min with two boundaries). Crossings 493–495 appended with the decisions; **496** raised for X20. DECISIONS
+2026-10-20.
+

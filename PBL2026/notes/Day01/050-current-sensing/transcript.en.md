@@ -29,9 +29,9 @@ The sensor again — this time the quantity is a current, and the sensor is a re
 
 - A shunt turns current into voltage: Equation — I = V_sh / R_sh, with a worked example: 20 mV across 10 mΩ → 2 A.
 - Sizing a shunt: signal against disturbance: Equation — V = I·R and P = I²·R, graphed against R from 1 mΩ to 100 mΩ at I = 2 A, with the signal
-- Low side or high side: Electronics — two copies of a 12 V supply driving a 6 Ω load (resistor-power-25) through a 10 mΩ shunt:
+- Low side or high side: Electronics — two copies of a 12 V supply driving a 6 Ω load (resistor-power-25, on its heatsink plate: it burns 23.9 W of its 25 W) through a 10 mΩ shunt:
 - The leads are part of the shunt: Electronics — four-wire-sensing (the same fixture as the next card), opened on the two-wire meter.
-- Kelvin: separate the current from the measurement: Electronics — four-wire-sensing: 10 V through 10 kΩ into a Pt100 (1 mA), two metres of AWG 24
+- Kelvin: separate the current from the measurement: Electronics — four-wire-sensing: a precision 1 mA source into a Pt100, two metres of AWG 24
 - Burden voltage: the drop your ammeter inserts: Electronics — branch-current re-valued: V1 = 3.3 V, R1 = 66 Ω (a load drawing 50 mA), ammeter A1 on
 
 ## Learner actions
