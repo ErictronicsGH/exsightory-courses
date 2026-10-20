@@ -61,7 +61,7 @@ ASK      numeric ×2 (at the Flow's [[ask]]) — "The code is 2047, from a 12-bi
          explain: The same code is the same fraction, 2047/4096 or about 0.4998, of whatever the reference
                   happens to be.
          depth: use    practice: computational thinking
-HARVEST  S30 — "Our 2047 from this morning stands for 1.649 V, if the reference really is 3.3 V. The pin was at
+HARVEST  S30 — "Our 2047 from earlier today stands for 1.649 V, if the reference really is 3.3 V. The pin was at
          1.79 V; 070 told us why."
 -->
 
@@ -69,7 +69,8 @@ HARVEST  S30 — "Our 2047 from this morning stands for 1.649 V, if the referenc
 This means the digital number an ADC produces has no universal meaning by itself. To interpret it as a
 voltage, we need to know the ADC's **resolution, reference voltage, input range and configuration**.
 
-[[ask]] The code is 2047. What voltage is that with a 3.3 V reference? With a 1.1 V reference?
+[[ask]] The code is 2047, from a 12-bit converter. What voltage is that with a 3.3 V reference? With a
+1.1 V reference?
 
 [[pause]]
 
@@ -149,7 +150,7 @@ ASK      poll (after the SHOW) — "An 8-bit MCU on 5 V reads a 0–1 V signal. 
 <!-- FILLED 2026-10-07: drafted from training-overview Day 1 Module 6 and standard reference/ratiometric practice; tutor to review -->
 
 ```flow
-[[demo]] Electronics Bench: the supply rail with load steps, and the reading of a fixed input following it.
+[[demo]] Animation Bench: the supply rail with load steps, and the reading of a fixed input following it.
 
 Most MCU projects use the supply rail as the ADC's reference. It is the default, it needs no extra part,
 and it covers the whole input range.
@@ -228,12 +229,16 @@ fixed 1.65 V measured against the rail: about 2252 at 3.0 V, down to about 1877 
 the thermistor divider, powered from that same rail. I'll sweep the rail.
 
 [[reveal]] The thermistor's code stays put at 2048. The rail moves; the code does not.
+```
 
+```flow
 Here is the algebra. The divider's output is the rail times a ratio, k = R_T / (R_T + R_F). The code is
 that output divided by the reference, times 2^N. But the reference is the rail. So the rail appears on
 the top and on the bottom, and divides out: code = k × 2^N. All that is left is the resistance ratio,
 and that is the temperature.
+```
 
+```flow
 [[demo]] Now I move the temperature. The flat line moves with it. It ignores the rail, not the
 measurement. It is our thermistor divider from the impedance module: 1.65 V behind 5 kΩ, settling fine,
 and now deaf to the rail.
@@ -247,7 +252,7 @@ does not.
 
 ## Back to the sensor
 
-The excitation of a modulating sensor, from this morning, and the converter's reference turn out to
+The excitation of a modulating sensor, from earlier today, and the converter's reference turn out to
 be one design decision, not two.
 
 <!-- PLAN
@@ -255,13 +260,13 @@ ASK      checkpoint (at the Flow's [[ask]]) — "Back to 2047": 1 name every sta
          each, one way it could have spoiled the number · 3 mark the one you now suspect · 4 compare with your
          list from 010.
          depth: understand    practice: arguing from evidence
-HARVEST  S9 — "This morning we chose the excitation for sensitivity. Now the excitation and the converter's
+HARVEST  S9 — "Earlier today we chose the excitation for sensitivity. Now the excitation and the converter's
          reference turn out to be one design decision."
 HARVEST  S30 — "Look back at the 2047 we started the day with. Name every stage it passed through."
 -->
 
 ```flow
-This morning we met the modulating sensor: one that needs an excitation before it can say anything. We
+Earlier today we met the modulating sensor: one that needs an excitation before it can say anything. We
 chose its excitation as a matter of sensitivity. Now we see that the excitation and the converter's
 reference are really one design decision. Make them the same voltage, and the reference's error, sag
 and drift included, stops mattering for that sensor.

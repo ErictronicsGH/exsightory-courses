@@ -10,7 +10,7 @@ optional_benches: [Electronics]   # the PLAN's SHOW (deferred: the Electronics B
 real_thing: "a small 3.3 V MCU board, our own unbranded design: a 5 V input, a 1117-class 3.3 V LDO in SOT-223, a 12-bit MCU whose ADC is referenced to its own supply pin, a precision reference IC (REF20xx class) holding the ADC's input at 1.65 V, a load switch, and a jumper that routes the rail directly or through 50 mm of 0.5 mm, 1 oz copper track; drawn beside its IEC 60617 schematic"
 minutes: 1.8                      # on the bench, s0 held under p1–p2 included (§2)
 card_minutes: 3.7                 # the whole card, the poll included (§2)
-status: spec-draft                # D2, D3, F1, F2, N2 decided; the new proposals P1–P9 in §14 are open
+status: spec-ready                # D2, D3, F1, F2, N2 and round two (P1–P9) decided
 learner_action: poll
 predictions: []                   # none in the PLAN; card 3's poe already asked this card's question (P8 proposes one for Study only)
 seeds: []
@@ -73,7 +73,7 @@ counted): **338 words**, of which p0 (17) is a stage direction, not spoken; **32
 
 | # | Paragraph (first words) | Words |
 |---|---|---|
-| p0 | *"[[demo]] Electronics Bench: the supply rail with load steps…"* (stage direction) | 17 |
+| p0 | *"[[demo]] Animation Bench: the supply rail with load steps…"* (stage direction; P9 applied) | 17 |
 | p1 | *"Most MCU projects use the supply rail as the ADC's reference…"* | 27 |
 | p2 | *"It is also usually the worst voltage on the board to measure against…"* | 47 |
 | p3 | *"On the bench: a 3.3 V rail that feeds the MCU's own load…"* (two sentences, 27 + 29) | 56 |
@@ -499,6 +499,8 @@ New proposals (each a question; nothing here is pre-decided):
 - **Reported**: the card counts 3.7 min (the brief's estimate was ≈ 4.7); the module is ≈ 20 of 30 min (§2). Nothing is cut.
 
 Decided 2026-10-20 (owner: *"apply all recommendations"* on the U018 brief): D2, D3, F1, F2, N2 as above.
+
+**Decided 2026-10-20, round two** (owner: *"apply all recommendations"* on the U018 page's *specs* section): P1 (a) board and schematic, linked; P2 (a) no reference selector; P3 (a) output_drift off the stage; P4 (a) a slide switch, constant current; P5 (a) one lumped 50 mΩ labelled *"a model value; boards differ"*; P6 (a) the Plot stand-in `rail-sag-code`; P7 (a) four decimals on the rail and the firmware's reading (the departure from D6.14 named in the crossing); P8 taken; P9 (a) applied to `en.md`: p0 *"[[demo]] Animation Bench: the supply rail with load steps, and the reading of a fixed input following it."* The demonstration is asked of Benches by crossing.
 
 ## 15. Acceptance: how we know it is built right
 

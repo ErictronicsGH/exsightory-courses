@@ -10,7 +10,7 @@ optional_benches: []
 real_thing: "the firmware's conversion of a 12-bit code to volts (v = raw × V_ref / 4096, the cold open's second line) on the course's 3.3 V reference and on an MCU's internal 1.1 V reference"
 minutes: 0.9                      # on the bench: from the numeric's reveal to the end of the card
 card_minutes: 2.3
-status: spec-ready
+status: spec-ready                # D1, D5 and round two (C2a–C2c) decided
 learner_action: numeric
 predictions: []                   # the numeric comes before the bench and is answered at s0
 seeds: [S30]                      # S30 harvested at s2 (planted in D1·010; harvested again on card 6)
@@ -38,7 +38,7 @@ carries its own block. The module's time table is in `D1-090-05-ratiometric.md` 
   0.001 V · reveal: the Equation from the last card with V_ref switched between the two. · explain: The same code is the
   same fraction, 2047/4096 or about 0.4998, of whatever the reference happens to be. · depth: use · practice:
   computational thinking.*
-- **HARVEST** (verbatim): *S30 — "Our 2047 from this morning stands for 1.649 V, if the reference really is 3.3 V. The pin
+- **HARVEST** (verbatim): *S30 — "Our 2047 from earlier today stands for 1.649 V, if the reference really is 3.3 V. The pin
   was at 1.79 V; 070 told us why."* (ACCURACY D1·090-F5, applied 2026-10-20.)
 - **SHOW, Drive, Look for, Status**: *none in the PLAN beyond the reveal.*
 - **Decided** (owner, 2026-10-20): D1, the PLAN's Equation Bench; D5, the course's converter truncates (card 1's ⌊ ⌋).
@@ -66,7 +66,7 @@ spoken outside it**.
 | Beat | Minutes | Source of the number |
 |---|---|---|
 | Before the bench: p0 *"This means the digital number an ADC produces has no universal meaning…"* (33) | 0.25 | 33 ÷ 130 |
-| The PLAN's numeric: p1 *"[[ask]] The code is 2047. What voltage is that…"* (18) | 0.14 | 18 ÷ 130 |
+| The PLAN's numeric: p1 *"[[ask]] The code is 2047, from a 12-bit converter. What voltage is that…"* (23; C2b applied) | 0.18 | 23 ÷ 130 |
 | The numeric's answer window, two parts (two multiplications; p2 `[[pause]]`) | 1.0 | as the D1·080 specs (45 s for one part), + 15 s for the second, which reuses the first |
 | s0 the two answers: unscripted, ≈ 25 words (§4a) | 0.19 | estimate |
 | s1 one fraction, two lines: unscripted, ≈ 16 words (§4a) | 0.12 | estimate |
@@ -108,7 +108,7 @@ third of its height everywhere. The legend reads *V_ref = 3.3 V* and *V_ref = 1.
 
 | # | Label (EN · FR) | code | V_ref | N | V_read (shown, 4 s.f.) | Note |
 |---|---|---|---|---|---|---|
-| E1 | *Code 2047 on 3.3 V* · *Code 2047 sur 3,3 V* | 2047 | 3.3 | 12 | 1.649 V | *2047/4096 = 0.4998 of 3.3 V. What the morning's firmware printed: "2047 1.649". On our truncating converter the input was 1.6492 to 1.6500 V* · *…Ce qu'affichait le micrologiciel ce matin : « 2047 1.649 »…* |
+| E1 | *Code 2047 on 3.3 V* · *Code 2047 sur 3,3 V* | 2047 | 3.3 | 12 | 1.649 V | *2047/4096 = 0.4998 of 3.3 V. What the cold open's firmware printed: "2047 1.649". On our truncating converter the input was 1.6492 to 1.6500 V* · *…Ce qu'affichait le micrologiciel au début de la journée : « 2047 1.649 »…* |
 | E2 | *Code 2047 on 1.1 V* · *Code 2047 sur 1,1 V* | 2047 | 1.1 | 12 | 549.7 mV | *The same fraction of a third of the reference: 0.550 V (0.5497–0.5500 V)* · *La même fraction d'une référence trois fois plus petite : 0,550 V…* |
 
 The bench prints E2 as **549.7 mV**; the PLAN's *0.550 V* is the same value to three figures, and the note says both (as
@@ -317,6 +317,8 @@ No **accuracy** finding on this card: the statement, PLAN, Flow and the applied 
 **Decided 2026-10-20** (owner: *"apply all recommendations"* on the U018 brief): D1, D5 as above; F5 (S30's wording),
 applied. (The proposals and options in this §14 are not yet decided.)
 
+**Decided 2026-10-20, round two** (owner: *"apply all recommendations"* on the U018 page's *specs* section): F1 (a) the reveal on this card's own block, the references compared; F2 (a) applied to `en.md`: the [[ask]] now reads *"The code is 2047, from a 12-bit converter. What voltage is that with a 3.3 V reference? With a 1.1 V reference?"* (+5 words, ≈ +0.04 min; the card stays ≈ 2.3); every **Proposal** of F3 taken. S30's *"from this morning"* is now *"from earlier today"* (D1·090-F8).
+
 ## 15. Acceptance: how we know it is built right
 
 - The Equation compiles with the fields of §3a with no error or warning; the derivation's last line is the statement; the
@@ -332,7 +334,7 @@ applied. (The proposals and options in this §14 are not yet decided.)
 - E1–E6 on the built block: driven in both themes; the wall at 7:1; Scope at phone width; every pane at 1920 × 1080 and
   1024 × 768.
 - **Six gates (this spec)**: (1) realism ≥ 95 %: the course's 12-bit converter, its 3.3 V reference and a real internal
-  1.1 V one, the morning's firmware line, nothing branded ✓; (2) science: the reading is the bottom of a truncated band,
+  1.1 V one, the cold open's firmware line, nothing branded ✓; (2) science: the reading is the bottom of a truncated band,
   stated; the reference and configuration named as assumptions ✓; (3) maths: every number and both tolerances recomputed
   in Node, including the scorer's edge in doubles (§8) ✓; (4) visualization: one code on two lines, a third the height,
   both values on the wall ✓; (5) consistency: card 1's statement derived into this one, S30 against D1·010 and D1·070,

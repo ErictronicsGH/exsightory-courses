@@ -10,7 +10,7 @@ optional_benches: [Electronics]   # the PLAN's on-circuit version (deferred; car
 real_thing: "a 10 kΩ NTC (B25/85 = 3950 K, the course's thermistor-ntc-10k) under a 10 kΩ 1 % resistor, excited from the MCU's 3.3 V rail, which is also the 12-bit converter's reference (truncating); beside it a fixed 1.65 V from a separate reference, read against the same rail; the rail swept 3.0–3.6 V"
 minutes: 1.9                      # on the bench: from p3's [[demo]] to the card's end (§2)
 card_minutes: 3.1                 # the whole card, the poe included (§2)
-status: spec-draft                # D1, D5, F4, N1 applied; F2 (Flow split), F3 (accuracy) and the proposals in §14 open
+status: spec-ready                # D1, D5, F4, N1 and round two (C5a–C5c, D1·090-F7) decided
 learner_action: poe
 predictions: []                   # the PLAN's poe fires before the bench appears and is answered at s1; a spoken one before s3 is a Proposal (F7)
 seeds: [S35 (harvest)]
@@ -475,6 +475,8 @@ Equation benches (§3a, §3b); **D5** — the course's converter truncates, code
 `floor`); **F4** (ACCURACY D1·090-F4, applied) — *"about 2252 at 3.0 V"* in p3 and *"falls from 2252 to 1877"* in the PLAN,
 recomputed here (§8); **N1** (applied) — the old *"[[demo]] Widget…"* line at the top of the Flow is gone, so the reveal is
 not spoiled. The findings and proposals above (F1–F3, F5–F8) are new and **open**; F3 is an **accuracy** finding.
+
+**Decided 2026-10-20, round two** (owner: *"apply all recommendations"* on the U018 page's *specs* section): F1 (a) the rail on the x axis, the temperature as the second showing at 35 °C; F2 (a) applied to `en.md`: the card's Flow fence is split in three (p0–p4 | p5 | p6–p7), no word changed; F3 = **D1·090-F7** (accuracy) (a): the Flow unchanged, the bench states the ideal (caption, the bead's temperature, assumptions, teacher tip), applied in this spec and in `ACCURACY.md`; every **Proposal** of F5–F7 taken (X-cancel and ⌊ ⌋ printed go to Benches in one crossing). F8: the module ≈ 17.3 of 30 min, reported.
 
 ## 15. Acceptance: how we know it is built right
 

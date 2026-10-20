@@ -216,7 +216,7 @@ ASK      circuit + predict (before the reveal) — "The divider is two equal res
          explain: The 10 MΩ meter sits in parallel with R2, so the lower leg becomes 909 kΩ and the node
                   falls to 4.76 V; the 10 GΩ bench meter moves it by 0.005 %.
          depth: understand    practice: arguing from evidence
-HARVEST  S6 — "Insertion error, from this morning: we measured, and the measuring moved the thing measured."
+HARVEST  S6 — "Insertion error, from earlier today: we measured, and the measuring moved the thing measured."
 HARVEST  S8 — "And here is the energy transfer I promised: to read the node, the meter takes current from it."
 HARVEST  S36 — "The handheld reported its own terminals faithfully. It was the node that moved — inside the
          meter's band, and outside the truth."

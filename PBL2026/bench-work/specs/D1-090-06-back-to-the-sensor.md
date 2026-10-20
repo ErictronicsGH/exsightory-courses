@@ -10,7 +10,7 @@ optional_benches: []
 real_thing: "the temperature measurement's path as the course has built it by 17:00 on Day 1 (the thermistor divider, the ADC input, the conversion against the rail, the firmware), as a block diagram: not to scale, labelled so"
 minutes: 4.6                      # on the bench: the drawing is up for the whole card, the checkpoint and its debrief included (§2)
 card_minutes: 4.6
-status: spec-draft                # D4 decided; F1 (the build), F2–F7 open; F4 is an accuracy finding
+status: spec-ready                # D4 and round two (C6a–C6c, D1·090-F8) decided; the course path asked of Benches by crossing
 learner_action: checkpoint
 predictions: []                   # the checkpoint's part 3 (the suspect) is the room's own claim; nothing added
 seeds: [S9 (harvest), S30 (harvest)]
@@ -61,19 +61,19 @@ pass. (2) science: every stage is one the day taught, and REFERENCE is drawn fee
 (§8) — pass. (4) visualization: nine blanks filled in the room's order of naming, the suspect marked on the stage itself,
 the stages added since 12:00 tagged for the comparison (s10) — pass for the target; the stand-in loses the lit names. (5)
 consistency: the stage names are the PATH lines' and the master's ids; the suspect is D1·070's cause (S31); one finding on
-"this morning" against the schedule, raised as **accuracy** (F4) — pass with F4 open. (6) design: nine labels at the
+"this morning" against the schedule, raised as **accuracy** (F4) — pass (F4 applied: "earlier today"). (6) design: nine labels at the
 wall's floor need two rows (F3); EN and FR drafted — pass on paper, to check on the built drawing.
 
 ## 1. What the room must understand
 
-- **Statement** (verbatim): *The excitation of a modulating sensor, from this morning, and the converter's reference turn
+- **Statement** (verbatim): *The excitation of a modulating sensor, from earlier today, and the converter's reference turn
   out to be one design decision, not two.*
 - **SHOW**: *none in the PLAN* (the PLAN has only the checkpoint and two harvests). Owner decision D4: the course path,
   reused.
 - **ASK** (verbatim): *checkpoint (at the Flow's [[ask]]) — "Back to 2047": 1 name every stage it passed through · 2 for
   each, one way it could have spoiled the number · 3 mark the one you now suspect · 4 compare with your list from 010. ·
   depth: understand · practice: arguing from evidence*
-- **HARVEST** (verbatim): *S9 — "This morning we chose the excitation for sensitivity. Now the excitation and the
+- **HARVEST** (verbatim): *S9 — "Earlier today we chose the excitation for sensitivity. Now the excitation and the
   converter's reference turn out to be one design decision."* · *S30 — "Look back at the 2047 we started the day with.
   Name every stage it passed through."*
 - **Bench and library.** The **bench** is the Draw Bench (M59), with the presenter's ink (M07-c). The **library** is the
@@ -93,7 +93,7 @@ in the checkpoint. **84 words are spoken outside the checkpoint = 0.65 min.**
 
 | Beat | Minutes | Source of the number |
 |---|---|---|
-| s0 the blank path; p0 *"This morning we met the modulating sensor…"* (59), the S9 harvest, held | 0.45 | 59 ÷ 130 |
+| s0 the blank path; p0 *"Earlier today we met the modulating sensor…"* (59), the S9 harvest, held | 0.45 | 59 ÷ 130 |
 | The checkpoint: p1 *"[[ask]] Look back at the 2047…"* (22, the S30 harvest), then the four parts written on Scope (p2 `[[pause]]`): nine stages, one way each, a suspect, the comparison with 010's list | ≈ 3.0 | estimate, as the U018 brief (D1·010 card 7's six stages and one mark took ≈ 2.0, with *"may run to 3"*) |
 | s1–s9 the debrief: the room names the stages in order, one press each (≈ 3 s) | 0.45 | 9 × 3 s, estimate |
 | The suspect: the presenter inks the stage the room names and reads two or three suspects with their reasons (≈ 60 words, unscripted) | 0.5 | estimate |
@@ -144,7 +144,7 @@ loading · *charge*; conditioning · *conditionnement*; ADC input · *entrée du
 
 | # | id | Flow paragraph (first words) | What changes (`say`) | Presenter's control |
 |---|---|---|---|---|
-| 0 | `s0-blank-path` | p0 *"This morning we met the modulating sensor…"* held; then p1 `[[ask]]`, p2 `[[pause]]` (the checkpoint, §7a) | Nine blank stages: the path the 2047 travelled. Name them, one way each could spoil it, and mark your suspect. | (the slide opens); Ink, *Pin ink* on |
+| 0 | `s0-blank-path` | p0 *"Earlier today we met the modulating sensor…"* held; then p1 `[[ask]]`, p2 `[[pause]]` (the checkpoint, §7a) | Nine blank stages: the path the 2047 travelled. Name them, one way each could spoil it, and mark your suspect. | (the slide opens); Ink, *Pin ink* on |
 | 1 | `s1-quantity` | (the debrief, unscripted: *"First stage?"*) | QUANTITY: the temperature itself, what we meant to measure. | Next |
 | 2 | `s2-sensor` | ″ | sensor: the thermistor turns temperature into resistance, given an excitation. | Next |
 | 3 | `s3-loading` | ″ | loading: the divider is a source with an impedance, and whatever it drives loads it. | Next |
@@ -351,6 +351,8 @@ p0 ends *"…Make them the same voltage, and the reference's error, sag and drif
 sensor."*, re-checked here (A6: it is limited to the ratiometric sensor ✓). F1–F7 above are new and **open**; F4 is an
 **accuracy** finding.
 
+**Decided 2026-10-20, round two** (owner: *"apply all recommendations"* on the U018 page's *specs* section): F1 (a) Benches builds the course-path master and this card's variant (one crossing), the still with ink standing in; F2 (a) REFERENCE a side input into CONVERSION; F3 (a) two rows, no forms lane; F4 = **D1·090-F8** (accuracy) (a) applied to `en.md`: *"from earlier today"* (statement), *"Earlier today we met…"* (p0), *"Earlier today we chose…"* (S9), and card 2's S30, D1·040's S6 and D1·050's S37 likewise; every **Proposal** of F5 taken; F6 (a) path-order steps and pinned ink now.
+
 ## 15. Acceptance: how we know it is built right
 
 - s0 shows nine blank boxes in two rows with REFERENCE feeding CONVERSION; s1–s9 each fade one name into its box in path
@@ -366,5 +368,5 @@ sensor."*, re-checked here (A6: it is limited to the ratiometric sensor ✓). F1
   REFERENCE where it acts (F2), each stage's way to spoil the number from the module that taught it ✓; (3) maths: the
   presenter's numbers recomputed (§8) ✓; (4) visualization: the room's path built as named, the suspect on its stage, the
   growth since 12:00 tagged ✓ (stand-in partial); (5) consistency: the PATH lines' names and order, D1·070's cause, S30's
-  five o'clock; *"this morning"* raised (F4, **accuracy, open**) ✓; (6) design: two rows for legibility (F3), EN and FR ✓ on
+  five o'clock; *"this morning"* raised and applied (F4 → D1·090-F8: *"earlier today"*) ✓; (6) design: two rows for legibility (F3), EN and FR ✓ on
   paper.

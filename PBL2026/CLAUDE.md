@@ -125,7 +125,10 @@ library and bench feature this course needs**, and the two talk only through ExS
 `README.md` (§ *PBL2026, the course outside the lanes*); what this project does:
 
 1. **At the start of every session**, list what is addressed to it:
-   `node C:\ExSightory\lanes\pbl2026-x\src\insight\tools\crossings.mjs pbl2026` (it fetches `origin/main` first).
+   `cd C:/ExSightory/lanes/pbl2026-x/src/insight && node tools/crossings.mjs pbl2026` (it fetches `origin/main` first).
+   **Run it from the worktree**: it reads the repository of the shell's folder, so run from here it lists this course's
+   repository and prints *"none"* and *"next free id: 001"*, both wrong. Trust only a header naming
+   `C:\ExSightory\lanes\pbl2026-x`.
    `open/*-benches-to-pbl2026-*` is a question this project owes an answer to (a card's wording, a value, a choice);
    `answered/*-benches-to-pbl2026-*.answer.md` is a request of ours that Benches has answered.
 2. **To ask**, write one request per need: `open/<id>-pbl2026-to-benches-<slug>.request.md`, with the id the tool printed

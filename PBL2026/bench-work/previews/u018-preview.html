@@ -47,7 +47,7 @@ table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-bottom:1px
 <a href="#c4">Card 4 · ≈4.7 min<b>VDD: the default, and the worst</b><span class="tag t-anim">Animation (Electronics deferred)</span><span class="tag t-act">poll</span></a>
 <a href="#c5">Card 5 · ≈4.6 min<b>Ratiometric: the error cancels</b><span class="tag t-plot">Plot, centrepiece</span><span class="tag t-eq">Equation</span><span class="tag t-act">poe</span></a>
 <a href="#c6">Card 6 · ≈3.8 min<b>Back to the sensor</b><span class="tag t-anim">the course path (reused)</span><span class="tag t-act">checkpoint</span></a>
-<a href="#specs">Specs: round two<b>2 accuracy (open), proposals</b><span class="tag t-act">≈17 of 30 min</span></a>
+<a href="#specs">Specs: round two<b>all decided; crossings 510–512</b><span class="tag t-act">≈17 of 30 min</span></a>
 <a href="#find">Brief findings<b>all decided (your recommendations)</b><span class="tag t-act">≈20 of 30 min</span></a>
 </div>
 <p class="note">Time: the Flow is 1,041 words (8.0 min at 130 wpm): card 1, 118 words; card 2, 93; card 3, 141; card 4, 306; card 5, 276; card 6, 107. With the five activities (about 1.5 min each, the four-part checkpoint 3 min) and the bench moves, the module comes to about 20 minutes. That leaves about 10 of the 30 free. This is reported only; nothing is trimmed.</p>
@@ -108,7 +108,8 @@ table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-bottom:1px
 <div id="fd"></div>
 <div class="fb"><label>Anything else on this unit</label><textarea data-k="general"></textarea></div></section>
 
-<section id="specs"><h2>The specs: round two, your choice</h2>
+<section id="specs"><h2>The specs: round two, decided</h2>
+<p class="note"><b>You chose the recommendations (the first button of each) in the chat on 2026-10-20.</b> F7 and F8 are applied, and the accuracy register shows no open finding on D1·090. C2b, C5b (card 5's Flow in three fences, no word changed) and P9 are in <code>en.md</code>. All six specs are <b>spec-ready</b>. Crossings <b>510</b> (card 4), <b>511</b> (the course path) and <b>512</b> (the Equation and Plot needs) are with Benches. Days 2 and 3 also say “this morning”; that is logged as DAY23-F1 for their units.</p>
 <p class="note"><b>All six specs are written</b> in <code>bench-work/specs/</code> (D1-090-01 to 06) and listed in <code>bench-work/README.md</code>. Writing them turned up <b>two more accuracy points (F7, F8, open; they block the unit)</b>, a set of proposals, and the bench capabilities still missing. As before, the first button of each item is my recommendation. <b>Time, reconciled from the specs:</b> cards 1.4, 2.3, 2.2, 3.7, 3.1, 4.6, so the module uses ≈ 17.3 of its 30 minutes and ≈ 12.7 are free. This is reported only; nothing is trimmed.</p>
 <p class="note"><b>What the sources showed</b> (read in Studio's code): the Equation cannot rearrange through ⌊ ⌋, so card 1's <i>solveFor</i> and D5 cannot share a block. In floating point, 1.65/3.2 × 4096 is 2111.9999…, so today's floor would show card 3's 2112 as 2111. Codes print with a k prefix (“2.048 k”). ⌊ ⌋ prints as the word “floor”. The Plot's sliders and sweep don't reach the wall, and the Equation has no strike-out. D1·010's course path, which card 6 reuses, was designed but never built.</p>
 <div id="fd2"></div>

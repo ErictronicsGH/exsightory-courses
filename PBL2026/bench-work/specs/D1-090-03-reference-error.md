@@ -10,7 +10,7 @@ optional_benches: []
 real_thing: "the course's 12-bit MCU converter referenced to its own 3.3 V supply rail, reading a fixed 1.65 V from a separate reference while the rail sags to 3.20 V"
 minutes: 1.2                      # on the bench: from p2's [[demo]] to the end of the card (1.1 without the zoom, F4)
 card_minutes: 2.2                 # 2.1 without the zoom
-status: spec-ready
+status: spec-ready                # D1, D5 and round two (C3a–C3c) decided; the target needs X-exact-floor
 learner_action: poe
 predictions: []                   # the PLAN's poe fires before the bench appears and is answered at s1
 seeds: [S22]                      # planted at s3 (p4); harvested in D2·050
@@ -324,6 +324,8 @@ D2·050.
 
 **Decided 2026-10-20** (owner: *"apply all recommendations"* on the U018 brief): D1, D5 as above. (The proposals and
 options in this §14 are not yet decided.)
+
+**Decided 2026-10-20, round two** (owner: *"apply all recommendations"* on the U018 page's *specs* section): F1 (a) a compare family, 3.30 V dashed and 3.20 V solid; F2 (a) X-exact-floor requested by crossing, the stand-in (the Flow's formula without ⌊ ⌋, exact on both edges) until it lands; every **Proposal** of F3 and F4 (the zoom step, +0.14 min) taken.
 
 ## 15. Acceptance: how we know it is built right
 

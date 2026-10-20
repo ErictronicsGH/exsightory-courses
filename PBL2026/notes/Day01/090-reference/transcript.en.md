@@ -21,7 +21,7 @@ Still inside the converter — the reference every code is measured against. It 
 3. **Reference error is measurement error** — If the reference is 1 % high, every reading is 1 % low.
 4. **VDD: the default, and usually the worst** — Using the supply as the reference is convenient, and the supply is the noisiest, least accurate voltage on the board.
 5. **Ratiometric: let the error cancel** — Excite a resistive sensor from the same rail that references the converter.
-6. **Back to the sensor** — The excitation of a modulating sensor, from this morning, and the converter's reference turn out to be one design decision, not two.
+6. **Back to the sensor** — The excitation of a modulating sensor, from earlier today, and the converter's reference turn out to be one design decision, not two.
 
 ## What the wall shows
 

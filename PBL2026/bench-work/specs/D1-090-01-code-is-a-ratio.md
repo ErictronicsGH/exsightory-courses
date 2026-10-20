@@ -10,7 +10,7 @@ optional_benches: []
 real_thing: "the course's MCU converter (12 bits, 3.3 V reference, truncating: code = ⌊V/LSB⌋, LSB = 3.3/4096 V = 0.8057 mV) reading a fixed 1.65 V"
 minutes: 0.9                      # on the bench: from p2 (the formula, F2) to the end of the card (0.7 if the bench waits for p3's [[demo]])
 card_minutes: 1.4
-status: spec-ready
+status: spec-ready                # D1, D5 and round two (C1a–C1c) decided
 learner_action: none
 predictions: []
 seeds: []
@@ -125,7 +125,7 @@ block (§12).
 | # | Label (EN · FR) | V_in | V_ref | N | code (target; today) | Note |
 |---|---|---|---|---|---|---|
 | E1 | *1.65 V on 3.3 V, 12 bits: code 2048* · *1,65 V sur 3,3 V, 12 bits : code 2048* | 1.65 | 3.3 | 12 | 2048 (today *2.048 k*) | *Exactly half: 0.5 × 4,096 = 2048.000, on the edge between 2047 and 2048. On a 10-bit converter the same input is 512, half of 1,024.* · *Exactement la moitié… Sur un convertisseur de 10 bits, la même entrée donne 512, la moitié de 1 024.* |
-| E2 | *The pin from this morning: 1.7925 V* · *La broche de ce matin : 1,7925 V* (**Proposal**, F4) | 1.7925 | 3.3 | 12 | 2224 (today *2.224 k*) | *1.7925/3.3 × 4,096 = 2224.87; the converter keeps 2224, the settled reading of the first module.* · *…le convertisseur garde 2224, la lecture établie du premier module.* |
+| E2 | *The cold open's pin: 1.7925 V* · *La broche du début : 1,7925 V* (**Proposal**, F4) | 1.7925 | 3.3 | 12 | 2224 (today *2.224 k*) | *1.7925/3.3 × 4,096 = 2224.87; the converter keeps 2224, the settled reading of the first module.* · *…le convertisseur garde 2224, la lecture établie du premier module.* |
 
 The labels carry the code in digits because the bench prints *2.048 k* until X-count (§12). Both values evaluate exactly
 in doubles (§8), so ⌊ ⌋ is safe on this card today.
@@ -335,7 +335,7 @@ check on the lecture laptop that the wall window takes the wheel, else the zoom 
   impossible code); (b) the clamp in the statement, `code = min(⌊V_in/V_ref · 2^N⌋, 2^N − 1)`, domain [0, 3.3] (the real
   converter at every setting, as `D1-080-03` F5 drew it, at the cost of a heavier formula than the Flow's); (c) a boundary
   `V_in < V_ref` shading the invalid region (the curve still drawn past 4095 there when V_ref is slid down).
-- **F4 — Proposals**: assumption 4 (1.65 V on the edge between 2047 and 2048, as D1·070 says); E2, the morning's pin at
+- **F4 — Proposals**: assumption 4 (1.65 V on the edge between 2047 and 2048, as D1·070 says); E2, the cold open's pin at
   1.7925 V → 2224, the one value on this card where ⌊ ⌋ visibly does something (2224.87 → 2224). +0 min each.
 - **F5 — Proposals**: s3's suggested words; the teacher tip (§7d); the explore prompts (§7e); not recommended, a spoken
   prediction before s3 (+0.1 min).
@@ -347,6 +347,8 @@ No **accuracy** finding on this card: the statement, PLAN and Flow recompute und
 
 **Decided 2026-10-20** (owner: *"apply all recommendations"* on the U018 brief): D1, D5 as above. (The proposals and
 options in this §14 are not yet decided.)
+
+**Decided 2026-10-20, round two** (owner: *"apply all recommendations"* on the U018 page's *specs* section): F1 (a) card 1 keeps ⌊ ⌋, the inverse is card 2's statement; F3 (a) the domain to 3.299 V with the top-code assumption; every **Proposal** of F2, F4 and F5 taken, options marked *not recommended* left out. The capability needs go to Benches in one crossing (owner: X, *"raise all three now"*).
 
 ## 15. Acceptance: how we know it is built right
 

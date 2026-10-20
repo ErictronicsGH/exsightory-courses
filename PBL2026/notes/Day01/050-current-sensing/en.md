@@ -28,7 +28,7 @@ transducer, and the measurement is an indirect one.
 <!-- PLAN
 SHOW     Equation — I = V_sh / R_sh, with a worked example: 20 mV across 10 mΩ → 2 A.
          Status: ready.
-HARVEST  S37 — "This is the indirect measurement from this morning: a voltage, a known resistance, and Ohm's
+HARVEST  S37 — "This is the indirect measurement from earlier today: a voltage, a known resistance, and Ohm's
          law."
 -->
 
