@@ -3,14 +3,14 @@ id: D2-010-03-level-shifting
 card: "Level shifting: 5 V logic into a 3.3 V pin"
 module: notes/Day02/010-digital-interfaces/en.md
 bench: Animation                  # D1, decided 2026-10-20: an Animation Bench demonstration built by the Benches lane on one crossing
-library: "logic-io: a 2D scene library (the bench top view and its IEC schematic, linked; a 3.3 V MCU input with its clamp diodes inside the chip outline; the input's threshold gauge; the course's handheld meter), loaded with params `config: level-shift` by this card's sequence `d2-010-level-shifting`; designed in §3 of this spec for cards 3, 5, 6 and 8; asked of the Benches lane by one crossing (draft: crossing-d2-010-logic-io.request.md)"
+library: "logic-io: a 2D scene library (the bench top view and its IEC schematic, linked; a 3.3 V MCU input with its clamp diodes inside the chip outline; the input's threshold gauge; the course's handheld meter), loaded with params `config: level-shift` by this card's sequence `d2-010-level-shifting`; designed in §3 of this spec for cards 3, 5, 6 and 8; asked of the Benches lane by one crossing (crossing-d2-010-logic-io.request.md, final 2026-10-20; its id assigned when it is raised)"
 dimensions: 2D
-stand_in: "none proposed (P8): the card plays from its words and its poe until the library lands; the PLAN's Electronics fixture `level-shift` stays deferred"
+stand_in: "none (P8 a, decided 2026-10-20): the card plays from its words and its poe until the library lands; the PLAN's Electronics fixture `level-shift` stays deferred"
 optional_benches: [Electronics]   # the PLAN's SHOW (deferred: the Electronics Bench is in development)
 real_thing: "a 5 V sensor module's digital output (our own unbranded module, VCC GND OUT) wired on a 400-point breadboard to a GPIO of the course's unbranded 3.3 V MCU board, whose input has protection (clamp) diodes to its 3.3 V rail; the module powered from the board's 5 V pin; a 10 kΩ over 20 kΩ divider switched in; the course's handheld meter on the pin; drawn beside its IEC 60617 schematic"
 minutes: 1.5                      # on the bench (§2)
 card_minutes: 2.5                 # the whole card, the poe included (§2)
-status: spec-draft                # D1, F1, F5, N1 applied; proposals P1–P8 open
+status: spec-ready                # D1, F1, F5, N1 applied; P1–P8 decided 2026-10-20 (round two: all recommendations) and applied; nothing open (the library not yet built does not block)
 learner_action: poe
 predictions: []                   # the PLAN's poe fires before s0 (§7a); no prediction on the bench
 seeds: []
@@ -29,6 +29,12 @@ SHOW and Look for: the rail carries the MCU's own load; the pin sits a diode-dro
 schematic (`bench-work/previews/u019-preview.html`, `draw3()`, `solve3()`) previewed the numbers; this spec is what the
 Benches lane builds from.
 
+**Round two, 2026-10-20** (the U019 brief's *Specs: round two*; owner: *"apply all recommendations"*): every proposal of §14
+(P1–P8) takes its recommended option, and the body below states the decided design: the bench beside the schematic (P1);
+S1 with a third position, *OPEN*, so the first frame does not answer (P2); the MCU's 50 mA labelled a model value (P3); the
+non-ideal cases in Study only (P4); V1 held at 5.000 V (P5); the teacher tip (P6); no demo cue added to the Flow (P7); no
+stand-in (P8). No Flow or PLAN word of card 3 changed in round two.
+
 ## 1. What the room must understand
 
 - **Statement** (verbatim): *A 5 V digital output wired straight to a 3.3 V microcontroller's GPIO may damage the input.
@@ -37,7 +43,8 @@ Benches lane builds from.
   output's own resistance) wired to the GPIO, modelled as a 1N4148 clamp diode D1 from the pin to a 3.3 V rail V2 (carrying
   the MCU's own load, so the clamp current has somewhere to go); a DMM on the pin; current overlay on.*
   The PLAN names the Electronics Bench (written before D1); that widget is deferred, and the target is the Animation Bench
-  (D1). The Flow has no `[[demo]]` cue on this card (P7).
+  (D1). The Flow has no `[[demo]]` cue on this card, and none is added (P7, decided): the stops fall on the Flow's own
+  clauses and the presenter's strip carries the step titles.
 - **Drive** (verbatim): *(1) direct connection: watch D1 and V2 carry current; (2) insert the divider R2 10 kΩ over R3
   20 kΩ: the clamp current falls to nothing, the pin sits at 3.33 V.*
 - **Look for** (verbatim): *direct: the pin at about 4.0 V, a diode-drop above its own rail, and about 21 mA into it; with
@@ -47,7 +54,8 @@ Benches lane builds from.
 - **Decided by the owner, 2026-10-20** (applied here, not re-asked): **D1** the Animation demonstration by Benches, one
   library for cards 3, 5, 6, 8; **F1** the rail carries the MCU's load and the Look for above; the demonstration uses the
   **typical (SPICE) 1N4148 model**, not Studio's `diode-1n4148` profile (§8); **F5** the FAULT's *"about 1.66 V"*; **N1**
-  *"a 3.3 V microcontroller"*, no product named (the ESP32 datasheet is cited in §8 as a source only).
+  *"a 3.3 V microcontroller"*, no product named (the ESP32 datasheet is cited in §8 as a source only). **Round two**
+  (2026-10-20, *"apply all recommendations"*): **P1–P8** as their recommended options (§14), applied in §3–§13.
 - **Bench and library.** The **bench** is the Animation Bench (M62, the Benches lane's, served from
   `C:\ExSightory\src\exsight-benches\benches\animation\`). The **library** is a new scene library, `logic-io` (§3), loaded
   by a short sequence per card with that card's `params` (memories `scene-libraries-and-assemblies`, `one-block-at-a-time`).
@@ -69,6 +77,7 @@ Benches lane builds from.
 
 The card's Flow, counted from en.md on 2026-10-20 (words ÷ 130 wpm; cue tags not counted): **175 words = 1.35 min**, all
 spoken. It has no `[[demo]]`, `[[ask]]` or `[[reveal]]` cue: the poe is the PLAN's, on its own card before the statement.
+Recounted after round two (2026-10-20): unchanged, 175 words (P7 added no cue); the minutes stand.
 
 | # | Paragraph (first words) | Words |
 |---|---|---|
@@ -91,9 +100,12 @@ spoken. It has no `[[demo]]`, `[[ask]]` or `[[reveal]]` cue: the poe is the PLAN
 The long paragraph (p1) falls on the held s0 (B13). The poe's reveal (*"current overlay through D1 into V2, then the divider
 inserted"*) is s1 and s2, so the reveal waits for the commitment (B9).
 
-**Module check**: `targetMinutes: 30`; the module's Flow is **2,643 words (20.3 min)** (cards 307, 363, 175, 258, 217, 197,
-292, 224, 423, 187). The module is ≈ 31.6 of 30 min (`D2-010-07` §2b; the brief said ≈ 33) (D5, reported, nothing trimmed); this card is 2.5 min.
-The module's time table is kept in one place, the centrepiece spec (card 7), when U019 writes it.
+**Module check**: `targetMinutes: 30`; the module's Flow was **2,643 words (20.3 min)** at round one (cards 307, 363, 175,
+258, 217, 197, 292, 224, 423, 187). Recounted on 2026-10-20 after the round-two edits to en.md: **2,663 words (20.5 min)**
+(cards 307, **370**, 175, **266**, 217, 197, 292, 224, 423, **192**: card 2's direction bullet +7, card 4's SPI sentence +8,
+card 10's transition +5; the demo cues of cards 5, 6 and 8 changed one word for one). The module was ≈ 31.6 of 30 min at
+round one (`D2-010-07` §2b; the brief said ≈ 33) (D5, reported, nothing trimmed); the 20 added words are ≈ 0.15 min more,
+which card 7's §2b carries. This card is 2.5 min. The module's time table is kept in one place, the centrepiece spec (card 7).
 
 ## 3. The scene: the `logic-io` library (cards 3, 5, 6 and 8)
 
@@ -105,12 +117,12 @@ same pin, the same meter, the same gauge, the same symbols and colours.
 
 | `config` | Card | What is on the breadboard | Spec |
 |---|---|---|---|
-| `level-shift` | 3 | the 5 V module's OUT to the MCU's GPIO, directly or through R2/R3; S1 *DIRECT · DIVIDER*, S2 *NORMAL · SWAPPED* (Explore) | this spec |
+| `level-shift` | 3 | the 5 V module's OUT to the MCU's GPIO, open, directly or through R2/R3; S1 *OPEN · DIRECT · DIVIDER* (P2), S2 *NORMAL · SWAPPED* (Explore) | this spec |
 | `floating-input` | 5 | the GPIO alone; R4 10 kΩ on S3 *UP · OFF · DOWN*; a push button SW1 to ground (Explore, the FAULT) | `D2-010-05-floating-input` |
 | `open-drain` | 6 | one 2N7000-class N-MOSFET Q1 with its drain on the bus; S4 *LET GO · PULL* on its gate; R5 4.7 kΩ pull-up on S6 *OFF · ON* | `D2-010-06-open-drain` |
 | `two-outputs` | 8 | Q1 and Q2 on one bus (S4, S5), R5 on; `outputs: push-pull` swaps both for push-pull logic outputs (the FAULT) | `D2-010-08-two-outputs` |
 
-Declared `params` (each with its default, its range and its words): `config`; `connection` (`direct` | `divider`);
+Declared `params` (each with its default, its range and its words): `config`; `connection` (`open` | `direct` | `divider`; default `open`, P2);
 `dividerOrder` (`normal` | `swapped`); `pinPull` (`up` | `off` | `down`); `meter` (`on` | `parked`); `button`
 (`absent` | `released` | `pressed`); `gate1`, `gate2` (`let-go` | `pull`); `pullUp` (`off` | `on`); `outputs`
 (`open-drain` | `push-pull`); `mcuLoad` (A, default 0.050); `leakage` (A, default 0.4 × 10⁻⁹); the model constants of §8.
@@ -144,16 +156,16 @@ the schematic.
 | **`bb`** | 400-point solderless breadboard, 2.54 mm pitch, two power-rail pairs | DINKIT's `breadboard` | top view at 1 mm = 4 px · — |
 | **`mcu-board`** | The course's 3.3 V MCU board (unbranded): USB 5 V in, an on-board 3.3 V regulator, a 3.3 V MCU, header pins *5V*, *3V3*, *GND*, *IO* (silkscreen) | the course's board (D1·010 `ldr-chain` style) | board top view, its pins wired to the breadboard's rails and rows · — |
 | **`rail`** | The MCU's **3.3 V rail** (V2): the board's regulator | **3.300 V**, held: the regulator sources current only | — · IEC voltage source *3.3 V rail* |
-| **`mcu-load`** | **The MCU's own draw** from the rail | **50 mA**, a model value (P3), drawn as a constant current; F1: it is what absorbs the clamp current | — · IEC current source *MCU 50 mA*, inside the chip outline |
+| **`mcu-load`** | **The MCU's own draw** from the rail | **50 mA**, a model value (P3, decided: labelled *"MCU draw: a model value"*), drawn as a constant current; F1: it is what absorbs the clamp current | — · IEC current source *MCU 50 mA*, inside the chip outline |
 | **`pin`** | The **GPIO** pin (header *IO*), the node the card is about | its level V_pin, computed (§8) | header pin, magnified · node dot on the chip outline, *GPIO* |
 | **`d-up`** | **Protection (clamp) diode, pin → V_DD**, inside the MCU | modelled as a **1N4148, typical (SPICE) model**: I_S 2.52 nA, n 1.752, R_S 0.568 Ω (F1, §8) | — (inside the chip) · IEC diode, anode at the pin, cathode at V_DD |
 | `d-down` | Protection diode, ground → pin, inside the MCU | the same model; conducts only below 0 V (never in these cards) | — · IEC diode, drawn faint |
 | **`in-buf`** | The input buffer | V_IL 0.25 · V_DD = **0.825 V**, V_IH 0.75 · V_DD = **2.475 V**; leakage **0.4 nA** (model, ≤ 50 nA max) (§8) | — · IEC buffer (rectangle with *1*), its output to *reads* |
 | **`mod5`** | **5 V sensor module** (our design, unbranded): a small board 32 × 14 mm, 3-pin header *VCC GND OUT* (silkscreen) | powered from the board's *5V* pin (USB 5 V); its output a 5 V CMOS stage | board top view at 1 mm = 4 px · a dashed outline *5 V module* |
-| **`v1`** | **The module's 5 V output stage, HIGH** (V1) | **5.000 V** (the USB rail, held; P5) | — · IEC voltage source *5 V* |
+| **`v1`** | **The module's 5 V output stage, HIGH** (V1) | **5.000 V** (the USB rail, held, no control; P5, decided) | — · IEC voltage source *5 V* |
 | **`r1`** | **The module output's own resistance** (R1) | **47 Ω** (the PLAN; plausibility §8) | — · IEC resistor *R1 47 Ω (the output's own)*, inside the module outline |
 | **`r2`**, **`r3`** | **The divider**: R2 10 kΩ (top), R3 20 kΩ (bottom), 1 % metal film, 0.25 W, axial | E24 values; 6.3 mm bodies (DINKIT's `axialResistor`) | on the breadboard · IEC resistors *R2 10 kΩ*, *R3 20 kΩ* |
-| **`s1`** | **Slide switch DIRECT · DIVIDER** (SPDT, breadboard pins) | the bench's own control (memory `controls-built-into-the-hardware`) | slide switch on the breadboard · IEC change-over switch *S1* |
+| **`s1`** | **Slide switch OPEN · DIRECT · DIVIDER** (three positions, breadboard pins; P2, decided): the module's OUT to nothing, to the pin, or to the divider's top | the bench's own control (memory `controls-built-into-the-hardware`) | slide switch on the breadboard · IEC three-position switch *S1* |
 | **`s2`** | **Slide switch NORMAL · SWAPPED** (DPDT): exchanges R2 and R3 | Explore only: the FAULT (§9); precedent: D1·010's divider swap switch on the sensor board | slide switch · IEC two-pole change-over *S2* |
 | **`dmm`** | **The course's handheld meter** (DINKIT's `dmm`): 3½ digits (1999 counts), DC volts, **20 V range** (10 mV a count), **10 MΩ input**, ±(0.5 % + 3) | the course's handheld (D1·020 cards 3–8; `handheld-meter` library: *"Input impedance: 10 MΩ on every DC range"*) | the meter at 1 mm = 4 px, its red clip on the pin's row, black on GND · IEC voltmeter (circle *V*) with its *10 MΩ* drawn as a resistor in a dashed box |
 | `gnd` | Ground | ideal (labelled) | the breadboard's − rail · IEC earth |
@@ -162,19 +174,19 @@ the schematic.
 
 **Meet the parts** (s0, B3), one line each, cued as p1 names them: *5 V module — its OUT drives 0 or 5 V* · *3.3 V MCU — its
 GPIO is not designed to tolerate 5 V* · *clamp diode — inside the chip, from the pin to its own 3.3 V rail* · *3.3 V rail —
-the MCU's supply; the MCU's own 50 mA draw* · *S1 — DIRECT or through the divider* · *meter — on the pin, 20 V range*.
+the MCU's supply; the MCU's own 50 mA draw* · *S1 — OPEN for now; DIRECT, or through the divider* · *meter — on the pin, 20 V range*.
 
 **Values beside their element** (B14, B16; C20), mono, with units (≤ 4 significant figures, D6.14):
 
 | Chip | Where | Values through the run |
 |---|---|---|
-| The meter's LCD | on the meter (bench) | **4.03** · **3.33** (· **1.66** in Explore, FAULT); its last digit wanders a count at times (memory `instruments-read-live`) |
-| Pin level on the gauge | beside the gauge's marker | 4.033 V · 3.326 V (· 1.663 V) |
+| The meter's LCD | on the meter (bench) | **0.00** (s0, open) · **4.03** · **3.33** (· **1.66** in Explore, FAULT); its last digit wanders a count at times (memory `instruments-read-live`) |
+| Pin level on the gauge | beside the gauge's marker | 4 mV (s0: the meter's 10 MΩ its only path) · 4.033 V · 3.326 V (· 1.663 V) |
 | *above its rail by* | beside the gauge, only when V_pin > 3.3 V | 0.73 V |
 | Clamp diode current | beside `d-up` | **20.6 mA** · ≈ **2 nA** (· 0) |
 | Rail currents | beside `rail` and `mcu-load` | *regulator 29.4 mA · clamp 20.6 mA · MCU 50 mA* (direct); *regulator 50.0 mA · clamp 0 · MCU 50 mA* (divider) |
 | Module output current | beside `r1` | 20.6 mA · 0.167 mA |
-| *the input reads* | under the gauge | HIGH (with the pin above its rail) · HIGH (· not guaranteed: HIGH or LOW) |
+| *the input reads* | under the gauge | LOW (s0) · HIGH (with the pin above its rail) · HIGH (· not guaranteed: HIGH or LOW) |
 
 **The run log** (one row per settled state, kept): *connection · pin (meter) · clamp current · reads*. Rows: *direct · 4.03 V
 · 20.6 mA · HIGH, pin above its rail*; *divider 10 k / 20 k · 3.33 V · ≈ 2 nA · HIGH*; in Explore *swapped 20 k / 10 k ·
@@ -232,9 +244,10 @@ the module, the meter).
 | 1 | `s1-direct` | p2 *"If we connect the sensor output directly to the microcontroller's digital pin, the voltage may be too high and could damage the input."* | Wired directly, the pin rises past its rail until the clamp diode conducts: the pin sits at 4.03 V, 0.73 V above its own 3.3 V supply, and 20.6 mA flows through the diode into the rail. | *4.03 V, 0.73 V above the rail · 20.6 mA into the rail* | Next; framing *Schematic* |
 | 2 | `s2-divider` | p3 *"We can achieve this using discrete components such as resistors, diodes or transistors…"* | Through the 10 kΩ over 20 kΩ divider the pin sits at 3.33 V, below its rail: the diode carries about 2 nA, and the input still reads HIGH. | *3.33 V · ≈ 2 nA · reads HIGH* | Next; framing *Whole* (the bench is done) |
 
-s0's *"Nothing is connected yet"* needs S1 to have a third, open position, or the module's lead parked: **Proposal P2**
-(recommended: S1 is a three-position slide switch *OPEN · DIRECT · DIVIDER*, s0 at *OPEN*, so the first frame does not show
-the answer, memory `views-arrive-at-first-frame`).
+s0's *"Nothing is connected yet"*: **decided (P2, round two)**, S1 is a three-position slide switch *OPEN · DIRECT ·
+DIVIDER* and s0 stands at *OPEN*, so the first frame does not show the poe's answer (memory `views-arrive-at-first-frame`).
+At *OPEN* the meter's 10 MΩ is the pin's only path: the pin sits at 0.4 nA × 10 MΩ = 4 mV (meter **0.00**, *reads* LOW, no
+current), which is card 5's lesson met early and true; card 3's stage says nothing more about it.
 
 ### 4b. Motion, cues and stills per step
 
@@ -300,10 +313,10 @@ states only*, *Schematic not to scale; bench 1 mm = 4 px*.
 - **7b. Prediction points on the bench**: none beyond the poe.
 - **7c. After the reveal**: the poe's explain (in Scope and on the presenter's strip). In Study, done = the poe answered and
   the three steps seen.
-- **7d. Teacher tip** (**Proposal**, P6): *Learners read 4.03 V as "a strong HIGH" and the 3.33 V as "weaker". Ask: what is
+- **7d. Teacher tip** (decided, P6): *Learners read 4.03 V as "a strong HIGH" and the 3.33 V as "weaker". Ask: what is
   the pin's own supply, and where does current go when a pin sits above it?*
 - **7e. Explore** (C37, after s2): S1 (three positions) and S2 (the FAULT, §9); the log fills as they are tried. No other
-  variable on the wall; in Study, `mcuLoad` stays hidden (P3).
+  variable on the wall; in Study, `mcuLoad` stays hidden (P3) except in §9's item 1 (P4, decided).
 
 ## 8. Faithfulness (the quality bar)
 
@@ -317,6 +330,7 @@ absorbs the clamp current, F1).
 
 | State | V_pin (with the meter) | V_pin (without) | I_D (clamp) | Module current | Meter (20 V range) | Reads |
 |---|---|---|---|---|---|---|
+| open (s0, P2) | **4.0 mV** (0.4 nA leakage × 10 MΩ) | no DC path: undefined (card 5) | −2.52 nA (reverse) | 0 | **0.00** | LOW (held by the meter) |
 | direct | **4.0326 V** | 4.0326 V | **20.58 mA** | 20.58 mA | **4.03** | HIGH, 0.733 V above the rail |
 | divider 10 k / 20 k | **3.3259 V** | 3.3281 V | **1.94 nA** | 0.1666 mA | **3.33** | HIGH (> 2.475 V) |
 | swapped 20 k / 10 k (FAULT) | **1.6630 V** | 1.6641 V | −2.52 nA (reverse: the diode's I_S) | 0.1665 mA | **1.66** | not guaranteed (0.825 < V < 2.475) |
@@ -383,11 +397,12 @@ the wrap-up), never on the wall's guided pass (the Flow does not speak it): pin 
 between HIGH and LOW irregularly, below 1 Hz (B8), labelled *illustrative: a pin held between the thresholds may read either,
 and change*.
 
-Non-ideal effects the real thing shows (**Proposal**, P4; for Study or later cards, not the lecture):
+Non-ideal effects the real thing shows (**decided**, P4: item 1 in Study as described, items 2–3 in the Parts card's words;
+never on the wall):
 1. **No MCU load**: in deep sleep an MCU draws microamps; the 20.6 mA then has nowhere to go and lifts the whole 3.3 V rail
    (the regulator cannot sink), over-volting every part on it. Shown in Study with `mcuLoad` at 0.01 mA: the rail chip turns
    rose and the stage says *"the rail rises: nothing on it absorbs the clamp current"* (no rail voltage computed: it depends
-   on what else is on the rail; P4).
+   on what else is on the rail).
 2. **Mid-band input current**: a CMOS input held between its thresholds partly turns on both its transistors and draws extra
    supply current (design-dependent; named in words only).
 3. **The divider's speed**: the divider's 6.7 kΩ source resistance and the pin's few pF slow the edges (≈ 6.7 kΩ × 5 pF ≈
@@ -411,7 +426,7 @@ Non-ideal effects the real thing shows (**Proposal**, P4; for Study or later car
 |---|---|---|---|
 | The bench top view at 1 mm = 4 px: the 400-point breadboard (DINKIT), the course's 3.3 V MCU board (`ldr-chain` style), the 5 V module (32 × 14 mm, unbranded), the slide switches, the divider, the jumpers, the course's handheld (DINKIT `dmm`) | the Benches lane's 2D drawing (SVG or its kits) | the Benches lane, from §3 | to make |
 | The IEC schematic (chip outline, clamp diodes, buffer, gauge) and its US set | the same | the Benches lane | to make |
-| `logic-io` scene library: parts, the model of §8 (one node solver for all configurations), the gauge, the chips, the run log, the switches, `params`, words `{en, fr}` | Animation Bench library in `C:\ExSightory\src\exsight-benches\benches\animation\libraries\logic-io\` | the Benches lane | to request by crossing (draft written, U019) |
+| `logic-io` scene library: parts, the model of §8 (one node solver for all configurations), the gauge, the chips, the run log, the switches, `params`, words `{en, fr}` | Animation Bench library in `C:\ExSightory\src\exsight-benches\benches\animation\libraries\logic-io\` | the Benches lane | to request by crossing (final 2026-10-20, U019; raised by the lead) |
 | The card's sequence `d2-010-level-shifting`: the three stops of §4a | sequence library | the Benches lane | with the above |
 
 **Reuse first** (memory `reuse-done-scenes`), in `C:\ExSightory\src\exsight-benches\benches\animation\libraries\`: DINKIT's
@@ -442,11 +457,10 @@ the Electronics Bench's (deferred). Charge dots and glows are the bench's, never
 
 ## 13. Stand-in for the lecture
 
-The live run (10–12 Oct 2026) is past; the stand-in is for the published course until the library lands. **Proposed (P8 a):
-none**: the card plays from its words, and its poe carries the question and its explain (*"some 21 mA"*), as D1·050's
-Electronics cards do; nothing is made that the library would replace. (b) The U019 brief's card-3 schematic as a still
-Figure (ours, three states as named parts): it shows the numbers but not the bench, and would be a second drawing of the
-same circuit (memory `reuse-done-scenes`): not recommended.
+The live run (10–12 Oct 2026) is past; the stand-in is for the published course until the library lands. **Decided (P8 a,
+round two): none**: the card plays from its words, and its poe carries the question and its explain (*"some 21 mA"*), as
+D1·050's Electronics cards do; nothing is made that the library would replace. (The option not taken: the U019 brief's
+card-3 schematic as a still Figure, a second drawing of the same circuit, memory `reuse-done-scenes`.)
 
 ## 14. Findings for the owner
 
@@ -454,37 +468,53 @@ No **accuracy** finding in card 3's text (A1–A7 run on 2026-10-20 against the 
 statement, PLAN SHOW / Drive / Look for / Status, the poe and its explain, the FAULT, Flow p0–p3; §8). F1 and F5 are applied
 and re-checked (4.033 V, 20.6 mA; 3.326 V, 1.9 nA; 1.663 V).
 
-New proposals (each a question; nothing here is pre-decided):
+The proposals of round one, **all decided 2026-10-20 in round two** (each kept as it was put; the decision marked):
 
-- **P1 — Proposal: the bench beside the schematic.** Options: **(a)** the bench top view (breadboard, the course's MCU
+- **P1 — Proposal: the bench beside the schematic.** **Decided: (a).** Options: **(a)** the bench top view (breadboard, the course's MCU
   board, the 5 V module, the meter) at 1 mm = 4 px, linked to the IEC schematic with the chip outline and the gauge, as D1·090
   card 4's decided P1 (**recommended**: the switches the owner's rule puts on the hardware, and the meter, are seen on a real
   bench; the clamp diode is inside the chip, so the schematic is needed too); (b) the schematic alone, as the U019 brief
   drew it, the switches as IEC switches on it.
-- **P2 — Proposal: a first frame that does not answer.** Options: **(a)** S1 a three-position slide switch *OPEN · DIRECT ·
+- **P2 — Proposal: a first frame that does not answer.** **Decided: (a).** Options: **(a)** S1 a three-position slide switch *OPEN · DIRECT ·
   DIVIDER*, s0 at *OPEN* (meter 0.00, the pin's marker at 0 V) (**recommended**, memory `views-arrive-at-first-frame`); (b)
   s0 already direct (the poe's answer on the stage before the reveal step: not recommended).
-- **P3 — Proposal: the MCU's draw, 50 mA.** A model value large enough to absorb the clamp current (F1). Options: **(a)** 50
+- **P3 — Proposal: the MCU's draw, 50 mA.** **Decided: (a).** A model value large enough to absorb the clamp current (F1). Options: **(a)** 50
   mA, a constant current inside the chip outline, labelled *"MCU draw: a model value"*, the regulator supplying 29.4 mA
   (**recommended**); (b) unlabelled; (c) a different value (any above 20.6 mA gives the same pin and diode values).
 - **P4 — Proposal: the non-ideal cases of §9** (no MCU load lifting the rail; mid-band current; the divider's speed) for
   Study only, not on the wall. Take (**recommended**: item 1 in Study as described, items 2–3 in the Parts card's words), or
-  none?
+  none? **Decided: take, as recommended.**
 - **P5 — Proposal: V1 held at 5.000 V.** The board's USB 5 V varies by ±5 % (4.75–5.25 V); the card does not need it.
-  Options: **(a)** held at 5.000 V, no control (**recommended**); (b) an Explore control for the USB voltage.
-- **P6 — Proposal: the teacher tip (§7d).** Take it (**recommended**) or not?
-- **P7 — Proposal: a demo cue in the Flow.** The Flow has no `[[demo]]` cue; the bench lands on p2 and p3 (§4a) from the
+  Options: **(a)** held at 5.000 V, no control (**recommended**); (b) an Explore control for the USB voltage. **Decided: (a).**
+- **P6 — Proposal: the teacher tip (§7d).** Take it (**recommended**) or not? **Decided: taken.**
+- **P7 — Proposal: a demo cue in the Flow.** **Decided: (a)**, the Flow unchanged. The Flow has no `[[demo]]` cue; the bench lands on p2 and p3 (§4a) from the
   presenter's press. Options: **(a)** leave the Flow as it is; the presenter's strip carries the step titles (**recommended**:
   the stops already fall on the Flow's own clauses); (b) add *"[[demo]] Animation Bench: the 5 V output wired straight to a
   3.3 V pin, then through a divider."* at the start of p2 (a Flow edit, the owner's).
-- **P8 — Proposal: the stand-in** (§13). **(a)** none (**recommended**); (b) the brief's schematic as a still.
-- **Reported**: the card counts 2.5 min (1.5 on the bench); the module is ≈ 31.6 of 30 min (D5, the owner cuts if needed).
-  Nothing is cut.
+- **P8 — Proposal: the stand-in** (§13). **(a)** none (**recommended**); (b) the brief's schematic as a still. **Decided: (a).**
+- **Reported**: the card counts 2.5 min (1.5 on the bench), unchanged in round two; the module was ≈ 31.6 of 30 min at round
+  one, ≈ 0.15 min more after round two's edits to cards 2, 4 and 10 (§2; card 7's §2b carries it) (D5, the owner cuts if
+  needed). Nothing is cut.
 
 Decided 2026-10-20 (owner: *"apply all recommendations"* on the U019 brief): D1 (an Animation Bench demonstration by Benches,
 one scene library for cards 3, 5, 6, 8, one crossing), F1 (the rail carries the MCU's load; the Look for as quoted; the
 typical SPICE 1N4148 model), F5 (*"about 1.66 V"*), N1 (*"a 3.3 V microcontroller"*), N2 (no demo numbers); N3 and D2–D5
 belong to other cards.
+
+**Decided 2026-10-20, round two (owner: *"apply all recommendations"*):** P1 (a) the bench top view beside the linked IEC
+schematic; P2 (a) S1 *OPEN · DIRECT · DIVIDER*, s0 at *OPEN*; P3 (a) the MCU's 50 mA drawn as a constant current, labelled
+*"MCU draw: a model value"*; P4 the non-ideal cases in Study only (item 1 as described, items 2–3 in words); P5 (a) V1 held
+at 5.000 V; P6 the teacher tip; P7 (a) no demo cue added (the Flow unchanged); P8 (a) no stand-in. Applied in §1, §3, §4a,
+§7, §9 and §13. **Accuracy re-run on what changed** (A1–A7, Node, 2026-10-20, `nums.mjs` in the session scratchpad): the new
+*OPEN* state, 0.4 nA × 10 MΩ = 4.0 mV, meter 0.00, *reads* LOW (true: the meter holds the pin, card 5's mechanism, and
+no current); direct 4.0326 V, 20.58 mA, 0.733 V above the rail, regulator 29.42 mA, R1 19.9 mW, diode 15.1 mW; divider
+3.3259 V (3.3281 V without the meter), 1.94 nA, 0.1666 mA; swapped 1.6630 V (1.6641 V without); the poe's estimate
+(5 − 3.3 − 0.7) / 47 = 21.28 mA: all as before, to the digit. The Flow (175 words) and the PLAN of card 3 did not change in
+round two. **Nothing is open on this card**; the spec is **spec-ready**. Ours, not blocking: R1 47 Ω's plausibility against
+a named 5 V CMOS datasheet (§8) is still to be confirmed when Benches builds (no learner-facing number depends on it beyond
+R1's own label).
+
+**Raised 2026-10-20:** crossing **516** (the `logic-io` library, cards 3, 5, 6, 8; `C:\ExSightory\lanes\pbl2026-x\.claude\crossing\open\516-pbl2026-to-benches-d2-010-logic-io-one-scene-library-for-cards-3-5-6-8.request.md`, raised and pushed 2026-10-20, open).
 
 ## 15. Acceptance: how we know it is built right
 
@@ -502,7 +532,7 @@ belong to other cards.
 - IEC symbols by default; the Symbols switch redraws the schematic at every step; EN | FR swaps every word of §3c without a
   reload, numbers and silkscreen unchanged.
 - B1 one change per press; B2 only S1, the marker, the meter's digits and the chips change; B3 s0 still and labelled, S1
-  open; B4 three stills and the log; B5 each `say` on the strip and read in Scope; B6 the paired cue at s1 and s2; B7 one
+  at *OPEN* (P2), meter 0.00; B4 three stills and the log; B5 each `say` on the strip and read in Scope; B6 the paired cue at s1 and s2; B7 one
   mover at a time; B8 nothing flashes (the FAULT's toggling below 1 Hz); B9 the poe before s0, the reveal at s1–s2; B10 the
   explain; B11 Explore after s2; B12 the wall's switches not operable; B13 no Flow on the stage; B14 values beside their
   elements; B15 bench and schematic met before anything switches; B16 every state readable as numbers; B17 the log keeps
@@ -521,6 +551,6 @@ belong to other cards.
   visualization: the meter alone says "4.03, a HIGH"; the gauge's rail line, the *above its rail* chip and the diode's
   current show the harm in the same moment (cause and effect lit together) ✓; (5) consistency: one library, one palette, one
   meter and one gauge for cards 3, 5, 6, 8; the Look for, the explain, the FAULT and the U019 brief agree to the digit; the
-  PLAN's Electronics wording and the absent demo cue named (P7), not changed ✓; (6) design: one breadboard style (DINKIT),
+  PLAN's Electronics wording named and kept, and no demo cue added (P7, decided) ✓; (6) design: one breadboard style (DINKIT),
   the crowded places named with their checks (§10), French drafted for every label; no departure from ExSight's design rules
   (every value ≤ 4 significant figures). No accuracy finding in the owner's text; nothing in it was edited.

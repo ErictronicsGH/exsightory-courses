@@ -3,14 +3,14 @@ id: D2-010-05-floating-input
 card: "What does a floating input read?"
 module: notes/Day02/010-digital-interfaces/en.md
 bench: Animation                  # D1, decided 2026-10-20: an Animation Bench demonstration built by the Benches lane on one crossing
-library: "logic-io (the scene library designed in D2-010-03-level-shifting §3), loaded with params `config: floating-input` by this card's sequence `d2-010-floating-input`; asked of the Benches lane by the same crossing as cards 3, 6, 8 (draft: crossing-d2-010-logic-io.request.md)"
+library: "logic-io (the scene library designed in D2-010-03-level-shifting §3), loaded with params `config: floating-input` by this card's sequence `d2-010-floating-input`; asked of the Benches lane by the same crossing as cards 3, 6, 8 (crossing-d2-010-logic-io.request.md, final 2026-10-20; its id assigned when it is raised)"
 dimensions: 2D
-stand_in: "none proposed (P6): the card plays from its words and its poe until the library lands; the PLAN's Electronics widget stays deferred"
+stand_in: "none (P6 a, decided 2026-10-20): the card plays from its words and its poe until the library lands; the PLAN's Electronics widget stays deferred"
 optional_benches: [Electronics]   # the PLAN's SHOW (deferred: the Electronics Bench is in development)
 real_thing: "a GPIO of the course's unbranded 3.3 V MCU board with nothing connected, on a 400-point breadboard; the course's handheld meter (10 MΩ) clipped on, then a 10 kΩ resistor to 3.3 V, then to ground; the input's thresholds 0.25 and 0.75 of V_DD; drawn beside its IEC 60617 schematic"
 minutes: 1.7                      # on the bench (§2)
 card_minutes: 2.7                 # the whole card, the poe's answer window included (§2)
-status: spec-draft                # D1, F2, N2 applied; **F6 (accuracy) open**; proposals P1–P7 open
+status: spec-ready                # D1, F2, N2 applied; F6 (accuracy) decided and applied 2026-10-20; P1–P6 decided (round two: all recommendations); P7 reported only (the owner's voice, no recommendation); nothing open
 learner_action: poe
 predictions: [s0-meet]            # the poe is asked over s0 (the Flow's p1), answered at s1
 seeds: []
@@ -26,22 +26,31 @@ layout, parts, colours, symbols, words and model are designed in **`D2-010-03-le
 card 3*); this spec adds only the `floating-input` configuration. The U019 brief's card-5 drawing (`draw5()`, `lvl5()`) is the
 approved model.
 
+**Round two, 2026-10-20** (the U019 brief's *Specs: round two*; owner: *"apply all recommendations"*): **F6** takes its
+recommended wording, now in en.md's Look for (*"Swap in another 10 MΩ meter and it still reads 0 V: the meter is the
+pull-down."*), so the library may offer a meter swap **between 10 MΩ handhelds only**; P1–P6 take their recommended options:
+the bench beside the schematic (P1), the meter parked until s2 as the Flow says (P2), the FAULT's field case in words in Study
+(P3), the teacher tip and a Study-only prediction at s2 (P4), p0's cue now *"[[demo]] Animation Bench — …"* (P5, applied by
+the lead), no stand-in (P6). P7 (one phrase twice) had no recommendation and stays **reported**, not decided.
+
 ## 1. What the room must understand
 
 - **Statement** (verbatim): *A floating input is undefined, not low. An input pin must be pulled to a known level.*
 - **SHOW** (verbatim from the PLAN): *Electronics — a logic input (the pin node) with nothing driving it and a DMM on it; then
   R1 10 kΩ to 3.3 V as a pull-up; then R1 moved to ground as a pull-down.* The PLAN names the Electronics Bench (written before
-  D1); the target is the Animation Bench (D1). The Flow's p0 cue still names the Electronics Bench (P5).
+  D1); the target is the Animation Bench (D1). The Flow's p0 cue now names it: *"[[demo]] Animation Bench — a logic input
+  with nothing connected to it."* (P5, decided and applied 2026-10-20).
 - **Drive** (verbatim): *floating → pull-up → pull-down.*
 - **Look for** (verbatim): *the floating node has no source at all; the DMM reads 0 V on it only because the meter's own input
-  resistance is the one thing connecting it to anything (Day 1's insertion error). Swap the meter profile and it still reads
-  0 V: the meter is the pull-down.* (The second sentence is **F6**, §14.)
+  resistance is the one thing connecting it to anything (Day 1's insertion error). Swap in another 10 MΩ meter and it still
+  reads 0 V: the meter is the pull-down.* (The second sentence is **F6**'s decided wording, applied 2026-10-20, §14.)
 - **Status** (verbatim): *needs Electronics: logic-input part (V_IL/V_IH bands, leakage, an "undefined" state for a node with
   no DC path) · today the DMM-only version runs on existing parts.* The `logic-io` gauge (§3 of card 3) carries the bands, the
   leakage and the *not guaranteed* state in the Animation library.
 - **Decided by the owner, 2026-10-20** (applied here): **D1**; **F2** p3 *"With nothing connected, nothing holds the pin at any
   level: it may sit between a guaranteed low and a guaranteed high, or drift to either, and it can change while you watch."*;
-  **N2** p0 *"[[demo]] Electronics Bench — …"* without its old number.
+  **N2** p0's cue without its old number. **Round two** (2026-10-20, *"apply all recommendations"*): **F6** (a), the Look for
+  above; **P1–P6** as recommended (§14), P5 the cue now *"[[demo]] Animation Bench — …"*; P7 reported only.
 - **Insight**: *an input with nothing connected has no defined voltage; whatever touches it (leakage, a finger, the meter)
   decides it, so a meter's steady 0 V is the meter's, not the pin's; a pull-up or a pull-down gives the pin a source and a
   level.*
@@ -56,11 +65,13 @@ approved model.
 ## 2. Time
 
 The card's Flow, counted from en.md on 2026-10-20 (words ÷ 130 wpm; cue tags not counted; the em dash counted as the
-caller's count does): **217 words**, of which p0 (11) is a stage direction; **206 spoken = 1.58 min**.
+caller's count does): **217 words**, of which p0 (11) is a stage direction; **206 spoken = 1.58 min**. Recounted after round
+two (2026-10-20): still 217; p0's cue changed *Electronics* for *Animation*, one word for one, and is a stage direction, not
+counted in the spoken minutes. The minutes stand.
 
 | # | Paragraph (first words) | Words |
 |---|---|---|
-| p0 | *"[[demo]] Electronics Bench — a logic input with nothing connected to it."* (stage direction) | 11 |
+| p0 | *"[[demo]] Animation Bench — a logic input with nothing connected to it."* (stage direction) | 11 |
 | p1 | *"[[ask]] Nothing is driving this pin. What level does it read…"* | 15 |
 | p2 | *"[[pause]]"* (the poe's answer window) | — |
 | p3 | *"[[reveal]] It reads neither, reliably. With nothing connected…"* | 36 |
@@ -84,7 +95,8 @@ caller's count does): **217 words**, of which p0 (11) is a stage direction; **20
 | **On the bench** (s0 to the end of p7, the answer window excluded) | **1.7** | 1.73 |
 | **Card total** | **2.7** | 2.73 |
 
-**Module check**: see `D2-010-07-choosing-the-pull-up.md` §2b (2,643 words, 20.3 min of Flow; ≈ 31.6 of 30 min, D5, reported).
+**Module check**: see `D2-010-07-choosing-the-pull-up.md` §2b (2,643 words, 20.3 min of Flow at round one; ≈ 31.6 of 30 min,
+D5, reported); after round two's edits to cards 2, 4 and 10 the Flow is 2,663 words (20.5 min), `D2-010-03` §2.
 
 ## 3. The scene: `logic-io`, `config: floating-input`
 
@@ -97,6 +109,7 @@ What this configuration puts on the breadboard:
 | `r4` | **R1 10 kΩ** (labelled as the PLAN names it), 1 % metal film, 0.25 W, axial | E24 | on the breadboard, one lead in the pin's row, the other on S3's common · IEC resistor *R1 10 kΩ* |
 | `s3` | **Slide switch UP · OFF · DOWN** (SP3T): R1's free end to the + rail (3.3 V), open, or the − rail (ground) | the bench's own control (memory `controls-built-into-the-hardware`): the real gesture is moving R1's lead from one rail to the other; a switch keeps it one press | slide switch · IEC three-position switch *S3* |
 | `dmm` | The course's handheld (§3c of card 3), 20 V range, 10 MΩ | its **red clip is the meter's control**: *parked* (on its lead, off the board) or *on the pin's row*; black clip on GND throughout | the meter, its clip moving · IEC voltmeter with its 10 MΩ to ground, drawn faint while parked |
+| `dmm2` | **A second handheld, for the Look for's swap** (Explore only; F6, decided): 3½ digits, **10 MΩ on DC volts**, ±(0.5 % + 2), on its **20 V range** (the budget class the course already uses: D1·010 card 1's `dmm-budget` values); unbranded | `meter: course` \| `other-10M`, a Study control *Swap the meter*; **no meter of any other input resistance is offered** (F6: a 10 GΩ meter would not read 0 V) | a second handheld at 1 mm = 4 px in a different case colour (Benches draws it, or DINKIT's own second meter if one exists) · the same IEC voltmeter, its *10 MΩ* |
 | `sw1` | **Push button** (6 × 6 mm tactile, breadboard pins), pin to ground | Explore only: the FAULT (§9) | the button · IEC push-button (make) contact *SW1* |
 
 **Meet the parts** (s0, B3), cued as p0 appears: *GPIO — a 3.3 V MCU's input, nothing connected* · *the input reads — LOW below
@@ -120,6 +133,7 @@ What this configuration puts on the breadboard:
 |---|---|
 | *what holds the pin* · nothing · *the meter's 10 MΩ: it is the pull-down* | *ce qui tient la broche* · rien · *les 10 MΩ du multimètre : c'est lui le tirage vers le bas* |
 | pull-up · pull-down · parked | résistance de tirage vers le haut · vers le bas · rangé |
+| *Swap the meter* · *another 10 MΩ meter* | *Changer de multimètre* · *un autre multimètre 10 MΩ* |
 | *no defined value* | *aucune valeur définie* |
 | *Illustrative: nothing holds the pin, so it may sit, drift to either rail, or change* | *Illustratif : rien ne tient la broche ; elle peut rester, dériver vers un rail, ou changer* |
 | *Leakage: a model value (0.4 nA, within the datasheet's 50 nA)* | *Fuite : valeur de modèle (0.4 nA, sous les 50 nA de la fiche technique)* |
@@ -140,8 +154,8 @@ and S3, for s2–s4).
 | 4 | `s4-pull-down` | p6 *"Move the resistor to ground as a pull-down, and the pin goes low and stays there."*; held under p7 | S3 moves R1 to ground: the pin is held at 0 V and reads LOW. Each state is in the log. | *R1 10 kΩ to ground · 0.00 V · LOW* | Next (the bench is done); framing *Whole* |
 
 The PLAN's SHOW has *"a DMM on it"* from the start; the Flow puts the meter on at p5 (*"Put a multimeter on that pin"*). The
-stops follow the Flow (memory `animation-follows-the-flow`): the meter is parked until s2, so s1 can show the pin floating,
-which a clipped-on meter would prevent (**P2**).
+stops follow the Flow (memory `animation-follows-the-flow`): **decided (P2, round two)**, the meter is parked until s2, so s1
+can show the pin floating, which a clipped-on meter would prevent.
 
 ### 4b. Motion, cues and stills per step
 
@@ -156,19 +170,20 @@ which a clipped-on meter would prevent (**P2**).
 ## 5. Pacing and interaction, by surface and view
 
 As **§5 of card 3**, with these controls: in View after s4 (Explore, C37), **S3** (*UP · OFF · DOWN*), **the meter's red
-clip** (*parked · on the pin*) and **SW1** (press and hold), all on the hardware itself; every chip, the gauge, the meter
+clip** (*parked · on the pin*), **SW1** (press and hold), all on the hardware itself, and *Swap the meter* (the course's
+handheld or `dmm2`, both 10 MΩ; F6): at every state the two read the same (0.00 on the floating pin); every chip, the gauge, the meter
 and the log follow. The library has no transport of its own.
 
 - **Presenter's strip**: the next step's title and "what changes"; the teacher tip (§7d); → ← R.
 - **Study Mode and Scope**: the five steps learner-paced; the poe answered before s1 (the reveal waits, B9); Explore after s4,
   with the FAULT (§9).
 - **Phone**: as card 3; the gauge on top (it carries this card), the bench below.
-- **Locked**: the clip, S3 and SW1 during the guided pass in Study and Scope.
+- **Locked**: the clip, S3, SW1 and the meter swap during the guided pass in Study and Scope.
 
 ## 6. The frame
 
 As **§6 of card 3**; Parts' *Selected item*: *GPIO* with its level (*no defined value* at s1), or *Meter* with **0.00 V**.
-Explore: S3, the clip, SW1. Identity bar: *What does a floating input read? · Holding · step n of 5*. Legend card adds
+Explore: S3, the clip, SW1, the meter swap. Identity bar: *What does a floating input read? · Holding · step n of 5*. Legend card adds
 *Illustrative: nothing holds the pin…* and *Leakage: a model value…*.
 
 ## 7. Thinking, not watching
@@ -180,12 +195,13 @@ Explore: S3, the clip, SW1. Identity bar: *What does a floating input read? · H
   finger nearby, or the meter you connect, decide it instead. depth: understand practice: constructing explanations.* It
   fires at **p1, over s0** (the Flow's *[[ask]]*); its answer window is p2; **s1 is its reveal** (the gauge's band and the
   wander), s3–s4 the PLAN's *"the pull-up, then the pull-down, settle it"*.
-- **7b. Prediction points on the bench**: the poe at s0 (above). **Proposal P4** (Study and Scope only): at s2, *"The meter
+- **7b. Prediction points on the bench**: the poe at s0 (above). **Decided (P4)**, Study and Scope only: at s2, *"The meter
   goes on the floating pin. What will it read?"* (0 V · 3.3 V · it will wander · half the supply); not on the wall.
 - **7c. After the reveal**: the explain. In Study, done = the poe answered and the five steps seen.
-- **7d. Teacher tip** (**Proposal**, P4): *Learners trust the meter's 0.00 V as "the pin is low". Ask: before the meter was
+- **7d. Teacher tip** (decided, P4): *Learners trust the meter's 0.00 V as "the pin is low". Ask: before the meter was
   clipped on, what connected the pin to ground?*
-- **7e. Explore** (C37, after s4): S3, the clip, SW1; the log fills as they are tried.
+- **7e. Explore** (C37, after s4): S3, the clip, SW1 and the meter swap (two 10 MΩ handhelds, F6); the log fills as they are
+  tried.
 
 ## 8. Faithfulness (the quality bar)
 
@@ -218,11 +234,20 @@ from V_DD into the pin; R_m = 10 MΩ (meter, when clipped on); R1 = 10 kΩ to 3.
   loaded a divider with a 10 MΩ meter (4.762 V against 5 V); here the same 10 MΩ is the only load and sets the level: the
   same mechanism ✓. Card 6's released bus without a pull-up is *"exactly like the input we just met"* (card 6 p3): card 6's
   spec shows it with the same gauge and wander (`D2-010-06-open-drain` P2). The FAULT agrees with p3 (F2, decided).
-- **The PLAN's Look for, second sentence** (A2, A6): **F6**, §14: *"Swap the meter profile and it still reads 0 V"* holds only
+- **The PLAN's Look for, second sentence** (A2, A3, A6; **F6, decided and applied 2026-10-20**). The sentence now reads *"Swap
+  in another 10 MΩ meter and it still reads 0 V: the meter is the pull-down."* Re-checked in Node: the floating pin with either
+  10 MΩ handheld sits at 0.4 nA × 10 MΩ = **4.0 mV**, which the course's handheld shows as **0.00** on its 20 V range (10 mV a
+  count) and `dmm2` shows as **0.00** on its 20 V range ✓; the two meters' pull-up readings agree too (3.2967 V → 3.30). Both
+  meters are held on the 20 V range, the course's handheld's range in all four cards: on a 2 V range the same pin would show
+  0.004, on a 200 mV range 4.0 mV (still the meter as the pull-down, the Look for's point, but not *"0 V"* to the digit), so
+  the library offers no range change on this card. At the datasheet's maximum leakage (50 nA) both would read 0.50 V (still
+  LOW): p5's *"it reads 0 V"* and the Look for both rest on the model's leakage, which the stage labels (*Leakage: a model
+  value…*). The swap offers **10 MΩ handhelds only**; nothing on the stage or in this spec offers a high-impedance meter. The
+  finding as it was raised (kept): the old wording, *"Swap the meter profile and it still reads 0 V"*, held only
   for meters of about 10 MΩ; with Studio's own bench-meter profile (`dmm-bench.partprofile`: `r_in_v_mode` **10 GΩ** on ≤ 10 V
   DC) the same 0.4 nA gives 0.4 nA × 10 GΩ = **4 V**, above the rail: the leakage, not the meter, then sets the level (the pin
   clamps near its rail). The meter decides the reading in both cases, but the claim *"it still reads 0 V"* is false for a
-  high-impedance meter.
+  high-impedance meter. Hence the decided wording.
 
 **Section D, Animation rows**
 - [x] Mechanism at every stop: a node with no DC path; a resistive load as the only path (Ohm's law); pull resistors.
@@ -232,8 +257,8 @@ from V_DD into the pin; R_m = 10 MΩ (meter, when clipped on); R1 = 10 kΩ to 3.
   (*Thresholds…*, *Schematic not to scale…*).
 
 **A1–A8**: A1 ✓; A2 ✓ (leakage, the meter's load, the FAULT; §9); A3 ✓ (the course's handheld, unbranded board); A4 ✓ (the
-meter's 10 MΩ and 20 V range); A5 ✓ (no time shown; the wander labelled); A6 ✓; A7: **F6 open** (the Look for's swap
-sentence); otherwise ✓; A8 ✓.
+meter's 10 MΩ and 20 V range); A5 ✓ (no time shown; the wander labelled); A6 ✓; A7 ✓ (**F6 decided and applied**, the Look for
+re-checked above); A8 ✓.
 
 ## 9. Faults and non-ideal behaviour
 
@@ -242,9 +267,9 @@ field.* On this library: Explore (Study, Scope, the labs and the wrap-up), not t
 it): S3 *OFF*, the meter parked, SW1 present. **Released**: the marker drifts up and settles near the rail, *reads HIGH*
 (the bench case, from the model's leakage toward V_DD); **pressed**: 0 V, LOW. The field case is named in words on the stage,
 not simulated: *"in the field, a long wire picks up hum and interference: the same released button can read either"*
-(**Proposal** P3: a 50 Hz-coupled wander in Study, labelled illustrative).
+(**decided**, P3: the field case in words, in Study; no 50 Hz-coupled wander is built).
 
-Non-ideal effects named (**Proposal**, P3, Study only): the leakage's sign and size vary by part and with temperature (≤ 50 nA
+Non-ideal effects named (**decided**, P3; Study only, in the Parts cards): the leakage's sign and size vary by part and with temperature (≤ 50 nA
 at the limits); MCUs offer internal pull-ups (tens of kΩ) that do the same job as R1 (a line in R1's Parts card).
 
 ## 10. Accessibility, legibility and print
@@ -257,7 +282,7 @@ the log.
 
 | Asset | Format | Made by | Status |
 |---|---|---|---|
-| `floating-input` configuration of `logic-io` (R1, S3, the meter's clip as a control, SW1, the wander) | in the `logic-io` library | the Benches lane | to request by crossing (the same crossing as cards 3, 6, 8) |
+| `floating-input` configuration of `logic-io` (R1, S3, the meter's clip as a control, SW1, the wander, the second 10 MΩ handheld `dmm2` for Explore's swap) | in the `logic-io` library | the Benches lane | to request by crossing (the same crossing as cards 3, 6, 8) |
 | The card's sequence `d2-010-floating-input`: the five stops of §4a | sequence library | the Benches lane | with the above |
 
 **Reuse first**: everything in `logic-io` (card 3's §11 list: DINKIT's breadboard, `dmm`, `axialResistor`, the course's
@@ -273,12 +298,12 @@ identical). Moving current: **none** on this card (0.4 nA and 0.33 µA are not d
 
 ## 13. Stand-in for the lecture
 
-**Proposed (P6 a): none**: the card plays from its words and its poe. (b) Not recommended: a still cannot show a pin with no
-value.
+**Decided (P6 a, round two): none**: the card plays from its words and its poe. (The option not taken: a still, which cannot
+show a pin with no value.)
 
 ## 14. Findings for the owner
 
-- **F6 — accuracy** (register **D2·010-F6**; card 5, PLAN Look for, second sentence: *"Swap the meter profile and
+- **F6 — accuracy, decided (a) and applied 2026-10-20** (register **D2·010-F6**; card 5, PLAN Look for, second sentence, as it read at round one: *"Swap the meter profile and
   it still reads 0 V: the meter is the pull-down."*). True for a meter of about 10 MΩ (every handheld's DC volts); false for a
   high-impedance meter: the Electronics Bench's own `dmm-bench` profile is 10 GΩ on ≤ 10 V DC, and a pin leaking 0.4 nA into
   10 GΩ would sit at 4 V, i.e. clamped near its rail, not at 0 V (at the datasheet's 50 nA, far more so). The sentence drives
@@ -286,29 +311,47 @@ value.
   still reads 0 V: the meter is the pull-down."* (**recommended**: true, and keeps the PLAN's point); (b) turn it into the
   contrast: *"Swap the 10 MΩ handheld for a 10 GΩ bench meter and the reading moves: whatever you connect decides it."* (true,
   but the 10 GΩ reading is leakage-set and cannot be given as one number; Study only); (c) drop the sentence. Until decided,
-  the library builds no meter swap; this finding is open and **blocks** the module (`course-accuracy.md` §2).
-- **P1 — Proposal: the bench beside the schematic**, as card 3's P1 (one decision for the library).
+  the library builds no meter swap; this finding is open and **blocks** the module (`course-accuracy.md` §2). **Decided:
+  (a)**; en.md's Look for now reads it (applied by the lead), re-checked in §8: no longer open, no longer blocking.
+- **P1 — Proposal: the bench beside the schematic**, as card 3's P1 (one decision for the library). **Decided: (a)**, as card 3.
 - **P2 — Proposal: the meter parked until s2.** The PLAN's SHOW has the DMM on the pin from the start; the Flow clips it on at
-  p5. Options: **(a)** follow the Flow: parked at s0–s1, clipped on at s2 (**recommended**: with the meter on, s1 could not
+  p5. **Decided: (a).** Options: **(a)** follow the Flow: parked at s0–s1, clipped on at s2 (**recommended**: with the meter on, s1 could not
   show a floating pin, and p3's reveal would be contradicted by the stage); (b) on from the start, as the PLAN, s1 then reading
   0.00 V.
 - **P3 — Proposal: the FAULT's field case and the non-ideal notes** (§9) in Study only. Take (**recommended**: the field case in
-  words, the leakage and internal-pull-up notes in the Parts cards), add the 50 Hz wander, or neither?
+  words, the leakage and internal-pull-up notes in the Parts cards), add the 50 Hz wander, or neither? **Decided: take, as
+  recommended** (no 50 Hz wander).
 - **P4 — Proposal: the teacher tip (§7d) and a Study-only prediction at s2.** Take both (**recommended**), the tip only, or
-  neither?
-- **P5 — Proposal: the Flow's demo cue.** p0 reads *"[[demo]] Electronics Bench — a logic input with nothing connected to
+  neither? **Decided: both.**
+- **P5 — Proposal: the Flow's demo cue.** p0 read (round one) *"[[demo]] Electronics Bench — a logic input with nothing connected to
   it."*: a stage direction, never on the wall; the bench is now the Animation Bench (D1). Options: **(a)** *"[[demo]] Animation
-  Bench — a logic input with nothing connected to it."* (**recommended**, as D1·090's P9 did); (b) keep.
-- **P6 — Proposal: the stand-in.** **(a)** none (**recommended**); (b) a still (not recommended).
+  Bench — a logic input with nothing connected to it."* (**recommended**, as D1·090's P9 did); (b) keep. **Decided: (a)**, applied to en.md by the lead.
+- **P6 — Proposal: the stand-in.** **(a)** none (**recommended**); (b) a still (not recommended). **Decided: (a).**
 - **P7 — Reported (style, not accuracy): one phrase twice.** p3 ends *"…and it can change while you watch."* (F2's decided
   wording) and p4 ends *"…will decide it, and it can change while you watch."*: the same clause in consecutive paragraphs. Both
-  are true. Options: (a) keep both; (b) the owner trims one (nothing is cut by me). No recommendation: it is the owner's voice.
-- **Reported**: 2.7 min (1.7 on the bench); the module ≈ 31.6 of 30 min (D5; `D2-010-07` §2b). Nothing is cut.
+  are true. Options: (a) keep both; (b) the owner trims one (nothing is cut by me). No recommendation: it is the owner's voice. **Still reported, not decided**: *"apply all
+  recommendations"* does not reach it; both clauses stand in en.md until the owner says otherwise. It does not block (it is not
+  an accuracy finding).
+- **Reported**: 2.7 min (1.7 on the bench), unchanged in round two; the module ≈ 31.6 of 30 min at round one, ≈ 0.15 min more
+  after round two's edits to cards 2, 4 and 10 (D5; `D2-010-07` §2b). Nothing is cut.
 
 Decided 2026-10-20 (owner: *"apply all recommendations"* on the U019 brief): D1 (an Animation Bench demonstration by Benches,
 one scene library for cards 3, 5, 6, 8, one crossing), F2 (p3: *"With nothing connected, nothing holds the pin at any level:
 it may sit between a guaranteed low and a guaranteed high, or drift to either, and it can change while you watch."*), N1 (no
 product name), N2 (no demo numbers in the cues).
+
+**Decided 2026-10-20, round two (owner: *"apply all recommendations"*):** F6 (a), the Look for's *"Swap in another 10 MΩ
+meter and it still reads 0 V: the meter is the pull-down."* (applied to en.md; the library's swap offers 10 MΩ handhelds
+only, §3, §5); P1 (a) the bench beside the schematic; P2 (a) the meter parked until s2; P3 the FAULT's field case in words and
+the non-ideal notes in Study, no 50 Hz wander; P4 the teacher tip and the Study-only prediction at s2; P5 (a) p0's cue *"[[demo]]
+Animation Bench — a logic input with nothing connected to it."* (applied to en.md); P6 (a) no stand-in. P7 stays reported (no
+recommendation). **Accuracy re-run on what changed** (A1–A7, Node, 2026-10-20, `nums.mjs` in the session scratchpad): the
+swap, 0.4 nA × 10 MΩ = 4.0 mV → 0.00 on the 20 V range on both handhelds (0.50 V at the 50 nA limit, still LOW); the pull-up
+3.2967 V → 3.30, the pull-down 4.0 µV → 0.00, the floating pin's 80 V/s, all as before; no sentence of this spec now implies a
+10 GΩ meter reads 0 V (the only 10 GΩ figure, 4 V, is the finding's own history). p0's cue: stage direction, 11 words before
+and after, so §2's minutes stand. **Nothing is open on this card**; the spec is **spec-ready**.
+
+**Raised 2026-10-20:** crossing **516** (the `logic-io` library, cards 3, 5, 6, 8; `C:\ExSightory\lanes\pbl2026-x\.claude\crossing\open\516-pbl2026-to-benches-d2-010-logic-io-one-scene-library-for-cards-3-5-6-8.request.md`, raised and pushed 2026-10-20, open).
 
 ## 15. Acceptance: how we know it is built right
 
@@ -319,7 +362,8 @@ product name), N2 (no demo numbers in the cues).
 - The levels are computed from the node (memory `input-drives-every-output`): in Explore, every S3 × clip × SW1 state gives its
   value; with `leakage` set to 50 nA the clipped meter reads 0.50; the wander is driven by the bench's clock (a replay
   identical) and appears only when the node has no DC path.
-- No meter swap is built until F6 is decided.
+- The meter swap (Explore) exchanges the course's handheld for `dmm2`, both 10 MΩ on their 20 V range, and offers no other
+  input resistance (F6, decided): at every state both show the same reading (0.00 on the floating pin, 3.30 with the pull-up).
 - B1 one change per press; B2 only the clip, S3 and the marker change; B3 s0 still; B4 five stills and the log; B5 each `say`;
   B6 the paired cue at s2–s4; B7 one mover; B8 nothing flashes (the wander's fastest component below 0.2 Hz); B9 the poe
   before the reveal; B10 the explain; B11 Explore after s4; B12 the wall's controls not operable; B13 no Flow on the stage; B14
@@ -329,9 +373,10 @@ product name), N2 (no demo numbers in the cues).
 - **Six gates (this spec)**: (1) realism: the course's board and handheld at one scale, R1 moved between the rails by a switch
   on the board, the meter's clip as the meter's control ✓; (2) science: a node with no DC path drawn as having no value
   (illustrative wander, labelled), the meter as the only path, leakage within the datasheet's limit; F6 found (a high-impedance
-  meter does not read 0 V) ✓; (3) maths: 4.0 mV, 0.50 V at the limit, 3.2967 V, 4.0 µV, 80 V/s recomputed; the meter's rounding
+  meter does not read 0 V), decided and applied: the swap is between 10 MΩ handhelds only ✓; (3) maths: 4.0 mV, 0.50 V at the limit, 3.2967 V, 4.0 µV, 80 V/s recomputed; the meter's rounding
   on its 20 V range stated ✓; (4) visualization: the wander stops the moment the meter clips on, which is the trap made
   visible; the gauge's bands carry *undefined, not low* ✓; (5) consistency: card 3's library, gauge, meter and palette; card 6's
   floating bus the same wander; D1·040's 10 MΩ and D1·030's floating pin agree; the PLAN's meter-from-start and the Flow's
-  meter-at-p5 named (P2), not changed ✓; (6) design: as card 3; no departure from ExSight's rules. **One accuracy finding (F6)
-  open in the owner's text; nothing in it was edited.**
+  meter-at-p5 reconciled by P2 (decided: the Flow's order), the PLAN's words kept ✓; (6) design: as card 3; no departure from ExSight's rules. One accuracy finding (F6) was
+  raised in the owner's text; the owner decided it and the lead applied it; it is re-checked here. Nothing else in the owner's
+  text was edited.

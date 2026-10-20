@@ -117,7 +117,8 @@ Two devices may both use digital signals and still disagree about:
 - **Word size** — whether the data is transferred as 8-bit, 12-bit, 16-bit, 24-bit words, etc.
 - **Protocol** — the rules governing how the devices communicate
 - **Framing** — how the beginning and end of a data transmission are identified
-- **Communication direction** — whether communication is one-way, two-way, or bidirectional
+- **Communication direction** — whether communication is one-way, two-way on separate lines, or two-way
+  on one shared line
 - **Electrical characteristics** — such as drive capability, pull-up requirements, impedance, and
   signal integrity
 
@@ -248,7 +249,8 @@ that information between the two devices. SPI commonly uses:
 - **MISO** — data from the peripheral to the controller
 - **CS/SS** — chip select
 
-It also defines communication details such as **clocking, timing, data sampling and bit ordering**.
+It also involves communication details such as **clocking, timing, data sampling and bit ordering**,
+which both devices must set the same way.
 
 This is why SPI is commonly referred to as a **serial communication interface**, and is sometimes
 loosely called a **protocol**. The important distinction is that an **interface** describes how
@@ -266,8 +268,8 @@ A floating input is undefined, not low. An input pin must be pulled to a known l
 SHOW     Electronics — a logic input (the pin node) with nothing driving it and a DMM on it; then R1 10 kΩ to
          3.3 V as a pull-up; then R1 moved to ground as a pull-down. Drive: floating → pull-up → pull-down.
          Look for: the floating node has no source at all; the DMM reads 0 V on it only because the meter's
-         own input resistance is the one thing connecting it to anything (Day 1's insertion error). Swap the
-         meter profile and it still reads 0 V: the meter is the pull-down.
+         own input resistance is the one thing connecting it to anything (Day 1's insertion error). Swap in
+         another 10 MΩ meter and it still reads 0 V: the meter is the pull-down.
          Status: needs Electronics: logic-input part (V_IL/V_IH bands, leakage, an "undefined" state for a
                  node with no DC path) · today the DMM-only version runs on existing parts
 ASK      poe (before the statement) — "Nothing is driving this pin. What level does it read?"
@@ -284,7 +286,7 @@ FAULT    A button input with its pull-up left off: reads HIGH on the bench every
 <!-- FILLED 2026-10-07: drafted from training-overview Day 3 Module 1; tutor to review -->
 
 ```flow
-[[demo]] Electronics Bench — a logic input with nothing connected to it.
+[[demo]] Animation Bench — a logic input with nothing connected to it.
 
 [[ask]] Nothing is driving this pin. What level does it read: high, low, or something else?
 
@@ -345,7 +347,7 @@ ANALOGY  A door on a spring: anyone holding it can pull it shut (LOW), and the s
 <!-- FILLED 2026-10-07: drafted from training-overview Day 3 Module 1; tutor to review -->
 
 ```flow
-[[demo]] Electronics Bench — an open-drain output, first with no pull-up.
+[[demo]] Animation Bench — an open-drain output, first with no pull-up.
 
 [[ask]] The output transistor has let go. What decides the voltage on the line now?
 
@@ -380,7 +382,8 @@ SHOW (centrepiece) Plot — the bus voltage after release, v = 3.3·(1 − 0.7·
          30 % crossing (I²C times the rise from 30 % to 70 %); sliders R
          (0.5–20 kΩ) and C (50–400 pF); horizontal markers at 0.3 and 0.7 of 3.3 V (I²C's rise-time
          thresholds); vertical markers at 300 ns (Fast-mode limit) and 1000 ns (Standard-mode limit).
-         Beside it an Equation: sink current = (3.3 V − 0.4 V)/R, with the 3 mA Fast-mode limit marked.
+         In the same frame, the sink current (3.3 V − 0.4 V)/R as a column against the 3 mA Fast-mode limit;
+         then, after the numeric, an Equation: sink current = (3.3 V − 0.4 V)/R, with the 3 mA limit marked.
          Drive: C = 200 pF throughout; R = 10 kΩ (30→70 % takes 1.69 µs, misses both limits) → 4.7 kΩ
          (0.80 µs, meets Standard, misses Fast) → 1.5 kΩ (254 ns, meets Fast, sinks 1.9 mA) → 820 Ω (139 ns,
          but sinks 3.5 mA, past what a Fast-mode output must guarantee).
@@ -391,7 +394,7 @@ ASK      poe (before the statement) — "Make the pull-up ten times smaller. Wha
          options: Edge 10× faster, sink current 10× larger | Edge faster, current unchanged | Edge
          unchanged, current larger | Edge slower, current smaller
          answer: Edge 10× faster, sink current 10× larger
-         reveal: R slider divided by ten on the Plot; the Equation's sink current multiplied by ten
+         reveal: R divided by ten on the Plot; the sink column ten times taller
          explain: The rise time is set by R·C and the low-level current by (3.3 − V_OL)/R, so one resistor
          sets both, in opposite directions.
          depth: understand    practice: developing models
@@ -414,7 +417,9 @@ FAULT    A 10 kΩ pull-up carried over from a 100 kHz design onto a 400 kHz bus:
 current the output has to sink when it pulls the line low?
 
 [[pause]]
+```
 
+```flow
 [[demo]] Plot Bench — sweep the pull-up value and watch the edge and the current together.
 
 [[reveal]] Both change, and in opposite directions.
@@ -429,15 +434,21 @@ But when the output pulls low, it has to sink the current through that same resi
 
 Let us put numbers on it. I²C measures the rise from 30 % to 70 % of the supply, which takes about
 0.85 × R × C. Fast mode, at 400 kHz, allows 300 ns, and its outputs only have to be able to sink 3 mA.
+```
 
+```flow
 [[ask]] With 200 pF of bus capacitance at 3.3 V, what is the largest pull-up that still meets 300 ns?
 
 [[pause]]
+```
 
+```flow
 300 ns divided by 0.85 × 200 pF is about 1.8 kΩ. And the 3 mA limit says no smaller than about
 1 kΩ. So the window is roughly 1 to 1.8 kΩ. A 10 kΩ pull-up copied from a slower design is far outside
 it: on this bus its edge would take about 1.7 µs.
+```
 
+```flow
 That is the trade: **a fast edge needs a small resistor, a weak driver needs a large one, and no value
 wins both.**
 ```
@@ -473,7 +484,7 @@ FAULT    One device with a push-pull output on the shared line drives HIGH while
 <!-- FILLED 2026-10-07: drafted from training-overview Day 3 Module 1; tutor to review -->
 
 ```flow
-[[demo]] Electronics Bench — two open-drain outputs sharing one pulled-up line.
+[[demo]] Animation Bench — two open-drain outputs sharing one pulled-up line.
 
 [[ask]] One output pulls low, the other lets go. What is the line?
 
@@ -605,9 +616,11 @@ on the benches.
 This is why a communication interface is both a **logical** and an **electrical** problem. The
 devices must not only agree on **what the bits mean and when they are transferred**; the electrical
 signals carrying those bits must also be suitable for both devices.
+```
 
-[[transition]] So far the code has come from the converter inside the microcontroller, and travelled
-a few millimetres. But what if that converter is not good enough for the signal? Then the converter
-itself moves out of the chip, and the bus we have just built becomes the road its codes travel on.
-That is a design choice, and it is the next stop.
+```flow
+[[transition]] So far, in the course's own example, the code has come from the converter inside the
+microcontroller, and travelled a few millimetres. But what if that converter is not good enough for the
+signal? Then the converter itself moves out of the chip, and the bus we have just built becomes the road
+its codes travel on. That is a design choice, and it is the next stop.
 ```

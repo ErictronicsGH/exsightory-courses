@@ -10,7 +10,7 @@ optional_benches: []
 real_thing: "an MCU with three peripherals of classes made in both SPI and I²C versions, wired each way as a schematic would draw them (IEC), the signal lines counted; supply and ground drawn once and not counted"
 minutes: 3.0                      # on the bench: from p2 (after the poll) to the card's end (§2)
 card_minutes: 4.0
-status: spec-draft                # D3 decided; the figure's details are proposals (F-c9-1 to F-c9-5)
+status: spec-ready                # D3 decided; round two decided 2026-10-20 (F-c9-1 to F-c9-5 at their recommended options, C9); nothing open; no Flow change, minutes unchanged
 learner_action: poll
 predictions: []                   # the PLAN's poll is the room's choice; nothing added
 seeds: [S50 (plant)]              # the PLAN's SEED; the figure keeps speeds off so S50's numbers arrive in D2·020
@@ -24,7 +24,10 @@ demonstration for the poll card. The PLAN gives it none. Proposed: the SPI and I
 lines against 2)"* → *"The wiring Figure"*) and **N1** (no product names). The brief page's `draw9`
 (`bench-work/previews/u019-preview.html`) is the approved model: MCU and *peripheral 1–3* on each side; *SPI: 6 lines (3
 shared + one CS each)*; *I²C: 2 lines + two pull-ups, addressed*. **Everything on this card beyond the PLAN's poll and seed is
-D3's (decided) or a Proposal of this spec**, each marked.
+D3's or round two's (both decided)**, each marked. **Round two decided 2026-10-20** (owner: *"apply all recommendations"* on
+the U019 brief's *Specs: round two*, C9: *"Take them"*): real device classes and addresses in place of the brief's
+*peripheral 1–3*, supply and ground drawn, the *3 + N* note, no speeds or pull-up values; every F-c9 item at its recommended
+option (§14).
 
 **What the Figure Bench offers**: as `D2-010-04-interface-not-protocol.md` (read 2026-10-20): `rect` features, colours,
 `label`/`note` `{en, fr}`, a mirrored `tour`, `reveal: on-tour`, `labels: numbers`, `spotlight: dim`, `zoom`.
@@ -74,24 +77,26 @@ Artboard **1600 × 900**, two panels **side by side**, each 780 × 860 (SPI x 0�
 x 800. IEC 60617 schematic style: ICs as rectangles with pin names inside; resistors as rectangles; a junction is a dot, a
 crossing without a dot is no connection; wires end in no arrowhead (the lines are buses; direction is card 4's). Unbranded
 (N1). In each panel the **MCU on the left** and the three peripherals stacked on the right, the classic bus drawing (cards
-2 and 4 are point-to-point and put the MCU on the right; F-c9-2).
+2 and 4 are point-to-point and put the MCU on the right; F-c9-2 (a), decided).
 
 **Wire colours** are part of the image (they are fixed meanings, not toured), the same hues as card 4's features: clock
-`violet`, data `teal`, select `azure`, MOSI `lime`; pull-ups `amber` (the HIGH's source, as the U019 brief's palette). The SVG
+`violet`, data `teal`, select `azure`, MOSI `lime`; pull-ups `amber` (the HIGH's source, as the U019 brief's palette). The tour's
+highlights keep to those meanings: the CS lines' region `azure`, the pull-ups' `amber`, and the addresses' `orange`, a hue no
+wire uses, so the addresses are not read as the clock (round two, our fix: the first draft had them `violet`). The SVG
 uses the course palette's values for those names, checked on both grounds (§12).
 
 | Panel | Element | What |
 |---|---|---|
 | SPI | MCU block, x 20–200, y 120–860 | *MCU*; six pins on its right edge, 90 units apart: SCLK, MOSI, MISO, CS1, CS2, CS3 |
-| SPI | three peripheral blocks, x 560–760: y 120–330, 385–595, 650–860 | *ADC*, *temperature sensor*, *EEPROM* (**Proposal**, F-c9-3); each with four pins (SCLK, MOSI, MISO, CS) on its left edge, unlabelled (the wire colour names them) |
+| SPI | three peripheral blocks, x 560–760: y 120–330, 385–595, 650–860 | *ADC*, *temperature sensor*, *EEPROM* (F-c9-3 (a), decided); each with four pins (SCLK, MOSI, MISO, CS) on its left edge, unlabelled (the wire colour names them) |
 | SPI | SCLK, MOSI, MISO | one vertical riser each (x 300, 340, 380) from the MCU's pins, with a junction dot and a stub to each peripheral: **3 shared lines** |
 | SPI | CS1, CS2, CS3 | one line each, MCU pin to one peripheral's CS: **3 lines, one per peripheral** |
-| SPI | note (**Proposal**, F-c9-4) | *each releases MISO while not selected* (role note, under the risers) |
+| SPI | note (F-c9-4 (a), decided) | *each releases MISO while not selected* (role note, under the risers) |
 | I²C | MCU block, x 840–1020, y 120–860 | *MCU*; two pins: SDA, SCL |
 | I²C | SDA, SCL | one riser each (x 1180, 1220) with a junction and a stub to each peripheral: **2 shared lines** |
 | I²C | two pull-ups | IEC resistors from a *3.3 V* rail (y 60) down to the SDA and SCL risers, `amber`; one label *pull-ups to 3.3 V* |
-| I²C | three peripheral blocks, x 1380–1580, as the SPI side | *ADC*, *temperature sensor*, *EEPROM*, each with its 7-bit address under its name: *1001000*, *1001001*, *1010000* (**Proposal**, F-c9-3) |
-| both | supply and ground | drawn once per panel as a rail and an IEC earth along the bottom, thin; caption: not counted |
+| I²C | three peripheral blocks, x 1380–1580, as the SPI side | *ADC*, *temperature sensor*, *EEPROM*, each with its 7-bit address under its name: *1001000*, *1001001*, *1010000* (F-c9-3 (a), decided) |
+| both | supply and ground | drawn once per panel as a rail and an IEC earth along the bottom, thin; caption: not counted (F-c9-4 (a), decided) |
 
 The exact routing (where a CS line meets a riser's stubs) is fixed on the render, which is the check: labels never cross a
 wire (`labels-never-cross`), every crossing is dot-free and every junction dotted.
@@ -103,7 +108,7 @@ wire (`labels-never-cross`), every crossing is dot-free and every junction dotte
 | `title` | EN *The same three devices: SPI or I²C* · FR *Les trois mêmes composants : SPI ou I²C* |
 | `image` | `figures/d2-010-spi-vs-i2c-wiring.svg` |
 | `alt` | EN *A microcontroller and three peripherals, an ADC, a temperature sensor and an EEPROM, wired two ways. With SPI, the clock and both data lines are shared and each peripheral has its own chip-select line: six signal lines. With I²C, two shared lines, data and clock, each pulled up to 3.3 V, and each peripheral answers to its own address: two signal lines.* · FR *Un microcontrôleur et trois périphériques, un CAN, un capteur de température et une EEPROM, câblés de deux façons. En SPI, l'horloge et les deux lignes de données sont partagées et chaque périphérique a sa propre ligne de sélection : six lignes de signal. En I²C, deux lignes partagées, données et horloge, chacune tirée à 3.3 V, et chaque périphérique répond à sa propre adresse : deux lignes de signal.* |
-| `caption` (**Proposal**, F-c9-4) | EN *Signal lines counted; supply and ground, needed by both, are not.* · FR *Lignes de signal comptées ; l'alimentation et la masse, nécessaires aux deux, ne le sont pas.* |
+| `caption` (F-c9-4 (a), decided) | EN *Signal lines counted; supply and ground, needed by both, are not.* · FR *Lignes de signal comptées ; l'alimentation et la masse, nécessaires aux deux, ne le sont pas.* |
 | `labels` | `numbers` (badges, names in the key) |
 | `reveal` | `on-tour` (the counts arrive with the Flow) |
 | `spotlight` | `dim` |
@@ -113,7 +118,7 @@ wire (`labels-never-cross`), every crossing is dot-free and every junction dotte
 | 1 | `spi-panel` | [0, 0, 0.4875, 1] | `azure` | *SPI: 6 signal lines (3 shared + one CS each)* · *SPI : 6 lignes de signal (3 partagées + une CS chacun)* | *SCLK, MOSI and MISO go to every peripheral; each also has its own chip select.* · *SCLK, MOSI et MISO vont à chaque périphérique ; chacun a aussi sa propre sélection.* |
 | 2 | `i2c-panel` | [0.5125, 0, 0.4875, 1] | `teal` | *I²C: 2 signal lines, shared* · *I²C : 2 lignes de signal, partagées* | *SDA and SCL go to every device.* · *SDA et SCL vont à chaque composant.* |
 | 3 | `spi-cs` | the three CS lines' region, [0.10, 0.50, 0.30, 0.25] (fixed on the render) | `azure` | *one CS per peripheral* · *une CS par périphérique* | *A fourth peripheral needs a seventh line: 3 + N lines for N peripherals.* · *Un quatrième périphérique demande une septième ligne : 3 + N lignes pour N périphériques.* |
-| 4 | `i2c-addresses` | the three address lines, [0.86, 0.10, 0.13, 0.85] | `violet` | *each device at its own 7-bit address* · *chaque composant à sa propre adresse de 7 bits* | *The controller names the device in every transfer; two devices may not share an address.* · *Le contrôleur nomme le composant à chaque transfert ; deux composants ne peuvent pas partager une adresse.* |
+| 4 | `i2c-addresses` | the three address lines, [0.86, 0.10, 0.13, 0.85] | `orange` | *each device at its own 7-bit address* · *chaque composant à sa propre adresse de 7 bits* | *The controller names the device in every transfer; two devices may not share an address.* · *Le contrôleur nomme le composant à chaque transfert ; deux composants ne peuvent pas partager une adresse.* |
 | 5 | `i2c-pullups` | the two resistors and the rail, [0.66, 0.02, 0.14, 0.20] | `amber` | *pull-ups: the HIGH on both lines* · *résistances de tirage : le niveau haut des deux lignes* | *Open-drain outputs and their pull-ups: cards 6 to 8.* · *Sorties à drain ouvert et leurs résistances de tirage : cartes 6 à 8.* |
 
 FR drafts ours, for the owner's review; numbers never translated.
@@ -121,14 +126,14 @@ FR drafts ours, for the owner's review; numbers never translated.
 **Meet the parts** (B3): s0, the whole figure: the same MCU and devices twice. The counts arrive at s1–s2.
 
 **Values beside their element**: the 7-bit addresses under the I²C devices; *3.3 V* on the pull-up rail; the counts in the
-key. **No speeds and no pull-up values** (F-c9-5): S50 brings the rates next module, and card 7 chose the pull-up.
+key. **No speeds and no pull-up values** (F-c9-5 (a), decided): S50 brings the rates next module, and card 7 chose the pull-up.
 
 **Colours and their second channel** (C4): every wire also by the MCU's pin name; the pull-ups by the IEC resistor shape and
 their label; the panels by the titles *SPI* and *I²C*.
 
 ## 4. The run: step by step, as the Flow goes
 
-### 4a. Steps (D3; each stop's placement a **Proposal**, F-c9-1)
+### 4a. Steps (D3; the stops' placement F-c9-1 (a), decided)
 
 | # | id (tour stop) | Flow paragraph (first words) | What changes (`say`) | Presenter's control |
 |---|---|---|---|---|
@@ -184,7 +189,7 @@ Five stills. Nothing moves.
   (there is no right answer), it prices the two choices.
 - **7b. Prediction point**: none added.
 - **7c. After**: the explain. In Study, done means the poll answered and the walk reached s5.
-- **7d. Teacher tip** — **Proposal** (F-c9-4), presenter only: *Expect "I²C, fewer wires". Ask: what does the ADC need? If it
+- **7d. Teacher tip** (F-c9-4 (a), decided), presenter only: *Expect "I²C, fewer wires". Ask: what does the ADC need? If it
   must stream readings fast with predictable timing, the extra lines buy that; if it is one of several slow sensors, two
   wires win. And three devices on I²C means three different addresses: the temperature sensor here was strapped to
   1001001 because the ADC's class already answers at 1001000. The rate question waits for the next module (S50).*
@@ -207,12 +212,14 @@ card says *device* and *peripheral*, which is consistent.
 (0x48–0x4B) by an address pin; digital temperature sensors of the LM75 class at 1001xxx (0x48–0x4F) by address pins; serial
 EEPROMs of the 24C class at 1010xxx (0x50–0x57). So the ADC at **1001000** (0x48), the sensor strapped to **1001001** (0x49)
 and the EEPROM at **1010000** (0x50) are a real, conflict-free set. The ADC's 1001000 is the address in card 8's byte
-(0x90 = 1001000 + the write bit, the U019 brief's `draw8b`): card 8's byte is then this MCU writing to this ADC (to keep
-when card 8's spec is written).
+(0x90 = 1001000 + the write bit, the U019 brief's `draw8b`): card 8's byte is then this MCU writing to this ADC. Card 8's
+spec keeps it (`D2-010-08-two-outputs.md` §3: the byte *1 0 0 1 0 0 0 0*, 0x90, *"a 7-bit address 1001000, 0x48, and the
+write bit 0"*; recomputed there and here: 0x48 shifted left one bit, plus W = 0, is 0x90 ✓).
 
 **SPI facts**: shared SCLK, MOSI, MISO and one CS per peripheral is the typical configuration (the Flow's own *"in a
-typical configuration"*; daisy-chaining exists and is not drawn); a deselected peripheral releases MISO (card 4 §8's
-sources). All three device classes exist in SPI and in I²C versions.
+typical configuration"*; daisy-chaining exists and is not drawn); a deselected peripheral releases MISO (card 4 §8: Motorola
+*SPI Block User Guide* S12SPIV2/D V02.07, §4.3, *"if SS is high (not selected), the serial data output pin is high
+impedance"*, confirmed 2026-10-20), which the note *each releases MISO while not selected* states. All three device classes exist in SPI and in I²C versions.
 
 **Section D, Figure rows**
 - [x] Our own drawing; nothing branded or redrawn.
@@ -228,6 +235,15 @@ requirements"* ✓; *"UART … does not provide the same shared-bus structure as
 many bits simultaneously … but it may require many physical signal lines"* ✓; A6 ✓ (*"may require"*, *"typical
 configuration"*, *"when its data rate is enough"* hedge correctly); A7 ✓ (sources above); A8 ✓. **No accuracy finding on
 this card.**
+
+**Round two re-checked (2026-10-20)** on what the decisions fix (no Flow change on this card): the three addresses are 7-bit,
+distinct, outside UM10204's reserved 0000 XXX and 1111 XXX (A1, A3 ✓) and inside their classes' ranges (A7 ✓); the ADC's
+matches card 8's byte (A4 ✓); *3 + N* gives 6 for three and 7 for four (A1 ✓); supply and ground drawn and not counted, as
+the caption says (A5 ✓); no rate or pull-up value on the figure, so S50's numbers still arrive in D2·020 and card 7's window
+is not restated (A4 ✓); card 2's bullet 8 (F10) now names *"two-way on separate lines, or two-way on one shared line"*,
+which this figure shows side by side (MISO and MOSI against SDA) without contradicting it (A4 ✓). Our own discrepancy found
+and fixed: the addresses' highlight was `violet`, the clock's hue on card 4 and on this figure's wires; now `orange` (§3a,
+§3b; gate 5). No finding.
 
 ## 9. Faults and non-ideal behaviour
 
@@ -268,31 +284,44 @@ None needed.
 
 ## 14. Findings for the owner
 
-No **accuracy** finding on this card (§8). Everything below is a **Proposal**, inside D3.
+No **accuracy** finding on this card (§8). Everything below was a **Proposal**, inside D3; round two decided each (the
+paragraph after the list).
 
 - **F-c9-1 — The stops' placement.** Options: (a) the figure up from p2 (after the poll), the SPI panel at p5, I²C at p6,
   and p9's three clauses each pointing at its cost (CS lines, addresses, pull-ups) (**recommended**: the figure follows the
-  Flow's own pairing); (b) two stops only, at p5 and p6; (c) the figure only at p9.
+  Flow's own pairing); (b) two stops only, at p5 and p6; (c) the figure only at p9. **Decided: (a).**
 - **F-c9-2 — MCU on the left here, on the right on cards 2 and 4.** A bus is drawn with the controller at one end and the
   devices along it; cards 2 and 4 are one link each, drawn in the path's direction. Options: (a) as specified, the classic
-  bus drawing (**recommended**); (b) MCU on the right here too, for one convention across the module.
+  bus drawing (**recommended**); (b) MCU on the right here too, for one convention across the module. **Decided: (a).**
 - **F-c9-3 — Named classes and real addresses.** The brief had *peripheral 1–3*. Options: (a) *ADC*, *temperature sensor*,
   *EEPROM* (classes made in both SPI and I²C versions), with the I²C addresses *1001000*, *1001001* (strapped), *1010000*,
   the ADC's matching card 8's byte (**recommended**: realism, and the poll's ADC is on the bus); (b) the classes, no
-  addresses (the *"addressed"* claim then unshown); (c) *peripheral 1–3*, as the brief.
+  addresses (the *"addressed"* claim then unshown); (c) *peripheral 1–3*, as the brief. **Decided: (a).**
 - **F-c9-4 — Proposals**: the caption (*signal lines counted; supply and ground … are not*), the note *each releases MISO
   while not selected*, the supply and ground drawn once, s3's note (*3 + N*), and the teacher tip (§7d). Options: (a) all
-  (**recommended**); (b) the caption and s3's note only; (c) none.
+  (**recommended**); (b) the caption and s3's note only; (c) none. **Decided: (a).**
 - **F-c9-5 — No speeds, no pull-up values on the figure.** Rates are S50's, in the next module, and the pull-up was card 7's
   choice. Options: (a) keep them off (**recommended**); (b) add Standard / Fast-mode rates and an SPI clock range (pre-empts
-  S50's *"comes back with numbers in the very next module"*).
+  S50's *"comes back with numbers in the very next module"*). **Decided: (a).**
 - **F-c9-6 — The card's time, 4.0 min** (3.0 on the bench), the module's longest; the chat follow-up may add ≈ 0.5.
-  Reported only.
+  Reported only (unchanged by round two: this card's Flow did not change).
 
 **Decided 2026-10-20 (owner: *"apply all recommendations"* on the U019 brief):** **D3** — card 9 gets the wiring Figure: the
 same MCU and three peripherals by SPI (6 lines) and by I²C (2 lines + two pull-ups, addressed), the cost counted in lines
 (this spec: `spi-vs-i2c-wiring`); **N1** — no product names on teaching surfaces (the devices are classes; the sources of the
-address ranges are cited in §8 only). F-c9-1 to F-c9-6 above are new and **open**.
+address ranges are cited in §8 only). F-c9-1 to F-c9-6 above were new and open after that round.
+
+**Decided 2026-10-20, round two (owner: *"apply all recommendations"* on the U019 brief's *Specs: round two*, C9: *"Take
+them"*):** **F-c9-1 (a)** — the figure up from p2, the SPI panel at p5, I²C at p6, and p9's three clauses each pointing at
+its cost (CS lines, addresses, pull-ups) (§4a); **F-c9-2 (a)** — the MCU on the left, the classic bus drawing (§3a);
+**F-c9-3 (a)** — *ADC*, *temperature sensor*, *EEPROM* in place of the brief's *peripheral 1–3*, at the I²C addresses
+*1001000* (matching card 8's byte, 0x90 with the write bit), *1001001* (strapped) and *1010000* (§3a, §8); **F-c9-4 (a)** —
+the caption *"Signal lines counted; supply and ground, needed by both, are not."*, the note *each releases MISO while not
+selected*, supply and ground drawn once per panel, s3's *3 + N* note and the teacher tip (§3a, §3b, §7d); **F-c9-5 (a)** — no
+speeds and no pull-up values on the figure, so S50's numbers still arrive in D2·020 (§3b); **F-c9-6** — the time, reported
+only. **Re-checked (A1–A7)** on what the decisions fix (§8): no finding; one discrepancy of ours fixed before sending (the
+addresses' highlight from `violet`, the clock's hue, to `orange`). **Nothing on this card is open**: the spec is
+**spec-ready**.
 
 ## 15. Acceptance: how we know it is built right
 
@@ -310,5 +339,6 @@ address ranges are cited in §8 only). F-c9-1 to F-c9-6 above are new and **open
   conflict-free real addresses, supply and ground drawn ✓; (2) science: the typical SPI bus with MISO released, I²C as
   UM10204 (shared bidirectional lines, pull-ups, unique 7-bit addresses outside the reserved ranges) ✓; (3) maths: 3 + N and
   2 recomputed (6, 7, 2) ✓; (4) visualization: one system wired twice, the cost counted and each side's price pointed at ✓;
-  (5) consistency: card 4's line colours, card 8's address, card 7's pull-ups, S50's numbers left to D2·020 ✓; (6) design:
+  (5) consistency: card 4's line colours (the addresses' highlight moved off the clock's `violet`, fixed), card 8's address
+  as its spec keeps it, card 7's pull-ups, card 2's bullet 8 as applied (F10), S50's numbers left to D2·020 ✓; (6) design:
   pin names at the floor by arithmetic, a `compare` of two full-width panels as the fallback, EN and FR ✓ on paper, to check on the render.

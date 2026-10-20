@@ -3,14 +3,14 @@ id: D2-010-06-open-drain
 card: "Open-drain: pull low or let go"
 module: notes/Day02/010-digital-interfaces/en.md
 bench: Animation                  # D1, decided 2026-10-20: an Animation Bench demonstration built by the Benches lane on one crossing
-library: "logic-io (the scene library designed in D2-010-03-level-shifting §3), loaded with params `config: open-drain` by this card's sequence `d2-010-open-drain`; asked of the Benches lane by the same crossing as cards 3, 5, 8 (draft: crossing-d2-010-logic-io.request.md)"
+library: "logic-io (the scene library designed in D2-010-03-level-shifting §3), loaded with params `config: open-drain` by this card's sequence `d2-010-open-drain`; asked of the Benches lane by the same crossing as cards 3, 5, 8 (crossing-d2-010-logic-io.request.md, final 2026-10-20; its id assigned when it is raised)"
 dimensions: 2D
-stand_in: "none proposed (P6): the card plays from its words, its poe and its analogy until the library lands; the PLAN's Electronics fixture `open-drain-bus` stays deferred"
+stand_in: "none (P6 a, decided 2026-10-20): the card plays from its words, its poe and its analogy until the library lands; the PLAN's Electronics fixture `open-drain-bus` stays deferred"
 optional_benches: [Electronics]   # the PLAN's SHOW (deferred: the Electronics Bench is in development)
 real_thing: "an open-drain output on a breadboard: a small-signal N-MOSFET in TO-92 (2N7000 class) with its source to ground, its drain on a bus wire to a GPIO of the course's unbranded 3.3 V MCU board (the receiver), its gate switched between 0 V and the board's 5 V; a 4.7 kΩ pull-up to 3.3 V switched in last; the course's handheld meter on the bus; drawn beside its IEC 60617 schematic"
 minutes: 1.6                      # on the bench (§2)
 card_minutes: 2.6                 # the whole card, the poe's answer window included; the analogy card not counted (§2)
-status: spec-draft                # D1, N2 applied; proposals P1–P7 open
+status: spec-ready                # D1, N2 applied; P1–P7 decided 2026-10-20 (round two: all recommendations) and applied; nothing open
 learner_action: poe
 predictions: [s1-let-go]          # the poe is asked over s1 (the Flow's p1), answered at s2
 seeds: [S14]                      # harvested at p6 (s5)
@@ -26,6 +26,13 @@ colours, symbols, meter, gauge and shared words are **`D2-010-03-level-shifting`
 (`D2-010-08-two-outputs`) adds a second output to this configuration. The U019 brief's card-6 drawing (`draw6()`) is the
 approved model.
 
+**Round two, 2026-10-20** (the U019 brief's *Specs: round two*; owner: *"apply all recommendations"*): P1–P7 take their
+recommended options, stated below as the design: s5's inset drawing the HIGH as *3.3 V behind 4.7 kΩ* for the harvest S14
+(P1); the meter parked until s3, the floating bus shown on the receiver's gauge (P2); the gate on a board switch *LET GO ·
+PULL* (P3); a 2N7000-class small-signal MOSFET, R_DS(on) 1.8 Ω typical, in place of the PLAN's `mosfet-typical` 5 A part
+(P4: the PLAN keeps its words; this spec states the departure, §1); p0's cue now *"[[demo]] Animation Bench — …"* (P5, applied
+by the lead); no stand-in (P6); the teacher tip and §9's notes in Study (P7).
+
 ## 1. What the room must understand
 
 - **Statement** (verbatim): *An open-drain output can only pull the line low or let it go, which is exactly why it needs a
@@ -33,14 +40,20 @@ approved model.
 - **SHOW** (verbatim from the PLAN): *Electronics — new fixture `open-drain-bus`: an N-MOSFET M1 (mosfet-typical) as the
   open-drain output, drain to the bus node, source to ground, gate from a second supply V2 (0 V or 5 V) standing in for the
   chip's internal driver; a DMM on the bus; pull-up R1 4.7 kΩ to 3.3 V added last.* The PLAN names the Electronics Bench
-  (written before D1); the target is the Animation Bench. The Flow's p0 cue still names the Electronics Bench (P5).
+  (written before D1); the target is the Animation Bench. The Flow's p0 cue now names it: *"[[demo]] Animation Bench — an
+  open-drain output, first with no pull-up."* (P5, decided and applied 2026-10-20).
+- **Departures from the PLAN's SHOW, decided (round two), the PLAN's words kept:** M1 is a **2N7000-class small-signal
+  N-MOSFET** (R_DS(on) 1.8 Ω typical), not `mosfet-typical` (a 5 A power MOSFET): the bus values are the same to the figures
+  shown (0.70 mA; the low level 1.3 mV against 32 µV, both 0.00 on the meter), but a 5 A part is not what drives a logic line
+  (P4, §8); the PLAN's *"gate from a second supply V2 (0 V or 5 V)"* is a slide switch *LET GO · PULL* tying the gate to ground
+  or the board's 5V pin (P3); *"a DMM on the bus"* is parked until s3 (P2).
 - **Drive** (verbatim): *V2 = 5 V (bus near 0 V) → V2 = 0 V with no R1 (nothing defines the bus) → add R1 (bus rises to 3.3 V)
   → V2 = 5 V again with the current overlay: 0.7 mA through R1 into M1.*
 - **Look for** (verbatim): *the transistor can only sink; the HIGH comes from R1 and nowhere else.*
 - **Status** (verbatim): *ready (fixture from existing parts; the floating state shows as the meter's 0 V until the
   logic-input part exists).* In the Animation library the floating state is shown on the receiver's gauge, as card 5 (P2).
-- **Decided by the owner, 2026-10-20** (applied here): **D1**; **N2** p0 *"[[demo]] Electronics Bench — …"* without its old
-  number.
+- **Decided by the owner, 2026-10-20** (applied here): **D1**; **N2** p0's cue without its old number. **Round two** (2026-10-20,
+  *"apply all recommendations"*): **P1–P7** as recommended (§14).
 - **Insight**: *an open-drain output has no HIGH of its own: on, it ties the line to ground; off, it is an open switch and the
   line floats; the pull-up is the only source of the HIGH, and its 4.7 kΩ is that HIGH's output impedance.*
 - **Kind of knowledge**: *a process through stages* (on, let go, pull-up added, on again) building *a model* (the HIGH's
@@ -54,11 +67,13 @@ approved model.
 ## 2. Time
 
 The card's Flow, counted from en.md on 2026-10-20 (words ÷ 130 wpm; cue tags not counted; the em dash counted): **197 words**,
-of which p0 (10) is a stage direction; **187 spoken = 1.44 min**.
+of which p0 (10) is a stage direction; **187 spoken = 1.44 min**. Recounted after round two (2026-10-20): still 197; p0's cue
+changed *Electronics* for *Animation*, one word for one, and is a stage direction, not counted in the spoken minutes. The
+minutes stand.
 
 | # | Paragraph (first words) | Words |
 |---|---|---|
-| p0 | *"[[demo]] Electronics Bench — an open-drain output, first with no pull-up."* (stage direction) | 10 |
+| p0 | *"[[demo]] Animation Bench — an open-drain output, first with no pull-up."* (stage direction) | 10 |
 | p1 | *"[[ask]] The output transistor has let go. What decides the voltage on the line now?"* | 14 |
 | p2 | *"[[pause]]"* | — |
 | p3 | *"[[reveal]] Nothing does. The transistor is either on…"* (2 + 21 + 14) | 37 |
@@ -83,7 +98,7 @@ of which p0 (10) is a stage direction; **187 spoken = 1.44 min**.
 | **Card total** | **2.6** | 2.60 |
 
 The ANALOGY is its own card (EAC: an `analogy` block gets a card); it has no Flow words and is not on the bench. **Module
-check**: see `D2-010-07-choosing-the-pull-up.md` §2b.
+check**: see `D2-010-07-choosing-the-pull-up.md` §2b (and `D2-010-03` §2 for the Flow's recount after round two).
 
 ## 3. The scene: `logic-io`, `config: open-drain`
 
@@ -93,13 +108,13 @@ the PLAN's designators (*M1*, *R1*) on this card.
 
 | id | Part | Value, and its source | Drawn as (bench · schematic) |
 |---|---|---|---|
-| `q1` | **M1, the open-drain output**: an N-channel enhancement MOSFET, small-signal, TO-92 (2N7000 class; P4) | **R_DS(on) 1.8 Ω** typical (5.3 Ω max) at V_GS 4.5 V, I_D 75 mA (onsemi 2N7000 / 2N7002 / NDS7002A datasheet, §8), modelled as 1.8 Ω with its gate at 5 V; off: open (its off-state leakage ≤ 1 µA at 48 V, ≈ 0 here) | TO-92 body (4.8 × 3.7 mm) on the breadboard, its three legs in three rows · IEC 60617 N-channel enhancement MOSFET (broken channel, arrow toward the channel), inside a dashed box *open-drain output (stands in for a chip's driver)* |
-| `s4` | **Slide switch LET GO · PULL** on M1's gate: the gate to ground or to the board's *5V* pin | the bench's own control (memory `controls-built-into-the-hardware`); P3 | slide switch · IEC change-over switch *S4*, its positions *let go* (0 V) and *pull* (5 V) |
+| `q1` | **M1, the open-drain output**: an N-channel enhancement MOSFET, small-signal, TO-92 (2N7000 class; P4, decided: a stated departure from the PLAN's `mosfet-typical`) | **R_DS(on) 1.8 Ω** typical (5.3 Ω max) at V_GS 4.5 V, I_D 75 mA (onsemi 2N7000 / 2N7002 / NDS7002A datasheet, §8), modelled as 1.8 Ω with its gate at 5 V; off: open (its off-state leakage ≤ 1 µA at 48 V, ≈ 0 here) | TO-92 body (4.8 × 3.7 mm) on the breadboard, its three legs in three rows · IEC 60617 N-channel enhancement MOSFET (broken channel, arrow toward the channel), inside a dashed box *open-drain output (stands in for a chip's driver)* |
+| `s4` | **Slide switch LET GO · PULL** on M1's gate: the gate to ground or to the board's *5V* pin | the bench's own control (memory `controls-built-into-the-hardware`); P3, decided | slide switch · IEC change-over switch *S4*, its positions *let go* (0 V) and *pull* (5 V) |
 | `bus` | **The bus**: a jumper wire from M1's drain row to the receiver's GPIO row (≈ 60 mm) | ideal wire (its capacitance is card 7's) | jumper (DINKIT `jumper`) · teal line *bus* |
 | `rx` | **The receiver**: a GPIO of the course's 3.3 V MCU board, its gauge (§3 of card 3) | V_IL 0.825 V, V_IH 2.475 V, leakage 0.4 nA (card 3, card 5) | the board's header pin · the chip outline with its buffer and *reads*; the gauge beside it |
 | `r5` | **R1, the pull-up**: 4.7 kΩ, 1 % metal film, 0.25 W, axial, from the bus to 3.3 V | E24; added last | on the breadboard · IEC resistor *R1 4.7 kΩ* (amber) |
 | `s6` | **Slide switch PULL-UP OFF · ON**: R1's top lead to the + rail or open | the bench's own control | slide switch · IEC switch *S6* |
-| `dmm` | The course's handheld (§3c of card 3), 20 V range, 10 MΩ; its red clip *parked* or *on the bus* | P2 | as card 5 |
+| `dmm` | The course's handheld (§3c of card 3), 20 V range, 10 MΩ; its red clip *parked* or *on the bus* | P2, decided: parked at s0–s2, clipped on at s3 | as card 5 |
 
 **Meet the parts** (s0, B3), cued as p0 appears: *M1 — an N-MOSFET: the open-drain output* · *S4 — its gate: let go (0 V) or
 pull (5 V)* · *bus — to the receiver's input* · *receiver — a 3.3 V MCU's input, its thresholds on the gauge* · *R1 4.7 kΩ — a
@@ -118,7 +133,7 @@ pull-up, switched off for now* · *meter — parked*.
 **The run log**: *gate · pull-up · bus · reads · current*. Rows: *pull · off · 0 V · LOW · 0*; *let go · off · floating · not
 guaranteed · 0*; *let go · on · 3.30 V · HIGH · 0*; *pull · on · 0.00 V · LOW · 0.70 mA*.
 
-**s5's inset: the HIGH as a source** (**Proposal** P1; the harvest's picture): beside the bus, the HIGH redrawn as its
+**s5's inset: the HIGH as a source** (**decided**, P1; the harvest's picture): beside the bus, the HIGH redrawn as its
 Thévenin equivalent, *3.3 V behind 4.7 kΩ* (an IEC voltage source and resistor), its loads hung on it: *the receiver's input*,
 *the meter 10 MΩ*, *the wire* (drawn as a capacitor, *its capacitance: card 7*), the bus's 3.298 V beside it. Drawn in the look
 of D1·040 card 4's Thévenin redraw (`D1-040-04-thevenin-redraw`, *1.65 V behind 5 kΩ with a load*), so the room sees Day 1's
@@ -189,7 +204,7 @@ Identity bar: *Open-drain: pull low or let go · Holding · step n of 6*. Legend
   V with no R1, then R1 added and the bus rising"*).
 - **7b. Prediction points on the bench**: the poe (above).
 - **7c. After the reveal**: the explain; in Study, done = the poe answered and the six steps seen.
-- **7d. Teacher tip** (**Proposal**, P7): *Learners think "output 1" means the output drives 3.3 V. Ask: with R1 removed and the
+- **7d. Teacher tip** (decided, P7): *Learners think "output 1" means the output drives 3.3 V. Ask: with R1 removed and the
   transistor off, where would a HIGH come from?*
 - **7e. Explore** (C37, after s5): S4, S6 and the clip.
 - **HARVEST S14** (verbatim): *"Yesterday: high in, low out; impedance decides who disturbs whom. Here is the same argument in a
@@ -222,7 +237,8 @@ receiver's leakage 0.4 nA (negligible at every state below).
 - **The MOSFET class (A7; P4).** 2N7000, onsemi datasheet *2N7000 / 2N7002 / NDS7002A* (formerly Fairchild): R_DS(on) 1.8 Ω typical, 5.3 Ω maximum at V_GS = 4.5 V,
   I_D = 75 mA (Diotec's 2N7000 gives 6 Ω max at the same point); V_GS(th) 0.8 / 2.1 / 3 V, so 5 V is well on and 0 V off; I_D(on) ≥ 75 mA at V_GS 4.5 V. At its 5 V gate it
   is at least as good. The PLAN's `mosfet-typical` (Studio's profile: R_DS(on) 45 mΩ at V_GS 10 V, I_D 5 A) is a power MOSFET;
-  the bus values do not change with it (0.7021 mA, 32 µV), but a 5 A part is not what drives a logic line (gate 1): P4. The
+  the bus values do not change with it (0.7021 mA, 32 µV), but a 5 A part is not what drives a logic line (gate 1): P4,
+  **decided** (a): the 2N7000 class; the PLAN's SHOW keeps its words and §1 states the departure. The
   BSS138 class (SOT-23; onsemi BSS138: 1.0 Ω typ, 6.0 Ω max at V_GS 4.5 V, 0.22 A) would give the same picture.
 - **"An open switch with no voltage of its own"** (p3, A5): the off MOSFET's channel conducts only its leakage (I_DSS ≤ 1 µA at
   V_DS = 48 V for the class; far less at 3.3 V): ✓, drawn as open.
@@ -231,7 +247,7 @@ receiver's leakage 0.4 nA (negligible at every state below).
   capacitance slows the edge (card 7's subject). *"High in, low out"*: 10 MΩ ≫ 4.7 kΩ, so the disturbance is small; it is the
   same law as D1·040 card 4's *1.65 V behind 5 kΩ* ✓.
 - **The Status's *"the meter's 0 V"*** (A6): with the meter on a released bus and no pull-up, it reads 0.00 because it is the
-  only path (card 5). The stops keep the meter parked until s3 so that p3's *"the line floats"* is what the stage shows (P2).
+  only path (card 5). The stops keep the meter parked until s3 so that p3's *"the line floats"* is what the stage shows (P2, decided).
 - **Cross-references (A4).** Card 5 (the wander, the gauge, the meter as the pull-down); card 7: at 4.7 kΩ its Equation gives
   (3.3 − 0.4) / 4.7 kΩ = **0.62 mA**, the current at I²C's maximum low level (V_OL 0.4 V), while this card shows **0.70 mA**
   at the transistor's actual 1.3 mV: both right under their stated conditions (card 7's Flow says *"3.3 V minus the 0.4 V low
@@ -253,7 +269,7 @@ the ANALOGY, Flow p0–p6); A8 ✓.
 **PLAN FAULT**: none on this card. Card 7's FAULT (a 10 kΩ pull-up on a 400 kHz bus) and card 8's (push-pull contention) live on
 those cards.
 
-Non-ideal effects the real thing shows (**Proposal**, P7; Study only): R_DS(on) spread (1.8 Ω typical to 5.3 Ω maximum: the low
+Non-ideal effects the real thing shows (**decided**, P7; Study only, in the Parts cards): R_DS(on) spread (1.8 Ω typical to 5.3 Ω maximum: the low
 level 1.3 to 3.7 mV, invisible on the meter); the gate's own charge (the MOSFET switches in nanoseconds, not shown); a real chip's
 open-drain output is its own internal transistor, with a stated V_OL at a stated sink current (card 7's 0.4 V at 3 mA).
 
@@ -282,40 +298,56 @@ receiver's input or the meter; nothing at the other stops (memories `circuit-eff
 
 ## 13. Stand-in for the lecture
 
-**Proposed (P6 a): none**: the card plays from its words, its poe and its analogy. (b) Not recommended: a still.
+**Decided (P6 a, round two): none**: the card plays from its words, its poe and its analogy. (The option not taken: a still.)
 
 ## 14. Findings for the owner
 
 No **accuracy** finding in card 6's text (A1–A7 run on 2026-10-20: statement, PLAN SHOW / Drive / Look for / Status, the poe and
 its explain, the HARVEST S14 against D1·040's seed, the ANALOGY, Flow p0–p6; §8).
 
-New proposals (each a question; nothing here is pre-decided):
+The proposals of round one, **all decided 2026-10-20 in round two** (each kept as it was put; the decision marked):
 
-- **P1 — Proposal: s5, the HIGH drawn as its source** (the inset, §3), at p6. Options: **(a)** take it (**recommended**: the
+- **P1 — Proposal: s5, the HIGH drawn as its source** (the inset, §3), at p6. **Decided: (a).** Options: **(a)** take it (**recommended**: the
   harvest says *"the pull-up is the source impedance of the HIGH"*; drawing it in D1·040's Thévenin look makes the
   cross-reference visible); (b) hold s4 under p6 (the harvest spoken over the circuit only).
-- **P2 — Proposal: the meter parked until s3, the floating bus on the receiver's gauge.** The PLAN has *"a DMM on the bus"*
+- **P2 — Proposal: the meter parked until s3, the floating bus on the receiver's gauge.** **Decided: (a).** The PLAN has *"a DMM on the bus"*
   throughout and the Status accepts *"the meter's 0 V"* for the floating state. Options: **(a)** the meter parked at s0–s2, the
   floating bus shown on the receiver's gauge with card 5's wander, the meter clipped on at s3 (**recommended**: with the meter on,
   the stage would show the meter, not *"nothing"*, setting the line, and p3's *"the line floats, exactly like the input we just
   met"* would be contradicted by card 5's own lesson); (b) the meter on throughout, s2 reading 0.00 with *"the meter's 10 MΩ is
   the only path"*, as the U019 brief drew it.
-- **P3 — Proposal: the gate's drive.** The PLAN's V2 is a second supply (0 V or 5 V). Options: **(a)** a slide switch *LET GO ·
+- **P3 — Proposal: the gate's drive.** **Decided: (a).** The PLAN's V2 is a second supply (0 V or 5 V). Options: **(a)** a slide switch *LET GO ·
   PULL* on the breadboard tying the gate to ground or to the board's *5V* pin (**recommended**: the control on the hardware, no
   second instrument on the bench); (b) a second bench supply as V2.
-- **P4 — Proposal: the MOSFET class.** Options: **(a)** a small-signal TO-92 N-MOSFET of the 2N7000 class, R_DS(on) 1.8 Ω typical
+- **P4 — Proposal: the MOSFET class.** **Decided: (a)**; the PLAN keeps its words, the spec states the departure (§1). Options: **(a)** a small-signal TO-92 N-MOSFET of the 2N7000 class, R_DS(on) 1.8 Ω typical
   (**recommended**: a part that really drives logic lines, breadboard-mounted); (b) a SOT-23 BSS138 class on an adapter (1.0 Ω
   typ); (c) the PLAN's `mosfet-typical` (a 5 A power MOSFET: same numbers, wrong object).
-- **P5 — Proposal: the Flow's demo cues.** p0 *"[[demo]] Electronics Bench — an open-drain output, first with no pull-up."* and
+- **P5 — Proposal: the Flow's demo cues.** **Decided: (a)**, applied to en.md by the lead. p0 read (round one) *"[[demo]] Electronics Bench — an open-drain output, first with no pull-up."* and
   p4's *"[[demo]] Now add…"* (unchanged). Options: **(a)** p0 → *"[[demo]] Animation Bench — an open-drain output, first with no
   pull-up."* (**recommended**, as D1·090's P9); (b) keep.
-- **P6 — Proposal: the stand-in.** **(a)** none (**recommended**); (b) a still.
+- **P6 — Proposal: the stand-in.** **(a)** none (**recommended**); (b) a still. **Decided: (a).**
 - **P7 — Proposal: the teacher tip (§7d) and §9's non-ideal notes** in Study (the Parts cards). Take both (**recommended**), the
-  tip only, or neither?
-- **Reported**: 2.6 min (1.6 on the bench), the analogy card besides; the module ≈ 31.6 of 30 min (D5; `D2-010-07` §2b). Nothing is cut.
+  tip only, or neither? **Decided: both.**
+- **Reported**: 2.6 min (1.6 on the bench), the analogy card besides, unchanged in round two; the module ≈ 31.6 of 30 min at
+  round one, ≈ 0.15 min more after round two's edits to cards 2, 4 and 10 (D5; `D2-010-07` §2b). Nothing is cut.
 
 Decided 2026-10-20 (owner: *"apply all recommendations"* on the U019 brief): D1 (an Animation Bench demonstration by Benches,
 one scene library for cards 3, 5, 6, 8, one crossing), N1 (no product name), N2 (no demo numbers in the cues).
+
+**Decided 2026-10-20, round two (owner: *"apply all recommendations"*):** P1 (a) s5's inset, the HIGH as *3.3 V behind
+4.7 kΩ* with its loads, in D1·040 card 4's Thévenin look; P2 (a) the meter parked at s0–s2, the floating bus on the
+receiver's gauge with card 5's wander, the meter clipped on at s3; P3 (a) the gate on the board switch *LET GO · PULL* (0 V or
+the board's 5V); P4 (a) a 2N7000-class TO-92 N-MOSFET, R_DS(on) 1.8 Ω typical, instead of the PLAN's `mosfet-typical` (a
+stated departure, the PLAN's words kept); P5 (a) p0's cue *"[[demo]] Animation Bench — an open-drain output, first with no
+pull-up."* (applied to en.md); P6 (a) no stand-in; P7 the teacher tip and §9's notes in Study. Applied in §1, §3, §4, §7, §9,
+§13. **Accuracy re-run on what changed** (A1–A7, Node, 2026-10-20, `nums.mjs` in the session scratchpad): with M1 at 1.8 Ω,
+3.3 / 4701.8 Ω = **0.7019 mA** (the Flow's *"about 0.7 mA through 4.7 kΩ"* ✓; 3.3 / 4.7 kΩ alone 0.7021 mA), the low level
+**1.263 mV** (3.72 mV at 5.3 Ω max; 32 µV with `mosfet-typical`: the meter 0.00 in every case), the released HIGH with the
+meter **3.2984 V** (1.55 mV below 3.3 V) → 3.30, the receiver's leakage 1.9 µV across 4.7 kΩ; card 7's (3.3 − 0.4) / 4.7 kΩ =
+0.617 mA reconciled as before. The S14 inset's *3.3 V behind 4.7 kΩ* is R1 itself (the off MOSFET carries no current), ✓.
+The Flow (197 words) changed only in p0's cue. **Nothing is open on this card**; the spec is **spec-ready**.
+
+**Raised 2026-10-20:** crossing **516** (the `logic-io` library, cards 3, 5, 6, 8; `C:\ExSightory\lanes\pbl2026-x\.claude\crossing\open\516-pbl2026-to-benches-d2-010-logic-io-one-scene-library-for-cards-3-5-6-8.request.md`, raised and pushed 2026-10-20, open).
 
 ## 15. Acceptance: how we know it is built right
 
@@ -335,5 +367,7 @@ one scene library for cards 3, 5, 6, 8, one crossing), N1 (no product name), N2 
   (3.7 at the maximum), 3.2984 V, 1.55 mV recomputed; card 7's 0.62 mA reconciled ✓; (4) visualization: the HIGH vanishes when
   the gate lets go, and appears with R1; the current flows only when M1 pulls against R1; the harvest drawn as Day 1's
   picture ✓; (5) consistency: card 5's gauge, wander and meter lesson; card 3's library and palette; D1·040's seed and Thévenin
-  look; the PLAN's meter-on-the-bus and the Flow's *"the line floats"* reconciled by P2, named, not changed ✓; (6) design: as
+  look; the PLAN's meter-on-the-bus and the Flow's *"the line floats"* reconciled by P2 (decided), and the PLAN's `mosfet-typical`
+  and second supply replaced by a small-signal class and a board switch (P4, P3, decided), each named as a departure with the
+  PLAN's words kept ✓; (6) design: as
   card 3; no departure from ExSight's rules. No accuracy finding in the owner's text; nothing in it was edited.

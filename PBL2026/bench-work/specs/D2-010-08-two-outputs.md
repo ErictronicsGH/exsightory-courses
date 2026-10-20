@@ -3,14 +3,14 @@ id: D2-010-08-two-outputs
 card: "Two outputs on one wire"
 module: notes/Day02/010-digital-interfaces/en.md
 bench: Animation                  # D1, decided 2026-10-20: an Animation Bench demonstration built by the Benches lane on one crossing; the PLAN's Draw and Figure are ours (D2)
-library: "sequence `d2-010-two-outputs`, four blocks, one at a time: A `logic-io` (`config: two-outputs`, Benches; designed in D2-010-03-level-shifting §3), B `wired-and` (the PLAN's Draw: ours, a Draw Bench drawing), C `i2c-byte-ack` (the PLAN's Figure: ours, an SVG), A′ `logic-io` again (`outputs: push-pull`, the FAULT); the Benches part asked by the same crossing as cards 3, 5, 6 (draft: crossing-d2-010-logic-io.request.md)"
+library: "sequence `d2-010-two-outputs`, four blocks, one at a time: A `logic-io` (`config: two-outputs`, Benches; designed in D2-010-03-level-shifting §3), B `wired-and` (the PLAN's Draw: ours, a Draw Bench drawing), C `i2c-byte-ack` (the PLAN's Figure: ours, an SVG), A′ `logic-io` again (`outputs: push-pull`, the FAULT); the Benches part asked by the same crossing as cards 3, 5, 6 (crossing-d2-010-logic-io.request.md, final 2026-10-20; its id assigned when it is raised)"
 dimensions: 2D
-stand_in: "blocks B and C play today on the Draw and Figure benches (ours); block A and A′ from the words (P7)"
+stand_in: "blocks B and C play today on the Draw and Figure benches (ours); blocks A and A′ from the words (P7 a, decided 2026-10-20)"
 optional_benches: [Electronics, Draw, Figure]   # the PLAN's SHOW: Electronics (deferred), then Draw, then Figure
 real_thing: "two small-signal N-MOSFET open-drain outputs (2N7000 class, TO-92) on one bus wire with a 4.7 kΩ pull-up to 3.3 V on a breadboard, the course's handheld meter on the bus, a 3.3 V MCU input as the receiver; one I²C byte as UM10204 defines it (data stable while SCL is HIGH, the ACK in the ninth clock); two push-pull 3.3 V logic outputs of the LVC class for the FAULT; drawn beside the IEC 60617 schematic"
 minutes: 1.9                      # on the bench, all four blocks (§2)
 card_minutes: 2.9                 # the whole card, the poe's answer window included (§2)
-status: spec-draft                # D1, D2, N2 applied; proposals P1–P8 open
+status: spec-ready                # D1, D2, N2 applied; P1–P8 decided 2026-10-20 (round two: all recommendations) and applied; C69 stated (§12: asked of Benches in the crossing; the design does not wait on it); nothing open
 learner_action: poe
 predictions: [a1-question]        # the poe is asked over a1 (the Flow's p1), answered at a2
 seeds: []
@@ -25,6 +25,14 @@ PLAN's Draw, the wired-AND construction, and Figure, the I²C byte with its ACK,
 numbers). The library's layout, scale, colours, symbols, meter, gauge and shared words are **`D2-010-03-level-shifting` §3**
 (*§3 of card 3*); block A extends card 6's `open-drain` configuration (`D2-010-06-open-drain` §3, *§3 of card 6*) with a second
 output. The U019 brief's card-8 drawings (`draw8()`, the truth table and the byte) are the approved model.
+
+**Round two, 2026-10-20** (the U019 brief's *Specs: round two*; owner: *"apply all recommendations"*): P1–P8 take their
+recommended options, stated below as the design: one sequence of four blocks, **A → B (ours, Draw) → C (ours, Figure) → A′**
+(the push-pull FAULT, *≈ 64 mA* labelled an estimate) (P1); the truth table in block A, beside the circuit, none in B (P2);
+the table's convention *1 = lets go, 0 = pulls*, so the line is the AND (P3); the FAULT's LVC-class model, with the Study cases
+(P4); block C's rising edges slower than its falling ones (P5); p0's cue now *"[[demo]] Animation Bench — …"* (P6, applied by
+the lead); blocks B and C play today, A and A′ from the words until the library lands (P7); the teacher tip and a Study-only
+prediction at f1 (P8).
 
 **What is whose** (the task's question, answered once here and kept in §3, §4 and §11):
 
@@ -47,9 +55,10 @@ output. The U019 brief's card-8 drawings (`draw8()`, the truth table and the byt
 - **Look for** (verbatim): *any one output wins LOW; the line is HIGH only when every output lets go.*
 - **Status** (verbatim): *ready (Electronics) · needs Draw: wired-AND construction with its truth table · needs asset: I²C
   byte-and-ACK timing diagram (ours to redraw).*
-  The PLAN names the Electronics Bench (written before D1); block A is the Animation Bench. The Flow's p0 cue still names the
-  Electronics Bench (P6).
-- **Decided by the owner, 2026-10-20** (applied here): **D1**, **D2** (as above), **N2**.
+  The PLAN names the Electronics Bench (written before D1); block A is the Animation Bench. The Flow's p0 cue now names it:
+  *"[[demo]] Animation Bench — two open-drain outputs sharing one pulled-up line."* (P6, decided and applied 2026-10-20).
+- **Decided by the owner, 2026-10-20** (applied here): **D1**, **D2** (as above), **N2**. **Round two** (2026-10-20, *"apply
+  all recommendations"*): **P1–P8** as recommended (§14).
 - **Insight**: *open-drain outputs on one pulled-up line compute an AND for free: any output that pulls wins, so the line is
   HIGH only when every output lets go; that is how I²C devices share a line and how a receiver acknowledges; push-pull outputs
   on one line fight instead.*
@@ -66,11 +75,13 @@ output. The U019 brief's card-8 drawings (`draw8()`, the truth table and the byt
 ## 2. Time
 
 The card's Flow, counted from en.md on 2026-10-20 (words ÷ 130 wpm; cue tags not counted; the em dash counted): **224 words**,
-of which p0 (10) is a stage direction; **214 spoken = 1.65 min**.
+of which p0 (10) is a stage direction; **214 spoken = 1.65 min**. Recounted after round two (2026-10-20): still 224; p0's cue
+changed *Electronics* for *Animation*, one word for one, and is a stage direction, not counted in the spoken minutes. The
+minutes stand.
 
 | # | Paragraph (first words) | Words |
 |---|---|---|
-| p0 | *"[[demo]] Electronics Bench — two open-drain outputs sharing one pulled-up line."* (stage direction) | 10 |
+| p0 | *"[[demo]] Animation Bench — two open-drain outputs sharing one pulled-up line."* (stage direction) | 10 |
 | p1 | *"[[ask]] One output pulls low, the other lets go. What is the line?"* | 12 |
 | p2 | *"[[pause]]"* | — |
 | p3 | *"[[reveal]] Low. The output that lets go neither supplies nor draws any current…"* | 25 |
@@ -112,7 +123,7 @@ with a second output on the same bus, and the pull-up **on throughout** (S6 *ON*
 | `q1`, `s4` | **M1** and its gate switch *LET GO · PULL* | as card 6: 2N7000 class, R_DS(on) 1.8 Ω typical | as card 6 |
 | `q2`, `s5` | **M2** and its gate switch *LET GO · PULL* (the PLAN's *"gate from V3"*: a second switch, as card 6's P3) | the same part and value | a second TO-92 on the breadboard, its drain on the bus row · a second IEC MOSFET in its own dashed box *output 2* |
 | `bus`, `rx`, `r5`, `dmm` | the bus, the receiver, R1 4.7 kΩ, the meter | as card 6 | as card 6 |
-| `tt` | **The truth table**, beside the circuit (the scene's run log in table form, P2) | columns *output 1 · output 2 · line*, each output in **its own logic level: 1 = lets go, 0 = pulls** (P3), the line computed; four rows in fixed places, each written when its case lands, the current row lit | a table panel right of the schematic, under the title *each output: 1 = lets go, 0 = pulls* |
+| `tt` | **The truth table**, beside the circuit (the scene's run log in table form; P2, decided) | columns *output 1 · output 2 · line*, each output in **its own logic level: 1 = lets go, 0 = pulls** (P3, decided), the line computed; four rows in fixed places, each written when its case lands, the current row lit | a table panel right of the schematic, under the title *each output: 1 = lets go, 0 = pulls* |
 
 **Values beside their element**:
 
@@ -123,7 +134,7 @@ with a second output on the same bus, and the pull-up **on throughout** (S6 *ON*
 | Current through R1 | beside R1 | 0 · ? · 0.70 mA · 0 · 0.70 mA · 0.70 mA |
 | Current in each output | beside M1, M2 | — · ? · M1 0.70, M2 0 · — · M1 0, M2 0.70 · 0.35 and 0.35 mA |
 
-**Truth table** (P3), columns *output 1 · output 2 · line*: *1 1 → 1 (HIGH)* written at a0 and lit again at a3; *0 1 → 0*
+**Truth table** (P3, decided), columns *output 1 · output 2 · line*: *1 1 → 1 (HIGH)* written at a0 and lit again at a3; *0 1 → 0*
 (M1 pulls) written at a2; *1 0 → 0* (M2 pulls) written at a4, with the *0 1* row lit again beside it (*"Either one pulls"*);
 *0 0 → 0* written at a5.
 
@@ -136,7 +147,7 @@ A clean line drawing (Draw Bench inks, IEC symbols), not the breadboard: the abs
 | b0 | One line, its pull-up to 3.3 V at the top; **outputs drawn as switches to ground**, labelled by what they do: output 1 and output 2 as block A left them (both pulling), then **a third added** (`trace`), all three letting go → the line HIGH; any one closed → LOW. The rule written under it: *the line is HIGH only when every output lets go; any one can pull it LOW*. | the line teal, the pull-up amber, the switches ink |
 | b1 | Beside it, the **equivalent**: an IEC AND element (a rectangle with *&*) whose three inputs are the outputs' levels (1 = lets go) and whose output is the line; the words *wired-AND*. Held under p5. | ink; *&* in the element |
 
-No truth table in block B (P2): with three outputs it would be eight rows, and block A's four rows have already been written
+No truth table in block B (P2, decided): with three outputs it would be eight rows, and block A's four rows have already been written
 from the circuit; B states the rule instead.
 
 ### 3c. Block C: `i2c-byte-ack` (ours: an SVG Figure, toured)
@@ -145,7 +156,7 @@ Our own drawing (*"redrawn after NXP UM10204, §3.1.3–3.1.6"*, said on it), un
 
 | Named part | What it is | Source |
 |---|---|---|
-| `scl`, `sda` | two traces, HIGH and LOW levels marked; **rising edges drawn slower than falling ones** (an RC rise against a transistor's pull: card 7's edge), labelled *rise: the pull-up charging the bus* (P5) | UM10204 §3.1.1 (open-drain lines, pull-ups) |
+| `scl`, `sda` | two traces, HIGH and LOW levels marked; **rising edges drawn slower than falling ones** (an RC rise against a transistor's pull: card 7's edge), labelled *rise: the pull-up charging the bus* (P5, decided) | UM10204 §3.1.1 (open-drain lines, pull-ups) |
 | `start` | the START condition: SDA falls while SCL is HIGH | UM10204 §3.1.4 |
 | `bits` | eight data bits, **1 0 0 1 0 0 0 0** (0x90: a 7-bit address 1001000, 0x48, and the write bit 0), each changing while SCL is LOW and stable while SCL is HIGH; the controller (transmitter) drives them, teal | UM10204 §3.1.3, §3.1.5 (MSB first), §3.1.10 (address + R/W) |
 | `ack` | the ninth clock: the transmitter **releases** SDA (its own drive drawn dashed at HIGH, *lets go*), the receiver **pulls** SDA low (rose), SDA LOW for the whole HIGH of SCL: **ACK** | UM10204 §3.1.6 |
@@ -246,10 +257,10 @@ adds the truth table's *1 = lets go, 0 = pulls*, block C's *Redrawn after … no
   released output neither supplies nor draws current, so the one transistor that conducts holds the line against the pull-up,
   and the bus computes the AND of everyone's "let go". depth: understand practice: developing models.* It fires at **p1, over
   a1**; its answer window is p2; **a2 is its reveal** (*"the DMM on the bus reads near 0 V"*: 0.00 ✓).
-- **7b. Prediction points on the bench**: the poe. **Proposal** P8 (Study and Scope only): at f1, *"One push-pull output drives
+- **7b. Prediction points on the bench**: the poe. **Decided (P8)**, Study and Scope only: at f1, *"One push-pull output drives
   HIGH, the other LOW. What is the line?"* (HIGH · LOW · somewhere between, and a large current · undefined); not on the wall.
 - **7c. After the reveal**: the explain. In Study, done = the poe answered and the thirteen stops seen.
-- **7d. Teacher tip** (**Proposal**, P8): *Learners expect the line to be "half" when one pulls and one lets go (the poe's
+- **7d. Teacher tip** (decided, P8): *Learners expect the line to be "half" when one pulls and one lets go (the poe's
   *Halfway*). Ask: how much current does an output that has let go supply?*
 - **7e. Explore** (C37, after f1): S4, S5 (block A); the push-pull inputs (block A′). Blocks B and C: none.
 
@@ -277,12 +288,14 @@ each output 1.8 Ω to ground when pulling (2N7000 class, card 6 §8), open when 
   7-bit address and the R/W bit. Our byte: address 1001000 (0x48) + W (0) = **1001 0000 = 0x90** ✓ (recomputed). p6's
   *"After eight bits, the transmitter lets go of the data line and the receiver pulls it low to say 'received'"* ✓; *"That
   acknowledge bit is wired-AND at work"* ✓ (the transmitter's 1 AND the receiver's 0 = 0).
-- **The FAULT's numbers (A1, A2, A6; P4).** A push-pull 3.3 V logic output of the LVC class, from its **guaranteed** drive (TI
+- **The FAULT's numbers (A1, A2, A6; P4, decided (a)).** A push-pull 3.3 V logic output of the LVC class, from its **guaranteed** drive (TI
   SN74LVC1G125 datasheet, SCES223, cited here only): at V_CC = 3.0 V, V_OH ≥ 2.3 V at I_OH = −24 mA and V_OL ≤ 0.55 V at I_OL =
   24 mA, so its equivalent on-resistances are at most **29.2 Ω** (high side: (3.0 − 2.3) / 0.024) and **22.9 Ω** (low side:
   0.55 / 0.024); continuous output current **±50 mA** absolute maximum. Two such outputs, one HIGH and one LOW, with R1 on the
   line: the node gives **V_line = 1.457 V**, **63.6 mA** into the low side (63.2 mA from the high side, 0.39 mA through R1).
-  From the 16 mA points (V_OH ≥ 2.4 V, V_OL ≤ 0.4 V) the same estimate is 52.8 mA. So: *about 50–65 mA from the rated drive*,
+  From the 16 mA points (V_OH ≥ 2.4 V, V_OL ≤ 0.4 V: 37.5 Ω and 25.0 Ω) the same node, R1 included, gives **53.1 mA** into the
+  low side, the line at 1.33 V (52.8 mA in the two on-resistances alone; round one wrote 52.8 for the node's figure, corrected
+  2026-10-20, ours). So: *about 50–65 mA from the rated drive*,
   more with typical parts (which drive harder than their guarantee), and the linear model ignores the transistors' saturation:
   hence **"≈ 64 mA (estimate)"** and the label *"estimate: the outputs' strength varies by part"*; past the ±50 mA rating ✓.
   The line, ≈ 1.5 V, is inside the *not guaranteed* band (0.825–2.475 V) ✓. Dissipation ≈ 116 mW in the high side and 93 mW in
@@ -314,7 +327,7 @@ contention current.* On this library: **block A′** (f0–f1), on the wall, bec
 (a P-MOSFET or push-pull part) stays the Electronics Bench's (deferred); the Animation library draws the push-pull pair by its
 equivalent resistances (§8).
 
-Non-ideal effects (**Proposal**, P4; Study only): one push-pull against an open-drain output (107 mA, the line reading LOW, the
+Non-ideal effects (**decided**, P4; Study only): one push-pull against an open-drain output (107 mA, the line reading LOW, the
 fault hidden); a NACK (the receiver does not pull: SDA HIGH in the ninth clock) in block C as a second Study tour stop;
 R_DS(on) spread (as card 6).
 
@@ -331,7 +344,7 @@ sentences, the table and the byte.
 | `two-outputs` configuration of `logic-io` (M2, S5, the truth table) and `outputs: push-pull` (the two push-pull boxes and their input switches) | in the `logic-io` library | the Benches lane | to request by crossing (the same crossing as cards 3, 5, 6) |
 | `wired-and` drawing (b0–b1) | Draw Bench drawing (`drawing` fence in en.md, `wired-and.benchdrawing`) | **the author (this project)** | to draw (D2) |
 | `i2c-byte-ack` figure (c0–c2) | SVG with named parts (`figure` fence) | **the author (this project)** | to draw (D2) |
-| The card's sequence `d2-010-two-outputs`: blocks A, B, C, A′ with the thirteen stops of §4a; B and C imported (C69) | sequence library | the Benches lane, with B and C from the course (read from the course folder, copied into the sequence as units) | with the above |
+| The card's sequence `d2-010-two-outputs`: blocks A, B, C, A′ with the thirteen stops of §4a; B and C imported (C69) | sequence library | the Benches lane, with B and C from the course (read from the course folder, copied into the sequence as units; C69 asked in the crossing, §12) | with the above |
 
 **Reuse first**: card 6's configuration for block A (the same M1, R1, bus, receiver, meter); card 5's *not guaranteed* band
 for f1; card 7's edge for block C's slow rise (the look, not a number); `oled-module` (an I²C device, *GND VDD SCK SDA*) is
@@ -340,9 +353,14 @@ for f1; card 7's edge for block C's slow rise (the look, not a number); `oled-mo
 ## 12. Bench capabilities this needs
 
 As **§12 of card 3**, plus: **sequences of several blocks** (exist: sequence libraries, bench contract 4), one at a time with the
-bench's hand-over; **C69 Import** of a Draw Bench drawing (block B) and of an SVG (block C) as sequence units: **to confirm with
-Benches** (the capability list has it at priority 1; if it is not ready, blocks B and C play as their own blocks on the card,
-which needs Studio's multi-block card: the owner's to route, P1 (b)). **Moving current** (to confirm): a2, a4 0.70 mA through R1
+bench's hand-over; **C69 Import** of a Draw Bench drawing (block B) and of an SVG (block C) as sequence units. **How it stands
+(2026-10-20)**: the Animation Bench's capability list (`C:\ExSightory\src\exsight-benches\benches\animation\capabilities.md`,
+§5.10) has C69 at priority 1, its sources including *"animated SVG; a Draw Bench drawing"*; it does not say C69 is built, and
+this project cannot confirm it from here. So the crossing asks Benches to say whether C69 carries a `.benchdrawing` with its
+trace steps (block B) and a static SVG with named parts toured as three stops (block C). The decided design (P1 a) does not
+wait on the answer: B and C play today on their own benches (P7). If Benches answers that C69 cannot carry them, the fallback
+(B and C as their own blocks on the card, which needs Studio's multi-block card) is a new question for the owner, who routes
+it; it is not open today. **Moving current** (to confirm): a2, a4 0.70 mA through R1
 into the pulling transistor, none in the other; a5 split 0.35 / 0.35 mA; f1 ≈ 64 mA through output 2's upper and output 1's
 lower transistor, its speed and brightness following its size (90 × a2's), and 0.39 mA in R1; none into the receiver or the
 meter.
@@ -350,25 +368,31 @@ meter.
 **Not this bench's**: blocks B and C are the Draw and Figure benches' formats, authored by the course; the Animation Bench only
 plays them in the sequence.
 
+**Block C on the Figure Bench, a stop that lights several parts** (2026-10-20): c1 lights the transmitter's release and the
+receiver's pull together, and c2 the two *who* rows with SDA; today's Figure tour names one feature per stop. The Figure
+crossing raised for D2·010 card 2's cumulative tour (`D2-010-02-both-digital.md` §12) names this stop as a second user if
+Benches builds it as *a stop that may name several features*. Until then, c1 and c2 each light one named group drawn as a
+single feature in the SVG (the ninth-clock column; the two rows with SDA), so the design does not wait on it.
+
 ## 13. Stand-in for the lecture
 
-**Proposed (P7 a)**: blocks B and C are ours and play today (the Draw Bench traces `wired-and`; the Figure Bench tours
+**Decided (P7 a, round two)**: blocks B and C are ours and play today (the Draw Bench traces `wired-and`; the Figure Bench tours
 `i2c-byte-ack`); blocks A and A′ are carried by the words and the poe until the library lands. When it lands, the same B and C
-files become the sequence's units (C69), so nothing is made twice. (b) None.
+files become the sequence's units (C69, §12), so nothing is made twice. (The option not taken: none.)
 
 ## 14. Findings for the owner
 
 No **accuracy** finding in card 8's text (A1–A7 run on 2026-10-20: statement, PLAN SHOW / Drive / Look for / Status, the poe and
 its explain, the FAULT, Flow p0–p7; §8). One correction to **our own** brief (P3).
 
-New proposals (each a question; nothing here is pre-decided):
+The proposals of round one, **all decided 2026-10-20 in round two** (each kept as it was put; the decision marked):
 
-- **P1 — Proposal: the card as one sequence of four blocks.** Options: **(a)** one Animation Bench sequence, `d2-010-two-outputs`,
+- **P1 — Proposal: the card as one sequence of four blocks.** **Decided: (a)** (C69: §12). Options: **(a)** one Animation Bench sequence, `d2-010-two-outputs`,
   blocks A (Benches) → B (ours, Draw) → C (ours, Figure) → A′ (Benches, the FAULT), one at a time, following p1–p7
   (**recommended**: EAC's one block per card, the Flow's order, B and C imported unchanged); (b) the Draw and the Figure as
   separate blocks on the card beside the Animation (needs Studio's multi-block card, as D2·010 card 7's D4: to the owner, to
   route); (c) the FAULT left to Study (p7 spoken over block C).
-- **P2 — Proposal: where the truth table lives.** The PLAN puts it in the Draw (*"the truth table written beside it as each
+- **P2 — Proposal: where the truth table lives.** **Decided: (a).** The PLAN puts it in the Draw (*"the truth table written beside it as each
   case is stepped"*) after the circuit has already stepped the same four cases. Options: **(a)** the table in block A, beside the
   circuit, each row written as its case lands and computed from the outputs (it must agree with the meter: memories
   `input-drives-every-output`, `drawing-and-numbers-agree`), as the approved U019 brief drew it; block B keeps the construction
@@ -376,30 +400,49 @@ New proposals (each a question; nothing here is pre-decided):
   four cases, one table, linked to the circuit); (b) as the PLAN: the circuit steps the cases with the meter only, then the Draw
   steps them again with its table (two walks of the same cases); (c) everything in block A (the third output and the AND element
   too), no Draw.
-- **P3 — Proposal (our correction): the table's convention.** The U019 brief labelled the table *1 = pulls*; under that label
+- **P3 — Proposal (our correction): the table's convention.** **Decided: (a).** The U019 brief labelled the table *1 = pulls*; under that label
   the line column is a NOR of the pull signals, shown beside the word AND. Options: **(a)** each output in its own logic level,
   *1 = lets go, 0 = pulls*, so the line column is the AND of the columns (**recommended**: matches p4's *"That is a logical AND"*
   and the PLAN's explain, *"the AND of everyone's 'let go'"*); (b) keep *1 = pulls* and say NOR (contradicts the card's words).
-- **P4 — Proposal: the FAULT's model and its Study cases.** Options: **(a)** two push-pull outputs of the 3.3 V LVC logic class,
+- **P4 — Proposal: the FAULT's model and its Study cases.** **Decided: (a)**, with the Study cases. Options: **(a)** two push-pull outputs of the 3.3 V LVC logic class,
   their equivalent on-resistances from the guaranteed drive (29.2 Ω and 22.9 Ω), *"≈ 64 mA (estimate)"* and the line ≈ 1.5 V,
   labelled as an estimate (**recommended**: matches p7's *"two of those"*; sourced; honest about its precision); with the
   one-push-pull-against-open-drain case (107 mA, the line reading LOW) and a NACK tour stop in Study only; (b) discrete
   complementary MOSFETs (no class has an on-resistance specified at a 3.3 V gate drive for the P-channel: unsourced, not
   recommended); (c) no number: *"a large current"* only.
-- **P5 — Proposal: block C's edges.** Options: **(a)** rising edges drawn slower than falling ones, labelled *rise: the pull-up
+- **P5 — Proposal: block C's edges.** **Decided: (a).** Options: **(a)** rising edges drawn slower than falling ones, labelled *rise: the pull-up
   charging the bus* (**recommended**: true of every open-drain bus, card 7's subject, gate 1); (b) square edges, the usual
   textbook picture.
-- **P6 — Proposal: the Flow's demo cues.** p0 *"[[demo]] Electronics Bench — two open-drain outputs sharing one pulled-up
+- **P6 — Proposal: the Flow's demo cues.** **Decided: (a)**, applied to en.md by the lead. p0 read (round one) *"[[demo]] Electronics Bench — two open-drain outputs sharing one pulled-up
   line."* Options: **(a)** *"[[demo]] Animation Bench — two open-drain outputs sharing one pulled-up line."* (**recommended**, as
   D1·090's P9); (b) keep.
-- **P7 — Proposal: the stand-in** (§13). **(a)** B and C today, A and A′ from the words (**recommended**); (b) none.
+- **P7 — Proposal: the stand-in** (§13). **(a)** B and C today, A and A′ from the words (**recommended**); (b) none. **Decided:
+  (a).**
 - **P8 — Proposal: the teacher tip (§7d) and a Study-only prediction at f1.** Take both (**recommended**), the tip only, or
-  neither?
-- **Reported**: 2.9 min (1.9 on the bench); the module ≈ 31.6 of 30 min (D5; `D2-010-07` §2b). Nothing is cut.
+  neither? **Decided: both.**
+- **Reported**: 2.9 min (1.9 on the bench), unchanged in round two; the module ≈ 31.6 of 30 min at round one, ≈ 0.15 min more
+  after round two's edits to cards 2, 4 and 10 (D5; `D2-010-07` §2b). Nothing is cut.
 
 Decided 2026-10-20 (owner: *"apply all recommendations"* on the U019 brief): D1 (an Animation Bench demonstration by Benches, one
 scene library for cards 3, 5, 6, 8, one crossing), D2 (the PLAN's Draw and Figure on this card are ours, specified now), N1 (no
 product name), N2 (no demo numbers in the cues).
+
+**Decided 2026-10-20, round two (owner: *"apply all recommendations"*):** P1 (a) one sequence, A (Benches) → B `wired-and`
+(ours, Draw) → C `i2c-byte-ack` (ours, Figure) → A′ (Benches, the push-pull FAULT, *≈ 64 mA (estimate)*); P2 (a) the truth
+table in block A, written row by row from the circuit, none in B; P3 (a) *1 = lets go, 0 = pulls*; P4 (a) the LVC-class
+equivalents, with the one-push-pull-against-open-drain case (107 mA) and a NACK tour stop in Study only; P5 (a) slower rising
+edges in C; P6 (a) p0's cue *"[[demo]] Animation Bench — two open-drain outputs sharing one pulled-up line."* (applied to
+en.md); P7 (a) B and C play today; P8 the tip and the Study-only prediction at f1. **C69** (to confirm at round one): stated in
+§12; the crossing asks Benches; the design does not wait on it and nothing is open for the owner. **Accuracy re-run on what
+changed** (A1–A7, Node, 2026-10-20, `nums.mjs` in the session scratchpad): block A 0.7019 mA (one pulling), 0.7020 mA and
+0.3510 mA each (both), 1.263 / 0.632 mV, the released HIGH 3.2984 V; A′ 29.17 Ω / 22.92 Ω, the line **1.457 V** (meter 1.46),
+**63.6 mA** into the low side (63.2 mA from the high side, 0.39 mA in R1), 116 / 93 mW, 90.6 × the open-drain 0.70 mA; the
+Study case, push-pull HIGH against an open-drain 2N7000 LOW, **107 mA**, the line **0.19 V**; 0x90 = 1001 0000 (address 0x48 +
+W). **One correction of ours**: the 16 mA-point figure is **53.1 mA** with R1 in the node (round one's 52.8 mA was the two
+on-resistances alone), fixed in §8 and §15. The Flow (224 words) changed only in p0's cue. **Nothing is open on this card**;
+the spec is **spec-ready**.
+
+**Raised 2026-10-20:** crossing **516** (the `logic-io` library: blocks A and A′, and the C69 question; `C:\ExSightory\lanes\pbl2026-x\.claude\crossing\open\516-pbl2026-to-benches-d2-010-logic-io-one-scene-library-for-cards-3-5-6-8.request.md`, raised and pushed 2026-10-20, open); crossing **518** (the Figure tour; block C's c1–c2 named as a second user; `C:\ExSightory\lanes\pbl2026-x\.claude\crossing\open\518-pbl2026-to-benches-figure-bench-a-cumulative-tour-for-d2-010-card-2.request.md`, raised and pushed 2026-10-20, open).
 
 ## 15. Acceptance: how we know it is built right
 
@@ -409,7 +452,7 @@ product name), N2 (no demo numbers in the cues).
   case; f1 ≈ 64 mA (estimate), the line ≈ 1.5 V (meter 1.46), *not guaranteed*.
 - a1's first frame withholds the line's value (the poe's answer); a2 reveals it.
 - Every block A / A′ value computed from the node (memory `input-drives-every-output`): in Explore, every S4 × S5 state writes its
-  own row; changing R1 or R_DS(on) recomputes the currents; the push-pull equivalents set to the 16 mA points give 52.8 mA.
+  own row; changing R1 or R_DS(on) recomputes the currents; the push-pull equivalents set to the 16 mA points give 53.1 mA (the line 1.33 V).
 - Block B: the third output added, the rule and the AND element; no number; no table. Block C: 1 0 0 1 0 0 0 0, START, the ACK in
   the ninth clock, data changing only while SCL is LOW, *Redrawn after … not to time scale* on it.
 - B1 one change per press; B2 only the switches, the levels, the table rows and the currents change; B3 a0 still; B4 thirteen
@@ -422,10 +465,10 @@ product name), N2 (no demo numbers in the cues).
 - **Six gates (this spec)**: (1) realism: real part classes on a breadboard, the course's meter and MCU input, the I²C byte as
   the specification defines it, rising edges as an RC; nothing branded ✓; (2) science: wired-AND from open-drain, the ACK as
   UM10204 states it, contention through two on-transistors as an estimate from rated drive, labelled ✓; (3) maths: 0.7019 /
-  0.7020 mA, 0.351 mA, 1.26 / 0.63 mV, 3.2984 V, 0x90, 29.2 / 22.9 Ω, 1.457 V, 63.6 mA (52.8 mA from the 16 mA points)
+  0.7020 mA, 0.351 mA, 1.26 / 0.63 mV, 3.2984 V, 0x90, 29.2 / 22.9 Ω, 1.457 V, 63.6 mA (53.1 mA from the 16 mA points, corrected from round one's 52.8)
   recomputed ✓; (4) visualization: one case per press with its row lit, the AND drawn as an element, the ACK as two drivers'
   rows ANDed, the contention current 90 × the open-drain one ✓; (5) consistency: card 6's configuration, card 5's band, card 7's
   edge, the PLAN's explain's *"let go"* AND; our brief's *1 = pulls* table corrected (P3), the PLAN's two walks of the cases
-  reconciled (P2), both named, not changed ✓; (6) design: as card 3; blocks B and C in the course's Draw and Figure looks; no
+  reconciled (P2), both decided and named, the PLAN's words kept ✓; (6) design: as card 3; blocks B and C in the course's Draw and Figure looks; no
   departure from ExSight's rules (*≈ 64 mA* at two figures, *estimate* said). No accuracy finding in the owner's text; nothing in
   it was edited.

@@ -21,7 +21,7 @@ DIGITAL INTERFACE. Day 1 ended at the reference: the converter has produced a co
 
 1. **The code has to travel** — Once an ADC has produced digital data, that data still has to reach the processor.
 2. **Both digital — so compatible?** — Digital does not automatically mean compatible.
-3. **Level shifting: 5 V logic into a 3.3 V pin** — A 5 V digital output wired straight to an ESP32 GPIO may damage the input.
+3. **Level shifting: 5 V logic into a 3.3 V pin** — A 5 V digital output wired straight to a 3.3 V microcontroller's GPIO may damage the input.
 4. **An interface is not a protocol** — The bits alone are not enough.
 5. **What does a floating input read?** — A floating input is undefined, not low.
 6. **Open-drain: pull low or let go** — An open-drain output can only pull the line low or let it go, which is exactly why it needs a pull-up.
@@ -38,7 +38,7 @@ DIGITAL INTERFACE. Day 1 ended at the reference: the converter has produced a co
 - An interface is not a protocol: Figure — SPI between ADC and MCU: SCLK, MOSI, MISO, CS/SS, with a timing strip of 10110110 on MISO
 - What does a floating input read?: Electronics — a logic input (the pin node) with nothing driving it and a DMM on it; then R1 10 kΩ to
 - Open-drain: pull low or let go: Electronics — new fixture `open-drain-bus`: an N-MOSFET M1 (mosfet-typical) as the open-drain
-- Choosing the pull-up value: Plot — the bus voltage after release, v = 3.3·(1 − exp(−t/(R·C))), t in ns; sliders R
+- Choosing the pull-up value: Plot — the bus voltage after release, v = 3.3·(1 − 0.7·exp(−t/(R·C))), t in ns from the
 - Two outputs on one wire: Electronics — `open-drain-bus` with a second MOSFET M2 (gate from V3) on the same pulled-up bus.
 - A logical problem and an electrical one: Plot — the centrepiece rise-time Plot back on the Canvas while the room ticks its list, so three of
 
@@ -57,7 +57,7 @@ DIGITAL INTERFACE. Day 1 ended at the reference: the converter has produced a co
 
 ## Hand-off
 
-[[transition]] So far the code has come from the converter inside the microcontroller, and travelled
-a few millimetres. But what if that converter is not good enough for the signal? Then the converter
-itself moves out of the chip, and the bus we have just built becomes the road its codes travel on.
-That is a design choice, and it is the next stop.
+[[transition]] So far, in the course's own example, the code has come from the converter inside the
+microcontroller, and travelled a few millimetres. But what if that converter is not good enough for the
+signal? Then the converter itself moves out of the chip, and the bus we have just built becomes the road
+its codes travel on. That is a design choice, and it is the next stop.
