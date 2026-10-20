@@ -36,3 +36,11 @@ Building any bench or asset. Changing the owner's card text or Flow (report anyt
 - 2026-10-20: loaded after U017 (U016 parked, blocked on crossing 505). Start: list crossings; run the accuracy check
   A1–A7 on D1·090 (its numbers under the course's models; cross-references to D1·010's 2047 and D1·040's dividers);
   then brief the owner as `bench-work/previews/u018-preview.html` and wait for design direction.
+- 2026-10-20: crossings listed (none to pbl2026; 505 still open). Accuracy check A1–A7 run on D1·090: six findings
+  **open** (D1·090-F1 the supply's 50 mΩ against the sw3005; F2 the internal 1.1 V's spread clips the poll's signal;
+  F3 "the noisiest" absolute; F4 2253 → 2252 truncating; F5 S30's 1.649 V against the pin's 1.79 V; F6 "the most
+  stubborn error"), plus D1·040-F1 for the sweep; all in `ACCURACY.md`. Brief page `bench-work/previews/u018-preview.html`
+  (live Equation cards 1–3, card 4's rail schematic, card 5's centrepiece Plot, card 6's path) with N1–N2 and D1–D5.
+  Flow 1,041 words; module ≈ 20 of 30 min. **Next:** read the owner's choices (`u018Feedback()` in the page), apply the
+  decided findings to `en.md` and re-check, then write the specs (cards 1, 2, 3, 5 Equation/Plot; card 4 Animation +
+  crossing if D2 is chosen; card 6 per D4).

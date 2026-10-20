@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>U018 brief — D1·090 reference</title>
+<style>
+:root{color-scheme:dark;--bg:#0E1217;--panel:#151B22;--ink:#E8EAED;--muted:#9AA3AD;--faint:#3A424C;--teal:#2DD4BF;--amber:#F5B942;--violet:#A78BFA;--lime:#A3E635;--rose:#F472B6;--azure:#60A5FA}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,Segoe UI,Roboto,sans-serif}
+main{max-width:1180px;margin:0 auto;padding:16px}h1{font-size:22px;margin:8px 0 4px}h2{font-size:18px;margin:0 0 6px}
+section{background:var(--panel);border:1px solid var(--faint);border-radius:10px;padding:14px 16px;margin:14px 0}
+.top{position:sticky;top:0;z-index:5;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid var(--faint)}
+button{background:#1C242D;color:var(--ink);border:1px solid var(--faint);border-radius:6px;padding:5px 10px;font:inherit;font-size:13px;cursor:pointer;text-align:left}
+button:hover{border-color:var(--muted)}button.on{border-color:var(--teal);color:var(--teal)}
+.tag{display:inline-block;font-size:12px;border-radius:4px;padding:1px 7px;margin-right:6px;border:1px solid}
+.t-plot{color:var(--teal);border-color:var(--teal)}.t-eq{color:var(--violet);border-color:var(--violet)}.t-draw{color:var(--amber);border-color:var(--amber)}
+.t-anim{color:var(--rose);border-color:var(--rose)}.t-fig{color:var(--azure);border-color:var(--azure)}.t-act{color:var(--lime);border-color:var(--lime)}
+.map{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px}
+.map a{display:block;background:#10161C;border:1px solid var(--faint);border-radius:8px;padding:8px;color:var(--ink);text-decoration:none;font-size:13px}
+.map a b{display:block;font-size:14px;margin:2px 0}
+svg{width:100%;height:auto;display:block;background:#0B0F14;border-radius:8px}
+.sl{display:flex;flex-wrap:wrap;gap:14px;margin:10px 0}
+.sl label{flex:1 1 200px;font-size:13px;color:var(--muted)}.sl label span{float:right;color:var(--ink);font-variant-numeric:tabular-nums}
+.sl input{width:100%}
+.row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0}
+.note{color:var(--muted);font-size:13px}
+textarea{width:100%;min-height:54px;background:#0B0F14;color:var(--ink);border:1px solid var(--faint);border-radius:6px;padding:6px;font:inherit;font-size:14px}
+.fb label{font-size:13px;color:var(--amber)}
+.q{margin:12px 0 4px}.block{display:inline-block;font-size:11px;color:#0E1217;background:var(--rose);border-radius:3px;padding:0 5px;margin:0 6px}
+.bar{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0}
+table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-bottom:1px solid var(--faint);padding:5px 6px;text-align:left;vertical-align:top}
+.pass{color:var(--lime)}.wait{color:var(--amber)}.mono{font-family:ui-monospace,Consolas,monospace}
+.ro{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.ro div{background:#10161C;border:1px solid var(--faint);border-radius:6px;padding:6px 10px;font-size:12px;color:var(--muted)}.ro b{display:block;font-size:16px;color:var(--ink);font-variant-numeric:tabular-nums}
+.eq{font-family:Cambria Math,Cambria,Georgia,serif;font-size:20px;text-align:center;padding:10px;background:#0B0F14;border-radius:8px;margin:8px 0}
+.eq s{text-decoration-color:var(--rose);text-decoration-thickness:2px;color:var(--muted)}
+.path{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.path button{font-size:13px}.path i{color:var(--faint);font-style:normal}
+.path button.sus{border-color:var(--rose);color:var(--rose)}
+@media (max-width:600px){main{padding:10px}}
+</style></head><body><main>
+<h1>U018 brief: D1·090 The reference voltage, and ratiometric measurement</h1>
+<p class="note">30 minutes, six cards, the last module of Day 1. Each card below shows the visual this unit proposes for its bench, drawn from the card's PLAN with real numbers, and most of them are live. Nothing is built on a bench yet. <b>The accuracy check ran first and found six points in the module (F1–F6) and one in D1·040.</b> They are open, so the unit is blocked until you choose. The naming and design points come after them. Your choices and notes are saved on this page.</p>
+<div class="top"><span class="note">Feedback</span><button onclick="showFb()">Show what I've entered</button><button onclick="clearFb()">Clear</button><span id="fbsum" class="note"></span></div>
+<pre id="fbout" style="display:none;white-space:pre-wrap;background:#0B0F14;border:1px solid var(--faint);border-radius:8px;padding:10px;font-size:13px"></pre>
+
+<section><h2>The module at a glance</h2>
+<div class="map">
+<a href="#c1">Card 1 · ≈1.4 min<b>A code is a ratio</b><span class="tag t-eq">Equation</span></a>
+<a href="#c2">Card 2 · ≈2.2 min<b>The code alone means nothing</b><span class="tag t-eq">Equation</span><span class="tag t-act">numeric ×2</span></a>
+<a href="#c3">Card 3 · ≈2.9 min<b>Reference error is measurement error</b><span class="tag t-eq">Equation</span><span class="tag t-act">poe</span></a>
+<a href="#c4">Card 4 · ≈4.7 min<b>VDD: the default, and the worst</b><span class="tag t-anim">Animation (Electronics deferred)</span><span class="tag t-act">poll</span></a>
+<a href="#c5">Card 5 · ≈4.6 min<b>Ratiometric: the error cancels</b><span class="tag t-plot">Plot, centrepiece</span><span class="tag t-eq">Equation</span><span class="tag t-act">poe</span></a>
+<a href="#c6">Card 6 · ≈3.8 min<b>Back to the sensor</b><span class="tag t-anim">the course path (reused)</span><span class="tag t-act">checkpoint</span></a>
+<a href="#find">Findings<b>6 accuracy (open), 2 naming, 5 design</b><span class="tag t-act">≈20 of 30 min</span></a>
+</div>
+<p class="note">Time: the Flow is 1,041 words (8.0 min at 130 wpm): card 1, 118 words; card 2, 93; card 3, 141; card 4, 306; card 5, 276; card 6, 107. With the five activities (about 1.5 min each, the four-part checkpoint 3 min) and the bench moves, the module comes to about 20 minutes. That leaves about 10 of the 30 free. This is reported only; nothing is trimmed.</p>
+<p class="note">Cross-references checked (A4): S30 against D1·010's 2047 and its suspect list; S35 against D1·040's 5 kΩ and D1·070's 10.1 kΩ limit (5 kΩ settles: 6 kΩ × 10 pF = 60 ns, 16.7 τ in 1 µs); S9 against D1·030's excitation; S22 against D2·050's gain constant. All agree except F5 below.</p>
+</section>
+
+<section id="c1"><h2>Card 1 · A code is a ratio to the reference</h2>
+<p><span class="tag t-eq">Equation</span>The PLAN's Equation, <i>code = (V<sub>in</sub> / V<sub>ref</sub>)·2<sup>N</sup></i>, rearranged to <i>V<sub>in</sub> = code·V<sub>ref</sub> / 2<sup>N</sup></i> and graphed as the code against V<sub>in</sub>. The demo is 12 bits, 3.3 V, and 1.65 V gives 2048. <b>Zoom near 1.65 V</b> shows the steps the straight line hides. The course's converter keeps the whole part of the code (it truncates), so the graph is a staircase under the ideal line (D5).</p>
+<div class="eq">code = ⌊ (V<sub>in</sub> / V<sub>ref</sub>) · 2<sup>N</sup> ⌋ &nbsp;&nbsp;⇔&nbsp;&nbsp; V<sub>in</sub> ≈ code · V<sub>ref</sub> / 2<sup>N</sup></div>
+<svg id="p1" viewBox="0 0 1100 360"></svg>
+<div class="sl"><label>Input (V<sub>in</sub>)<span id="v1i"></span><input id="s1i" type="range" min="0" max="3.3" step="0.005" value="1.65"></label></div>
+<div class="row"><button id="z1">Zoom near 1.65 V</button></div>
+<div class="ro" id="ro1"></div>
+<div class="fb"><label>Your feedback on card 1</label><textarea data-k="c1"></textarea></div></section>
+
+<section id="c2"><h2>Card 2 · The code alone means nothing</h2>
+<p><span class="tag t-eq">Equation</span><span class="tag t-act">numeric ×2</span>The numeric's reveal: card 1's Equation with the code held at 2047 and the reference switched between 3.3 V and 1.1 V. The graph is read backwards: from the code across to the line, then down to the voltage. The same fraction, 2047/4096 = 0.4998, of whatever the reference is.</p>
+<svg id="p2" viewBox="0 0 1100 330"></svg>
+<div class="row"><span class="note">Reference</span><button id="r2a" class="on">3.3 V</button><button id="r2b">1.1 V</button></div>
+<div class="ro" id="ro2"></div>
+<p class="note">Answers 1.649 V (± 0.002) and 0.550 V (± 0.001), as the PLAN gives them. On a truncating converter the code 2047 stands for a band one step wide: 1.6492 to 1.6500 V on 3.3 V, and 0.5497 to 0.5500 V on 1.1 V. Both PLAN answers sit in their bands.</p>
+<div class="fb"><label>Your feedback on card 2</label><textarea data-k="c2"></textarea></div></section>
+
+<section id="c3"><h2>Card 3 · Reference error is measurement error</h2>
+<p><span class="tag t-eq">Equation</span><span class="tag t-act">poe</span>The poe's reveal: 12 bits, 1.65 V in, and the reference (the supply rail) slid from 3.30 V to 3.20 V. The line steepens. The input's marker climbs from 2048 to 2112 (+3.1 %), and firmware that still multiplies by 3.3 V reports 1.70 V. The 3.30 V line stays dashed for comparison.</p>
+<svg id="p3" viewBox="0 0 1100 330"></svg>
+<div class="sl"><label>Reference, the supply rail (V<sub>ref</sub>)<span id="v3r"></span><input id="s3r" type="range" min="3.20" max="3.30" step="0.005" value="3.30"></label></div>
+<div class="ro" id="ro3"></div>
+<p class="note">Checked: 1.65/3.20 × 4096 = 2112 exactly (2112/2048 = 1.031); 2112 × 3.3/4096 = 1.7016 V. The FAULT (3.3 V in firmware, 3.28 V delivered) is 3.3/3.28 − 1 = +0.61 %. A reference 1 % high gives readings 0.99 % low. Both 2048 and 2112 sit exactly on a code edge. The bench computes them exactly (in floating point, 1.65/3.2 × 4096 comes out as 2111.9999…, which truncates to 2111), and the spec says so.</p>
+<div class="fb"><label>Your feedback on card 3</label><textarea data-k="c3"></textarea></div></section>
+
+<section id="c4"><h2>Card 4 · VDD: the default, and usually the worst</h2>
+<p><span class="tag t-anim">Animation, by Benches</span><span class="tag t-act">poll</span>The PLAN's widget is an Electronics Bench one and stays <b>deferred</b> while that bench is being built. The card still gets its demonstration. The proposal is an Animation Bench demonstration that Benches would build on a crossing (D2). The board's 3.3 V rail, behind its source resistance, feeds the MCU's own load and is the ADC's reference. A separate 1.65 V reference drives the input. The load steps from 10 to 200 mA, and a PCB trace can be switched into the rail. The schematic below previews the numbers the demonstration must show.</p>
+<svg id="p4" viewBox="0 0 1100 330"></svg>
+<div class="row"><span class="note">MCU load</span><button id="l4a" class="on">10 mA</button><button id="l4b">200 mA</button><span class="note" style="margin-left:12px">Rail</span><button id="t4a" class="on">no trace</button><button id="t4b">+ 0.5 mm × 50 mm trace</button></div>
+<div class="ro" id="ro4"></div>
+<p class="note">The source resistance is 50 mΩ, as the PLAN gives it: 190 mA × 50 mΩ = 9.5 mV ("about 10 mV"), and the code goes from 2048 to 2054 ("about 6"). <b>F1:</b> the course's own supply (the sw3005) holds its setpoint to 0.1 % + 10 mV, about 2.7 mΩ, so it cannot be the 50 mΩ. Here the 50 mΩ is the rail as the MCU pin sees it: the regulator plus its wiring. The trace (D3) is the PLAN's 0.5 mm part in 1 oz (35 µm) copper, 0.98 mΩ per mm at 20 °C. 50 mm of it adds 49 mΩ, so the drop becomes 18.8 mV and the code climbs 12.</p>
+<div class="fb"><label>Your feedback on card 4</label><textarea data-k="c4"></textarea></div></section>
+
+<section id="c5"><h2>Card 5 · Ratiometric: let the error cancel (the centrepiece)</h2>
+<p><span class="tag t-plot">Plot</span><span class="tag t-eq">Equation</span><span class="tag t-act">poe</span>The PLAN's Plot: the code against the rail V<sub>dd</sub> from 3.0 to 3.6 V for two inputs. One is a fixed 1.65 V measured against the rail (amber: it falls). The other is the 10 k NTC (B = 3950 K) under a 10 kΩ resistor, powered from that same rail (teal: flat). <b>Sweep the rail</b>, then move the temperature: the flat line moves with the temperature and ignores the rail. The Equation below shows the rail cancelling.</p>
+<svg id="p5" viewBox="0 0 1100 380"></svg>
+<div class="sl"><label>Rail (V<sub>dd</sub>)<span id="v5v"></span><input id="s5v" type="range" min="3.0" max="3.6" step="0.005" value="3.3"></label><label>Temperature (T)<span id="v5t"></span><input id="s5t" type="range" min="0" max="50" step="1" value="25"></label></div>
+<div class="row"><button id="a5">Sweep the rail ▶</button></div>
+<div class="ro" id="ro5"></div>
+<div class="eq">code = ( <s>V<sub>dd</sub></s> · k ) / <s>V<sub>dd</sub></s> · 2<sup>N</sup> = k · 2<sup>N</sup>, &nbsp; k = R<sub>T</sub> / (R<sub>T</sub> + R<sub>F</sub>)</div>
+<p class="note">Checked: 1.65/3.0 × 4096 = 2252.8 → <b>2252</b> on the course's truncating converter (F4: the Flow says 2253); 1.65/3.6 × 4096 = 1877.3 → 1877. At 25 °C, k = 0.5 → 2048. The temperature runs 0–50 °C: 3156 at 0 °C, 1081 at 50 °C (R<sub>T</sub> = 10 kΩ·e<sup>B(1/T − 1/298.15 K)</sup>). The NTC is the bottom of the divider, so the line falls as the temperature rises.</p>
+<div class="fb"><label>Your feedback on card 5</label><textarea data-k="c5"></textarea></div></section>
+
+<section id="c6"><h2>Card 6 · Back to the sensor</h2>
+<p><span class="tag t-anim">the course path, reused</span><span class="tag t-act">checkpoint</span>The PLAN gives this card only the checkpoint. Every card gets a demonstration, so the proposal (D4) is D1·010 card 5's course path, reused unchanged. Its stages light up as the room names them for the 2047, and the presenter marks the suspect. This page has a stand-in to try: click a stage to mark it.</p>
+<div class="path" id="path6"></div>
+<p class="note" id="t6"></p>
+<div class="fb"><label>Your feedback on card 6</label><textarea data-k="c6"></textarea></div></section>
+
+<section id="find"><h2>Findings: your choice</h2>
+<p class="note">The first button of each item is my recommendation, and it is selected until you pick another. The <span class="block">accuracy</span> items are open in <code>.claude/tracking/ACCURACY.md</code> and block the unit until you decide. Your words stay yours: nothing in <code>en.md</code> changes until you choose.</p>
+<div id="fd"></div>
+<div class="fb"><label>Anything else on this unit</label><textarea data-k="general"></textarea></div></section>
+
+<section id="gates"><h2>Six-gate report for this page</h2>
+<table><tr><th>Gate</th><th>Result</th><th>This pass</th></tr>
+<tr><td>1 Realism ≥ 95 %</td><td class="pass">pass (plot level)</td><td>Real values throughout: the course's 12-bit, 3.3 V converter; a 10 k NTC with B = 3950 K under 10 kΩ (D1·040's circuit); a 0.5 mm trace in 1 oz copper; the chip's 1.0–1.2 V internal reference (from its datasheet). The rail's 50 mΩ is put where it is real: the regulator and its wiring (F1).</td></tr>
+<tr><td>2 Science 100 %</td><td class="wait">pass for this page; the module has F1–F3, F6 open</td><td>The cancellation holds only when the excitation and the reference are one voltage (both FAULTs are right). The trace's resistance is ρ<sub>Cu</sub> = 1.72×10⁻⁸ Ω·m over 0.5 mm × 35 µm. The poll's clipping case is F2.</td></tr>
+<tr><td>3 Maths 100 %</td><td class="wait">pass for this page; F4 open</td><td>Recomputed in Node: 2048; 1.6492 V, 0.5497 V, 0.49976; 2112, +3.125 %, 1.7016 V; +0.61 %; 9.5 mV, 2048 → 2054; 18.8 mV, 2048 → 2060; 20 %, 90.9 %, 40 %, 83–100 %; 2252.8, 1877.3; 3156 … 1081. Codes are taken exactly, never from 2111.9999.</td></tr>
+<tr><td>4 Visualization 100 %</td><td class="pass">pass</td><td>Each card's key variable is the one that moves: V<sub>in</sub> (card 1), V<sub>ref</sub> (cards 2 and 3), the load and the trace (card 4), the rail and then the temperature (card 5).</td></tr>
+<tr><td>5 Consistency</td><td class="pass">pass</td><td>One palette: the ideal line grey, the converter's staircase violet, the fixed input amber, the ratiometric input teal, the references rose. The same Equation runs through cards 1–3, and the same divider as D1·040 and D1·070.</td></tr>
+<tr><td>6 Professional design</td><td class="pass">pass (EN only)</td><td>Sliders in one row, each named in words with its symbol; IEC symbols in card 4; no glows or charge dots (the bench draws signal effects). Labels checked at 1100 px and at phone width. French comes with the libraries.</td></tr></table></section>
+</main>
+<script>
+const $=id=>document.getElementById(id),NS='http://www.w3.org/2000/svg';
+const C={bg:'#0B0F14',ink:'#E8EAED',muted:'#9AA3AD',faint:'#3A424C',grid:'#1E262F',teal:'#2DD4BF',amber:'#F5B942',violet:'#A78BFA',lime:'#A3E635',rose:'#F472B6',azure:'#60A5FA',grey:'#7B8794',cu:'#C8854A'};
+function el(p,t,a){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p.appendChild(e);return e}
+function tx(p,x,y,s,o={}){const e=el(p,'text',{x,y,fill:o.fill||C.muted,'font-size':o.size||13,'text-anchor':o.anchor||'middle','font-family':'system-ui,Segoe UI,sans-serif'});if(o.weight)e.setAttribute('font-weight',o.weight);e.textContent=s;return e}
+function path(p,d,col,w,dash){return el(p,'path',{d,fill:'none',stroke:col,'stroke-width':w||2,'stroke-dasharray':dash||'none','stroke-linejoin':'round'})}
+function fmt(v){return Math.abs(v)<1e-12?'0':(Math.abs(v)>=100?v.toFixed(0):+v.toPrecision(4)+'')}
+function axes(svg,b,xr,yr,xt,yt,xl,yl,fx,fy){fx=fx||fmt;fy=fy||fmt;const X=x=>b.x0+(b.x1-b.x0)*(x-xr[0])/(xr[1]-xr[0]),Y=y=>b.y1-(b.y1-b.y0)*(y-yr[0])/(yr[1]-yr[0]);
+ for(const t of yt){el(svg,'line',{x1:b.x0,y1:Y(t),x2:b.x1,y2:Y(t),stroke:C.grid});tx(svg,b.x0-8,Y(t)+4,fy(t),{anchor:'end'})}
+ for(const t of xt){tx(svg,X(t),b.y1+18,fx(t))}
+ el(svg,'line',{x1:b.x0,y1:b.y1,x2:b.x1,y2:b.y1,stroke:C.muted});el(svg,'line',{x1:b.x0,y1:b.y0,x2:b.x0,y2:b.y1,stroke:C.muted});
+ if(xl)tx(svg,(b.x0+b.x1)/2,b.y1+38,xl);if(yl)tx(svg,b.x0,b.y0-10,yl,{anchor:'start'});return{X,Y}}
+const N=12,L=4096;
+/* exact truncation: a ratio on a code edge (1.65/3.2·4096 = 2112) must not fall to 2111 through floating point */
+const code=(v,r)=>Math.min(L-1,Math.max(0,Math.floor(v/r*L+1e-9)));
+/* ---------- storage ---------- */
+const ST={get(k){try{return localStorage.getItem('u018:'+k)}catch(e){return null}},set(k,v){try{localStorage.setItem('u018:'+k,v)}catch(e){}},keys(){try{return Object.keys(localStorage).filter(k=>k.startsWith('u018:'))}catch(e){return[]}}};
+window.u018Feedback=()=>Object.fromEntries(ST.keys().sort().map(k=>[k.slice(5),ST.get(k.slice(5))]));
+function sum(){const n=ST.keys().length;$('fbsum').textContent=n?n+' saved':''}
+function showFb(){const f=u018Feedback(),k=Object.keys(f);$('fbout').style.display='block';$('fbout').textContent=k.length?k.map(x=>x+': '+f[x]).join('\n'):'Nothing entered yet.'}
+function clearFb(){ST.keys().forEach(k=>{try{localStorage.removeItem(k)}catch(e){}});document.querySelectorAll('textarea').forEach(t=>t.value='');document.querySelectorAll('.bar button').forEach(b=>b.classList.remove('on'));sum()}
+/* staircase of the converter between x0 and x1 for a reference r */
+function stair(A,xr,r){let d='',pc=null;const n=1600;for(let i=0;i<=n;i++){const x=xr[0]+(xr[1]-xr[0])*i/n,c=code(x,r);d+=(i&&c===pc?'H'+A.X(x):(i?'H'+A.X(x)+'V'+A.Y(c):'M'+A.X(x)+' '+A.Y(c)));pc=c}return d}
+/* ---------- card 1 ---------- */
+let z1=false;
+function draw1(){const svg=$('p1');svg.innerHTML='';const v=+$('s1i').value,r=3.3;$('v1i').textContent=v.toFixed(3)+' V';
+ const xr=z1?[1.645,1.655]:[0,3.3],yr=z1?[code(1.645,r)-1,code(1.655,r)+1]:[0,4096];
+ const b={x0:80,x1:1080,y0:30,y1:300},A=axes(svg,b,xr,yr,z1?[1.645,1.6475,1.65,1.6525,1.655]:[0,0.55,1.1,1.65,2.2,2.75,3.3],z1?[2040,2044,2048,2052,2056]:[0,1024,2048,3072,4096],'input V_in (V), reference 3.3 V, 12 bits','code',z1?(x=>x.toFixed(4)):null);
+ path(svg,`M${A.X(xr[0])} ${A.Y(xr[0]/r*L)}L${A.X(xr[1])} ${A.Y(xr[1]/r*L)}`,C.grey,1.6,'6 5');
+ path(svg,stair(A,xr,r),C.violet,z1?2.5:2);
+ if(v>=xr[0]&&v<=xr[1]){const c=code(v,r);el(svg,'line',{x1:A.X(v),y1:b.y1,x2:A.X(v),y2:A.Y(c),stroke:C.amber,'stroke-dasharray':'4 4'});el(svg,'line',{x1:b.x0,y1:A.Y(c),x2:A.X(v),y2:A.Y(c),stroke:C.amber,'stroke-dasharray':'4 4'});el(svg,'circle',{cx:A.X(v),cy:A.Y(c),r:5,fill:C.amber})}
+ tx(svg,1080,22,z1?'zoomed: each step is one code, 0.806 mV wide; the code is the step at or below the ideal line':'ideal line dashed grey · the converter violet (steps too fine to see at 12 bits)',{anchor:'end'});
+ const c=code(v,r);$('ro1').innerHTML=`<div>V<sub>in</sub> / V<sub>ref</sub><b>${(v/r).toFixed(4)}</b></div><div>× 2<sup>12</sup><b>${(v/r*L).toFixed(2)}</b></div><div>code (whole part)<b>${c}</b></div><div>that code stands for<b>${(c*r/L).toFixed(4)} – ${((c+1)*r/L).toFixed(4)} V</b></div>`}
+$('s1i').oninput=draw1;$('z1').onclick=()=>{z1=!z1;$('z1').classList.toggle('on',z1);if(z1)$('s1i').value=1.65;draw1()};
+/* ---------- card 2 ---------- */
+let r2=3.3;
+function draw2(){const svg=$('p2');svg.innerHTML='';const b={x0:80,x1:1080,y0:30,y1:270},A=axes(svg,b,[0,3.3],[0,4096],[0,0.55,1.1,1.65,2.2,2.75,3.3],[0,1024,2048,3072,4096],'V_in (V)','code');
+ for(const r of [3.3,1.1]){const on=r===r2;path(svg,`M${A.X(0)} ${A.Y(0)}L${A.X(Math.min(3.3,r))} ${A.Y(Math.min(3.3,r)/r*L)}`,on?C.violet:C.faint,on?2.5:1.5,on?'none':'6 5');tx(svg,A.X(r)-6,A.Y(L)+(r===1.1?16:16),'V_ref '+r+' V',{anchor:'end',fill:on?C.violet:C.faint})}
+ const c=2047,v=c*r2/L;el(svg,'line',{x1:b.x0,y1:A.Y(c),x2:A.X(v),y2:A.Y(c),stroke:C.amber,'stroke-width':2});el(svg,'line',{x1:A.X(v),y1:A.Y(c),x2:A.X(v),y2:b.y1,stroke:C.amber,'stroke-width':2,'stroke-dasharray':'4 4'});
+ el(svg,'circle',{cx:A.X(v),cy:A.Y(c),r:5,fill:C.amber});tx(svg,b.x0+8,A.Y(c)-8,'code 2047',{anchor:'start',fill:C.amber});tx(svg,A.X(v)+8,b.y1-8,v.toFixed(3)+' V',{anchor:'start',fill:C.amber,size:15});
+ $('ro2').innerHTML=`<div>2047 / 4096<b>${(c/L).toFixed(4)}</b></div><div>× V<sub>ref</sub> ${r2} V<b>${v.toFixed(4)} V</b></div><div>band of that code<b>${v.toFixed(4)} – ${((c+1)*r2/L).toFixed(4)} V</b></div>`}
+$('r2a').onclick=()=>{r2=3.3;$('r2a').classList.add('on');$('r2b').classList.remove('on');draw2()};$('r2b').onclick=()=>{r2=1.1;$('r2b').classList.add('on');$('r2a').classList.remove('on');draw2()};
+/* ---------- card 3 ---------- */
+function draw3(){const svg=$('p3');svg.innerHTML='';const r=+(+$('s3r').value).toFixed(3),vi=1.65;$('v3r').textContent=r.toFixed(3)+' V';
+ const b={x0:80,x1:1080,y0:30,y1:270},A=axes(svg,b,[1.4,1.9],[1700,2400],[1.4,1.5,1.6,1.65,1.7,1.8,1.9],[1700,1800,1900,2000,2048,2112,2200,2300,2400],'V_in (V), 12 bits','code');
+ path(svg,`M${A.X(1.4)} ${A.Y(1.4/3.3*L)}L${A.X(1.9)} ${A.Y(1.9/3.3*L)}`,C.faint,1.6,'6 5');tx(svg,A.X(1.9)-4,A.Y(1.9/3.3*L)+18,'V_ref 3.30 V',{anchor:'end',fill:C.faint});
+ path(svg,`M${A.X(1.4)} ${A.Y(1.4/r*L)}L${A.X(1.9)} ${A.Y(Math.min(2400,1.9/r*L))}`,C.violet,2.5);
+ el(svg,'line',{x1:A.X(vi),y1:b.y0,x2:A.X(vi),y2:b.y1,stroke:C.azure,'stroke-dasharray':'4 4'});tx(svg,A.X(vi)+6,b.y1-8,'1.65 V, unchanged',{anchor:'start',fill:C.azure});
+ const c=code(vi,r);el(svg,'circle',{cx:A.X(vi),cy:A.Y(c),r:6,fill:C.amber});tx(svg,A.X(vi)-10,A.Y(c)-8,'code '+c,{anchor:'end',fill:C.amber,size:15});
+ $('ro3').innerHTML=`<div>reference fell<b>${((1-r/3.3)*100).toFixed(2)} %</b></div><div>code<b>${c}</b></div><div>code rose<b>+${((c/2048-1)*100).toFixed(2)} %</b></div><div>firmware reports (× 3.3 / 4096)<b>${(c*3.3/L).toFixed(3)} V</b></div><div>the input<b>1.650 V</b></div>`}
+$('s3r').oninput=draw3;
+/* ---------- card 4 ---------- */
+let I4=0.010,tr4=false;const RS=0.050,RTR=1.72e-8/(0.5e-3*35e-6)*0.050;
+function rail(I){return 3.3-I*(RS+(tr4?RTR:0))}
+function res(svg,x,y,w,h,col){el(svg,'rect',{x,y,width:w,height:h,fill:C.bg,stroke:col||C.ink,'stroke-width':2})}
+function wire(svg,d,col){path(svg,d,col||C.ink,2)}
+function draw4(){const svg=$('p4');svg.innerHTML='';const G=280,T=80;
+ /* source and its resistance */
+ wire(svg,`M110 ${T}V161M110 209V${G}`);el(svg,'circle',{cx:110,cy:185,r:24,fill:'none',stroke:C.ink,'stroke-width':2});el(svg,'line',{x1:110,y1:161,x2:110,y2:209,stroke:C.ink,'stroke-width':2});
+ tx(svg,70,180,'3.3 V',{anchor:'end',fill:C.ink});tx(svg,70,198,'regulator',{anchor:'end'});
+ wire(svg,`M110 ${T}H180M260 ${T}H320`);res(svg,180,T-10,80,20,C.rose);tx(svg,220,T-18,'R_s 50 mΩ',{fill:C.rose});tx(svg,220,T+30,'regulator + wiring',{size:12});
+ if(tr4){wire(svg,`M440 ${T}H560`);el(svg,'rect',{x:320,y:T-6,width:120,height:12,fill:C.cu,stroke:C.cu});tx(svg,380,T-16,'trace 49 mΩ',{fill:C.cu});tx(svg,380,T+28,'0.5 mm × 50 mm, 35 µm Cu',{size:12})}
+ else{wire(svg,`M320 ${T}H560`);tx(svg,380,T-12,'(no trace)',{size:12})}
+ wire(svg,`M560 ${T}H980V161M980 209V${G}`);el(svg,'circle',{cx:560,cy:T,r:4,fill:C.ink});
+ /* load: IEC current source drawn as a circle with the current direction */
+ el(svg,'circle',{cx:980,cy:185,r:24,fill:'none',stroke:C.ink,'stroke-width':2});el(svg,'line',{x1:956,y1:185,x2:1004,y2:185,stroke:C.ink,'stroke-width':2});
+ path(svg,'M1022 165V205M1016 197L1022 207L1028 197',C.amber,2);tx(svg,1040,180,(I4*1e3).toFixed(0)+' mA',{anchor:'start',fill:C.amber,size:15});tx(svg,1040,198,'MCU load',{anchor:'start'});
+ /* ADC */
+ el(svg,'rect',{x:600,y:130,width:260,height:110,rx:6,fill:'#10161C',stroke:C.violet,'stroke-width':2});tx(svg,730,152,'ADC, 12 bits',{fill:C.violet});
+ wire(svg,`M700 ${T}V130`);tx(svg,706,124,'V_REF = rail',{anchor:'start',fill:C.rose,size:12});
+ wire(svg,`M480 215V200H600M480 255V${G}M730 240V${G}`);el(svg,'circle',{cx:480,cy:235,r:20,fill:'none',stroke:C.azure,'stroke-width':2});el(svg,'line',{x1:480,y1:215,x2:480,y2:255,stroke:C.azure,'stroke-width':2});
+ tx(svg,450,240,'1.65 V',{anchor:'end',fill:C.azure});tx(svg,450,256,'fixed reference',{anchor:'end',size:12});tx(svg,606,196,'IN',{anchor:'start',size:12});
+ wire(svg,`M80 ${G}H1000`);for(const x of [110,480,730,980])el(svg,'circle',{cx:x,cy:G,r:3,fill:C.ink});
+ const v=rail(I4),c=code(1.65,v);tx(svg,730,195,String(c),{fill:C.ink,size:34,weight:600});tx(svg,730,222,'code',{size:12});
+ tx(svg,560,T-14,v.toFixed(4)+' V',{fill:C.ink,size:14});
+ const v0=rail(0.010),c0=code(1.65,v0);
+ $('ro4').innerHTML=`<div>rail at the pin<b>${v.toFixed(4)} V</b></div><div>drop from the 10 mA rail<b>${((v0-v)*1e3).toFixed(1)} mV</b></div><div>code for the fixed 1.65 V<b>${c}</b></div><div>change from 10 mA<b>${c-c0>=0?'+':''}${c-c0} counts</b></div><div>firmware reads (× 3.3 / 4096)<b>${(c*3.3/L).toFixed(4)} V</b></div>`}
+$('l4a').onclick=()=>{I4=0.010;$('l4a').classList.add('on');$('l4b').classList.remove('on');draw4()};$('l4b').onclick=()=>{I4=0.200;$('l4b').classList.add('on');$('l4a').classList.remove('on');draw4()};
+$('t4a').onclick=()=>{tr4=false;$('t4a').classList.add('on');$('t4b').classList.remove('on');draw4()};$('t4b').onclick=()=>{tr4=true;$('t4b').classList.add('on');$('t4a').classList.remove('on');draw4()};
+/* ---------- card 5 ---------- */
+const B=3950,RT=t=>1e4*Math.exp(B*(1/(t+273.15)-1/298.15));
+function draw5(){const svg=$('p5');svg.innerHTML='';const v=+$('s5v').value,t=+$('s5t').value,k=RT(t)/(RT(t)+1e4);$('v5v').textContent=v.toFixed(3)+' V';$('v5t').textContent=t+' °C';
+ const b={x0:80,x1:1080,y0:40,y1:320},A=axes(svg,b,[3.0,3.6],[1000,3300],[3.0,3.1,3.2,3.3,3.4,3.5,3.6],[1000,1500,2000,2500,3000],'rail V_dd (V), also the ADC reference','code (12 bits)');
+ let da='',dt='';for(let i=0;i<=300;i++){const x=3+0.6*i/300;da+=(i?'L':'M')+A.X(x)+' '+A.Y(code(1.65,x));dt+=(i?'L':'M')+A.X(x)+' '+A.Y(code(k*x,x))}
+ path(svg,da,C.amber,2.5);path(svg,dt,C.teal,3);
+ tx(svg,A.X(3.0)+8,A.Y(code(1.65,3.0))-10,'fixed 1.65 V against the rail',{anchor:'start',fill:C.amber});tx(svg,A.X(3.6)-4,A.Y(code(k*3.6,3.6))+(code(k*3.6,3.6)<=code(1.65,3.6)+120?24:-10),'thermistor divider on the same rail, '+t+' °C',{anchor:'end',fill:C.teal});
+ el(svg,'line',{x1:A.X(v),y1:b.y0,x2:A.X(v),y2:b.y1,stroke:C.rose,'stroke-dasharray':'4 4'});
+ const ca=code(1.65,v),ct=code(k*v,v);el(svg,'circle',{cx:A.X(v),cy:A.Y(ca),r:6,fill:C.amber});el(svg,'circle',{cx:A.X(v),cy:A.Y(ct),r:6,fill:C.teal});
+ $('ro5').innerHTML=`<div>rail<b>${v.toFixed(3)} V</b></div><div>fixed 1.65 V: code<b style="color:var(--amber)">${ca}</b></div><div>divider output<b>${(k*v).toFixed(4)} V</b></div><div>divider: code<b style="color:var(--teal)">${ct}</b></div><div>R<sub>T</sub> at ${t} °C<b>${(RT(t)/1e3).toFixed(2)} kΩ</b></div><div>k = R<sub>T</sub>/(R<sub>T</sub>+10 kΩ)<b>${k.toFixed(4)}</b></div>`}
+['s5v','s5t'].forEach(i=>$(i).oninput=draw5);
+let anim5=null;$('a5').onclick=()=>{if(anim5){cancelAnimationFrame(anim5);anim5=null;$('a5').textContent='Sweep the rail ▶';$('a5').classList.remove('on');return}
+ $('a5').textContent='Stop ■';$('a5').classList.add('on');const t0=performance.now();const step=now=>{const ph=((now-t0)/6000)%1,x=3.3+0.3*Math.sin(2*Math.PI*ph);$('s5v').value=x;draw5();anim5=requestAnimationFrame(step)};anim5=requestAnimationFrame(step)};
+/* ---------- card 6 ---------- */
+const P6=['quantity','sensor','loading','conditioning','ADC input','conversion','reference','firmware','number'];const S6=new Set();
+function draw6(){$('path6').innerHTML=P6.map((p,i)=>`${i?'<i>→</i>':''}<button data-p="${p}" class="${S6.has(p)?'sus':''}">${p}</button>`).join('');
+ $('path6').querySelectorAll('button').forEach(b=>b.onclick=()=>{const p=b.dataset.p;S6.has(p)?S6.delete(p):S6.add(p);draw6()});
+ $('t6').textContent=S6.size?'Marked as suspect: '+[...S6].join(', ')+'. (In D1·070 the room found the 2047\'s cause at the ADC input: 50 kΩ behind a 1.29 µs window.)':'The nine stages of D1·010\'s path, with today\'s REFERENCE stage in its place. Click to mark a suspect.'}
+/* ---------- findings ---------- */
+const F=[
+['F1',true,'Card 4: “Switch on the supply\'s output resistance, 50 mΩ”','The course\'s one supply (the sw3005) holds its setpoint to 0.1 % + 10 mV, which is about 2.7 mΩ. At 200 mA it would sag about 0.5 mV, less than one count, so the card\'s 10 mV and 6 counts would never appear. 50 mΩ is realistic for the rail as the MCU pin sees it: the regulator plus its wiring. D1·040 card 1 says the same of the bench supply (logged as D1·040-F1, for the D1·010–060 sweep).',['p4: “…Switch on the rail\'s source resistance, 50 mΩ: the regulator and its wiring, as the MCU\'s pin sees them, and step the load…” (and the PLAN)','Keep “the supply”: the Electronics Bench gets a supply of its own with 50 mΩ, said on the stage','Other (say below)']],
+['F2',true,'Card 4, the poll: “the internal 1.1 V uses 91 % of it … about 1.0 to 1.2 V, so it needs calibrating once”','91 % is the nominal case. Across the datasheet\'s 1.0–1.2 V, the 0–1 V signal uses 83–100 % of the range. On a part at 1.0 V, the top of the signal reaches full scale (code 1023), and calibration cannot recover a clipped reading.',['Add: “…so it needs calibrating once, and on a part near 1.0 V the top of the signal reaches full scale.” (Flow and PLAN)','“…uses between 83 and 100 % of it, depending on the part…”','Keep']],
+['F3',true,'Card 4 statement: “the supply is the noisiest, least accurate voltage on the board”','This is an absolute claim, while the card\'s own Flow says “usually the worst”. Boards often carry worse voltages: an unregulated input, a motor rail, a switching node.',['“…and the supply is usually the noisiest, least accurate voltage on the board to measure against.”','Keep']],
+['F4',true,'Card 5: “about 2253 at 3.0 V”','1.65/3.0 × 4096 = 2252.8. The course\'s truncating converter gives 2252; 2253 is what rounding would give. 1877 is right either way.',['“about 2252” (Flow p3; PLAN “falls from 2252 to 1877”)','Keep “about 2253”: the line is drawn continuous']],
+['F5',true,'Card 2 HARVEST S30: “Our 2047 from this morning: 1.649 V, if the reference really is 3.3 V.”','This is right about what the code stands for. But D1·010\'s truth pane showed the pin at 1.79 V (the 2047 is 8 % low), and D1·070 showed why: settling. Heard alone, the harvest says the 2047 was 1.649 V.',['“Our 2047 from this morning stands for 1.649 V, if the reference really is 3.3 V. The pin was at 1.79 V; 070 told us why.”','Keep']],
+['F6',true,'Card 6: “the most stubborn error on the converter\'s side of the path stops mattering”','This claims too much in two ways. D1·080 card 7 has just taught INL and DNL, which no pair of constants fixes, while D2·050 calibrates a steady reference error away (S22). And the reference error stops mattering only for a ratiometric sensor.',['“Make them the same voltage, and the reference\'s error, sag and drift included, stops mattering for that sensor.”','Keep']],
+['N1',false,'Card 5 p0: “[[demo]] Widget: the rail-voltage slider — the absolute reading moves, the ratiometric one does not.”','This uses an old bench name (the PLAN says the Plot replaces the widget). It also shows the answer two paragraphs before the [[ask]], which spoils the predict.',['Remove the line (p2\'s Plot Bench [[demo]] carries the demonstration)','“[[demo]] Plot Bench: the code against the rail, both lines hidden until the reveal.”','Keep']],
+['N2',false,'Card 4: “The ATmega328P, for example…” and the poll “An ATmega328P on 5 V…”','A product name on a teaching surface (the unbranded rule; D1·070-F1 and D1·080-N2 removed theirs). The poll\'s three options are that chip\'s real ones, so the facts stay the same either way.',['Unbranded: “A common 8-bit MCU, for example, can use its analog supply (AVCC), an internal reference of nominally 1.1 V, or an external one on its AREF pin.” and “An 8-bit MCU on 5 V…”','Keep the name (an exception)']],
+['D1',false,'Cards 1, 2, 3 and 5 on the PLAN\'s Equation and Plot benches','They are ready in Studio today, as in D1·080 (your choice there).',['Yes: specs now for Equation (cards 1, 2, 3, and 5\'s cancellation) and Plot (card 5)','Ask Benches for Animation demonstrations instead']],
+['D2',false,'Card 4: the Electronics widget is deferred. What carries the demonstration?','The Electronics Bench is still in development. The card still gets a demonstration.',['An Animation Bench demonstration by Benches: a spec here and a crossing (the rail behind 50 mΩ, the load switch, the trace switch, the fixed 1.65 V, the live code), as previewed above','No demonstration until the Electronics Bench lands']],
+['D3',false,'Card 4: how long is “a thin PCB trace”?','The PLAN names a 0.5 mm part but no length. In 1 oz copper it is 0.98 mΩ per mm.',['50 mm: +49 mΩ, the drop 18.8 mV, the code climbs 12 (doubles)','100 mm: +98 mΩ, 28.2 mV, 18 counts','25 mm: +25 mΩ, 14.2 mV, 9 counts']],
+['D4',false,'Card 6: the checkpoint\'s demonstration','The PLAN gives this card none. Every card gets one.',['Reuse D1·010 card 5\'s course path unchanged; the stages light as the room names them, the presenter marks the suspect','No bench (the checkpoint only)']],
+['D5',false,'Cards 1–3: draw the converter\'s code as truncated','The Flow\'s formula has no ⌊ ⌋. The course\'s converter truncates (D1·080).',['The Equation shows ⌊ ⌋ and a staircase under the dashed ideal line, with a zoom near 1.65 V (as on this page); the Flow is unchanged','A straight line only, as the PLAN says']]];
+$('fd').innerHTML=F.map(([k,acc,t,w,opts])=>`<div><div class="q"><b>${k} · ${t}.</b>${acc?'<span class="block">accuracy</span>':''} ${w}</div><div class="bar" data-c="${k}">${opts.map(o=>`<button>${o}</button>`).join('')}</div><textarea data-k="${k}" placeholder="Optional note"></textarea></div>`).join('');
+document.querySelectorAll('.bar[data-c]').forEach(b=>{const k=b.dataset.c+'-choice',v=ST.get(k)||b.querySelector('button').textContent;b.querySelectorAll('button').forEach(btn=>{if(btn.textContent===v)btn.classList.add('on');btn.onclick=()=>{b.querySelectorAll('button').forEach(x=>x.classList.remove('on'));btn.classList.add('on');ST.set(k,btn.textContent);sum()}})});
+document.querySelectorAll('textarea[data-k]').forEach(t=>{t.value=ST.get(t.dataset.k)||'';t.oninput=()=>{ST.set(t.dataset.k,t.value);sum()}});
+draw1();draw2();draw3();draw4();draw5();draw6();sum();
+</script></body></html>
