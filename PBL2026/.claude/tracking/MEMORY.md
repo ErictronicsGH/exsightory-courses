@@ -44,3 +44,19 @@ Building any bench or asset. Changing the owner's card text or Flow (report anyt
   Flow 1,041 words; module ≈ 20 of 30 min. **Next:** read the owner's choices (`u018Feedback()` in the page), apply the
   decided findings to `en.md` and re-check, then write the specs (cards 1, 2, 3, 5 Equation/Plot; card 4 Animation +
   crossing if D2 is chosen; card 6 per D4).
+- 2026-10-20: owner chose every recommendation (F1–F6, N1, N2, D1–D5); applied to `en.md` and re-checked (commit
+  f0e787b); `ACCURACY.md` shows no open finding on D1·090 (D1·040-F1 waits for the D1·010–060 sweep). Card 4's spec
+  written (`D1-090-04-vdd-reference.md`, spec-draft, new proposals P1–P9 open; its numbers re-verified in Node); its
+  crossing draft was lost with that session's scratchpad: write it after P1–P9 are decided. Specs for cards 1–3, 5
+  (with the module's time table) and 6 being written. Found in Node: 1.65/3.20 × 4096 is 2111.9999999999995 in IEEE
+  doubles, so a bench `floor` shows **2111** where the Flow says 2112 (cards 3 and 5): the specs raise it. **Next:**
+  review the five specs (numbers in Node), add the `bench-work/README.md` rows, put every spec's §14 on the brief page
+  for the owner's choices, then the crossing for card 4.
+- 2026-10-20: owner *"apply all recommendations"*: F1–F6, N1, N2 applied to `en.md` and re-checked; D1–D5 into the
+  specs. All six specs written (`bench-work/specs/D1-090-01` … `06`, README rows added); one module time table, in
+  `D1-090-05` §2b: ≈ 17.3 of 30 min. The specs raised **D1·090-F7** (card 5's ideal 2048) and **F8** ("this morning"
+  against the GMT schedule; also D1·040-F2, D1·050-F1), open, and round-two proposals (cards 1–3 C1a–C3c, card 4
+  P1–P9, card 5 C5a–c, card 6 C6a–c, X: three crossings). All on the U018 page, section *specs*. The card 4 crossing
+  draft is in the session scratchpad (`crossing-d1-090-04.request.md`; it will need re-writing from the spec if the
+  scratchpad is gone). **Next:** read the owner's round-two choices, apply F7/F8 and any Flow changes (C2b, C5b, P9)
+  to `en.md`, update the specs' §14 "Decided" lines and statuses, then write and push the crossings (id from the tool).
