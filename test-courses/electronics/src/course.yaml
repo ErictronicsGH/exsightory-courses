@@ -10,7 +10,7 @@
 # stops being is where the bench is driven.
 #
 # The rule this file is the first instance of is in
-# `.claude/implementation/standards/bench-fixture-courses.md`.
+# `.claude/commons/standards/bench-fixture-courses.md`.
 id: bench-electronics
 title: The Electronics Bench
 # What a reader sees on the card and under every page. It shipped in the first

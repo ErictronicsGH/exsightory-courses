@@ -4,7 +4,7 @@ Not teaching material. This exists so that driving one circuit loads one circuit
 course — five subsections, thirteen demonstrations, and nothing else.
 
 The convention it is the first instance of is
-[`.claude/implementation/standards/bench-fixture-courses.md`](../../../.claude/implementation/standards/bench-fixture-courses.md).
+[`.claude/commons/standards/bench-fixture-courses.md`](../../../.claude/commons/standards/bench-fixture-courses.md).
 Read that before adding a bench course; this file is only the local map.
 
 ## Layout
