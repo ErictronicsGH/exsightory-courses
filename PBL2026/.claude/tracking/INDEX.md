@@ -13,9 +13,9 @@ One line each. Status: `done` · `in-progress` · `paused` · `not-started` · `
 | U011 | Bench specs, D1·020 The measurand, and what "right" means (30 min) | done | U002, U003 |
 | U012 | Bench specs, D1·030 Sensing: from physical quantity to electrical signal (25 min) | done | U002, U003 |
 | U013 | Bench specs, D1·040 The sensor as a source: impedance, dividers and loading (45 min) | done | U002, U003 |
-| U014 | Bench specs, D1·050 Current as the quantity: shunts, Kelvin and burden voltage (40 min) | in-progress | U002, U003 |
+| U014 | Bench specs, D1·050 Current as the quantity: shunts, Kelvin and burden voltage (40 min) | done | U002, U003 |
 | U015 | Bench specs, D1·060 Signal conditioning: in-amps, gain, offset and bias current (40 min) | done | U002, U003 |
-| U016 | Bench specs, D1·070 The ADC input: sample-and-hold and acquisition time (45 min) | not-started | U002, U003 |
+| U016 | Bench specs, D1·070 The ADC input: sample-and-hold and acquisition time (45 min) | in-progress | U002, U003 |
 | U017 | Bench specs, D1·080 Conversion: sampling, quantization, architecture and ENOB (30 min) | not-started | U002, U003 |
 | U018 | Bench specs, D1·090 The reference voltage, and ratiometric measurement (30 min) | not-started | U002, U003 |
 | U019 | Bench specs, D2·010 The code leaves the converter: open-drain, pull-ups and I²C (30 min) | not-started | U002, U003 |

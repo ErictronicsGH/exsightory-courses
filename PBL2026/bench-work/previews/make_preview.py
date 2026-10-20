@@ -919,12 +919,53 @@ def panel_d1060_card9():
     return svg(1600, 560, ''.join(body), 'D1-060 card 9, step s2: output error against source resistance')
 
 
+# ---------- U014: D1·050 ----------
+def panel_d1050_card2():
+    w, h = 600, 400
+    shunts = [(0.001, 'E1 1 mΩ'), (0.010, 'E2 10 mΩ'), (0.050, 'E3 50 mΩ'), (0.100, 'E4 100 mΩ')]
+    graphs = [('The signal   V_sh = I·R_sh   (I = 2 A)', lambda r: 2 * r, 'Signal V_sh (log)',
+               {-4: '100 µV', -3: '1 mV', -2: '10 mV', -1: '100 mV', 0: '1 V'},
+               ['2.000 mV · 2.5 codes', '20.00 mV · 24.8 codes', '100.0 mV · 124 codes', '200.0 mV · 248 codes'],
+               (0.1, 'proposal F5: the 100 mV the circuit can spare')),
+              ('The heat   P = I²·R_sh   (I = 2 A)', lambda r: 4 * r, 'Power P (log)',
+               {-4: '100 µW', -3: '1 mW', -2: '10 mW', -1: '100 mW', 0: '1 W'},
+               ['4.000 mW', '40.00 mW', '200.0 mW', '400.0 mW'],
+               (0.5, 'proposal F5: half of a 1 W rating'))]
+    body = []
+    for k, (title, f, ylab, yt, labs, bound) in enumerate(graphs):
+        x0 = 150 + k * 780
+        out, sx, sy = plot_frame(x0, 60, w, h, -3, -1, -4, 0, [-3, -2, -1],
+                                 lambda v: {-3: '1 mΩ', -2: '10 mΩ', -1: '100 mΩ'}[int(v)], [-4, -3, -2, -1, 0],
+                                 lambda v, yt=yt: yt[int(v)], 'Shunt resistance R_sh (log)', ylab)
+        body += out
+        body.append(text(x0, 44, title, 20, INK, 'start', 700))
+        body.append(hline(sx, sy, -3, -1, math.log10(bound[0]), AMBER))
+        body.append(text(x0 + 8, sy(math.log10(bound[0])) - 8, bound[1], 15, AMBER, 'start', 600))
+        body.append(f"<path d='{log_path(sx, sy, f, -3, -1)}' fill='none' stroke='{TEAL if k == 0 else AZURE}' stroke-width='4'/>")
+        for (r, name), lab in zip(shunts, labs):
+            x, yy = sx(math.log10(r)), sy(math.log10(f(r)))
+            # E1, E2 below and right of the line; E3, E4 above and left of it, E4 higher; on the power graph E3 goes
+            # below, clear of the dashed 0.5 W line 0.4 decade above it
+            right = r < 0.02 or (k == 1 and r < 0.09)
+            dy = 30 if right else (-34 if r < 0.09 else -44)
+            body.append(dot_at(x, yy))
+            body.append(text(x + 14 if right else x - 14, yy + dy, name, 16, INK, 'start' if right else 'end', 700))
+            body.append(text(x + 14 if right else x - 14, yy + dy + 20, lab, 15, MUTED, 'start' if right else 'end'))
+    body.append(text(150, 590, 'Both are straight lines of slope 1 at a fixed current: five times the shunt, five times the signal '
+                     'and five times the heat. One code = 3.3 V / 4096 = 0.806 mV.', 17, MUTED, 'start'))
+    return svg(1600, 610, ''.join(body), 'D1-050 card 2, step s4: signal and heat against the shunt, the four shunts marked')
+
+
 PANELS_U015 = [
     ('d1-060-02-conditioning-pins', panel_d1060_card2, 'D1·060 card 2, last step: the seven conditioning functions pinned where the course meets them, CONDITIONING lit (D1-060-02-what-conditioning-does.md)'),
     ('d1-060-04-closed-loop', panel_d1060_card4, 'D1·060 card 4, step s4: A_cl = G/(1 + G·H) for H = 0.1, 0.01, 0.001; the decade walk E3–E5 on H = 0.01 (D1-060-04-negative-feedback.md)'),
     ('d1-060-07-cmrr', panel_d1060_card7, 'D1·060 card 7, step s4: V_e = V_cm/10^(CMRR/20), high side and low side, with the two boundaries (D1-060-07-cmrr.md)'),
     ('d1-060-08-offset', panel_d1060_card8, 'D1·060 card 8 (the centrepiece), s1 and s3: the offset at gain, and the dead zone (D1-060-08-offset-at-gain.md)'),
     ('d1-060-09-bias', panel_d1060_card9, 'D1·060 card 9, step s2: V_o = G·I_b·R_s against R_s, bipolar and CMOS (D1-060-09-bias-current.md)'),
+]
+
+PANELS_U014 = [
+    ('d1-050-02-signal-and-heat', panel_d1050_card2, 'D1·050 card 2, step s4: V_sh = I·R_sh and P = I²·R_sh against R_sh at 2 A, log–log, E1–E4 marked; the dashed lines are proposal F5 (D1-050-02-shunt-signal-and-power.md)'),
 ]
 
 PANELS_U013 = [
@@ -960,8 +1001,9 @@ def main():
     page(PANELS, 'u010-u011-preview.html', 'Bench previews: U010 and U011')
     page(PANELS_U012, 'u012-preview.html', 'Bench previews: U012 (D1·030 Sensing)')
     page(PANELS_U013, 'u013-preview.html', 'Bench previews: U013 (D1·040 The sensor as a source)')
+    page(PANELS_U014, 'u014-preview.html', 'Bench previews: U014 (D1·050 Current as the quantity)')
     page(PANELS_U015, 'u015-preview.html', 'Bench previews: U015 (D1·060 Signal conditioning)')
-    print('wrote', len(PANELS) + len(PANELS_U012) + len(PANELS_U013) + len(PANELS_U015), 'panels')
+    print('wrote', len(PANELS) + len(PANELS_U012) + len(PANELS_U013) + len(PANELS_U014) + len(PANELS_U015), 'panels')
 
 
 def page(panels, filename, title):
