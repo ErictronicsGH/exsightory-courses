@@ -36,7 +36,7 @@
 - [Visual accuracy: same scale](visual-accuracy-same-scale.md) — compared series share one symbol size and step (one ball = one reading), curves are expected counts (area true), never equal-height; mappings reused card-wide
 - [Views arrive at their first frame](views-arrive-at-first-frame.md) — standing rule: a view opens at its first frame, Play/Replay per view (hold at its end), Reset whole library, Autoplay presenter's switch
 - [Drawing and numbers agree](drawing-and-numbers-agree.md) — values from the drawn geometry (gauges where drawn), one law for a drawn mechanism and its hand control, instruments with a small in-spec error, no elastic numbers past yield
-- [First-class requirements](first-class-requirements.md) — realism ≥ 95 %, science and maths 100 %, visualization/intuition 100 %, consistency, professional design: gates for every animation
+- [First-class requirements](first-class-requirements.md) — realism ≥ 95 %, science and maths 100 %, visualization/intuition 100 %, consistency, professional design: gates for everything sent to the owner (animations, briefs, previews, specs), report included
 - [Real process, not glyphs](real-process-not-glyphs.md) — observers, eyes and processes drawn as they really are from their real viewpoint (3a parallax: what the eye sees + seen from above), never symbolic glyphs
 - [Labels never cross](labels-never-cross.md) — leaders through empty space, tags ride moving parts, cables meet their traces at the same height, moving parts stay on stage; checked on full-size captures EN + FR
 - [Glass reads as made](glass-reads-as-made.md) — a 3½-digit display shows " .100" on 2 V (half digit only a 1), zeros kept, bargraph per range; settled captures hold still
@@ -73,3 +73,8 @@
 - [Cameras: one list](cameras-one-list.md) — Room/Bench/Ceiling/Floor/2D/3D/saved in lab.js rig; picker, saved cameras (activity camera.saved), Render from chosen cameras (ZIP + sheet; fly-through/cuts)
 - [Benches live in exsight-benches](benches-live-in-exsight-benches.md) — since 2026-10-13 every bench, library and kit is in exsight-benches (C:\ExSightory\src\exsight-benches), built by ExSightory's Benches lane on a crossing from pbl2026; old bench-work/ paths map there; only specs, previews and evidence stay here
 - [Talk to Benches by crossing](talk-to-benches-by-crossing.md) — owner 2026-10-20: every demonstration or bench need is a crossing to ExSightory's Benches lane (party pbl2026), written and pushed only from C:\ExSightory\lanes\pbl2026-x; list it at every session start
+- [Render what you are doing](render-what-you-are-doing.md) — owner 2026-10-20: every step as an interactive page in the browser pane (previews server, port 8795) with feedback boxes read back from the page
+- [A course cannot misinform](course-cannot-misinform.md) — owner 2026-10-20: accuracy check A1–A7 (standards/course-accuracy.md) before every brief; findings in tracking/ACCURACY.md; an open one blocks the unit and publishing
+- [Sliders side by side](sliders-side-by-side.md) — one row of sliders, each labelled on top in words with the symbol in parentheses and its value at the right; wraps on a phone
+- [IEC symbols, US on a switch](iec-symbols-us-switch.md) — IEC 60617 by default in every drawing; US set on a bench-level Symbols switch beside Speed and Autoplay
+- [Circuit effects are the bench's](circuit-effects-are-the-benchs.md) — no charge dots or glows in previews/libraries; circuits show state and values, the bench draws signal effects; specs state the need

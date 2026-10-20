@@ -1,0 +1,451 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>U016 brief — D1·070 the ADC input</title>
+<style>
+:root{color-scheme:dark;--bg:#0E1217;--panel:#151B22;--ink:#E8EAED;--muted:#9AA3AD;--faint:#3A424C;--teal:#2DD4BF;--amber:#F5B942;--violet:#A78BFA;--lime:#A3E635;--rose:#F472B6;--azure:#60A5FA}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Segoe UI',system-ui,sans-serif;padding:0 16px 16px;line-height:1.5}
+main{max-width:1180px;margin:0 auto}
+h1{font-size:22px;font-weight:600;margin:14px 0 4px}h2{font-size:18px;font-weight:600;margin:0 0 4px}
+p{color:var(--muted);margin:0 0 12px;max-width:95ch}
+section{background:var(--panel);border:1px solid var(--faint);border-radius:10px;padding:14px;margin:0 0 22px}
+.tag{display:inline-block;font-size:12px;border-radius:6px;padding:1px 8px;margin:0 4px 4px 0;border:1px solid}
+.t-draw{color:var(--violet);border-color:var(--violet)}.t-plot{color:var(--azure);border-color:var(--azure)}
+.t-eq{color:var(--lime);border-color:var(--lime)}.t-el{color:var(--amber);border-color:var(--amber)}.t-act{color:var(--muted);border-color:var(--faint)}
+.top{position:sticky;top:0;z-index:5;background:rgba(14,18,23,.96);border-bottom:1px solid var(--faint);padding:8px 0;margin:0 0 12px;display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center}
+.grp{display:flex;gap:4px;align-items:center}.grp .lbl{font-size:12px;color:var(--muted);margin-right:4px}
+.map{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:12px 0 22px}
+.map a{display:block;text-decoration:none;color:var(--muted);background:var(--panel);border:1px solid var(--faint);border-radius:8px;padding:8px 10px;font-size:12px}
+.map a:hover{border-color:var(--teal)}.map b{display:block;color:var(--ink);font-size:14px;font-weight:600;margin:2px 0 4px}
+svg{width:100%;height:auto;display:block;border-radius:6px;background:var(--bg)}
+svg+svg{margin-top:6px}
+button{background:transparent;color:var(--ink);border:1px solid var(--faint);border-radius:6px;padding:5px 11px;font:inherit;font-size:13px;cursor:pointer}
+button:hover{border-color:var(--teal)}button.on{border-color:var(--teal);color:var(--teal)}
+.bar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0}
+.tp{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0}
+.tp .play{color:#4ADE80;border-color:#2F6B45}.tp .play.on{color:#F87171;border-color:#7F3A3A}
+.tp .nav{color:#60A5FA}.tp .rep{color:var(--teal)}.tp .rst{color:var(--amber)}
+.rail{display:flex;gap:5px;margin-left:8px}.rail i{width:11px;height:11px;border-radius:50%;border:1px solid var(--muted);cursor:pointer}.rail i.on{background:var(--teal);border-color:var(--teal)}.rail i.done{background:var(--faint)}
+.state{font-size:12px;color:var(--muted);margin-left:8px}
+.cap{border-left:3px solid var(--teal);padding:6px 12px;color:var(--ink);font-size:15px;margin:8px 0;background:#10161C;border-radius:0 6px 6px 0}
+.cap .cue{display:inline-block;font-size:11px;color:var(--amber);border:1px solid var(--amber);border-radius:5px;padding:0 6px;margin-right:6px;vertical-align:1px}
+.cap p{color:var(--ink);margin:4px 0;max-width:none}
+.xtra{font-size:14px;color:var(--ink);margin:6px 0}.xtra:empty{display:none}
+.ro{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:8px;margin:10px 0}
+.ro div{background:var(--bg);border:1px solid var(--faint);border-radius:6px;padding:6px 10px;font-size:12px;color:var(--muted)}
+.ro b{display:block;font-size:19px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.ro small{display:block;font-size:12px;color:var(--muted)}
+.sl{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px 24px;margin:12px 0}
+.sl label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted)}
+.sl .hd{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.sl output{color:var(--ink);font-size:15px;font-weight:600;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--teal)}
+details{border:1px dashed var(--faint);border-radius:8px;padding:8px 12px;margin-top:10px}summary{cursor:pointer;color:var(--teal);font-size:14px}
+.fb{margin-top:12px;border-top:1px dashed var(--faint);padding-top:10px}
+.fb label{font-size:13px;color:var(--amber)}
+textarea{width:100%;min-height:64px;background:var(--bg);color:var(--ink);border:1px solid var(--faint);border-radius:6px;padding:8px;font:inherit;font-size:14px;margin-top:4px}
+.fd{display:grid;gap:10px}.fd>div{background:var(--bg);border:1px solid var(--faint);border-radius:8px;padding:10px}
+.fd .q{font-size:14px;margin-bottom:6px}.saved{font-size:12px;color:var(--teal);margin-left:8px}
+.block{display:inline-block;font-size:11px;color:var(--rose);border:1px solid var(--rose);border-radius:6px;padding:0 6px;margin-left:6px}
+table{border-collapse:collapse;font-size:13px;width:100%}td,th{border-bottom:1px solid var(--faint);padding:5px 8px;text-align:left;vertical-align:top}th{color:var(--muted);font-weight:500}
+.pass{color:var(--lime)}.fixed{color:var(--amber)}
+</style></head><body><main>
+<h1>U016 brief: D1·070 The ADC input (sample-and-hold and acquisition time)</h1>
+<div class="top">
+<div class="grp"><span class="lbl">Symbols</span><button id="symI" onclick="setSym('iec')">IEC</button><button id="symU" onclick="setSym('us')">US</button></div>
+<div class="grp"><span class="lbl">Speed</span><button data-sp="0.5" onclick="setSpeed(0.5)">0.5×</button><button data-sp="1" onclick="setSpeed(1)">1×</button><button data-sp="2" onclick="setSpeed(2)">2×</button><button data-sp="4" onclick="setSpeed(4)">4×</button></div>
+<div class="grp"><span class="lbl">Autoplay</span><button id="auto" onclick="setAuto()">off</button></div>
+<div class="grp"><span class="lbl">Feedback</span><button onclick="exportFb()">Show what I've entered</button><button onclick="clearFb()">Clear</button><span id="fbsum" class="saved"></span></div>
+</div>
+<p>Each card is a demonstration as the bench would play it: Previous / Play / Replay / Next step through the card's stops, one per Flow paragraph (the caption is your text, word for word, taken from the notes when this page is built); every stop opens at its first frame and Play runs it and holds. Reset goes back to the card's first stop. The circuit's signal effects (charge flow, voltage glows) are left to the bench, which handles them; here the circuit shows its state (the switch, v_C, the current's value, the code) and the plots carry the motion. Time is slowed 2 500 000× at 1× (1 µs takes 2.5 s). Model: 12-bit converter that truncates, 3.3 V, R_on 1 kΩ, C_s 10 pF, 1 µs window and 1 µs of conversion, capacitor from 0 V unless a stop says otherwise. Symbols IEC 60617 by default; US on the switch above. Six-gate report <a href="#gates" style="color:var(--teal)">at the bottom</a>.</p>
+<pre id="fbout" style="display:none;white-space:pre-wrap;background:var(--panel);border:1px solid var(--faint);border-radius:8px;padding:10px;font-size:13px"></pre>
+
+<div class="map">
+<a href="#c1">Card 1 · ≈3.3 min<b>A switch and a capacitor</b><span class="tag t-draw">Draw</span></a>
+<a href="#c2">Card 2 · ≈3.4 min<b>Charge in time</b><span class="tag t-plot">Plot</span></a>
+<a href="#c3">Card 3 · ≈2.7 min<b>Cannot settle, reads low</b><span class="tag t-plot">Plot</span></a>
+<a href="#c4">Card 4 · ≈2.0 min<b>Faster makes it worse</b><span class="tag t-plot">Plot</span></a>
+<a href="#c5">Card 5 · ≈1.5 min<b>One capacitor, many inputs</b><span class="tag t-draw">Draw</span></a>
+<a href="#c6">Card 6 · ≈2.2 min<b>Maximum source impedance</b><span class="tag t-eq">Equation</span></a>
+<a href="#c7">Card 7 · ≈2.1 min<b>Fix one: a longer window</b><span class="tag t-eq">Equation</span><span class="tag t-plot">Plot</span></a>
+<a href="#c8">Card 8 · ≈3.8 min<b>Fix two: a buffer</b><span class="tag t-el">Electronics, deferred</span></a>
+<a href="#find">Findings<b>8 decided, applied</b><span class="tag t-act">≈21 of 45 min</span></a>
+</div>
+
+<section id="status"><h2>Where U016 stands (2026-10-20)</h2><ul><li><b>Findings</b>: all eight decided and applied (below).</li><li><b>Centrepiece</b> (cards 2, 3, 4, 7 and card 8's Plot beat): your choice was an Animation Bench (2D) demonstration built by Benches, with the Plot block as the stand-in. You asked to wait for Benches' check on how it should be built, so <b>crossing 505</b> is sent and these five specs wait for its answer. It also asks whether cards 1 and 5 join the same family.</li><li><b>Specs written from their PLAN meanwhile</b>: card 1 (Draw), card 5 (Draw) and card 6 (Equation) are written, in <code>bench-work/specs/D1-070-01…, 05…, 06…</code>. They found three more accuracy points, which you decided in the chat: <b>F9</b> card 6 p2 adds <i>“after a full-scale step”</i>; <b>F10</b> card 6 p0 says <i>“a 1 µs acquisition window”</i>; <b>F11</b> card 1 p7 says <i>“…charge that capacitor to the input, from wherever it was last left…”</i>, so card 1's strip now shows one sample from 0 V and then the switch closing again. Their design proposals are in each spec's §14.</li><li><b>Still to raise</b>: the bench-level Symbols switch (IEC | US), unless Benches takes it in 505.</li></ul></section>
+
+<section id="c1"><h2>Card 1 · The ADC input is a switch and a capacitor</h2>
+<p><span class="tag t-draw">Draw</span>Seven stops. The inside of the pin is built one element per sentence; the timing strip then runs one sample of a steady 1.65 V through 10 kΩ from 0 V (0.23 LSB short: code 2047), holds it while it converts, and closes the switch again for the next (F11).</p>
+<div class="tp" id="tp-c1"></div><div class="cap" id="cap-c1"></div>
+<svg id="cir-c1" viewBox="0 0 1200 320"></svg><svg id="plt-c1" viewBox="0 0 1200 520"></svg>
+<div class="ro" id="ro-c1"></div><div class="xtra" id="x-c1"></div>
+<div class="fb"><label>Your feedback on card 1</label><textarea data-k="c1"></textarea></div></section>
+
+<section id="c2"><h2>Card 2 · The capacitor has to charge in time</h2>
+<p><span class="tag t-plot">Plot</span>The centrepiece. Eight stops: one sample at 10 kΩ, the time-constant marks, the ½-LSB marks, then 1 kΩ, 10 kΩ and 50 kΩ, each earlier run kept as a grey ghost. The same library plays cards 3, 4, 7 and 8 with their own stops. Its Explore (sliders) is below.</p>
+<div class="tp" id="tp-c2"></div><div class="cap" id="cap-c2"></div>
+<svg id="cir-c2" viewBox="0 0 1200 320"></svg><svg id="plt-c2" viewBox="0 0 1200 520"></svg>
+<div class="ro" id="ro-c2"></div><div class="xtra" id="x-c2"></div>
+<details><summary>Explore: the centrepiece's sliders</summary>
+<div class="sl"><label><span class="hd"><span>Source resistance (R_s)</span><output id="rso"></output></span><input id="rs" type="range" min="0" max="100" step="0.1" value="10"></label>
+<label><span class="hd"><span>Acquisition window (t_acq)</span><output id="tao"></output></span><input id="ta" type="range" min="0.1" max="5" step="0.01" value="1"></label>
+<label><span class="hd"><span>Sampling capacitance (C_s)</span><output id="cso"></output></span><input id="cs" type="range" min="2" max="20" step="1" value="10"></label></div>
+<div class="tp" id="tp-ex"></div>
+<svg id="cir-ex" viewBox="0 0 1200 320"></svg><svg id="plt-ex" viewBox="0 0 1200 520"></svg><div class="ro" id="ro-ex"></div>
+</details>
+<div class="fb"><label>Your feedback on card 2 and the centrepiece</label><textarea data-k="c2"></textarea></div></section>
+
+<section id="c3"><h2>Card 3 · A source that cannot settle reads low</h2>
+<p><span class="tag t-plot">Plot</span>Six stops: the two dividers, their codes side by side with a meter's reading, the cold open (F6, decided) and 040's 270 k divider, then the same channel converted again and again, and a second channel added.</p>
+<div class="tp" id="tp-c3"></div><div class="cap" id="cap-c3"></div>
+<svg id="cir-c3" viewBox="0 0 1200 320"></svg><svg id="plt-c3" viewBox="0 0 1200 520"></svg>
+<div class="ro" id="ro-c3"></div><div class="xtra" id="x-c3"></div>
+<div class="fb"><label>Your feedback on card 3</label><textarea data-k="c3"></textarea></div></section>
+
+<section id="c4"><h2>Card 4 · Faster makes it worse</h2>
+<p><span class="tag t-plot">Plot</span>Four stops: the 10 kΩ sample at 1 µs, the window shortened to 0.5 µs, the sample run again, and the two side by side.</p>
+<div class="tp" id="tp-c4"></div><div class="cap" id="cap-c4"></div>
+<svg id="cir-c4" viewBox="0 0 1200 320"></svg><svg id="plt-c4" viewBox="0 0 1200 520"></svg>
+<div class="ro" id="ro-c4"></div><div class="xtra" id="x-c4"></div>
+<div class="fb"><label>Your feedback on card 4</label><textarea data-k="c4"></textarea></div></section>
+
+<section id="c5"><h2>Card 5 · One capacitor, many inputs</h2>
+<p><span class="tag t-draw">Draw</span>Four stops. Four sensors (0.40, 3.00, 1.65, 2.20 V, each a 1 kΩ source), one MUX, one capacitor, one converter; the arm steps CH1 → CH4, a 1 µs window and 1 µs of conversion each. The library's own control makes CH3 a 50 kΩ source (the PLAN's crosstalk fault).</p>
+<div class="tp" id="tp-c5"></div><div class="cap" id="cap-c5"></div>
+<div class="tp"><button id="c5hi" onclick="C5.hiZ()">CH3 at 50 kΩ (crosstalk)</button></div>
+<svg id="s5" viewBox="0 0 1200 620"></svg><div class="xtra" id="x-c5"></div>
+<div class="fb"><label>Your feedback on card 5</label><textarea data-k="c5"></textarea></div></section>
+
+<section id="c6"><h2>Card 6 · The maximum source impedance</h2>
+<p><span class="tag t-eq">Equation</span>Six stops: the question, the equation and its 12-bit graph, the worked value at 1 µs, the datasheet note, N swept 10 → 16, and the thermistor divider.</p>
+<div class="tp" id="tp-c6"></div><div class="cap" id="cap-c6"></div>
+<div style="font-size:20px;margin:6px 0 10px;font-family:Cambria,Georgia,serif">R<sub>s,max</sub> = t<sub>acq</sub> / (C<sub>s</sub> · ln 2<sup>N+1</sup>) − R<sub>on</sub> &nbsp;=&nbsp; <span id="eqv" style="color:var(--lime)"></span></div>
+<svg id="s6" viewBox="0 0 1200 520"></svg><div class="xtra" id="x-c6"></div>
+<div class="fb"><label>Your feedback on card 6</label><textarea data-k="c6"></textarea></div></section>
+
+<section id="c7"><h2>Card 7 · Fix one: a longer acquisition time</h2>
+<p><span class="tag t-eq">Equation</span><span class="tag t-plot">Plot</span>Five stops: the 100 k divider at 1 µs, the question, the arithmetic, the window dragged to 4.6 µs and run, and the cost in sample rate.</p>
+<div class="tp" id="tp-c7"></div><div class="cap" id="cap-c7"></div>
+<svg id="cir-c7" viewBox="0 0 1200 320"></svg><svg id="plt-c7" viewBox="0 0 1200 520"></svg>
+<div class="ro" id="ro-c7"></div><div class="xtra" id="x-c7"></div>
+<div class="fb"><label>Your feedback on card 7</label><textarea data-k="c7"></textarea></div></section>
+
+<section id="c8"><h2>Card 8 · Fix two: a buffer</h2>
+<p><span class="tag t-el">Electronics, deferred</span><span class="tag t-plot">Plot</span>Eight stops, drawn here as the circuit the Electronics Bench will run (that bench is still being built, so this scene goes to Benches as a crossing). An ideal follower with about 100 Ω of output resistance; its recovery from the capacitor's kick is not modelled.</p>
+<div class="tp" id="tp-c8"></div><div class="cap" id="cap-c8"></div>
+<svg id="cir-c8" viewBox="0 0 1200 320"></svg><svg id="plt-c8" viewBox="0 0 1200 520"></svg>
+<div class="ro" id="ro-c8"></div><div class="xtra" id="x-c8"></div>
+<div class="fb"><label>Your feedback on card 8</label><textarea data-k="c8"></textarea></div></section>
+
+<section id="find"><h2>Findings: decided</h2>
+<p>You decided all eight in the chat on 2026-10-20. The decisions are applied to <code>notes/Day01/070-adc-input/en.md</code>, and the captions above are rebuilt from the new text. The accuracy register (<code>.claude/tracking/ACCURACY.md</code>) shows <b>no open finding on D1·070</b>. F6 and F7 are checked again in the specs for cards 2, 3 and 7.</p>
+<div class="fd"><div><div class="q"><b>F1 · Which chip are the numbers for?.</b><span class="block">accuracy</span> <span class="pass">Decided: Name the class, not the chip.</span> Card 1 now says <i>“A 12-bit MCU converter, like most, includes a sample-and-hold…”</i>; card 7 <i>“On parts without that setting, a slower ADC clock is the lever.”</i> No number depended on the name. (The page's earlier option <i>“a 12-bit converter such as the ATmega328P”</i> was itself false: that chip converts 10 bits. It was withdrawn.)</div></div><div><div class="q"><b>F2 · Card 8's leftover line.</b> <span class="pass">Decided: Rename to the Electronics Bench.</span> <i>“[[demo]] Electronics Bench: the same high-impedance source, through a buffer, at full speed.”</i></div></div><div><div class="q"><b>F3 · Time.</b> <span class="pass">Decided: Noted, leave it for now.</span> About 21 of the 45 minutes are used. Nothing trimmed.</div></div><div><div class="q"><b>F4 · Card 1's drawing.</b> <span class="pass">Decided: Schematic, board pin as context.</span> As drawn above, in IEC symbols.</div></div><div><div class="q"><b>F5 · 1.65 V sits exactly on the 2047|2048 edge.</b><span class="block">accuracy</span> <span class="pass">Decided: Say it sits on the edge.</span> Card 3: <i>“the code is 2047 or 2048: 1.65 V sits exactly on the edge between them”</i>; card 8: <i>“With it, 2047 or 2048, on the edge again.”</i> 50 kΩ stays <i>about 1760</i> (1759).</div></div><div><div class="q"><b>F6 · “That's our 2047” shows 1760.</b><span class="block">accuracy</span> <span class="pass">Decided: Add the cold-open run to card 3.</span> Card 3's fifth stop plays the cold open itself (3.585 V, 1.29 µs: 2047 of an ideal 2224); the PLAN now names it. Your harvest's words stay.</div></div><div><div class="q"><b>F7 · The ½-LSB rule is for a full-scale step.</b><span class="block">accuracy</span> <span class="pass">Decided: Show both.</span> Cards 2 and 7 now draw the full-scale step (0 → 3.3 V) as a violet dashed curve on the zoom. <i>“Only just”</i> is read on it (0.46 LSB at 10 kΩ), and so is card 7's crossing at 4.6 µs. The half-scale curve gives 0.23 LSB and crosses at 4.24 µs. The Flow is unchanged.</div></div><div><div class="q"><b>F8 · “The same voltage on a meter”.</b><span class="block">accuracy</span> <span class="pass">Decided: “Nearly the same voltage on a meter.”</span> 1.650 V and 1.642 V on a 10 MΩ meter.</div></div></div>
+<div class="fb"><label>Anything else on this unit</label><textarea data-k="general"></textarea></div>
+</section>
+
+<section id="gates"><h2>Six-gate report for this page</h2>
+<p>Checked before sending (rules: <code>.claude/standards/six-gates.md</code>, <code>.claude/standards/course-accuracy.md</code>). Every value recomputed in Node; every stop of every card played in the browser and read back; no console errors, NaN or undefined; IEC and US both rendered.</p>
+<table><tr><th>Gate</th><th>Result</th><th>This pass</th></tr>
+<tr><td>1 Realism ≥ 95 %</td><td class="pass">pass (schematic level, stated)</td><td class="fixed">Every card now plays: the switch closes and opens on the sample's own timing, v_C, the current into C_s and the divider's branch currents are computed at every frame, and codes appear only when the conversion ends. Circuit signal effects are the bench's (paused here at the owner's word).</td></tr>
+<tr><td>2 Science 100 %</td><td class="pass">pass</td><td>Divider currents from the Thevenin solution (I(R1) = I(R2) + i); the follower's input draws nothing; a capacitor discharging into a lower channel gives a negative current (card 5's crosstalk). F1–F8 decided and applied; the full-scale ghost (F7) is the shortfall of a 0 → 3.3 V step, 4096·e^(−t/τ), on the same window.</td></tr>
+<tr><td>3 Maths 100 %</td><td class="pass">pass</td><td>Full-scale ghost: 10 kΩ at 1 µs 0.46 LSB; 50 kΩ at 4.6 µs crosses ½ LSB at 9.01 τ = 4.60 µs. i₀ 825 / 150 / 32.4 / 1100 / 1500 µA; codes 2047|2048, 2047, 1759, 2026, 2047 (cold open), 2983 (270 k, ideal 4025.6, 25.9 % low); back-to-back 1759 → 2007 → 2042; meter 1.650 / 1.642 V; card 8 options 0.80 LSB at 4 µs.</td></tr>
+<tr><td>4 Visualization 100 %</td><td class="pass">pass</td><td class="fixed">Every card plays in Flow order, one stop per paragraph, each opening on its first frame; earlier runs kept as ghosts on one scale.</td></tr>
+<tr><td>5 Consistency</td><td class="pass">pass</td><td class="fixed">One circuit library for cards 1–4, 7, 8; IEC 60617 symbols everywhere by default (resistor rectangle, amplifier ▷ with ∞ for the op-amp, D/A converter #/∩, voltage source with its line), US on one switch.</td></tr>
+<tr><td>6 Professional design</td><td class="pass">pass (EN only)</td><td>Labels checked for collisions in both symbol sets. French not yet built: required before any library ships.</td></tr>
+</table></section>
+</main>
+<script type="application/json" id="flow">[{"title":"The ADC input is a switch and a capacitor","paras":[{"cues":[],"text":"Before the signal reaches the ADC, one of the things we have to make sure of through signal conditioning is that the ADC does not significantly disturb the signal we are trying to measure. That is loading, and we met it in 040 with a voltmeter. The ADC's input is where it matters most — because it is not a steady resistance at all."},{"cues":[],"text":"A 12-bit MCU converter, like most, includes a **sample-and-hold** circuit, so that the input voltage is held still while the conversion takes place."},{"cues":["ask"],"text":"So, to your divider, what does that input look like? Nothing at all? A big resistor, like a meter? Or something else?"},{"cues":["pause"],"text":""},{"cues":["demo"],"text":"Let me draw what is inside the pin. First the pad. Then a switch: the multiplexer and the sample switch, with a real on-resistance, typically somewhere around a kilohm. Then a small capacitor to ground, the sampling capacitor: typically a few picofarads, and we will use 10 pF. Behind it, the comparator that does the conversion."},{"cues":["reveal"],"text":"To your divider, the ADC input is a small capacitor, connected for a moment and then let go."},{"cues":[],"text":"Now the timing strip underneath. The switch closes: this is the **acquisition** window, when the capacitor charges towards the input. The switch opens: the capacitor **holds** that voltage while the converter works on it. Then the switch closes again for the next sample."},{"cues":[],"text":"So the source is not feeding a steady resistance. Every sample, it has to charge that capacitor to the input, from wherever it was last left, through the switch and through its own output impedance."}]},{"title":"The capacitor has to charge in time","paras":[{"cues":[],"text":"This is a **dynamic error**: an error that arises because something changes during the measurement. Dynamic errors include the inertia of a mechanical meter's pointer trying to follow a fast-changing quantity, and many limitations in electronic instruments — wherever a frequency, phase or slew-rate limit is present. Here, the thing changing is the capacitor's own voltage, and it is still changing when the converter stops looking."},{"cues":["demo"],"text":"Plot Bench: the switched-capacitor model, with the capacitor's voltage plotted against the acquisition window."},{"cues":[],"text":"Here is that capacitor on the Plot Bench. The top plot is its voltage during one sample, charging towards 1.65 V from 0 V, because the previous channel was at ground. The window is 1 µs. When it closes the curve goes flat, and that flat value is what the converter gets."},{"cues":[],"text":"The capacitor charges through the switch's 1 kΩ plus the source's own impedance. Their sum times the capacitance is the **time constant**, τ. After one τ the capacitor has covered 63 % of the way; after two, 86 %; after five, 99.3 %. Each τ removes the same fraction of what is left, so it never quite arrives."},{"cues":[],"text":"How close is close enough? Half an LSB. At 12 bits that is one part in 8,192 of full scale. The error left after a time t is e to the minus t over τ, and setting that to 1/8192 gives t = ln 8192 × τ, about 9 τ. In general, settling to half an LSB takes (N + 1) × ln 2 time constants."},{"cues":["demo"],"text":"Start with a 1 kΩ source. τ is 2 kΩ times 10 pF: 20 ns. The window holds fifty time constants, and the curve is flat long before it closes."},{"cues":[],"text":"Now 10 kΩ. τ is 110 ns, and the window holds about nine of them. Look at the bottom plot, the shortfall in codes: it finishes just under half an LSB. Only just."},{"cues":[],"text":"Now 50 kΩ. On the top plot the curve still looks nearly there. On the bottom plot it froze nearly 300 codes short."}]},{"title":"A source that cannot settle reads low","paras":[{"cues":["ask"],"text":"The same divider ratio, built once with 1 kΩ resistors and once with 100 kΩ. Do the two ADC codes agree?"},{"cues":["pause"],"text":""},{"cues":["demo"],"text":"The same Plot. A divider of two equal resistors on 3.3 V gives 1.65 V either way. What the capacitor sees is the divider's output impedance: two 1 kΩ resistors in parallel is 500 Ω; two 100 kΩ is 50 kΩ. I set the source to each in turn."},{"cues":["reveal"],"text":"With 500 Ω, τ is 15 ns, and the code is 2047 or 2048: 1.65 V sits exactly on the edge between them. With 50 kΩ, τ is 510 ns. The window closes after under two time constants with the capacitor about 14 % short, and the code is about 1760."},{"cues":[],"text":"Same ratio. Nearly the same voltage on a meter. Nearly 300 codes apart. And nothing reports an error. The converter did its job perfectly: it converted what the capacitor held."},{"cues":[],"text":"That is our 2047 from the start of the day: a 100 k divider, and a capacitor that ran out of time. And the 270 k divider the meter called fine? Here it reads about a quarter low."},{"cues":[],"text":"One more thing makes this hard to find. Convert the same channel again and again, and the capacitor starts each sample from the last one, so the error nearly disappears. Add a second channel, and it comes back."}]},{"title":"Faster makes it worse","paras":[{"cues":["ask"],"text":"You raise the sample rate. Does the reading go up, go down, or stay the same?"},{"cues":["pause"],"text":""},{"cues":["demo"],"text":"Back to the 10 kΩ source, which only just settled in 1 µs. To sample faster, the converter spends less time on each sample, and the window is where that time comes from. I halve it to 0.5 µs."},{"cues":["reveal"],"text":"The reading goes down. The capacitor now gets four and a half time constants instead of nine, and the bottom plot shows it stopping about 22 codes short, where before it was well under one."},{"cues":[],"text":"Nothing about the source or the capacitor changed, only the time you gave it. That is how a measurement that was fine can quietly go wrong the day someone speeds up the ADC to log faster."}]},{"title":"One capacitor, many inputs","paras":[{"cues":[],"text":"Many ADCs have more than one analog input but do not contain a separate ADC for every input. Instead, they use an **analog multiplexer**, usually called a **MUX** — an electronically controlled selector that chooses which input is connected to the conversion circuitry at a particular moment."},{"cues":[],"text":"Imagine four sensors feeding one multiplexer and one ADC. The ADC can select Sensor 1 and convert it, then select Sensor 2 and convert that, and so on."},{"cues":[],"text":"So it is more accurate to think of a four-channel multiplexed ADC as **one conversion system that can be connected to four different inputs at different times**, rather than four ADCs converting four signals at once."},{"cues":[],"text":"Every one of those inputs has to charge the same sampling capacitor in its own acquisition window. That the conversions happen at *different times* will matter a great deal on Day 3, when we sample voltage and current together."}]},{"title":"The maximum source impedance","paras":[{"cues":["ask"],"text":"For a 12-bit ADC with a 1 µs acquisition window, what is the largest source impedance that still settles in time?"},{"cues":["pause"],"text":""},{"cues":["reveal"],"text":"Let's work it on the Equation Bench. The window has to hold enough time constants to settle to half an LSB after a full-scale step:"},{"cues":[],"text":"t_acq = (R_s + R_on) × C_s × ln(2^(N+1))"},{"cues":[],"text":"For 12 bits, ln(2^13) = ln 8192, about 9.0. Solve for the total resistance: 1 µs divided by 9.0, divided by 10 pF, is about 11.1 kΩ. Take away the switch's own 1 kΩ, and the source can be at most about 10.1 kΩ, with our example values."},{"cues":[],"text":"That ten kilohms is no coincidence. Several MCU datasheets recommend a source impedance of about 10 kΩ or less for exactly this reason, and some give a formula or a table against the sample time. Look for it in yours."},{"cues":[],"text":"Slide N. At 10 bits the limit rises to about 12.1 kΩ; at 16 bits it falls to about 7.5 kΩ. More bits ask for a smaller source, and a longer window allows a larger one."},{"cues":[],"text":"And our thermistor divider from the impedance module: 5 kΩ. Inside ten. It settles."}]},{"title":"Fix one: a longer acquisition time","paras":[{"cues":[],"text":"The first fix is to give the capacitor more time. Many MCUs let you set the sample time, usually as a number of ADC clock cycles. On parts without that setting, a slower ADC clock is the lever."},{"cues":["ask"],"text":"Take the 100 k divider again: a 50 kΩ source. How long must the window be to settle to half an LSB at 12 bits?"},{"cues":["pause"],"text":""},{"cues":["reveal"],"text":"The total resistance is 51 kΩ, and 51 kΩ times 10 pF is 510 ns per time constant. Nine of them is about 4.6 µs."},{"cues":["demo"],"text":"On the Plot, I drag the window out to 4.6 µs. The bottom curve crosses the half-LSB line just as the window closes."},{"cues":[],"text":"The cost is speed. If the conversion itself takes 1 µs, a 1 µs window allowed 500,000 samples a second. A 4.6 µs window allows about 180,000. For a still quantity that is usually a bargain. But if the sample time is shared, every channel on the multiplexer pays it."}]},{"title":"Fix two: a buffer","paras":[{"cues":[],"text":"This is one reason **buffering** is so often used in front of an ADC. A buffer presents a suitable load to the signal source, and its output can drive the ADC input without significantly disturbing the original signal."},{"cues":["demo"],"text":"Electronics Bench: the same high-impedance source, through a buffer, at full speed."},{"cues":[],"text":"On the bench: the same 100 k divider, now through an op-amp voltage follower, into the ADC at the full rate with a 1 µs window. Without the buffer the code was about 1760. With it, 2047 or 2048, on the edge again."},{"cues":[],"text":"The divider no longer charges anything; it only supplies the op-amp's tiny input current. The op-amp's output is a source of a few ohms, and it fills the capacitor in nanoseconds. On the Plot, that is the source slider down at 100 Ω or less."},{"cues":[],"text":"It is the buffer from the impedance module, doing exactly the job it was introduced for: it keeps the voltage, and supplies the current the capacitor needs."},{"cues":[],"text":"One condition: the op-amp has to recover from the capacitor's kick inside the window, so choose one fast enough for your sample rate. Datasheets and application notes often add a small resistor and capacitor between the buffer and the pin to help it."},{"cues":["ask"],"text":"So: a 100 k divider must be read at 200,000 samples a second, with 1 µs of conversion. Which of these work: a longer window, a buffer, a divider rebuilt from 1 kΩ resistors, or a slower ADC clock?"},{"cues":["pause"],"text":""},{"cues":["reveal"],"text":"At 200,000 samples a second each sample has 5 µs, which leaves 4 µs of window. The 50 kΩ source needs 4.6 µs, so a longer window or a slower clock misses the rate. The buffer works. So does a 1 kΩ divider, at the price of 1.65 mA flowing through it all the time."},{"cues":["transition"],"text":"The capacitor now holds the right voltage. What the converter does with it — how a held voltage becomes a number, and how many of that number's bits you can believe — is next."}]}]</script>
+<script>
+const NS='http://www.w3.org/2000/svg',C={bg:'#0E1217',panel:'#151B22',ink:'#E8EAED',muted:'#9AA3AD',faint:'#3A424C',teal:'#2DD4BF',amber:'#F5B942',violet:'#A78BFA',lime:'#A3E635',rose:'#F472B6',azure:'#60A5FA',alu:'#AEB4BC',tin:'#D5D9DE'};
+const LSB=3.3/4096,RON=1e3,CS0=10e-12,SLOW=2.5e6;
+/* Circuit signal effects (charge dots, voltage glows) are the bench's to draw, not this preview's (owner, 2026-10-20): off. */
+const CIRCUIT_FX=false;
+const $=i=>document.getElementById(i);
+const FLOW=JSON.parse($('flow').textContent);
+/* ---------- storage ---------- */
+const MEM={};const ST={get(k){try{return localStorage.getItem(k)}catch(e){return MEM[k]??null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){MEM[k]=v}},del(k){try{localStorage.removeItem(k)}catch(e){delete MEM[k]}},keys(){try{return Object.keys(localStorage)}catch(e){return Object.keys(MEM)}}};
+let SYM=ST.get('bench:sym')||'iec',SPEED=+(ST.get('bench:speed')||1),AUTO=ST.get('bench:auto')==='1';
+/* ---------- drawing ---------- */
+function el(p,tag,a,txt){const e=document.createElementNS(NS,tag);for(const k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;p.appendChild(e);return e}
+function tx(p,x,y,s,o={}){return el(p,'text',Object.assign({x,y,fill:o.fill||C.ink,'font-size':o.size||18,'text-anchor':o.anchor||'middle','font-family':'Segoe UI, system-ui, sans-serif','font-weight':o.w||400},o.a||{}),s)}
+function ln(p,x1,y1,x2,y2,c=C.ink,w=2.5,d){const a={x1,y1,x2,y2,stroke:c,'stroke-width':w,'stroke-linecap':'round'};if(d)a['stroke-dasharray']=d;return el(p,'line',a)}
+function pth(p,d,c=C.ink,w=2.5,f='none',extra={}){return el(p,'path',Object.assign({d,stroke:c,'stroke-width':w,fill:f,'stroke-linejoin':'round','stroke-linecap':'round'},extra))}
+function poly(p,pts,c=C.ink,w=2.5,extra={}){return pth(p,'M'+pts.map(q=>q.join(' ')).join(' L'),c,w,'none',extra)}
+function zigPath(x1,y1,x2,y2){const n=6,vert=x1===x2,L=vert?y2-y1:x2-x1,w=L/n;let d=`M${x1} ${y1}`;for(let k=0;k<n;k++){const s=w*(k+0.5),o=(k%2?10:-10);d+=vert?` L${x1+o} ${y1+s}`:` L${x1+s} ${y1+o}`}return d+` L${x2} ${y2}`}
+function res(p,x1,y1,x2,y2,hl){const vert=x1===x2,L=vert?y2-y1:x2-x1,b=Math.min(64,L*0.7),m=vert?(y1+y2)/2:(x1+x2)/2,a=m-b/2,e=m+b/2,col=hl?C.amber:C.ink;
+ if(vert){ln(p,x1,y1,x1,a);ln(p,x1,e,x1,y2)}else{ln(p,x1,y1,a,y1);ln(p,e,y1,x2,y1)}
+ if(SYM==='iec'){if(vert)el(p,'rect',{x:x1-9,y:a,width:18,height:b,fill:C.bg,stroke:col,'stroke-width':2.5});else el(p,'rect',{x:a,y:y1-9,width:b,height:18,fill:C.bg,stroke:col,'stroke-width':2.5})}
+ else pth(p,vert?zigPath(x1,a,x1,e):zigPath(a,y1,e,y1),col)}
+function amp(p,x,y,inf){if(SYM==='iec'){el(p,'rect',{x,y,width:80,height:90,fill:C.panel,stroke:C.ink,'stroke-width':2.5});tx(p,x+44,y+54,'▷',{size:24});if(inf)tx(p,x+66,y+24,'∞',{size:17})}
+ else pth(p,`M${x} ${y-4} L${x} ${y+94} L${x+80} ${y+45} Z`,C.ink,2.5,C.panel);
+ tx(p,x+11,y+26,'+',{size:17,anchor:'start'});tx(p,x+11,y+76,'−',{size:17,anchor:'start'});return{pin:[x,y+20],nin:[x,y+70],out:[x+80,y+45]}}
+function dac(p,x,y,w=64,h=36){el(p,'rect',{x,y,width:w,height:h,rx:SYM==='iec'?0:4,fill:C.panel,stroke:C.ink,'stroke-width':2});tx(p,x+w/2,y+h/2+6,SYM==='iec'?'#/∩':'DAC',{size:15});if(SYM==='iec')tx(p,x+w/2,y+h+18,'D/A',{size:13,fill:C.muted})}
+function vsrc(p,cx,cy,r=24){el(p,'circle',{cx,cy,r,fill:C.bg,stroke:C.ink,'stroke-width':2.5});if(SYM==='iec'){ln(p,cx,cy-r,cx,cy+r);tx(p,cx+r+5,cy-r+8,'+',{size:16,anchor:'start'})}else{tx(p,cx,cy-3,'+',{size:17});tx(p,cx,cy+17,'−',{size:17})}}
+function gnd(p,x,y){ln(p,x-16,y,x+16,y);ln(p,x-10,y+7,x+10,y+7);ln(p,x-4,y+14,x+4,y+14)}
+function capv(p,x,y,hl){const c=hl?C.amber:C.ink;ln(p,x-28,y,x+28,y,c,4);ln(p,x-28,y+14,x+28,y+14,c,4)}
+function along(pts){const seg=[];let L=0;for(let i=1;i<pts.length;i++){const[a,b]=pts[i-1],[c,d]=pts[i],l=Math.hypot(c-a,d-b);if(l>0){seg.push([a,b,c,d,L,l]);L+=l}}return{seg,L}}
+function dots(p,pts,off,sp=26){if(!CIRCUIT_FX)return;const{seg,L}=along(pts);if(!L)return;let d=((off%sp)+sp)%sp;for(;d<L;d+=sp){const s=seg.find(q=>d>=q[4]&&d<=q[4]+q[5])||seg[seg.length-1];const f=(d-s[4])/s[5];el(p,'circle',{cx:s[0]+(s[2]-s[0])*f,cy:s[1]+(s[3]-s[1])*f,r:3.6,fill:C.amber})}}
+function glow(p,pts,v,vmax=3.3){if(!CIRCUIT_FX||v<=0.005)return;poly(p,pts,C.teal,9,{opacity:(0.12+0.5*Math.min(1,v/vmax)).toFixed(3)})}
+const dotSpeed=iA=>{const u=iA*1e6,s=Math.min(1600,1.2*Math.abs(u));return Math.sign(u)*s};
+const fmtR=r=>r<1e3?Math.round(r)+' Ω':parseFloat((r/1e3).toFixed(r<1e4?2:1))+' kΩ',fmtT=t=>t<1e-6?(t*1e9).toFixed(0)+' ns':(t*1e6).toFixed(2)+' µs',fmtI=i=>{const u=Math.abs(i)*1e6;return (i<0?'−':'')+(u<0.05?'0':u<10?u.toFixed(2):u<1000?u.toFixed(1):(u/1000).toFixed(2)+' m')+(u>=1000?'A':' µA')};
+function codeTxt(V,vh){const id=V/LSB,sh=(V-vh)/LSB;if(id>=1&&Math.abs(id-Math.round(id))<1e-9&&Math.abs(sh)<0.05)return (Math.round(id)-1)+'|'+Math.round(id);return String(Math.min(4095,Math.max(0,Math.floor(vh/LSB+1e-9))))}
+/* ---------- the model ---------- */
+const par=(a,b)=>a*b/(a+b);
+function thev(Rs,ta=1e-6,V=1.65){return{variant:'thev',slots:[{V,Rs,ta,tc:1e-6,ch:'A0'}]}}
+function divi(Vsup,R1,R2,ta=1e-6){return{variant:'divider',div:{Vsup,R1,R2},slots:[{V:Vsup*R2/(R1+R2),Rs:par(R1,R2),ta,tc:1e-6,ch:'A0'}]}}
+function foll(Vsup,R1,R2,ta=1e-6){return{variant:'follower',div:{Vsup,R1,R2},slots:[{V:Vsup*R2/(R1+R2),Rs:100,ta,tc:1e-6,ch:'A0'}]}}
+const total=cfg=>cfg.slots.reduce((a,s)=>a+s.ta+s.tc,0);
+function sim(cfg,t){const cs=cfg.cs||CS0;let v=cfg.v0||0,t0=0;const codes=[],held=[];
+ for(let k=0;k<cfg.slots.length;k++){const s=cfg.slots[k],tau=(s.Rs+RON)*cs;
+  if(t<t0+s.ta){const u=t-t0,vv=s.V+(v-s.V)*Math.exp(-u/tau);return{k,phase:'acq',v:vv,i:(s.V-vv)/(s.Rs+RON),u,codes,held,tau,s}}
+  const vh=s.V+(v-s.V)*Math.exp(-s.ta/tau);held[k]=vh;
+  if(t<t0+s.ta+s.tc)return{k,phase:'hold',v:vh,i:0,u:t-t0-s.ta,codes,held,tau,s};
+  codes[k]=codeTxt(s.V,vh);v=vh;t0+=s.ta+s.tc}
+ const s=cfg.slots[cfg.slots.length-1];return{k:cfg.slots.length-1,phase:'done',v,i:0,codes,held,tau:(s.Rs+RON)*cs,s}}
+/* ---------- the circuit (one library for cards 1-4, 7, 8) ---------- */
+function drawCircuit(svg,cfg,r,off,o={}){svg.innerHTML='';el(svg,'rect',{width:1200,height:320,fill:C.bg});
+ const Y=110,parts=o.parts==null?5:o.parts,sw=r.phase==='acq',s=r.s,hl=o.hl||{},V=s.V;
+ const variant=cfg.variant,d=cfg.div;
+ let vNode=V-r.i*s.Rs,iR1=0,iR2=0;
+ if(variant==='divider'){iR2=vNode/d.R2;iR1=iR2+r.i}
+ if(variant==='follower'){iR1=iR2=V/d.R2;}
+ const vPin=variant==='follower'?V-r.i*100:vNode;
+ const live=parts>=4;
+ // glows (voltages)
+ if(variant==='thev'){glow(svg,[[90,166],[90,Y],[140,Y]],V);glow(svg,[[250,Y],[436,Y]],vPin)}
+ if(variant==='divider'){glow(svg,[[90,Y],[436,Y]],vNode)}
+ if(variant==='follower'){glow(svg,[[90,Y],[150,Y]],V);glow(svg,[[230,135],[270,135],[270,Y],[436,Y]],vPin)}
+ if(parts>=2&&sw)glow(svg,[[496,Y],[540,Y]],vPin);
+ if(parts>=4){glow(svg,[[650,Y],[parts>=5?820:700,Y]],r.v);glow(svg,[[700,Y],[700,165]],r.v)}
+ // source side
+ if(variant==='thev'){vsrc(svg,90,190);ln(svg,90,166,90,Y);ln(svg,90,Y,140,Y);res(svg,140,Y,250,Y,hl.rs);ln(svg,250,Y,300,Y);ln(svg,90,214,90,262);gnd(svg,90,262);
+  tx(svg,56,196,V.toFixed(V===1.65?2:3)+' V',{size:15,anchor:'end',fill:C.azure});tx(svg,195,86,'R_s '+fmtR(s.Rs),{size:16,fill:hl.rs?C.amber:C.ink})}
+ else{ln(svg,76,26,104,26);tx(svg,112,31,d.Vsup.toFixed(d.Vsup%1?3:1)+' V',{size:14,anchor:'start',fill:C.muted});res(svg,90,26,90,Y);res(svg,90,Y,90,262);gnd(svg,90,262);el(svg,'circle',{cx:90,cy:Y,r:4.5,fill:C.ink});
+  tx(svg,72,62,'R1 '+fmtR(d.R1),{size:14,anchor:'end'});tx(svg,72,190,'R2 '+fmtR(d.R2),{size:14,anchor:'end'});
+  tx(svg,72,80,fmtI(iR1),{size:13,anchor:'end',fill:C.amber});tx(svg,72,208,fmtI(iR2),{size:13,anchor:'end',fill:C.amber});
+  if(variant==='divider'){ln(svg,90,Y,300,Y);tx(svg,205,134,'R1‖R2 = '+fmtR(par(d.R1,d.R2)),{size:14,fill:C.muted})}
+  else{ln(svg,90,Y,150,Y);const a=amp(svg,150,90,true);ln(svg,230,135,270,135);el(svg,'circle',{cx:250,cy:135,r:4,fill:C.ink});poly(svg,[[250,135],[250,200],[135,200],[135,160],[150,160]]);poly(svg,[[270,135],[270,Y],[300,Y]]);
+   tx(svg,190,226,'follower (ideal, ≈ 100 Ω out)',{size:13,fill:C.muted});tx(svg,24,306,'op-amp supply not drawn',{size:13,fill:C.muted,anchor:'start'})}}
+ // pin and chip
+ el(svg,'rect',{x:300,y:Y-7,width:50,height:14,rx:2,fill:C.tin,stroke:'#8A9098','stroke-width':1});tx(svg,325,Y+34,'pin',{size:14,fill:C.muted});
+ el(svg,'rect',{x:360,y:20,width:810,height:286,rx:14,fill:'none',stroke:C.faint,'stroke-width':2,'stroke-dasharray':'8 6'});tx(svg,1160,42,'inside the MCU',{anchor:'end',fill:C.muted,size:14});
+ if(parts<0){el(svg,'rect',{x:362,y:22,width:806,height:282,rx:13,fill:C.panel});tx(svg,765,180,'?',{size:72,fill:C.muted});return}
+ if(parts>=1){pth(svg,`M350 ${Y} Q362 ${Y-16} 375 ${Y}`,'#C9B26B',1.5);el(svg,'rect',{x:375,y:Y-13,width:26,height:26,rx:2,fill:C.alu,stroke:'#6E747C','stroke-width':1});tx(svg,388,Y+34,'pad',{size:14,fill:C.muted})}
+ if(parts>=2){ln(svg,401,Y,430,Y);el(svg,'circle',{cx:436,cy:Y,r:5,fill:C.bg,stroke:C.ink,'stroke-width':2.5});el(svg,'circle',{cx:496,cy:Y,r:5,fill:C.bg,stroke:C.ink,'stroke-width':2.5});
+  if(sw)ln(svg,441,Y,491,Y,C.teal,3.5);else ln(svg,440,Y-3,486,Y-32,C.amber,3.5);
+  for(let k=0;k<3;k++){const y=Y+40+k*26;ln(svg,412,y,432,y,C.faint,2);el(svg,'circle',{cx:436,cy:y,r:4,fill:C.bg,stroke:C.faint,'stroke-width':2});ln(svg,440,y-2,476,y-18,C.faint,2);el(svg,'circle',{cx:482,cy:y,r:4,fill:C.bg,stroke:C.faint,'stroke-width':2});ln(svg,486,y,520,y,C.faint,2)}
+  ln(svg,520,Y,520,Y+92,C.faint,2);ln(svg,501,Y,540,Y);el(svg,'circle',{cx:520,cy:Y,r:4,fill:C.ink});tx(svg,466,Y-48,'MUX + sample switch',{size:15});tx(svg,466,Y+128,'other channels',{size:13,fill:C.muted})}
+ if(parts>=3){res(svg,540,Y,650,Y,hl.ron);tx(svg,595,Y-24,'R_on 1 kΩ',{size:15,fill:hl.ron?C.amber:C.ink})}
+ if(parts>=4){ln(svg,650,Y,parts>=5?820:700,Y);el(svg,'circle',{cx:700,cy:Y,r:4.5,fill:C.ink});ln(svg,700,Y,700,165);capv(svg,700,165,hl.cs);ln(svg,700,179,700,262);gnd(svg,700,262);
+  if(hl.cs)el(svg,'rect',{x:664,y:152,width:72,height:40,rx:8,fill:'none',stroke:C.amber,'stroke-width':1.5,'stroke-dasharray':'4 4'});
+  tx(svg,742,152,'C_s '+Math.round((cfg.cs||CS0)*1e12)+' pF',{size:15,anchor:'start',fill:hl.cs?C.amber:C.ink});
+  if(!o.noRo)tx(svg,664,212,'v_C = '+r.v.toFixed(3)+' V'+(r.phase==='acq'?'':' held'),{size:14,anchor:'end',fill:r.phase==='acq'?C.teal:C.amber});
+  if(!o.noRo)tx(svg,595,Y+38,'i = '+fmtI(r.i),{size:14,fill:Math.abs(r.i)>5e-8?C.amber:C.muted})}
+ if(parts>=5){amp(svg,820,90,false);ln(svg,790,160,820,160);poly(svg,[[800,232],[790,232],[790,160]]);dac(svg,800,214);
+  ln(svg,900,135,930,135);el(svg,'rect',{x:930,y:115,width:100,height:40,rx:4,fill:C.panel,stroke:C.ink,'stroke-width':2});tx(svg,980,141,'SAR logic',{size:14});poly(svg,[[980,155],[980,232],[864,232]]);
+  tx(svg,860,78,'comparator',{size:15});ln(svg,1030,135,1050,135);
+  el(svg,'rect',{x:1050,y:100,width:110,height:70,rx:6,fill:'#0B0F14',stroke:r.phase==='done'||(r.codes.length>0)?C.lime:C.faint,'stroke-width':2});tx(svg,1105,92,'code',{size:13,fill:C.muted});
+  const last=r.codes.length?r.codes[r.codes.length-1]:null,txt=r.phase==='hold'?'converting':(last??'…');tx(svg,1105,r.phase==='hold'?140:146,txt,{size:r.phase==='hold'?14:last&&last.length>5?18:24,fill:r.phase==='hold'?C.amber:C.lime,w:600})}
+ tx(svg,1160,298,'protection diodes and pin capacitance omitted',{size:13,anchor:'end',fill:C.muted});
+ // charge (current)
+ if(live){const adcPts=(variant==='follower'?[[230,135],[270,135],[270,Y],[300,Y]]:variant==='divider'?[[90,Y],[300,Y]]:[[90,166],[90,Y],[300,Y]]).concat([[436,Y],[496,Y],[700,Y],[700,165]]);
+  dots(svg,adcPts,off.adc);dots(svg,[[700,179],[700,262]],off.adc);if(variant==='thev')dots(svg,[[90,262],[90,214]],off.adc);
+  if(variant!=='thev'){dots(svg,[[90,34],[90,Y]],off.r1);dots(svg,[[90,Y],[90,262]],off.r2)}}
+ return{iR1,iR2}}
+function advance(off,cfg,r,dt){const d=cfg.div;off.adc+=dotSpeed(r.i)*dt;if(d){let i2,i1;if(cfg.variant==='divider'){const vN=r.s.V-r.i*r.s.Rs;i2=vN/d.R2;i1=i2+r.i}else{i1=i2=r.s.V/d.R2}off.r1+=dotSpeed(i1)*dt;off.r2+=dotSpeed(i2)*dt}}
+/* ---------- the plots ---------- */
+function curveD(cfg,t1,X,Yv,step){let d='';const n=400;for(let j=0;j<=n;j++){const t=t1*j/n;const r=sim(cfg,t);d+=(j?'L':'M')+X(t).toFixed(1)+' '+Yv(r.v).toFixed(1)}return d}
+function drawPlot(svg,f,r){svg.innerHTML='';el(svg,'rect',{width:1200,height:520,fill:C.bg});const cfg=f.cfg;
+ if(f.mode==='none'){svg.style.display='none';return}svg.style.display='';
+ const T=f.T||(total(cfg)>2.05e-6?Math.ceil(total(cfg)*1e6)*1e-6:2e-6),X0=110,X1=1150,X=t=>X0+(X1-X0)*t/T;
+ const ticks=()=>{const st=T>3e-6?1e-6:0.25e-6;for(let k=0;k*st<=T+1e-12;k++){const t=k*st;tx(svg,X(t),f.mode==='timeline'?496:494,k===0?'0':(+(t*1e6).toFixed(2))+' µs',{size:13,fill:C.muted})}tx(svg,X1,514,'time, slowed 2 500 000× at 1×',{size:12,fill:C.muted,anchor:'end'})};
+ if(f.mode==='timeline'){const yS=46,aT=100,aB=440,vmax=2,Yv=v=>aB-(aB-aT)*v/vmax;
+  let t0=0;cfg.slots.forEach((s,k)=>{el(svg,'rect',{x:X(t0),y:yS-18,width:X(t0+s.ta)-X(t0),height:36,fill:'rgba(45,212,191,.18)',stroke:C.teal,'stroke-width':1.5});tx(svg,(X(t0)+X(t0+s.ta))/2,yS+6,'acquire '+s.ch,{size:13,fill:C.teal});
+   if(s.tc>0){el(svg,'rect',{x:X(t0+s.ta),y:yS-18,width:X(t0+s.ta+s.tc)-X(t0+s.ta),height:36,fill:'rgba(245,185,66,.12)',stroke:C.amber,'stroke-width':1.5});tx(svg,(X(t0+s.ta)+X(t0+s.ta+s.tc))/2,yS+6,'hold · convert',{size:13,fill:C.amber})}
+   el(svg,'rect',{x:X(t0),y:aT,width:X(t0+s.ta)-X(t0),height:aB-aT,fill:'rgba(45,212,191,.05)'});ln(svg,X(t0),Yv(s.V),X(t0+s.ta+s.tc),Yv(s.V),C.azure,1.5,'6 5');
+   if(r.codes[k]!=null)tx(svg,X(t0+s.ta+s.tc)-6,Yv(r.held[k])-12,'code '+r.codes[k],{size:14,anchor:'end',fill:C.lime});t0+=s.ta+s.tc});
+  for(const v of [0,0.5,1,1.5,2]){tx(svg,X0-8,Yv(v)+5,v.toFixed(1)+' V',{size:13,fill:C.muted,anchor:'end'});ln(svg,X0,Yv(v),X1,Yv(v),C.faint,1)}
+  pth(svg,curveD(cfg,f.t,X,Yv),C.teal,3);el(svg,'circle',{cx:X(f.t),cy:Yv(r.v),r:5,fill:C.teal});ln(svg,X(f.t),yS-24,X(f.t),aB,C.ink,1,'3 4');
+  tx(svg,X0,aT-12,'capacitor voltage v_C (solid) · each input (dashed)',{size:14,anchor:'start',fill:C.muted});ticks();return}
+ const s0=cfg.slots[0],V=s0.V,ta=f.win??s0.ta,vmax=V>1.9?3.5:2,aT=40,aB=230,bT=300,bB=470,Yv=v=>aB-(aB-aT)*v/vmax,Yb=l=>bB-(bB-bT)*l/20;
+ for(const [y0,y1] of [[aT,aB],[bT,bB]]){ln(svg,X0,y1,X1,y1,C.muted,1.5);ln(svg,X0,y0,X0,y1,C.muted,1.5)}
+ el(svg,'rect',{x:X0,y:aT,width:X(ta)-X0,height:aB-aT,fill:'rgba(45,212,191,.08)'});el(svg,'rect',{x:X0,y:bT,width:X(ta)-X0,height:bB-bT,fill:'rgba(45,212,191,.08)'});
+ ln(svg,X(ta),aT,X(ta),bB,C.teal,1.5,'5 5');tx(svg,X(ta)+6,aT+16,'window closes · '+(ta*1e6).toFixed(2)+' µs',{size:13,fill:C.teal,anchor:'start'});
+ for(let v=0;v<=vmax+1e-9;v+=0.5){tx(svg,X0-8,Yv(v)+5,v.toFixed(1)+' V',{size:13,fill:C.muted,anchor:'end'});ln(svg,X0,Yv(v),X1,Yv(v),C.faint,1)}
+ ln(svg,X0,Yv(V),X1,Yv(V),C.azure,1.5,'6 5');tx(svg,X1,Yv(V)-8,'input '+V.toFixed(V===1.65?2:4)+' V',{size:13,fill:C.azure,anchor:'end'});
+ for(const l of [0,5,10,15,20]){tx(svg,X0-8,Yb(l)+5,l+'',{size:13,fill:C.muted,anchor:'end'});ln(svg,X0,Yb(l),X1,Yb(l),C.faint,1)}
+ ln(svg,X0,Yb(0.5),X1,Yb(0.5),C.rose,2,'8 5');tx(svg,X1,Yb(0.5)-8,'½ LSB',{size:13,fill:C.rose,anchor:'end'});
+ tx(svg,X0,aT-14,'(a) capacitor voltage v_C',{size:15,anchor:'start'});tx(svg,X0,bT-14,'(b) shortfall, LSB (12 bits, 3.3 V)',{size:15,anchor:'start'});
+ const sh=(c,t)=>{const q=sim(c,t);return (c.slots[0].V-q.v)/LSB};
+ const shD=(c,t1)=>{let d='',pen=false;const n=500;for(let j=0;j<=n;j++){const t=Math.min(t1,c.slots[0].ta+c.slots[0].tc)*j/n,l=sh(c,t);if(l<=20){d+=(pen?'L':'M')+X(t).toFixed(1)+' '+Yb(l).toFixed(1);pen=true}else pen=false}return d};
+ for(const g of f.ghosts||[]){const tg=Math.min(total(g),T);pth(svg,curveD(g,tg,X,Yv),C.muted,2,'none',{'stroke-dasharray':'3 4'});const b=shD(g,tg);if(b)pth(svg,b,C.muted,2,'none',{'stroke-dasharray':'3 4'});
+  if(g.tag)tx(svg,X(Math.min(tg,T))-4,Yv(sim(g,tg).v)+18,g.tag,{size:12,fill:C.muted,anchor:'end'})}
+ const tEnd=Math.min(f.t,T);pth(svg,curveD(cfg,tEnd,X,Yv),C.teal,3.5);if(f.fs){const tauF=(s0.Rs+RON)*(cfg.cs||CS0),tE=Math.min(tEnd,s0.ta+s0.tc);let d='',pen=false;for(let j=0;j<=500;j++){const t=tE*j/500,l=4096*Math.exp(-Math.min(t,ta)/tauF);if(l<=20){d+=(pen?'L':'M')+X(t).toFixed(1)+' '+Yb(l).toFixed(1);pen=true}else pen=false}if(d){pth(svg,d,C.violet,2.5,'none',{'stroke-dasharray':'9 6'});const lF=4096*Math.exp(-Math.min(tE,ta)/tauF);if(lF<=20)tx(svg,X(tE)-6,Yb(lF)-10,'full-scale step, 0 → 3.3 V: '+(lF<0.01?'< 0.01':lF.toFixed(2))+' LSB',{size:13,fill:C.violet,anchor:'end'})}}const b=shD(cfg,tEnd);if(b)pth(svg,b,C.amber,3.5);
+ el(svg,'circle',{cx:X(tEnd),cy:Yv(r.v),r:5,fill:C.teal});
+ const l=(V-r.v)/LSB;if(l>20&&f.t>0)tx(svg,X(Math.min(tEnd,ta))+10,bT+20,'off scale: '+(l<1000?l.toFixed(1):Math.round(l))+' LSB short',{size:15,fill:C.amber,anchor:'start'});
+ if(f.marks&&f.marks.tau){const tau=(s0.Rs+RON)*(cfg.cs||CS0);for(const [k,pc] of [[1,'63 %'],[2,'86 %'],[5,'99.3 %']]){const t=k*tau;if(t>tEnd||t>ta)continue;const vv=sim(cfg,t).v;el(svg,'circle',{cx:X(t),cy:Yv(vv),r:5,fill:C.violet});tx(svg,X(t)+8,Yv(vv)+20,k+'τ · '+pc,{size:13,fill:C.violet,anchor:'start'})}}
+ if(f.marks&&f.marks.half){const tau=(s0.Rs+RON)*(cfg.cs||CS0);const a=Math.log(4096)*tau,c=Math.log(8192)*tau;
+  if(a<=tEnd){ln(svg,X(a),bT,X(a),bB,C.rose,1.5,'3 3');tx(svg,X(a)-6,bT+40,'½ LSB here: '+(a/tau).toFixed(1)+'τ (half-scale step)',{size:13,fill:C.rose,anchor:'end'})}
+  if(c<=tEnd){ln(svg,X(c),bT,X(c),bB,C.violet,1.5,'3 3');tx(svg,X(c)+6,bT+60,'9.0τ: ½ LSB on the full-scale step (dashed)',{size:13,fill:C.violet,anchor:'start'})}}
+ if(f.overlay){el(svg,'rect',{x:X0+14,y:aT+10,width:560,height:30+22*f.overlay.length,rx:6,fill:C.panel,stroke:C.faint});f.overlay.forEach((s,k)=>tx(svg,X0+30,aT+36+22*k,s,{size:15,anchor:'start'}))}
+ ticks()}
+/* ---------- readouts ---------- */
+function readouts(div,cfg,r,f){if(f.noRo){div.innerHTML='';return}const s=f.roSlot!=null?cfg.slots[f.roSlot]:r.s,ta=f.win??s.ta;const sh=(s.V-r.v)/LSB;const last=r.codes.length?r.codes[r.codes.length-1]:'…';
+ div.innerHTML=`<div>τ<b>${fmtT(r.tau)}</b></div><div>time constants in the window<b>${(ta/r.tau).toFixed(ta/r.tau<10?2:0)}</b></div><div>current into C_s<b>${fmtI(r.i)}</b></div><div>v_C<b>${r.v.toFixed(3)} V</b></div><div>shortfall<b>${sh<0.01?'< 0.01':sh<100?sh.toFixed(2):sh.toFixed(1)} LSB</b></div><div>code, truncating<b>${last}</b><small>ideal ${(s.V/LSB).toFixed(Math.abs(s.V/LSB-Math.round(s.V/LSB))<1e-9?0:1)}</small></div><div>sample rate<b>${Math.round(1/(ta+s.tc)/1e3)} kS/s</b></div>`}
+/* ---------- a scene = circuit + plot + readouts ---------- */
+function Scene(id){const off={adc:0,r1:0,r2:0};return{render(f,dt){const r=sim(f.cfg,f.t);if(dt)advance(off,f.cfg,r,dt);drawCircuit($('cir-'+id),f.cfg,r,off,f);drawPlot($('plt-'+id),f,r);readouts($('ro-'+id),f.cfg,r,f);$('x-'+id)&&( $('x-'+id).innerHTML=f.note||'')}}}
+/* ---------- stops ---------- */
+const still=(fr)=>({T:0,frame:()=>fr});
+function run(cfg,o={},hold=0.4){const tt=total(cfg);return{T:tt*SLOW+hold,frame:u=>Object.assign({cfg,t:Math.min(u/SLOW,tt)},o)}}
+function chain(...ps){const T=ps.reduce((a,p)=>a+p.T,0);return{T,frame:u=>{let a=0;for(const p of ps){if(u<a+p.T||p===ps[ps.length-1])return p.frame(Math.min(u-a,p.T));a+=p.T}}}}
+function winTo(cfg,from,to,dur,o={}){return{T:dur,frame:u=>{const w=from+(to-from)*Math.min(1,u/dur);const c=JSON.parse(JSON.stringify(cfg));c.slots[0].ta=w;return Object.assign({cfg:c,t:0,win:w,T:o.T},o)}}}
+const done=(cfg,o={})=>Object.assign({cfg,t:total(cfg)},o);
+const ghost=(cfg,tag)=>Object.assign(JSON.parse(JSON.stringify(cfg)),{tag});
+/* ---------- the player (the bench's transport) ---------- */
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')}
+const PLAYERS=[];
+function Player(id,card,stops,render){const P={k:0,u:0,playing:false,raf:0,last:0};const tp=$('tp-'+id);
+ tp.innerHTML=`<button class="nav" title="Previous stop">⏮ Prev</button><button class="play" title="Play this stop">▶ Play</button><button class="rep" title="Replay this stop">↻ Replay</button><button class="nav" title="Next stop">Next ⏭</button><button class="rst" title="Back to the card's first stop">⟲ Reset</button><span class="rail"></span><span class="state"></span>`;
+ const [bp,bpl,brp,bn,brs]=tp.querySelectorAll('button'),rail=tp.querySelector('.rail'),stt=tp.querySelector('.state');
+ stops.forEach((s,i)=>{const d=document.createElement('i');d.title='Stop '+(i+1);d.onclick=()=>arrive(i);rail.appendChild(d)});
+ function cap(){const s=stops[P.k];if(card==null||!$('cap-'+id))return;$('cap-'+id).innerHTML=s.p.map(j=>{const q=FLOW[card].paras[j];return `<p>${q.cues.map(c=>`<span class="cue">${c}</span>`).join('')}${esc(q.text)}</p>`}).join('')}
+ function draw(dt){render(stops[P.k].frame(P.u),dt);[...rail.children].forEach((d,i)=>{d.className=i===P.k?'on':i<P.k?'done':''});
+  const T=stops[P.k].T;stt.textContent=`stop ${P.k+1} / ${stops.length} · `+(T===0?'still':P.playing?'playing':P.u>=T?'held at its end':P.u===0?'at its first frame: Play runs this stop':'paused');bpl.textContent=P.playing?'■ Stop':'▶ Play';bpl.classList.toggle('on',P.playing)}
+ function stop(){P.playing=false;cancelAnimationFrame(P.raf)}
+ function loop(n){const dt=Math.min(0.05,(n-P.last)/1000)*SPEED;P.last=n;const T=stops[P.k].T;P.u=Math.min(T,P.u+dt);draw(dt);if(P.u>=T){stop();draw(0);return}P.raf=requestAnimationFrame(loop)}
+ function play(){if(P.playing){stop();draw(0);return}const T=stops[P.k].T;if(T===0)return;if(P.u>=T)P.u=0;P.playing=true;P.last=performance.now();P.raf=requestAnimationFrame(loop)}
+ function arrive(k){stop();P.k=Math.max(0,Math.min(stops.length-1,k));P.u=0;cap();draw(0);if(AUTO)play()}
+ bp.onclick=()=>arrive(P.k-1);bn.onclick=()=>arrive(P.k+1);bpl.onclick=play;brp.onclick=()=>{stop();P.u=0;play()};brs.onclick=()=>arrive(0);
+ P.redraw=()=>draw(0);P.arrive=arrive;P.play=play;P.stops=stops;PLAYERS.push(P);cap();draw(0);return P}
+/* ---------- card 1 ---------- */
+const S1=Scene('c1');const r10=thev(10e3);
+const c1stops=[
+ {p:[0],...still({cfg:r10,t:0,parts:-1,mode:'none',noRo:true})},
+ {p:[1],...still({cfg:r10,t:0,parts:-1,mode:'none',noRo:true})},
+ {p:[2,3],...still({cfg:r10,t:0,parts:-1,mode:'none',noRo:true})},
+ {p:[4],T:6.2,frame:u=>({cfg:r10,t:0,parts:Math.min(5,Math.floor(u/1.1)),mode:'none',noRo:true})},
+ {p:[5],...still({cfg:r10,t:0,parts:5,mode:'none',hl:{cs:true},noRo:true})},
+ {p:[6],...(()=>{const c={variant:'thev',slots:[{V:1.65,Rs:10e3,ta:1e-6,tc:1e-6,ch:'A0'},{V:1.65,Rs:10e3,ta:1e-6,tc:0,ch:'A0'}]},tEnd=2.25e-6;return{T:tEnd*SLOW+0.4,frame:u=>({cfg:c,t:Math.min(u/SLOW,tEnd),mode:'timeline',T:3e-6,roSlot:0})}})()},
+ {p:[7],...run(r10,{hl:{rs:true,ron:true}})}];
+const P1=Player('c1',0,c1stops,(f,dt)=>S1.render(f,dt));
+/* ---------- card 2 ---------- */
+const S2=Scene('c2');const r1=thev(1e3),r50=thev(50e3);
+const c2stops=[
+ {p:[0],...still({cfg:r10,t:0})},{p:[1],...still({cfg:r10,t:0})},
+ {p:[2],...run(r10)},{p:[3],...run(r10,{marks:{tau:true}})},{p:[4],...run(r10,{marks:{half:true},fs:true})},
+ {p:[5],...run(r1,{fs:true})},{p:[6],...run(r10,{ghosts:[ghost(r1,'1 kΩ')],fs:true})},{p:[7],...run(r50,{ghosts:[ghost(r1,'1 kΩ'),ghost(r10,'10 kΩ')],fs:true})}];
+const P2=Player('c2',1,c2stops,(f,dt)=>S2.render(f,dt));
+/* explore */
+const SX=Scene('ex');
+function exCfg(){const c=thev(+$('rs').value*1e3,+$('ta').value*1e-6);c.cs=+$('cs').value*1e-12;return c}
+function exOut(){$('rso').textContent=fmtR(+$('rs').value*1e3);$('tao').textContent=(+$('ta').value).toFixed(2)+' µs';$('cso').textContent=$('cs').value+' pF'}
+const PX=Player('ex',null,[{p:[],get T(){return total(exCfg())*SLOW+0.4},frame:u=>({cfg:exCfg(),t:Math.min(u/SLOW,total(exCfg()))})}],(f,dt)=>{exOut();SX.render(f,dt)});
+['rs','ta','cs'].forEach(i=>$(i).addEventListener('input',()=>PX.arrive(0)));
+/* ---------- card 3 ---------- */
+const S3=Scene('c3');const d1=divi(3.3,1e3,1e3),d100=divi(3.3,100e3,100e3),cold=divi(3.585,100e3,100e3,1.29e-6),d270=divi(12,270e3,100e3);
+const b2b={variant:'divider',div:{Vsup:3.3,R1:100e3,R2:100e3},slots:[0,1,2].map(()=>({V:1.65,Rs:50e3,ta:1e-6,tc:1e-6,ch:'A0'}))};
+const ilv={variant:'divider',div:{Vsup:3.3,R1:100e3,R2:100e3},slots:[{V:1.65,Rs:50e3,ta:1e-6,tc:1e-6,ch:'A0'},{V:0,Rs:1e3,ta:1e-6,tc:1e-6,ch:'A1 (0 V)'},{V:1.65,Rs:50e3,ta:1e-6,tc:1e-6,ch:'A0'}]};
+const meter='<table><tr><th></th><th>1 k / 1 k divider</th><th>100 k / 100 k divider</th></tr><tr><td>output resistance</td><td>500 Ω</td><td>50 kΩ</td></tr><tr><td>a 10 MΩ meter, 2 V range</td><td>1.650 V</td><td>1.642 V (F8)</td></tr><tr><td>the ADC (1 µs window), truncating</td><td>2047|2048</td><td>1759</td></tr></table>';
+const c3stops=[
+ {p:[0,1],...still({cfg:d1,t:0})},
+ {p:[2],...still({cfg:d100,t:0,ghosts:[]})},
+ {p:[3],...chain(run(d1),{T:0.6,frame:()=>({cfg:d100,t:0,ghosts:[ghost(d1,'500 Ω')]})},run(d100,{ghosts:[ghost(d1,'500 Ω')]}))},
+ {p:[4],...still(done(d100,{ghosts:[ghost(d1,'500 Ω')],note:meter}))},
+ {p:[5],...chain(run(cold,{note:'The cold open itself (F6, decided 2026-10-20). 3.585 V into 100 k / 100 k puts 1.7925 V on the pin; 1.29 µs window = 2.53 τ; 177 LSB short: code 2047 where the ideal is 2224.9.'}),{T:0.8,frame:()=>({cfg:d270,t:0,ghosts:[ghost(cold,'cold open')],note:'040\'s 270 k / 100 k divider on 12 V: 3.243 V from 73 kΩ.'})},run(d270,{ghosts:[ghost(cold,'cold open')],note:'040\'s 270 k / 100 k divider on 12 V: 3.243 V from 73 kΩ; 1 µs = 1.35 τ; it holds 2.404 V, 25.9 % low: code 2983 where the ideal is 4025.6.'}))},
+ {p:[6],...chain(run(b2b,{mode:'timeline',T:6e-6,note:'The same channel three times: 1759 → 2007 → 2042 (288, 41, 6 LSB short): each sample starts from the last.'}),{T:0.8,frame:()=>({cfg:ilv,t:0,mode:'timeline',T:6e-6,note:'Now a second channel at 0 V between them.'})},run(ilv,{mode:'timeline',T:6e-6,note:'A second channel at 0 V in between: the capacitor is emptied, and A0 reads 1759 again.'}))}];
+const P3=Player('c3',2,c3stops,(f,dt)=>S3.render(f,dt));
+/* ---------- card 4 ---------- */
+const S4=Scene('c4');const r10h=thev(10e3,0.5e-6);
+const c4stops=[
+ {p:[0,1],...still({cfg:r10,t:0,ghosts:[ghost(r10,'1 µs')]})},
+ {p:[2],...chain(run(r10),winTo(r10,1e-6,0.5e-6,1.5,{ghosts:[ghost(r10,'1 µs')]}))},
+ {p:[3],...run(r10h,{ghosts:[ghost(r10,'1 µs')]})},
+ {p:[4],...still(done(r10h,{ghosts:[ghost(r10,'1 µs')],note:'Same source, same capacitor: 1 µs → 0.23 LSB short, code 2047, 500 kS/s; 0.5 µs → 21.7 LSB short, code 2026, 667 kS/s.'}))}];
+const P4=Player('c4',3,c4stops,(f,dt)=>S4.render(f,dt));
+/* ---------- card 7 ---------- */
+const S7=Scene('c7');const d100l=divi(3.3,100e3,100e3,4.6e-6);
+const arith=['51 kΩ × 10 pF = 510 ns per time constant','ln 8192 ≈ 9.01 of them: 9.01 × 510 ns = 4.60 µs'];
+const c7stops=[
+ {p:[0],...still(done(d100,{T:6e-6}))},
+ {p:[1,2],...still(done(d100,{T:6e-6}))},
+ {p:[3],...still(done(d100,{T:6e-6,overlay:arith}))},
+ {p:[4],...chain(winTo(d100,1e-6,4.6e-6,2,{T:6e-6,ghosts:[ghost(d100,'1 µs')]}),run(d100l,{T:6e-6,ghosts:[ghost(d100,'1 µs')],marks:{half:true},fs:true}))},
+ {p:[5],...still(done(d100l,{T:6e-6,ghosts:[ghost(d100,'1 µs')],fs:true,note:'1 µs window + 1 µs conversion: 500 kS/s. 4.6 µs window + 1 µs: 179 kS/s. Shared by every channel on the multiplexer if the sample time is shared.'}))}];
+const P7=Player('c7',6,c7stops,(f,dt)=>S7.render(f,dt));
+/* ---------- card 8 ---------- */
+const S8=Scene('c8');const fb=foll(3.3,100e3,100e3);
+const optRows=(rev)=>`<table><tr><th>200 kS/s with 1 µs of conversion leaves a 4 µs window</th><th>Result</th></tr><tr><td>Lengthen the window (to the 4 µs available)</td><td>${rev?'0.80 LSB short: 50 kΩ needs 4.6 µs. Misses.':'…'}</td></tr><tr><td>An op-amp follower</td><td>${rev?'τ 11 ns: settles (2047|2048). Works.':'…'}</td></tr><tr><td>Rebuild the divider with 1 kΩ</td><td>${rev?'τ 15 ns: settles. Works, at 1.65 mA standing.':'…'}</td></tr><tr><td>Slow the ADC clock</td><td>${rev?'Longer conversion and window: the rate falls below 200 kS/s. Misses.':'…'}</td></tr></table>`;
+const c8stops=[
+ {p:[0],...still({cfg:d100,t:0})},
+ {p:[1,2],...chain(run(d100,{note:'Without the buffer: the divider charges the capacitor itself through 50 kΩ.'}),{T:0.8,frame:()=>({cfg:fb,t:0,ghosts:[ghost(d100,'no buffer')]})},run(fb,{ghosts:[ghost(d100,'no buffer')],note:'With the follower: same divider, full rate.'}))},
+ {p:[3],...run(fb,{ghosts:[ghost(d100,'no buffer')],note:'The divider carries only its own 16.5 µA; the follower\'s input draws no current; the charge comes from the op-amp\'s output.'})},
+ {p:[4],...still(done(fb,{ghosts:[ghost(d100,'no buffer')]}))},
+ {p:[5],...still(done(fb,{ghosts:[ghost(d100,'no buffer')],note:'An ideal follower here: its recovery from the capacitor\'s kick is not modelled in this sketch.'}))},
+ {p:[6,7],...still(done(fb,{note:optRows(false)}))},
+ {p:[8],...still(done(fb,{note:optRows(true)}))},
+ {p:[9],...still(done(fb,{}))}];
+const P8=Player('c8',7,c8stops,(f,dt)=>S8.render(f,dt));
+/* ---------- card 5 ---------- */
+const C5=(()=>{const s=$('s5');const VS=[0.40,3.00,1.65,2.20];let hi=false;const off={a:0};
+ const ACQ=1e-6,CYC=2e-6,T=4*CYC;const rsOf=c=>hi&&c===2?50e3:1e3;
+ function at(t){let v=0;const held=[];for(let c=0;c<4;c++){const t0=c*CYC,tau=(rsOf(c)+RON)*CS0;if(t<t0+ACQ){const vv=VS[c]+(v-VS[c])*Math.exp(-(t-t0)/tau);return{ch:c,acq:true,v:vv,i:(VS[c]-vv)/(rsOf(c)+RON),held}}v=VS[c]+(v-VS[c])*Math.exp(-ACQ/tau);held[c]=v;if(t<t0+CYC)return{ch:c,acq:false,v,i:0,held}}return{ch:3,acq:false,v,i:0,held}}
+ function draw(t,showArm,dt){s.innerHTML='';el(s,'rect',{width:1200,height:620,fill:C.bg});const r=at(t);if(dt)off.a+=dotSpeed(r.i)*dt;const ch=showArm?r.ch:-1,cy=128;
+  for(let c=0;c<4;c++){const y=50+c*52,act=c===ch;el(s,'rect',{x:30,y:y-18,width:190,height:36,rx:6,fill:C.panel,stroke:act?C.teal:C.faint,'stroke-width':act?2.5:1.5});
+   tx(s,125,y+6,`sensor ${c+1} · ${VS[c].toFixed(2)} V`+(hi&&c===2?' · 50 kΩ':''),{size:14,fill:act?C.ink:C.muted});ln(s,220,y,330,y,act?C.teal:C.faint,2.5);el(s,'circle',{cx:336,cy:y,r:6,fill:C.bg,stroke:act?C.teal:C.ink,'stroke-width':2.5});tx(s,322,y-10,'CH'+(c+1),{size:12,fill:C.muted,anchor:'end'})}
+  el(s,'rect',{x:300,y:14,width:120,height:226,rx:SYM==='iec'?0:10,fill:'none',stroke:C.violet,'stroke-width':2});tx(s,360,32,'MUX',{size:14,fill:C.violet});tx(s,360,258,'analog multiplexer',{size:14,fill:C.violet});
+  el(s,'circle',{cx:400,cy,r:5,fill:C.ink});if(ch>=0)ln(s,400,cy,342,50+ch*52,r.acq?C.teal:C.amber,3.5);
+  glow(s,[[580,cy],[780,cy]],r.v);glow(s,[[640,cy],[640,158]],r.v);
+  ln(s,405,cy,470,cy);res(s,470,cy,580,cy);tx(s,525,cy-24,'R_on 1 kΩ',{size:14});
+  ln(s,580,cy,780,cy);el(s,'circle',{cx:640,cy,r:5,fill:C.ink});ln(s,640,cy,640,158);capv(s,640,158);ln(s,640,172,640,210);gnd(s,640,210);
+  tx(s,600,184,'one C_s · v_C = '+r.v.toFixed(3)+' V',{size:14,anchor:'end',fill:C.teal});
+  amp(s,780,90,false);dac(s,770,214);poly(s,[[770,232],[760,232],[760,160],[780,160]]);ln(s,860,135,900,135);tx(s,906,140,'one converter (SAR) → code',{size:14,anchor:'start',fill:C.muted});
+  if(ch>=0&&r.acq){const y=50+ch*52;const pts=[[220,y],[336,y],[400,cy],[640,cy],[640,158]];dots(s,pts,off.a);dots(s,[[640,172],[640,210]],off.a)}
+  tx(s,1160,300,'sensor returns through ground, not drawn',{size:12,anchor:'end',fill:C.muted});
+  const X0=110,X1=1150,X=q=>X0+(X1-X0)*q/T,yB=580,yT=370,Y=v=>yB-(yB-yT)*v/3.3;ln(s,X0,yB,X1,yB,C.muted,1.5);
+  for(let c=0;c<4;c++){el(s,'rect',{x:X(c*CYC),y:yT-34,width:X(c*CYC+ACQ)-X(c*CYC),height:yB-yT+34,fill:'rgba(45,212,191,.07)'});tx(s,(X(c*CYC)+X(c*CYC+CYC))/2,yT-14,`CH${c+1} at t${'₁₂₃₄'[c]}`,{size:14,fill:c===ch?C.teal:C.muted});
+   ln(s,X(c*CYC),Y(VS[c]),X(c*CYC+CYC),Y(VS[c]),C.azure,1.5,'6 5');
+   if(r.held[c]!=null&&t>=c*CYC+ACQ){const err=(r.held[c]-VS[c])/LSB,ok=Math.abs(err)<0.5;tx(s,X(c*CYC+ACQ)+8,Y(r.held[c])-10,ok?'settled':(err>0?'+':'')+err.toFixed(0)+' LSB',{size:13,anchor:'start',fill:ok?C.lime:C.rose})}}
+  if(showArm){let d='';const n=800;for(let j=0;j<=n;j++){const q=t*j/n;d+=(j?'L':'M')+X(q).toFixed(1)+' '+Y(at(q).v).toFixed(1)}pth(s,d,C.teal,3)}
+  tx(s,X0-8,yT+5,'3.3 V',{size:13,fill:C.muted,anchor:'end'});tx(s,X0-8,yB+5,'0 V',{size:13,fill:C.muted,anchor:'end'});
+  tx(s,X1,yB+28,'capacitor (solid) · each input (dashed) · 0 – 8 µs, slowed 2 500 000× at 1×',{size:13,fill:C.muted,anchor:'end'});
+  $('x-c5').textContent=hi?'CH3 is a 50 kΩ source: the capacitor arrives carrying CH2\'s 3.00 V and cannot get down to 1.65 V in its window (the charge flows back out towards the 1.65 V sensor): CH3 reads 236 LSB high.':''}
+ const stops=[{p:[0],T:0,frame:()=>({t:0,arm:false})},{p:[1],T:T*SLOW+0.4,frame:u=>({t:Math.min(T,u/SLOW),arm:true})},{p:[2],T:0,frame:()=>({t:T,arm:true})},{p:[3],T:T*SLOW+0.4,frame:u=>({t:Math.min(T,u/SLOW),arm:true})}];
+ const P=Player('c5',4,stops,(f,dt)=>draw(f.t,f.arm,dt));
+ return{hiZ(){hi=!hi;$('c5hi').classList.toggle('on',hi);P.redraw()}}})();
+/* ---------- card 6 ---------- */
+(()=>{const s=$('s6');const R=(t,N)=>t/(CS0*Math.log(2**(N+1)))-RON;
+ function draw(f){s.innerHTML='';el(s,'rect',{width:1200,height:520,fill:C.bg});const X0=120,X1=1150,yB=450,yT=40,TM=5e-6,RM=60e3,X=t=>X0+(X1-X0)*t/TM,Y=r=>yB-(yB-yT)*r/RM;
+  const clip=el(el(s,'defs',{}),'clipPath',{id:'pl6'});el(clip,'rect',{x:X0,y:yT,width:X1-X0,height:yB-yT});
+  ln(s,X0,yB,X1,yB,C.muted,1.5);ln(s,X0,yT,X0,yB,C.muted,1.5);for(let t=0;t<=5;t++)tx(s,X(t*1e-6),yB+26,t?t+' µs':'0',{size:13,fill:C.muted});tx(s,X1,yB+46,'acquisition window t_acq',{size:14,fill:C.muted,anchor:'end'});
+  for(let r=0;r<=60;r+=10){ln(s,X0,Y(r*1e3),X1,Y(r*1e3),C.faint,1);tx(s,X0-10,Y(r*1e3)+5,r+' kΩ',{size:13,fill:C.muted,anchor:'end'})}
+  const g=el(s,'g',{'clip-path':'url(#pl6)'});const line=(n,frac=1)=>{let d='';for(let i=0;i<=200*frac;i++){const t=TM*i/200,r=R(t,n);if(r<0)continue;d+=(d?'L':'M')+X(t).toFixed(1)+' '+Y(r).toFixed(1)}return d};
+  const col={10:C.violet,12:C.lime,16:C.azure};
+  if(f.curve>0)pth(g,line(12,f.curve),C.lime,f.N===12?3.5:2);
+  if(f.N!==12&&f.N){pth(g,line(f.N),C.ink,3.5);}
+  for(const n of f.others||[]){pth(g,line(n),col[n],2,'none',{opacity:.6});tx(s,X(2.6e-6),Y(R(2.6e-6,n))-12,n+' bits',{size:13,fill:col[n]})}
+  if(f.curve>=1)tx(s,X(2.6e-6),Y(R(2.6e-6,12))-12,'12 bits',{size:13,fill:C.lime});
+  if(f.therm){ln(s,X0,Y(5e3),X1,Y(5e3),C.amber,2,'6 5');tx(s,X1,Y(5e3)-8,'thermistor divider 5 kΩ (S35): inside the limit',{size:14,fill:C.amber,anchor:'end'})}
+  if(f.point){const N=f.N||12,r=R(1e-6,N);ln(s,X(1e-6),yB,X(1e-6),Y(r),C.ink,1.5,'4 4');ln(s,X0,Y(r),X(1e-6),Y(r),C.ink,1.5,'4 4');el(s,'circle',{cx:X(1e-6),cy:Y(r),r:7,fill:C.ink});tx(s,X(1e-6)+12,Y(r)-10,fmtR(r)+' at 1 µs ('+N+' bits)',{size:15,anchor:'start'})}
+  $('eqv').textContent=f.point?fmtR(R(1e-6,f.N||12))+'  (N = '+(f.N||12)+', t_acq = 1.0 µs)':'…';$('x-c6').innerHTML=f.note||''}
+ const tbl='<table><tr><th>N</th><th>ln 2^(N+1)</th><th>R_s,max at 1 µs</th></tr><tr><td>10</td><td>7.62</td><td>12.1 kΩ</td></tr><tr><td>12</td><td>9.01</td><td>10.1 kΩ</td></tr><tr><td>16</td><td>11.78</td><td>7.49 kΩ</td></tr></table>';
+ const stops=[{p:[0,1],T:0,frame:()=>({curve:0})},{p:[2,3],T:2,frame:u=>({curve:Math.min(1,u/2)})},{p:[4],T:1,frame:()=>({curve:1,point:true,N:12,note:'ln 8192 ≈ 9.01; 1 µs ÷ 9.01 ÷ 10 pF = 11.1 kΩ in total; less the switch\'s 1 kΩ: 10.1 kΩ.'})},
+  {p:[5],T:0,frame:()=>({curve:1,point:true,N:12})},
+  {p:[6],T:3,frame:u=>{const N=Math.round(10+6*Math.min(1,u/3));return{curve:1,point:true,N,others:[10,16],note:tbl}}},
+  {p:[7],T:0,frame:()=>({curve:1,point:true,N:12,therm:true})}];
+ Player('c6',5,stops,f=>draw(f))})();
+/* ---------- bench controls ---------- */
+function syncTop(){$('symI').classList.toggle('on',SYM==='iec');$('symU').classList.toggle('on',SYM==='us');document.querySelectorAll('[data-sp]').forEach(b=>b.classList.toggle('on',+b.dataset.sp===SPEED));$('auto').textContent=AUTO?'on':'off';$('auto').classList.toggle('on',AUTO)}
+function setSym(v){SYM=v;ST.set('bench:sym',v);syncTop();PLAYERS.forEach(p=>p.redraw())}
+function setSpeed(v){SPEED=v;ST.set('bench:speed',String(v));syncTop()}
+function setAuto(){AUTO=!AUTO;ST.set('bench:auto',AUTO?'1':'0');syncTop()}
+syncTop();PLAYERS.forEach(p=>p.redraw());
+/* ---------- feedback ---------- */
+window.u016Feedback=()=>Object.fromEntries(ST.keys().filter(k=>k.startsWith('u016:')).sort().map(k=>[k.slice(5),ST.get(k)]));
+function save(k,v){ST.set('u016:'+k,v);ST.set('u016:_at',new Date().toISOString());flash()}
+function load(k){return ST.get('u016:'+k)}
+function flash(){const n=ST.keys().filter(k=>k.startsWith('u016:')&&k!=='u016:_at'&&ST.get(k)).length;$('fbsum').textContent=n?n+' answers saved in this page':''}
+function clearFb(){if(confirm('Clear all feedback on this page?')){ST.keys().filter(k=>k.startsWith('u016:')).forEach(k=>ST.del(k));location.reload()}}
+document.querySelectorAll('textarea[data-k]').forEach(t=>{t.value=load(t.dataset.k)||'';t.addEventListener('input',()=>save(t.dataset.k,t.value))});
+document.querySelectorAll('.bar[data-c]').forEach(b=>{const k=b.dataset.c+'-choice',v=load(k);b.querySelectorAll('button').forEach(btn=>{if(btn.textContent===v)btn.classList.add('on');btn.onclick=()=>{b.querySelectorAll('button').forEach(x=>x.classList.remove('on'));btn.classList.add('on');save(k,btn.textContent)}})});
+function exportFb(){const o=$('fbout'),f=window.u016Feedback(),ks=Object.keys(f);o.style.display='block';o.textContent=ks.length?ks.map(k=>k+': '+f[k]).join(String.fromCharCode(10)):'Nothing entered yet.'}
+flash();
+</script></body></html>

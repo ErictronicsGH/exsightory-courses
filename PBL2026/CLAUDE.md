@@ -77,10 +77,20 @@ path holds only a redirect note. Temporary working files go to the session scrat
 
 ## Standing rules (details in `.claude/memory/`)
 
-- **The six gates: first-class requirements for every animation** (owner, 2026-10-10). Nothing is sent to the owner until
-  it passes all six, and the report says so: **(1) realism ≥ 95 %; (2) scientific facts 100 % accurate; (3) mathematical
-  facts 100 % accurate; (4) visualization and intuition 100 %; (5) consistency and coherence; (6) professional design.**
-  The checklist is `.claude/standards/six-gates.md`.
+- **A course cannot misinform** (owner, 2026-10-20). Nothing a learner sees or hears may be false, contradict another
+  card, or rest on an unstated assumption that changes the answer. Every module gets the accuracy check (A1–A7:
+  every number recomputed under the course's models, edge cases, cross-references, physics and circuits, claims,
+  sources) **before its brief** and on everything produced. A discrepancy in the owner's text is never fixed silently:
+  it goes to the owner marked **accuracy** and into `.claude/tracking/ACCURACY.md`, and **an open finding blocks** the
+  unit, the module and publishing. The rule and the course's models: `.claude/standards/course-accuracy.md`.
+- **The six gates: first-class requirements for everything sent to the owner** (owner, 2026-10-10; widened to every
+  brief page, preview, spec and still on 2026-10-20). Nothing is sent to the owner until it passes all six, and the
+  report (in the page itself for a browser page) says so: **(1) realism ≥ 95 %; (2) scientific facts 100 % accurate;
+  (3) mathematical facts 100 % accurate; (4) visualization and intuition 100 %; (5) consistency and coherence;
+  (6) professional design.** The checklist is `.claude/standards/six-gates.md`.
+- **Render what you are doing, in the browser** (owner, 2026-10-20): each unit's brief and progress is an interactive
+  page, `bench-work/previews/u0NN-preview.html`, served by `.claude/launch.json`'s `previews` and opened in the
+  built-in browser, with the owner's feedback boxes read back from the page.
 - **Never trim the owner's content.** Report overruns; the owner cuts.
 - **Natural order.** Every module sits at its stage on the measurement path and hands off to the next.
 - **The benches live in `C:\ExSightory\src\exsight-benches`** (owner, 2026-10-13; it was

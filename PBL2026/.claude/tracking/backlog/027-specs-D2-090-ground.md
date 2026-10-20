@@ -20,6 +20,7 @@ Elements in this module (from elements-by-section.md): Electronics Bench ×4, Ci
 
 ## Acceptance criteria
 
+- [ ] **Accuracy (blocking):** check A1–A7 of `.claude/standards/course-accuracy.md` run on the module before the brief and on everything produced; results in `tracking/ACCURACY.md`; **no open accuracy finding** on this module.
 - [ ] One spec per bench card, in the template's shape, named `D<day>-<module>-<card>-<slug>.md`.
 - [ ] Each spec gives the minutes on the bench, inside the module's budget, and says where they come from.
 - [ ] Each spec meets the quality bar: real values and units, the faithfulness checklist filled, the four views named.

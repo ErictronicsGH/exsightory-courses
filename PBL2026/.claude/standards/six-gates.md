@@ -7,6 +7,12 @@ in the animation"*. Memory: `.claude/memory/first-class-requirements.md`.
 Every still, motion, film and library passes all six **before** it is sent to the owner, and the report says it did
 (and names anything that failed and how it was fixed). They are requirements, not a review to be asked for.
 
+**Since 2026-10-20 the gates cover everything sent to the owner**: brief pages, previews, specs and stills as well as
+animations. A browser page carries its own six-gate report at the bottom. Gates 2, 3 and 5 include the course's accuracy
+check (`course-accuracy.md`, A1–A7): our own errors are fixed before sending; errors found in the owner's text are raised
+as **accuracy** findings and logged in `tracking/ACCURACY.md`, where an open one blocks the unit and publishing. A course
+cannot misinform.
+
 | # | Gate | Check before sending |
 |---|---|---|
 | 1 | **Realism ≥ 95 %** | Each object is the real thing drawn as it is: proportions to one stated scale, materials, markings, how it stands and is held. A simplified glyph where a real object belongs fails. Real behaviour, including the non-ideal. |

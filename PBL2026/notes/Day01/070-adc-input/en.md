@@ -33,7 +33,8 @@ ASK      poe (before the statement) — "To your divider, what does an MCU's ADC
          answer: a small capacitor, connected for a moment and then let go
          reveal: the Draw sequence below.
          explain: The converter holds its sample on a capacitor of a few picofarads, connected through a switch
-                  for a short window, and the source has to charge it every time.
+                  for a short window, and the source has to charge it to the input every time, from
+                  wherever it was last left.
          depth: understand    practice: developing models
 SHOW     Draw — inside the pin: pad → multiplexer switch → R_on (1 kΩ) → C_s (10 pF) → comparator; under it the
          timing strip: switch closed (acquire), open (hold and convert), closed again.
@@ -49,7 +50,7 @@ is that the ADC does not significantly disturb the signal we are trying to measu
 and we met it in 040 with a voltmeter. The ADC's input is where it matters most — because it is not a
 steady resistance at all.
 
-The ATmega328P's ADC, like most MCU converters, includes a **sample-and-hold** circuit, so that the
+A 12-bit MCU converter, like most, includes a **sample-and-hold** circuit, so that the
 input voltage is held still while the conversion takes place.
 
 [[ask]] So, to your divider, what does that input look like? Nothing at all? A big resistor, like a
@@ -68,8 +69,8 @@ Now the timing strip underneath. The switch closes: this is the **acquisition** 
 capacitor charges towards the input. The switch opens: the capacitor **holds** that voltage while the
 converter works on it. Then the switch closes again for the next sample.
 
-So the source is not feeding a steady resistance. Every sample, it has to fill a capacitor, through the
-switch and through its own output impedance.
+So the source is not feeding a steady resistance. Every sample, it has to charge that capacitor to the
+input, from wherever it was last left, through the switch and through its own output impedance.
 ```
 
 ***
@@ -89,6 +90,9 @@ SHOW (centrepiece) Plot — Demo #2, the switched-capacitor sampler, as two link
          0.23 LSB short) → 50 kΩ (freezes about 290 LSB short); then hand the same plot to the next cards:
          the window down (Faster makes it worse), then up (Fix one).
          Look for: on (a) the 50 kΩ curve looks almost there; on (b) it is nearly 300 codes short.
+         Full-scale ghost (ACCURACY F7): (b) also carries the full-scale step (0 → 3.3 V), 4096·e^(−min(t, t_acq)/τ),
+                 dashed: the ½-LSB rule's case. "Only just" (card 2, 0.46 LSB at 10 kΩ) and card 7's crossing
+                 at 4.6 µs are read on it; the half-scale curve gives 0.23 LSB and crosses at 4.24 µs.
          Status: ready (Plot: exp, min) · the ideal on-circuit demo needs Electronics: analog switch with
                  R_on, a clock/pulse source for the window, a capacitor transient solve with a scope trace,
                  and an ADC-input block with a code readout.
@@ -149,7 +153,9 @@ ASK      poe (at the Flow's [[ask]]; a circuit + predict once the ADC block exis
                   one reads lower | no — the 100 k one reads higher
          answer: no — the 100 k one reads lower
          reveal: the centrepiece Plot at R_s = 0.5 kΩ, then 50 kΩ (each divider's output impedance), window
-                 1 µs: codes 2048 and about 1760.
+                 1 µs: codes 2047 or 2048 (1.65 V sits exactly on the edge) and about 1760 (1759).
+         then the cold open itself (ACCURACY F6): 3.585 V into the 100 k / 100 k divider, 1.7925 V on the pin, a
+                 1.29 µs window (2.53 τ): 177 LSB short, code 2047 where the ideal is 2224.
          explain: The ratio and the open-circuit voltage are the same, but the 100 k divider has a 50 kΩ output
                   impedance, so τ is 510 ns; the window closes after under two time constants, with the
                   capacitor about 14 % short.
@@ -176,10 +182,11 @@ agree?
 capacitor sees is the divider's output impedance: two 1 kΩ resistors in parallel is 500 Ω; two 100 kΩ
 is 50 kΩ. I set the source to each in turn.
 
-[[reveal]] With 500 Ω, τ is 15 ns, and the code is 2048. With 50 kΩ, τ is 510 ns. The window closes
+[[reveal]] With 500 Ω, τ is 15 ns, and the code is 2047 or 2048: 1.65 V sits exactly on the edge between
+them. With 50 kΩ, τ is 510 ns. The window closes
 after under two time constants with the capacitor about 14 % short, and the code is about 1760.
 
-Same ratio. The same voltage on a meter. Nearly 300 codes apart. And nothing reports an error. The
+Same ratio. Nearly the same voltage on a meter. Nearly 300 codes apart. And nothing reports an error. The
 converter did its job perfectly: it converted what the capacitor held.
 
 That is our 2047 from the start of the day: a 100 k divider, and a capacitor that ran out of time. And
@@ -291,13 +298,13 @@ HARVEST  S35 — "Our thermistor divider from 040: five kilohms. Inside ten. It 
 <!-- FILLED 2026-10-07: drafted from training-overview Day 1 Module 4 and standard SAR-ADC input practice; tutor to review -->
 
 ```flow
-[[ask]] For a 12-bit ADC with this acquisition window, what is the largest source impedance that still
+[[ask]] For a 12-bit ADC with a 1 µs acquisition window, what is the largest source impedance that still
 settles in time?
 
 [[pause]]
 
 [[reveal]] Let's work it on the Equation Bench. The window has to hold enough time constants to settle to
-half an LSB:
+half an LSB after a full-scale step:
 
 t_acq = (R_s + R_on) × C_s × ln(2^(N+1))
 
@@ -333,15 +340,14 @@ ASK      numeric (before the reveal) — "The 100 k / 100 k divider, a 50 kΩ so
          depth: use    practice: computational thinking
 SHOW     Equation and Plot — as above.
          Status: ready. Point the room at their own MCU's lever: a sample-time field in clock cycles on many
-                 parts; on the ATmega328P, only the ADC clock prescaler.
+                 parts; on parts without one, only the ADC clock prescaler.
 -->
 
 <!-- FILLED 2026-10-07: drafted from training-overview Day 1 Module 4 and standard SAR-ADC input practice; tutor to review -->
 
 ```flow
 The first fix is to give the capacitor more time. Many MCUs let you set the sample time, usually as a
-number of ADC clock cycles. On parts without that setting, such as the ATmega328P, a slower ADC clock is
-the lever.
+number of ADC clock cycles. On parts without that setting, a slower ADC clock is the lever.
 
 [[ask]] Take the 100 k divider again: a 50 kΩ source. How long must the window be to settle to half an
 LSB at 12 bits?
@@ -369,8 +375,8 @@ the buffer from 040, doing exactly the job it was introduced for.
 <!-- PLAN
 SHOW     Electronics (ideal) — the 100 k / 100 k divider → op-amp follower → ADC-input block at the full rate
          (1 µs window); then the centrepiece Plot with R_s set to the buffer's output (about 100 Ω).
-         Drive: code without the buffer (≈1760); insert the follower; code with it (2048).
-         Look for: the code back at 2048 at full speed, and the divider's current undisturbed.
+         Drive: code without the buffer (≈1760); insert the follower; code with it (2047 or 2048, on the edge).
+         Look for: the code back at 2047|2048 at full speed, and the divider's current undisturbed.
          Status: Plot ready · needs Electronics: op-amp (follower) + ADC-input block; replaces the Demo #2
                  widget beat.
 ASK      multi-select (after the reveal) — "A 100 k / 100 k divider must be read at 200 kS/s, with 1 µs of
@@ -395,10 +401,11 @@ This is one reason **buffering** is so often used in front of an ADC. A buffer p
 to the signal source, and its output can drive the ADC input without significantly disturbing the
 original signal.
 
-[[demo]] Widget (#2): the same high-impedance source, through a buffer, at full speed.
+[[demo]] Electronics Bench: the same high-impedance source, through a buffer, at full speed.
 
 On the bench: the same 100 k divider, now through an op-amp voltage follower, into the ADC at the full
-rate with a 1 µs window. Without the buffer the code was about 1760. With it, 2048.
+rate with a 1 µs window. Without the buffer the code was about 1760. With it, 2047 or 2048, on the edge
+again.
 
 The divider no longer charges anything; it only supplies the op-amp's tiny input current. The op-amp's
 output is a source of a few ohms, and it fills the capacitor in nanoseconds. On the Plot, that is the
