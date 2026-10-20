@@ -62,6 +62,8 @@ Honest limits of what we built:
   mostly a heater. A switching pre-regulator is the usual fix.
 - **No remote sensing.** The voltage is right at the terminals and slightly
   wrong at the load, and the error grows with current and lead length.
+  - Remote sensing runs two extra wires to the load and regulates there.
+  - It needs two more terminals and a regulator built to take them.
 - **Single output.** Anything needing split rails needs a second supply.
 - **The limit is not fast.** It protects against a sustained short, not against
   a nanosecond-scale transient.
