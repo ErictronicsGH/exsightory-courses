@@ -10,7 +10,7 @@ optional_benches: []
 real_thing: "a microcontroller's multiplexed SAR ADC: one sample-and-hold capacitor shared by its analog inputs, selected in turn by an analog multiplexer, at the course's model (12 bits, 3.3 V, truncating; R_on 1 kΩ, C_s 10 pF, 1 µs window, 1 µs of conversion); drawn in IEC symbols"
 minutes: 1.7                      # on the bench: the drawing is up for the whole card, the crosstalk step included (1.35 without it, F1)
 card_minutes: 1.7
-status: spec-draft
+status: spec-ready
 learner_action: none
 predictions: []
 seeds: [S17]                      # planted in the Flow's p3, over s6 held
@@ -420,6 +420,8 @@ exports to SVG (M59b) as the source of D3·050's Figure, so nothing is drawn twi
 - **F8 — Proposal, not recommended: a `poe` before s7** (§7b), +0.8 min.
 
 **Accuracy findings: none** on this card's statement, PLAN or Flow (§8).
+
+**Decided 2026-10-20** (owner: *"go with your recommendations on the proposals"*): **F1 (a)** s7 in the drawing, played in the lecture after p3 with the presenter's unscripted line (+0.35 min, inside the card's 1.7), and the live toggle on the Electronics Bench when X1 lands; **F2** the presenter's lines, the teacher tip, `alt` and `caption` taken as written; **F3** the code in the converter's register at each step; **F4** the MUX arm and the sample switch drawn apart, the switch open in every still; **F5** t₁ … t₄ ticked as the instants the switch opens (1, 3, 5, 7 µs); **F6** the circuit and the timeline in separate layers, and the legend's model label; **F7 (a)** CH2 stays 3.00 V; **F8** not taken (no `poe` before s7). Every Proposal in §3–§11 is now the spec, except §7b. This card may still join crossing 505's family; if so it is revised to Benches' shape.
 
 ## 15. Acceptance: how we know it is built right
 

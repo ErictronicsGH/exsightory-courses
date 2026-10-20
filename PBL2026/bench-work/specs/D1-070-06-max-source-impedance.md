@@ -10,7 +10,7 @@ optional_benches: []
 real_thing: "a 12-bit MCU converter's sample-and-hold input (switch on-resistance 1 kΩ, sampling capacitor 10 pF, 1 µs acquisition window) fed by a resistive source, and the source-impedance limits MCU datasheets state (about 10 kΩ, or a formula or table against the sample time)"
 minutes: 1.4                      # on the bench: from the [[reveal]] (p2) to the end of the card
 card_minutes: 2.3
-status: spec-draft
+status: spec-ready
 learner_action: numeric
 predictions: []                   # the numeric comes before the bench and is answered at s1
 seeds: [S35]                      # harvested at s4
@@ -306,8 +306,8 @@ compared symbol's slider is removed; the Example pane lists every example.
 
 **Missing (request it)**: **an authored reference line on an Equation graph** (a level on y or a position on x, labelled:
 here *thermistor divider, 5 kΩ*). The plot underneath already draws y-level markers for derived asymptotes
-(`benchGraph.ts`, `derivedMarkers`); the Equation block has no field to author one. No X id yet; it would go to Benches by
-crossing (F7). Until then, s4 reads 5 kΩ off the y axis in words.
+(`benchGraph.ts`, `derivedMarkers`); the Equation block has no field to author one. **X21, raised 2026-10-20 as crossing 506**
+(F7). Until then, s4 reads 5 kΩ off the y axis in words.
 
 **Would help**: **X15** (a `compare` family revealed or emphasised one curve per step), so s3 could open on the 12-bit
 line alone and add 10 and 16 bits, as the U016 preview did (F4).
@@ -368,7 +368,7 @@ may lack; the presenter reads 5 kΩ off the y axis, half the 12-bit line's heigh
   and checked rather than typed); the teacher tip (§7d, which also says why the thermistor settles at any temperature);
   the explore prompts (§7e). +0 min each. Take, or leave?
 
-**Decided 2026-10-20** (owner, in the course's chat; ACCURACY D1·070-F9, F10): **F5 (a)** p2 now reads *"…The window has to hold enough time constants to settle to half an LSB after a full-scale step:"* (+4 words); **F6 (a)** p0 now reads *"For a 12-bit ADC with a 1 µs acquisition window, what is the largest source impedance that still settles in time?"* (+1 word). The card gains ≈ 0.04 min. The other findings and proposals here are open for the owner; none blocks.
+**Decided 2026-10-20** (owner, in the course's chat; ACCURACY D1·070-F9, F10): **F5 (a)** p2 now reads *"…The window has to hold enough time constants to settle to half an LSB after a full-scale step:"* (+4 words); **F6 (a)** p0 now reads *"For a 12-bit ADC with a 1 µs acquisition window, what is the largest source impedance that still settles in time?"* (+1 word). The card gains ≈ 0.04 min. **Proposals decided 2026-10-20** (owner: *"go with your recommendations on the proposals"*): **F1** the statement solved for R_s, the PLAN's form as derivation step 2; **F2** N as a `compare` family at 10, 12, 16; **F3 (a)** linear axes, t_acq 0.2–5 µs, with the boundary *too short for any source*; **F4** the Proof first, the Graph at p6's last sentence (X15 would let the 12-bit line open alone); **F7** the reference line asked of Benches: **crossing 506** (X21), the presenter reading 5 kΩ off the axis until it lands; **F8** derivation step 1, `solveFor: tacq`, the teacher tip and the explore prompts all taken.
 
 ## 15. Acceptance: how we know it is built right
 

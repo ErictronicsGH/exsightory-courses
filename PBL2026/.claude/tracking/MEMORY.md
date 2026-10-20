@@ -78,3 +78,5 @@ Building any bench or asset. Changing the owner's card text or Flow (report anyt
   when 505 is answered, write specs 02 (holds D1·070's module time table: cards 1 3.0, 5 1.7, 6 2.3 so far), 03, 04, 07,
   08 to Benches' shape (each with the Plot stand-in), revise 01 and 05 if they join the family, then raise the Symbols
   switch (and `{en, fr}` text in a `.benchdrawing`) as crossings unless 505 took them.**
+- 2026-10-20 (session 3, later): owner *"go with your recommendations on the proposals"*: specs 01, 05, 06 → **spec-ready**
+  (decisions at the end of each §14). Card 6's 5 kΩ reference line → **X21, crossing 506** pushed. Waiting on 505 as above.

@@ -10,7 +10,7 @@ optional_benches: []
 real_thing: "the analog input of a 12-bit MCU SAR converter on a 3.3 V reference (a sampling switch of about 1 kΩ, a sampling capacitor of about 10 pF, a 1 µs acquisition window and 1 µs of conversion, 500 kS/s), drawn in IEC 60617 symbols, unbranded"
 minutes: 1.4                      # on the bench: s0 at p4 to s10 under p7 (§2)
 card_minutes: 3.0                 # the whole card, the poe and the Flow before the bench included (§2)
-status: spec-draft
+status: spec-ready
 learner_action: poe
 predictions: []                   # the PLAN's poe is the prediction (it fires before the bench; s6 reveals it)
 seeds: []
@@ -472,7 +472,7 @@ plays the three-sample run of F1 (b), so the presenter stops it after its first 
   total is `D1-070-02-charge-in-time.md` §2. Eleven steps exceed B4's 3–7 stills: the PLAN's one step per element sets five;
   print groups them into four (§10).
 
-**Decided 2026-10-20** (owner, in the course's chat; ACCURACY D1·070-F11): **F1 (a)** the strip as the PLAN draws it: one sample from 0 V, then the switch closing again (§3–§4 as written); the page's three samples of one channel are withdrawn. **F2 (b)**: p7 is now *"Every sample, it has to charge that capacitor to the input, from wherever it was last left, through the switch and through its own output impedance."* and the PLAN's explain *"…the source has to charge it to the input every time, from wherever it was last left."* p7 is now 26 → 31 words (+0.04 min). F3–F9 (proposals) are open for the owner; nothing in them blocks.
+**Decided 2026-10-20** (owner, in the course's chat; ACCURACY D1·070-F11): **F1 (a)** the strip as the PLAN draws it: one sample from 0 V, then the switch closing again (§3–§4 as written); the page's three samples of one channel are withdrawn. **F2 (b)**: p7 is now *"Every sample, it has to charge that capacitor to the input, from wherever it was last left, through the switch and through its own output impedance."* and the PLAN's explain *"…the source has to charge it to the input every time, from wherever it was last left."* p7 is now 26 → 31 words (+0.04 min). **Proposals decided 2026-10-20** (owner: *"go with your recommendations on the proposals"*): **F3** no code on card 1's strip; **F4** the conversion (D/A, SAR logic) as thin context labelled *the conversion: D1·080*, no code box; **F5** the source drawn as 1.65 V behind 10 kΩ, *the source, seen from the pin*; **F6** both violet cues (s6, s10), amber only for *open, holding*; **F7** the legend's model label taken; **F8** the teacher tip (§7d) taken; **F9** s0 shown beside the poe from p0 if the Canvas can hold it (§12 d, to confirm with the product; the bench minutes are then 3.0). Every Proposal in §3–§11 is now the spec. This card may still join crossing 505's family (Animation); if so it is revised to Benches' shape.
 
 ## 15. Acceptance: how we know it is built right
 
