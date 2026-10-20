@@ -44,3 +44,10 @@ Building any bench or asset. Changing the owner's card text or Flow (report anyt
   not built; our SAR spec's ATmega/8 µs per bit to revise; card 4 no bench). Time ≈ 20 of 30 min (Flow 1,781 words, 13.7
   min). **Brief page built and verified: `bench-work/previews/u017-preview.html`** (live plots for cards 1, 2, 3, 5, 6, 7,
   8; findings as choice buttons; read back with `u017Feedback()`). **Waiting for the owner's answers / design direction.**
+- 2026-10-20: owner *"go with your recommendations"* on the brief → F1–F9, N1, N2 applied to en.md (F4 without *"around
+  its level"*); N3 waits for D2·020; N4, D1–D4 in the specs; DECISIONS row. **Specs written** (spec-draft): 01 (Plot, 3.8),
+  02 (Equation, 2.5), 03 (Plot centrepiece, 3.0; **holds the module table: ≈ 22.9 of 30**), 05 revised (Animation, 3.1),
+  06 (Plot ×2 precomputed, 2.4), 07 (Figure + Plot, 3.5), 08 (Equation, 3.4); README rows added. **New accuracy findings,
+  open**: D1·080-F10–F18 (1.76 dB "loses"; S20's noise table vs ENOB; error sign; 8.535 edge; top code; "resolution error";
+  offset "0 V no longer gives code 0"; "Every MCU datasheet"; "Nothing fixes the second") and D2·040-F1 (for U022). Page
+  fixed (error sign; card 7's offset, INL, DNL). Next: the owner decides F10–F18 and the specs' proposals.

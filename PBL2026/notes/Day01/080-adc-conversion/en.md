@@ -32,8 +32,7 @@ SHOW     Plot — one slow waveform with its sampled-and-held version v(floor(t�
          Drive: lower f_s (the steps widen in time); lower N (the steps coarsen in amplitude).
          Look for: two independent kinds of coarseness, one on each axis.
          Status: ready.
-         Note: the Flow's "2.17 V → 2714" does not match a 12-bit, 3.3 V converter (that gives 2693); it is
-         covered by "depending on the configuration", but check it.
+         Note: resolved 2026-10-20 (ACCURACY D1·080-F1): the Flow now says 2693, the 12-bit, 3.3 V code for 2.17 V.
 HARVEST  S12 — "Detect or quantify, from the sensor module: to quantify, we digitize. Here it is."
 SEED     plants S18 — "With today's still quantity, how often we sample hardly matters. Today. On Day 3 it
          becomes the most dangerous question in the course."
@@ -53,8 +52,8 @@ introducing as little **loss, distortion and error** as reasonably possible.
 Once an interface exists between two domains, the next step is to convert the data or signals between them. Depending on the device, this is mostly a one-way process.
 
 At the simplest level, an ADC takes an analog voltage and produces a digital number that represents it.
-2.17 V, for example, may be represented by a code such as 2714, depending on the ADC's configuration,
-reference, resolution and input range.
+2.17 V, for example, may be represented by a code such as 2693 (on a 12-bit, 3.3 V converter), depending on
+the ADC's configuration, reference, resolution and input range.
 
 But an ADC does not simply "turn voltage into binary". Two fundamental processes are involved:
 **sampling** and **quantization**.
@@ -73,7 +72,8 @@ the course.
 should we assign to the voltage that was measured?* An analog voltage can in principle take infinitely
 many values — between 0 V and 1 V it could be 0.1 V, 0.1001 V, 0.10001 V, 0.100001 V… A digital system
 cannot represent an infinite number of values. So the ADC divides its input range into a finite number
-of levels and assigns the measured voltage to the closest available level. That is quantization: the
+of levels and assigns the measured voltage to one of the available levels: the nearest, or the one just
+below, depending on the converter. That is quantization: the
 process of constraining a continuous set of values to a discrete set.
 
 A useful mental model:
@@ -100,7 +100,7 @@ SHOW     Equation — LSB = range / 2^N, with an N slider; worked examples: 8 bi
          Status: ready.
 -->
 
-<!-- CHECK: binary 1001 is decimal 9, not 5 (decimal 5 is 0101). -->
+<!-- CHECK (resolved 2026-10-20, ACCURACY D1·080-F3): binary 1001 is decimal 9, not 5 (decimal 5 is 0101). -->
 
 ```flow
 The number of available levels is set mainly by the **resolution** of the ADC, normally specified in
@@ -124,15 +124,16 @@ If 8 bits represent 0–10 V, the resolution is about 39 mV per step. This is of
 
 Digital instruments use the binary number system, where the only permitted digits are 0 and 1. The
 binary "word" is a binary number representing a quantity. Binary 0001 represents decimal 1, while binary
-1001 represents decimal 5.
+1001 represents decimal 9.
 ```
 
 ***
 
 ## Quantization error is a floor
 
-Every voltage between two levels is reported as one of them. That error of up to half an LSB is
-built into every conversion, and no circuit removes it.
+Every voltage between two levels is reported as one of them. That error, a band one LSB wide (±½ LSB
+when the converter rounds, 0 to −1 LSB when it truncates), is built into every conversion, and no circuit
+removes it from a single conversion.
 
 <!-- PLAN
 ASK      poe (at the Flow's [[ask]]) — "A sensor gives 8.540 V into the 8-bit, 0–10 V converter. Which
@@ -148,17 +149,17 @@ SHOW (centrepiece) Plot — the quantizer staircase q·round(x/q) and its error 
          0 to 10 V, q = 10/2^N with an N slider (4 to 12), a marker at 8.540 V and ±½ LSB lines on the
          error.
          Drive: N = 8, zoom near 8.5 V (code 219 covers 8.535 to 8.574 V); then N from 4 to 12.
-         Look for: the sawtooth staying inside ±½ LSB at every N, shrinking, and never reaching zero.
+         Look for: the sawtooth staying inside ±½ LSB at every N, shrinking, its height never reaching zero.
          Status: ready.
-         Note: the Flow's "8.502, 8.41 or 8.880 V" conflicts with this (see the CHECK); the reveal uses
-         8.535 to 8.574 V.
+         Note: resolved 2026-10-20 (ACCURACY D1·080-F4): the Flow now says "a band one step wide"; the reveal
+         gives 8.535 to 8.574 V.
 FAULT    Firmware that divides by 2^N in one place and by 2^N − 1 in another: a gain error of one part in
          2^N (0.39 % at 8 bits). Truncating instead of rounding: a steady −½ LSB offset.
 -->
 
 <!-- FILLED 2026-10-07: drafted from training-overview Day 1 Module 5; tutor to review -->
 
-<!-- CHECK: 8.41 V and 8.880 V are far more than one step (39 mV) from 8.540 V. With 39 mV steps, the
+<!-- CHECK (resolved 2026-10-20, ACCURACY D1·080-F4): 8.41 V and 8.880 V are far more than one step (39 mV) from 8.540 V. With 39 mV steps, the
      nearest levels to 8.540 V are about 8.516 V and 8.555 V. With rounding to the nearest level, the
      quantization error is ±½ LSB ≈ ±0.0195 V; with truncation it is 0 to −1 LSB. The ±½ LSB floor is
      what training-overview Day 1 Module 5 teaches. -->
@@ -172,10 +173,9 @@ described. Which voltages could the resulting code stand for?
 
 [[pause]]
 
-With 8 bits over 0–10 V, the range is broken into discrete steps of 39.0 mV. A voltage between two of
+With 8 bits over 0–10 V, the range is broken into discrete steps of 39.06 mV. A voltage between two of
 those steps is assigned to one or the other, according to the rounding rule the measurement process
-uses. The actual 8-bit digitized value may represent 8.502, 8.41 or 8.880 V, because of the ±0.039 V
-quantization error.
+uses. The code it gets may stand for any voltage in a band one step wide.
 
 [[demo]] On the Plot Bench: the staircase for 8 bits over 0 to 10 V, and under it the error, the input
 minus the level it was given. I'll zoom in near 8.5 V.
@@ -184,8 +184,9 @@ minus the level it was given. I'll zoom in near 8.5 V.
 input from 8.535 V to 8.574 V gives that same code. A code does not stand for one voltage. It stands for
 a band one step wide: ±½ LSB, here ±19.5 mV.
 
-Now slide N from 4 bits to 12. The sawtooth shrinks, step by step, and never reaches zero. That ±½ LSB
-is the floor of every conversion. It is built in, and no circuit after the converter can remove it. A
+Now slide N from 4 bits to 12. The sawtooth shrinks, step by step, and its height never reaches zero.
+That ±½ LSB is the floor of every conversion. It is built in, and no circuit after the converter can
+remove it from a single conversion. A
 converter that truncates instead of rounding has a band from 0 to −1 LSB: the same width, shifted.
 ```
 
@@ -252,11 +253,11 @@ A **successive-approximation register (SAR)** ADC essentially performs a control
 makes a comparison, decides whether the input is above or below a particular level, and then
 progressively narrows down the possible value until it has the digital result.
 
-[[demo]] Widget: a SAR conversion animated, one comparison per bit.
+[[demo]] Animation Bench: a SAR conversion, one comparison per bit.
 
 SAR ADCs are widely used in microcontrollers and general-purpose data acquisition, because they offer a
-useful combination of **speed, resolution, power efficiency and relatively simple implementation**. The
-ATmega328P and the classic ESP32 both use SAR ADCs.
+useful combination of **speed, resolution, power efficiency and relatively simple implementation**. Most
+microcontrollers' built-in converters are SAR ADCs.
 ```
 
 ***
@@ -267,8 +268,9 @@ A sigma-delta converter samples far faster than its output rate, shapes its nois
 digitally to reach high resolution for slow signals.
 
 <!-- PLAN
-SHOW     Coding Bench — a first-order sigma-delta modulator: an input (say 0.30 of full scale) in, the 1-bit
-         stream out, and a running average over the last 16, 64 and 256 bits converging on 0.30.
+SHOW     Coding Bench — a first-order sigma-delta modulator: card 5's input (2.17 V, 0.658 of full scale) in, the
+         1-bit stream out, and a running average over the last 16, 64 and 256 bits converging on 0.658.
+         Decided 2026-10-20: the Plot fallback (a precomputed series) carries it until a Coding Bench exists.
          Drive: run; change the input; change the averaging length.
          Look for: the density of 1s is the value, and the resolution comes from how many bits you average.
          Status: needs Coding Bench: first-order sigma-delta modulator with its bitstream and an averaging
@@ -284,7 +286,7 @@ filtering to reach high resolution. This makes it attractive for **precision mea
 low-bandwidth signals**, such as many sensor applications. The ADS1115, which we meet on Day 2, is a
 16-bit sigma-delta ADC.
 
-[[demo]] Widget: the same input through the sigma-delta visualiser.
+[[demo]] Plot Bench: the same input through a sigma-delta modulator.
 
 Two other architectures complete the common picture. A **flash ADC** uses many comparators in parallel
 to find the input level very quickly; because the number of comparators grows rapidly with resolution,
@@ -354,8 +356,8 @@ tell you what it cannot.
 
 ## ENOB: the honest number of bits
 
-With real noise and distortion present, a converter behaves like one with fewer bits. A 12-bit
-converter delivers closer to ten useful bits.
+With real noise and distortion present, a converter behaves like one with fewer bits. A typical 12-bit
+MCU converter delivers closer to ten useful bits.
 
 <!-- PLAN
 ASK      numeric (before the reveal) — "A 12-bit ADC's datasheet gives a SINAD of 62 dB. What is its ENOB?"

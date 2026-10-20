@@ -31,7 +31,7 @@ table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-bottom:1px
 @media (max-width:600px){main{padding:10px}}
 </style></head><body><main>
 <h1>U017 brief: D1·080 Conversion (sampling, quantization, architecture and ENOB)</h1>
-<p class="note">30 minutes, eight cards. Each card below shows the visual this unit proposes for its bench, drawn from the card's PLAN with real numbers. Several are live. Nothing is built on a bench yet. The accuracy check ran first: nine findings in your text, and two faults in our own earlier SAR spec, are listed at the end. Your choices and notes are saved on this page.</p>
+<p class="note">30 minutes, eight cards. Each card below shows the visual this unit proposes for its bench, drawn from the card's PLAN with real numbers. Several are live. Nothing is built on a bench yet. The accuracy check ran first; its nine findings, and the naming and design points, are decided (listed at the end), and the specs are being written. Your choices and notes are saved on this page.</p>
 <div class="top"><span class="note">Feedback</span><button onclick="showFb()">Show what I've entered</button><button onclick="clearFb()">Clear</button><span id="fbsum" class="note"></span></div>
 <pre id="fbout" style="display:none;white-space:pre-wrap;background:#0B0F14;border:1px solid var(--faint);border-radius:8px;padding:10px;font-size:13px"></pre>
 
@@ -45,13 +45,13 @@ table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-bottom:1px
 <a href="#c6">Card 6 · ≈1.8 min<b>Sigma-delta</b><span class="tag t-plot">Plot (Coding not built)</span></a>
 <a href="#c7">Card 7 · ≈3.2 min<b>The datasheet table</b><span class="tag t-fig">Figure</span><span class="tag t-plot">Plot</span><span class="tag t-act">multi-select</span></a>
 <a href="#c8">Card 8 · ≈3.2 min<b>ENOB</b><span class="tag t-eq">Equation</span><span class="tag t-act">numeric</span></a>
-<a href="#find">Findings<b>9 accuracy · 4 naming · 4 design</b><span class="tag t-act">≈20 of 30 min</span></a>
+<a href="#find">Findings<b>all decided (your recommendations)</b><span class="tag t-act">≈20 of 30 min</span></a>
 </div>
 <p class="note">Time: the Flow is 1,781 words (13.7 min at 130 wpm). With the activities and the bench moves, the module comes to about 20 minutes, leaving about 10 of the 30 free (reported, nothing trimmed).</p>
 </section>
 
 <section id="c1"><h2>Card 1 · When, and which level</h2>
-<p><span class="tag t-plot">Plot</span>The PLAN's plot: one slow waveform (grey), its sampled-and-held version (teal, steps in time), and that held value quantized (amber, steps in amplitude). Lower f_s and the steps widen in time. Lower N and they coarsen in amplitude: two independent kinds of coarseness, one on each axis. Proposal: a <b>Rounding | Truncating</b> switch, because the course's converter truncates (F2).</p>
+<p><span class="tag t-plot">Plot</span>The PLAN's plot: one slow waveform (grey), its sampled-and-held version (teal, steps in time), and that held value quantized (amber, steps in amplitude). Lower f_s and the steps widen in time. Lower N and they coarsen in amplitude: two independent kinds of coarseness, one on each axis. A <b>Rounding | Truncating</b> switch (accepted), because the course's converter truncates (F2).</p>
 <svg id="p1" viewBox="0 0 1100 380"></svg>
 <div class="sl"><label>Sampling rate (f<sub>s</sub>)<span id="v1f"></span><input id="s1f" type="range" min="2" max="40" step="1" value="8"></label><label>Resolution (N)<span id="v1n"></span><input id="s1n" type="range" min="2" max="8" step="1" value="3"></label></div>
 <div class="row"><span class="note">Quantizer</span><button id="q1r" class="on">Rounding</button><button id="q1t">Truncating (our MCU)</button></div>
@@ -66,7 +66,7 @@ table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-bottom:1px
 <div class="fb"><label>Your feedback on card 2</label><textarea data-k="c2"></textarea></div></section>
 
 <section id="c3"><h2>Card 3 · Quantization error is a floor (the centrepiece)</h2>
-<p><span class="tag t-plot">Plot</span>Top: the staircase, input against the level it is given. Bottom: the error, input minus level, with ±½ LSB lines. The marker sits at 8.540 V. <b>Zoom near 8.5 V</b> shows code 219's band, 8.535 to 8.574 V. N runs 4 to 12, and the sawtooth's height shrinks with every bit but never reaches zero. The Rounding | Truncating switch (proposal) shows truncation's band, 0 to −1 LSB: the same width, shifted.</p>
+<p><span class="tag t-plot">Plot</span>Top: the staircase, input against the level it is given. Bottom: the error, the level minus the input (so truncating reads 0 to −1 LSB), with ±½ LSB lines. The marker sits at 8.540 V. <b>Zoom near 8.5 V</b> shows code 219's band, 8.535 to 8.574 V. N runs 4 to 12, and the sawtooth's height shrinks with every bit but never reaches zero. The Rounding | Truncating switch (accepted) shows truncation's band, 0 to −1 LSB: the same width, shifted.</p>
 <svg id="p3" viewBox="0 0 1100 520"></svg>
 <div class="sl"><label>Resolution (N)<span id="v3n"></span><input id="s3n" type="range" min="4" max="12" step="1" value="8"></label></div>
 <div class="row"><button id="z3">Zoom near 8.5 V</button><span class="note">Quantizer</span><button id="q3r" class="on">Rounding</button><button id="q3t">Truncating</button></div>
@@ -98,7 +98,7 @@ table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-bottom:1px
 <tr><td>Gain error</td><td>±1.5</td><td>±4 LSB</td><td><button data-e="gain">show</button></td></tr>
 <tr><td>Integral nonlinearity (INL)</td><td>±1.5</td><td>±2.5 LSB</td><td><button data-e="inl">show</button></td></tr>
 <tr><td>Differential nonlinearity (DNL)</td><td>±0.5</td><td>±1 LSB</td><td><button data-e="dnl">show</button></td></tr>
-<tr><td colspan="4" class="note">12 bits, V<sub>REF</sub> = 3.3 V, 25 °C. Typical of the class; the spec cites the datasheets these values come from.</td></tr></table>
+<tr><td colspan="4" class="note">On the stage: offset +1.5 LSB (0 V reads code 1), gain −10 %, INL a 0.56 LSB bow, DNL closing code 4 (a missing code). 12 bits, V<sub>REF</sub> = 3.3 V, 25 °C. Typical of the class; the spec cites the datasheets these values come from.</td></tr></table>
 <svg id="p7" viewBox="0 0 700 460"></svg></div>
 <div class="row"><button id="tp7">Two-point line</button><button id="rs7">Ideal only</button></div>
 <div class="fb"><label>Your feedback on card 7</label><textarea data-k="c7"></textarea></div></section>
@@ -109,8 +109,8 @@ table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-bottom:1px
 <div class="sl"><label>SINAD<span id="v8"></span><input id="s8" type="range" min="40" max="100" step="0.5" value="62"></label></div>
 <div class="fb"><label>Your feedback on card 8</label><textarea data-k="c8"></textarea></div></section>
 
-<section id="find"><h2>Findings to decide</h2>
-<p class="note">Nothing in your text has been changed. <span class="block">accuracy</span> marks something the text as written would teach that is untrue, or that contradicts another card. Under the course's rule each must be decided before the module is ready. Each finding's first button is the recommendation.</p>
+<section id="find"><h2>Findings: decided</h2>
+<p class="note"><b>You chose the recommendations (the first button of each) in the chat on 2026-10-20.</b> F1–F9, N1 and N2 are applied to <code>notes/Day01/080-adc-conversion/en.md</code>, and the accuracy register shows no open finding on D1·080. One difference from the recommended wording: in F4 the words “around its level” were left out, because on a truncating converter the band sits above its level, not around it. N3 waits for D2·020. N4 and D1–D4 are written into the specs now being drafted.</p>
 <div id="fd"></div>
 <div class="fb"><label>Anything else on this unit</label><textarea data-k="general"></textarea></div></section>
 
@@ -163,11 +163,11 @@ function draw3(){const svg=$('p3');svg.innerHTML='';const N=+$('s3n').value,q=10
  const bA={x0:80,x1:1080,y0:30,y1:280},bB={x0:80,x1:1080,y0:350,y1:470};
  const xt=z3?[8.4,8.45,8.5,8.55,8.6,8.65,8.7]:[0,2,4,6,8,10];
  const A=axes(svg,bA,xr,z3?[8.40,8.70]:[0,10],xt,z3?[8.4,8.5,8.6,8.7]:[0,2.5,5,7.5,10],null,'level given (V)');
- const B=axes(svg,bB,xr,[-q*1.15,q*1.15],xt,[],'input (V)','error = input − level');
+ const B=axes(svg,bB,xr,[-q*1.15,q*1.15],xt,[],'input (V)','error = level − input');
  const s=v=>(v*1e3).toPrecision(3)+' mV';tx(svg,bB.x0-8,B.Y(q/2)+4,'+½ LSB',{anchor:'end'});tx(svg,bB.x0-8,B.Y(-q/2)+4,'−½ LSB',{anchor:'end'});tx(svg,bB.x0-8,B.Y(-q)+4,'−1 LSB',{anchor:'end'});
  for(const y of [q/2,-q/2])el(svg,'line',{x1:bB.x0,y1:B.Y(y),x2:bB.x1,y2:B.Y(y),stroke:C.rose,'stroke-dasharray':'6 5'});
  el(svg,'line',{x1:bB.x0,y1:B.Y(0),x2:bB.x1,y2:B.Y(0),stroke:C.faint});
- const n=2400;let da='',db='',pc=null;for(let i=0;i<=n;i++){const x=xr[0]+(xr[1]-xr[0])*i/n,c=code(x);da+=(i&&c===pc?'L':'M')+A.X(x)+' '+A.Y(c*q);db+=(i&&c===pc?'L':'M')+B.X(x)+' '+B.Y(x-c*q);pc=c}
+ const n=2400;let da='',db='',pc=null;for(let i=0;i<=n;i++){const x=xr[0]+(xr[1]-xr[0])*i/n,c=code(x);da+=(i&&c===pc?'L':'M')+A.X(x)+' '+A.Y(c*q);db+=(i&&c===pc?'L':'M')+B.X(x)+' '+B.Y(c*q-x);pc=c}
  path(svg,da,C.amber,2.5);path(svg,db,C.violet,2);
  const xm=8.540,cm=code(xm),lo=(q3==='r'?cm-0.5:cm)*q,hi=(q3==='r'?cm+0.5:cm+1)*q;
  el(svg,'rect',{x:A.X(Math.max(lo,xr[0])),y:bA.y0,width:Math.max(1,A.X(Math.min(hi,xr[1]))-A.X(Math.max(lo,xr[0]))),height:bA.y1-bA.y0,fill:'rgba(96,165,250,.10)'});
@@ -208,7 +208,7 @@ $('x6a').onclick=()=>{x6=0.30;$('x6a').classList.add('on');$('x6b').classList.re
 const E7={off:false,gain:false,inl:false,dnl:false};let tp7=false;
 function draw7(){const svg=$('p7');svg.innerHTML='';const b={x0:60,x1:680,y0:30,y1:400},{X,Y}=axes(svg,b,[0,1],[0,8],[0,0.25,0.5,0.75,1],[0,2,4,6,8],'input (fraction of full scale)','code');
  // transition levels of an exaggerated 3-bit converter; ideal transitions at k/8
- const T=[];for(let k=1;k<8;k++){let t=k/8;if(E7.dnl)t+=[0,0.035,-0.03,0.04,-0.045,0.02,0][k-1];if(E7.inl)t-=0.32*t*(1-t)*0.5;if(E7.gain)t*=0.9;if(E7.off)t+=0.06;T.push(t)}
+ const T=[];for(let k=1;k<8;k++){let t=k/8;if(E7.dnl)t+=[0,0.035,-0.03,0.0625,-0.0625,0.02,0][k-1];if(E7.inl)t-=0.28125*t*(1-t);if(E7.gain)t*=0.9;if(E7.off)t-=0.1875;T.push(t)}
  const code=x=>{let c=0;for(const t of T)if(x>=t)c++;return c};
  let d='',pc=null;for(let i=0;i<=1400;i++){const x=i/1400,c=code(x);d+=(i&&c===pc?'L':'M')+X(x)+' '+Y(c);pc=c}
  let di='';for(let i=0;i<=1400;i++){const x=i/1400,c=Math.min(7,Math.floor(x*8));di+=(i&&c===Math.min(7,Math.floor((i-1)/1400*8))?'L':'M')+X(x)+' '+Y(c)}path(svg,di,C.muted,1.6,'5 5');
@@ -243,7 +243,7 @@ const F=[
 ['D3',false,'Card 5: our own SAR spec (the template\'s dry run)','It names the ATmega328P as the real thing and paces at its 8 µs per bit, which disagrees with the course\'s 12-bit converter and 1 µs conversion (D1·070). Ours to fix.',['Revise: “a 12-bit MCU SAR on 3.3 V, shown at 4 bits”, paced to the course\'s converter','Other']],
 ['D4',false,'Card 4 has no bench','The PLAN gives it only the flash quiz.',['No bench (the flash only)','A still: the 16-bit steps against the reference\'s ±1 % band']]];
 $('fd').innerHTML=F.map(([k,acc,t,w,opts])=>`<div><div class="q"><b>${k} · ${t}.</b>${acc?'<span class="block">accuracy</span>':''} ${w}</div><div class="bar" data-c="${k}">${opts.map(o=>`<button>${o}</button>`).join('')}</div><textarea data-k="${k}" placeholder="Optional note"></textarea></div>`).join('');
-document.querySelectorAll('.bar[data-c]').forEach(b=>{const k=b.dataset.c+'-choice',v=ST.get(k);b.querySelectorAll('button').forEach(btn=>{if(btn.textContent===v)btn.classList.add('on');btn.onclick=()=>{b.querySelectorAll('button').forEach(x=>x.classList.remove('on'));btn.classList.add('on');ST.set(k,btn.textContent);sum()}})});
+document.querySelectorAll('.bar[data-c]').forEach(b=>{const k=b.dataset.c+'-choice',v=ST.get(k)||b.querySelector('button').textContent;b.querySelectorAll('button').forEach(btn=>{if(btn.textContent===v)btn.classList.add('on');btn.onclick=()=>{b.querySelectorAll('button').forEach(x=>x.classList.remove('on'));btn.classList.add('on');ST.set(k,btn.textContent);sum()}})});
 document.querySelectorAll('textarea[data-k]').forEach(t=>{t.value=ST.get(t.dataset.k)||'';t.oninput=()=>{ST.set(t.dataset.k,t.value);sum()}});
 draw1();draw2();draw3();draw5();draw6();draw7();draw8();sum();
 </script></body></html>
