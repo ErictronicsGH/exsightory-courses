@@ -58,8 +58,17 @@ ref: regulator-heat@1
 
 Honest limits of what we built:
 
+<!-- Two plants in this list. "No remote sensing" nests a list, which reaches the wall
+     (M76b). The equation inside "Efficiency" is a fence in a list item, which does not:
+     content-not-kept says so, and is one of this fixture's four warnings. -->
+
 - **Efficiency is poor by design.** A linear supply at low output settings is
   mostly a heater. A switching pre-regulator is the usual fix.
+
+  ```equation
+  title: A linear regulator's best case
+  statement: efficiency = V_out / V_in
+  ```
 - **No remote sensing.** The voltage is right at the terminals and slightly
   wrong at the load, and the error grows with current and lead length.
   - Remote sensing runs two extra wires to the load and regulates there.
