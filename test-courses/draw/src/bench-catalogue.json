@@ -1,0 +1,3784 @@
+{
+  "about": "The bench catalogue entries this course's bench blocks name, in exsight-benches' catalogue/catalogue.json shape (M68f). Copied from that file, never edited by hand: the compiler checks a work against them when a build is given no --benches.",
+  "packages": [
+    {
+      "name": "@exsight/bench-draw",
+      "kind": "bench",
+      "version": "0.1.1",
+      "works": [
+        {
+          "ext": "benchdrawing",
+          "media": "application/json",
+          "maxBytes": 8388608,
+          "title": {
+            "en": "Drawing",
+            "fr": "Dessin"
+          },
+          "schema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "https://exsightory.com/schemas/benches/draw/drawing.schema.json",
+            "title": "Draw Bench drawing (.benchdrawing)",
+            "description": "A drawing the Draw Bench opens: its artboard, layers, items, groups and steps, the author's Preview capture, and the stamp the bench wrote when it saved it. A compiler checks the file against this schema, then the stamp's source against \"sha256:\" and the hex SHA-256 of the document's canonical JSON without \"stamp\" (keys in code-point order, no whitespace); once they match, stamp.derived.steps is the block's derived steps and stamp.diagnostics what the drawing's checks said, and the bench is never run.",
+            "type": "object",
+            "properties": {
+              "format": {
+                "type": "number",
+                "const": 1
+              },
+              "artboard": {
+                "type": "object",
+                "properties": {
+                  "width": {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                  },
+                  "height": {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                  }
+                },
+                "required": [
+                  "width",
+                  "height"
+                ],
+                "additionalProperties": false
+              },
+              "layers": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                    },
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "construction"
+                      ]
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                      }
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "items"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "items": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                },
+                "additionalProperties": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "shape": {
+                          "type": "string",
+                          "const": "line"
+                        },
+                        "from": {
+                          "anyOf": [
+                            {
+                              "type": "array",
+                              "prefixItems": [
+                                {
+                                  "type": "number"
+                                },
+                                {
+                                  "type": "number"
+                                }
+                              ],
+                              "items": false,
+                              "minItems": 2,
+                              "maxItems": 2
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "item": {
+                                  "type": "string",
+                                  "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                },
+                                "at": {
+                                  "type": "string",
+                                  "enum": [
+                                    "start",
+                                    "end",
+                                    "centre"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "item",
+                                "at"
+                              ],
+                              "additionalProperties": false
+                            }
+                          ]
+                        },
+                        "to": {
+                          "anyOf": [
+                            {
+                              "type": "array",
+                              "prefixItems": [
+                                {
+                                  "type": "number"
+                                },
+                                {
+                                  "type": "number"
+                                }
+                              ],
+                              "items": false,
+                              "minItems": 2,
+                              "maxItems": 2
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "item": {
+                                  "type": "string",
+                                  "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                },
+                                "at": {
+                                  "type": "string",
+                                  "enum": [
+                                    "start",
+                                    "end",
+                                    "centre"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "item",
+                                "at"
+                              ],
+                              "additionalProperties": false
+                            }
+                          ]
+                        },
+                        "line": {
+                          "type": "string",
+                          "enum": [
+                            "outline",
+                            "thin",
+                            "hidden",
+                            "centre",
+                            "construction"
+                          ]
+                        },
+                        "stroke": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "ink": {
+                                  "type": "string",
+                                  "enum": [
+                                    "teal",
+                                    "amber",
+                                    "violet",
+                                    "lime",
+                                    "rose",
+                                    "azure",
+                                    "orange",
+                                    "magenta",
+                                    "contrast"
+                                  ]
+                                },
+                                "width": {
+                                  "type": "number",
+                                  "exclusiveMinimum": 0
+                                },
+                                "dash": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "number",
+                                    "exclusiveMinimum": 0
+                                  }
+                                },
+                                "cap": {
+                                  "type": "string",
+                                  "enum": [
+                                    "butt",
+                                    "round",
+                                    "square"
+                                  ]
+                                },
+                                "join": {
+                                  "type": "string",
+                                  "enum": [
+                                    "miter",
+                                    "round",
+                                    "bevel"
+                                  ]
+                                },
+                                "start": {
+                                  "type": "string",
+                                  "enum": [
+                                    "none",
+                                    "arrow",
+                                    "dot",
+                                    "bar",
+                                    "open-arrow"
+                                  ]
+                                },
+                                "end": {
+                                  "type": "string",
+                                  "enum": [
+                                    "none",
+                                    "arrow",
+                                    "dot",
+                                    "bar",
+                                    "open-arrow"
+                                  ]
+                                }
+                              },
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "string",
+                              "const": "none"
+                            }
+                          ]
+                        },
+                        "enter": {
+                          "type": "object",
+                          "properties": {
+                            "as": {
+                              "type": "string"
+                            },
+                            "pace": {},
+                            "ease": {},
+                            "by": {
+                              "type": "string",
+                              "enum": [
+                                "length",
+                                "x",
+                                "y"
+                              ]
+                            },
+                            "from": {
+                              "type": "string",
+                              "enum": [
+                                "left",
+                                "right",
+                                "top",
+                                "bottom"
+                              ]
+                            },
+                            "about": {
+                              "anyOf": [
+                                {
+                                  "type": "array",
+                                  "prefixItems": [
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "number"
+                                    }
+                                  ],
+                                  "items": false,
+                                  "minItems": 2,
+                                  "maxItems": 2
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "item": {
+                                      "type": "string",
+                                      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                    },
+                                    "at": {
+                                      "type": "string",
+                                      "enum": [
+                                        "start",
+                                        "end",
+                                        "centre"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "item",
+                                    "at"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "as"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "exit": {
+                          "type": "object",
+                          "properties": {
+                            "as": {
+                              "type": "string"
+                            },
+                            "pace": {},
+                            "ease": {},
+                            "by": {
+                              "type": "string",
+                              "enum": [
+                                "length",
+                                "x",
+                                "y"
+                              ]
+                            },
+                            "from": {
+                              "type": "string",
+                              "enum": [
+                                "left",
+                                "right",
+                                "top",
+                                "bottom"
+                              ]
+                            },
+                            "about": {
+                              "anyOf": [
+                                {
+                                  "type": "array",
+                                  "prefixItems": [
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "number"
+                                    }
+                                  ],
+                                  "items": false,
+                                  "minItems": 2,
+                                  "maxItems": 2
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "item": {
+                                      "type": "string",
+                                      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                    },
+                                    "at": {
+                                      "type": "string",
+                                      "enum": [
+                                        "start",
+                                        "end",
+                                        "centre"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "item",
+                                    "at"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "as"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "motion": {
+                          "type": "object",
+                          "propertyNames": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                          },
+                          "additionalProperties": {
+                            "type": "object",
+                            "properties": {
+                              "rotate": {
+                                "type": "number"
+                              },
+                              "move": {
+                                "anyOf": [
+                                  {
+                                    "type": "array",
+                                    "prefixItems": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ],
+                                    "items": false,
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "along": {
+                                        "type": "string",
+                                        "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                      },
+                                      "by": {
+                                        "type": "string",
+                                        "enum": [
+                                          "length",
+                                          "x",
+                                          "y"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "along"
+                                    ],
+                                    "additionalProperties": false
+                                  }
+                                ]
+                              },
+                              "scale": {
+                                "anyOf": [
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "array",
+                                    "prefixItems": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ],
+                                    "items": false,
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                  }
+                                ]
+                              },
+                              "ink": {
+                                "type": "string",
+                                "enum": [
+                                  "teal",
+                                  "amber",
+                                  "violet",
+                                  "lime",
+                                  "rose",
+                                  "azure",
+                                  "orange",
+                                  "magenta",
+                                  "contrast"
+                                ]
+                              },
+                              "about": {
+                                "anyOf": [
+                                  {
+                                    "type": "array",
+                                    "prefixItems": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ],
+                                    "items": false,
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "item": {
+                                        "type": "string",
+                                        "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                      },
+                                      "at": {
+                                        "type": "string",
+                                        "enum": [
+                                          "start",
+                                          "end",
+                                          "centre"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "item",
+                                      "at"
+                                    ],
+                                    "additionalProperties": false
+                                  }
+                                ]
+                              },
+                              "pace": {},
+                              "ease": {},
+                              "repeat": {},
+                              "back": {
+                                "type": "boolean"
+                              }
+                            },
+                            "additionalProperties": {}
+                          }
+                        }
+                      },
+                      "required": [
+                        "shape",
+                        "from",
+                        "to"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "shape": {
+                          "type": "string",
+                          "const": "polyline"
+                        },
+                        "points": {
+                          "minItems": 2,
+                          "type": "array",
+                          "items": {
+                            "type": "array",
+                            "prefixItems": [
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "number"
+                              }
+                            ],
+                            "items": false,
+                            "minItems": 2,
+                            "maxItems": 2
+                          }
+                        },
+                        "line": {
+                          "type": "string",
+                          "enum": [
+                            "outline",
+                            "thin",
+                            "hidden",
+                            "centre",
+                            "construction"
+                          ]
+                        },
+                        "stroke": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "ink": {
+                                  "type": "string",
+                                  "enum": [
+                                    "teal",
+                                    "amber",
+                                    "violet",
+                                    "lime",
+                                    "rose",
+                                    "azure",
+                                    "orange",
+                                    "magenta",
+                                    "contrast"
+                                  ]
+                                },
+                                "width": {
+                                  "type": "number",
+                                  "exclusiveMinimum": 0
+                                },
+                                "dash": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "number",
+                                    "exclusiveMinimum": 0
+                                  }
+                                },
+                                "cap": {
+                                  "type": "string",
+                                  "enum": [
+                                    "butt",
+                                    "round",
+                                    "square"
+                                  ]
+                                },
+                                "join": {
+                                  "type": "string",
+                                  "enum": [
+                                    "miter",
+                                    "round",
+                                    "bevel"
+                                  ]
+                                },
+                                "start": {
+                                  "type": "string",
+                                  "enum": [
+                                    "none",
+                                    "arrow",
+                                    "dot",
+                                    "bar",
+                                    "open-arrow"
+                                  ]
+                                },
+                                "end": {
+                                  "type": "string",
+                                  "enum": [
+                                    "none",
+                                    "arrow",
+                                    "dot",
+                                    "bar",
+                                    "open-arrow"
+                                  ]
+                                }
+                              },
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "string",
+                              "const": "none"
+                            }
+                          ]
+                        },
+                        "enter": {
+                          "type": "object",
+                          "properties": {
+                            "as": {
+                              "type": "string"
+                            },
+                            "pace": {},
+                            "ease": {},
+                            "by": {
+                              "type": "string",
+                              "enum": [
+                                "length",
+                                "x",
+                                "y"
+                              ]
+                            },
+                            "from": {
+                              "type": "string",
+                              "enum": [
+                                "left",
+                                "right",
+                                "top",
+                                "bottom"
+                              ]
+                            },
+                            "about": {
+                              "anyOf": [
+                                {
+                                  "type": "array",
+                                  "prefixItems": [
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "number"
+                                    }
+                                  ],
+                                  "items": false,
+                                  "minItems": 2,
+                                  "maxItems": 2
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "item": {
+                                      "type": "string",
+                                      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                    },
+                                    "at": {
+                                      "type": "string",
+                                      "enum": [
+                                        "start",
+                                        "end",
+                                        "centre"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "item",
+                                    "at"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "as"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "exit": {
+                          "type": "object",
+                          "properties": {
+                            "as": {
+                              "type": "string"
+                            },
+                            "pace": {},
+                            "ease": {},
+                            "by": {
+                              "type": "string",
+                              "enum": [
+                                "length",
+                                "x",
+                                "y"
+                              ]
+                            },
+                            "from": {
+                              "type": "string",
+                              "enum": [
+                                "left",
+                                "right",
+                                "top",
+                                "bottom"
+                              ]
+                            },
+                            "about": {
+                              "anyOf": [
+                                {
+                                  "type": "array",
+                                  "prefixItems": [
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "number"
+                                    }
+                                  ],
+                                  "items": false,
+                                  "minItems": 2,
+                                  "maxItems": 2
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "item": {
+                                      "type": "string",
+                                      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                    },
+                                    "at": {
+                                      "type": "string",
+                                      "enum": [
+                                        "start",
+                                        "end",
+                                        "centre"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "item",
+                                    "at"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "as"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "motion": {
+                          "type": "object",
+                          "propertyNames": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                          },
+                          "additionalProperties": {
+                            "type": "object",
+                            "properties": {
+                              "rotate": {
+                                "type": "number"
+                              },
+                              "move": {
+                                "anyOf": [
+                                  {
+                                    "type": "array",
+                                    "prefixItems": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ],
+                                    "items": false,
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "along": {
+                                        "type": "string",
+                                        "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                      },
+                                      "by": {
+                                        "type": "string",
+                                        "enum": [
+                                          "length",
+                                          "x",
+                                          "y"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "along"
+                                    ],
+                                    "additionalProperties": false
+                                  }
+                                ]
+                              },
+                              "scale": {
+                                "anyOf": [
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "array",
+                                    "prefixItems": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ],
+                                    "items": false,
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                  }
+                                ]
+                              },
+                              "ink": {
+                                "type": "string",
+                                "enum": [
+                                  "teal",
+                                  "amber",
+                                  "violet",
+                                  "lime",
+                                  "rose",
+                                  "azure",
+                                  "orange",
+                                  "magenta",
+                                  "contrast"
+                                ]
+                              },
+                              "about": {
+                                "anyOf": [
+                                  {
+                                    "type": "array",
+                                    "prefixItems": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ],
+                                    "items": false,
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "item": {
+                                        "type": "string",
+                                        "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                      },
+                                      "at": {
+                                        "type": "string",
+                                        "enum": [
+                                          "start",
+                                          "end",
+                                          "centre"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "item",
+                                      "at"
+                                    ],
+                                    "additionalProperties": false
+                                  }
+                                ]
+                              },
+                              "pace": {},
+                              "ease": {},
+                              "repeat": {},
+                              "back": {
+                                "type": "boolean"
+                              }
+                            },
+                            "additionalProperties": {}
+                          }
+                        }
+                      },
+                      "required": [
+                        "shape",
+                        "points"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "shape": {
+                          "type": "string",
+                          "const": "rect"
+                        },
+                        "at": {
+                          "type": "array",
+                          "prefixItems": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ],
+                          "items": false,
+                          "minItems": 2,
+                          "maxItems": 2
+                        },
+                        "size": {
+                          "type": "array",
+                          "prefixItems": [
+                            {
+                              "type": "number",
+                              "exclusiveMinimum": 0
+                            },
+                            {
+                              "type": "number",
+                              "exclusiveMinimum": 0
+                            }
+                          ],
+                          "items": false,
+                          "minItems": 2,
+                          "maxItems": 2
+                        },
+                        "corner": {
+                          "type": "number",
+                          "minimum": 0
+                        },
+                        "line": {
+                          "type": "string",
+                          "enum": [
+                            "outline",
+                            "thin",
+                            "hidden",
+                            "centre",
+                            "construction"
+                          ]
+                        },
+                        "stroke": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "ink": {
+                                  "type": "string",
+                                  "enum": [
+                                    "teal",
+                                    "amber",
+                                    "violet",
+                                    "lime",
+                                    "rose",
+                                    "azure",
+                                    "orange",
+                                    "magenta",
+                                    "contrast"
+                                  ]
+                                },
+                                "width": {
+                                  "type": "number",
+                                  "exclusiveMinimum": 0
+                                },
+                                "dash": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "number",
+                                    "exclusiveMinimum": 0
+                                  }
+                                },
+                                "cap": {
+                                  "type": "string",
+                                  "enum": [
+                                    "butt",
+                                    "round",
+                                    "square"
+                                  ]
+                                },
+                                "join": {
+                                  "type": "string",
+                                  "enum": [
+                                    "miter",
+                                    "round",
+                                    "bevel"
+                                  ]
+                                },
+                                "start": {
+                                  "type": "string",
+                                  "enum": [
+                                    "none",
+                                    "arrow",
+                                    "dot",
+                                    "bar",
+                                    "open-arrow"
+                                  ]
+                                },
+                                "end": {
+                                  "type": "string",
+                                  "enum": [
+                                    "none",
+                                    "arrow",
+                                    "dot",
+                                    "bar",
+                                    "open-arrow"
+                                  ]
+                                }
+                              },
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "string",
+                              "const": "none"
+                            }
+                          ]
+                        },
+                        "fill": {
+                          "type": "object",
+                          "properties": {
+                            "ink": {
+                              "type": "string",
+                              "enum": [
+                                "teal",
+                                "amber",
+                                "violet",
+                                "lime",
+                                "rose",
+                                "azure",
+                                "orange",
+                                "magenta",
+                                "contrast",
+                                "ground"
+                              ]
+                            },
+                            "tint": {
+                              "type": "string",
+                              "enum": [
+                                "faint",
+                                "half",
+                                "solid"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "ink"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "enter": {
+                          "type": "object",
+                          "properties": {
+                            "as": {
+                              "type": "string"
+                            },
+                            "pace": {},
+                            "ease": {},
+                            "by": {
+                              "type": "string",
+                              "enum": [
+                                "length",
+                                "x",
+                                "y"
+                              ]
+                            },
+                            "from": {
+                              "type": "string",
+                              "enum": [
+                                "left",
+                                "right",
+                                "top",
+                                "bottom"
+                              ]
+                            },
+                            "about": {
+                              "anyOf": [
+                                {
+                                  "type": "array",
+                                  "prefixItems": [
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "number"
+                                    }
+                                  ],
+                                  "items": false,
+                                  "minItems": 2,
+                                  "maxItems": 2
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "item": {
+                                      "type": "string",
+                                      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                    },
+                                    "at": {
+                                      "type": "string",
+                                      "enum": [
+                                        "start",
+                                        "end",
+                                        "centre"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "item",
+                                    "at"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "as"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "exit": {
+                          "type": "object",
+                          "properties": {
+                            "as": {
+                              "type": "string"
+                            },
+                            "pace": {},
+                            "ease": {},
+                            "by": {
+                              "type": "string",
+                              "enum": [
+                                "length",
+                                "x",
+                                "y"
+                              ]
+                            },
+                            "from": {
+                              "type": "string",
+                              "enum": [
+                                "left",
+                                "right",
+                                "top",
+                                "bottom"
+                              ]
+                            },
+                            "about": {
+                              "anyOf": [
+                                {
+                                  "type": "array",
+                                  "prefixItems": [
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "number"
+                                    }
+                                  ],
+                                  "items": false,
+                                  "minItems": 2,
+                                  "maxItems": 2
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "item": {
+                                      "type": "string",
+                                      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                    },
+                                    "at": {
+                                      "type": "string",
+                                      "enum": [
+                                        "start",
+                                        "end",
+                                        "centre"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "item",
+                                    "at"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "as"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "motion": {
+                          "type": "object",
+                          "propertyNames": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                          },
+                          "additionalProperties": {
+                            "type": "object",
+                            "properties": {
+                              "rotate": {
+                                "type": "number"
+                              },
+                              "move": {
+                                "anyOf": [
+                                  {
+                                    "type": "array",
+                                    "prefixItems": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ],
+                                    "items": false,
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "along": {
+                                        "type": "string",
+                                        "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                      },
+                                      "by": {
+                                        "type": "string",
+                                        "enum": [
+                                          "length",
+                                          "x",
+                                          "y"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "along"
+                                    ],
+                                    "additionalProperties": false
+                                  }
+                                ]
+                              },
+                              "scale": {
+                                "anyOf": [
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "array",
+                                    "prefixItems": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ],
+                                    "items": false,
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                  }
+                                ]
+                              },
+                              "ink": {
+                                "type": "string",
+                                "enum": [
+                                  "teal",
+                                  "amber",
+                                  "violet",
+                                  "lime",
+                                  "rose",
+                                  "azure",
+                                  "orange",
+                                  "magenta",
+                                  "contrast"
+                                ]
+                              },
+                              "about": {
+                                "anyOf": [
+                                  {
+                                    "type": "array",
+                                    "prefixItems": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ],
+                                    "items": false,
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "item": {
+                                        "type": "string",
+                                        "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                      },
+                                      "at": {
+                                        "type": "string",
+                                        "enum": [
+                                          "start",
+                                          "end",
+                                          "centre"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "item",
+                                      "at"
+                                    ],
+                                    "additionalProperties": false
+                                  }
+                                ]
+                              },
+                              "pace": {},
+                              "ease": {},
+                              "repeat": {},
+                              "back": {
+                                "type": "boolean"
+                              }
+                            },
+                            "additionalProperties": {}
+                          }
+                        }
+                      },
+                      "required": [
+                        "shape",
+                        "at",
+                        "size"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "shape": {
+                          "type": "string",
+                          "const": "ellipse"
+                        },
+                        "centre": {
+                          "type": "array",
+                          "prefixItems": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ],
+                          "items": false,
+                          "minItems": 2,
+                          "maxItems": 2
+                        },
+                        "radii": {
+                          "type": "array",
+                          "prefixItems": [
+                            {
+                              "type": "number",
+                              "exclusiveMinimum": 0
+                            },
+                            {
+                              "type": "number",
+                              "exclusiveMinimum": 0
+                            }
+                          ],
+                          "items": false,
+                          "minItems": 2,
+                          "maxItems": 2
+                        },
+                        "line": {
+                          "type": "string",
+                          "enum": [
+                            "outline",
+                            "thin",
+                            "hidden",
+                            "centre",
+                            "construction"
+                          ]
+                        },
+                        "stroke": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "ink": {
+                                  "type": "string",
+                                  "enum": [
+                                    "teal",
+                                    "amber",
+                                    "violet",
+                                    "lime",
+                                    "rose",
+                                    "azure",
+                                    "orange",
+                                    "magenta",
+                                    "contrast"
+                                  ]
+                                },
+                                "width": {
+                                  "type": "number",
+                                  "exclusiveMinimum": 0
+                                },
+                                "dash": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "number",
+                                    "exclusiveMinimum": 0
+                                  }
+                                },
+                                "cap": {
+                                  "type": "string",
+                                  "enum": [
+                                    "butt",
+                                    "round",
+                                    "square"
+                                  ]
+                                },
+                                "join": {
+                                  "type": "string",
+                                  "enum": [
+                                    "miter",
+                                    "round",
+                                    "bevel"
+                                  ]
+                                },
+                                "start": {
+                                  "type": "string",
+                                  "enum": [
+                                    "none",
+                                    "arrow",
+                                    "dot",
+                                    "bar",
+                                    "open-arrow"
+                                  ]
+                                },
+                                "end": {
+                                  "type": "string",
+                                  "enum": [
+                                    "none",
+                                    "arrow",
+                                    "dot",
+                                    "bar",
+                                    "open-arrow"
+                                  ]
+                                }
+                              },
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "string",
+                              "const": "none"
+                            }
+                          ]
+                        },
+                        "fill": {
+                          "type": "object",
+                          "properties": {
+                            "ink": {
+                              "type": "string",
+                              "enum": [
+                                "teal",
+                                "amber",
+                                "violet",
+                                "lime",
+                                "rose",
+                                "azure",
+                                "orange",
+                                "magenta",
+                                "contrast",
+                                "ground"
+                              ]
+                            },
+                            "tint": {
+                              "type": "string",
+                              "enum": [
+                                "faint",
+                                "half",
+                                "solid"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "ink"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "enter": {
+                          "type": "object",
+                          "properties": {
+                            "as": {
+                              "type": "string"
+                            },
+                            "pace": {},
+                            "ease": {},
+                            "by": {
+                              "type": "string",
+                              "enum": [
+                                "length",
+                                "x",
+                                "y"
+                              ]
+                            },
+                            "from": {
+                              "type": "string",
+                              "enum": [
+                                "left",
+                                "right",
+                                "top",
+                                "bottom"
+                              ]
+                            },
+                            "about": {
+                              "anyOf": [
+                                {
+                                  "type": "array",
+                                  "prefixItems": [
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "number"
+                                    }
+                                  ],
+                                  "items": false,
+                                  "minItems": 2,
+                                  "maxItems": 2
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "item": {
+                                      "type": "string",
+                                      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                    },
+                                    "at": {
+                                      "type": "string",
+                                      "enum": [
+                                        "start",
+                                        "end",
+                                        "centre"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "item",
+                                    "at"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "as"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "exit": {
+                          "type": "object",
+                          "properties": {
+                            "as": {
+                              "type": "string"
+                            },
+                            "pace": {},
+                            "ease": {},
+                            "by": {
+                              "type": "string",
+                              "enum": [
+                                "length",
+                                "x",
+                                "y"
+                              ]
+                            },
+                            "from": {
+                              "type": "string",
+                              "enum": [
+                                "left",
+                                "right",
+                                "top",
+                                "bottom"
+                              ]
+                            },
+                            "about": {
+                              "anyOf": [
+                                {
+                                  "type": "array",
+                                  "prefixItems": [
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "number"
+                                    }
+                                  ],
+                                  "items": false,
+                                  "minItems": 2,
+                                  "maxItems": 2
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "item": {
+                                      "type": "string",
+                                      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                    },
+                                    "at": {
+                                      "type": "string",
+                                      "enum": [
+                                        "start",
+                                        "end",
+                                        "centre"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "item",
+                                    "at"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "as"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "motion": {
+                          "type": "object",
+                          "propertyNames": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                          },
+                          "additionalProperties": {
+                            "type": "object",
+                            "properties": {
+                              "rotate": {
+                                "type": "number"
+                              },
+                              "move": {
+                                "anyOf": [
+                                  {
+                                    "type": "array",
+                                    "prefixItems": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ],
+                                    "items": false,
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "along": {
+                                        "type": "string",
+                                        "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                      },
+                                      "by": {
+                                        "type": "string",
+                                        "enum": [
+                                          "length",
+                                          "x",
+                                          "y"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "along"
+                                    ],
+                                    "additionalProperties": false
+                                  }
+                                ]
+                              },
+                              "scale": {
+                                "anyOf": [
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "array",
+                                    "prefixItems": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ],
+                                    "items": false,
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                  }
+                                ]
+                              },
+                              "ink": {
+                                "type": "string",
+                                "enum": [
+                                  "teal",
+                                  "amber",
+                                  "violet",
+                                  "lime",
+                                  "rose",
+                                  "azure",
+                                  "orange",
+                                  "magenta",
+                                  "contrast"
+                                ]
+                              },
+                              "about": {
+                                "anyOf": [
+                                  {
+                                    "type": "array",
+                                    "prefixItems": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ],
+                                    "items": false,
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "item": {
+                                        "type": "string",
+                                        "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                      },
+                                      "at": {
+                                        "type": "string",
+                                        "enum": [
+                                          "start",
+                                          "end",
+                                          "centre"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "item",
+                                      "at"
+                                    ],
+                                    "additionalProperties": false
+                                  }
+                                ]
+                              },
+                              "pace": {},
+                              "ease": {},
+                              "repeat": {},
+                              "back": {
+                                "type": "boolean"
+                              }
+                            },
+                            "additionalProperties": {}
+                          }
+                        }
+                      },
+                      "required": [
+                        "shape",
+                        "centre",
+                        "radii"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "shape": {
+                          "type": "string",
+                          "const": "polygon"
+                        },
+                        "centre": {
+                          "type": "array",
+                          "prefixItems": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ],
+                          "items": false,
+                          "minItems": 2,
+                          "maxItems": 2
+                        },
+                        "radius": {
+                          "type": "number",
+                          "exclusiveMinimum": 0
+                        },
+                        "sides": {
+                          "type": "integer",
+                          "minimum": 3,
+                          "maximum": 64
+                        },
+                        "rotation": {
+                          "type": "number"
+                        },
+                        "line": {
+                          "type": "string",
+                          "enum": [
+                            "outline",
+                            "thin",
+                            "hidden",
+                            "centre",
+                            "construction"
+                          ]
+                        },
+                        "stroke": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "ink": {
+                                  "type": "string",
+                                  "enum": [
+                                    "teal",
+                                    "amber",
+                                    "violet",
+                                    "lime",
+                                    "rose",
+                                    "azure",
+                                    "orange",
+                                    "magenta",
+                                    "contrast"
+                                  ]
+                                },
+                                "width": {
+                                  "type": "number",
+                                  "exclusiveMinimum": 0
+                                },
+                                "dash": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "number",
+                                    "exclusiveMinimum": 0
+                                  }
+                                },
+                                "cap": {
+                                  "type": "string",
+                                  "enum": [
+                                    "butt",
+                                    "round",
+                                    "square"
+                                  ]
+                                },
+                                "join": {
+                                  "type": "string",
+                                  "enum": [
+                                    "miter",
+                                    "round",
+                                    "bevel"
+                                  ]
+                                },
+                                "start": {
+                                  "type": "string",
+                                  "enum": [
+                                    "none",
+                                    "arrow",
+                                    "dot",
+                                    "bar",
+                                    "open-arrow"
+                                  ]
+                                },
+                                "end": {
+                                  "type": "string",
+                                  "enum": [
+                                    "none",
+                                    "arrow",
+                                    "dot",
+                                    "bar",
+                                    "open-arrow"
+                                  ]
+                                }
+                              },
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "string",
+                              "const": "none"
+                            }
+                          ]
+                        },
+                        "fill": {
+                          "type": "object",
+                          "properties": {
+                            "ink": {
+                              "type": "string",
+                              "enum": [
+                                "teal",
+                                "amber",
+                                "violet",
+                                "lime",
+                                "rose",
+                                "azure",
+                                "orange",
+                                "magenta",
+                                "contrast",
+                                "ground"
+                              ]
+                            },
+                            "tint": {
+                              "type": "string",
+                              "enum": [
+                                "faint",
+                                "half",
+                                "solid"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "ink"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "enter": {
+                          "type": "object",
+                          "properties": {
+                            "as": {
+                              "type": "string"
+                            },
+                            "pace": {},
+                            "ease": {},
+                            "by": {
+                              "type": "string",
+                              "enum": [
+                                "length",
+                                "x",
+                                "y"
+                              ]
+                            },
+                            "from": {
+                              "type": "string",
+                              "enum": [
+                                "left",
+                                "right",
+                                "top",
+                                "bottom"
+                              ]
+                            },
+                            "about": {
+                              "anyOf": [
+                                {
+                                  "type": "array",
+                                  "prefixItems": [
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "number"
+                                    }
+                                  ],
+                                  "items": false,
+                                  "minItems": 2,
+                                  "maxItems": 2
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "item": {
+                                      "type": "string",
+                                      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                    },
+                                    "at": {
+                                      "type": "string",
+                                      "enum": [
+                                        "start",
+                                        "end",
+                                        "centre"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "item",
+                                    "at"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "as"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "exit": {
+                          "type": "object",
+                          "properties": {
+                            "as": {
+                              "type": "string"
+                            },
+                            "pace": {},
+                            "ease": {},
+                            "by": {
+                              "type": "string",
+                              "enum": [
+                                "length",
+                                "x",
+                                "y"
+                              ]
+                            },
+                            "from": {
+                              "type": "string",
+                              "enum": [
+                                "left",
+                                "right",
+                                "top",
+                                "bottom"
+                              ]
+                            },
+                            "about": {
+                              "anyOf": [
+                                {
+                                  "type": "array",
+                                  "prefixItems": [
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "number"
+                                    }
+                                  ],
+                                  "items": false,
+                                  "minItems": 2,
+                                  "maxItems": 2
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "item": {
+                                      "type": "string",
+                                      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                    },
+                                    "at": {
+                                      "type": "string",
+                                      "enum": [
+                                        "start",
+                                        "end",
+                                        "centre"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "item",
+                                    "at"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "as"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "motion": {
+                          "type": "object",
+                          "propertyNames": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                          },
+                          "additionalProperties": {
+                            "type": "object",
+                            "properties": {
+                              "rotate": {
+                                "type": "number"
+                              },
+                              "move": {
+                                "anyOf": [
+                                  {
+                                    "type": "array",
+                                    "prefixItems": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ],
+                                    "items": false,
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "along": {
+                                        "type": "string",
+                                        "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                      },
+                                      "by": {
+                                        "type": "string",
+                                        "enum": [
+                                          "length",
+                                          "x",
+                                          "y"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "along"
+                                    ],
+                                    "additionalProperties": false
+                                  }
+                                ]
+                              },
+                              "scale": {
+                                "anyOf": [
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "array",
+                                    "prefixItems": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ],
+                                    "items": false,
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                  }
+                                ]
+                              },
+                              "ink": {
+                                "type": "string",
+                                "enum": [
+                                  "teal",
+                                  "amber",
+                                  "violet",
+                                  "lime",
+                                  "rose",
+                                  "azure",
+                                  "orange",
+                                  "magenta",
+                                  "contrast"
+                                ]
+                              },
+                              "about": {
+                                "anyOf": [
+                                  {
+                                    "type": "array",
+                                    "prefixItems": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ],
+                                    "items": false,
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "item": {
+                                        "type": "string",
+                                        "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                      },
+                                      "at": {
+                                        "type": "string",
+                                        "enum": [
+                                          "start",
+                                          "end",
+                                          "centre"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "item",
+                                      "at"
+                                    ],
+                                    "additionalProperties": false
+                                  }
+                                ]
+                              },
+                              "pace": {},
+                              "ease": {},
+                              "repeat": {},
+                              "back": {
+                                "type": "boolean"
+                              }
+                            },
+                            "additionalProperties": {}
+                          }
+                        }
+                      },
+                      "required": [
+                        "shape",
+                        "centre",
+                        "radius",
+                        "sides"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "shape": {
+                          "type": "string",
+                          "const": "path"
+                        },
+                        "d": {
+                          "minItems": 1,
+                          "type": "array",
+                          "items": {
+                            "anyOf": [
+                              {
+                                "type": "array",
+                                "prefixItems": [
+                                  {
+                                    "type": "string",
+                                    "const": "C"
+                                  },
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "number"
+                                  }
+                                ],
+                                "items": false,
+                                "minItems": 7,
+                                "maxItems": 7
+                              },
+                              {
+                                "type": "array",
+                                "prefixItems": [
+                                  {
+                                    "type": "string",
+                                    "const": "L"
+                                  },
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "number"
+                                  }
+                                ],
+                                "items": false,
+                                "minItems": 3,
+                                "maxItems": 3
+                              },
+                              {
+                                "type": "array",
+                                "prefixItems": [
+                                  {
+                                    "type": "string",
+                                    "const": "M"
+                                  },
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "number"
+                                  }
+                                ],
+                                "items": false,
+                                "minItems": 3,
+                                "maxItems": 3
+                              },
+                              {
+                                "type": "array",
+                                "prefixItems": [
+                                  {
+                                    "type": "string",
+                                    "const": "Z"
+                                  }
+                                ],
+                                "items": false,
+                                "minItems": 1,
+                                "maxItems": 1
+                              }
+                            ]
+                          }
+                        },
+                        "line": {
+                          "type": "string",
+                          "enum": [
+                            "outline",
+                            "thin",
+                            "hidden",
+                            "centre",
+                            "construction"
+                          ]
+                        },
+                        "stroke": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "ink": {
+                                  "type": "string",
+                                  "enum": [
+                                    "teal",
+                                    "amber",
+                                    "violet",
+                                    "lime",
+                                    "rose",
+                                    "azure",
+                                    "orange",
+                                    "magenta",
+                                    "contrast"
+                                  ]
+                                },
+                                "width": {
+                                  "type": "number",
+                                  "exclusiveMinimum": 0
+                                },
+                                "dash": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "number",
+                                    "exclusiveMinimum": 0
+                                  }
+                                },
+                                "cap": {
+                                  "type": "string",
+                                  "enum": [
+                                    "butt",
+                                    "round",
+                                    "square"
+                                  ]
+                                },
+                                "join": {
+                                  "type": "string",
+                                  "enum": [
+                                    "miter",
+                                    "round",
+                                    "bevel"
+                                  ]
+                                },
+                                "start": {
+                                  "type": "string",
+                                  "enum": [
+                                    "none",
+                                    "arrow",
+                                    "dot",
+                                    "bar",
+                                    "open-arrow"
+                                  ]
+                                },
+                                "end": {
+                                  "type": "string",
+                                  "enum": [
+                                    "none",
+                                    "arrow",
+                                    "dot",
+                                    "bar",
+                                    "open-arrow"
+                                  ]
+                                }
+                              },
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "string",
+                              "const": "none"
+                            }
+                          ]
+                        },
+                        "fill": {
+                          "type": "object",
+                          "properties": {
+                            "ink": {
+                              "type": "string",
+                              "enum": [
+                                "teal",
+                                "amber",
+                                "violet",
+                                "lime",
+                                "rose",
+                                "azure",
+                                "orange",
+                                "magenta",
+                                "contrast",
+                                "ground"
+                              ]
+                            },
+                            "tint": {
+                              "type": "string",
+                              "enum": [
+                                "faint",
+                                "half",
+                                "solid"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "ink"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "enter": {
+                          "type": "object",
+                          "properties": {
+                            "as": {
+                              "type": "string"
+                            },
+                            "pace": {},
+                            "ease": {},
+                            "by": {
+                              "type": "string",
+                              "enum": [
+                                "length",
+                                "x",
+                                "y"
+                              ]
+                            },
+                            "from": {
+                              "type": "string",
+                              "enum": [
+                                "left",
+                                "right",
+                                "top",
+                                "bottom"
+                              ]
+                            },
+                            "about": {
+                              "anyOf": [
+                                {
+                                  "type": "array",
+                                  "prefixItems": [
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "number"
+                                    }
+                                  ],
+                                  "items": false,
+                                  "minItems": 2,
+                                  "maxItems": 2
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "item": {
+                                      "type": "string",
+                                      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                    },
+                                    "at": {
+                                      "type": "string",
+                                      "enum": [
+                                        "start",
+                                        "end",
+                                        "centre"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "item",
+                                    "at"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "as"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "exit": {
+                          "type": "object",
+                          "properties": {
+                            "as": {
+                              "type": "string"
+                            },
+                            "pace": {},
+                            "ease": {},
+                            "by": {
+                              "type": "string",
+                              "enum": [
+                                "length",
+                                "x",
+                                "y"
+                              ]
+                            },
+                            "from": {
+                              "type": "string",
+                              "enum": [
+                                "left",
+                                "right",
+                                "top",
+                                "bottom"
+                              ]
+                            },
+                            "about": {
+                              "anyOf": [
+                                {
+                                  "type": "array",
+                                  "prefixItems": [
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "number"
+                                    }
+                                  ],
+                                  "items": false,
+                                  "minItems": 2,
+                                  "maxItems": 2
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "item": {
+                                      "type": "string",
+                                      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                    },
+                                    "at": {
+                                      "type": "string",
+                                      "enum": [
+                                        "start",
+                                        "end",
+                                        "centre"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "item",
+                                    "at"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "as"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "motion": {
+                          "type": "object",
+                          "propertyNames": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                          },
+                          "additionalProperties": {
+                            "type": "object",
+                            "properties": {
+                              "rotate": {
+                                "type": "number"
+                              },
+                              "move": {
+                                "anyOf": [
+                                  {
+                                    "type": "array",
+                                    "prefixItems": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ],
+                                    "items": false,
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "along": {
+                                        "type": "string",
+                                        "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                      },
+                                      "by": {
+                                        "type": "string",
+                                        "enum": [
+                                          "length",
+                                          "x",
+                                          "y"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "along"
+                                    ],
+                                    "additionalProperties": false
+                                  }
+                                ]
+                              },
+                              "scale": {
+                                "anyOf": [
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "array",
+                                    "prefixItems": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ],
+                                    "items": false,
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                  }
+                                ]
+                              },
+                              "ink": {
+                                "type": "string",
+                                "enum": [
+                                  "teal",
+                                  "amber",
+                                  "violet",
+                                  "lime",
+                                  "rose",
+                                  "azure",
+                                  "orange",
+                                  "magenta",
+                                  "contrast"
+                                ]
+                              },
+                              "about": {
+                                "anyOf": [
+                                  {
+                                    "type": "array",
+                                    "prefixItems": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ],
+                                    "items": false,
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "item": {
+                                        "type": "string",
+                                        "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                      },
+                                      "at": {
+                                        "type": "string",
+                                        "enum": [
+                                          "start",
+                                          "end",
+                                          "centre"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "item",
+                                      "at"
+                                    ],
+                                    "additionalProperties": false
+                                  }
+                                ]
+                              },
+                              "pace": {},
+                              "ease": {},
+                              "repeat": {},
+                              "back": {
+                                "type": "boolean"
+                              }
+                            },
+                            "additionalProperties": {}
+                          }
+                        }
+                      },
+                      "required": [
+                        "shape",
+                        "d"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "shape": {
+                          "type": "string",
+                          "const": "text"
+                        },
+                        "at": {
+                          "type": "array",
+                          "prefixItems": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ],
+                          "items": false,
+                          "minItems": 2,
+                          "maxItems": 2
+                        },
+                        "text": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "role": {
+                          "type": "string",
+                          "enum": [
+                            "label",
+                            "note",
+                            "title"
+                          ]
+                        },
+                        "size": {
+                          "type": "number",
+                          "exclusiveMinimum": 0
+                        },
+                        "ink": {
+                          "type": "string",
+                          "enum": [
+                            "teal",
+                            "amber",
+                            "violet",
+                            "lime",
+                            "rose",
+                            "azure",
+                            "orange",
+                            "magenta",
+                            "contrast"
+                          ]
+                        },
+                        "enter": {
+                          "type": "object",
+                          "properties": {
+                            "as": {
+                              "type": "string"
+                            },
+                            "pace": {},
+                            "ease": {},
+                            "by": {
+                              "type": "string",
+                              "enum": [
+                                "length",
+                                "x",
+                                "y"
+                              ]
+                            },
+                            "from": {
+                              "type": "string",
+                              "enum": [
+                                "left",
+                                "right",
+                                "top",
+                                "bottom"
+                              ]
+                            },
+                            "about": {
+                              "anyOf": [
+                                {
+                                  "type": "array",
+                                  "prefixItems": [
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "number"
+                                    }
+                                  ],
+                                  "items": false,
+                                  "minItems": 2,
+                                  "maxItems": 2
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "item": {
+                                      "type": "string",
+                                      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                    },
+                                    "at": {
+                                      "type": "string",
+                                      "enum": [
+                                        "start",
+                                        "end",
+                                        "centre"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "item",
+                                    "at"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "as"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "exit": {
+                          "type": "object",
+                          "properties": {
+                            "as": {
+                              "type": "string"
+                            },
+                            "pace": {},
+                            "ease": {},
+                            "by": {
+                              "type": "string",
+                              "enum": [
+                                "length",
+                                "x",
+                                "y"
+                              ]
+                            },
+                            "from": {
+                              "type": "string",
+                              "enum": [
+                                "left",
+                                "right",
+                                "top",
+                                "bottom"
+                              ]
+                            },
+                            "about": {
+                              "anyOf": [
+                                {
+                                  "type": "array",
+                                  "prefixItems": [
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "number"
+                                    }
+                                  ],
+                                  "items": false,
+                                  "minItems": 2,
+                                  "maxItems": 2
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "item": {
+                                      "type": "string",
+                                      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                    },
+                                    "at": {
+                                      "type": "string",
+                                      "enum": [
+                                        "start",
+                                        "end",
+                                        "centre"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "item",
+                                    "at"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "as"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "motion": {
+                          "type": "object",
+                          "propertyNames": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                          },
+                          "additionalProperties": {
+                            "type": "object",
+                            "properties": {
+                              "rotate": {
+                                "type": "number"
+                              },
+                              "move": {
+                                "anyOf": [
+                                  {
+                                    "type": "array",
+                                    "prefixItems": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ],
+                                    "items": false,
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "along": {
+                                        "type": "string",
+                                        "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                      },
+                                      "by": {
+                                        "type": "string",
+                                        "enum": [
+                                          "length",
+                                          "x",
+                                          "y"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "along"
+                                    ],
+                                    "additionalProperties": false
+                                  }
+                                ]
+                              },
+                              "scale": {
+                                "anyOf": [
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "array",
+                                    "prefixItems": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ],
+                                    "items": false,
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                  }
+                                ]
+                              },
+                              "ink": {
+                                "type": "string",
+                                "enum": [
+                                  "teal",
+                                  "amber",
+                                  "violet",
+                                  "lime",
+                                  "rose",
+                                  "azure",
+                                  "orange",
+                                  "magenta",
+                                  "contrast"
+                                ]
+                              },
+                              "about": {
+                                "anyOf": [
+                                  {
+                                    "type": "array",
+                                    "prefixItems": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ],
+                                    "items": false,
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "item": {
+                                        "type": "string",
+                                        "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                      },
+                                      "at": {
+                                        "type": "string",
+                                        "enum": [
+                                          "start",
+                                          "end",
+                                          "centre"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "item",
+                                      "at"
+                                    ],
+                                    "additionalProperties": false
+                                  }
+                                ]
+                              },
+                              "pace": {},
+                              "ease": {},
+                              "repeat": {},
+                              "back": {
+                                "type": "boolean"
+                              }
+                            },
+                            "additionalProperties": {}
+                          }
+                        }
+                      },
+                      "required": [
+                        "shape",
+                        "at",
+                        "text"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "shape": {
+                          "type": "string",
+                          "const": "function"
+                        },
+                        "form": {
+                          "type": "string",
+                          "enum": [
+                            "graph",
+                            "parametric",
+                            "polar"
+                          ]
+                        },
+                        "x": {
+                          "type": "string"
+                        },
+                        "y": {
+                          "type": "string"
+                        },
+                        "r": {
+                          "type": "string"
+                        },
+                        "domain": {
+                          "type": "array",
+                          "prefixItems": [
+                            {
+                              "anyOf": [
+                                {
+                                  "type": "number"
+                                },
+                                {
+                                  "type": "string",
+                                  "minLength": 1
+                                }
+                              ]
+                            },
+                            {
+                              "anyOf": [
+                                {
+                                  "type": "number"
+                                },
+                                {
+                                  "type": "string",
+                                  "minLength": 1
+                                }
+                              ]
+                            }
+                          ],
+                          "items": false,
+                          "minItems": 2,
+                          "maxItems": 2
+                        },
+                        "at": {
+                          "type": "array",
+                          "prefixItems": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ],
+                          "items": false,
+                          "minItems": 2,
+                          "maxItems": 2
+                        },
+                        "scale": {
+                          "type": "array",
+                          "prefixItems": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ],
+                          "items": false,
+                          "minItems": 2,
+                          "maxItems": 2
+                        },
+                        "line": {
+                          "type": "string",
+                          "enum": [
+                            "outline",
+                            "thin",
+                            "hidden",
+                            "centre",
+                            "construction"
+                          ]
+                        },
+                        "stroke": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "ink": {
+                                  "type": "string",
+                                  "enum": [
+                                    "teal",
+                                    "amber",
+                                    "violet",
+                                    "lime",
+                                    "rose",
+                                    "azure",
+                                    "orange",
+                                    "magenta",
+                                    "contrast"
+                                  ]
+                                },
+                                "width": {
+                                  "type": "number",
+                                  "exclusiveMinimum": 0
+                                },
+                                "dash": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "number",
+                                    "exclusiveMinimum": 0
+                                  }
+                                },
+                                "cap": {
+                                  "type": "string",
+                                  "enum": [
+                                    "butt",
+                                    "round",
+                                    "square"
+                                  ]
+                                },
+                                "join": {
+                                  "type": "string",
+                                  "enum": [
+                                    "miter",
+                                    "round",
+                                    "bevel"
+                                  ]
+                                },
+                                "start": {
+                                  "type": "string",
+                                  "enum": [
+                                    "none",
+                                    "arrow",
+                                    "dot",
+                                    "bar",
+                                    "open-arrow"
+                                  ]
+                                },
+                                "end": {
+                                  "type": "string",
+                                  "enum": [
+                                    "none",
+                                    "arrow",
+                                    "dot",
+                                    "bar",
+                                    "open-arrow"
+                                  ]
+                                }
+                              },
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "string",
+                              "const": "none"
+                            }
+                          ]
+                        },
+                        "fill": {
+                          "type": "object",
+                          "properties": {
+                            "ink": {
+                              "type": "string",
+                              "enum": [
+                                "teal",
+                                "amber",
+                                "violet",
+                                "lime",
+                                "rose",
+                                "azure",
+                                "orange",
+                                "magenta",
+                                "contrast",
+                                "ground"
+                              ]
+                            },
+                            "tint": {
+                              "type": "string",
+                              "enum": [
+                                "faint",
+                                "half",
+                                "solid"
+                              ]
+                            },
+                            "to": {
+                              "type": "string",
+                              "enum": [
+                                "axis"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "ink"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "enter": {
+                          "type": "object",
+                          "properties": {
+                            "as": {
+                              "type": "string"
+                            },
+                            "pace": {},
+                            "ease": {},
+                            "by": {
+                              "type": "string",
+                              "enum": [
+                                "length",
+                                "x",
+                                "y"
+                              ]
+                            },
+                            "from": {
+                              "type": "string",
+                              "enum": [
+                                "left",
+                                "right",
+                                "top",
+                                "bottom"
+                              ]
+                            },
+                            "about": {
+                              "anyOf": [
+                                {
+                                  "type": "array",
+                                  "prefixItems": [
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "number"
+                                    }
+                                  ],
+                                  "items": false,
+                                  "minItems": 2,
+                                  "maxItems": 2
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "item": {
+                                      "type": "string",
+                                      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                    },
+                                    "at": {
+                                      "type": "string",
+                                      "enum": [
+                                        "start",
+                                        "end",
+                                        "centre"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "item",
+                                    "at"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "as"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "exit": {
+                          "type": "object",
+                          "properties": {
+                            "as": {
+                              "type": "string"
+                            },
+                            "pace": {},
+                            "ease": {},
+                            "by": {
+                              "type": "string",
+                              "enum": [
+                                "length",
+                                "x",
+                                "y"
+                              ]
+                            },
+                            "from": {
+                              "type": "string",
+                              "enum": [
+                                "left",
+                                "right",
+                                "top",
+                                "bottom"
+                              ]
+                            },
+                            "about": {
+                              "anyOf": [
+                                {
+                                  "type": "array",
+                                  "prefixItems": [
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "number"
+                                    }
+                                  ],
+                                  "items": false,
+                                  "minItems": 2,
+                                  "maxItems": 2
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "item": {
+                                      "type": "string",
+                                      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                    },
+                                    "at": {
+                                      "type": "string",
+                                      "enum": [
+                                        "start",
+                                        "end",
+                                        "centre"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "item",
+                                    "at"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "as"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "motion": {
+                          "type": "object",
+                          "propertyNames": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                          },
+                          "additionalProperties": {
+                            "type": "object",
+                            "properties": {
+                              "rotate": {
+                                "type": "number"
+                              },
+                              "move": {
+                                "anyOf": [
+                                  {
+                                    "type": "array",
+                                    "prefixItems": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ],
+                                    "items": false,
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "along": {
+                                        "type": "string",
+                                        "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                      },
+                                      "by": {
+                                        "type": "string",
+                                        "enum": [
+                                          "length",
+                                          "x",
+                                          "y"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "along"
+                                    ],
+                                    "additionalProperties": false
+                                  }
+                                ]
+                              },
+                              "scale": {
+                                "anyOf": [
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "array",
+                                    "prefixItems": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ],
+                                    "items": false,
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                  }
+                                ]
+                              },
+                              "ink": {
+                                "type": "string",
+                                "enum": [
+                                  "teal",
+                                  "amber",
+                                  "violet",
+                                  "lime",
+                                  "rose",
+                                  "azure",
+                                  "orange",
+                                  "magenta",
+                                  "contrast"
+                                ]
+                              },
+                              "about": {
+                                "anyOf": [
+                                  {
+                                    "type": "array",
+                                    "prefixItems": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ],
+                                    "items": false,
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "item": {
+                                        "type": "string",
+                                        "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                      },
+                                      "at": {
+                                        "type": "string",
+                                        "enum": [
+                                          "start",
+                                          "end",
+                                          "centre"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "item",
+                                      "at"
+                                    ],
+                                    "additionalProperties": false
+                                  }
+                                ]
+                              },
+                              "pace": {},
+                              "ease": {},
+                              "repeat": {},
+                              "back": {
+                                "type": "boolean"
+                              }
+                            },
+                            "additionalProperties": {}
+                          }
+                        }
+                      },
+                      "required": [
+                        "shape",
+                        "form",
+                        "domain",
+                        "at",
+                        "scale"
+                      ],
+                      "additionalProperties": false
+                    }
+                  ]
+                }
+              },
+              "groups": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                },
+                "additionalProperties": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                  }
+                }
+              },
+              "steps": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                    },
+                    "say": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "draw": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                      }
+                    },
+                    "hide": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                      }
+                    },
+                    "play": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                      }
+                    },
+                    "in": {
+                      "type": "string",
+                      "enum": [
+                        "order",
+                        "together",
+                        "linked"
+                      ]
+                    },
+                    "pace": {}
+                  },
+                  "required": [
+                    "id",
+                    "say"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "preview": {
+                "type": "object",
+                "properties": {
+                  "step": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                  },
+                  "frame": {
+                    "type": "object",
+                    "properties": {
+                      "x": {
+                        "type": "number"
+                      },
+                      "y": {
+                        "type": "number"
+                      },
+                      "width": {
+                        "type": "number",
+                        "exclusiveMinimum": 0
+                      },
+                      "height": {
+                        "type": "number",
+                        "exclusiveMinimum": 0
+                      }
+                    },
+                    "required": [
+                      "x",
+                      "y",
+                      "width",
+                      "height"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "additionalProperties": false
+              },
+              "stamp": {
+                "type": "object",
+                "properties": {
+                  "v": {
+                    "type": "number",
+                    "const": 1
+                  },
+                  "source": {
+                    "type": "string",
+                    "pattern": "^sha256:[0-9a-f]{64}$"
+                  },
+                  "derived": {
+                    "type": "object",
+                    "properties": {
+                      "steps": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "say": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "say"
+                          ],
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "required": [
+                      "steps"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "diagnostics": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "severity": {
+                          "type": "string",
+                          "enum": [
+                            "error",
+                            "warning"
+                          ]
+                        },
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "severity",
+                        "code",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": [
+                  "v",
+                  "source",
+                  "derived",
+                  "diagnostics"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "format",
+              "artboard",
+              "layers",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          "schemaFile": {
+            "file": "work/drawing.schema.json",
+            "sha256": "sha256:fb6081a831b9d8d580b4cf0a842f3529de40f62e1baf757694c5908d49bcc709"
+          }
+        }
+      ]
+    }
+  ]
+}
