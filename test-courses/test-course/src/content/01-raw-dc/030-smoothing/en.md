@@ -353,6 +353,17 @@ The charging pulse is the part that bites. The capacitor only draws current
 near the peaks, so it draws a *lot* for a short time. Your transformer and
 diodes see peak currents several times the average.
 
+## Back to the diode at full load
+
+```reveal
+seed: diode-current
+text: >-
+  This is the current through that diode: nothing for most of the half-cycle,
+  then a short pulse near the peak, several times the 1 A the circuit draws,
+  while the capacitor refills. That pulse is why a diode's datasheet gives a
+  repetitive peak current beside its average.
+```
+
 ## The slope of the droop is the load current {layout=split}
 
 ```plot

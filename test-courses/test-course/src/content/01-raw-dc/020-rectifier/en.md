@@ -53,6 +53,16 @@ correct: 2
 timerSeconds: 45
 ```
 
+## Picture one diode at full load
+
+```thought-seed
+id: diode-current
+text: >-
+  Imagine the supply delivering a steady 1 A to your circuit, and a current
+  probe on one diode of the bridge. Over one half-cycle of the mains, what does
+  the current through that diode look like? Is it ever a steady 1 A?
+```
+
 ## A bridge is a turnstile with a toll
 
 ```analogy
