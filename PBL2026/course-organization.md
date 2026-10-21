@@ -144,7 +144,7 @@ add up to exactly 300 (`scheduledMinutes` in [course.yaml](course.yaml)).
 | `Chapter 04 - Data domains` | D1·010 (the chain of representations: temperature → … → 27.4 °C). "The sensor is an interface" and "transduction is not unit conversion" → D1·030. |
 | `Chapter 05 - Interfaces` | D1·040 (what an interface is; the 0–100 mV sensor vs 0–3.3 V ADC). "Analog does not mean accurate" → D1·030. The digital domain, and signal vs data → D2·010. |
 | `Chapter 06 - Data conversion` | D1·080 (sampling and quantization). "The ADC doesn't know what the measurement means" (the driver) → D1·010 cold open, and again at D2·050 scaling. |
-| `Chapter 07 - Analog to digital converters` | Loading/buffering → D1·070. Sampling, bandwidth, quantization, resolution, architectures → D1·080. Reference and input range → D1·090. ATmega328P/ESP32/ADS1115 comparison and the selection checklist → D2·020. Multiplexed inputs → D1·070 (one S/H shared) and D3·050 (the sequential-sampling trap). Bandwidth vs sampling rate → D3·020. |
+| `Chapter 07 - Analog to digital converters` | Loading/buffering → D1·070. Sampling, quantization, resolution, architectures → D1·080 (bandwidth only named there; taught at D3·020, corrected 2026-10-21, U020 F-c4-1). Reference and input range → D1·090. ATmega328P/ESP32/ADS1115 comparison and the selection checklist → D2·020. Multiplexed inputs → D1·070 (one S/H shared) and D3·050 (the sequential-sampling trap). Bandwidth vs sampling rate → D3·020. |
 | `Chapter 08 - Aliasing` | D3·020. |
 | `Chapter 08 - Digital Interface` | D2·010. |
 | `Chapter 10 - Communication protocols` | D2·010 (protocols, choosing an interface, electrical requirements). The data-rate budget (10 kS/s × 16 bit) → D2·020. |

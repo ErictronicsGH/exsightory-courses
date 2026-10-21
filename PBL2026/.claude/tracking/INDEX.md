@@ -15,11 +15,11 @@ One line each. Status: `done` · `in-progress` · `paused` · `not-started` · `
 | U013 | Bench specs, D1·040 The sensor as a source: impedance, dividers and loading (45 min) | done | U002, U003 |
 | U014 | Bench specs, D1·050 Current as the quantity: shunts, Kelvin and burden voltage (40 min) | done | U002, U003 |
 | U015 | Bench specs, D1·060 Signal conditioning: in-amps, gain, offset and bias current (40 min) | done | U002, U003 |
-| U016 | Bench specs, D1·070 The ADC input: sample-and-hold and acquisition time (45 min) | blocked (crossing 505; specs 01, 05, 06 done; in backlog/016) | U002, U003 |
+| U016 | Bench specs, D1·070 The ADC input: sample-and-hold and acquisition time (45 min) | in-progress (505 answered 2026-10-21; specs 01, 05, 06 done) | U002, U003 |
 | U017 | Bench specs, D1·080 Conversion: sampling, quantization, architecture and ENOB (30 min) | done | U002, U003 |
 | U018 | Bench specs, D1·090 The reference voltage, and ratiometric measurement (30 min) | done | U002, U003 |
 | U019 | Bench specs, D2·010 The code leaves the converter: open-drain, pull-ups and I²C (30 min) | done | U002, U003 |
-| U020 | Bench specs, D2·020 External ADCs as a design choice: ADS1115 and INA226 (30 min) | in-progress | U002, U003 |
+| U020 | Bench specs, D2·020 External ADCs as a design choice: ADS1115 and INA226 (30 min) | done | U002, U003 |
 | U021 | Bench specs, D2·030 Noise: thermal, coupled and self-inflicted (35 min) | not-started | U002, U003 |
 | U022 | Bench specs, D2·040 Oversampling, dither and digital filtering (40 min) | not-started | U002, U003 |
 | U023 | Bench specs, D2·050 Scaling, calibration and the maths that loses your precision (35 min) | not-started | U002, U003 |

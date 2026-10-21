@@ -96,3 +96,7 @@ Cross-unit facts: dates, budgets, standing rules, open questions. Consulted, not
     F1–F3 (G open-loop vs closed-loop), card 4 F1–F5 (no `[[ask]]` for its POE, the S11 line, "warms up" tenfold), card 5
     F1–F4, card 7 F1–F5 (80 dB low for an in-amp at G = 100), card 8 F1–F4 (**"a third" vs 30 %**), card 9 F1–F6. Card 6's
     Electronics widget deferred. Previews: `bench-work/previews/u015-preview.html`. X19 to raise.
+13. **D2·010 card 8's blocks B and C (crossing 516's answer, 2026-10-21)**: the Animation Bench's import (C69) is not
+    built, so a sequence cannot hold card 8's Draw drawing (B) and Figure tour (C). Benches asks the owner to take the
+    fallback now: B and C as their own blocks on the card (a Studio multi-block card), with A and A′ as the `logic-io`
+    sequence's units either side; B058 builds A and A′ either way. Spec `D2-010-08-two-outputs.md` to follow the answer.

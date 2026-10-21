@@ -3,20 +3,20 @@ id: D2-020-04-selection-checklist
 card: "The selection checklist"
 module: notes/Day02/020-external-adcs/en.md
 bench: Draw                       # the PLAN's bench: the course path drawing with the checklist pinned to its stages
-library: "course-path: the course path drawing, master `course-path.benchdrawing` (D1-010-05 §3a–§3c), played here as a new variant `course-path-d2-020-checklist`: the stage lane of D2·010's variant (`course-path-d2-010-interface`, crossing 517) re-laid in two rows of five columns, with a new layer `pins-020` of nineteen pins, one per checklist line, each hung under the stage where the room meets it. NOT BUILT: the master and D1·090's variant are asked by crossing 511 (open), D2·010's by 517 (open); this variant goes to Benches by a crossing with 511 (owner D3, 2026-10-21), drafted in §12, not written"
+library: "course-path: the course path drawing, master `course-path.benchdrawing` (D1-010-05 §3a–§3c), played here as a new variant `course-path-d2-020-checklist`: the stage lane of D2·010's variant (`course-path-d2-010-interface`, crossing 517) re-laid in two rows of five columns, with a new layer `pins-020` of nineteen pins, one per checklist line, each hung under the stage where the room meets it. NOT BUILT: the master, D1·090's variant `course-path-090-checkpoint` and D2·010's `course-path-d2-010-interface` are taken by the Benches lane as one unit, B059 (crossings 511 and 517, answered 2026-10-21; the Draw library `course-path` at `src/exsight-benches/benches/draw/libraries/course-path/`, not started); this variant is asked by crossing 525 (owner D3; F-c4-5 (a), decided 2026-10-21), naming 511 and 517, from §12's twelve points"
 dimensions: 2D
 stand_in: "a Figure of our own SVG (`figures/d2-020-checklist-path.svg`, §3a's working layout): the nineteen pins as `rect` features, `labels: on-figure`, `reveal: on-tour`, a mirrored tour of twenty stops in the Flow's order (§13)"
 optional_benches: []
 real_thing: "the course's measurement path as the room has it at 12:30 on Day 2 (quantity to the reference on Day 1, the digital interface at 12:00, firmware and number), with each line of the module's ADC selection checklist placed at the stage of that path where the course teaches it; a block diagram, not to scale, labelled so"
 minutes: 2.1                      # on the bench: the Flow, 278 words (§2); the checkpoint takes the wall (widget-focus) and the drawing leaves it
 card_minutes: 5.1                 # 2.14 min of Flow + 3.0 min checkpoint (§2)
-status: spec-draft                # round two open: F-c4-1 to F-c4-6 (§14)
+status: spec-ready                # D3, D1 and F1–F7 applied; F-c4-1 to F-c4-6 decided 2026-10-21 (round two: all recommendations) and applied; nothing open (the library not yet built does not block: crossing 525, the stand-in §13 until it lands)
 learner_action: checkpoint
 predictions: []                   # none added (§7b)
 seeds: []
 key_variable: "the stage each checklist line hangs from, and whether that stage is on the path the room walked on Day 1"
 time_scale: "none (no motion: one fade per press)"
-steps: 21                         # s0 (the path), s1–s19 (one pin per bullet, F-c4-2 (a)), s20 (the count)
+steps: 21                         # s0 (the path), s1–s19 (one pin per bullet, F-c4-2 (a), decided), s20 (the count)
 ```
 
 **Written 2026-10-21 (U020)** after the owner's choices on the U020 brief (*"Apply all recommendations"*, 2026-10-21): **D3**
@@ -29,7 +29,17 @@ spec follows it and says where it departs (§14): **bandwidth's home is moved** 
 it at D3·020, §8), the boxes carry the course path's stage names rather than module names, the pins arrive one per spoken
 bullet, power is drawn neutral, and the lane is laid in two rows so nineteen labels reach the wall's floor. The count the
 Flow's claim rests on is unchanged: **16 of 19 lines hang from a stage of the path the room walked on Day 1**. Everything
-beyond the PLAN is marked **Proposal** and listed in §14 (round two, open).
+beyond the PLAN was put to the owner as a proposal in §14.
+
+**Round two, 2026-10-21** (the U020 brief's round two; owner: *"Apply all recommended (a)"*): every proposal of §14 (F-c4-1 to
+F-c4-6) takes its option (a), and the body below states the decided design: bandwidth at conditioning, dashed, *Day 3 (020)*
+(F-c4-1); one pin per bullet, the count last (F-c4-2); power neutral (F-c4-3); short key terms on the chips and the lane in
+two rows (F-c4-4); a new crossing, **525**, naming 511 and 517 (F-c4-5); the checkpoint's nineteen lines by stage and the
+teacher tip (F-c4-6). Card 4's Flow did not change; its PLAN gained the *Built as* line, a Status naming crossings 511 and
+517, and the checkpoint's `instructions` line (quoted in §1 and §7a). `course-organization.md`'s transcript map now says
+bandwidth is only named at D1·080 and taught at D3·020 (F-c4-1). **Crossings 511 and 517 were answered on 2026-10-21**: the
+Benches lane builds the master and both earlier variants as one unit, **B059**, with one geometry for REFERENCE and the turn
+fixed in B059's brief; what that changes here is in the next list, §3a, §11, §12 and §15.
 
 **Which library, exactly** (read 2026-10-21, read-only):
 
@@ -37,10 +47,19 @@ beyond the PLAN is marked **Proposal** and listed in §14 (round two, open).
   `D1-010-05-measurement-path.md` §3a (stages in their own lane, one layer per lane) and §3c (*"Each is a new item in the
   `stages` layer, so earlier variants never change. Adding a stage re-spaces the stage lane in that module's variant"*, so a
   variant may carry its own spacing).
-- **It is not built.** Crossing **511** (`C:\ExSightory\lanes\pbl2026-x\.claude\crossing\open\511-pbl2026-to-benches-the-course-path-master-and-d1-090-card-6-checkpoint.request.md`,
-  open) asks for the master and D1·090 card 6's variant; crossing **517** (`…\open\517-pbl2026-to-benches-the-course-path-d2-010-interface-variant.request.md`,
-  open) asks for D2·010 card 1's variant `course-path-d2-010-interface`, which adds `s-digital-interface`, the
+- **It is not built.** Crossing **511** (`C:\ExSightory\lanes\pbl2026-x\.claude\crossing\answered\511-pbl2026-to-benches-the-course-path-master-and-d1-090-card-6-checkpoint.request.md`)
+  asks for the master and D1·090 card 6's variant; crossing **517** (`…\answered\517-pbl2026-to-benches-the-course-path-d2-010-interface-variant.request.md`)
+  asks for D2·010 card 1's variant `course-path-d2-010-interface`, which adds `s-digital-interface`, the
   `forms-inline` node *digital data* and the gap. Neither covers this card.
+- **Both are answered (2026-10-21, read-only)** and taken as one unit, **B059** (ExSightory's `.claude\benches\backlog\042-B059-the-course-path-and-two-variants.md`,
+  `status: not-started`): a Draw library `course-path` at `src/exsight-benches/benches/draw/libraries/course-path/`, a
+  `library.json` and three drawings, the master `course-path.benchdrawing` and the variants `course-path-090-checkpoint`
+  (D1·090) and `course-path-d2-010-interface` (D2·010); the first Draw library in that tree. Until libraries come from the
+  platform, the course copies the files it names into its own assets. **One geometry for REFERENCE and the turn**, fixed once
+  in B059's brief to the owner and read by both variants; 517's working layout (REFERENCE under CONVERSION, top at y 700, the
+  turn back through the gap between the rows to CONVERSION's left) is that brief's starting proposal. This variant cannot keep
+  that geometry (§3a: CONVERSION's five pins hang where REFERENCE sits in it), which §12 point 2 asks Benches to settle.
+- **This variant is asked by crossing 525** (F-c4-5 (a), decided), naming 511 and 517, from §12's twelve points.
 - **This variant starts from 517's end state** (its s5: the whole path with DIGITAL INTERFACE), so the room sees the drawing
   it saw at 12:00, re-laid to make room for the pins: the same stage ids, names, order and topology (REFERENCE a side input
   into CONVERSION, D1·090 F2), the stage lane only.
@@ -58,13 +77,17 @@ beyond the PLAN is marked **Proposal** and listed in §14 (round two, open).
   input (D1·070), resolution, noise, linearity → conversion (D1·080), reference → reference (D1·090), interface → digital
   interface (D2·010).*
 - **Look for** (verbatim): *almost no item without a home.*
-- **Status** (verbatim): *needs Draw: path drawing with checklist pins (reuse the course path drawing)*
+- **Built as** (verbatim, added 2026-10-21 from this spec's round two): *Built as (decided 2026-10-21, spec D2-020-04): one
+  pin per bullet, pressed on each bold name, the count "16 of 19 on Day 1's path" last; bandwidth at conditioning, dashed,
+  "Day 3 (020)"; calibration at firmware, dashed; power apart, neutral, "no one stage".*
+- **Status** (verbatim): *needs Draw: path drawing with checklist pins (reuse the course path drawing; a variant of
+  crossings 511 and 517)*
 - **The PLAN names six homes; the brief homed all nineteen** (approved on the brief), so that the Flow's closing claim,
   *"Almost every line of that list is a stage of the path we walked yesterday, seen from the converter's side."*, can be
   counted on the wall. The PLAN's *acquisition* is not a line of the list; D1·070's stage takes three lines that are
   (channels, multiplexing, latency; latency is our proposal, approved on the brief, verified in §8).
 - **Bench and library.** The **bench** is the Draw Bench (M59). The **library** is the course path, `course-path`, loaded as
-  its new variant `course-path-d2-020-checklist` (to be built: asked of Benches by the crossing of §12).
+  its new variant `course-path-d2-020-checklist` (to be built: asked of Benches by crossing 525, from §12).
 - **Insight**: *the checklist is not a new list to memorise: nearly every line of it is a question about a stage of the path
   we already walked, asked from the converter's side; only power has no stage of its own.*
 - **Kind of knowledge**: *a picture built up* (one pin per line, on a known drawing). Card test → **Draw**. B15, B17, B18,
@@ -125,10 +148,13 @@ trimmed.
 Artboard **1600 × 900** drawing units (16:9, the master's). Ink names from the Draw palette (`teal`, `amber`, `violet`,
 `contrast`; fill tint `faint`; `insight-core/src/palette.ts`, read 2026-10-21), never hex. **The stage lane only, in two rows
 of five columns at row 1's pitch** (320 units: boxes 270 wide, gaps 50), so that every pin hangs straight under its own
-stage. This is a re-layout of 517's lane, not a new path: same ids, names, order and arrows (**Proposal**, F-c4-4). **The
+stage. This is a re-layout of 517's lane, not a new path: same ids, names, order and arrows (decided, F-c4-4 (a)). **The
 geometry below is the working layout, used for the stand-in and checked by script (no overlap, smallest gap 6 units between
-two pins of one stack, every item inside the artboard); Benches fixes the built geometry in its brief**, as it does for 511
-and 517 (F-c1-7 (a)).
+two pins of one stack, every item inside the artboard); Benches fixes the built geometry in its brief**, as B059's brief
+fixes 511's and 517's (F-c1-7 (a); 511 and 517 answered 2026-10-21). B059 fixes **one** geometry for REFERENCE and the turn,
+read by both earlier variants; this variant departs from it on purpose (REFERENCE moves to column 2 because CONVERSION's five
+pins hang under its box, and the turn enters CONVERSION's top, not its left), so §12 point 2 asks Benches to settle it in
+B059's brief or against it.
 
 | Layer | Items (stable ids) | What | Source |
 |---|---|---|---|
@@ -166,7 +192,7 @@ each; the counter (x 665–1255, y 810–856) clears calibration (614) and power
 **Labels, EN · FR** (FR drafts ours, for the owner's review; numbers and module codes untranslated). Stages as 517: quantity
 · *grandeur*; sensor · *capteur*; loading · *charge*; conditioning · *conditionnement*; ADC input · *entrée du CAN*;
 conversion · *conversion*; reference · *référence*; **DIGITAL / INTERFACE** · *INTERFACE / NUMÉRIQUE*; firmware ·
-*micrologiciel*; number · *nombre*. Pins (short key terms, B13; **Proposal**, F-c4-4; the Flow's full bold name is each
+*micrologiciel*; number · *nombre*. Pins (short key terms, B13; decided, F-c4-4 (a); the Flow's full bold name is each
 step's `say`, §4a):
 
 | Pin | EN | FR |
@@ -223,7 +249,7 @@ count (*16 of 19*). Nothing else.
 | DIGITAL INTERFACE and its pin | `violet` (the bus, the module's palette; D2·010 card 1 drew it `amber` as that module's new stage) | capitals, two-line name, heavier `outline` |
 | firmware and its pin | `amber` (later-today firmware stage) | its name; the pin's time tag *14:30 (050)* |
 | A line still to come (bandwidth, calibration) | its stage's ink | `hidden` (dashed) outline and its time tag |
-| power | `contrast`, `thin` frame | the words *no one stage*; no connector; apart from every box |
+| power (F-c4-3 (a), decided) | `contrast`, `thin` frame | the words *no one stage*; no connector; apart from every box |
 | number, arrows, the count | `contrast` | words |
 
 ### 3b. No converter, chip or bus is drawn
@@ -235,7 +261,7 @@ external converter's `amber` is not used on this card; the four named parts are 
 
 ### 4a. Steps
 
-One pin per bullet (**Proposal**, F-c4-2 (a)): the presenter presses on the bullet's bold name and the pin fades in under its
+One pin per bullet (decided, F-c4-2 (a)): the presenter presses on the bullet's bold name and the pin fades in under its
 stage while the name is spoken.
 
 | # | id | Flow (first words) | What changes (`say`) | Press |
@@ -307,15 +333,25 @@ Identity bar: *The selection checklist · ● Holding · step n of 21*. Legend c
 
 - **7a. The PLAN's ASK** (verbatim): *checkpoint (after the statement) — "In pairs: run the checklist on one sensor of your own
   and tick the two items that decide it." items: sensor named | signal size and bandwidth written | two deciding items ticked
-  | the converter that follows from them named. depth: create practice: defining problems.* It fires **after the Flow** (the
-  Flow has no `[[ask]]`): the presenter presses on from s20, the checkpoint opens and takes the wall (`widget-focus`,
-  `stage: 'solo'`, `blockRegistry.ts`, read 2026-10-21), so the drawing leaves the wall while the pairs work. **Proposal**
-  F-c4-6: the checkpoint's instructions carry the nineteen lines grouped by stage, so the pairs can tick from what they just
-  saw.
+  | the converter that follows from them named instructions (the nineteen lines by stage, as the drawing pinned them):
+  quantity: accuracy · sensor: environment · loading: input impedance · conditioning: single-ended or differential,
+  gain/PGA, bandwidth (Day 3) · ADC input: channels, multiplexing, latency · conversion: resolution, sampling rate,
+  linearity, noise, architecture · reference: accuracy and stability, input range · digital interface: interface ·
+  firmware: calibration (14:30) · no one stage: power depth: create practice: defining problems.* It fires **after the
+  Flow** (the Flow has no `[[ask]]`): the presenter presses on from s20, the checkpoint opens and takes the wall
+  (`widget-focus`, `stage: 'solo'`, `blockRegistry.ts`, read 2026-10-21), so the drawing leaves the wall while the pairs
+  work. **Decided (F-c4-6 (a)) and in the PLAN**: the checkpoint's `instructions` carry the nineteen lines grouped by stage,
+  so the pairs can tick from what they just saw; the prompt and items stay verbatim, the list after them. **Checked against
+  §3a** (2026-10-21): the same ten groups in path order and the same homes, 1 + 1 + 1 + 3 + 3 + 5 + 2 + 1 + 1 + 1 = 19 ✓,
+  sixteen of them under the seven Day 1 groups (quantity to reference) ✓, power under *no one stage* ✓. The line is text, not
+  chips, so four names are written out where a chip shortens them: *input impedance* (chip *impedance*), *single-ended or
+  differential* (chip *single-ended / differential*), *bandwidth (Day 3)* (chip *bandwidth / Day 3 (020)*), *calibration
+  (14:30)* (chip *calibration / 14:30 (050)*); the homes and times agree. The count *16 of 19* is the *Built as* line's
+  (§1), word for word the `c-count` label of §3a.
 - **7b. Prediction point**: none added. A *"where does this line live?"* before each pin would put nineteen questions into a
   2-minute list; the checkpoint is the card's thinking.
 - **7c. After**: in Study, done means s20 reached and the checkpoint answered.
-- **7d. Teacher tip** (**Proposal**, F-c4-6; presenter only, never on the wall): *Expect pairs to tick resolution first: card
+- **7d. Teacher tip** (decided, F-c4-6 (a); presenter only, never on the wall): *Expect pairs to tick resolution first: card
   3 just warned against it. Ask what their signal requires: how big (gain, input range), how fast (sampling rate,
   bandwidth), from what source (impedance), wired how (single-ended or differential). "Bandwidth" here can be written as how
   fast the signal changes, a few hertz for a slow sensor; the full idea is Day 3 (020).*
@@ -337,7 +373,7 @@ Identity bar: *The selection checklist · ● Holding · step n of 21*. Legend c
 | Latency | ADC input · D1·070 | not by name on Day 1 (no Day 1 module uses *latency*, *conversion time* or *delay*); in substance at *Fix one: a longer acquisition time*: *"If the conversion itself takes 1 µs, a 1 µs window allowed 500,000 samples a second"* (l. 363), the time each sample waits before it is a code. The word arrives at D2·040, *What each filter costs in latency* (l. 335), for the firmware's filters, a different delay. | ✓ (our proposal, approved; the `say` names the window and the conversion) |
 | Resolution | conversion · D1·080 | *Resolution: how many levels* (l. 86) | ✓ |
 | Sampling rate | conversion · D1·080 | *When, and which level* (l. 63: *"the number of samples per second is the **sampling rate**"*) | ✓ |
-| Bandwidth | **moved: conditioning · D3·020** (the brief: conversion · D1·080) | D1·080 uses the word once, as a property of the signals sigma-delta suits (*"precision measurement of relatively low-bandwidth signals"*, l. 288), and never defines it. D3·020's card *Bandwidth is not sampling rate* (l. 86) teaches it, with the analog input's full-power bandwidth (its PLAN), and D3·020's PATH is *"[ CONDITIONING → (SAMPLING) ]"*; D1·060 names filtering as conditioning's Day 3 job (*"filtering (Day 3·020)"*, l. 69). | **moved** (F-c4-1) |
+| Bandwidth | **moved: conditioning · D3·020** (the brief: conversion · D1·080) | D1·080 uses the word once, as a property of the signals sigma-delta suits (*"precision measurement of relatively low-bandwidth signals"*, l. 288), and never defines it. D3·020's card *Bandwidth is not sampling rate* (l. 86) teaches it, with the analog input's full-power bandwidth (its PLAN), and D3·020's PATH is *"[ CONDITIONING → (SAMPLING) ]"*; D1·060 names filtering as conditioning's Day 3 job (*"filtering (Day 3·020)"*, l. 69). | **moved** (F-c4-1 (a), decided) |
 | Linearity | conversion · D1·080 | *The table everyone scrolls past* (l. 304: offset, gain, INL, DNL) | ✓ |
 | Noise | conversion · D1·080 | *ENOB: the honest number of bits* (l. 360; SINAD, *"noise and distortion"*, l. 391); D2·030 at 13:00 takes it further | ✓ |
 | Conversion architecture | conversion · D1·080 | *SAR: a binary search* (l. 225), *Sigma-delta: fast and coarse, then filtered* (l. 266) | ✓ |
@@ -383,7 +419,12 @@ architecture, latency, power, interface, calibration, environment) ✓, in the s
 - A6 ✓: *"almost every"* and *"almost no item"* hold; *no one stage* for power claims only that it has no stage of its own
   (every active stage draws supply current), not that power is off the path.
 - A7 ✓: sources are the modules' own lines (8a) and `course-organization.md`. A8 ✓: Draw rows above.
-- **Our own error, fixed before sending** (gate 3, gate 5): the brief page homed bandwidth at D1·080; §8a moves it (F-c4-1).
+- **Our own error, fixed before sending** (gate 3, gate 5): the brief page homed bandwidth at D1·080; §8a moves it (F-c4-1
+  (a), decided 2026-10-21). `course-organization.md`'s transcript map (Chapter 07 row) is corrected to match: *"bandwidth only
+  named there; taught at D3·020"*.
+- **Re-run on round two's edits** (2026-10-21): the PLAN's new *Built as*, Status and `instructions` lines checked against
+  §3a, §4a and §8a: nineteen lines, the homes of §8a, *16 of 19*, *Day 3 (020)* and *14:30* as `course-organization.md` has
+  D3·020 and D2·050 ✓; no new number. No **accuracy** finding.
 - **Owner's text**: no **accuracy** finding. The Flow's claim and the PLAN's Look for are true by count; the PLAN's six homes
   agree with 8a; the PLAN's *acquisition* is not a line of the list (noted on the brief, no wording change asked).
 
@@ -414,8 +455,8 @@ still to come*.
 
 | Asset | Format | Made by | Status |
 |---|---|---|---|
-| `course-path.benchdrawing`, the master, with 517's `s-digital-interface` | Draw library | the Benches lane | asked by 511 and 517 (open) |
-| `course-path-d2-020-checklist.benchdrawing`, this variant: layers `stages`, `stage-arrows`, `leg-arrows` (`la-direct` new), `pins-020` (new), `count-020` (new); 21 steps; EN and FR; stills s0, s15, s19, s20 | Draw library (variant) | the Benches lane | to ask by the crossing of §12 (D3) |
+| `course-path.benchdrawing`, the master, with 517's `s-digital-interface`, in the Draw library `course-path` (`src/exsight-benches/benches/draw/libraries/course-path/`, with `library.json`) | Draw library | the Benches lane | taken as B059 with the variants `course-path-090-checkpoint` and `course-path-d2-010-interface` (511 and 517 answered 2026-10-21; not started) |
+| `course-path-d2-020-checklist.benchdrawing`, this variant, in the same library: layers `stages`, `stage-arrows`, `leg-arrows` (`la-direct` new), `pins-020` (new), `count-020` (new); 21 steps; EN and FR; stills s0, s15, s19, s20 | Draw library (variant) | the Benches lane | asked by crossing 525 (D3; F-c4-5 (a), decided), from §12. Until libraries come from the platform, the course copies the drawing it names into its own assets (511's answer) |
 | `figures/d2-020-checklist-path.svg` and its `figure` block, the stand-in (§13), from §3a's working layout | SVG + Figure block | this project | to make if the variant is late |
 | FR labels (§3a) | text | the owner (review) | drafts |
 
@@ -425,40 +466,52 @@ still to come*.
   (517 §12; `drawingBlock.ts`). Inks `teal`, `amber`, `violet`, `contrast`, fill tint `faint`, line types `outline`, `thin`,
   `hidden` — **exist** (`insight-core/src/palette.ts`, `drawing/schema.ts` `LINE_TYPES`, `FILL_TINTS`, read 2026-10-21).
 - **One master, variants by layers** (X2) — **missing**, listed; until then the variant file.
-- **The library** — **missing**: this variant by the crossing below.
+- **The library** — **missing**: the library `course-path` and its first three drawings are B059 (511, 517); this variant
+  by crossing 525, below.
 - **Not needed**: IEC symbols (no circuit on this drawing); ink.
 
-**For the Benches lane: the crossing (D3).** The owner decided on 2026-10-21 (D3) that this drawing goes to Benches **as a
-crossing with 511**. The spec does not write it. What it must ask for, exactly:
+**For the Benches lane: crossing 525 (D3; F-c4-5 (a)).** The owner decided on 2026-10-21 (D3) that this drawing goes to
+Benches **as a crossing with 511**, and in round two (F-c4-5 (a)) that it is **a new crossing, 525**, naming 511 and 517 as
+what it builds on, one need per request as 517. The spec does not write it; the lead writes it from these twelve points.
+511 and 517 were answered on 2026-10-21 (taken as B059, not started), and the points below say what that changes. What it
+must ask for, exactly:
 
 1. **The variant** `course-path-d2-020-checklist` of the course path, for D2·020 card 4 *"The selection checklist"*
    (`notes\Day02\020-external-adcs\en.md`), described by this spec (§3a, §4a–§4b, §10, §13); **built on 511's master and on
-   517's variant** (`course-path-d2-010-interface`), whose stage ids, names (EN and FR) and topology it keeps.
+   517's variant** (`course-path-d2-010-interface`), whose stage ids, names (EN and FR) and topology it keeps; **a fourth
+   drawing in B059's library `course-path`** (`src/exsight-benches/benches/draw/libraries/course-path/`), taken into B059 if
+   its brief has not yet gone to the owner, or as its own unit after it.
 2. **The re-layout** of §3a: the stage lane only, two rows of five columns at pitch 320 (row 1 at y 20, row 2 at y 410),
    REFERENCE below row 2 in column 2 with its side arrow into CONVERSION's right edge, the turn routed between the rows into
    CONVERSION's top, *digital data* and the gap not shown, a direct arrow `la-direct` CONVERSION → DIGITAL INTERFACE.
-   **Benches fixes the built geometry in its brief, with 511's and 517's** (one brief for the three variants), keeping: every
-   pin straight under its own stage; no arrow crossing a pin or another arrow; every label at the wall's floor in EN and FR.
-3. **This module's inks**: Day 1 stages and their pins `teal`; DIGITAL INTERFACE `violet` (517 drew it `amber`); firmware
-   `amber`; number, arrows and the count `contrast`; reference lower case, `teal`.
+   **This departs from B059's one geometry for REFERENCE and the turn** (511's and 517's answers: fixed once in B059's brief,
+   read by both earlier variants; its starting proposal is REFERENCE under CONVERSION, top at y 700, the turn into
+   CONVERSION's left), because CONVERSION's five pins hang where REFERENCE sits in it. **Benches fixes this variant's built
+   geometry in B059's brief if 525 reaches it in time, or in its own brief against B059's**, keeping: every pin straight
+   under its own stage; no arrow crossing a pin or another arrow; every label at the wall's floor in EN and FR; REFERENCE a
+   side input into CONVERSION, as in B059.
+3. **This module's inks**: Day 1 stages and their pins `teal` (517 draws the stages in `contrast`, and REFERENCE in plain ink
+   on Day 2); DIGITAL INTERFACE `violet` (517 drew it `amber`); firmware `amber`; number, arrows and the count `contrast`;
+   reference lower case, `teal`.
 4. **A new layer `pins-020`**: the nineteen chips of §3a's table (ids, EN and FR labels, sizes, stacking, stage ink),
    `outline` for taught lines and `hidden` for bandwidth (*Day 3 (020)*) and calibration (*14:30 (050)*); `p-power` in a
    `thin` `contrast` frame, *no one stage*, with no connector, apart from every box.
 5. **A new text item `c-count`**: *16 of 19 on Day 1's path* · *16 sur 19 sur le chemin du jour 1*, at s20.
-6. **Twenty-one steps** s0–s20 with the `say` of §4a, in the Flow's order (one pin per bullet, F-c4-2), `enter: fade`; the
+6. **Twenty-one steps** s0–s20 with the `say` of §4a, in the Flow's order (one pin per bullet, F-c4-2 (a)), `enter: fade`; the
    legend card and fence text of §3a.
 7. **Stills** s0, s15, s19, s20 in `shots/`, English and French.
 8. **Real values**: none beyond the words, the counts (19, 16) and the two times (D2·050 at 14:30, D3·020 on Day 3), all
    from the course's files (`course-organization.md`; §8a).
 9. **What stands in until it lands**: §13 (a Figure tour of our SVG).
-10. **When the course needs it**: in lecture order, after 517's variant (D2·010 card 1, 12:00) and before D2·020 card 4
-    (12:30); no date pressure beyond lecture order.
+10. **When the course needs it**: in lecture order, after B059 (which comes in D1·090's turn, with 517's variant for D2·010
+    card 1, 12:00) and before D2·020 card 4 (12:30); no date pressure beyond lecture order.
 11. **Would help, not required**: the pin layer keyed by stage id, so D3·070's *"Day 1 path drawing, final state with
     checklist line numbers"* (its own 23-line list) can reuse the mechanism without a new design.
 12. **Gates and rules**: the six gates and ExSight's bench design rules bind; the spec departs from neither. Brief the owner on
     the design before building, as always.
 
-Whether that is a new crossing naming 511 and 517 or an addition to 511 is F-c4-5.
+Decided (F-c4-5 (a)): a new crossing, **525**, naming 511 and 517, not an addition to 511 (which is answered and taken as
+B059).
 
 ## 13. Stand-in for the lecture
 
@@ -478,10 +531,12 @@ the current step; `canvas/src/figureTypes.ts`, read 2026-10-21). The presenter p
 
 ## 14. Findings for the owner
 
-No **accuracy** finding in the owner's text on this card (§8b). Six items, all open (round two); each recommended option is
-(a).
+No **accuracy** finding in the owner's text on this card (§8b), the round-two edits to the PLAN included (re-run 2026-10-21).
 
-- **F-c4-1 — Bandwidth's home: moved from conversion (D1·080) to conditioning (D3·020).** The brief page put it at D1·080.
+The six items of round two, **all decided 2026-10-21** (owner: *"Apply all recommended (a)"*; each kept as it was put; the
+decision marked) and applied:
+
+- **F-c4-1 — Bandwidth's home: moved from conversion (D1·080) to conditioning (D3·020).** **Decided: (a).** The brief page put it at D1·080.
   D1·080 uses the word once and never teaches it; D3·020 teaches it (*Bandwidth is not sampling rate*) at its
   conditioning-and-sampling stage, and D1·060 names filtering as conditioning's Day 3 job (§8a). The count on yesterday's
   stages stays 16 of 19; taught on Day 1 becomes 15. `course-organization.md`'s transcript map (*"Sampling, bandwidth,
@@ -489,30 +544,41 @@ No **accuracy** finding in the owner's text on this card (§8b). Six items, all 
   match (ours, not the owner's text). Options: (a) conditioning, dashed, *Day 3 (020)* (**recommended**); (b) the ADC input,
   dashed (the converter's own input bandwidth, which D3·020's datasheet extract shows); (c) keep the brief's conversion
   (D1·080), solid: not recommended, the room was not taught it there.
-- **F-c4-2 — Proposal: how the pins arrive.** Options: (a) **one pin per bullet**, pressed on each bold name (19 presses, every
+- **F-c4-2 — Proposal: how the pins arrive.** **Decided: (a).** Options: (a) **one pin per bullet**, pressed on each bold name (19 presses, every
   2.8–8.3 s), the count only at s20 on *"Almost every line…"* (**recommended**: each name lands where it lives as it is
   spoken, B6, B14, and the count arrives with the sentence that claims it); (b) one per bullet with a running count, as the
   brief's `draw4` (a number ticking through the list is a second thing to watch, B2); (c) grouped by stage in path order, as
   `draw4`'s ten steps: the pins would arrive out of the spoken order, or need ≈ 0.7 min of unscripted lines after the list;
   (d) all at once on p21: the matching is lost.
-- **F-c4-3 — Proposal: power drawn neutral.** The brief drew it `rose`, which this module keeps for a fault. Options: (a)
+- **F-c4-3 — Proposal: power drawn neutral.** **Decided: (a).** The brief drew it `rose`, which this module keeps for a fault. Options: (a)
   `contrast`, a `thin` frame, the words *no one stage*, no connector, apart from every box (**recommended**: what it says is
   that every stage draws power, so none owns it); (b) `rose` as the brief.
-- **F-c4-4 — Proposal: fitting nineteen pins at the wall's floor.** Nineteen labels and ten stages do not fit 517's geometry
+- **F-c4-4 — Proposal: fitting nineteen pins at the wall's floor.** **Decided: (a).** Nineteen labels and ten stages do not fit 517's geometry
   at the floor (C2). Options: (a) short key terms on the chips (§3a's table; the full name in each `say`), and the lane re-laid
   in two rows of five columns with *digital data* and the gap not shown, REFERENCE below row 2 (**recommended**; Benches fixes
   the geometry); (b) the Flow's full bold names on the chips (two to three lines each; the conversion's five pins would not
   fit under its box); (c) line numbers on the stages and the names in a key, as D3·070 plans for its own list (a separate
   legend for names, B14).
-- **F-c4-5 — The crossing's form (D3: *"as a crossing with 511"*).** 511 is open and scoped to the master and D1·090's
-  variant; 517 added D2·010's as a new crossing building on it. Options: (a) **a new crossing** for this variant naming 511
-  and 517 as what it builds on, the twelve points of §12 (**recommended**: one need per request, as 517); (b) an addition to
-  511, only if Benches has not started on it.
-- **F-c4-6 — Proposals: the checkpoint's list, and the teacher tip.** The checkpoint takes the wall when it opens
-  (`widget-focus`), so the pinned path leaves it while the pairs tick *"the two items that decide it"*. Options: (a) the
+- **F-c4-5 — The crossing's form (D3: *"as a crossing with 511"*).** **Decided: (a)**, crossing **525**. 511 is open and
+  scoped to the master and D1·090's variant; 517 added D2·010's as a new crossing building on it. Options: (a) **a new
+  crossing** for this variant naming 511 and 517 as what it builds on, the twelve points of §12 (**recommended**: one need per
+  request, as 517); (b) an addition to 511, only if Benches has not started on it. (Since put: 511 and 517 were answered on
+  2026-10-21 and taken as one unit, B059, not started; §12 points 1, 2 and 10 say what that changes.)
+- **F-c4-6 — Proposals: the checkpoint's list, and the teacher tip.** **Decided: (a).** The checkpoint takes the wall when it
+  opens (`widget-focus`), so the pinned path leaves it while the pairs tick *"the two items that decide it"*. Options: (a) the
   checkpoint's instructions carry the nineteen lines grouped by stage (one line per stage, the short names of §3a), and the
   teacher tip of §7d (**recommended**); (b) the tip only; the pairs work from memory; (c) neither. The PLAN's prompt and items
   stay verbatim in (a); the list is added after them.
+
+**Decided 2026-10-21, round two (owner: *"Apply all recommended (a)"*):** F-c4-1 (a) bandwidth at conditioning, dashed, *Day
+3 (020)*, and `course-organization.md`'s transcript map corrected to match; F-c4-2 (a) one pin per bullet, the count only at
+s20; F-c4-3 (a) power in a `thin` `contrast` frame, *no one stage*, no connector; F-c4-4 (a) short key terms on the chips,
+the lane in two rows of five, *digital data* and the gap not shown; F-c4-5 (a) a new crossing, 525, naming 511 and 517; F-c4-6
+(a) the checkpoint's `instructions` line in the PLAN (§7a, checked against §3a) and the teacher tip (§7d). Applied in the
+yaml, §1, §3a, §4a, §7, §8, §11, §12 and §15; the module's PLAN carries the *Built as* line, the Status naming 511 and 517,
+and the `instructions` line. **511's and 517's answers** (2026-10-21) are applied in the list under *Which library*, §3a,
+§11, §12 (points 1, 2, 3 and 10) and §15: the library's path and its first three drawings (B059), and B059's one geometry for
+REFERENCE and the turn, from which this variant departs and which 525 asks Benches to settle. Nothing open.
 
 ## 15. Acceptance: how we know it is built right
 
@@ -521,7 +587,9 @@ No **accuracy** finding in the owner's text on this card (§8b). Six items, all 
   presenter's window and Study.
 - The pins match §3a's table: 19 in all, 16 under the seven Day 1 stages, bandwidth and calibration dashed with their time
   tags, power apart with *no one stage*; the count reads *16 of 19 on Day 1's path*.
-- Stage ids, names and arrows are 517's; the geometry is the one Benches fixes in its brief with 511 and 517.
+- Stage ids, names and arrows are 517's; the drawing is in B059's library `course-path`; the geometry is the one Benches
+  fixes for this variant in B059's brief or in its own brief against B059's (§12 point 2), REFERENCE a side input into
+  CONVERSION.
 - B1 one pin per press; B2 only the new pin changes; B3 the path met at s0; B4 four stills; B5 each `say` on the strip; B6 the
   pin lands as its name is spoken; B8 nothing flashes; B12 the wall's strip not operable; B13 key terms only on the drawing;
   B14 each pin at its stage; B20 the next pin's name on the strip.
@@ -535,6 +603,8 @@ No **accuracy** finding in the owner's text on this card (§8b). Six items, all 
   79 %, the times and the word counts recomputed (Node), the layout checked by script ✓; (4) visualization and intuition
   100 %: each name lands on its stage as it is spoken, the count arrives with the claim, dashes mark what is still to come ✓
   (stand-in partial, §13); (5) consistency and coherence: 517's ids and names, the module's palette (DIGITAL INTERFACE violet
-  here, named against D2·010's amber), D3·070's list kept separate, the brief's bandwidth error fixed and named ✓; (6)
+  here, named against D2·010's amber), D3·070's list kept separate, the brief's bandwidth error fixed and named, the departure
+  from B059's geometry for REFERENCE and the turn named and given to Benches (§12 point 2), the PLAN's `instructions` line
+  checked against §3a ✓; (6)
   professional design: two rows at row 1's pitch, no overlap, labels cut to the floor in EN and FR ✓ on paper, the FR lengths
   of §10 to check on the render.

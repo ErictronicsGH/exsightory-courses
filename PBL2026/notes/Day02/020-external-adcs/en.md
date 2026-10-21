@@ -54,14 +54,20 @@ many simple applications an external ADC is not required. But a dedicated extern
 ADS1115 becomes particularly interesting for applications where the microcontroller's built-in ADC
 is not sufficient, especially when we need **higher resolution, differential measurement, or
 precision-oriented sensor measurement**.
+```
 
+```flow
 Here is a signal from yesterday that makes the point. A strain-gauge bridge gives a few millivolts at
 full load. On a 12-bit converter with a 3.3 V reference, one step is about 0.8 mV, so 5 mV of signal
 spans about six codes. That is barely a measurement at all.
+```
 
+```flow
 The ADS1115, on its most sensitive range, ±0.256 V, has steps of about 7.8 µV. The same 5 mV spans
 about 640 codes, and it can read the bridge's two outputs directly as a difference.
+```
 
+```flow
 I want to say something plainly before we start: neither of the two parts in this module, the
 ADS1115 and the INA226, has a simulation model. So this module is not a demo. It is a
 datasheet-reading exercise and a design decision, and that is a skill in its own right.
@@ -143,7 +149,8 @@ between them in nominal resolution while offering a much faster SAR-based acquis
 The question is not "Which ADC has the most bits?" but "What does my signal require?"
 
 <!-- PLAN
-SHOW     Plot — the two staircases from the first card, back on the Canvas.
+SHOW     Plot — the two staircases from the first card, back on the Canvas (card 1's showing B, both
+         staircases, until X-inset lets card 1 be one block; decided 2026-10-21, spec D2-020-03 F-c3-2).
          Status: ready
 ASK      flash (after the statement) — "A slow signal, a few millivolts across a sensor bridge. Which of the
          three would you reach for?"
@@ -159,7 +166,9 @@ ASK      flash (after the statement) — "A slow signal, a few millivolts across
 So we should not simply ask: **"Which ADC has the most bits?"**
 
 Instead, we should ask: **"What does my signal require?"**
+```
 
+```flow
 [[ask]] Your signal changes slowly and is only a few millivolts across a sensor bridge. Which of the
 three would you reach for, and why?
 
@@ -180,11 +189,20 @@ SHOW     Draw — the course path drawing with the checklist's items pinned to t
          input impedance → source and loading (D1·040), differential and gain → conditioning (D1·060),
          acquisition → ADC input (D1·070), resolution, noise, linearity → conversion (D1·080), reference →
          reference (D1·090), interface → digital interface (D2·010). Look for: almost no item without a home.
-         Status: needs Draw: path drawing with checklist pins (reuse the course path drawing)
+         Built as (decided 2026-10-21, spec D2-020-04): one pin per bullet, pressed on each bold name, the count
+         "16 of 19 on Day 1's path" last; bandwidth at conditioning, dashed, "Day 3 (020)"; calibration at
+         firmware, dashed; power apart, neutral, "no one stage".
+         Status: needs Draw: path drawing with checklist pins (reuse the course path drawing; a variant of
+                 crossings 511 and 517)
 ASK      checkpoint (after the statement) — "In pairs: run the checklist on one sensor of your own and tick
          the two items that decide it."
          items: sensor named | signal size and bandwidth written | two deciding items ticked | the converter
          that follows from them named
+         instructions (the nineteen lines by stage, as the drawing pinned them): quantity: accuracy ·
+         sensor: environment · loading: input impedance · conditioning: single-ended or differential,
+         gain/PGA, bandwidth (Day 3) · ADC input: channels, multiplexing, latency · conversion: resolution,
+         sampling rate, linearity, noise, architecture · reference: accuracy and stability, input range ·
+         digital interface: interface · firmware: calibration (14:30) · no one stage: power
          depth: create    practice: defining problems
 -->
 
@@ -253,7 +271,7 @@ ASK      poe (before the noise table) — "As the data rate goes up, what does t
          column stays at one count, 7.81 µV, at every rate: the table never reports less than one count.
          The peak-to-peak figures in brackets show the growth.
          depth: understand    practice: analysing data
-ASK      numeric (after the tour) — "At its two smallest full-scale ranges the ADS1115's differential input
+ASK      numeric (after the impedance stop) — "At its two smallest full-scale ranges the ADS1115's differential input
          impedance is about 710 kΩ (confirm on the page). A 10 kΩ bridge drives it. What loading error is
          that, in per cent?"
          answer: 1.4 % ± 0.2 %
@@ -267,8 +285,8 @@ HARVEST  S20 — "Yesterday: more bits are not more accuracy, and ENOB is the ho
          free of noise at each data rate."
 HARVEST  S16 — "The multiplexer pairs its inputs, AIN0 against AIN1. That is yesterday's in-amp idea built into
          the converter: measure the difference, ignore what both inputs share."
-SEED     plants S52 — "Keep this table in mind: noise that grows with data rate. In half an hour we find out
-         why speed costs noise."
+SEED     plants S52 — "Keep this table in mind: noise that grows with data rate. In the next module we find
+         out how fast it grows, and where noise comes from."
 -->
 
 <!-- FILLED 2026-10-07: drafted from training-overview Day 3 Module 2 and the ADS1115 datasheet (TI SBAS444); input-impedance value to be confirmed on the page; tutor to review -->
@@ -276,12 +294,16 @@ SEED     plants S52 — "Keep this table in mind: noise that grows with data rat
 ```flow
 We met sigma-delta conversion at the converter on Day 1 (080). Now we open the ADS1115's datasheet
 and read what that architecture means for us as users.
+```
 
+```flow
 [[ask]] Find the table that sets data rate against noise. Before you read across it: as the data
 rate goes up, what do you expect the noise to do?
 
 [[pause]]
+```
 
+```flow
 [[reveal]] The noise rises with the data rate, in the peak-to-peak figures. Let us see why, by walking
 the datasheet.
 
@@ -301,13 +323,19 @@ Now the differential input impedance, the load between the two inputs. It is not
 changes with the gain setting, and it is lowest on the most sensitive ranges. Read the values off the
 page: on the smallest ranges it is of the order of 700 kΩ. So the ADS1115 is a load, just like the meter on Day 1, and how heavy a load depends on the
 range you choose.
+```
 
+```flow
 [[ask]] If a 10 kΩ bridge drives an input of about 710 kΩ, what loading error is that?
 
 [[pause]]
+```
 
+```flow
 About 10 k out of 720 k: 1.4 %. The range that resolves the bridge best also loads it hardest.
+```
 
+```flow
 Finally, the noise table. Remember what a sigma-delta does: it samples far faster than it reports,
 and the digital filter averages. Ask it for results more often, and each result averages fewer samples
 over a wider bandwidth, so more noise gets through.
@@ -347,7 +375,9 @@ ASK      numeric (after the reveal) — "On I²C, reading one 16-bit result take
          reveal: the Equation's overhead term switched on, against the 100 kHz and 400 kHz markers
          explain: 27 × 10,000 = 270,000 clocks a second, about 70 % more than the payload, so a 100 kHz bus
          tops out near 3,700 reads a second and a 400 kHz bus near 14,800, before start, stop and the gaps
-         between transactions.
+         between transactions. That assumes the converter already points at its result register, as an
+         ADS1115 in continuous mode does once set; writing the pointer before every read makes it 45 clocks,
+         and 450 kHz, past Fast mode.
          depth: create    practice: computational thinking
 HARVEST  S50 — "In the last module 'how much data, how quickly?' was a question on a list. Here it is with
          numbers."
@@ -369,11 +399,26 @@ This becomes important when deciding whether an interface can keep up with an AD
 bits**. What bit rate does the raw measurement data alone need?
 
 [[pause]]
+```
 
+```flow
 [[reveal]] The raw measurement data alone requires **10,000 × 16 = 160,000 bits/second**, or
 approximately **160 kbit/s**. But the actual communication requirement may be higher once protocol
 overhead and other transferred information are included. The interface therefore needs sufficient
 capacity to move the data **without becoming the bottleneck**.
+```
+
+```flow
+[[ask]] On I²C, reading one 16-bit result takes about 27 clock cycles: an address byte and two data
+bytes, each with its acknowledge. What bus clock do 10,000 samples a second need?
+
+[[pause]]
+```
+
+```flow
+[[reveal]] About 270 kHz: 27 clocks for every 16 bits, about 70 % more than the payload. A 100 kHz bus
+cannot carry it; a 400 kHz bus can. The ADS1115 itself, at 860 samples a second, needs only about
+23 kHz.
 
 This is particularly important in measurement systems. Recall our measurement chain from the last module:
 
@@ -399,23 +444,24 @@ rules** required to exchange information reliably.
 ## INA226: build or buy?
 
 The INA226 is the build-versus-buy decision for current sensing: the shunt-and-in-amp channel we
-built on Day 1, offered as one part with a digital interface.
+built on Day 1, offered as one part with a digital interface, the shunt still ours.
 
 <!-- PLAN
 SHOW     Figure — the INA226 block diagram (TI SBOS547) laid beside the Day 1 chain: external shunt (D1·050)
          → differential input riding on a 0–36 V common mode (D1·060) → 16-bit ADC → averaging and
          conversion-time settings → calibration, current and power registers → I²C. Drive: tour pairs each
-         INA226 block with the Day 1 stage it replaces. Look for: three Day 1 modules folding into one
-         package, and two of today's firmware jobs still to come, averaging and calibration, already in its
-         registers. Then the FAULT below, live on the same figure: a fitted-shunt switch (10 mΩ / 5 mΩ) and
-         the register readouts halving.
+         INA226 block with the Day 1 stage it replaces. Look for: three Day 1 stages folding into one
+         package (in-amp, ADC input, conversion; the reference is inside too, but the datasheet draws no
+         block or pin for it, so its slot is shown empty), and two of today's firmware jobs still to
+         come, averaging and calibration, already in its registers. Then the FAULT below, live on the
+         same figure: a fitted-shunt switch (10 mΩ / 5 mΩ) and the register readouts halving.
          Status: needs asset: our own redrawn INA226 block diagram (TI SBOS547C; 2.5 µV shunt LSB, ±81.92 mV
                  full scale, averaging 1–1024, confirmed on the page 2026-10-20); no vendor page images
 ASK      poll (after the statement) — "Build the Day 1 chain, or buy the INA226? Name one thing that would
          push you each way."
          options: Build | Buy | It depends on …
          explain: The reasons named in chat become the trade: cost, board area and a calibrated block on one
-         side; choice of shunt, bandwidth and knowing every stage on the other.
+         side; the choice of shunt and gain together, bandwidth and knowing every stage on the other.
          depth: create    practice: arguing from evidence
 SEED     plants S51 — "Two amps through a ten-milliohm shunt is twenty millivolts: eight thousand of the
          INA226's 2.5-microvolt counts of signal. Remember that pair: two amps, ten milliohms."

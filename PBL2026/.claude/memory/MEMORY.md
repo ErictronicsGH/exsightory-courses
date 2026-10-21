@@ -80,3 +80,4 @@
 - [IEC symbols, US on a switch](iec-symbols-us-switch.md) — IEC 60617 by default in every drawing; US set on a bench-level Symbols switch beside Speed and Autoplay
 - [Circuit effects are the bench's](circuit-effects-are-the-benchs.md) — no charge dots or glows in previews/libraries; circuits show state and values, the bench draws signal effects; specs state the need
 - [Script panel follows en.md](script-panel-follows-en-md.md) — transcript.en.md repeats statements, SHOW first lines and the transition; sync it after every en.md change
+- [Taken answers stay answered](taken-answers-stay-answered.md) — a Benches "taken as B0NN" answer stays in answered/ until the build lands; close it then, act now only on questions or settled shapes

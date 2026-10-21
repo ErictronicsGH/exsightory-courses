@@ -1,22 +1,22 @@
 ---
-id: U020
-title: Bench specs for D2·020 — External ADCs as a design choice: ADS1115 and INA226
+id: U016
+title: Bench specs for D1·070 — The ADC input: sample-and-hold and acquisition time
 status: in-progress
 depends_on: [U002, U003]
 refs:
   - .claude/standards/bench-spec-template.md
   - .claude/standards/bench-quality-bar.md
   - .claude/standards/authoring-digest.md
-  - notes/Day02/020-external-adcs/en.md
+  - notes/Day01/070-adc-input/en.md
   - elements-by-section.md
 ---
 
 ## Goal
 
-Write one spec in `bench-work/specs/` for every card of D2·020 (30 min) that shows a bench, so each
+Write one spec in `bench-work/specs/` for every card of D1·070 (45 min) that shows a bench, so each
 activity can be built straight from its file when its bench is ready.
 
-Elements in this module (from elements-by-section.md): Figure Bench ×3, Numeric answer ×3, Plot Bench ×2, Predict–observe–explain ×2, Flash quiz ×1, Draw Bench ×1, Checkpoint ×1, Equation Bench ×1, Poll ×1.
+Elements in this module (from elements-by-section.md): Plot Bench ×4, Predict–observe–explain ×3, Draw Bench ×2, Numeric answer ×2, Equation Bench ×2, Analogy ×1, Electronics Bench ×1, Multi-select ×1.
 
 ## Acceptance criteria
 
@@ -33,26 +33,66 @@ Building any bench or asset. Changing the owner's card text or Flow (report anyt
 
 ## Progress
 
-- 2026-10-20: loaded after U019 (U016 still parked on crossing 505). Start: list crossings from the worktree (ours
-  510–512 and 516–519 open); run the accuracy check A1–A7 on D2·020 (open already: **D2·020-F1**, the noise table and
-  ENOB, from D1·080; and DAY23-F1's *"this morning"* at l. 392; the title's product names under *real but unbranded*);
-  check `transcript.en.md` against `en.md`; then brief the owner as `bench-work/previews/u020-preview.html` and wait
-  for design direction.
-- 2026-10-20 (session 2): crossings listed from the worktree (nothing open for pbl2026; next free 522). **Accuracy check
-  A1–A7 done**: every number recomputed ✓ (Node); ADS1115 values read off SBAS444E (Dec 2024; Tables 6-1/6-2, §5.5,
-  Table 7-3, MUX[2:0]) and INA226 off SBOS547C (Aug 2026), both PDFs fetched into the session scratchpad (not kept).
-  **Open: D2·020-F1 (widened: RMS column flat at 1 LSB, only p-p grows; 7.81 → 35.83 µV pp on ±0.256 V, 13.80
-  noise-free bits at 860 SPS) and F2–F7** (staircase floor; card 2 Look for; *differential* impedance; *"extend"* the
-  chain; *"all of it signal"*; *"this morning's firmware jobs"* come later, so DAY23-F1's *"earlier today"* is false
-  here). Script panel card-4 arc line fixed (cut mid-word). **Brief page `bench-work/previews/u020-preview.html`**
-  (live visual per card; F1–F7 plus D1 named parts vs unbranded, D2 redrawn extracts, D3 benches/crossing, D4 the
-  FAULT on the figure, N1, N2; ≈ 29 of 30 min). **Next: read the owner's choices off the page (`u020Feedback()`) or
-  the chat, apply, re-check, then write the seven specs.**
+- 2026-10-20: loaded after U014. Not started. **Start by briefing the owner** (memory brief-before-each-unit): D1·070's
+  cards, their benches, what is deferred (Electronics ×1), the visuals and design choices, then wait for direction.
+  Check crossings 493–496 first (D1·050's findings were decided and appended to them on 2026-10-20).
+- 2026-10-20 (session 2): crossings checked — nothing owed, nothing answered; 493–496 still open on Benches' side.
+  Every number in the Flow re-computed and correct (incl. 040's 270 k "a quarter low": 73 kΩ source, 1.35 τ, 26 %).
+  Estimate ≈ 21 of 45 min used (Flow 1,768 words ≈ 13.6 min + activities). **Owner briefed** (rendered card map +
+  live centrepiece sketch). Findings raised, awaiting direction: F1 ATmega328P named but 12-bit/3.3 V numbers used
+  (the UNO library says 10-bit); F2 card 8's leftover direction "[[demo]] Widget (#2)…"; F3 ≈ 24 min unused;
+  F4 card 8 Electronics deferred → crossing for its demonstration, as D1·050. Proposed specs: 01, 02 (holds time
+  table + centrepiece library), 03, 04, 05, 06, 07, 08. Next: owner's design direction, then write specs.
+- 2026-10-20: owner asked for the brief **in the browser, interactive, with feedback on the page**. Built
+  `bench-work/previews/u016-preview.html` (card 1 S/H stepper + timing play, centrepiece Plot with every card's
+  preset and a ghost, card 5 MUX timeline with the CH3 50 kΩ crosstalk, cards 6–7 equation graph, card 8 sketch,
+  findings F1–F4 as choice buttons, feedback boxes). Served by launch.json `previews` (port 8795). **Read the owner's
+  answers with javascript_tool `u016Feedback()` on http://localhost:8795/u016-preview.html**, then write the specs.
+- 2026-10-20: owner asked for a full correctness review and a rule. **New rule: a course cannot misinform**
+  (`.claude/standards/course-accuracy.md`, register `tracking/ACCURACY.md`, blocking criterion added to this unit and
+  every backlog unit, CLAUDE.md, six-gates.md widened to everything sent). The review found accuracy findings F5
+  (1.65 V on the 2047|2048 edge; truncating converter → 2047, 1759), F6 (card 3's "our 2047" vs its own 1760; cold open
+  was 3.585 V, 1.29 µs), F7 (9 τ full-scale rule on a half-scale demo); F1 now marked accuracy. Nine faults in my own page
+  fixed (see its gate report). **This unit cannot be done while F1, F5, F6, F7 are open.** Page re-verified in the browser.
+- 2026-10-20: owner: sliders side by side (done); **every card now plays** like the bench (Prev/Play/Replay/Next/Reset,
+  one stop per Flow paragraph, captions injected verbatim from en.md by `bench-work/previews/make_u016.mjs` from
+  `u016-preview.src.html`; edit the .src and rebuild); **IEC symbols by default, US on a bench-level switch**; circuit
+  signal effects (dots/glows) **paused: the bench handles them** (`CIRCUIT_FX=false`). New accuracy finding **F8** (meter
+  1.650 vs 1.642 V). Verified: 392 frames (every stop × 4 points × IEC/US) clean, Play/hold/speed tested. Open: the
+  bench needs the Symbols switch (a crossing to Benches when the specs are written).
+- 2026-10-20 (session 3): the page held no answers; the owner answered in chat. **All findings decided**: F1 name the class
+  (*"A 12-bit MCU converter, like most…"*; no chip name in card 7 either); F2 *"Electronics Bench: …"*; F3 noted; F4
+  schematic + board pin; F5 *"2047 or 2048"* on the edge; F6 the cold-open run added to card 3; F7 show both (full-scale
+  ghost on the zoom); F8 *"Nearly the same voltage on a meter"*. **Applied to en.md** and ACCURACY.md (no open finding on
+  D1·070; F6/F7 to be checked in the card-3/card-2/card-7 specs). **Target for the centrepiece (cards 2, 3, 4, 7, 8's
+  Plot beat): an Animation Bench (2D) demonstration by Benches, the Plot block as stand-in, but the owner said to wait
+  for Benches' check on how first** → **crossing 505** pushed (asks the shape: one `adc-sampler` unit + a sequence per
+  card; asks whether cards 1 and 5 join). **Cards 2, 3, 4, 7, 8 wait for 505's answer.** Cards 1, 5, 6 specified from
+  their PLAN (Draw, Draw, Equation) meanwhile. Still to raise: the bench-level Symbols switch (IEC/US), unless 505's
+  answer takes it.
+- 2026-10-20 (session 3, end): specs **D1-070-01** (Draw, `adc-input-inside-the-pin`, 1.4/3.0 min), **-05** (Draw,
+  `mux-one-capacitor`, 1.7 min), **-06** (Equation, `max-source-impedance`, 1.4/2.3 min) written (spec-draft; README rows
+  added). They raised F9, F10, F11, which the owner decided and which are applied (no open finding on D1·070). Their
+  design proposals (each spec's §14) are still open for the owner. Page updated (findings decided, the full-scale ghost on
+  cards 2 and 7, card 1's strip one sample) and re-verified. Committed and pushed (4a3ce69). **Next session: list crossings;
+  when 505 is answered, write specs 02 (holds D1·070's module time table: cards 1 3.0, 5 1.7, 6 2.3 so far), 03, 04, 07,
+  08 to Benches' shape (each with the Plot stand-in), revise 01 and 05 if they join the family, then raise the Symbols
+  switch (and `{en, fr}` text in a `.benchdrawing`) as crossings unless 505 took them.**
+- 2026-10-20 (session 3, later): owner *"go with your recommendations on the proposals"*: specs 01, 05, 06 → **spec-ready**
+  (decisions at the end of each §14). Card 6's 5 kΩ reference line → **X21, crossing 506** pushed. Waiting on 505 as above.
+- 2026-10-20: **parked, blocked on crossing 505** (owner: *"go to the next unit while we wait"*). Resume when Benches
+  answers 505: specs 02 (module time table), 03, 04, 07, 08; revise 01/05 if they join the family. U017 loaded.
+- 2026-10-21: **unblocked: crossing 505 answered** (Benches, 2026-10-21; `answered/505-benches-to-pbl2026-…`). Build as
+  proposed, with four corrections: (a) **plots (a) v_C(t) and (b) the shortfall 0–20 LSB belong to the scene**, drawn under
+  its circuit on its clock; write **no X10, X12 or X13 dependency**; (b) **cards 1 and 5 join** the scene (card 1 its
+  `reveal` build-up, card 5 `channels: 4`, the crosstalk fault by the same law): revise specs 01 and 05 to it, Draw stays
+  their stand-in; (c) **codes exact on a code edge** (integer arithmetic; *2047 or 2048* at 1.65 V); (d) **controls as
+  quantities with ranges** (R_s 500 Ω–270 kΩ, t_acq 0.5–5 µs, …), placed on the hardware (R_s a part; window and rate on
+  the firmware rows) in Benches' brief. Settled: scene `adc-sampler` (kind scene) and its `params`, one sequence library
+  per card, ghosts grey cleared by Reset, time slowed 2,500,000× at 1× and stated, IEC (US by **B064**, do not raise the
+  Symbols switch), no charge dots. Units **B054** (scene, cards 2, 3, 4) and **B055** (cards 1, 5, 7, 8). **506**
+  answered too: card 6's 5 kΩ line is B060's `references` with a `from` step (the harvest). Loaded after U020.
+  **Next:** write specs 02 (D1·070's module time table: cards 1 3.0, 5 1.7, 6 2.3 so far), 03, 04, 07, 08 to the scene,
+  each with the Plot block as stand-in; revise 01 and 05 to the family; update 06 for B060's shape; run A1–A7 on what is
+  produced; render the round on `u016-preview.html` for the owner.
 
-- 2026-10-21: owner *"Apply all recommendations"* (asked in the chat): **F1–F7 applied** to en.md and re-checked (Flow
-  2,045 words); D1 named-parts exception (memory `real-but-unbranded`), D2 redrawn extracts, D4 fault on the figure;
-  DECISIONS.md row. **Seven specs written** (`D2-020-01` to `07`, spec-draft; README rows), cards 26.6 of 30 min. The
-  specs found **seven more accuracy points, D2·020-F8 – F14 (open)**, and D2·030-F1 (for U021). Our own page fixed
-  (bandwidth home, INA226 has no reference block, pointer sentence, S52 cross-reference). **Round two is on the brief
-  page** (`#specs`: F8–F14 and C1–C7, each card's proposals). **Next: read the owner's round-two choices, apply, re-check,
-  set specs spec-ready, write the crossing(s) (card 4 with 511/517; card 1's X-inset; card 6 into 506), push.**

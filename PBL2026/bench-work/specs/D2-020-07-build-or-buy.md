@@ -5,12 +5,12 @@ module: notes/Day02/020-external-adcs/en.md
 bench: Figure                     # the PLAN's bench; the asset is ours to draw (D2); the FAULT on the same figure (D4)
 library: "ina226-build-or-buy: a Figure of two registered SVGs of our own, `figures/d2-020-ina226-fault.svg` (the base) and `figures/d2-020-ina226-calibrated.svg` (the `compare` overlay), identical above the seam's rest: the hand-built chain as seven glyphs tagged with their modules, laid over our redrawn INA226 block diagram (SBOS547C Figure 6-2, pins from Figure 4-1), column by column; below, five register readouts, as calibrated (10 mΩ) and as the FAULT (5 mΩ fitted, CAL still for 10 mΩ); eleven tour stops, the FAULT shown by the seam dragged down the readouts"
 dimensions: 2D
-stand_in: none                    # the Figure Bench and its `compare` exist; two conveniences are requested (§12), neither needed on the day
+stand_in: none                    # the Figure Bench and its `compare` exist; two conveniences go to Benches by crossing when the course needs them (§12, F-c7-5 decided; not raised now), neither needed on the day
 optional_benches: []
 real_thing: "the INA226 current and power monitor (TI SBOS547C, Aug 2026) on a 12 V high-side rail, 2 A through a 10 mΩ Kelvin-connected shunt (D1·050's and D1·060's values), CAL written for Current_LSB 100 µA and 10 mΩ, its registers read over I²C; then the same board fitted with 5 mΩ and the same CAL"
 minutes: 2.5                      # on the bench: from p3 (after the poll) to the card's end, p8 held (§2)
 card_minutes: 4.3
-status: spec-draft                # §14: F-c7-1 to F-c7-3 accuracy, F-c7-4 to F-c7-7 proposals, all open (round two)
+status: spec-ready                # F-c7-1 to F-c7-3 (accuracy D2·020-F9 to F11) and F-c7-4 to F-c7-6 decided 2026-10-21 (round two: all recommendations (a)) and applied; F-c7-7 reported; nothing open (the two seam conveniences, asked by crossing when needed, do not block)
 learner_action: poll
 predictions: []                   # the PLAN's poll has no right answer; nothing added
 seeds: [S51 (plant), S58 (plant)]
@@ -29,8 +29,18 @@ accuracy findings **D2·020-F6** (*"eight thousand counts of signal"*, card 7 Fl
 pair joined by a dashed leader; the shunt outside the package; the switch *Fitted 10 mΩ (as calibrated)* / *FAULT: fitted
 5 mΩ, CAL still for 10 mΩ*; readouts *shunt voltage, shunt register, current, power* reading 20.00 mV, 8000, 2.000 A,
 24.00 W, then 10.00 mV, 4000, 1.000 A, 12.00 W. This spec draws only what SBOS547C shows: `draw7`'s *internal reference*
-block is not on the datasheet's block diagram and becomes a marked empty slot (F-c7-4), and the package's outline moves
-from `azure` to the module palette's `amber` (F-c7-6).
+block is not on the datasheet's block diagram and becomes a marked empty slot (F-c7-4, decided), and the package's outline
+moves from `azure` to the module palette's `amber` (F-c7-6, decided).
+
+**Round two, 2026-10-21** (the U020 brief's *Specs: round two*; owner, in chat: *"Apply all recommended (a)"*): every item
+of §14 takes its recommended option (a), and the body below states the decided design. The three accuracy findings are
+applied in `en.md` and quoted as applied: **D2·020-F9** (F-c7-1, the statement ends *"…the shunt still ours."*),
+**D2·020-F10** (F-c7-2, the Look for's *"three Day 1 stages folding into one package (in-amp, ADC input, conversion; the
+reference is inside too, …)"*) and **D2·020-F11** (F-c7-3, the poll's explain *"the choice of shunt and gain together"*).
+Ours: the reference as an empty dashed slot with stop s5 and its ≈ 15 unscripted words (F-c7-4); the FAULT as a `compare`
+of two registered pictures, the tour-step seam and the seam's keys to be asked of Benches by crossing when the course needs
+them, not now (F-c7-5); all of F-c7-6's figure proposals and the teacher tip; the card's time reported (F-c7-7). No Flow
+word of card 7 changed in round two.
 
 **What the Figure Bench offers** (read 2026-10-21, read-only: `insight-core/src/registry/figureBlock.ts`,
 `canvas/src/figureTypes.ts`, `canvas/src/FigureBench.vue`): as `D2-010-04-interface-not-protocol.md` (`rect`/`path`
@@ -39,26 +49,29 @@ features, the eight colours, `label`/`note` `{en, fr}`, a mirrored `tour`, `reve
 a seam the presenter drags (mirrored as `wipe`, 0–1, quantised to 0.05, **starting at 0.5**, inert on the wall); the overlay
 owns everything past the seam; a feature's `on-click: compare` moves the seam to that feature's centre. **It has no state
 switch, no tour step that sets the seam, no keyboard on the seam, and it computes nothing** (nor may the wall). So the live
-FAULT is within its abilities only as **two drawn states and the seam between them**: §3a, §12, F-c7-5.
+FAULT is within its abilities only as **two drawn states and the seam between them**: §3a, §12, F-c7-5 (decided: (a)).
 
 ## 1. What the room must understand
 
 - **Statement** (verbatim): *The INA226 is the build-versus-buy decision for current sensing: the shunt-and-in-amp channel we
-  built on Day 1, offered as one part with a digital interface.* (F-c7-1, accuracy.)
+  built on Day 1, offered as one part with a digital interface, the shunt still ours.* (As applied: D2·020-F9, F-c7-1 (a),
+  decided 2026-10-21.)
 - **SHOW** (verbatim from the PLAN): *Figure — the INA226 block diagram (TI SBOS547) laid beside the Day 1 chain: external
   shunt (D1·050) → differential input riding on a 0–36 V common mode (D1·060) → 16-bit ADC → averaging and conversion-time
   settings → calibration, current and power registers → I²C.*
 - **Drive** (verbatim): *tour pairs each INA226 block with the Day 1 stage it replaces.*
-- **Look for** (verbatim, as applied, F7): *three Day 1 modules folding into one package, and two of today's firmware jobs
-  still to come, averaging and calibration, already in its registers. Then the FAULT below, live on the same figure: a
-  fitted-shunt switch (10 mΩ / 5 mΩ) and the register readouts halving.* (F-c7-2, accuracy.)
+- **Look for** (verbatim, as applied, F7 and D2·020-F10): *three Day 1 stages folding into one package (in-amp, ADC input,
+  conversion; the reference is inside too, but the datasheet draws no block or pin for it, so its slot is shown empty), and
+  two of today's firmware jobs still to come, averaging and calibration, already in its registers. Then the FAULT below,
+  live on the same figure: a fitted-shunt switch (10 mΩ / 5 mΩ) and the register readouts halving.* (F-c7-2 (a), decided
+  2026-10-21; on the figure the three stages are columns k1 and k2 and the empty slot is k3, §3a.)
 - **Status** (verbatim): *needs asset: our own redrawn INA226 block diagram (TI SBOS547C; 2.5 µV shunt LSB, ±81.92 mV full
   scale, averaging 1–1024, confirmed on the page 2026-10-20); no vendor page images*
 - **ASK, SEEDs and FAULT** (verbatim): §7a and §9.
 - **Bench and library.** The **bench** is the Figure Bench. The **library** is this card's figure, `ina226-build-or-buy`:
   two registered SVGs of ours and one `figure` block (§3b).
-- **Insight**: *the INA226 does, inside one package, the jobs of Day 1's conditioning, conversion and reference and two of
-  today's firmware jobs; the shunt and its Kelvin connection stay mine; and its calibration register is a new single point
+- **Insight**: *the INA226 does, inside one package, the jobs of Day 1's conditioning, ADC input and conversion (its
+  reference inside too, undrawn) and two of today's firmware jobs; the shunt and its Kelvin connection stay mine; and its calibration register is a new single point
   of failure: written for the wrong shunt, every current and power reads off by the ratio, steadily, with no flag.*
 - **Kind of knowledge**: *a picture built up* (the pairing, column by column) and then *a contrast between two states* (as
   calibrated / FAULT). Card test → **Figure** (a diagram toured, two registered pictures). B15 applies (the hand-built row and
@@ -84,7 +97,7 @@ removed, `*()` stripped, tokens with a letter or digit), **2.69 min** at 130 wpm
 | s2 inputs: p4 *"Its inputs measure… with the in-amp."* (38) | 0.29 | 38 ÷ 130 |
 | s3 converter: p4 *"Behind them is a 16-bit converter,"* (6) | 0.05 | 6 ÷ 130 |
 | s4 I²C: p4 *"and behind that, registers you read over I²C."* (8) | 0.06 | 8 ÷ 130 |
-| s5 reference (F-c7-4): unscripted, ≈ 15 words: *"No reference pin: the reference is inside, so one count is a fixed 2.5 microvolts."* | 0.12 | 15 ÷ 130, an estimate |
+| s5 reference (F-c7-4, decided (a)): unscripted, ≈ 15 words: *"No reference pin: the reference is inside, so one count is a fixed 2.5 microvolts."* | 0.12 | 15 ÷ 130, an estimate |
 | s6 shunt register: p5 *"One count of shunt voltage is 2.5 µV…"* (40), S51 | 0.31 | 40 ÷ 130 |
 | s7 averaging: p6 *"Look at two more registers. One sets averaging…"* (14) | 0.11 | 14 ÷ 130 |
 | s8 calibration: p6 *"Another is a calibration register…"* (30), S58 | 0.23 | 30 ÷ 130 |
@@ -93,10 +106,12 @@ removed, `*()` stripped, tokens with a letter or digit), **2.69 min** at 130 wpm
 | s10 held: p8 *"[[transition]] Go back to the ADS1115's datasheet…"* (51) | 0.39 | 51 ÷ 130 |
 | **Card total / of which on the bench** | **4.3 / 2.5** | 4.30 / 2.52 (2.69 Flow + 1.34 poll window + 0.27 unscripted) |
 
-**Module check** (targetMinutes 30): the module's Flow is 2,045 words = **15.7 min**; with the activities (card 2 poe 1,
-card 3 flash 1, card 4 checkpoint 3, card 5 poe 1 and numeric 1, card 6 two numerics 2, this card's poll 1.5: 10.5 min) and
-≈ 3 min of bench moves mostly over speech (this card's ≈ 35 unscripted words, 0.27 min, are part of them), the brief's
-estimate stands: **≈ 29–30 of 30 min**. This card is ≈ 4.3 of it. Reported, not cut. The two shortest stops, s3 and s4
+**Module check** (targetMinutes 30): the module's Flow was 2,045 words = 15.7 min when this spec was written, and is
+**2,116 words = 16.3 min** after round two (`en.md`, 2026-10-21, the same count: card 6's new I²C-clock ask and reveal
+add 71; card 7's 350 unchanged); with the activities (card 2 poe 1, card 3 flash 1, card 4 checkpoint 3, card 5 poe 1 and
+numeric 1, card 6 two numerics 2, this card's poll 1.5: 10.5 min) and ≈ 3 min of bench moves mostly over speech (this
+card's ≈ 35 unscripted words, 0.27 min, are part of them), the module is **≈ 29.8, about 30 of 30 min** (it was ≈ 29–30 at
+the brief). This card is ≈ 4.3 of it. Reported, not cut (F-c7-7). The two shortest stops, s3 and s4
 (6 and 8 words), are a click each inside one sentence; the presenter may light s3 and run on (B1 holds: each is a causal
 boundary of the chain).
 
@@ -133,6 +148,12 @@ row), joined by a dashed vertical leader at the column's centre (y 190–240).
 | k5 | `amber`, dashed (later today) | *y = a·x + b* | *D2·050* |
 | k6 | `violet`, solid | two lines *SDA*, *SCL* | *D2·010* |
 
+**The Look for's count, on the figure** (D2·020-F10 as applied): its *"three Day 1 stages"*, *in-amp, ADC input,
+conversion*, are the teal columns k1 (*D1·060*) and k2 (*D1·070–080*: the INA226 does both in one block, the two channels
+taking turns at the converter's input and the ΔΣ conversion, so one column carries both tags and its label names both,
+§3b feature 3); its *"the reference is inside too … so its slot is shown empty"* is k3 (*D1·090* over the empty dashed
+slot). k0's shunt stays outside, as the statement now says (*"the shunt still ours"*).
+
 **The shunt, outside the package** (k0, y 260–520): a *12.00 V* rail enters at the top; the shunt *R_SHUNT* (IEC resistor,
 heavy force path) runs down to *load* (an arrow, labelled *2.000 A*). Two thin sense wires (Kelvin) leave the shunt's two
 ends for the package's **IN+** (supply side) and **IN−** (load side) pins; **VBUS** is tapped from the IN− node (as
@@ -146,7 +167,7 @@ row, so the two pictures stay identical above the seam.
 | left edge | pins **IN+** (10) y 300, **IN−** (9) y 380, **VBUS** (8) y 460 | names inside the edge, pin numbers outside | Figure 4-1 |
 | k1 | *shunt voltage channel*: IN+, IN− in; *0–36 V*, *±81.92 mV* | the shunt voltage measured as a difference, both inputs on the bus's common mode | Figure 6-2 (channel name), §3, §6.3.1, §5.5 |
 | k2 | one converter box *ΔΣ ADC*, *16 bit*; two inputs: the shunt channel from k1, the bus channel from VBUS (routed along y 460 under k1) | two channels, one converter, in turn | Figure 6-2, §6.3.1, §6.4.2, §5.5 |
-| k3 | **an empty slot, dashed neutral outline**, *V_REF* struck through with a short stroke: nothing drawn inside | the datasheet shows no reference and has no reference pin (F-c7-4) | Figure 6-2, Figure 4-1 |
+| k3 | **an empty slot, dashed neutral outline**, *V_REF* struck through with a short stroke: nothing drawn inside | the datasheet shows no reference and has no reference pin (F-c7-4, decided (a)) | Figure 6-2, Figure 4-1 |
 | k4 | register *Config 00h*, field *AVG 1…1024*, *CT 140 µs…8.244 ms*; a dashed control line back to the ADC | the averaging and conversion-time settings, drawn as the register that sets them, beside the data path, not on it | Table 7-1, Tables 7-2 to 7-5 |
 | k5 | register *CAL 05h* (R/W) and two multipliers *×* on the data line: shunt × CAL → *Current 04h*; current × bus → *Power 03h* | the internal multiplier (§3) and the two products of Figure 6-2 | Figure 6-2, §6.5 Equations 1, 3, 4 |
 | k6 | *I²C* interface block; pins **SDA** (4) y 280, **SCL** (5) y 345 (`violet`), **ALERT** (3) y 410, **A0 A1** (2, 1) y 475, names inside the right edge, stubs out to x 1590; *A0, A1 → GND: 1000000* under the A0 A1 stub | the interface; the address the strapping gives; ALERT as an output pin | Figure 4-1, Table 6-2, §6.3.1.2, §6.5.5 |
@@ -202,7 +223,7 @@ Features (fractions of 1600 × 1100; columns x = (40 + 220k)/1600, w 0.125, y 70
 |---|---|---|---|---|---|
 | 1 | `col-shunt` | [0.025, 0.0636, 0.125, 0.4] | `teal` | *shunt, outside: D1·050* · *shunt, à l'extérieur : D1·050* | *You choose it, and you still connect it Kelvin: sense wires from its two ends to IN+ and IN− (§8.4.1).* · *C'est vous qui le choisissez, et vous le raccordez toujours en Kelvin : des fils de mesure de ses deux bornes vers IN+ et IN− (§8.4.1).* |
 | 2 | `col-inputs` | [0.1625, 0.0636, 0.125, 0.4] | `teal` | *differential input on a 0–36 V common mode: D1·060* · *entrée différentielle sur un mode commun de 0–36 V : D1·060* | *The voltage across the shunt, measured as a difference while both inputs sit on the bus; common-mode rejection 126 dB minimum (§5.5).* · *La tension aux bornes du shunt, mesurée comme une différence pendant que les deux entrées sont au potentiel du bus ; réjection du mode commun 126 dB au minimum (§5.5).* |
-| 3 | `col-adc` | [0.3, 0.0636, 0.125, 0.4] | `teal` | *one 16-bit ΔΣ converter, two channels: D1·070–080* · *un seul convertisseur ΔΣ 16 bits, deux voies : D1·070–080* | *The shunt voltage and the bus voltage take turns on one converter (§6.3.1), a delta-sigma sampling at about 500 kHz (§6.4.2).* · *La tension de shunt et la tension de bus passent à tour de rôle dans un seul convertisseur (§6.3.1), un sigma-delta échantillonnant à environ 500 kHz (§6.4.2).* |
+| 3 | `col-adc` | [0.3, 0.0636, 0.125, 0.4] | `teal` | *ADC input and conversion: one 16-bit ΔΣ converter, two channels: D1·070–080* · *entrée de l'ADC et conversion : un seul convertisseur ΔΣ 16 bits, deux voies : D1·070–080* | *The shunt voltage and the bus voltage take turns on one converter (§6.3.1), a delta-sigma sampling at about 500 kHz (§6.4.2).* · *La tension de shunt et la tension de bus passent à tour de rôle dans un seul convertisseur (§6.3.1), un sigma-delta échantillonnant à environ 500 kHz (§6.4.2).* |
 | 4 | `col-i2c` | [0.85, 0.0636, 0.125, 0.4] | `violet` | *I²C: D2·010* · *I²C : D2·010* | *On our path the bus comes before the firmware; here the averaging and the scaling are done before the bus.* · *Sur notre chaîne, le bus vient avant le micrologiciel ; ici, le moyennage et la mise à l'échelle sont faits avant le bus.* |
 | 5 | `col-ref` | [0.4375, 0.0636, 0.125, 0.4], `line: dashed` | `teal` | *no reference pin: D1·090* · *pas de broche de référence : D1·090* | *The reference is inside: one count is a fixed 2.5 µV of shunt and 1.25 mV of bus, and the datasheet specifies it only through the gain error, 0.1 % maximum (§5.5).* · *La référence est interne : un pas vaut 2.5 µV de shunt et 1.25 mV de bus, et la fiche technique ne la spécifie qu'à travers l'erreur de gain, 0.1 % au maximum (§5.5).* |
 | 6 | `row-shunt` | [0.025, 0.6109, 0.95, 0.0782] | `amber` | *Shunt 01h: 2.5 µV per count* · *Shunt 01h : 2.5 µV par pas* | *2 A × 10 mΩ = 20 mV = 8000 counts. Full scale ±81.92 mV.* · *2 A × 10 mΩ = 20 mV = 8000 pas. Pleine échelle ±81.92 mV.* |
@@ -226,7 +247,7 @@ Tour order: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 (the feature numbers are the tour's; t
 | 2 | `col-inputs` | p4 *"Its inputs measure the voltage across the shunt as a difference…"* | The in-amp's job: a difference on a 0–36 V common mode. | Next |
 | 3 | `col-adc` | p4 *"Behind them is a 16-bit converter,"* | One 16-bit ΔΣ converter, shared by the shunt and the bus. | Next |
 | 4 | `col-i2c` | p4 *"and behind that, registers you read over I²C."* | The registers, read over I²C, after the averaging and scaling. | Next |
-| 5 | `col-ref` (F-c7-4) | unscripted (§2) | No reference pin: the reference is inside. | Next |
+| 5 | `col-ref` (F-c7-4, decided (a)) | unscripted (§2) | No reference pin: the reference is inside. | Next |
 | 6 | `row-shunt` | p5 *"One count of shunt voltage is 2.5 µV…"*, S51 | 2 A through 10 mΩ: 20 mV, 8000 counts. | Next |
 | 7 | `col-avg` | p6 *"Look at two more registers. One sets averaging…"* | Averaging, 1 to 1024: D2·040's job, in a register. | Next |
 | 8 | `col-cal` | p6 *"Another is a calibration register…"*, S58 | Calibration and scaling: D2·050's job, in a register. | Next |
@@ -260,7 +281,8 @@ inert); in Study and Scope the learner, who drags the seam (the key variable, on
 - **The presenter's strip** (B20): *stop n / 10*, the next stop's `say` and the Flow clause it waits for; at s5 and s10 the
   unscripted lines of §2; at s10 *"drag the seam to the bottom: five rests, one row each"*; the teacher tip.
 - **Keys** (C5): the tour's keys. **The seam has no keyboard and no tour step** (read 2026-10-21): the presenter drags it in
-  the presenter's window (a pointer, one gesture). Both are requested (§12); not needed on the day.
+  the presenter's window (a pointer, one gesture). Both go to Benches by crossing when the course needs them (§12, F-c7-5
+  decided); not needed on the day.
 - **Study / Scope**: the walk learner-paced; the seam the learner's to drag; the `band` feature's note is the reveal's
   explanation.
 - **Phone** (C6): the figure full width; the zoom targets `chain` (top half) and `registers` (the band) each fill the width;
@@ -284,10 +306,11 @@ Title *INA226: built by hand, or bought*; the caption under the figure.
 
 - **7a. The PLAN's ASK** (verbatim): *poll (after the statement) — "Build the Day 1 chain, or buy the INA226? Name one thing
   that would push you each way." · options: Build | Buy | It depends on … · explain: The reasons named in chat become the
-  trade: cost, board area and a calibrated block on one side; choice of shunt, bandwidth and knowing every stage on the
-  other. · depth: create · practice: arguing from evidence.* It fires at p1, **after the statement and p0, before s0**, on
-  the statement's card; the figure does not answer it (there is no right answer), it prices the two choices, and s10 adds
-  the one cost the room is unlikely to name. (The explain's *"choice of shunt"*: F-c7-3, accuracy.)
+  trade: cost, board area and a calibrated block on one side; the choice of shunt and gain together, bandwidth and knowing
+  every stage on the other. · depth: create · practice: arguing from evidence.* It fires at p1, **after the statement and
+  p0, before s0**, on the statement's card; the figure does not answer it (there is no right answer), it prices the two
+  choices, and s10 adds the one cost the room is unlikely to name. (The explain's *"the choice of shunt and gain together"*
+  as applied: D2·020-F11, F-c7-3 (a), decided 2026-10-21.)
 - **SEEDs** (verbatim): *SEED plants S51 — "Two amps through a ten-milliohm shunt is twenty millivolts: eight thousand of the
   INA226's 2.5-microvolt counts of signal. Remember that pair: two amps, ten milliohms."* · *SEED plants S58 — "Look at two
   of its registers: averaging, and calibration. The INA226 does in silicon two jobs our firmware is about to do by hand."*
@@ -297,7 +320,7 @@ Title *INA226: built by hand, or bought*; the caption under the figure.
   has just been told the scale chain at s8, so a learner in Study can predict the rows before dragging.
 - **7c. After**: the poll's explain. In Study, done means the poll answered and the walk reached s10 with the seam at the
   bottom (the FAULT seen).
-- **7d. Teacher tip** (F-c7-6, Proposal), presenter only: *Expect "buy, obviously". Ask: what if the current has fast edges
+- **7d. Teacher tip** (F-c7-6, decided: taken), presenter only: *Expect "buy, obviously". Ask: what if the current has fast edges
   you must see? The fastest conversion is 140 µs (§5.5), so a shunt-only stream tops out near 7,000 readings a second, and
   there is no bandwidth to choose beyond the conversion time and averaging. And when the room says "calibrated block": the
   CAL register holds the scale, so it is only as right as the shunt value someone typed. The datasheet's own fix is a
@@ -369,7 +392,9 @@ D1·060 *Differential gain: amplify the difference*, *CMRR decides whether high-
 D1·070 *One capacitor, many inputs* (channels and multiplexing) ✓; D1·080 *Sigma-delta: fast and coarse, then filtered* ✓;
 D1·090 *A code is a ratio to the reference* ✓; D2·010 the digital interface ✓; D2·040 averaging (S58's harvest) ✓; D2·050
 *Scaling: from code to engineering unit* and *Calibration: compare with a known reference* ✓. Card 4's homes agree (Interface
-D2·010, Calibration requirements D2·050 later today; Multiplexing and Number of channels D1·070).
+D2·010, Calibration requirements D2·050 later today; Multiplexing and Number of channels D1·070). The Look for's stage names
+as applied (*in-amp, ADC input, conversion*, and the reference) are card 4's stages *conditioning (D1·060)* (whose part is
+the in-amp), *ADC input (D1·070)*, *conversion (D1·080)* and *reference (D1·090)*, and land on k1, k2 and k3 as §3a says ✓.
 
 **Section D, Figure rows**
 - [x] Our own drawing, redrawn from SBOS547C (D2), cited in the caption (*Redrawn from TI SBOS547C …*); no logo, no vendor
@@ -384,7 +409,8 @@ sourced); A2 ✓ (the FAULT as the device behaves: the shunt register true, only
 offset, gain error, CMRR in §9); A3 ✓ (the INA226 package drawn to its block diagram and pins, IEC); A4 n/a (no
 instrument is imitated; the registers are read as registers, decimal); A5 ✓ (no motion; time scale *none*); A6 ✓
 (simplifications labelled: *VS and GND not drawn*, the reference slot struck and noted, the caption's operating point);
-A7: S51 and S58 against their harvests, and three findings in the owner's text: below and §14; A8 ✓ (sources: SBOS547C,
+A7: S51 and S58 against their harvests, and three findings in the owner's text, decided 2026-10-21 and applied (below and
+§14); A8 ✓ (sources: SBOS547C,
 the module files).
 
 **Course accuracy A1–A7** (on the owner's current text):
@@ -401,13 +427,19 @@ the module files).
   are the INA226's first four settings ✓. **Flag only**: *"an averaging register"* is loose (averaging is the AVG field of the
   Configuration register; this card's p6 says *"One sets averaging"*, which is exact, and the figure labels *Config 00h,
   AVG*); D2·040's unit may say *"an averaging setting"*. Day 1's values (10 mΩ, 2 A, 12 V) are this card's ✓.
-- A5 ✓ against SBOS547C (above). **The statement's *"offered as one part"*: F-c7-1.**
-- A6: *"nothing complains"* ✓ (OVF, AFF); *"a channel specified as a whole"* ✓; **the Look for's *"three Day 1 modules"*:
-  F-c7-2; the poll's explain *"choice of shunt"*: F-c7-3.**
+- A5 ✓ against SBOS547C (above). The statement's *"offered as one part"* was F-c7-1 (D2·020-F9); as applied, *"…offered as
+  one part with a digital interface, the shunt still ours."* agrees with p4 (*"The shunt stays outside: you choose it."*),
+  Figure 6-2 and the figure's k0 ✓.
+- A6: *"nothing complains"* ✓ (OVF, AFF); *"a channel specified as a whole"* ✓. The Look for's *"three Day 1 modules"* was
+  F-c7-2 (D2·020-F10); as applied, *"three Day 1 stages … (in-amp, ADC input, conversion; the reference is inside too, but
+  the datasheet draws no block or pin for it, so its slot is shown empty)"*: three stages, k1 and k2, and the reference
+  named apart, k3; no block or pin for it on Figure 6-2 or Figure 4-1 ✓. The poll's explain *"choice of shunt"* was F-c7-3
+  (D2·020-F11); as applied, *"the choice of shunt and gain together"*: the INA226's range fixed at ±81.92 mV, so 1 A on
+  10 mΩ is 10 mV = 4,000 counts, 12.2 % of 32,768 ✓, and filling it needs 81.92 mV / 1 A ≈ 82 mΩ ✓.
 - A7 ✓: every fact cited to SBOS547C's section, table or figure.
 
 **Our own discrepancies, fixed before sending**: `draw7`'s *internal reference* block (not on Figure 6-2) → the empty slot
-(F-c7-4 asks the owner); `draw7`'s package outline `azure` → `amber` (the module palette: the external converter is amber;
+(F-c7-4, decided (a) 2026-10-21); `draw7`'s package outline `azure` → `amber` (the module palette: the external converter is amber;
 azure is card 5's common-mode); `draw7` printed the shunt row and current rows alike, so the FAULT read as *everything
 halves*: the shunt row is now neutral and marked true; a first draft of the `compare` label had its halves the wrong way
 round (the overlay owns the part below the seam), fixed in §3b.
@@ -439,7 +471,7 @@ Not shown, said if asked (§7d), each sized:
   wire, a leader or the seam at rest.
 - Reduced motion (C3): every stop at once; the seam moves only under a hand, and each rest is a whole state.
 - Colour (C4): §3a's second channels (outline, dash, tag, *≠*, *✗*, the selector's filled position).
-- Keyboard (C5): the tour's keys; the seam pointer-only today (§12 requests keys).
+- Keyboard (C5): the tour's keys; the seam pointer-only today (its keys to be asked of Benches by crossing, §12).
 - Print (C8): s10a and s10b side by side with their rows, the key, and the caption; s6 for S51.
 
 ## 11. Assets to make or source
@@ -464,27 +496,33 @@ positions fall on the band's row boundaries by design (§3a). As **computed read
 has no state, no switch and no arithmetic, and the wall computes nothing. The values are therefore computed here (§8) and
 drawn.
 
-**Missing, to request from the Benches lane as a crossing when the course needs them** (neither blocks the day; F-c7-5):
+**Missing, to request from the Benches lane as a crossing when the course needs them** (F-c7-5 (a), decided 2026-10-21:
+not raised now; neither blocks the day, and the card runs on `compare` as it exists):
 1. **A tour step that sets the seam** (`tour[].wipe`), so *Next* lands it at each row (the clicker drives the FAULT, B12,
    C5), and an author-set starting position (`compare.start`).
 2. **Keyboard on the seam** (arrow keys by 0.05), C5.
 
 **Not this bench's**: computing the register chain for any shunt (the Equation Bench would: CAL, Equations 3 and 4, with
-R_fitted on a slider; F-c7-5 (b)).
+R_fitted on a slider; F-c7-5's option (b), not chosen).
 
 ## 13. Stand-in for the lecture
 
 None needed: the Figure Bench and `compare` exist, and the presenter drags the seam in the presenter's window. Without the
-requested tour-step seam, s10 is one pointer gesture instead of five clicks; nothing on the wall differs. If the render
-check (§10, §15) finds the seam's grip unfit on the wall at its 0.5 rest, the fallback is F-c7-5 (b), the Equation Bench
-after s9, with the same numbers (§8). The SVGs are the target's own assets.
+tour-step seam (to ask by crossing when needed, §12), s10 is one pointer gesture instead of five clicks; nothing on the
+wall differs. If the render check (§10, §15) finds the seam's grip unfit on the wall at its 0.5 rest, the fallback is
+F-c7-5's option (b), the Equation Bench after s9, with the same numbers (§8), put to the owner then (the decided design is
+(a)). The SVGs are the target's own assets.
 
 ## 14. Findings for the owner
 
-**Three accuracy findings in the owner's text** (F-c7-1 to F-c7-3; each to `ACCURACY.md` as **open** by the lead, and each
-blocks the module until decided). Then four items of ours. **All open (round two).**
+**Three accuracy findings in the owner's text** (F-c7-1 to F-c7-3, logged in `ACCURACY.md` as **D2·020-F9 to F11**). Then
+four items of ours. **All decided 2026-10-21, round two** (owner, in chat: *"Apply all recommended (a)"*), each kept as it
+was put, the decision marked, and **applied**: the three accuracy findings in `en.md` (quoted in §1 and §7a as applied), the
+rest in this spec's body. Nothing is open on this card.
 
 - **F-c7-1 (accuracy, A5/A4) — the statement's *"the shunt-and-in-amp channel we built on Day 1, offered as one part"*.**
+  **Decided: (a)** (D2·020-F9, applied: the statement ends *"…offered as one part with a digital interface, the shunt still
+  ours."*).
   The INA226 does not contain the shunt: IN+ and IN− connect to an external one (Figure 4-1, §6.3.1, §8.4.1), and this card's
   own p4 says *"The shunt stays outside: you choose it."*, and its figure draws it outside. Read on the wall beside that
   figure, the statement says the opposite. Options:
@@ -493,14 +531,21 @@ blocks the module until decided). Then four items of ours. **All open (round two
   - (b) *"…the in-amp, converter and firmware of the channel we built on Day 1, offered as one part with a digital
     interface."* (a rewrite naming what is inside);
   - (c) keep (the *"channel"* read as the measurement electronics around a shunt).
-- **F-c7-2 (accuracy, A1) — the Look for's *"three Day 1 modules folding into one package"*.** Counted against the pairing
-  the PLAN asks for and the brief drew, the package takes over the jobs of **four** Day 1 modules (D1·060 conditioning,
+- **F-c7-2 (accuracy, A1) — the Look for's *"three Day 1 modules folding into one package"*.** **Decided: (a)**
+  (D2·020-F10). **How it was applied, and why it differs from (a)'s gloss below:** the option named the three stages as
+  *"the in-amp, the converter, the reference"*; the applied text names them *"in-amp, ADC input, conversion"* and the
+  reference apart (*"the reference is inside too, but the datasheet draws no block or pin for it, so its slot is shown
+  empty"*), because F-c7-4 (a), decided with it, draws no reference block (the empty dashed slot), and a stage the figure
+  shows as empty cannot be one of the three it pairs. The register (`ACCURACY.md`) records it so; this spec follows the
+  applied text everywhere (§1, §3a, §8). Counted against the pairing the PLAN asks for and the brief drew, the package takes over the jobs of **four** Day 1 modules (D1·060 conditioning,
   D1·070 ADC input, D1·080 conversion, D1·090 reference) and D1·050's shunt stays outside; the brief's own words were *"the
   in-amp, the converter and the reference fold into the package"*, three **stages**. Options:
   - (a) *"three Day 1 stages folding into one package"* (one word; **recommended**: the in-amp, the converter, the reference);
   - (b) *"four Day 1 modules (060–090) folding into one package"*;
   - (c) keep.
 - **F-c7-3 (accuracy, A4/A6) — the poll's explain, *"…choice of shunt, bandwidth and knowing every stage on the other"*.**
+  **Decided: (a)** (D2·020-F11, applied: *"…the choice of shunt and gain together, bandwidth and knowing every stage on the
+  other."*).
   *Choice of shunt* is given as a reason to **build**, but with the INA226 the shunt is also the designer's choice (p4). What
   building adds is the **gain** to go with it: the INA226's input range is fixed at ±81.92 mV in 2.5 µV counts, so a 1 A
   channel on 10 mΩ uses 10 mV, 4,000 counts, 12 % of the range; filling it needs ≈ 82 mΩ (82 mW at 1 A), where a built
@@ -509,7 +554,8 @@ blocks the module until decided). Then four items of ours. **All open (round two
     **recommended**);
   - (b) *"…a gain to suit any shunt, bandwidth and knowing every stage on the other."*;
   - (c) keep.
-- **F-c7-4 — Proposal: the reference, as the datasheet shows it.** The task and the brief pair D1·090 with an *internal
+- **F-c7-4 — Proposal: the reference, as the datasheet shows it.** **Decided: (a)** (the empty dashed slot k3, stop s5 and
+  its ≈ 15 unscripted words; §2, §3a, §3b feature 5, §4a). The task and the brief pair D1·090 with an *internal
   reference*, and `draw7` drew it as a block; SBOS547C's block diagram shows none and the part has no reference pin (§8).
   Options:
   - (a) column k3 as an **empty dashed slot**, *V_REF* struck, the note *"The reference is inside … specifies it only through
@@ -519,7 +565,9 @@ blocks the module until decided). Then four items of ours. **All open (round two
   - (b) no k3 column: D1·090's tag shares k2's top box (*D1·070–090*) and the note goes on s3 (no unscripted stop; six
     columns, as `draw7`);
   - (c) `draw7`'s *internal reference* block (not on the datasheet: against D2).
-- **F-c7-5 — Proposal: how the FAULT is carried (D4).** The Figure Bench cannot switch or compute (§12). Options:
+- **F-c7-5 — Proposal: how the FAULT is carried (D4).** **Decided: (a)** (the `compare` of two registered pictures, §3a,
+  §3b; the tour-step seam and the seam's keys to be asked of Benches by crossing **when the course needs them, not now**,
+  §12). The Figure Bench cannot switch or compute (§12). Options:
   - (a) `compare`: two registered pictures, the seam resting in the gap and dragged down the five rows (exists), with the
     tour-step seam and seam keys requested from Benches by crossing when the course needs them (**recommended**: on the same
     figure as D4 decided, and the cue travels the causal chain row by row);
@@ -533,12 +581,23 @@ blocks the module until decided). Then four items of ours. **All open (round two
   neutral and true in the FAULT; stop s9 on the package at p7 (*"specified as a whole"*: offset and gain error); VS and GND
   not drawn, said in the caption; the teacher tip (§7d); p8 held on the figure (its *"go back to the ADS1115's datasheet"* is
   spoken; card 5's noise table is one click back in Study). Options: (a) all (**recommended**); (b) the palette, the shunt
-  row and the caption only; (c) none (`draw7` as drawn, the reference as F-c7-4 decides).
+  row and the caption only; (c) none (`draw7` as drawn, the reference as F-c7-4 decides). **Decided: (a), all** (§3a, §3b,
+  §4a, §7d, §9).
 - **F-c7-7 — The card's time, 4.3 min** (2.5 on the bench), with ≈ 35 unscripted words (s5, s10); the module ≈ 29–30 of 30.
-  Reported only.
+  Reported only. **Reported, and taken as reported**: the card unchanged in round two; the module ≈ 29.8 of 30 after round
+  two's 71 words in card 6 (§2). Nothing is cut.
 
-**Flags, not findings on this card** (§8 A4): D2·090's S51 harvest *"on the INA226 this morning"* is DAY23-F1's (open);
-D2·040's S58 harvest *"an averaging register"* is loose wording for D2·040's unit.
+**Flags, not findings on this card** (§8 A4), unchanged by round two: D2·090's S51 harvest *"on the INA226 this morning"*
+is DAY23-F1's (open); D2·040's S58 harvest *"an averaging register"* is loose wording for D2·040's unit (U022).
+
+**Decided 2026-10-21, round two (owner: *"Apply all recommended (a)"*):** F-c7-1 (a), F-c7-2 (a), F-c7-3 (a) applied in
+`en.md` as D2·020-F9 to F11 (the script panel's arc synced for F9, as the register records); F-c7-4 (a) the empty reference slot and s5; F-c7-5 (a)
+`compare`, the two seam conveniences to ask by crossing when needed; F-c7-6 (a) all; F-c7-7 reported. Applied in §1, §2,
+§3a, §3b (feature 3's label now names *ADC input and conversion*, so the column agrees with the applied Look for), §4a, §5,
+§7, §8, §10, §12, §13. **Accuracy re-run on what changed** (A1–A7, Node, 2026-10-21): the statement, the Look for and the
+explain as applied against p4, SBOS547C (Figure 6-2, Figure 4-1) and the figure's columns ✓ (§8); 10 mV / 2.5 µV = 4,000
+counts, 4,000 / 32,768 = 12.2 % ✓; the card's Flow 350 words, unchanged; the module's Flow 2,116 words (16.28 min) ✓. Every
+register value of §8 is as before. **Nothing is open on this card**; the spec is **spec-ready**.
 
 ## 15. Acceptance: how we know it is built right
 
@@ -556,7 +615,7 @@ D2·040's S58 harvest *"an averaging register"* is loose wording for D2·040's u
   and values only; B14 values on their rows and blocks; B15 the two rows, then the pairs; B16 picture, values, seam; B17 the
   two states at one seam; B20 the unscripted lines and the tip on the strip.
 - C2 legible at 1920 × 1080 and 1024 × 768 (both pictures, EN and FR keys); C3 each rest a whole state; C4 §3a's second
-  channels; C5 the tour's keys (the seam's keys requested); C6 at 320 px with `chain` and `registers`; C8 s10a and s10b.
+  channels; C5 the tour's keys (the seam's keys to ask of Benches by crossing when needed); C6 at 320 px with `chain` and `registers`; C8 s10a and s10b.
 - E1–E6, both themes, EN and FR.
 - **Six gates (this spec)**: (1) realism: the INA226 drawn from its own block diagram and pins, the Kelvin shunt on Day 1's
   12 V rail, the registers as the part reports them, decimal, with its real flags ✓; (2) science: one shared ΔΣ converter,
@@ -566,5 +625,6 @@ D2·040's S58 harvest *"an averaging register"* is loose wording for D2·040's u
   drawing ✓; (4) visualization: each pair in one column, the cause before its effects down the seam, the true row set
   against the wrong ones ✓; (5) consistency: the module palette (package amber, fixed from `draw7`'s azure), Day 1's 10 mΩ,
   2 A and 12 V, card 4's homes, S51 and S58 against their harvests (two flags for other units), three accuracy findings
-  raised, not fixed ✓; (6) design: rests in gaps, labels clear of every line at rest, type at the floor by arithmetic with
+  raised, never fixed silently, decided by the owner and applied in `en.md` (D2·020-F9 to F11), the Look for's three stages
+  agreeing with the figure's columns (§3a) ✓; (6) design: rests in gaps, labels clear of every line at rest, type at the floor by arithmetic with
   the key as the fallback for second lines, one picture for EN and FR ✓ on paper, to check on the render.

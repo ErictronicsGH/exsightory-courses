@@ -3,14 +3,14 @@ id: D2-020-03-what-does-my-signal-require
 card: "Not \"which has the most bits?\""
 module: notes/Day02/020-external-adcs/en.md
 bench: Plot                       # card 1's plot again (the PLAN's SHOW, Status: ready); no new library, no new drawing
-library: "bridge-on-two-staircases (card 1's, `D2-020-01-integrated-not-enough.md` §3): showing D, a verbatim copy of card 1's showing B — the 0–5 mV input dashed, the MCU's 12-bit 3.3 V staircase (0.806 mV steps, codes 0–6, teal) and the ADS1115's on ±0.256 V (7.8125 µV steps, 640 across 5 mV, amber); defined in this card's own `plot` block"
+library: "bridge-on-two-staircases (card 1's, `D2-020-01-integrated-not-enough.md` §3): showing D, a verbatim copy of card 1's showing B (F-c3-2 (a), decided) — the 0–5 mV input dashed, the MCU's 12-bit 3.3 V staircase (0.806 mV steps, codes 0–6, teal) and the ADS1115's on ±0.256 V (7.8125 µV steps, 640 across 5 mV, amber, labelled \"±0.256 V at the default\"), with card 1's range slider `g` (card 1's F-c1-4 (a), default ±0.256 V); defined in this card's own `plot` block"
 dimensions: 2D
-stand_in: "none for the block (card 1's fields); the flash takes the wall when it opens (widget-focus), so the plot is on the statement slide for p1–p2 and the flash follows (F-c3-1 (a)); a flash that keeps the Canvas is X22, with the owner (F-c3-1 (b)); on the target (X-inset, X10) the copy is card 1's one block at its last state, the magnifier inset included (F-c3-2)"
+stand_in: "none for the block (card 1's fields): until X-inset (card 1's crossing 524) the copy is card 1's showing B, both staircases (F-c3-2 (a), decided); the flash takes the wall when it opens (widget-focus), so the plot is on the statement slide for fence 1 (p1–p2) and the flash follows with fence 2 (p3–p4) (F-c3-1 (a), decided, applied in en.md); a flash that keeps the Canvas is X22, this card added to it, with the owner (F-c3-1 (b), decided); on the target (X-inset, X10) the copy is card 1's one block at its last state, the magnifier inset included"
 optional_benches: []
 real_thing: "card 1's: a strain-gauge bridge's few millivolts on the course's MCU converter and on a TI ADS1115 at ±0.256 V (SBAS444E Table 7-1); ideal quantizers, step size only"
 minutes: 0.2                      # on the bench: the statement slide, p1–p2 (§2)
 card_minutes: 1.2                 # the whole card, the flash included (§2)
-status: spec-draft
+status: spec-ready                # D2·020-F2, D1, D3 applied; F-c3-1 (a) and (b), F-c3-2 (a), F-c3-3 (a) decided 2026-10-21 (round two: all recommendations) and applied; nothing open (X22 and X-inset not yet built do not block)
 learner_action: flash
 predictions: []                   # the flash is the PLAN's; the plot is the evidence it is asked over
 seeds: []
@@ -25,7 +25,14 @@ parts named in this module) and **D3** (a spec for every card). The brief page's
 comes back on the Canvas at its last view, with both staircases and the magnifier, while the flash quiz runs. Nothing new is
 drawn; the two staircases are the evidence for the answer."* Two things the bench cannot do today are named here, each with
 its stand-in (§12, §13): an activity never shares the wall, and card 1's magnifier is a separate showing until X-inset.
-Everything beyond the PLAN is marked **Proposal** and listed in §14 (round two, open).
+Everything beyond the PLAN was marked **Proposal** and listed in §14.
+
+**Round two, 2026-10-21** (owner, in chat: *"Apply all recommended (a)"*): every proposal of §14 is decided at its
+recommended option and applied here. **F-c3-1 (a) and (b)**: the card's Flow is two fences in `en.md`, no word changed
+(p1–p2 after the plot, p3–p4 after the flash), and this card is added to X22 (Studio's, with the owner). **F-c3-2 (a)**: the
+copy is card 1's showing B, both staircases, until X-inset; the PLAN's SHOW now says so. Card 1's own F-c1-4 (a), decided
+the same day, puts the range slider on showing B, so this copy carries the slider and the label *"±0.256 V at the default"*
+too. **F-c3-3 (a)**: the authoring note beside each copy, and the teacher tip.
 
 **The formats** (read in source 2026-10-21, `C:\ExSightory\src\insight\packages\insight-core\src\registry\`, as card 1's
 spec and `D2-010-10-logical-and-electrical.md`): a plot is shown at its **authored defaults** (`livePush: false`); the Canvas
@@ -38,7 +45,8 @@ distinct ids by occurrence (`compiler/blockId.ts`).
 ## 1. What the room must understand
 
 - **Statement** (verbatim): *The question is not "Which ADC has the most bits?" but "What does my signal require?"*
-- **The PLAN's SHOW and Status** (verbatim): *Plot — the two staircases from the first card, back on the Canvas.* ·
+- **The PLAN's SHOW and Status** (verbatim): *Plot — the two staircases from the first card, back on the Canvas (card 1's
+  showing B, both staircases, until X-inset lets card 1 be one block; decided 2026-10-21, spec D2-020-03 F-c3-2).* ·
   *Status: ready*. **Drive** and **Look for**: none in the PLAN.
 - **ASK** (verbatim): §7a.
 - **Bench and library.** The **bench** is the Plot Bench; the **library** is card 1's `bridge-on-two-staircases`, in a
@@ -48,7 +56,7 @@ distinct ids by occurrence (`compiler/blockId.ts`).
 - **Kind of knowledge**: *a picture recalled* beside a question. No card test applies; the Plot is the evidence, not a new
   relation. B2, B4 and B16 apply; B15, B17–B19 do not (B17 was card 1's).
 - **Why this bench, not a still**: the plot is the one the room has just seen, and in Study still live (the readout; card 1's
-  range slider if F-c1-4 is taken). A still would serve the wall equally; the block keeps Study live and needs no new asset.
+  range slider, F-c1-4 (a)). A still would serve the wall equally; the block keeps Study live and needs no new asset.
 - **Key variable**: none moves on the wall.
 
 ## 2. Time
@@ -70,15 +78,19 @@ This card is inside that estimate. Reported only.
 
 **The block**: card 1's showing B, copied field for field (`D2-020-01-integrated-not-enough.md` §3a, §3b): title *When the
 integrated converter is not enough*, the caption, `variable: x` (mV), `domain` and `range` [0, 5], the curves `input` (azure,
-dashed), `mcu` (teal) and `ads` (amber) with their labels, `readout` on, `fixedView` true, `aspect: fill`, and card 1's range
-slider if F-c1-4 (a) is taken (default ±0.256 V). **The copy is kept identical to card 1's B** (F-c3-3): an authoring note
+dashed), `mcu` (teal) and `ads` (amber, in its slider form `q_g*floor(x/q_g + 1e-9)`) with their labels (the `ads` label
+*ADS1115: one step is its range ÷ 32,768 (at the default ±0.256 V, 7.81 µV, too fine to see at this scale)*), `readout` on, `fixedView` true,
+`aspect: fill`, and card 1's range slider `g` *ADS1115 range (PGA)*, 0–5, default **5** = ±0.256 V (card 1's F-c1-4 (a)).
+Showing B, not C, because it carries the explain's 640 and six (F-c3-2 (a), decided). **The copy is kept identical to card
+1's B** (F-c3-3 (a), decided): an authoring note
 beside each, in `en.md` just before this card's `plot` block: `<!-- AUTHORING: this plot is a verbatim copy of card 1's
 showing B ("When the integrated converter is not enough"); edit both together until Plot presets (X12) or X10 let one block
 serve both. Specs: D2-020-01 §3, D2-020-03 §3. -->`, and its counterpart beside card 1's B. Both are HTML comments outside
 the blocks, so the blocks stay identical.
 
 **The state it returns to** (the wall shows the defaults): seven teal treads, risers at 0.806, 1.611, 2.417, 3.223, 4.028,
-4.834 mV; the amber ADS1115 staircase lying on the dashed input, 640 steps of 7.8125 µV, too fine to see at this scale.
+4.834 mV; the amber ADS1115 staircase lying on the dashed input, 640 steps of 7.8125 µV, too fine to see at this scale; the
+slider at 5 (±0.256 V), whatever was last done to card 1's slider.
 
 - **Meet the parts**: none new (card 1's legend).
 - **Values beside their element** (B14, B16): the step sizes in the legend; the axes in mV; the readout in Study.
@@ -88,7 +100,8 @@ the blocks, so the blocks stay identical.
 
 ### 4a. Steps
 
-The order in `en.md` (F-c3-1 (a)): the statement, showing D, **fence 1** (p1–p2), the flash, **fence 2** (p3–p4).
+The order in `en.md` (F-c3-1 (a), decided and applied 2026-10-21): the statement, showing D, **fence 1** (p1–p2), the flash,
+**fence 2** (p3–p4).
 
 | # | id | Flow fence and paragraph (first words) | What changes (`say`) | Block, setting | Presenter's control |
 |---|---|---|---|---|---|
@@ -111,12 +124,12 @@ Scope, the learner.
 | View | Who | Controls |
 |---|---|---|
 | Preview (in the slide) | everyone | the plot |
-| View (details) | everyone | the hover readout; card 1's range slider if F-c1-4 (a) |
+| View (details) | everyone | the hover readout; card 1's range slider *ADS1115 range (PGA)* (F-c1-4 (a)), its words above, the value at its right |
 | Edit (session only) | everyone | not specified for the Plot Bench |
 | Authoring | authors | the `plot` block's YAML (a copy of card 1's B) |
 
 - **The presenter's strip** (B20): the step's `say`, the suggested words, the teacher tip (§7d); keys Next / Back.
-- **Study / Scope**: the readout; card 1's explore (§7e there) if F-c1-4 (a).
+- **Study / Scope**: the readout; card 1's explore (§7e there), the range slider.
 - **Phone** (C6): as card 1.
 - **Locked**: nothing on the plot; the flash's answer is the activity's.
 
@@ -126,7 +139,7 @@ Scope, the learner.
 |---|---|---|---|
 | Legend | yes | — | card 1's three entries |
 | Readout | yes (hover, Study) | x and each curve | — |
-| Slider | if F-c1-4 (a) | the range index with its words | one |
+| Slider | yes (View, Study; F-c1-4 (a)) | the range index with its words | one |
 
 ## 7. Thinking, not watching
 
@@ -134,21 +147,29 @@ Scope, the learner.
   Which of the three would you reach for?" · options: ATmega328P | Classic ESP32 | ADS1115 · answer: ADS1115 · explain: Its
   differential inputs read the bridge directly and its ±0.256 V range gives 7.8 µV steps, about 640 codes across 5 mV where
   a 12-bit 3.3 V SAR gives about six, and a slow bridge does not need more than 860 samples per second. · depth: understand ·
-  practice: arguing from evidence.* It fires at p3 (fence 2), **after s0**; when it opens it takes the wall (F-c3-1). The
+  practice: arguing from evidence.* It fires at p3 (fence 2), **after s0**; when it opens it takes the wall (F-c3-1 (a);
+  the plot beside it waits for X22, F-c3-1 (b)). The
   plot is the evidence the explain cites (7.8 µV, 640, about six).
 - **7b. Prediction points**: none (the flash is the commitment).
 - **7c. After**: the explain, read with the tally. In Study, done means the flash answered.
-- **7d. Teacher tip** (**Proposal**, F-c3-3), presenter only: *Expect "the ESP32: most bits of the two fast ones, and it is
+- **7d. Teacher tip** (F-c3-3 (a), decided 2026-10-21), presenter only: *Expect "the ESP32: most bits of the two fast ones, and it is
   already on the board". Ask what the signal needs: a difference of a few millivolts read directly (the ADS1115's
   AIN0–AIN1 pair; the ATmega328P has no differential channels), steps much finer than a millivolt, and only a few readings
   a second. The ADS1115 is the slowest of the three and the only one that fits; card 2's ranking by speed was not the
   question.*
-- **7e. Explore**: in Study, card 1's (if F-c1-4 (a)); none added.
+- **7e. Explore**: in Study, card 1's (F-c1-4 (a)): the range slider from ±6.144 V to ±0.256 V, *How many codes does 5 mV
+  span on each range?*; none added.
 
 ## 8. Faithfulness (the quality bar)
 
 **Arithmetic** (Node, 2026-10-21; card 1's §8 holds the full set): 3.3 V / 4096 = 0.8057 mV, 5 / 0.8057 = **6.21**, codes
 0–6 (*"about six"* ✓); 0.256 V / 32768 = **7.8125 µV** (*"7.8 µV"* ✓), 5 mV / 7.8125 µV = **640** (*"about 640 codes"* ✓).
+The slider (F-c1-4 (a), re-run in Node after round two): q_g = 187.5, 125, 62.5, 31.25, 15.625, 7.8125 µV for g = 0 … 5
+(Table 7-1 ✓), 5 mV spans 26.7, 40, 80, 160, 320, 640 codes, the readout at x = 5 gives 4.875, then 5.000 mV for g = 1 … 5
+(card 1's §8 and §15, to the digit). The wall shows g = 5 only, so the explain's numbers are on the picture as the question is
+put. **Card 1's label, settled 2026-10-21** (the copy follows card 1): at g = 0, 1, 2 a step is 24, 16 and 8 units of the
+644-unit plot, visible, so the label no longer says *"too fine"* of every range: it gives the rule (*"one step is its range ÷
+32,768"*) and puts the 7.81 µV and *"too fine to see"* inside the default's clause (D2-020-01 §3a).
 
 **The explain** (A4–A6): *"Its differential inputs read the bridge directly"* ✓ (AIN0–AIN1, VIN = V(AINP) − V(AINN),
 SBAS444E §5.3, Table 7-3; the bridge's common mode inside GND to VDD: card 1's §8 A5); *"a 12-bit 3.3 V SAR gives about six"*
@@ -195,9 +216,11 @@ slide's teleprompter (`flow.ts` reads so, as D2·010 card 10's checkpoint).
 **Missing: Studio's, with the owner** (not a crossing: `pbl2026` talks to Benches only): **X22**, *an activity that keeps the
 card's Canvas* (`bench-work/requests-to-exsight.md`, raised for D2·010 card 10's checkpoint, *"to the owner, to route"*).
 This card is a second case, for a **flash**: the plot beside the question while the room answers, which is what the brief's
-*"while the flash quiz runs"* needs. The line to add to X22's row is the lead's.
+*"while the flash quiz runs"* needs. **Decided (F-c3-1 (b), 2026-10-21)**: this card is added to X22's row (the lead's
+edit to `requests-to-exsight.md`), and X22 goes to the owner, who routes Studio items.
 
-**On the target** (card 1's X-inset and X10, F-c1-3): one block for card 1 at its last state, staircases and inset together;
+**On the target** (card 1's X-inset and X10, F-c1-3; card 1's X-inset request is crossing **524**): one block for card 1 at
+its last state, staircases and inset together;
 this card's copy is then that state, the brief's *"at its last view, with both staircases and the magnifier"*.
 
 **Not this card's**: anything new on the Plot Bench (no new library).
@@ -205,43 +228,61 @@ this card's copy is then that state, the brief's *"at its last view, with both s
 ## 13. Stand-in for the lecture
 
 None needed for the block. The plot is on the statement slide while fence 1 (p1–p2) is spoken, then the flash takes the wall
-with fence 2 (F-c3-1 (a)). What it loses against the brief: the plot **during** the flash (X22), and the magnifier on the
-same picture (card 1's X-inset; until then card 1's magnifier is its own showing C, and this copy is B, the two staircases the
-PLAN names: F-c3-2 (a)).
+with fence 2 (F-c3-1 (a), decided, the two fences in `en.md`). What it loses against the brief: the plot **during** the flash
+(X22, this card added to it: F-c3-1 (b), decided), and the magnifier on the same picture (card 1's X-inset, crossing 524;
+until then card 1's magnifier is its own showing C, and this copy is B, the two staircases the PLAN names, with its range
+slider: F-c3-2 (a), decided, the PLAN's SHOW saying so).
 
 ## 14. Findings for the owner
 
-No **accuracy** finding on this card (§8). The items below are **Proposals**, new in this spec and **open (round two)**.
+No **accuracy** finding on this card (§8; one point noted there for card 1's `ads` label, which this copy follows). The
+proposals below, new in this spec, are **all decided 2026-10-21 in round two** (owner: *"Apply all recommended (a)"*) and
+applied (each kept as it was put; the decision marked):
 
-- **F-c3-1 — The flash takes the wall.** A flash is `widget-focus` and never shares the stage, so the brief's *"while the
+- **F-c3-1 — The flash takes the wall.** **Decided: (a) and (b)** (both recommended). A flash is `widget-focus` and never shares the stage, so the brief's *"while the
   flash quiz runs"* cannot happen on the wall today; and the card's one Flow fence would be the flash's teleprompter, leaving
   the plot's slide without one. Options: (a) split the fence, **no word changed**: p1–p2 after the plot (the statement
   slide), p3–p4 after the flash (**recommended** for the day, as D2·010 card 10's G1 (a) and G2 (a)); (b) as (a), and add
   this card to X22 with the owner, so the flash keeps the Canvas when Studio offers it (**recommended alongside (a)**);
   (c) leave one fence (the plot slide is then silent and p1–p2 are spoken over the flash).
-- **F-c3-2 — Which of card 1's showings returns, until X-inset.** The brief says *"at its last view"*; in the stand-in card
+- **F-c3-2 — Which of card 1's showings returns, until X-inset.** **Decided: (a).** The brief says *"at its last view"*; in the stand-in card
   1's last showing is C, the magnifier alone (0–60 µV), which shows the fine steps but not *"about six against 640"*.
   Options: (a) a copy of B, *"the two staircases"* the PLAN names (**recommended**: it carries the explain's 640 and six);
   (b) a copy of C (the literal last view); (c) both, B then C on two slides before the flash (+≈ 0.1 min). On the target
   the question goes away: card 1 is one block and this copy is its last state, the inset included.
-- **F-c3-3 — The copy's upkeep and the teacher tip**: an authoring note beside each copy (§3) and the tip (§7d). Options:
+- **F-c3-3 — The copy's upkeep and the teacher tip**: **Decided: (a).** An authoring note beside each copy (§3) and the tip (§7d). Options:
   (a) both (**recommended**: two identical blocks drift when one is edited, as D2·010's G4); (b) the notes only; (c) neither.
-- **Time** (reported only): the card **1.2 min** (0.2 on the bench).
+- **Time** (reported only): the card **1.2 min** (0.2 on the bench), unchanged in round two (no word of the Flow changed:
+  45 words, 21 outside the activity, recounted 2026-10-21). Nothing is cut.
+
+**Decided 2026-10-21, round two (owner: *"Apply all recommended (a)"*):** F-c3-1 (a) the Flow split in two fences, no word
+changed (p1–p2 after the plot, p3–p4 after the flash), applied in `en.md`, and (b) this card added to X22 (the lead's line in
+`requests-to-exsight.md`; Studio's, to the owner, who routes it); F-c3-2 (a) a copy of card 1's showing B, both staircases,
+until X-inset (crossing 524), the PLAN's SHOW saying so in `en.md`, carrying card 1's decided range slider (F-c1-4 (a)) and
+its label *"±0.256 V at the default"*; F-c3-3 (a) the authoring note beside each copy and the teacher tip. Applied in the
+header, §1, §3, §4a, §5, §6, §7, §8, §12, §13 and §15. **Accuracy re-run on what changed** (A1–A7, Node, 2026-10-21): the
+PLAN's SHOW and the two fences quoted from the current `en.md`; the slider's steps and the readout at 5 mV as §8; 0.8057 mV,
+6.21, 7.8125 µV, 640 and 0.16 min as before. **Nothing is open on this card**; the spec is **spec-ready**. Not blocking:
+X22 and X-inset not yet built (the stand-in, §13), and the label point noted in §8, card 1's to settle.
 
 ## 15. Acceptance: how we know it is built right
 
 - The block compiles as a copy of card 1's B (a distinct id, no warning) and opens on the wall at its defaults: at the hover
-  x = 4.000 mV `mcu` 3.223, `ads` 4.000, `input` 4.000; seven teal treads; whatever was last done to card 1's plot in any
-  window.
+  x = 4.000 mV `mcu` 3.223, `ads` 4.000, `input` 4.000; seven teal treads; the slider at 5 (±0.256 V); whatever was last
+  done to card 1's plot or slider in any window.
+- In View and Study the slider at 0 … 5 gives `ads` steps of 187.5 … 7.8125 µV (readout at x = 5: 4.875, 5.000, 5.000,
+  5.000, 5.000, 5.000 mV), as card 1's B (F-c1-4 (a)).
 - A diff of the two blocks is empty; an authoring note stands beside each (F-c3-3 (a)).
 - The plot opens on the statement slide with fence 1 (p1–p2); the flash opens after it with fence 2 (p3–p4) as its
-  teleprompter, the three options in the PLAN's order and the explain after the tally (F-c3-1 (a)).
-- B2 nothing changes on the wall; B4 the state is card 1's s1; B10 the explain, no verdict on the plot; B14 every curve
-  labelled; B16 the readout; B20 the strip's words and tip.
+  teleprompter, the three options in the PLAN's order and the explain after the tally (F-c3-1 (a)). When X22 lands, the
+  plot stays on the Canvas while the flash runs (F-c3-1 (b)).
+- B2 nothing changes on the wall; B4 the state is card 1's s1; B10 the explain, no verdict on the plot; B11 the slider in
+  Study (card 1's); B14 every curve labelled; B16 the readout; B20 the strip's words and tip (F-c3-3 (a)).
 - C2–C8 as card 1's; E1–E6 for the block and the flash as presented, in both themes, EN and FR.
-- **Six gates (this spec, 2026-10-21)**: (1) realism: card 1's converters at their real steps (the course's model, SBAS444E
-  Table 7-1) — pass. (2) science: card 1's stated model; the explain's differential read and data-rate bound checked against
-  SBAS444E — pass. (3) maths: 0.8057 mV, 6.21, 7.8125 µV, 640 and the hover values recomputed in Node — pass. (4)
+- **Six gates (this spec, 2026-10-21, re-run after round two)**: (1) realism: card 1's converters at their real steps (the
+  course's model, SBAS444E Table 7-1), the slider's six real ranges only — pass. (2) science: card 1's stated model; the
+  explain's differential read and data-rate bound checked against SBAS444E — pass. (3) maths: 0.8057 mV, 6.21, 7.8125 µV,
+  640, the slider's steps and the hover values recomputed in Node — pass. (4)
   visualization: the evidence the explain cites is the picture on the wall as the question is put; the plot beside the
   answer waits for X22 and the inset for X-inset, both named — pass, partial on the day as §13 says. (5) consistency: a
   verbatim copy of card 1's B with an authoring note beside each; the palette, numbers and options as cards 1 and 2 — pass.

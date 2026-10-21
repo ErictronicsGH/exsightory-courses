@@ -2,15 +2,15 @@
 id: D2-020-01-integrated-not-enough
 card: "When the integrated converter is not enough"
 module: notes/Day02/020-external-adcs/en.md
-bench: Plot                       # exists; the PLAN's SHOW (Status: ready); the magnifier needs X-inset (missing, §12)
+bench: Plot                       # exists; the PLAN's SHOW (Status: ready); the magnifier needs X-inset (missing, §12; requested in crossing 524)
 library: "bridge-on-two-staircases: a Plot of a 0–5 mV bridge output on two ideal truncating quantizers, q·⌊x/q⌋: the MCU's 12-bit SAR on 3.3 V (q = 0.8057 mV, codes 0–6, teal) and the ADS1115 on ±0.256 V (q = 7.8125 µV, 640 steps, amber), the input dashed; then a magnifier on the bottom 60 µV (the ADS1115's 7 steps, the MCU still at code 0); defined in the card's `plot` blocks"
 dimensions: 2D
-stand_in: "three showings of one plot, each its own slide (A: the MCU alone; B: both staircases; C: the bottom 60 µV, magnified 83×), the card's one Flow fence split in four with no word changed (F-c1-1); until X-inset and X10 let one block carry all three states with the magnifier as an inset (§12, F-c1-3)"
+stand_in: "three showings of one plot, each its own slide (A: the MCU alone; B: both staircases, the PGA slider in Study; C: the bottom 60 µV, magnified 83×), the card's Flow in four fences with no word changed (F-c1-1 (a), applied in en.md); until X-inset and X10 (crossing 524, F-c1-3 (a)) let one block carry all three states with the magnifier as an inset (§12)"
 optional_benches: []
 real_thing: "a strain-gauge bridge's few millivolts (D1·030's pressure chain) offered to two converters: the course's MCU converter (12 bits, 3.3 V reference, truncating) and a TI ADS1115 on its ±0.256 V range (SBAS444E, Table 7-1: LSB 7.8125 µV); ideal quantizers, step size only"
 minutes: 1.3                      # on the bench: showings A, B and C, from p3 to the card's end (§2)
 card_minutes: 2.0                 # the whole card: the statement slide (p1–p2) and the three showings (§2)
-status: spec-draft
+status: spec-ready                # D2·020-F2, D1, D2 applied; F-c1-1–F-c1-4 decided 2026-10-21 (round two: all recommended (a)) and applied; nothing open (crossing 524 unanswered does not block)
 learner_action: none              # card 1 has no ASK
 predictions: []
 seeds: []
@@ -26,8 +26,9 @@ are ours, cited to SBAS444E). The brief page's `draw1` (`bench-work/previews/u02
 MCU staircase alone, then the ADS1115's drawn over it, then a magnifier on the bottom 60 µV labelled *"MCU still at code 0"*,
 with the note *"The MCU can't take the bridge's two outputs as a difference. The card says so in its last line, and the plot
 shows only step size."* Two corrections of ours to that drawing are named in §3c and the six-gate report (the inset moved off
-the staircases; its frame in neutral ink). Everything beyond the PLAN is marked **Proposal** and listed in §14 (round two,
-open).
+the staircases; its frame in neutral ink). Everything beyond the PLAN was put as a proposal in §14 (round two); the owner
+decided every item at its recommended (a) on 2026-10-21 (*"Apply all recommended (a)"*), and the body below states the
+decided design.
 
 **The Plot Bench, as read in source on 2026-10-21** (read-only, `C:\ExSightory\src\insight\packages\`), with what
 `D2-010-07-choosing-the-pull-up.md` and `D1-080-03-quantization-floor.md` already found:
@@ -68,7 +69,7 @@ draw a magnifier inset? No** (§12): the stand-in is a third showing of the same
   part's step size, **not a model of either part** (§3a caption, A6).
 - **ASK**: none (card 1 has no activity). **FAULT**: none in the PLAN.
 - **Bench and library.** The **bench** is the Plot Bench (viewer, legend, readout). The **library** is this card's plot,
-  `bridge-on-two-staircases`, in three showings until X-inset and X10 (§12).
+  `bridge-on-two-staircases`, in three showings until X-inset and X10 (§12, crossing 524).
 - **Insight**: *the same 5 mV is about six codes to the MCU's converter and 640 to the ADS1115 on ±0.256 V, because the step
   is the range over the number of codes: 3.3 V over 4,096 against 0.512 V over 65,536, a step 103 times finer.*
 - **Kind of knowledge**: *a contrast between two states* (one signal, two quantizers) and *a picture built up* (MCU, then
@@ -83,8 +84,8 @@ draw a magnifier inset? No** (§12): the stand-in is a third showing of the same
 The card's Flow is **231 words** (`en.md`, 2026-10-21, counted as the brief counts: whitespace tokens, cue markers removed,
 `*()` stripped, tokens with a letter or digit): p1 *"In the last module…"* 34, p2 *"An ADC does not have to be a separate
 component…"* 60, p3 *"Here is a signal from yesterday…"* 51, p4 *"The ADS1115, on its most sensitive range…"* 35, p5 *"I want to
-say something plainly…"* 51. No activity; all of it is spoken. 231 ÷ 130 = 1.78 min. The four fences of F-c1-1 (a) change
-no word.
+say something plainly…"* 51. No activity; all of it is spoken. 231 ÷ 130 = 1.78 min. The four fences (F-c1-1 (a), applied in `en.md`)
+change no word.
 
 | Beat | Minutes | Source of the number |
 |---|---|---|
@@ -113,7 +114,7 @@ it; s2 the magnifier inset revealed in the plot's empty lower right. Until then 
 | Field | Content | Source |
 |---|---|---|
 | `title` | *When the integrated converter is not enough* · FR *Quand le convertisseur intégré ne suffit pas* | the card's heading |
-| `caption` (**Proposal**, F-c1-2) | *The same 0–5 mV from a strain-gauge bridge, offered to two converters. Each staircase is an ideal quantizer at that part's step, drawn truncating as the course's converter: step size only, not a model of either part. Noise, offset and gain error are not drawn, and the microcontroller's single-ended input could not take the bridge's difference without an in-amp in front (D1·060).* · FR *Les mêmes 0–5 mV d'un pont de jauges, présentés à deux convertisseurs. Chaque escalier est un quantificateur idéal au pas de ce composant, tracé par troncature comme le convertisseur du cours : la taille du pas seulement, pas un modèle de l'un ou l'autre composant. Le bruit, le décalage et l'erreur de gain ne sont pas tracés, et l'entrée asymétrique du microcontrôleur ne pourrait pas prendre la différence du pont sans amplificateur d'instrumentation en amont (D1·060).* | the PLAN; the module's no-simulation note; the brief's note (the MCU cannot take the difference); A6 labels |
+| `caption` (decided, F-c1-2 (a)) | *The same 0–5 mV from a strain-gauge bridge, offered to two converters. Each staircase is an ideal quantizer at that part's step, drawn truncating as the course's converter: step size only, not a model of either part. Noise, offset and gain error are not drawn, and the microcontroller's single-ended input could not take the bridge's difference without an in-amp in front (D1·060).* · FR *Les mêmes 0–5 mV d'un pont de jauges, présentés à deux convertisseurs. Chaque escalier est un quantificateur idéal au pas de ce composant, tracé par troncature comme le convertisseur du cours : la taille du pas seulement, pas un modèle de l'un ou l'autre composant. Le bruit, le décalage et l'erreur de gain ne sont pas tracés, et l'entrée asymétrique du microcontrôleur ne pourrait pas prendre la différence du pont sans amplificateur d'instrumentation en amont (D1·060).* | the PLAN; the module's no-simulation note; the brief's note (the MCU cannot take the difference); A6 labels |
 | `variable` | `x`, the bridge output in **mV** (µV on showing C) | the PLAN's 0–5 mV ramp |
 | `xLabel` | *Bridge output, the converter's input (mV)* · FR *Sortie du pont, entrée du convertisseur (mV)* | `draw1` |
 | `yLabel` | *Level given: code × step (mV)* · FR *Niveau attribué : code × pas (mV)* | `draw1`'s *code × step*; D1·080 card 3's *Level given* |
@@ -121,7 +122,7 @@ it; s2 the magnifier inset revealed in the plot's empty lower right. Until then 
 | `readout` | on (Study: x and each curve at the hover, 3 decimals) | the Plot's default |
 | `fixedView` | true (the framing is the point; the magnifier is the close-up) | as D2·010 card 7 |
 | `aspect` | `fill` (the Canvas pane) | `PlotViewer.vue`: *"fill is the one the Canvas wants"* |
-| `parameters` (**Proposal**, F-c1-4; showing B only) | `g` *ADS1115 range (PGA): 0 = ±6.144 V … 5 = ±0.256 V* · FR *Gamme de l'ADS1115 (PGA) : 0 = ±6.144 V … 5 = ±0.256 V*, 0–5, default **5**, step 1, no unit | SBAS444E §7.3.3, Table 7-1 |
+| `parameters` (decided, F-c1-4 (a); showing B only) | `g` *ADS1115 range (PGA): 0 = ±6.144 V … 5 = ±0.256 V* · FR *Gamme de l'ADS1115 (PGA) : 0 = ±6.144 V … 5 = ±0.256 V*, 0–5, default **5**, step 1, no unit | SBAS444E §7.3.3, Table 7-1 |
 
 **Curves** (x in mV; the step q in mV; `+ 1e-9` makes an input exactly on a transition take the upper code, the guard D1·090
 card 5 uses until X-exact-floor, crossing 512 item 1):
@@ -130,7 +131,7 @@ card 5 uses until X-exact-floor, crossing 512 item 1):
 |---|---|---|---|
 | `input` | `x` | *The bridge output itself* · *La sortie du pont elle-même* | azure, `dashed` (D1·080 card 3's input) |
 | `mcu` | `(3300/4096)*floor(x/(3300/4096) + 1e-9)` | *MCU, 12 bits on 3.3 V: 0.806 mV steps* · *MCU, 12 bits sur 3.3 V : pas de 0.806 mV* | teal, solid |
-| `ads` (s1 on) | `(256/32768)*floor(x/(256/32768) + 1e-9)`; with F-c1-4 `q_g*floor(x/q_g + 1e-9)`, q_g = `(6144*(1 - step(1, g)) + 8192/2^g*step(1, g))/32768`, spelled out in full | *ADS1115 (±0.256 V at the default): 7.81 µV steps, too fine to see at this scale* · *ADS1115 (±0.256 V par défaut) : pas de 7.81 µV, trop fins pour être vus à cette échelle* | amber, solid |
+| `ads` (s1 on) | `q_g*floor(x/q_g + 1e-9)`, q_g = `(6144*(1 - step(1, g)) + 8192/2^g*step(1, g))/32768`, spelled out in full (F-c1-4 (a)); at the default g = 5 it is `(256/32768)*floor(x/(256/32768) + 1e-9)` | *ADS1115: one step is its range ÷ 32,768 (at the default ±0.256 V, 7.81 µV, too fine to see at this scale)* · *ADS1115 : un pas vaut sa gamme ÷ 32 768 (à ±0.256 V par défaut, 7.81 µV, trop fin pour être vu à cette échelle)* | amber, solid |
 
 - 3300/4096 = 0.8056640625 mV and 256/32768 = 0.0078125 mV are both exact in binary, so the steps are exact.
 - q_g gives 6144, 4096, 2048, 1024, 512, 256 mV over 32,768 for g = 0 … 5 (§8): the six ranges of Table 7-1 and no other.
@@ -141,7 +142,7 @@ card 5 uses until X-exact-floor, crossing 512 item 1):
 | Showing | Slide, fence | Curves | Domain / range | Parameters | What it is |
 |---|---|---|---|---|---|
 | **A** `mcu-only` | its own slide after the statement, fence 2 (p3) | `input`, `mcu` | [0, 5] / [0, 5] mV | none | the MCU's seven treads, codes 0–6, under the dashed input |
-| **B** `both` | its own slide, fence 3 (p4) | `input`, `mcu`, `ads` | [0, 5] / [0, 5] mV | `g` (F-c1-4) | the ADS1115's 640 steps lying on the input, the MCU's treads beside them |
+| **B** `both` | its own slide, fence 3 (p4) | `input`, `mcu`, `ads` | [0, 5] / [0, 5] mV | `g` (F-c1-4 (a)) | the ADS1115's 640 steps lying on the input, the MCU's treads beside them |
 | **C** `magnified` | its own slide, fence 4 (p5) | the same three in µV: `input` `x`; `mcu` `(3300000/4096)*floor(x/(3300000/4096) + 1e-9)`; `ads` `7.8125*floor(x/7.8125 + 1e-9)` | [0, 60] / [0, 60] µV (ticks 0, 10 … 60) | none | the ADS1115's eight treads (codes 0–7); the MCU flat at code 0 |
 
 Showing C's `title` *The bottom 60 µV, magnified 83 times* · FR *Les 60 µV du bas, grossis 83 fois*; `xLabel` *Bridge
@@ -157,8 +158,8 @@ précédent, les deux axes grossis 83 fois.* (the rest as §3a). The three block
 |---|---|
 | Region marked on the main plot | the square 0–60 µV × 0–60 µV at the origin (7.7 × 4.1 units), outlined in neutral ink, a thin leader to the inset |
 | The inset | data box **x 2.9–4.9 mV, y 0.25–2.05 mV** of the main plot (257.6 × 123.8 units; fractions [0.58, 0.05, 0.40, 0.36]); its own axes 0–60 µV with ticks 0, 20, 40, 60 µV; the same three curves resampled over 0–60 µV; title *Bottom 60 µV, magnified 83 ×* · FR *Les 60 µV du bas, grossis 83 ×*; the MCU's tread labelled *still at code 0* · FR *toujours au code 0* |
-| Why there (our fix to `draw1`) | the brief's inset sat at x 2.76–4.29 mV, y 1.82–4.68 mV, **over** both staircases (the input crosses that box from 2.76 to 4.29 mV, and two MCU risers, 3.22 and 4.03 mV, were hidden). The lower-right box is empty: the MCU's lowest tread there is 2.417 mV, 0.367 mV (25 units) above the inset's top; nothing is drawn over a curve |
-| Frame ink (our fix) | neutral ink, not amber: amber is the external converter's colour in this module (gate 5) |
+| Why there (our fix to `draw1`, decided F-c1-2 (a)) | the brief's inset sat at x 2.76–4.29 mV, y 1.82–4.68 mV, **over** both staircases (the input crosses that box from 2.76 to 4.29 mV, and two MCU risers, 3.22 and 4.03 mV, were hidden). The lower-right box is empty: the MCU's lowest tread there is 2.417 mV, 0.367 mV (25 units) above the inset's top; nothing is drawn over a curve |
+| Frame ink (our fix, decided F-c1-2 (a)) | neutral ink, not amber: amber is the external converter's colour in this module (gate 5) |
 
 - **Meet the parts** (B3): s0 names the input (dashed) and the MCU staircase in the legend; s1 adds the ADS1115; s2 the
   close-up. Each arrives with the Flow that names it.
@@ -204,7 +205,7 @@ the learner.
 | View | Who | Controls |
 |---|---|---|
 | Preview (in the slide) | everyone | the plot of the current showing |
-| View (details) | everyone | the hover readout; on B the range slider *ADS1115 range (PGA)* (F-c1-4), its words above, the value at its right (`sliders-side-by-side`, one row) |
+| View (details) | everyone | the hover readout; on B the range slider *ADS1115 range (PGA)* (F-c1-4 (a)), its words above, the value at its right (`sliders-side-by-side`, one row) |
 | Edit (session only) | everyone | not specified for the Plot Bench |
 | Authoring | authors | the three `plot` blocks' YAML |
 
@@ -220,17 +221,18 @@ The Plot's viewer frame (the Canvas header and footer, D4.10–4.12): title, leg
 | Tile / panel | Used? | Selected item | List / contents |
 |---|---|---|---|
 | Legend | yes | — | A: input, MCU · B: input, MCU, ADS1115 · C: the same three, µV labels |
-| Slider | B only (F-c1-4) | the range index with its words | one |
+| Slider | B only (F-c1-4 (a)) | the range index with its words | one |
 | Readout | yes (hover, Study) | x and each curve | — |
 | Inset | the target only (X-inset) | — | §3c |
 
 ## 7. Thinking, not watching
 
 - **7a. The PLAN's ASK**: none on this card. Card 3's flash (*"Which of the three would you reach for?"*) is this card's check,
-  over a copy of showing B (`D2-020-03-what-does-my-signal-require.md`).
+  over a copy of showing B, its PGA slider and the ADS1115's default-naming label included (F-c1-4 (a);
+  `D2-020-03-what-does-my-signal-require.md`).
 - **7b. Prediction points**: none added (the card is the module's opening; card 2 opens with a poe).
 - **7c. After**: none on the wall. In Study, done means the three showings viewed.
-- **7d. Teacher tip** (**Proposal**, F-c1-2), presenter only: *Expect "640 codes, so 640 trustworthy levels". On ±0.256 V
+- **7d. Teacher tip** (decided, F-c1-2 (a)), presenter only: *Expect "640 codes, so 640 trustworthy levels". On ±0.256 V
   the ADS1115's noise is about one count RMS at every data rate (SBAS444E Table 6-1, 7.81 µV), and peak to peak from 7.81 µV
   at 8 SPS (about 640 distinguishable levels across 5 mV) to 35.83 µV at 860 SPS (4.6 counts: about 140): card 5 reads that
   table. Expect "the MCU just needs more bits": the step is the range over the codes, so the reference matters as much; the
@@ -238,7 +240,7 @@ The Plot's viewer frame (the Canvas header and footer, D4.10–4.12): title, leg
   directly": each output of a balanced bridge sits near half its excitation (about 1.65 V on 3.3 V), so a single-ended input
   reads one side near code 2048, not the 5 mV between them; D1·060's in-amp, or a differential input like the ADS1115's
   AIN0–AIN1, takes the difference.*
-- **7e. Explore** (B11; **Proposal**, F-c1-4): in Study, on showing B, the range slider from ±6.144 V to ±0.256 V: *How many
+- **7e. Explore** (B11; decided, F-c1-4 (a)): in Study, on showing B, the range slider from ±6.144 V to ±0.256 V: *How many
   codes does 5 mV span on each range?* (26.7, 40, 80, 160, 320, 640: §8).
 
 ## 8. Faithfulness (the quality bar)
@@ -253,7 +255,7 @@ The Plot's viewer frame (the Canvas header and footer, D4.10–4.12): title, leg
 - The magnifier: 60 µV / 7.8125 µV = 7.68: transitions at 7.8125, 15.625, 23.4375, 31.25, 39.0625, 46.875, 54.6875 µV:
   **seven steps, codes 0–7**; the MCU's first transition is at 805.66 µV, so 60 µV is 7.4 % of its first step: **code 0
   throughout** ✓ (`draw1`'s label). Magnification 5 mV / 60 µV = **83.3** (both axes).
-- The PGA (F-c1-4): q_g = 187.5, 125, 62.5, 31.25, 15.625, 7.8125 µV for g = 0 … 5 (Table 7-1 ✓); 5 mV spans **26.7, 40,
+- The PGA (F-c1-4 (a)): q_g = 187.5, 125, 62.5, 31.25, 15.625, 7.8125 µV for g = 0 … 5 (Table 7-1 ✓); 5 mV spans **26.7, 40,
   80, 160, 320, 640** codes.
 - The tip: 1.1 V / 1024 = 1.074 mV, 5 / 1.074 = 4.65 codes; noise pp 7.81 / 7.8125 = 1.00 count (5000 / 7.81 = 640
   levels), 35.83 / 7.8125 = 4.59 counts (5000 / 35.83 = 140 levels) (Table 6-1 ✓, the brief's values).
@@ -284,7 +286,7 @@ yesterday"* is D1·030's strain gauge and bridge (*"a bridge gives a voltage"*, 
 bridge's two outputs directly as a difference"* — AIN0–AIN1 is the default MUX pair (Config register, MUX[2:0] = 000b), VIN =
 V(AINP) − V(AINN) (§5.3, Table 7-3), and the bridge's ≈ 1.65 V common mode on a 3.3 V supply is inside the inputs' absolute
 range, GND to VDD (§5.3; Table 7-1's note: *"Do not apply more than VDD + 0.3V"*); the MCU cannot (the caption, the tip). A6 ✓: *"about six"*, *"about 640"*,
-*"of the order of"*; p3's *"barely a measurement at all"* is a judgement on six codes, fair. A7 ✓: SBAS444E (December 2024)
+*"about 0.8 mV"*, *"about 7.8 µV"*; p3's *"barely a measurement at all"* is a judgement on six codes, fair. A7 ✓: SBAS444E (December 2024)
 §5.3, §5.5, §7.3.3 Table 7-1, §7.5.4 Table 7-3, Table 6-1; the course's model. A8 ✓. **No accuracy finding on this card.**
 
 **Simplifications and their on-bench labels** (A6): the caption's *"an ideal quantizer at that part's step, drawn truncating
@@ -316,7 +318,7 @@ compares steps.
 
 | Asset | Format | Made by | Status |
 |---|---|---|---|
-| The three `plot` blocks (§3a, §3b), EN and FR | YAML in `en.md` | the author (FR drafts for the owner's review) | to write once F-c1-1 is decided (the fences split as decided) |
+| The three `plot` blocks (§3a, §3b), EN and FR | YAML in `en.md` | the author (FR drafts for the owner's review) | to write (the fences are already split, F-c1-1 (a), in `en.md`) |
 
 No image, no datasheet extract on this card (D2: the extracts are card 5's).
 
@@ -329,15 +331,15 @@ with `step` 1, `readout`, `fixedView`, `aspect: fill`, `caption`.
 three plot blocks opens its own slide with the fence after it (as D2·010 card 7's five fences); (b) that a curve may hold
 the parameter-free expression `x` with no warning (it uses x ✓).
 
-**Missing (request it; one crossing to Benches, F-c1-3)**:
+**Missing (requested: one crossing to Benches, 524, this card as the case; F-c1-3 (a))**:
 - **X-inset** (new; working name until Benches numbers it): a magnifier in a plot: an `insets` entry with its own domain and
   range (here 0–60 µV on both axes, with a unit scale so its ticks read in µV), its place in the frame (§3c: the empty
   lower right), the region outlined on the main plot with a leader, the block's curves resampled over the inset's domain,
   its own title, hover readout in the inset's own units; part of the block (defaults on the wall, live in Study). **Not
   X-band** (D1·080 card 3's proposal): a band shares the main plot's x, and a magnifier has its own.
-- **X10** (listed, *to raise*), extended: a curve **and an inset** hidden until a step, the step mirrored, so s0 → s1 → s2 is
-  one block on one slide (fences unsplit).
-- **X-steps** (proposed in D1·080 card 3, not yet raised): a curve built on `floor` sampled at its jumps (exact risers), and
+- **X10** (listed in `requests-to-exsight.md`, *to raise*; its extension to insets raised in 524), extended: a curve
+  **and an inset** hidden until a step, the step mirrored, so s0 → s1 → s2 is one block on one slide (fences unsplit).
+- **X-steps** (proposed in D1·080 card 3, raised in 524): a curve built on `floor` sampled at its jumps (exact risers), and
   where its steps are finer than the screen an envelope with a label. Here: the MCU's risers vertical; the ADS1115's 640
   steps drawn as an envelope labelled by the bench rather than by our legend words.
 
@@ -356,34 +358,50 @@ every step of §4a; it loses (1) the magnifier **beside** the full view (C is a 
 60 µV region on the 0–5 mV axes; C's title and caption say which part it is), (2) the build-up on one picture (three slides,
 the same axes on A and B so the eye compares them), (3) exact risers (1.5 units of lean) and a drawn envelope for the 640
 steps (the legend's words say it). Checks lost: B17 partly for the magnifier (not side by side). What the Flow might say
-differently: nothing; the presenter's line at s2 already names the 60 µV. When X-inset and X10 land, showing B with the inset
-and two steps replaces the three blocks, and the fences may be joined again; the curves are the same, so nothing is made
-twice.
+differently: nothing; the presenter's line at s2 already names the 60 µV. Crossing 524 asks Benches for X-inset, X10
+extended and X-steps (F-c1-3 (a)); the request never blocks, and the three showings stand in until it is answered. When
+X-inset and X10 land, showing B with the inset and two steps replaces the three blocks, and the fences may be joined again;
+the curves are the same, so nothing is made twice.
 
 ## 14. Findings for the owner
 
-No **accuracy** finding on this card (§8). The items below are **Proposals**, new in this spec and **open (round two)**.
+No **accuracy** finding on this card (§8; re-run 2026-10-21 on the current `en.md`, its four fences included: the Flow
+231 words, 34 · 60 · 51 · 35 · 51, no word changed; every quote in this spec verbatim; no number changed by round two).
 
-- **F-c1-1 — The PLAN's three moves as three slides, the fence split** (no word changed). The Plot shows a block at its
+The proposals of this spec, **all decided 2026-10-21 in round two** (owner: *"Apply all recommended (a)"*) and applied
+(each kept as it was put; the decision marked):
+
+- **F-c1-1 — The PLAN's three moves as three slides, the fence split** (no word changed). **Decided: (a)** (the four
+  fences applied in `en.md`; showings A, B, C as written). The Plot shows a block at its
   defaults and cannot hold a curve back for a step, and a Flow fence belongs to the block before it. Options: (a) fence 1
   p1–p2 on the statement slide, then showing A with p3 (*"Here is a signal…"* as it opens), B with p4, C with p5
   (**recommended**: each curve arrives as the Flow names it); (b) showing A on the statement slide with p1–p3, then B (p4)
   and C (p5): one slide fewer, the staircase up before it is introduced; (c) one showing with both staircases and C after
   it (two plot slides): loses *"the MCU staircase first"*.
 - **F-c1-2 — The caption, the labels and the teacher tip** (§3a, §3b, §7d), and **our two fixes to `draw1`**: the inset in
-  the empty lower right instead of over the staircases, its frame in neutral ink instead of amber (§3c). Options: (a) all as
+  the empty lower right instead of over the staircases, its frame in neutral ink instead of amber (§3c). **Decided: (a).**
+  Options: (a) all as
   written (**recommended**: the caption carries the A6 labels and the brief's *"step size only"* note, the module's
   no-simulation note is backed on the plot); (b) the caption's first two sentences only (the single-ended limit then rests on
   the Flow and the tip); (c) the fixes only.
 - **F-c1-3 — One crossing to Benches** for X-inset (new), X10 extended to insets, and X-steps (§12), with this card as the
-  case. Options: (a) raise it now, the three showings standing in (**recommended**: the stand-in is honest, and the request
-  never blocks); (b) X-inset only; (c) none (the three showings stay).
+  case. **Decided: (a)**: raised as crossing **524** (`524-pbl2026-to-benches-…`). Options: (a) raise it now, the three
+  showings standing in (**recommended**: the stand-in is honest, and the request never blocks); (b) X-inset only; (c) none
+  (the three showings stay).
 - **F-c1-4 — A range slider on showing B for Study** (B11): *ADS1115 range (PGA)*, the six ranges of Table 7-1 by index,
-  default ±0.256 V, so a learner sees 27 → 640 codes across the same 5 mV (card 5's PGA). Options: (a) as written
+  default ±0.256 V, so a learner sees 27 → 640 codes across the same 5 mV (card 5's PGA). **Decided: (a)** (the ADS1115's
+  label names the default; card 3's copy of B carries the slider and the label). Options: (a) as written
   (**recommended**: the key variable one control away, and only real ranges); (b) no slider (B11 excepted: the step is shown
   by the two staircases and spoken). With (a) the ADS1115's label names the default (*"±0.256 V at the default"*) so it stays
   true when the slider moves; card 3's copy of B carries it too.
-- **Time** (reported only): the card **2.0 min** (1.3 on the bench); the module ≈ 29–30 of 30 by the brief's estimate.
+- **Time** (reported only): the card **2.0 min** (1.3 on the bench), unchanged by round two; the module ≈ 29–30 of 30 by
+  the brief's estimate. Nothing is cut.
+
+**Decided 2026-10-21, round two (owner: *"Apply all recommended (a)"*):** F-c1-1 (a) four fences, showings A, B, C;
+F-c1-2 (a) the caption, the labels, the teacher tip and the two fixes to `draw1`; F-c1-3 (a) one crossing to Benches, 524,
+for X-inset, X10 extended to insets and X-steps, this card as the case; F-c1-4 (a) the PGA slider on showing B in Study,
+the ADS1115's label naming the default, card 3's copy of B carrying both. Applied in the header, §2, §3, §5, §6, §7, §8,
+§11, §12, §13 and §15. Nothing open.
 
 ## 15. Acceptance: how we know it is built right
 
@@ -391,11 +409,11 @@ No **accuracy** finding on this card (§8). The items below are **Proposals**, n
   4.000 (code 512), and at x = 5.000 `ads` 5.000 (code 640). On C at x = 50 µV: `ads` 46.875, `mcu` 0.000. A shows seven
   teal treads with six risers at 0.806, 1.611, 2.417, 3.223, 4.028, 4.834 mV; C shows eight amber treads with risers every
   7.8125 µV and a flat teal tread.
-- With F-c1-4 (a): the slider at 0 … 5 gives `ads` steps of 187.5 … 7.8125 µV (readout at x = 5: 4.875, 5.000, 5.000,
+- The PGA slider (F-c1-4 (a)): at 0 … 5 it gives `ads` steps of 187.5 … 7.8125 µV (readout at x = 5: 4.875, 5.000, 5.000,
   5.000, 5.000, 5.000 mV).
 - The statement slide carries fence 1; A, B, C each open their own slide with fences 2, 3, 4 (F-c1-1 (a)).
 - B1 one change per slide; B2 only the curve that teaches is added; B3 parts named in the legend as they arrive; B4 three
-  stills; B5 each `say` on the strip; B11 the slider in Study (F-c1-4); B13 counts spoken, not written; B14 every curve
+  stills; B5 each `say` on the strip; B11 the slider in Study (F-c1-4 (a)); B13 counts spoken, not written; B14 every curve
   labelled; B16 the readout; B17 the two staircases on one input and one pair of axes; B20 the strip's words and tip.
 - C2 legible at 1920 × 1080 and 1024 × 768, EN and FR; C3 nothing animates; C4 hue, dash and words; C5 keys; C6 at 320 px;
   C8 the print form.
@@ -412,4 +430,5 @@ No **accuracy** finding on this card (§8). The items below are **Proposals**, n
   dashed azure input, D2·020-F2's truncating model, card 3's copy, card 5's PGA ranges — pass; one discrepancy of ours fixed
   (`draw1`'s inset frame amber → neutral ink). (6) design: `draw1`'s inset hid part of both staircases (our error, fixed: the
   inset moved to the empty lower right, 25 units clear of the nearest tread); labels in the legend, wrapping in FR; one
-  slider row — pass on paper, to check on the built blocks.
+  slider row — pass on paper, to check on the built blocks. Re-checked 2026-10-21 after round two (the four fences, the
+  decided items): no change to any gate.
