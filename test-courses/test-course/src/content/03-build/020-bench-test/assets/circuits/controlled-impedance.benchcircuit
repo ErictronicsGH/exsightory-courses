@@ -116,5 +116,204 @@
       "length_m": 0.1
     }
   ],
-  "effects": {}
+  "effects": {},
+  "stamp": {
+    "v": 1,
+    "source": "sha256:bb9c7206126b7c0e28996f39d2d8aaf2e27923ffa821fabd1696e36b11449c43",
+    "libraries": {
+      "insight-baseline": "1.14.0"
+    },
+    "derived": {
+      "targets": [
+        {
+          "id": "VD",
+          "kind": "part"
+        },
+        {
+          "id": "RD",
+          "kind": "part"
+        },
+        {
+          "id": "Q1",
+          "kind": "part"
+        },
+        {
+          "id": "VG",
+          "kind": "part"
+        },
+        {
+          "id": "rail",
+          "kind": "net"
+        },
+        {
+          "id": "drain",
+          "kind": "net"
+        },
+        {
+          "id": "gate",
+          "kind": "net"
+        },
+        {
+          "id": "gnd",
+          "kind": "net"
+        }
+      ],
+      "sources": [
+        {
+          "id": "VD",
+          "label": "VD · 10 V",
+          "legend": "Output voltage",
+          "unit": "V",
+          "authored": 10,
+          "min": 0,
+          "max": 24,
+          "step": 1.2
+        },
+        {
+          "id": "VG",
+          "label": "VG · 10 V gate",
+          "legend": "Output voltage",
+          "unit": "V",
+          "authored": 10,
+          "min": 0,
+          "max": 24,
+          "step": 1.2
+        }
+      ],
+      "probes": [],
+      "leads": [
+        {
+          "id": "TR1",
+          "label": "TR1",
+          "net": "drain",
+          "authored": 0.1,
+          "unit": "m",
+          "stops": [
+            0.03,
+            0.05,
+            0.1,
+            0.2,
+            0.5,
+            1,
+            2,
+            5,
+            10
+          ]
+        },
+        {
+          "id": "TR2",
+          "label": "TR2",
+          "net": "rail",
+          "authored": 0.1,
+          "unit": "m",
+          "stops": [
+            0.03,
+            0.05,
+            0.1,
+            0.2,
+            0.5,
+            1,
+            2,
+            5,
+            10
+          ]
+        }
+      ],
+      "demands": [
+        {
+          "id": "drain",
+          "label": "drain",
+          "net": "drain",
+          "min": 0,
+          "max": 10,
+          "step": 0.5
+        }
+      ],
+      "locked": {
+        "values": [],
+        "profiles": []
+      },
+      "reveals": [
+        {
+          "id": "VD",
+          "offers": [
+            {
+              "bind": "output_resistance",
+              "available": true
+            },
+            {
+              "bind": "output_drift",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "RD",
+          "offers": [
+            {
+              "bind": "overpower",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "Q1",
+          "offers": [
+            {
+              "bind": "rds_runaway",
+              "available": true
+            },
+            {
+              "bind": "gate_drive_mismatch",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "VG",
+          "offers": [
+            {
+              "bind": "output_resistance",
+              "available": true
+            },
+            {
+              "bind": "output_drift",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "TR1",
+          "offers": [
+            {
+              "bind": "ir_drop",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "TR2",
+          "offers": [
+            {
+              "bind": "ir_drop",
+              "available": true
+            }
+          ]
+        }
+      ],
+      "opens": {
+        "iv": [
+          "RD",
+          "Q1"
+        ]
+      },
+      "instances": [
+        "VD",
+        "RD",
+        "Q1",
+        "VG"
+      ]
+    },
+    "diagnostics": []
+  }
 }

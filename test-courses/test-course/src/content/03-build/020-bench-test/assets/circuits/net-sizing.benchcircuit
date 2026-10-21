@@ -91,5 +91,145 @@
       "length_m": 0.1
     }
   ],
-  "effects": {}
+  "effects": {},
+  "stamp": {
+    "v": 1,
+    "source": "sha256:2b16ec6eb48730b54e66f15fbbc826122ef44659d9568a04ffb57e872f97fb2b",
+    "libraries": {
+      "insight-baseline": "1.14.0"
+    },
+    "derived": {
+      "targets": [
+        {
+          "id": "V1",
+          "kind": "part"
+        },
+        {
+          "id": "RL",
+          "kind": "part"
+        },
+        {
+          "id": "TP1",
+          "kind": "part"
+        },
+        {
+          "id": "rail",
+          "kind": "net"
+        },
+        {
+          "id": "gnd",
+          "kind": "net"
+        }
+      ],
+      "sources": [
+        {
+          "id": "V1",
+          "label": "V1 · 10 V",
+          "legend": "Output voltage",
+          "unit": "V",
+          "authored": 10,
+          "min": 0,
+          "max": 24,
+          "step": 1.2
+        }
+      ],
+      "probes": [],
+      "leads": [
+        {
+          "id": "TR1",
+          "label": "TR1",
+          "net": "rail",
+          "authored": 0.1,
+          "unit": "m",
+          "stops": [
+            0.03,
+            0.05,
+            0.1,
+            0.2,
+            0.5,
+            1,
+            2,
+            5,
+            10
+          ]
+        },
+        {
+          "id": "TR2",
+          "label": "TR2",
+          "net": "gnd",
+          "authored": 0.1,
+          "unit": "m",
+          "stops": [
+            0.03,
+            0.05,
+            0.1,
+            0.2,
+            0.5,
+            1,
+            2,
+            5,
+            10
+          ]
+        }
+      ],
+      "demands": [],
+      "locked": {
+        "values": [],
+        "profiles": []
+      },
+      "reveals": [
+        {
+          "id": "V1",
+          "offers": [
+            {
+              "bind": "output_resistance",
+              "available": true
+            },
+            {
+              "bind": "output_drift",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "RL",
+          "offers": [
+            {
+              "bind": "overpower",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "TR1",
+          "offers": [
+            {
+              "bind": "ir_drop",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "TR2",
+          "offers": [
+            {
+              "bind": "ir_drop",
+              "available": true
+            }
+          ]
+        }
+      ],
+      "opens": {
+        "iv": [
+          "RL"
+        ]
+      },
+      "instances": [
+        "V1",
+        "RL",
+        "TP1"
+      ]
+    },
+    "diagnostics": []
+  }
 }

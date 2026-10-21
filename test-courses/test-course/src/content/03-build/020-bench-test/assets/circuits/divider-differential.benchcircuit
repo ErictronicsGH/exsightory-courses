@@ -113,5 +113,185 @@
       "is_reference": true
     }
   ],
-  "effects": {}
+  "effects": {},
+  "stamp": {
+    "v": 1,
+    "source": "sha256:fcd8d5410c0da6e32a44aed83af3c1cdaf3dfd629353fcbd7a7270210d9af0f9",
+    "libraries": {
+      "insight-baseline": "1.14.0"
+    },
+    "derived": {
+      "targets": [
+        {
+          "id": "V1",
+          "kind": "part"
+        },
+        {
+          "id": "R1",
+          "kind": "part"
+        },
+        {
+          "id": "R2",
+          "kind": "part"
+        },
+        {
+          "id": "M1",
+          "kind": "part"
+        },
+        {
+          "id": "VP1",
+          "kind": "part"
+        },
+        {
+          "id": "TP1",
+          "kind": "part"
+        },
+        {
+          "id": "vin",
+          "kind": "net"
+        },
+        {
+          "id": "mid",
+          "kind": "net"
+        },
+        {
+          "id": "sense",
+          "kind": "net"
+        },
+        {
+          "id": "gnd",
+          "kind": "net"
+        }
+      ],
+      "sources": [
+        {
+          "id": "V1",
+          "label": "V1 · 10 V",
+          "legend": "Output voltage",
+          "unit": "V",
+          "authored": 10,
+          "min": 0,
+          "max": 24,
+          "step": 1.2
+        }
+      ],
+      "probes": [
+        {
+          "id": "VP1",
+          "label": "VP1",
+          "authored": "TP1",
+          "destinations": [
+            {
+              "id": "TP1",
+              "label": "TP1",
+              "name": "IN",
+              "kind": "point"
+            },
+            {
+              "id": "mid",
+              "label": "mid",
+              "kind": "net"
+            },
+            {
+              "id": "gnd",
+              "label": "gnd",
+              "kind": "net"
+            }
+          ]
+        }
+      ],
+      "leads": [],
+      "demands": [
+        {
+          "id": "mid",
+          "label": "mid",
+          "net": "mid",
+          "min": 0,
+          "max": 10,
+          "step": 0.5
+        }
+      ],
+      "locked": {
+        "values": [],
+        "profiles": []
+      },
+      "reveals": [
+        {
+          "id": "V1",
+          "offers": [
+            {
+              "bind": "output_resistance",
+              "available": true
+            },
+            {
+              "bind": "output_drift",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "R1",
+          "offers": [
+            {
+              "bind": "overpower",
+              "available": true
+            },
+            {
+              "bind": "tempco_drift",
+              "available": true
+            },
+            {
+              "bind": "thermal_settling",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "R2",
+          "offers": [
+            {
+              "bind": "overpower",
+              "available": true
+            },
+            {
+              "bind": "tempco_drift",
+              "available": true
+            },
+            {
+              "bind": "thermal_settling",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "M1",
+          "offers": [
+            {
+              "bind": "input_loading",
+              "available": true
+            },
+            {
+              "bind": "resolution_versus_accuracy",
+              "available": true
+            }
+          ]
+        }
+      ],
+      "opens": {
+        "iv": [
+          "R1",
+          "R2"
+        ]
+      },
+      "instances": [
+        "V1",
+        "R1",
+        "R2",
+        "M1",
+        "VP1",
+        "TP1"
+      ]
+    },
+    "diagnostics": []
+  }
 }

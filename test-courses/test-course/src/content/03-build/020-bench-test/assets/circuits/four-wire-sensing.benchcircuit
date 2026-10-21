@@ -162,5 +162,290 @@
       "length_m": 2
     }
   ],
-  "effects": {}
+  "effects": {},
+  "stamp": {
+    "v": 1,
+    "source": "sha256:7e54022a4a818e6d338b28586447808cb22e9557f975865ee0c918f7bc6c7011",
+    "libraries": {
+      "insight-baseline": "1.14.0"
+    },
+    "derived": {
+      "targets": [
+        {
+          "id": "V1",
+          "kind": "part"
+        },
+        {
+          "id": "A1",
+          "kind": "part"
+        },
+        {
+          "id": "RS",
+          "kind": "part"
+        },
+        {
+          "id": "RTD",
+          "kind": "part"
+        },
+        {
+          "id": "M2W",
+          "kind": "part"
+        },
+        {
+          "id": "M4W",
+          "kind": "part"
+        },
+        {
+          "id": "vin",
+          "kind": "net"
+        },
+        {
+          "id": "force",
+          "kind": "net"
+        },
+        {
+          "id": "hi",
+          "kind": "net"
+        },
+        {
+          "id": "gnd",
+          "kind": "net"
+        }
+      ],
+      "sources": [
+        {
+          "id": "V1",
+          "label": "V1 · 10 V",
+          "legend": "Output voltage",
+          "unit": "V",
+          "authored": 10,
+          "min": 0,
+          "max": 24,
+          "step": 1.2
+        },
+        {
+          "id": "A1",
+          "label": "A1 · Excitation",
+          "legend": "Shunt resistance",
+          "unit": "Ω",
+          "authored": 0.1,
+          "min": 0.01,
+          "max": 10,
+          "step": 0.4995
+        }
+      ],
+      "probes": [],
+      "leads": [
+        {
+          "id": "WF1",
+          "label": "WF1",
+          "net": "hi",
+          "authored": 2,
+          "unit": "m",
+          "stops": [
+            0.03,
+            0.05,
+            0.1,
+            0.2,
+            0.5,
+            1,
+            2,
+            5,
+            10
+          ]
+        },
+        {
+          "id": "WS1",
+          "label": "WS1",
+          "net": "hi",
+          "authored": 2,
+          "unit": "m",
+          "stops": [
+            0.03,
+            0.05,
+            0.1,
+            0.2,
+            0.5,
+            1,
+            2,
+            5,
+            10
+          ]
+        },
+        {
+          "id": "WF2",
+          "label": "WF2",
+          "net": "gnd",
+          "authored": 2,
+          "unit": "m",
+          "stops": [
+            0.03,
+            0.05,
+            0.1,
+            0.2,
+            0.5,
+            1,
+            2,
+            5,
+            10
+          ]
+        },
+        {
+          "id": "WS2",
+          "label": "WS2",
+          "net": "gnd",
+          "authored": 2,
+          "unit": "m",
+          "stops": [
+            0.03,
+            0.05,
+            0.1,
+            0.2,
+            0.5,
+            1,
+            2,
+            5,
+            10
+          ]
+        }
+      ],
+      "demands": [
+        {
+          "id": "hi",
+          "label": "hi",
+          "net": "hi",
+          "min": 0,
+          "max": 10,
+          "step": 0.5
+        }
+      ],
+      "locked": {
+        "values": [],
+        "profiles": []
+      },
+      "reveals": [
+        {
+          "id": "V1",
+          "offers": [
+            {
+              "bind": "output_resistance",
+              "available": true
+            },
+            {
+              "bind": "output_drift",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "A1",
+          "offers": [
+            {
+              "bind": "burden_voltage",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "RS",
+          "offers": [
+            {
+              "bind": "overpower",
+              "available": true
+            },
+            {
+              "bind": "tempco_drift",
+              "available": true
+            },
+            {
+              "bind": "thermal_settling",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "RTD",
+          "offers": [
+            {
+              "bind": "tempco_drift",
+              "available": true
+            },
+            {
+              "bind": "overpower",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "M2W",
+          "offers": [
+            {
+              "bind": "input_loading",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "M4W",
+          "offers": [
+            {
+              "bind": "input_loading",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "WF1",
+          "offers": [
+            {
+              "bind": "lead_resistance",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "WS1",
+          "offers": [
+            {
+              "bind": "lead_resistance",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "WF2",
+          "offers": [
+            {
+              "bind": "lead_resistance",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "WS2",
+          "offers": [
+            {
+              "bind": "lead_resistance",
+              "available": true
+            }
+          ]
+        }
+      ],
+      "opens": {
+        "iv": [
+          "RS",
+          "RTD"
+        ]
+      },
+      "instances": [
+        "V1",
+        "A1",
+        "RS",
+        "RTD",
+        "M2W",
+        "M4W"
+      ]
+    },
+    "diagnostics": []
+  }
 }
