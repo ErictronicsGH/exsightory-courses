@@ -26,3 +26,8 @@ is cost for no teaching gain. Reality is in the look, the values and the behavio
 
 **Exception (owner, 2026-10-10):** the Arduino UNO photo the owner supplied for D1·030 card 1 keeps its maker's marks (ARDUINO,
 UNO, the chip's mark): asked, the owner chose "keep them as photographed". Ask again for any other branded base image.
+
+**Exception (owner, 2026-10-21, U020 D1):** D2·020 keeps its four named parts (ATmega328P, classic ESP32, ADS1115, INA226) in
+the title, Flow and figures, because reading those datasheets is the module's skill. Its figures are our own redrawn extracts
+citing the document numbers, with no logos or vendor page images (copyright). D1·080's ADS1115 mention stays too. Any other
+module still asks.

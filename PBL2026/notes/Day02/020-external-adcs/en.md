@@ -20,15 +20,22 @@ concepts: [external-adc]
               ("Communication speed is not the same as useful data rate", "The interface can become part of
               the measurement chain"); training-overview.md Day 3 Module 2. -->
 
+<!-- NAMED PARTS (owner 2026-10-21, U020 D1): an exception to real-but-unbranded for this module. The
+     ATmega328P, the classic ESP32, the ADS1115 and the INA226 keep their names in the title, the Flow and
+     the figures, because the learner must be able to find and read the same datasheets afterwards. The
+     figures are our own redrawn extracts citing the document numbers; no logos, no vendor page images.
+     Accuracy: ACCURACY.md D2·020-F1 – F7, applied 2026-10-21. -->
+
 ## When the integrated converter is not enough
 
 An external ADC earns its place when the microcontroller's built-in converter is not sufficient:
 when we need higher resolution, differential measurement, or precision-oriented sensor measurement.
 
 <!-- PLAN
-SHOW     Plot — D1·080's quantizer staircase round(x/q)·q over a 0–5 mV ramp (a bridge output), twice: q =
-         3.3 V/4096 ≈ 0.81 mV (the MCU's 12-bit SAR) and q = 0.256 V/32768 ≈ 7.8 µV (the ADS1115 at ±0.256 V).
-         Drive: the MCU staircase first, then the second curve. Look for: about six steps across the whole
+SHOW     Plot — the quantizer staircase q·⌊x/q⌋ (the course's truncating converter; D1·080 drew q·round(x/q))
+         over a 0–5 mV ramp (a bridge output), twice: q = 3.3 V/4096 ≈ 0.81 mV (the MCU's 12-bit SAR) and
+         q = 0.256 V/32768 ≈ 7.8 µV (the ADS1115 at ±0.256 V).
+         Drive: the MCU staircase first, then the second curve, then a magnifier on the bottom 60 µV. Look for: about six steps across the whole
          signal against about 640.
          Status: ready
 -->
@@ -72,14 +79,16 @@ the slowest.
 SHOW     Figure — the comparison table as an SVG (architecture, resolution, maximum rate, inputs, PGA,
          reference, interface, strength, limitation) for the ATmega328P (10-bit SAR, ~15 kSPS), the classic
          ESP32 (12-bit SAR) and the ADS1115 (16-bit ΔΣ, 860 SPS). Drive: spotlight the resolution row, then
-         the rate row. Look for: the two rows ordered in opposite directions.
+         the rate row. Look for: the most bits on by far the slowest part, while between the two SARs the
+         finer one is also the faster.
          Status: needs asset: comparison table SVG, values checked against the three datasheets
 ASK      poe (before the statement) — "Rank the three by resolution, then by speed. Do the rankings agree?"
          options: Same order both times | Roughly reversed | No relation between them
          answer: Roughly reversed
          reveal: the two rows spotlighted in turn
          explain: The ADS1115 reaches 16 bits by sampling far faster inside than it outputs and filtering,
-         which spends time, while a SAR decides one bit per comparison and is done quickly.
+         which spends time, while a SAR decides one bit per comparison and is done quickly. Between the two
+         SARs, more bits did not cost speed: the ESP32 is both finer and faster than the ATmega328P.
          depth: understand    practice: analysing data
 -->
 
@@ -228,16 +237,21 @@ SHOW (centrepiece) Figure — the ADS1115 datasheet (TI SBAS444) as a tour: bloc
          PGA → ΔΣ modulator → digital filter → I²C, internal reference and oscillator) → MUX pairs (AIN0–AIN1,
          AIN2–AIN3) → the PGA full-scale ranges (±6.144 V … ±0.256 V; LSB = FSR/2¹⁵: 187.5 µV … 7.8 µV) →
          input impedance against full-scale range → the noise table against data rate, last.
-         Drive: in that order; spotlight one column at a time; compare the 8 SPS and 860 SPS rows.
-         Look for: the noise growing with data rate, and the input impedance falling as the gain rises.
-         Status: needs asset: ADS1115 datasheet PDF, page numbers fixed at build; every value read off the
-                 page on the day, not from memory
+         Drive: in that order; spotlight one column at a time; compare the 8 SPS and 860 SPS rows of the
+         ±0.256 V column, in its peak-to-peak figures.
+         Look for: the peak-to-peak noise growing with data rate (7.81 → 35.83 µV on ±0.256 V), and the
+         differential input impedance falling as the gain rises.
+         Status: needs asset: our own redrawn extracts of the datasheet (TI SBAS444E), every value read off
+                 the page, not from memory; no vendor page images (decided 2026-10-21)
 ASK      poe (before the noise table) — "As the data rate goes up, what does the noise do?"
          options: It rises | It falls | It stays the same
          answer: It rises
-         reveal: spotlight on the noise table, 8 SPS row to 860 SPS row
+         reveal: spotlight on the noise table's ±0.256 V column, peak-to-peak, 8 SPS row to 860 SPS row
+         (7.81 → 35.83 µV)
          explain: Each output is the digital filter's average over the modulator's samples, and a faster
-         output rate averages fewer of them over a wider bandwidth, so more noise gets through.
+         output rate averages fewer of them over a wider bandwidth, so more noise gets through. The RMS
+         column stays at one count, 7.81 µV, at every rate: the table never reports less than one count.
+         The peak-to-peak figures in brackets show the growth.
          depth: understand    practice: analysing data
 ASK      numeric (after the tour) — "At its two smallest full-scale ranges the ADS1115's differential input
          impedance is about 710 kΩ (confirm on the page). A 10 kΩ bridge drives it. What loading error is
@@ -249,8 +263,8 @@ ASK      numeric (after the tour) — "At its two smallest full-scale ranges the
          impedance falls as the gain rises, the range that resolves the bridge best also loads it hardest.
          depth: use    practice: computational thinking
 HARVEST  S20 — "Yesterday: more bits are not more accuracy, and ENOB is the honest number. Here is a datasheet
-         saying so itself: sixteen bits on the cover, and a table inside showing how many of them are noise
-         at each data rate."
+         saying so itself: sixteen bits on the cover, and a table inside showing how many of them stay
+         free of noise at each data rate."
 HARVEST  S16 — "The multiplexer pairs its inputs, AIN0 against AIN1. That is yesterday's in-amp idea built into
          the converter: measure the difference, ignore what both inputs share."
 SEED     plants S52 — "Keep this table in mind: noise that grows with data rate. In half an hour we find out
@@ -268,7 +282,8 @@ rate goes up, what do you expect the noise to do?
 
 [[pause]]
 
-[[reveal]] The noise rises with the data rate. Let us see why, by walking the datasheet.
+[[reveal]] The noise rises with the data rate, in the peak-to-peak figures. Let us see why, by walking
+the datasheet.
 
 [[demo]] The block diagram first: four inputs into a multiplexer, then a programmable gain amplifier,
 then the sigma-delta modulator, a digital filter, and the I²C interface. The reference and the clock
@@ -282,9 +297,9 @@ The PGA sets the full-scale range, from ±6.144 V down to ±0.256 V. The result 
 so one count is the range divided by 32,768: 187.5 µV on the widest range, about 7.8 µV on the
 narrowest.
 
-Now the input impedance. It is not one number. It changes with the gain setting, and it is lowest on
-the most sensitive ranges. Read the values off the page: on the smallest ranges it is of the order of
-700 kΩ. So the ADS1115 is a load, just like the meter on Day 1, and how heavy a load depends on the
+Now the differential input impedance, the load between the two inputs. It is not one number. It
+changes with the gain setting, and it is lowest on the most sensitive ranges. Read the values off the
+page: on the smallest ranges it is of the order of 700 kΩ. So the ADS1115 is a load, just like the meter on Day 1, and how heavy a load depends on the
 range you choose.
 
 [[ask]] If a 10 kΩ bridge drives an input of about 710 kΩ, what loading error is that?
@@ -297,8 +312,10 @@ Finally, the noise table. Remember what a sigma-delta does: it samples far faste
 and the digital filter averages. Ask it for results more often, and each result averages fewer samples
 over a wider bandwidth, so more noise gets through.
 
-Sixteen bits on the cover, and a table inside showing how many of them are noise at each data rate.
-Yesterday we said ENOB is the honest number. Here is a datasheet saying so itself.
+Sixteen bits on the cover, and a table inside showing how many of them stay free of noise at each data
+rate: all sixteen at 8 samples a second, under fourteen at 860 on the most sensitive range. Yesterday
+we said ENOB is the honest number. Here is a datasheet saying so itself, under its own name: noise-free
+resolution, read from the peak-to-peak noise.
 ```
 
 ***
@@ -358,7 +375,7 @@ approximately **160 kbit/s**. But the actual communication requirement may be hi
 overhead and other transferred information are included. The interface therefore needs sufficient
 capacity to move the data **without becoming the bottleneck**.
 
-This is particularly important in measurement systems. We can now extend our measurement chain:
+This is particularly important in measurement systems. Recall our measurement chain from the last module:
 
 **Physical quantity → Sensor → Electrical signal → Signal conditioning → ADC → Digital data → Digital
 interface → Processor → Engineering value**
@@ -389,10 +406,11 @@ SHOW     Figure — the INA226 block diagram (TI SBOS547) laid beside the Day 1 
          → differential input riding on a 0–36 V common mode (D1·060) → 16-bit ADC → averaging and
          conversion-time settings → calibration, current and power registers → I²C. Drive: tour pairs each
          INA226 block with the Day 1 stage it replaces. Look for: three Day 1 modules folding into one
-         package, and two of this morning's firmware jobs, averaging and calibration, already in its
-         registers.
-         Status: needs asset: INA226 datasheet PDF (block diagram; 2.5 µV shunt LSB, ±81.92 mV full scale,
-                 averaging 1–1024) — confirm the values on the page
+         package, and two of today's firmware jobs still to come, averaging and calibration, already in its
+         registers. Then the FAULT below, live on the same figure: a fitted-shunt switch (10 mΩ / 5 mΩ) and
+         the register readouts halving.
+         Status: needs asset: our own redrawn INA226 block diagram (TI SBOS547C; 2.5 µV shunt LSB, ±81.92 mV
+                 full scale, averaging 1–1024, confirmed on the page 2026-10-20); no vendor page images
 ASK      poll (after the statement) — "Build the Day 1 chain, or buy the INA226? Name one thing that would
          push you each way."
          options: Build | Buy | It depends on …
@@ -400,7 +418,7 @@ ASK      poll (after the statement) — "Build the Day 1 chain, or buy the INA22
          side; choice of shunt, bandwidth and knowing every stage on the other.
          depth: create    practice: arguing from evidence
 SEED     plants S51 — "Two amps through a ten-milliohm shunt is twenty millivolts: eight thousand of the
-         INA226's 2.5-microvolt counts, every one of them signal. Remember that pair: two amps, ten milliohms."
+         INA226's 2.5-microvolt counts of signal. Remember that pair: two amps, ten milliohms."
 SEED     plants S58 — "Look at two of its registers: averaging, and calibration. The INA226 does in silicon two
          jobs our firmware is about to do by hand."
 FAULT    The INA226's calibration register written for a 10 mΩ shunt on a board fitted with 5 mΩ: the current
@@ -426,7 +444,7 @@ can sit anywhere from 0 to 36 V. That is the common-mode problem we met with the
 is a 16-bit converter, and behind that, registers you read over I²C.
 
 One count of shunt voltage is 2.5 µV, and the full scale is about ±82 mV. Two amps through a 10 mΩ
-shunt is 20 mV: eight thousand counts, all of it signal. Remember that pair of numbers: two amps,
+shunt is 20 mV: eight thousand counts of signal. Remember that pair of numbers: two amps,
 ten milliohms.
 
 Look at two more registers. One sets **averaging**, from 1 up to 1024 samples. Another is a

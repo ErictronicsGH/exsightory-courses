@@ -217,7 +217,7 @@ Plus on every card: wall text and **Flow**. Not authored, because the compiler e
 
 | # | Card | What the wall shows (bench) | Learner action | Also |
 |---|---|---|---|---|
-| 1 | When the integrated converter is not enough | Plot Bench: D1·080's quantizer staircase round(x/q)·q over a 0–5 mV ramp (a bridge output), twice: q = 3.3 V/4096 ≈ 0.81 m… | — |  |
+| 1 | When the integrated converter is not enough | Plot Bench: the quantizer staircase q·⌊x/q⌋ (the course's truncating converter; D1·080 drew q·round(x/q))… | — |  |
 | 2 | Three converters side by side | Figure Bench: the comparison table as an SVG (architecture, resolution, maximum rate, inputs, PGA, reference, interface, str… | Predict–observe–explain |  |
 | 3 | Not "which has the most bits?" | Plot Bench: the two staircases from the first card, back on the Canvas. | Flash quiz |  |
 | 4 | The selection checklist | Draw Bench: the course path drawing with the checklist's items pinned to the stages they belong to: input impedance → sour… | Checkpoint |  |

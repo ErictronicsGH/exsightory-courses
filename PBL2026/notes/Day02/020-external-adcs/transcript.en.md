@@ -29,7 +29,7 @@ Still the DIGITAL INTERFACE, now with the converter itself outside the chip. The
 
 ## What the wall shows
 
-- When the integrated converter is not enough: Plot — D1·080's quantizer staircase round(x/q)·q over a 0–5 mV ramp (a bridge output), twice: q =
+- When the integrated converter is not enough: Plot — the quantizer staircase q·⌊x/q⌋ (the course's truncating converter; D1·080 drew q·round(x/q))
 - Three converters side by side: Figure — the comparison table as an SVG (architecture, resolution, maximum rate, inputs, PGA,
 - Not "which has the most bits?": Plot — the two staircases from the first card, back on the Canvas.
 - The selection checklist: Draw — the course path drawing with the checklist's items pinned to the stages they belong to:
