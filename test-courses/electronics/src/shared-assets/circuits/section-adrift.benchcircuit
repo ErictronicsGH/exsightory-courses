@@ -109,5 +109,199 @@
     }
   ],
   "effects": {},
-  "under_construction": true
+  "under_construction": true,
+  "stamp": {
+    "v": 1,
+    "source": "sha256:8d0afd51d9bd85d4298720abc22efeff077d7255f5175d42717f7fa6514b7a09",
+    "libraries": {
+      "insight-baseline": "1.14.0"
+    },
+    "derived": {
+      "targets": [
+        {
+          "id": "V1",
+          "kind": "part"
+        },
+        {
+          "id": "R1",
+          "kind": "part"
+        },
+        {
+          "id": "R2",
+          "kind": "part"
+        },
+        {
+          "id": "R3",
+          "kind": "part"
+        },
+        {
+          "id": "R4",
+          "kind": "part"
+        },
+        {
+          "id": "vin",
+          "kind": "net"
+        },
+        {
+          "id": "mid",
+          "kind": "net"
+        },
+        {
+          "id": "gnd",
+          "kind": "net"
+        },
+        {
+          "id": "spare-top",
+          "kind": "net"
+        },
+        {
+          "id": "spare-bottom",
+          "kind": "net"
+        }
+      ],
+      "sources": [
+        {
+          "id": "V1",
+          "label": "V1 · 9 V",
+          "legend": "Output voltage",
+          "unit": "V",
+          "authored": 9,
+          "min": 0,
+          "max": 24,
+          "step": 1.2
+        }
+      ],
+      "probes": [],
+      "leads": [],
+      "demands": [
+        {
+          "id": "mid",
+          "label": "mid",
+          "net": "mid",
+          "min": 0,
+          "max": 9,
+          "step": 0.45
+        },
+        {
+          "id": "spare-top",
+          "label": "spare-top",
+          "net": "spare-top",
+          "min": 0,
+          "max": 9,
+          "step": 0.45
+        },
+        {
+          "id": "spare-bottom",
+          "label": "spare-bottom",
+          "net": "spare-bottom",
+          "min": 0,
+          "max": 9,
+          "step": 0.45
+        }
+      ],
+      "locked": {
+        "values": [],
+        "profiles": []
+      },
+      "reveals": [
+        {
+          "id": "V1",
+          "offers": [
+            {
+              "bind": "output_resistance",
+              "available": true
+            },
+            {
+              "bind": "output_drift",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "R1",
+          "offers": [
+            {
+              "bind": "overpower",
+              "available": true
+            },
+            {
+              "bind": "tempco_drift",
+              "available": true
+            },
+            {
+              "bind": "thermal_settling",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "R2",
+          "offers": [
+            {
+              "bind": "overpower",
+              "available": true
+            },
+            {
+              "bind": "tempco_drift",
+              "available": true
+            },
+            {
+              "bind": "thermal_settling",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "R3",
+          "offers": [
+            {
+              "bind": "overpower",
+              "available": true
+            },
+            {
+              "bind": "tempco_drift",
+              "available": true
+            },
+            {
+              "bind": "thermal_settling",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "R4",
+          "offers": [
+            {
+              "bind": "overpower",
+              "available": true
+            },
+            {
+              "bind": "tempco_drift",
+              "available": true
+            },
+            {
+              "bind": "thermal_settling",
+              "available": true
+            }
+          ]
+        }
+      ],
+      "opens": {
+        "iv": [
+          "R1",
+          "R2",
+          "R3",
+          "R4"
+        ]
+      },
+      "instances": [
+        "V1",
+        "R1",
+        "R2",
+        "R3",
+        "R4"
+      ]
+    },
+    "diagnostics": []
+  }
 }

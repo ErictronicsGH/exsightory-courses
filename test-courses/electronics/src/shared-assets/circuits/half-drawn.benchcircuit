@@ -63,5 +63,116 @@
     }
   ],
   "effects": {},
-  "under_construction": true
+  "under_construction": true,
+  "stamp": {
+    "v": 1,
+    "source": "sha256:5b96a395253f20475a13a16eeb46893ef5235b54b68948856995af1a9ff1766f",
+    "libraries": {
+      "insight-baseline": "1.14.0"
+    },
+    "derived": {
+      "targets": [
+        {
+          "id": "V1",
+          "kind": "part"
+        },
+        {
+          "id": "R1",
+          "kind": "part"
+        },
+        {
+          "id": "R2",
+          "kind": "part"
+        },
+        {
+          "id": "vin",
+          "kind": "net"
+        },
+        {
+          "id": "mid",
+          "kind": "net"
+        }
+      ],
+      "sources": [
+        {
+          "id": "V1",
+          "label": "V1 · 9 V",
+          "legend": "Output voltage",
+          "unit": "V",
+          "authored": 9,
+          "min": 0,
+          "max": 24,
+          "step": 1.2
+        }
+      ],
+      "probes": [],
+      "leads": [],
+      "demands": [],
+      "locked": {
+        "values": [],
+        "profiles": []
+      },
+      "reveals": [
+        {
+          "id": "V1",
+          "offers": [
+            {
+              "bind": "output_resistance",
+              "available": true
+            },
+            {
+              "bind": "output_drift",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "R1",
+          "offers": [
+            {
+              "bind": "overpower",
+              "available": true
+            },
+            {
+              "bind": "tempco_drift",
+              "available": true
+            },
+            {
+              "bind": "thermal_settling",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "R2",
+          "offers": [
+            {
+              "bind": "overpower",
+              "available": true
+            },
+            {
+              "bind": "tempco_drift",
+              "available": true
+            },
+            {
+              "bind": "thermal_settling",
+              "available": true
+            }
+          ]
+        }
+      ],
+      "opens": {
+        "iv": [
+          "R1",
+          "R2"
+        ]
+      },
+      "instances": [
+        "V1",
+        "R1",
+        "R2"
+      ]
+    },
+    "diagnostics": []
+  }
 }

@@ -103,5 +103,153 @@
       "is_reference": true
     }
   ],
-  "effects": {}
+  "effects": {},
+  "stamp": {
+    "v": 1,
+    "source": "sha256:7a58f01918dbced1e3e0545a77fe3d3e300a20462877dd89afbea0a2f751d714",
+    "libraries": {
+      "insight-baseline": "1.14.0"
+    },
+    "derived": {
+      "targets": [
+        {
+          "id": "V1",
+          "kind": "part"
+        },
+        {
+          "id": "R1",
+          "kind": "part"
+        },
+        {
+          "id": "D1",
+          "kind": "part"
+        },
+        {
+          "id": "R2",
+          "kind": "part"
+        },
+        {
+          "id": "D2",
+          "kind": "part"
+        },
+        {
+          "id": "drive",
+          "kind": "net"
+        },
+        {
+          "id": "red",
+          "kind": "net"
+        },
+        {
+          "id": "green",
+          "kind": "net"
+        },
+        {
+          "id": "gnd",
+          "kind": "net"
+        }
+      ],
+      "sources": [
+        {
+          "id": "V1",
+          "label": "V1 · 5 V",
+          "legend": "Output voltage",
+          "unit": "V",
+          "authored": 5,
+          "min": 0,
+          "max": 24,
+          "step": 1.2
+        }
+      ],
+      "probes": [],
+      "leads": [],
+      "demands": [
+        {
+          "id": "red",
+          "label": "red",
+          "net": "red",
+          "min": 0,
+          "max": 5,
+          "step": 0.25
+        },
+        {
+          "id": "green",
+          "label": "green",
+          "net": "green",
+          "min": 0,
+          "max": 5,
+          "step": 0.25
+        }
+      ],
+      "locked": {
+        "values": [],
+        "profiles": []
+      },
+      "reveals": [
+        {
+          "id": "V1",
+          "offers": [
+            {
+              "bind": "output_resistance",
+              "available": true
+            },
+            {
+              "bind": "output_drift",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "R1",
+          "offers": [
+            {
+              "bind": "overpower",
+              "available": true
+            },
+            {
+              "bind": "tempco_drift",
+              "available": true
+            },
+            {
+              "bind": "thermal_settling",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "R2",
+          "offers": [
+            {
+              "bind": "overpower",
+              "available": true
+            },
+            {
+              "bind": "tempco_drift",
+              "available": true
+            },
+            {
+              "bind": "thermal_settling",
+              "available": true
+            }
+          ]
+        }
+      ],
+      "opens": {
+        "iv": [
+          "R1",
+          "D1",
+          "R2",
+          "D2"
+        ]
+      },
+      "instances": [
+        "V1",
+        "R1",
+        "D1",
+        "R2",
+        "D2"
+      ]
+    },
+    "diagnostics": []
+  }
 }

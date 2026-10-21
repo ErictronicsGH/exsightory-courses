@@ -72,5 +72,120 @@
       "is_reference": true
     }
   ],
-  "effects": {}
+  "effects": {},
+  "stamp": {
+    "v": 1,
+    "source": "sha256:edb557000b49c95bee33c408f9e926b14830dcea72ccbeb8a75129936014cfc4",
+    "libraries": {
+      "insight-baseline": "1.14.0"
+    },
+    "derived": {
+      "targets": [
+        {
+          "id": "V1",
+          "kind": "part"
+        },
+        {
+          "id": "R1",
+          "kind": "part"
+        },
+        {
+          "id": "C1",
+          "kind": "part"
+        },
+        {
+          "id": "drive",
+          "kind": "net"
+        },
+        {
+          "id": "top",
+          "kind": "net"
+        },
+        {
+          "id": "gnd",
+          "kind": "net"
+        }
+      ],
+      "sources": [
+        {
+          "id": "V1",
+          "label": "V1 · 5 V",
+          "legend": "Output voltage",
+          "unit": "V",
+          "authored": 5,
+          "min": 0,
+          "max": 24,
+          "step": 1.2
+        }
+      ],
+      "probes": [],
+      "leads": [],
+      "demands": [
+        {
+          "id": "top",
+          "label": "top",
+          "net": "top",
+          "min": 0,
+          "max": 5,
+          "step": 0.25
+        }
+      ],
+      "locked": {
+        "values": [],
+        "profiles": []
+      },
+      "reveals": [
+        {
+          "id": "V1",
+          "offers": [
+            {
+              "bind": "output_resistance",
+              "available": true
+            },
+            {
+              "bind": "output_drift",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "R1",
+          "offers": [
+            {
+              "bind": "overpower",
+              "available": true
+            },
+            {
+              "bind": "tempco_drift",
+              "available": true
+            },
+            {
+              "bind": "thermal_settling",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "C1",
+          "offers": [
+            {
+              "bind": "bias_collapse",
+              "available": true
+            }
+          ]
+        }
+      ],
+      "opens": {
+        "iv": [
+          "R1"
+        ]
+      },
+      "instances": [
+        "V1",
+        "R1",
+        "C1"
+      ]
+    },
+    "diagnostics": []
+  }
 }

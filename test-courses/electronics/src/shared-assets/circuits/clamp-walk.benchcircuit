@@ -118,5 +118,214 @@
       "is_reference": true
     }
   ],
-  "effects": {}
+  "effects": {},
+  "stamp": {
+    "v": 1,
+    "source": "sha256:2cf69e14b02c27cd33c0f56fcc831b55cf13f881fedce655db115f6ed42348a4",
+    "libraries": {
+      "insight-baseline": "1.14.0"
+    },
+    "derived": {
+      "targets": [
+        {
+          "id": "V1",
+          "kind": "part"
+        },
+        {
+          "id": "RS",
+          "kind": "part"
+        },
+        {
+          "id": "A1",
+          "kind": "part"
+        },
+        {
+          "id": "R1",
+          "kind": "part"
+        },
+        {
+          "id": "R2",
+          "kind": "part"
+        },
+        {
+          "id": "CP1",
+          "kind": "part"
+        },
+        {
+          "id": "vin",
+          "kind": "net"
+        },
+        {
+          "id": "mid",
+          "kind": "net"
+        },
+        {
+          "id": "shunted",
+          "kind": "net"
+        },
+        {
+          "id": "gnd",
+          "kind": "net"
+        }
+      ],
+      "sources": [
+        {
+          "id": "V1",
+          "label": "V1 · 10 V",
+          "legend": "Output voltage",
+          "unit": "V",
+          "authored": 10,
+          "min": 0,
+          "max": 24,
+          "step": 1.2
+        },
+        {
+          "id": "A1",
+          "label": "A1 · Ammeter",
+          "legend": "Shunt resistance",
+          "unit": "Ω",
+          "authored": 0.1,
+          "min": 0.01,
+          "max": 10,
+          "step": 0.4995
+        }
+      ],
+      "probes": [
+        {
+          "id": "CP1",
+          "label": "CP1",
+          "authored": "R1.a",
+          "destinations": [
+            {
+              "id": "V1.p",
+              "label": "V1",
+              "kind": "branch"
+            },
+            {
+              "id": "RS.a",
+              "label": "RS",
+              "kind": "branch"
+            },
+            {
+              "id": "A1.hi",
+              "label": "A1",
+              "kind": "branch"
+            },
+            {
+              "id": "R1.a",
+              "label": "R1",
+              "kind": "branch"
+            },
+            {
+              "id": "R2.a",
+              "label": "R2",
+              "kind": "branch"
+            }
+          ]
+        }
+      ],
+      "leads": [],
+      "demands": [
+        {
+          "id": "mid",
+          "label": "mid",
+          "net": "mid",
+          "min": 0,
+          "max": 10,
+          "step": 0.5
+        },
+        {
+          "id": "shunted",
+          "label": "shunted",
+          "net": "shunted",
+          "min": 0,
+          "max": 10,
+          "step": 0.5
+        }
+      ],
+      "locked": {
+        "values": [],
+        "profiles": []
+      },
+      "reveals": [
+        {
+          "id": "V1",
+          "offers": [
+            {
+              "bind": "output_resistance",
+              "available": true
+            },
+            {
+              "bind": "output_drift",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "RS",
+          "offers": [
+            {
+              "bind": "overpower",
+              "available": true
+            },
+            {
+              "bind": "thermal_settling",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "A1",
+          "offers": [
+            {
+              "bind": "burden_voltage",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "R1",
+          "offers": [
+            {
+              "bind": "overpower",
+              "available": true
+            },
+            {
+              "bind": "thermal_settling",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "R2",
+          "offers": [
+            {
+              "bind": "overpower",
+              "available": true
+            },
+            {
+              "bind": "thermal_settling",
+              "available": true
+            }
+          ]
+        }
+      ],
+      "opens": {
+        "iv": [
+          "RS",
+          "R1",
+          "R2"
+        ]
+      },
+      "instances": [
+        "V1",
+        "RS",
+        "A1",
+        "R1",
+        "R2",
+        "CP1"
+      ]
+    },
+    "diagnostics": []
+  }
 }

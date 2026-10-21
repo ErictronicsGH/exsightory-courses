@@ -51,5 +51,85 @@
       "is_reference": true
     }
   ],
-  "effects": {}
+  "effects": {},
+  "stamp": {
+    "v": 1,
+    "source": "sha256:2f007c76392b60e229b8b123a5470ab492aa5e999e94dc23ba9f5fc3b9f7a0db",
+    "libraries": {
+      "insight-baseline": "1.14.0"
+    },
+    "derived": {
+      "targets": [
+        {
+          "id": "V1",
+          "kind": "part"
+        },
+        {
+          "id": "RL",
+          "kind": "part"
+        },
+        {
+          "id": "out",
+          "kind": "net"
+        },
+        {
+          "id": "gnd",
+          "kind": "net"
+        }
+      ],
+      "sources": [
+        {
+          "id": "V1",
+          "label": "V1",
+          "legend": "Output voltage",
+          "unit": "V",
+          "authored": 10,
+          "min": 0,
+          "max": 24,
+          "step": 1.2
+        }
+      ],
+      "probes": [],
+      "leads": [],
+      "demands": [],
+      "locked": {
+        "values": [],
+        "profiles": []
+      },
+      "reveals": [
+        {
+          "id": "V1",
+          "offers": [
+            {
+              "bind": "output_resistance",
+              "available": true
+            },
+            {
+              "bind": "output_drift",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "RL",
+          "offers": [
+            {
+              "bind": "overpower",
+              "available": true
+            }
+          ]
+        }
+      ],
+      "opens": {
+        "iv": [
+          "RL"
+        ]
+      },
+      "instances": [
+        "V1",
+        "RL"
+      ]
+    },
+    "diagnostics": []
+  }
 }
