@@ -56,25 +56,22 @@ ref: regulator-heat@1
 
 ## Where this design runs out
 
-Honest limits of what we built:
-
 <!-- Two plants in this list. "No remote sensing" nests a list, which reaches the wall
      (M76b). The quote inside "Efficiency" is not kept in a list item: content-not-kept
      says so, and is one of this fixture's four warnings. A quote and not a fence,
-     because the editor badges a fence in an item as a block (M76b's handoff). -->
+     because the editor badges a fence in an item as a block (M76b's handoff).
+     Kept short on purpose: the section's video keeps this slide split, and its
+     text column holds about half a card (crossing 538, drive 115 found it 432 px
+     past the bottom of the wall at twice this length). -->
 
-- **Efficiency is poor by design.** A linear supply at low output settings is
-  mostly a heater. A switching pre-regulator is the usual fix.
+- **Efficiency is poor.** At low settings a linear supply is mostly a heater.
 
   > At best, efficiency is V_out / V_in: at 5 V out of 15 V in, two thirds of
   > the power heats the pass transistor.
-- **No remote sensing.** The voltage is right at the terminals and slightly
-  wrong at the load, and the error grows with current and lead length.
-  - Remote sensing runs two extra wires to the load and regulates there.
-  - It needs two more terminals and a regulator built to take them.
-- **Single output.** Anything needing split rails needs a second supply.
-- **The limit is not fast.** It protects against a sustained short, not against
-  a nanosecond-scale transient.
+- **No remote sensing.** The voltage is right at the terminals, not at the load.
+  - Sensing at the load needs two more wires.
+- **Single output.** Split rails need a second supply.
+- **A slow limit.** It survives a short, not a transient.
 
 ## Questions on anything we covered
 

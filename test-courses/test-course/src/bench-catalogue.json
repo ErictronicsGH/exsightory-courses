@@ -4,7 +4,7 @@
     {
       "name": "@exsight/bench-breadboard",
       "kind": "bench",
-      "version": "0.1.0",
+      "version": "0.1.2",
       "works": [
         {
           "ext": "breadboard",

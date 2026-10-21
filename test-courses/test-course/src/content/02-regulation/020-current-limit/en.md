@@ -35,7 +35,7 @@ current at full input-to-output difference, which is maximum dissipation.
 
 ```bench
 title: Set the limit, then load it
-package: "@exsight/bench-breadboard@0.1.0"
+package: "@exsight/bench-breadboard@0.1.2"
 work: shared/benches/bench-supply.breadboard
 alt: A bench supply on a breadboard, set to 5 V with its current limit at 0.1 A, and a load across its leads.
 caption: The limit you set is the most the load can draw, whatever it asks for.
