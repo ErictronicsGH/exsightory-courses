@@ -49,3 +49,10 @@ Building any bench or asset. Changing the owner's card text or Flow (report anyt
   FAULT on the figure, N1, N2; ≈ 29 of 30 min). **Next: read the owner's choices off the page (`u020Feedback()`) or
   the chat, apply, re-check, then write the seven specs.**
 
+- 2026-10-21: owner *"Apply all recommendations"* (asked in the chat): **F1–F7 applied** to en.md and re-checked (Flow
+  2,045 words); D1 named-parts exception (memory `real-but-unbranded`), D2 redrawn extracts, D4 fault on the figure;
+  DECISIONS.md row. **Seven specs written** (`D2-020-01` to `07`, spec-draft; README rows), cards 26.6 of 30 min. The
+  specs found **seven more accuracy points, D2·020-F8 – F14 (open)**, and D2·030-F1 (for U021). Our own page fixed
+  (bandwidth home, INA226 has no reference block, pointer sentence, S52 cross-reference). **Round two is on the brief
+  page** (`#specs`: F8–F14 and C1–C7, each card's proposals). **Next: read the owner's round-two choices, apply, re-check,
+  set specs spec-ready, write the crossing(s) (card 4 with 511/517; card 1's X-inset; card 6 into 506), push.**
