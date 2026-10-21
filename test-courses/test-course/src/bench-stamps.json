@@ -1,0 +1,802 @@
+{
+  "about": "The stamps of the works the compiler builds from this course's figure and model fences, each found by its digest (crossing 581). Written by src/insight/tools/stamp-course.mjs, with each bench's own stampedText; never edited by hand.",
+  "v": 1,
+  "stamps": [
+    {
+      "v": 1,
+      "source": "sha256:539becd1663b020b157c10a980c68ceec766ce5955a24e376a1c6e868a1e709d",
+      "derived": {
+        "attestation": {
+          "origin": "user",
+          "status": "peer-reviewed",
+          "licence": "free"
+        },
+        "joints": [
+          {
+            "id": "lid-hinge",
+            "type": "hinge",
+            "name": "Lid",
+            "parts": [
+              "lid"
+            ],
+            "axis": [
+              -1,
+              0,
+              0
+            ],
+            "origin": [
+              0,
+              60,
+              0
+            ],
+            "range": [
+              0,
+              110
+            ],
+            "home": 0,
+            "depth": 0,
+            "order": 0
+          }
+        ],
+        "poses": [
+          {
+            "id": "closed",
+            "joints": {
+              "lid-hinge": 0
+            }
+          },
+          {
+            "id": "open",
+            "joints": {
+              "lid-hinge": 110
+            }
+          }
+        ],
+        "parts": [
+          {
+            "id": "body",
+            "name": "Body",
+            "nodes": [
+              "Enclosure/Body"
+            ],
+            "matchedBy": "node",
+            "matchIndex": 0,
+            "triangles": 60,
+            "centroid": [
+              60,
+              30,
+              40
+            ],
+            "bbox": [
+              0,
+              0,
+              0,
+              120,
+              60,
+              80
+            ]
+          },
+          {
+            "id": "lid",
+            "name": "Lid",
+            "note": "It carries nothing, which is why it can be 3 mm and hinged rather than bolted.",
+            "colour": "amber",
+            "nodes": [
+              "Enclosure/Lid"
+            ],
+            "matchedBy": "node",
+            "matchIndex": 0,
+            "triangles": 12,
+            "centroid": [
+              60,
+              61.5,
+              40
+            ],
+            "bbox": [
+              0,
+              60,
+              0,
+              120,
+              63,
+              80
+            ]
+          },
+          {
+            "id": "board",
+            "name": "Board",
+            "note": "The thing the lid was hiding, and the only part in here that gets warm.",
+            "colour": "teal",
+            "nodes": [
+              "Enclosure/PCB"
+            ],
+            "matchedBy": "node",
+            "matchIndex": 0,
+            "triangles": 12,
+            "centroid": [
+              60,
+              14.800000190734863,
+              40
+            ],
+            "bbox": [
+              12,
+              14,
+              12,
+              108,
+              15.600000381469727,
+              68
+            ]
+          },
+          {
+            "id": "standoffs",
+            "name": "Standoffs",
+            "note": "Eleven millimetres of air under the board, which is the only cooling path it has.",
+            "colour": "orange",
+            "nodes": [
+              "Enclosure/Standoffs/Standoff",
+              "Enclosure/Standoffs/Standoff_1",
+              "Enclosure/Standoffs/Standoff_2",
+              "Enclosure/Standoffs/Standoff_3"
+            ],
+            "matchedBy": "node",
+            "matchIndex": 0,
+            "triangles": 48,
+            "centroid": [
+              58,
+              8.5,
+              38
+            ],
+            "bbox": [
+              13,
+              3,
+              13,
+              103,
+              14,
+              63
+            ]
+          }
+        ],
+        "measures": [
+          {
+            "id": "standoff-air",
+            "name": "Air under the board",
+            "from": [
+              16,
+              3,
+              16
+            ],
+            "to": [
+              16,
+              14,
+              16
+            ],
+            "length": 11
+          },
+          {
+            "id": "wall",
+            "name": "Wall thickness",
+            "from": [
+              0,
+              30,
+              40
+            ],
+            "to": [
+              3,
+              30,
+              40
+            ],
+            "length": 3
+          }
+        ],
+        "bounds": {
+          "bbox": [
+            0,
+            0,
+            0,
+            120,
+            63,
+            80
+          ],
+          "extent": 120,
+          "unit": "mm"
+        },
+        "triangles": 132
+      },
+      "diagnostics": [
+        {
+          "severity": "warning",
+          "message": "this model measures 120 × 63 × 80 mm. If that is wrong, \"units\" is wrong and every dimension below it is too.",
+          "path": [
+            "units"
+          ]
+        }
+      ]
+    },
+    {
+      "v": 1,
+      "source": "sha256:7e597308dcb76733cc62aee27491e004994a0a90806816676e6977bc06f86eca",
+      "derived": {
+        "attestation": {
+          "origin": "user",
+          "status": "peer-reviewed",
+          "licence": "free"
+        },
+        "joints": [
+          {
+            "id": "screw-turn",
+            "type": "screw",
+            "name": "Feed screw",
+            "parts": [
+              "screw"
+            ],
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "origin": [
+              6,
+              20,
+              30
+            ],
+            "range": [
+              0,
+              1080
+            ],
+            "home": 0,
+            "lead": 4,
+            "depth": 0,
+            "order": 0
+          },
+          {
+            "id": "carriage-ride",
+            "type": "slider",
+            "name": "Carriage",
+            "parts": [
+              "carriage"
+            ],
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "range": [
+              0,
+              12
+            ],
+            "home": 0,
+            "depth": 0,
+            "order": 1
+          },
+          {
+            "id": "probe-ride",
+            "type": "fixed",
+            "name": "Probe",
+            "parts": [
+              "probe"
+            ],
+            "on": "carriage-ride",
+            "axis": [
+              0,
+              1,
+              0
+            ],
+            "range": [
+              0,
+              0
+            ],
+            "home": 0,
+            "depth": 1,
+            "order": 2
+          }
+        ],
+        "poses": [
+          {
+            "id": "home",
+            "joints": {
+              "screw-turn": 0,
+              "carriage-ride": 0,
+              "probe-ride": 0
+            }
+          },
+          {
+            "id": "three-turns",
+            "joints": {
+              "screw-turn": 1080,
+              "carriage-ride": 12,
+              "probe-ride": 0
+            }
+          }
+        ],
+        "parts": [
+          {
+            "id": "base",
+            "name": "Base",
+            "nodes": [
+              "Stage/Base"
+            ],
+            "matchedBy": "node",
+            "matchIndex": 0,
+            "triangles": 12,
+            "centroid": [
+              80,
+              4,
+              30
+            ],
+            "bbox": [
+              0,
+              0,
+              0,
+              160,
+              8,
+              60
+            ]
+          },
+          {
+            "id": "rails",
+            "name": "Rails",
+            "note": "Two of them, and the exporter has already made their names different.",
+            "nodes": [
+              "Stage/Rails/Rail_1",
+              "Stage/Rails/Rail_2"
+            ],
+            "matchedBy": "node",
+            "matchIndex": 0,
+            "triangles": 24,
+            "centroid": [
+              80,
+              11,
+              30
+            ],
+            "bbox": [
+              10,
+              8,
+              8,
+              150,
+              14,
+              52
+            ]
+          },
+          {
+            "id": "screw",
+            "name": "Leadscrew",
+            "note": "Four millimetres of travel per turn, which is the whole of the coupling.",
+            "colour": "amber",
+            "nodes": [
+              "Stage/Leadscrew"
+            ],
+            "matchedBy": "node",
+            "matchIndex": 0,
+            "triangles": 25,
+            "centroid": [
+              80,
+              20,
+              30
+            ],
+            "bbox": [
+              6,
+              15,
+              25,
+              154,
+              25,
+              35
+            ]
+          },
+          {
+            "id": "carriage",
+            "name": "Carriage",
+            "note": "It rides the screw. Nothing here is driven except the screw itself.",
+            "colour": "teal",
+            "nodes": [
+              "Stage/Carriage"
+            ],
+            "matchedBy": "node",
+            "matchIndex": 0,
+            "triangles": 12,
+            "centroid": [
+              46,
+              22,
+              30
+            ],
+            "bbox": [
+              30,
+              14,
+              4,
+              62,
+              30,
+              56
+            ]
+          },
+          {
+            "id": "probe",
+            "name": "Probe",
+            "note": "And it rides the carriage - a chain three deep, so the probe moves because the screw turned.",
+            "colour": "orange",
+            "nodes": [
+              "Stage/Probe"
+            ],
+            "matchedBy": "node",
+            "matchIndex": 0,
+            "triangles": 12,
+            "centroid": [
+              46,
+              46,
+              30
+            ],
+            "bbox": [
+              40,
+              30,
+              26,
+              52,
+              62,
+              34
+            ]
+          }
+        ],
+        "measures": [
+          {
+            "id": "travel",
+            "name": "Rail length",
+            "from": [
+              10,
+              8,
+              8
+            ],
+            "to": [
+              150,
+              8,
+              8
+            ],
+            "length": 140
+          },
+          {
+            "id": "stack",
+            "name": "Overall height",
+            "from": [
+              0,
+              0,
+              0
+            ],
+            "to": [
+              160,
+              8,
+              60
+            ],
+            "length": 171.1
+          }
+        ],
+        "bounds": {
+          "bbox": [
+            0,
+            0,
+            0,
+            160,
+            62,
+            60
+          ],
+          "extent": 160,
+          "unit": "mm"
+        },
+        "triangles": 85
+      },
+      "diagnostics": [
+        {
+          "severity": "warning",
+          "message": "this model measures 160 × 62 × 60 mm. If that is wrong, \"units\" is wrong and every dimension below it is too.",
+          "path": [
+            "units"
+          ]
+        }
+      ]
+    },
+    {
+      "v": 1,
+      "source": "sha256:b1b91339b79aaa5ae90101bef6378408884a954590a2f404aaeb777ebb2228ae",
+      "derived": {
+        "attestation": {
+          "origin": "system",
+          "status": "certified",
+          "licence": "free"
+        },
+        "parts": [
+          {
+            "id": "capacitors",
+            "number": 1,
+            "anchor": [
+              0.5881159722746866,
+              0.23128929229479803
+            ],
+            "centroid": [
+              0.5881159722746866,
+              0.23128929229479803
+            ],
+            "bounds": [
+              0.42,
+              0.0908,
+              0.3,
+              0.3187
+            ]
+          },
+          {
+            "id": "electrolytics",
+            "number": 2,
+            "anchor": [
+              0.17459999999999998,
+              0.2603
+            ],
+            "centroid": [
+              0.17459999999999998,
+              0.2603
+            ],
+            "bounds": [
+              0.06,
+              0.12,
+              0.22920000000000001,
+              0.2806
+            ]
+          },
+          {
+            "id": "low-row",
+            "number": 3,
+            "anchor": [
+              0.3405797278251475,
+              0.7499919070991286
+            ],
+            "centroid": [
+              0.3405797278251475,
+              0.7499919070991286
+            ],
+            "bounds": [
+              0.2702,
+              0.6696,
+              0.1794,
+              0.1602
+            ]
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "v": 1,
+      "source": "sha256:d0d7256c58be6242a0a84816e30cdab80572758a498de9c08348938103e41a7b",
+      "derived": {
+        "attestation": {
+          "origin": "user",
+          "status": "peer-reviewed",
+          "licence": "free"
+        },
+        "parts": [
+          {
+            "id": "bracket",
+            "name": "Bracket",
+            "note": "One folded part. The fins, the pad and the ears are all the same piece of aluminium.",
+            "nodes": [
+              "heatsink-bracket"
+            ],
+            "matchedBy": "only",
+            "matchIndex": 0,
+            "triangles": 156,
+            "centroid": [
+              45,
+              26,
+              22
+            ],
+            "bbox": [
+              -14,
+              -8,
+              0,
+              104,
+              60,
+              44
+            ]
+          }
+        ],
+        "measures": [
+          {
+            "id": "height",
+            "name": "Fin stack height",
+            "from": [
+              -14,
+              -8,
+              0
+            ],
+            "to": [
+              -14,
+              60,
+              0
+            ],
+            "length": 68
+          },
+          {
+            "id": "envelope",
+            "name": "Overall envelope",
+            "from": [
+              -14,
+              -8,
+              0
+            ],
+            "to": [
+              104,
+              60,
+              44
+            ],
+            "length": 143.1
+          }
+        ],
+        "bounds": {
+          "bbox": [
+            -14,
+            -8,
+            0,
+            104,
+            60,
+            44
+          ],
+          "extent": 118,
+          "unit": "mm"
+        },
+        "triangles": 156
+      },
+      "diagnostics": [
+        {
+          "severity": "warning",
+          "message": "this model measures 118 × 68 × 44 mm. If that is wrong, \"units\" is wrong and every dimension below it is too.",
+          "path": [
+            "units"
+          ]
+        }
+      ]
+    },
+    {
+      "v": 1,
+      "source": "sha256:f8618e4a9f4874d634691b23a8142ee08a324c162aad475210c89a300f3c6a20",
+      "derived": {
+        "attestation": {
+          "origin": "system",
+          "status": "certified",
+          "licence": "free"
+        },
+        "parts": [
+          {
+            "id": "regulator",
+            "number": 1,
+            "anchor": [
+              0.4195,
+              0.244
+            ],
+            "centroid": [
+              0.4195,
+              0.244
+            ],
+            "bounds": [
+              0.375,
+              0.066,
+              0.08899999999999997,
+              0.356
+            ],
+            "area": 1091,
+            "perimeter": 148.3
+          },
+          {
+            "id": "heatsink-height",
+            "number": 2,
+            "anchor": [
+              0.5,
+              0.246
+            ],
+            "centroid": [
+              0.5,
+              0.246
+            ],
+            "bounds": [
+              0.5,
+              0.07,
+              0,
+              0.352
+            ],
+            "length": 53.33
+          },
+          {
+            "id": "second-rail",
+            "number": 3,
+            "anchor": [
+              0.396145770493047,
+              0.5333266366930359
+            ],
+            "centroid": [
+              0.396145770493047,
+              0.5333266366930359
+            ],
+            "bounds": [
+              0.344,
+              0.4,
+              0.10500000000000004,
+              0.272
+            ],
+            "area": 907.6,
+            "perimeter": 125
+          },
+          {
+            "id": "charge-path",
+            "number": 4,
+            "anchor": [
+              0.35250000000000004,
+              0.7125
+            ],
+            "centroid": [
+              0.35250000000000004,
+              0.7125
+            ],
+            "bounds": [
+              0.31,
+              0.665,
+              0.08500000000000002,
+              0.09499999999999997
+            ],
+            "length": 24.09
+          },
+          {
+            "id": "mains-filter",
+            "number": 5,
+            "anchor": [
+              0.596,
+              0.773
+            ],
+            "centroid": [
+              0.596,
+              0.773
+            ],
+            "bounds": [
+              0.5409999999999999,
+              0.714,
+              0.1100000000000001,
+              0.1180000000000001
+            ],
+            "area": 351,
+            "perimeter": 67.82
+          },
+          {
+            "id": "reservoir",
+            "number": 6,
+            "anchor": [
+              0.27355452756880383,
+              0.45654297960084084
+            ],
+            "centroid": [
+              0.27355452756880383,
+              0.45654297960084084
+            ],
+            "bounds": [
+              0.216,
+              0.284,
+              0.11500000000000002,
+              0.34900000000000003
+            ],
+            "area": 1275,
+            "perimeter": 152.2
+          },
+          {
+            "id": "fuse",
+            "number": 7,
+            "anchor": [
+              0.2,
+              0.723
+            ],
+            "centroid": [
+              0.2,
+              0.723
+            ],
+            "bounds": [
+              0.2,
+              0.723,
+              0,
+              0
+            ]
+          }
+        ],
+        "unit": "mm"
+      },
+      "diagnostics": []
+    }
+  ]
+}

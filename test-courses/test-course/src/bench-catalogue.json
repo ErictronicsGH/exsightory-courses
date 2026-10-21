@@ -3795,6 +3795,2203 @@
           }
         }
       ]
+    },
+    {
+      "name": "@exsight/bench-figure",
+      "kind": "bench",
+      "version": "0.1.3",
+      "path": "benches/figure",
+      "description": "The Figure Bench: a picture whose parts are named, numbered and driven. Its arithmetic is @exsight/figure-engine (B026); this package is the bench a player frames (its viewer and its Authoring, the figure lab, one Vue bundle speaking contract 1.0), and the .benchfigure work: its JSON Schema and the stamp a compiler reads instead of running the bench (E·fig3d).",
+      "needs": {
+        "packages": {
+          "@exsight/bench-contract": "^1.0.0",
+          "@exsight/bench-kit": "^0.1.0",
+          "@exsight/figure-engine": "0.1.0"
+        },
+        "contract": "^1.0.0",
+        "kit": "^0.1.0"
+      },
+      "classes": [],
+      "bundles": {},
+      "works": [
+        {
+          "ext": "benchfigure",
+          "media": "application/json",
+          "maxBytes": 8388608,
+          "title": {
+            "en": "Figure",
+            "fr": "Figure"
+          },
+          "schema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "https://exsightory.com/schemas/benches/figure/figure.schema.json",
+            "title": "Figure Bench figure (.benchfigure)",
+            "description": "A figure the Figure Bench opens: the fields of a `figure` block, its pictures carried in \"files\", and the stamp the bench wrote when it saved it. A compiler checks the file against this schema, then the stamp's source against the sha256 of the document's canonical JSON without the stamp; once they match, stamp.derived is the block's derived facts and stamp.diagnostics what the figure's checks said, and the bench is never run.",
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "image": {
+                "type": "string",
+                "minLength": 1
+              },
+              "caption": {
+                "type": "string"
+              },
+              "alt": {
+                "type": "string"
+              },
+              "aspect": {
+                "type": "number",
+                "minimum": 0
+              },
+              "labels": {
+                "type": "string",
+                "enum": [
+                  "numbers",
+                  "callouts",
+                  "on-figure",
+                  "none"
+                ]
+              },
+              "emphasis": {
+                "type": "string",
+                "enum": [
+                  "outline",
+                  "spotlight",
+                  "treat",
+                  "cutout"
+                ]
+              },
+              "spotlight": {
+                "type": "string",
+                "enum": [
+                  "none",
+                  "dim",
+                  "blur",
+                  "desaturate",
+                  "blur-dim"
+                ]
+              },
+              "effect": {
+                "type": "string",
+                "enum": [
+                  "none",
+                  "glow",
+                  "pulse",
+                  "draw",
+                  "march",
+                  "chase"
+                ]
+              },
+              "effect-on": {
+                "type": "string",
+                "enum": [
+                  "outline",
+                  "area",
+                  "both"
+                ]
+              },
+              "motion": {
+                "type": "string",
+                "enum": [
+                  "instant",
+                  "quick",
+                  "steady",
+                  "slow"
+                ]
+              },
+              "leader-weight": {
+                "type": "string",
+                "enum": [
+                  "hairline",
+                  "normal",
+                  "heavy"
+                ]
+              },
+              "leader-colour": {
+                "type": "string",
+                "enum": [
+                  "part",
+                  "teal",
+                  "amber",
+                  "violet",
+                  "lime",
+                  "rose",
+                  "azure",
+                  "orange",
+                  "magenta"
+                ]
+              },
+              "leader-tail": {
+                "type": "string",
+                "enum": [
+                  "arrow",
+                  "dot",
+                  "ring",
+                  "bar",
+                  "none"
+                ]
+              },
+              "leader-head": {
+                "type": "string",
+                "enum": [
+                  "arrow",
+                  "dot",
+                  "ring",
+                  "bar",
+                  "none"
+                ]
+              },
+              "features": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "point": {
+                      "minItems": 2,
+                      "maxItems": 2,
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      }
+                    },
+                    "rect": {
+                      "minItems": 4,
+                      "maxItems": 4,
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      }
+                    },
+                    "ellipse": {
+                      "type": "object",
+                      "properties": {
+                        "centre": {
+                          "minItems": 2,
+                          "maxItems": 2,
+                          "type": "array",
+                          "items": {
+                            "type": "number"
+                          }
+                        },
+                        "radii": {
+                          "minItems": 2,
+                          "maxItems": 2,
+                          "type": "array",
+                          "items": {
+                            "type": "number"
+                          }
+                        }
+                      },
+                      "required": [
+                        "centre",
+                        "radii"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "poly": {
+                      "minItems": 3,
+                      "type": "array",
+                      "items": {
+                        "minItems": 2,
+                        "maxItems": 2,
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        }
+                      }
+                    },
+                    "smooth": {
+                      "type": "boolean"
+                    },
+                    "corners": {
+                      "type": "array",
+                      "items": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 9007199254740991
+                      }
+                    },
+                    "path": {
+                      "minItems": 2,
+                      "type": "array",
+                      "items": {
+                        "minItems": 2,
+                        "maxItems": 2,
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        }
+                      }
+                    },
+                    "arrow": {
+                      "type": "object",
+                      "properties": {
+                        "from": {
+                          "minItems": 2,
+                          "maxItems": 2,
+                          "type": "array",
+                          "items": {
+                            "type": "number"
+                          }
+                        },
+                        "to": {
+                          "minItems": 2,
+                          "maxItems": 2,
+                          "type": "array",
+                          "items": {
+                            "type": "number"
+                          }
+                        }
+                      },
+                      "required": [
+                        "from",
+                        "to"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "span": {
+                      "type": "object",
+                      "properties": {
+                        "from": {
+                          "minItems": 2,
+                          "maxItems": 2,
+                          "type": "array",
+                          "items": {
+                            "type": "number"
+                          }
+                        },
+                        "to": {
+                          "minItems": 2,
+                          "maxItems": 2,
+                          "type": "array",
+                          "items": {
+                            "type": "number"
+                          }
+                        }
+                      },
+                      "required": [
+                        "from",
+                        "to"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "note": {
+                      "type": "string"
+                    },
+                    "colour": {
+                      "type": "string",
+                      "enum": [
+                        "teal",
+                        "amber",
+                        "violet",
+                        "lime",
+                        "rose",
+                        "azure",
+                        "orange",
+                        "magenta"
+                      ]
+                    },
+                    "weight": {
+                      "type": "string",
+                      "enum": [
+                        "hairline",
+                        "normal",
+                        "heavy"
+                      ]
+                    },
+                    "fill": {
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "tint",
+                        "solid"
+                      ]
+                    },
+                    "line": {
+                      "type": "string",
+                      "enum": [
+                        "solid",
+                        "dashed",
+                        "dotted"
+                      ]
+                    },
+                    "emphasis": {
+                      "type": "string",
+                      "enum": [
+                        "outline",
+                        "spotlight",
+                        "treat",
+                        "cutout"
+                      ]
+                    },
+                    "treatment": {
+                      "type": "string",
+                      "enum": [
+                        "desaturate",
+                        "brighten",
+                        "highlight"
+                      ]
+                    },
+                    "image": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "head": {
+                      "type": "string",
+                      "enum": [
+                        "arrow",
+                        "dot",
+                        "ring",
+                        "bar",
+                        "none"
+                      ]
+                    },
+                    "tail": {
+                      "type": "string",
+                      "enum": [
+                        "arrow",
+                        "dot",
+                        "ring",
+                        "bar",
+                        "none"
+                      ]
+                    },
+                    "effect": {
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "glow",
+                        "pulse",
+                        "draw",
+                        "march",
+                        "chase"
+                      ]
+                    },
+                    "effect-on": {
+                      "type": "string",
+                      "enum": [
+                        "outline",
+                        "area",
+                        "both"
+                      ]
+                    },
+                    "motion": {
+                      "type": "string",
+                      "enum": [
+                        "instant",
+                        "quick",
+                        "steady",
+                        "slow"
+                      ]
+                    },
+                    "leader-weight": {
+                      "type": "string",
+                      "enum": [
+                        "hairline",
+                        "normal",
+                        "heavy"
+                      ]
+                    },
+                    "leader-colour": {
+                      "type": "string",
+                      "enum": [
+                        "part",
+                        "teal",
+                        "amber",
+                        "violet",
+                        "lime",
+                        "rose",
+                        "azure",
+                        "orange",
+                        "magenta"
+                      ]
+                    },
+                    "leader-tail": {
+                      "type": "string",
+                      "enum": [
+                        "arrow",
+                        "dot",
+                        "ring",
+                        "bar",
+                        "none"
+                      ]
+                    },
+                    "leader-head": {
+                      "type": "string",
+                      "enum": [
+                        "arrow",
+                        "dot",
+                        "ring",
+                        "bar",
+                        "none"
+                      ]
+                    },
+                    "on-click": {
+                      "type": "string",
+                      "enum": [
+                        "note",
+                        "zoom",
+                        "tour",
+                        "compare",
+                        "link",
+                        "none"
+                      ]
+                    },
+                    "link-to": {
+                      "type": "string"
+                    },
+                    "answer": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "label"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "scale": {
+                "type": "object",
+                "properties": {
+                  "from": {
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    }
+                  },
+                  "to": {
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    }
+                  },
+                  "length": {
+                    "type": "number"
+                  },
+                  "unit": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "from",
+                  "to",
+                  "length",
+                  "unit"
+                ],
+                "additionalProperties": false
+              },
+              "tour": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "feature": {
+                      "type": "string"
+                    },
+                    "zoom": {
+                      "type": "string"
+                    },
+                    "note": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "feature"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "zoom": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "feature": {
+                      "type": "string"
+                    },
+                    "rect": {
+                      "minItems": 4,
+                      "maxItems": 4,
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      }
+                    },
+                    "label": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "compare": {
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "label": {
+                    "type": "string"
+                  },
+                  "orientation": {
+                    "type": "string",
+                    "enum": [
+                      "vertical",
+                      "horizontal"
+                    ]
+                  }
+                },
+                "required": [
+                  "image"
+                ],
+                "additionalProperties": false
+              },
+              "reveal": {
+                "type": "string",
+                "enum": [
+                  "shown",
+                  "hidden",
+                  "on-tour"
+                ]
+              },
+              "notes": {
+                "type": "object",
+                "properties": {
+                  "include": {
+                    "default": true,
+                    "type": "boolean"
+                  },
+                  "extra": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "references": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "author": {
+                      "type": "string"
+                    },
+                    "publisher": {
+                      "type": "string"
+                    },
+                    "year": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    },
+                    "locator": {
+                      "type": "string"
+                    },
+                    "note": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "provenance": {
+                "type": "object",
+                "properties": {
+                  "origin": {
+                    "default": "user",
+                    "type": "string",
+                    "enum": [
+                      "system",
+                      "user"
+                    ]
+                  },
+                  "licence": {
+                    "default": "free",
+                    "type": "string",
+                    "enum": [
+                      "free",
+                      "paid"
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "style": {
+                "type": "object",
+                "properties": {
+                  "size": {
+                    "type": "string",
+                    "enum": [
+                      "small",
+                      "normal",
+                      "large",
+                      "huge"
+                    ]
+                  },
+                  "color": {
+                    "type": "string",
+                    "enum": [
+                      "body",
+                      "primary",
+                      "muted",
+                      "amber",
+                      "teal"
+                    ]
+                  },
+                  "font": {
+                    "type": "string",
+                    "enum": [
+                      "sans",
+                      "mono",
+                      "serif"
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "files": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string",
+                  "pattern": "^(?!\\/)(?!.*(?:^|\\/)\\.\\.(?:\\/|$))[A-Za-z0-9._/ -]{1,200}$"
+                },
+                "additionalProperties": {
+                  "type": "string",
+                  "pattern": "^data:image\\/(?:png|webp|jpeg|svg\\+xml);base64,[A-Za-z0-9+/]+={0,2}$"
+                },
+                "description": "Every picture the figure names (its image, a part's cut-out, a compared picture): its path as the fields name it → a data URL of a PNG, WebP, JPEG or SVG."
+              },
+              "stamp": {
+                "type": "object",
+                "properties": {
+                  "v": {
+                    "type": "number",
+                    "const": 1
+                  },
+                  "source": {
+                    "type": "string",
+                    "pattern": "^sha256:[0-9a-f]{64}$"
+                  },
+                  "derived": {
+                    "type": "object",
+                    "properties": {
+                      "attestation": {
+                        "type": "object",
+                        "properties": {
+                          "origin": {
+                            "type": "string",
+                            "enum": [
+                              "system",
+                              "user"
+                            ]
+                          },
+                          "status": {
+                            "type": "string",
+                            "enum": [
+                              "certified",
+                              "peer-reviewed"
+                            ]
+                          },
+                          "licence": {
+                            "type": "string",
+                            "enum": [
+                              "free",
+                              "paid"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "origin",
+                          "status",
+                          "licence"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "parts": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "number": {
+                              "type": "number"
+                            },
+                            "anchor": {
+                              "minItems": 2,
+                              "maxItems": 2,
+                              "type": "array",
+                              "items": {
+                                "type": "number"
+                              }
+                            },
+                            "centroid": {
+                              "minItems": 2,
+                              "maxItems": 2,
+                              "type": "array",
+                              "items": {
+                                "type": "number"
+                              }
+                            },
+                            "bounds": {
+                              "minItems": 4,
+                              "maxItems": 4,
+                              "type": "array",
+                              "items": {
+                                "type": "number"
+                              }
+                            },
+                            "length": {
+                              "type": "number"
+                            },
+                            "area": {
+                              "type": "number"
+                            },
+                            "perimeter": {
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "number",
+                            "anchor",
+                            "centroid",
+                            "bounds"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "unit": {
+                        "type": "string"
+                      },
+                      "distances": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "from": {
+                              "type": "string"
+                            },
+                            "to": {
+                              "type": "string"
+                            },
+                            "distance": {
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "from",
+                            "to",
+                            "distance"
+                          ],
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "required": [
+                      "attestation",
+                      "parts"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "diagnostics": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "severity": {
+                          "type": "string",
+                          "enum": [
+                            "error",
+                            "warning"
+                          ]
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "severity",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": [
+                  "v",
+                  "source",
+                  "derived",
+                  "diagnostics"
+                ],
+                "additionalProperties": false,
+                "description": "What the bench derived on save. source: \"sha256:\" + hex SHA-256 of the document without \"stamp\", as JSON with keys in code-point order and no whitespace (the pictures included)."
+              }
+            },
+            "required": [
+              "alt"
+            ],
+            "additionalProperties": false
+          },
+          "schemaFile": {
+            "file": "work/figure.schema.json",
+            "sha256": "sha256:7b200175c9b51bf5ed368a22464d24dd2dea3c808e64c36d2bacbfec949d04b6"
+          }
+        }
+      ],
+      "pins": {
+        "esbuild": "0.28.2"
+      },
+      "release": {
+        "version": "0.1.3",
+        "at": "2026-10-21T15:56:32.733Z",
+        "digest": "sha256:c7e5c422561e09734d38078270923bb32f0cf72172a7ac8f698b7b736d1f9d44"
+      },
+      "listed": true,
+      "listing": {
+        "$schema": "../../standard/schema/listing.schema.json",
+        "listing": "exsight.listing/0.1",
+        "package": "@exsight/bench-figure",
+        "slug": "figure",
+        "kind": "bench",
+        "status": "in-progress",
+        "name": {
+          "en": "Figure Bench",
+          "fr": "Banc des figures"
+        },
+        "summary": {
+          "en": "A picture you are walked through, not a picture you are shown: its parts named, numbered and lit one at a time, measured from a scale bar, cut out, and compared with a second picture.",
+          "fr": "Une image qu’on parcourt, pas une image qu’on montre : ses parties nommées, numérotées et éclairées une à une, mesurées depuis une barre d’échelle, découpées, et comparées à une seconde image."
+        },
+        "purpose": {
+          "en": "A photograph on a projector arrives whole, and every part of it looks equally important; the question a student has is which bit the lesson is talking about. The Figure Bench answers it the way a hand on the screen would, and keeps the answer: each part has its number and its words, the room follows the presenter's walk, and the sizes come from the picture's own scale.",
+          "fr": "Une photographie projetée arrive entière, et chacune de ses parties semble aussi importante que les autres ; la question d’un étudiant est de savoir de quelle partie parle la leçon. Le Banc des figures y répond comme une main sur l’écran, et garde la réponse : chaque partie a son numéro et ses mots, la salle suit le parcours de l’enseignant, et les tailles viennent de l’échelle de l’image elle-même."
+        },
+        "features": [
+          {
+            "glyph": "parts",
+            "name": {
+              "en": "Parts named and numbered",
+              "fr": "Parties nommées et numérotées"
+            },
+            "says": {
+              "en": "Each part is outlined, numbered top to bottom and named in a key beside the picture.",
+              "fr": "Chaque partie est détourée, numérotée de haut en bas et nommée dans une légende à côté de l’image."
+            }
+          },
+          {
+            "glyph": "steps",
+            "name": {
+              "en": "A walk through the picture",
+              "fr": "Un parcours dans l’image"
+            },
+            "says": {
+              "en": "A tour lights one part at a time, and the room follows the presenter's step.",
+              "fr": "Un parcours éclaire une partie à la fois, et la salle suit l’étape de l’enseignant."
+            }
+          },
+          {
+            "glyph": "highlight",
+            "name": {
+              "en": "The rest steps back",
+              "fr": "Le reste s’efface"
+            },
+            "says": {
+              "en": "While one part is active the rest of the picture dims, blurs or greys, so the room looks at it.",
+              "fr": "Quand une partie est active, le reste de l’image s’assombrit, se floute ou se grise, pour que la salle la regarde."
+            }
+          },
+          {
+            "glyph": "outline",
+            "name": {
+              "en": "Traced and cut out",
+              "fr": "Tracées et découpées"
+            },
+            "says": {
+              "en": "Draw a part as a point, a box, an ellipse or a traced outline, and cut it out as a picture of its own.",
+              "fr": "Dessinez une partie en point, en rectangle, en ellipse ou en contour tracé, et découpez-la en image à part."
+            }
+          },
+          {
+            "glyph": "point",
+            "name": {
+              "en": "Measured from the picture",
+              "fr": "Mesurées sur l’image"
+            },
+            "says": {
+              "en": "Draw a scale bar once and every part gets its length, area or perimeter in your unit.",
+              "fr": "Tracez une barre d’échelle une fois et chaque partie reçoit sa longueur, son aire ou son périmètre dans votre unité."
+            }
+          },
+          {
+            "glyph": "cross",
+            "name": {
+              "en": "Two pictures compared",
+              "fr": "Deux images comparées"
+            },
+            "says": {
+              "en": "A second, registered picture slides over the first behind a seam the presenter moves.",
+              "fr": "Une seconde image, recalée, glisse sur la première derrière une couture que l’enseignant déplace."
+            }
+          }
+        ],
+        "fields": [
+          "general",
+          "physics",
+          "biology",
+          "electronics-automation",
+          "earth-sciences"
+        ],
+        "views": [
+          "preview",
+          "view",
+          "authoring"
+        ],
+        "runsIn": {
+          "contract": "^1.0.0",
+          "scope": true,
+          "phone": true
+        },
+        "libraries": [],
+        "guide": [
+          {
+            "id": "what-it-is",
+            "title": {
+              "en": "What it is",
+              "fr": "Ce que c’est"
+            },
+            "paragraphs": [
+              {
+                "en": "A picture, and a key beside it. Every part the author named has an outline on the picture, a number and its words in the key. Beside the key are the panes: the parts, the walk through them, and their measurements when the picture has a scale.",
+                "fr": "Une image, et une légende à côté. Chaque partie nommée par l’auteur a un contour sur l’image, un numéro et ses mots dans la légende. À côté de la légende se trouvent les volets : les parties, le parcours qui les relie, et leurs mesures quand l’image a une échelle."
+              },
+              {
+                "en": "The work is one file that carries its pictures, so a figure travels whole with its lesson.",
+                "fr": "Le travail est un seul fichier qui contient ses images : une figure voyage entière avec sa leçon."
+              }
+            ]
+          },
+          {
+            "id": "first-five-minutes",
+            "title": {
+              "en": "The first five minutes",
+              "fr": "Les cinq premières minutes"
+            },
+            "paragraphs": [
+              {
+                "en": "Open Authoring and load the sample board. Pick the Box tool and draw around one component, then type its name.",
+                "fr": "Ouvrez Création et chargez la carte d’exemple. Prenez l’outil Rectangle, entourez un composant, puis tapez son nom."
+              },
+              {
+                "en": "Draw two more parts, and the preview beside the editor numbers them top to bottom and writes their names in the key, as the room will see them. Save writes the figure into the lesson.",
+                "fr": "Dessinez deux autres parties : l’aperçu à côté de l’éditeur les numérote de haut en bas et écrit leurs noms dans la légende, comme la salle les verra. Enregistrer écrit la figure dans la leçon."
+              }
+            ]
+          },
+          {
+            "id": "the-views",
+            "title": {
+              "en": "The views",
+              "fr": "Les vues"
+            },
+            "paragraphs": [
+              {
+                "en": "Preview is what a slide shows: the picture and its key. View opens the panes, for the presenter to walk the room through the parts; the wall follows. Authoring is the figure lab: draw, trace, crop and cut out, then save.",
+                "fr": "Aperçu est ce qu’une diapositive montre : l’image et sa légende. Vue ouvre les volets, pour que l’enseignant fasse parcourir les parties à la salle ; le mur suit. Création est l’atelier des figures : dessiner, tracer, recadrer et découper, puis enregistrer."
+              },
+              {
+                "en": "ExSight Scope offers Preview and View. Authoring is in ExSight Studio only.",
+                "fr": "ExSight Scope propose Aperçu et Vue. Création n’existe que dans ExSight Studio."
+              }
+            ]
+          }
+        ],
+        "controls": [
+          {
+            "action": {
+              "en": "Undo",
+              "fr": "Annuler"
+            },
+            "keys": "Ctrl + Z"
+          },
+          {
+            "action": {
+              "en": "Redo",
+              "fr": "Rétablir"
+            },
+            "keys": "Ctrl + Shift + Z"
+          },
+          {
+            "action": {
+              "en": "Duplicate the selected part",
+              "fr": "Dupliquer la partie sélectionnée"
+            },
+            "keys": "Ctrl + D"
+          },
+          {
+            "action": {
+              "en": "Back to Preview",
+              "fr": "Revenir à l’aperçu"
+            },
+            "keys": "Esc"
+          }
+        ],
+        "accessibility": {
+          "en": "Every part is named in the key in words, beside its number, so a reader who cannot see the outline reads the same list. The figure carries its own description for a screen reader, and the panes are reached with the keyboard. Authoring's words are in English for now.",
+          "fr": "Chaque partie est nommée en toutes lettres dans la légende, à côté de son numéro : un lecteur qui ne voit pas le contour lit la même liste. La figure porte sa propre description pour un lecteur d’écran, et les volets sont accessibles au clavier. Les mots de Création sont pour l’instant en anglais."
+        },
+        "media": {
+          "icon": {
+            "file": "listing/icon.svg",
+            "sha256": "sha256:11548c6c2029f27e1ed55b6e8e01ace85d2988d496bf9750f11624864f5b2931",
+            "bytes": 313
+          },
+          "cover": {
+            "kind": "capture",
+            "look": "draft",
+            "alt": {
+              "en": "A power supply board with four parts outlined and numbered, and the key naming each one beside it.",
+              "fr": "Une carte d’alimentation avec quatre parties détourées et numérotées, et la légende qui nomme chacune à côté."
+            },
+            "dark": {
+              "file": "listing/cover-dark.png",
+              "sha256": "sha256:2c7405285083a3269d1725c1d97cf1ff74fcc6f99a6c099a68d95de35a0eb276",
+              "bytes": 448125,
+              "width": 1600,
+              "height": 1000
+            },
+            "light": {
+              "file": "listing/cover-light.png",
+              "sha256": "sha256:ae2580a745c6b63cd06a2f41aff12d0f3709c9d6f8828d6131f7de733f6b5e71",
+              "bytes": 448019,
+              "width": 1600,
+              "height": 1000
+            }
+          },
+          "gallery": [
+            {
+              "kind": "capture",
+              "look": "draft",
+              "alt": {
+                "en": "View walking the tour: the third stop is lit in the Walk pane beside the board.",
+                "fr": "Vue pendant le parcours : la troisième étape est éclairée dans le volet Parcours à côté de la carte."
+              },
+              "caption": {
+                "en": "View: the walk through the parts",
+                "fr": "Vue : le parcours des parties"
+              },
+              "dark": {
+                "file": "listing/gallery/1-dark.png",
+                "sha256": "sha256:f5f9e10b754a95c6c2578a1a9197d5bfecf2577bb795776662c4e84e9cb675a5",
+                "bytes": 289510,
+                "width": 1280,
+                "height": 800
+              },
+              "light": {
+                "file": "listing/gallery/1-light.png",
+                "sha256": "sha256:4fcd0f0575ee0fd938c3b503b0e7caaad8ebb697992bdf5678d56ca46fea1471",
+                "bytes": 289548,
+                "width": 1280,
+                "height": 800
+              }
+            },
+            {
+              "kind": "capture",
+              "look": "draft",
+              "alt": {
+                "en": "Authoring: the drawing tools above the board, the live preview below it, and the figure's fields and parts on the right.",
+                "fr": "Création : les outils de dessin au-dessus de la carte, l’aperçu en direct en dessous, et les champs et parties de la figure à droite."
+              },
+              "caption": {
+                "en": "Authoring: draw, trace and cut out",
+                "fr": "Création : dessiner, tracer et découper"
+              },
+              "dark": {
+                "file": "listing/gallery/2-dark.png",
+                "sha256": "sha256:ea4fea23c9485b584ae7b6553dc892659d7f58aa4c2329339fa9ba6d4cce6b3a",
+                "bytes": 628896,
+                "width": 1280,
+                "height": 800
+              },
+              "light": {
+                "file": "listing/gallery/2-light.png",
+                "sha256": "sha256:cf032972f08657b1214698c5cee69a0ce2268a2c12782dfe4e9804044d26437f",
+                "bytes": 627340,
+                "width": 1280,
+                "height": 800
+              }
+            }
+          ],
+          "share": {
+            "kind": "capture",
+            "look": "draft",
+            "alt": {
+              "en": "The Figure Bench: a power supply board with its parts numbered and named in a key.",
+              "fr": "Le Banc des figures : une carte d’alimentation avec ses parties numérotées et nommées dans une légende."
+            },
+            "dark": {
+              "file": "listing/share-dark.png",
+              "sha256": "sha256:dd9f82d66cdeb52d7d2099ecec61cda30f35ec78bb55ea0f300bcbcab2c7c0ac",
+              "bytes": 1671855,
+              "width": 1680,
+              "height": 1260
+            },
+            "light": {
+              "file": "listing/share-light.png",
+              "sha256": "sha256:cfb49a0bc5ed5cf8bd8f7db40521e78cbf38769d4f75f9876c2c3e7ba5fc0600",
+              "bytes": 1672257,
+              "width": 1680,
+              "height": 1260
+            }
+          }
+        }
+      },
+      "changes": [
+        {
+          "version": "0.1.3",
+          "at": "2026-10-21T15:56:32.733Z",
+          "note": {
+            "en": "It names the page a player frames, exsight.entry, carried in its signed record (crossing 557): a player reads where to start from the record and never guesses it from a build's folders.",
+            "fr": "Il nomme la page qu'un lecteur encadre, exsight.entry, portée dans son enregistrement signé (croisement 557) : un lecteur lit d'où partir dans l'enregistrement et ne le devine jamais d'après les dossiers d'une construction."
+          }
+        },
+        {
+          "version": "0.1.2",
+          "at": "2026-10-21T11:30:26.496Z",
+          "note": {
+            "en": "Rebuilt, its own source unchanged (E·draw): its bundle carries contract 1.1's validator and the kit's half of it (the file-offer it does not send), and it still says contract 1.0.0, so a 1.0 player plays it as before.",
+            "fr": "Reconstruit, sa propre source inchangée (E·draw) : son paquet porte le validateur du contrat 1.1 et la moitié du kit qui lui revient (le file-offer qu'il n'envoie pas), et il annonce toujours le contrat 1.0.0 ; un lecteur 1.0 le joue comme avant."
+          }
+        },
+        {
+          "version": "0.1.1",
+          "at": "2026-10-21T10:58:03.218Z",
+          "note": {
+            "en": "The stamp is derived from the figure as its schema parses it (its defaults in place), as the compiler derived it from a parsed fence; the digest stays the document's as written. The frame folder that holds the page is declared (exsight.ownPage), so the one-way rule, which now reads .vue files, holds the views and Authoring to BENCH_NEVER and leaves the page to the frame.",
+            "fr": "L'estampille est calculée sur la figure telle que son schéma la lit (ses valeurs par défaut en place), comme le compilateur la calculait sur une clôture lue ; l'empreinte reste celle du document tel qu'écrit. Le dossier du cadre qui tient la page est déclaré (exsight.ownPage) : la règle à sens unique, qui lit désormais les fichiers .vue, soumet les vues et la Création à BENCH_NEVER et laisse la page au cadre."
+          }
+        },
+        {
+          "version": "0.1.0",
+          "at": "2026-10-21T10:23:46.405Z",
+          "note": {
+            "en": "First release: the Figure Bench as a frame bundle, played by contract 1.0 (E·fig3d). Preview and View are the figure viewer that was Studio's and Scope's (canvas FigureBench), Authoring is the figure lab that was Studio's, saving through the player. The figure's view is the bench's own state (the pane, the pinned part, the tour's stop, the names shown, the wipe), its tour the stops, the presenter's clock its step. A .benchfigure carries its pictures; its JSON Schema ships, and Save stamps what the bench derives (each part's number, anchor, centroid, bounds and measurements) with the source's digest, so a compiler reads the stamp and never runs the bench. First load 88.5 KB gzipped.",
+            "fr": "Première version : le Banc des figures en paquet de cadre, joué selon le contrat 1.0 (E·fig3d). Aperçu et Vue sont la visionneuse de figures qui était celle de Studio et de Scope (FigureBench du canevas), Création est l'atelier des figures qui était celui de Studio, et enregistre par le lecteur. La vue de la figure est l'état propre du banc (le volet, la partie épinglée, l'étape du parcours, les noms affichés, le volet de comparaison), son parcours les arrêts, l'horloge de l'enseignant son étape. Un .benchfigure contient ses images ; son schéma JSON est livré, et Enregistrer estampille ce que le banc calcule (le numéro, l'ancre, le centroïde, les bornes et les mesures de chaque partie) avec l'empreinte de la source, pour qu'un compilateur lise l'estampille sans jamais exécuter le banc. Premier chargement : 88,5 Ko compressés."
+          }
+        }
+      ],
+      "neededBy": []
+    },
+    {
+      "name": "@exsight/bench-model",
+      "kind": "bench",
+      "version": "0.1.2",
+      "path": "benches/model",
+      "description": "The 3D Bench: a model you take apart in front of the room, its parts named, hinged, measured, sectioned and exploded. Its arithmetic is @exsight/model-engine (B029); this package is the bench a player frames (its viewer and its Authoring, the model lab, one Vue bundle speaking contract 1.0), and the .benchmodel work: its JSON Schema and the stamp a compiler reads instead of running the bench or parsing its mesh (E·fig3d).",
+      "needs": {
+        "packages": {
+          "@exsight/bench-contract": "^1.0.0",
+          "@exsight/bench-kit": "^0.1.0",
+          "@exsight/figure-engine": "0.1.0",
+          "@exsight/model-engine": "0.1.0"
+        },
+        "contract": "^1.0.0",
+        "kit": "^0.1.0"
+      },
+      "classes": [],
+      "bundles": {},
+      "works": [
+        {
+          "ext": "benchmodel",
+          "media": "application/json",
+          "maxBytes": 8388608,
+          "title": {
+            "en": "3D model",
+            "fr": "Modèle 3D"
+          },
+          "schema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "https://exsightory.com/schemas/benches/model/model.schema.json",
+            "title": "3D Bench model (.benchmodel)",
+            "description": "A model the 3D Bench opens: the fields of a `model` block, its mesh carried in \"files\", and the stamp the bench wrote when it saved it. A compiler checks the file against this schema, then the stamp's source against the sha256 of the document's canonical JSON without the stamp; once they match, stamp.derived is the block's derived facts and stamp.diagnostics what the model's checks said, and neither the bench nor a mesh parser is run.",
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "src": {
+                "type": "string",
+                "minLength": 1
+              },
+              "caption": {
+                "type": "string"
+              },
+              "alt": {
+                "type": "string"
+              },
+              "units": {
+                "type": "string",
+                "enum": [
+                  "mm",
+                  "cm",
+                  "m",
+                  "in"
+                ]
+              },
+              "background": {
+                "type": "string",
+                "enum": [
+                  "ink",
+                  "slate",
+                  "paper",
+                  "none"
+                ]
+              },
+              "parts": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "match": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "node": {
+                            "type": "string"
+                          },
+                          "all": {
+                            "type": "boolean"
+                          },
+                          "near": {
+                            "minItems": 3,
+                            "maxItems": 3,
+                            "type": "array",
+                            "items": {
+                              "type": "number"
+                            }
+                          },
+                          "within": {
+                            "type": "number",
+                            "minimum": 0
+                          },
+                          "index": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 9007199254740991
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "note": {
+                      "type": "string"
+                    },
+                    "colour": {
+                      "type": "string",
+                      "enum": [
+                        "teal",
+                        "amber",
+                        "violet",
+                        "lime",
+                        "rose",
+                        "azure",
+                        "orange",
+                        "magenta"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "views": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "from": {
+                      "minItems": 3,
+                      "maxItems": 3,
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      }
+                    },
+                    "target": {
+                      "type": "string"
+                    },
+                    "zoom": {
+                      "type": "number",
+                      "minimum": 0
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "from"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "joints": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "hinge",
+                        "slider",
+                        "screw",
+                        "fixed"
+                      ]
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "parts": {
+                      "minItems": 1,
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "axis": {
+                      "minItems": 3,
+                      "maxItems": 3,
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      }
+                    },
+                    "origin": {
+                      "minItems": 3,
+                      "maxItems": 3,
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      }
+                    },
+                    "range": {
+                      "minItems": 2,
+                      "maxItems": 2,
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      }
+                    },
+                    "home": {
+                      "type": "number"
+                    },
+                    "lead": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "on": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "type",
+                    "parts"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "poses": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "joints": {
+                      "type": "object",
+                      "propertyNames": {
+                        "type": "string"
+                      },
+                      "additionalProperties": {
+                        "type": "number"
+                      }
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "joints"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "measures": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "from": {
+                      "minItems": 3,
+                      "maxItems": 3,
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      }
+                    },
+                    "to": {
+                      "minItems": 3,
+                      "maxItems": 3,
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      }
+                    },
+                    "part": {
+                      "type": "string"
+                    },
+                    "of": {
+                      "type": "string",
+                      "enum": [
+                        "bbox",
+                        "width",
+                        "height",
+                        "depth"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "section": {
+                "type": "object",
+                "properties": {
+                  "axis": {
+                    "type": "string",
+                    "enum": [
+                      "x",
+                      "y",
+                      "z"
+                    ]
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "enabled": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "axis",
+                  "offset"
+                ],
+                "additionalProperties": false
+              },
+              "explode": {
+                "type": "object",
+                "properties": {
+                  "direction": {
+                    "type": "string",
+                    "enum": [
+                      "radial",
+                      "x",
+                      "y",
+                      "z"
+                    ]
+                  },
+                  "groups": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "parts": {
+                          "minItems": 1,
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "parts"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              },
+              "ghost": {
+                "type": "boolean"
+              },
+              "tour": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "view": {
+                      "type": "string"
+                    },
+                    "pose": {
+                      "type": "string"
+                    },
+                    "part": {
+                      "type": "string"
+                    },
+                    "explode": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    "section": {
+                      "type": "object",
+                      "properties": {
+                        "axis": {
+                          "type": "string",
+                          "enum": [
+                            "x",
+                            "y",
+                            "z"
+                          ]
+                        },
+                        "offset": {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        "enabled": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "axis",
+                        "offset"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "note": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "notes": {
+                "type": "object",
+                "properties": {
+                  "include": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "references": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "author": {
+                      "type": "string"
+                    },
+                    "publisher": {
+                      "type": "string"
+                    },
+                    "year": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    },
+                    "locator": {
+                      "type": "string"
+                    },
+                    "note": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "provenance": {
+                "type": "object",
+                "properties": {
+                  "origin": {
+                    "default": "user",
+                    "type": "string",
+                    "enum": [
+                      "system",
+                      "user"
+                    ]
+                  },
+                  "licence": {
+                    "default": "free",
+                    "type": "string",
+                    "enum": [
+                      "free",
+                      "paid"
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "style": {
+                "type": "object",
+                "properties": {
+                  "size": {
+                    "type": "string",
+                    "enum": [
+                      "small",
+                      "normal",
+                      "large",
+                      "huge"
+                    ]
+                  },
+                  "color": {
+                    "type": "string",
+                    "enum": [
+                      "body",
+                      "primary",
+                      "muted",
+                      "amber",
+                      "teal"
+                    ]
+                  },
+                  "font": {
+                    "type": "string",
+                    "enum": [
+                      "sans",
+                      "mono",
+                      "serif"
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "files": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string",
+                  "pattern": "^(?!\\/)(?!.*(?:^|\\/)\\.\\.(?:\\/|$))[A-Za-z0-9._/ -]{1,200}$"
+                },
+                "additionalProperties": {
+                  "type": "string",
+                  "pattern": "^data:model\\/gltf-binary;base64,[A-Za-z0-9+/]+={0,2}$"
+                },
+                "description": "The mesh the model names (its src): its path as the fields name it → a data URL of a GLB."
+              },
+              "stamp": {
+                "type": "object",
+                "properties": {
+                  "v": {
+                    "type": "number",
+                    "const": 1
+                  },
+                  "source": {
+                    "type": "string",
+                    "pattern": "^sha256:[0-9a-f]{64}$"
+                  },
+                  "derived": {
+                    "type": "object",
+                    "properties": {
+                      "attestation": {
+                        "type": "object",
+                        "properties": {
+                          "origin": {
+                            "type": "string",
+                            "enum": [
+                              "system",
+                              "user"
+                            ]
+                          },
+                          "status": {
+                            "type": "string",
+                            "enum": [
+                              "certified",
+                              "peer-reviewed"
+                            ]
+                          },
+                          "licence": {
+                            "type": "string",
+                            "enum": [
+                              "free",
+                              "paid"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "origin",
+                          "status",
+                          "licence"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "attestation"
+                    ],
+                    "additionalProperties": {}
+                  },
+                  "diagnostics": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "severity": {
+                          "type": "string",
+                          "enum": [
+                            "error",
+                            "warning"
+                          ]
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "severity",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": [
+                  "v",
+                  "source",
+                  "derived",
+                  "diagnostics"
+                ],
+                "additionalProperties": false,
+                "description": "What the bench derived on save. source: \"sha256:\" + hex SHA-256 of the document without \"stamp\", as JSON with keys in code-point order and no whitespace (the mesh included)."
+              }
+            },
+            "required": [
+              "src",
+              "alt"
+            ],
+            "additionalProperties": false
+          },
+          "schemaFile": {
+            "file": "work/model.schema.json",
+            "sha256": "sha256:c9987eb759099755f78ab561e647441b0dd994680c00a617b58ffbc016dda741"
+          }
+        }
+      ],
+      "pins": {
+        "three": "0.185.1",
+        "esbuild": "0.28.2"
+      },
+      "release": {
+        "version": "0.1.2",
+        "at": "2026-10-21T15:56:51.128Z",
+        "digest": "sha256:5aaa89e2b99628112cad06a080efa05f6a223f79231541b3408f17c0c61b34ef"
+      },
+      "listed": true,
+      "listing": {
+        "$schema": "../../standard/schema/listing.schema.json",
+        "listing": "exsight.listing/0.1",
+        "package": "@exsight/bench-model",
+        "slug": "model",
+        "kind": "bench",
+        "status": "in-progress",
+        "name": {
+          "en": "3D Bench",
+          "fr": "Banc 3D"
+        },
+        "summary": {
+          "en": "A real assembly you take apart in front of the room: its parts named and numbered, its hinges and slides moved, sectioned, exploded and measured, while the wall follows every step.",
+          "fr": "Un vrai assemblage qu’on démonte devant la salle : ses pièces nommées et numérotées, ses charnières et glissières actionnées, coupé, éclaté et mesuré, pendant que le mur suit chaque étape."
+        },
+        "purpose": {
+          "en": "A drawing of an enclosure shows what it is; what a student needs is to see how it goes together and why it is the size it is. The 3D Bench puts the real model in front of the room, opens it, takes it apart and cuts through it, one step at a time, with the dimensions that matter read off the model itself.",
+          "fr": "Un dessin de boîtier montre ce qu’il est ; ce qu’un étudiant doit voir, c’est comment il s’assemble et pourquoi il a ces dimensions. Le Banc 3D met le vrai modèle devant la salle, l’ouvre, le démonte et le coupe, une étape à la fois, avec les cotes qui comptent lues sur le modèle lui-même."
+        },
+        "features": [
+          {
+            "glyph": "parts",
+            "name": {
+              "en": "Parts named and numbered",
+              "fr": "Pièces nommées et numérotées"
+            },
+            "says": {
+              "en": "Each part is named and numbered on the model, the numbers holding still while it turns.",
+              "fr": "Chaque pièce est nommée et numérotée sur le modèle, les numéros restant fixes pendant qu’il tourne."
+            }
+          },
+          {
+            "glyph": "rotate",
+            "name": {
+              "en": "Hinges and slides",
+              "fr": "Charnières et glissières"
+            },
+            "says": {
+              "en": "Lids open on their hinges and parts slide on their rails, to named poses.",
+              "fr": "Les couvercles s’ouvrent sur leurs charnières et les pièces glissent sur leurs rails, jusqu’à des positions nommées."
+            }
+          },
+          {
+            "glyph": "explode",
+            "name": {
+              "en": "Exploded",
+              "fr": "Éclaté"
+            },
+            "says": {
+              "en": "The assembly comes apart along its own axes, the parts that belong together leaving together.",
+              "fr": "L’assemblage se sépare selon ses propres axes, les pièces solidaires partant ensemble."
+            }
+          },
+          {
+            "glyph": "section",
+            "name": {
+              "en": "Cut through",
+              "fr": "Coupé"
+            },
+            "says": {
+              "en": "A section plane through the solid shows wall thickness and the gaps inside.",
+              "fr": "Un plan de coupe à travers le solide montre l’épaisseur des parois et les vides à l’intérieur."
+            }
+          },
+          {
+            "glyph": "point",
+            "name": {
+              "en": "Measured on the model",
+              "fr": "Mesuré sur le modèle"
+            },
+            "says": {
+              "en": "Dimensions are taken from the model's own geometry, in its own units.",
+              "fr": "Les cotes sont prises sur la géométrie du modèle, dans ses propres unités."
+            }
+          },
+          {
+            "glyph": "steps",
+            "name": {
+              "en": "A walk through the assembly",
+              "fr": "Un parcours de l’assemblage"
+            },
+            "says": {
+              "en": "A tour of named stops, each a view, a pose, a part or a cut, which the wall follows.",
+              "fr": "Un parcours en étapes nommées, chacune une vue, une position, une pièce ou une coupe, que le mur suit."
+            }
+          }
+        ],
+        "fields": [
+          "mechanics",
+          "electronics-automation",
+          "architecture-construction",
+          "physics",
+          "general"
+        ],
+        "views": [
+          "preview",
+          "view",
+          "authoring"
+        ],
+        "runsIn": {
+          "contract": "^1.0.0",
+          "scope": true,
+          "phone": false
+        },
+        "libraries": [],
+        "guide": [
+          {
+            "id": "what-it-is",
+            "title": {
+              "en": "What it is",
+              "fr": "Ce que c’est"
+            },
+            "paragraphs": [
+              {
+                "en": "A model on a stage with its tools above it: the standard views, the turntable, edges, wireframe and grid, and the panes for its parts, its moves, its cut, its dimensions and its walk.",
+                "fr": "Un modèle sur une scène avec ses outils au-dessus : les vues standard, le plateau tournant, les arêtes, le fil de fer et la grille, et les volets de ses pièces, de ses mouvements, de sa coupe, de ses cotes et de son parcours."
+              },
+              {
+                "en": "The work is one file that carries its mesh, a GLB, so a model travels whole with its lesson.",
+                "fr": "Le travail est un seul fichier qui contient son maillage, un GLB : un modèle voyage entier avec sa leçon."
+              }
+            ]
+          },
+          {
+            "id": "first-five-minutes",
+            "title": {
+              "en": "The first five minutes",
+              "fr": "Les cinq premières minutes"
+            },
+            "paragraphs": [
+              {
+                "en": "Open Authoring and pick a GLB. With the name tool, click a part and type what it is called; with the hinge tool, click the hinge's two ends.",
+                "fr": "Ouvrez Création et choisissez un GLB. Avec l’outil de nom, cliquez une pièce et tapez son nom ; avec l’outil de charnière, cliquez les deux extrémités de la charnière."
+              },
+              {
+                "en": "Save a view and a pose, and the previews beside the editor show what the presenter and the wall will see. Save writes the model into the lesson.",
+                "fr": "Enregistrez une vue et une position : les aperçus à côté de l’éditeur montrent ce que verront l’enseignant et le mur. Enregistrer écrit le modèle dans la leçon."
+              }
+            ]
+          },
+          {
+            "id": "the-views",
+            "title": {
+              "en": "The views",
+              "fr": "Les vues"
+            },
+            "paragraphs": [
+              {
+                "en": "Preview is what a slide shows. View gives the presenter the panes and the tools, and the wall follows every step. Authoring is the model lab: name, hinge, measure and save.",
+                "fr": "Aperçu est ce qu’une diapositive montre. Vue donne à l’enseignant les volets et les outils, et le mur suit chaque étape. Création est l’atelier des modèles : nommer, articuler, mesurer et enregistrer."
+              },
+              {
+                "en": "ExSight Scope offers Preview and View. Authoring is in ExSight Studio only. Phones are not supported yet.",
+                "fr": "ExSight Scope propose Aperçu et Vue. Création n’existe que dans ExSight Studio. Les téléphones ne sont pas encore pris en charge."
+              }
+            ]
+          }
+        ],
+        "controls": [
+          {
+            "action": {
+              "en": "Orbit",
+              "fr": "Orbiter"
+            },
+            "keys": "Drag"
+          },
+          {
+            "action": {
+              "en": "Pan",
+              "fr": "Déplacer la vue"
+            },
+            "keys": "Right-drag"
+          },
+          {
+            "action": {
+              "en": "Zoom",
+              "fr": "Zoomer"
+            },
+            "keys": "Wheel"
+          },
+          {
+            "action": {
+              "en": "Back to Preview",
+              "fr": "Revenir à l’aperçu"
+            },
+            "keys": "Esc"
+          }
+        ],
+        "accessibility": {
+          "en": "Every part is named in the Parts pane in words, beside its number, and every dimension is printed with its unit. The model carries its own description for a screen reader, and the panes and tools are reached with the keyboard. Authoring's words are in English for now.",
+          "fr": "Chaque pièce est nommée en toutes lettres dans le volet Pièces, à côté de son numéro, et chaque cote est écrite avec son unité. Le modèle porte sa propre description pour un lecteur d’écran, et les volets et outils sont accessibles au clavier. Les mots de Création sont pour l’instant en anglais."
+        },
+        "media": {
+          "icon": {
+            "file": "listing/icon.svg",
+            "sha256": "sha256:6eeb6ee017cc5b7d21eb653b512c85b7719ab47ea53a46a7833c51f7b2db9659",
+            "bytes": 274
+          },
+          "cover": {
+            "kind": "capture",
+            "look": "draft",
+            "alt": {
+              "en": "A sheet-metal enclosure with its lid hinged open, the board inside on its standoffs.",
+              "fr": "Un boîtier en tôle, le couvercle ouvert sur sa charnière, la carte à l’intérieur sur ses entretoises."
+            },
+            "dark": {
+              "file": "listing/cover-dark.png",
+              "sha256": "sha256:7d1763aa96048cd33f401435c745b9e9b8da9e374f23867cf74bff6d36939bb0",
+              "bytes": 81580,
+              "width": 1600,
+              "height": 1000
+            },
+            "light": {
+              "file": "listing/cover-light.png",
+              "sha256": "sha256:006cd9a43f62fbe52efbcac2f29971a5ac470d24bab605abcfbe5513ce63b9a2",
+              "bytes": 81849,
+              "width": 1600,
+              "height": 1000
+            }
+          },
+          "gallery": [
+            {
+              "kind": "capture",
+              "look": "draft",
+              "alt": {
+                "en": "The enclosure exploded at the tour's fifth stop: the lid lifted clear of the body.",
+                "fr": "Le boîtier éclaté à la cinquième étape du parcours : le couvercle soulevé loin du corps."
+              },
+              "caption": {
+                "en": "View: the assembly taken apart",
+                "fr": "Vue : l’assemblage démonté"
+              },
+              "dark": {
+                "file": "listing/gallery/1-dark.png",
+                "sha256": "sha256:e89f61351d4b6d869258297f571c71485f9c0d0ada3292e0ff733301eb81994e",
+                "bytes": 52930,
+                "width": 1280,
+                "height": 800
+              },
+              "light": {
+                "file": "listing/gallery/1-light.png",
+                "sha256": "sha256:3fe7a032afcc64b0a5061110c6b10aa891031fde2e9467a3659d85c548cdde5b",
+                "bytes": 53369,
+                "width": 1280,
+                "height": 800
+              }
+            },
+            {
+              "kind": "capture",
+              "look": "draft",
+              "alt": {
+                "en": "Authoring: the editor with its tools and the parts, moves, views and dimensions it holds, and the presenter's and the wall's previews beside it.",
+                "fr": "Création : l’éditeur avec ses outils et les pièces, mouvements, vues et cotes qu’il contient, et les aperçus de l’enseignant et du mur à côté."
+              },
+              "caption": {
+                "en": "Authoring: name, hinge, measure",
+                "fr": "Création : nommer, articuler, mesurer"
+              },
+              "dark": {
+                "file": "listing/gallery/2-dark.png",
+                "sha256": "sha256:c9cffe62ea80a2f4b62edcb8fd3bba54ae478a21ae3881e2822b58b60f67be19",
+                "bytes": 81256,
+                "width": 1280,
+                "height": 800
+              },
+              "light": {
+                "file": "listing/gallery/2-light.png",
+                "sha256": "sha256:ea244fe9638e72b70fba850493c8f42b5553a5bb5073493f64659627ac0095e7",
+                "bytes": 80389,
+                "width": 1280,
+                "height": 800
+              }
+            }
+          ],
+          "share": {
+            "kind": "capture",
+            "look": "draft",
+            "alt": {
+              "en": "The 3D Bench: a sheet-metal enclosure on a dark stage, its tools above it.",
+              "fr": "Le Banc 3D : un boîtier en tôle sur une scène sombre, ses outils au-dessus."
+            },
+            "dark": {
+              "file": "listing/share-dark.png",
+              "sha256": "sha256:6743e9aed86d4f1809af01aebfc18eb9992fbe99685e9c4f3280e36e8473d872",
+              "bytes": 80213,
+              "width": 1680,
+              "height": 1260
+            },
+            "light": {
+              "file": "listing/share-light.png",
+              "sha256": "sha256:bce0e5087c7728be8f10713f7d0825b740fb84e7847317552fa303fe9627624c",
+              "bytes": 80501,
+              "width": 1680,
+              "height": 1260
+            }
+          }
+        }
+      },
+      "changes": [
+        {
+          "version": "0.1.2",
+          "at": "2026-10-21T15:56:51.128Z",
+          "note": {
+            "en": "It names the page a player frames, exsight.entry, carried in its signed record (crossing 557): a player reads where to start from the record and never guesses it from a build's folders.",
+            "fr": "Il nomme la page qu'un lecteur encadre, exsight.entry, portée dans son enregistrement signé (croisement 557) : un lecteur lit d'où partir dans l'enregistrement et ne le devine jamais d'après les dossiers d'une construction."
+          }
+        },
+        {
+          "version": "0.1.1",
+          "at": "2026-10-21T11:30:41.971Z",
+          "note": {
+            "en": "Rebuilt, its own source unchanged (E·draw): its bundle carries contract 1.1's validator and the kit's half of it (the file-offer it does not send), and it still says contract 1.0.0, so a 1.0 player plays it as before.",
+            "fr": "Reconstruit, sa propre source inchangée (E·draw) : son paquet porte le validateur du contrat 1.1 et la moitié du kit qui lui revient (le file-offer qu'il n'envoie pas), et il annonce toujours le contrat 1.0.0 ; un lecteur 1.0 le joue comme avant."
+          }
+        },
+        {
+          "version": "0.1.0",
+          "at": "2026-10-21T10:57:39.140Z",
+          "note": {
+            "en": "First release: the 3D Bench as a frame bundle, played by contract 1.0 (E·fig3d). Preview and View are the model viewer that was Studio's and Scope's (canvas ModelViewer and cadScene), Authoring is the model lab that was Studio's, saving through the player. The model's view is the bench's own state (the eleven keys Studio's wall carried: pinned, modelView, pose, joints, explode, section, ghost, ghosted, hidden, spin, numbering, with the pane and the tour's step), its tour the stops, the presenter's clock its step. A .benchmodel carries its mesh as a GLB; its JSON Schema ships, and Save stamps what the bench derives (the parts resolved against the mesh, joints, poses, measures, bounds, triangles) with the source's digest, measured as the compiler measures a GLB, so a compiler reads the stamp and never runs the bench or parses the mesh. First load 291 KB gzipped.",
+            "fr": "Première version : le Banc 3D en paquet de cadre, joué selon le contrat 1.0 (E·fig3d). Aperçu et Vue sont la visionneuse de modèles qui était celle de Studio et de Scope (ModelViewer et cadScene du canevas), Création est l'atelier des modèles qui était celui de Studio, et enregistre par le lecteur. La vue du modèle est l'état propre du banc (les onze clés que portait le mur de Studio : pinned, modelView, pose, joints, explode, section, ghost, ghosted, hidden, spin, numbering, avec le volet et l'étape du parcours), son parcours les arrêts, l'horloge de l'enseignant son étape. Un .benchmodel contient son maillage en GLB ; son schéma JSON est livré, et Enregistrer estampille ce que le banc calcule (les pièces résolues sur le maillage, liaisons, positions, cotes, bornes, triangles) avec l'empreinte de la source, mesuré comme le compilateur mesure un GLB, pour qu'un compilateur lise l'estampille sans jamais exécuter le banc ni lire le maillage. Premier chargement : 291 Ko compressés."
+          }
+        }
+      ],
+      "neededBy": []
     }
   ]
 }
