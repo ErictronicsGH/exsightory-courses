@@ -1,0 +1,84 @@
+{
+  "name": "@exsight/course-draw",
+  "kind": "course",
+  "version": "0.1.0",
+  "at": "2026-10-22T14:02:50.133Z",
+  "digest": "sha256:b0103fe04fc4a972438f11a70be737f35c0fed529f89605642d8cbff99d57333",
+  "files": 24,
+  "note": {
+    "en": "The Draw Bench's driving course, imported from ExSightory with its history (B018)",
+    "fr": "Le cours de conduite de l'établi de dessin, importé d'ExSightory avec son historique (B018)"
+  },
+  "needs": {},
+  "shipped": [
+    {
+      "path": "package.json",
+      "digest": "sha256:d1e717c6cefac4f8e5a9d2659cceb51b798d2542a89ffeb4796c7d5759c92e70"
+    },
+    {
+      "path": "src/bench-catalogue.json",
+      "digest": "sha256:5ce37175cbfb37e28e8e7372444c2e31d2d38fe6f7a67471617cc3167a1a87cd"
+    },
+    {
+      "path": "src/content/draw/010-line-art/en.md",
+      "digest": "sha256:40238bb7e2cb8162cd6398a1755eecffa8edf871c4c54875592d77618ec98a70"
+    },
+    {
+      "path": "src/content/draw/020-size-ceiling/en.md",
+      "digest": "sha256:f8dd5213905fc2be1619e9fe1b682a4641de11a4c54f56d83831b6593510986b"
+    },
+    {
+      "path": "src/content/draw/030-imported/en.md",
+      "digest": "sha256:3c279324e3d86c3b1ef15fd0b95bdafe656e5e0c184f2041d1b748969dc3126f"
+    },
+    {
+      "path": "src/content/draw/040-function-shapes/en.md",
+      "digest": "sha256:f6e4d3f2dbea675984c08c48e17a2e9a01078de76ce2a46c99feb4edc93d1257"
+    },
+    {
+      "path": "src/course.yaml",
+      "digest": "sha256:872ac0288d6c29d4b078add159443fbb5f58b05e04cb1dde0aac09656233a8ae"
+    },
+    {
+      "path": "src/shared-assets/drawings/damped-oscillation.benchdrawing",
+      "digest": "sha256:328e89b24f2d0398c3c1dd50a5e8bd5459f07005f0f21da468950dde658868af"
+    },
+    {
+      "path": "src/shared-assets/drawings/gauge-on-beam.benchdrawing",
+      "digest": "sha256:0a2896cdc4831e7b8e3c8bd94746cbd085bc8db40e2d026ba4ae83728ab9ca5b"
+    },
+    {
+      "path": "src/shared-assets/drawings/half-wave-mean.benchdrawing",
+      "digest": "sha256:5e7871378ff708bf7e710aed28a74674f83d55cbe632f7d2b4a12424d23b35fd"
+    },
+    {
+      "path": "src/shared-assets/drawings/meter-section.benchdrawing",
+      "digest": "sha256:66a9c26597b488eb6e63ee24bd7185aa802322f4cd8a00f9ae71c0cb69e220a0"
+    },
+    {
+      "path": "src/shared-assets/drawings/moving-coil-meter.benchdrawing",
+      "digest": "sha256:3eab90dcf068fc86cb1a9862dc2c233ac86fcb9cc362933c01010ce1ad8f4582"
+    },
+    {
+      "path": "src/shared-assets/drawings/size-ceiling.benchdrawing",
+      "digest": "sha256:36f881fad1cf7af705d5ebcbd614322936643605d16cbaa06bea01c659b3a370"
+    },
+    {
+      "path": "src/shared-assets/drawings/strain-gauge-beam.benchdrawing",
+      "digest": "sha256:332a0c9efe103fc3d657738a937a3c876aa2f6fc1a34be911e0681968e760eac"
+    },
+    {
+      "path": "src/shared-assets/drawings/thermocouple-junction.benchdrawing",
+      "digest": "sha256:96c3ea6b48c1f7c3b9b20e10952071f0db3d7605505bb589b4fc9230f520e9ce"
+    },
+    {
+      "path": "src/shared-assets/drawings/waveform-construction.benchdrawing",
+      "digest": "sha256:d1d0bd702e519360616e9205800e0384fd912dbaff928289b00e8cda5007baa1"
+    },
+    {
+      "path": "src/shared-assets/drawings/wheatstone-bridge.benchdrawing",
+      "digest": "sha256:2b14294e2cc9aed0f63c46a8428ece3fc95b34a73685b15a535a7eeaa9511713"
+    }
+  ],
+  "shippedDigest": "sha256:abab1f70ad5921bace5f768c008804ff6a1aa94ba4b32cf479738d73ba7cebef"
+}

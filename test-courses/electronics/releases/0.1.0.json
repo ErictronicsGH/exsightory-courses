@@ -1,0 +1,432 @@
+{
+  "name": "@exsight/course-electronics",
+  "kind": "course",
+  "version": "0.1.0",
+  "at": "2026-10-22T14:02:42.113Z",
+  "digest": "sha256:897081074ba258247976fba2ac74fd0060e1ab06e42b086bb9fde3d610d27fbb",
+  "files": 104,
+  "note": {
+    "en": "The Electronics Bench's driving course, imported from ExSightory with its history (B018)",
+    "fr": "Le cours de conduite de l'établi d'électronique, importé d'ExSightory avec son historique (B018)"
+  },
+  "needs": {},
+  "shipped": [
+    {
+      "path": "README.md",
+      "digest": "sha256:55963bcd850dad942fb9d8b138c756dace6281800ac679e6d73af9d08f77f319"
+    },
+    {
+      "path": "package.json",
+      "digest": "sha256:9582c0bba5c0300d19724d3ee0abca8e663373f793dc1b920f593a7124e8bd6a"
+    },
+    {
+      "path": "src/bench-catalogue.json",
+      "digest": "sha256:571a4016c5a75275b2ef9ba969bf59835256ec124a15045656b827c0fc6fb7c6"
+    },
+    {
+      "path": "src/content/bench/010-measuring/en.md",
+      "digest": "sha256:59b99c4575097c8e0561aff8843b69066e997c87dd1ff403e6541bf77a1d8330"
+    },
+    {
+      "path": "src/content/bench/020-current/en.md",
+      "digest": "sha256:31defb19a55d243b271e1f17d775b014814bc706bead76b14614ea92b3764727"
+    },
+    {
+      "path": "src/content/bench/030-devices/en.md",
+      "digest": "sha256:aaee3bb2375581a1ac95c703309c62c3ec79f525f5066eb340526ba96ffdcbb5"
+    },
+    {
+      "path": "src/content/bench/040-power/en.md",
+      "digest": "sha256:243702c12c13761e83953b994e8a926935c417202a268e0f9224d09b0b55511b"
+    },
+    {
+      "path": "src/content/bench/050-nets/en.md",
+      "digest": "sha256:e742db32086b988e65e9462794923d2f9ceb4ed92da24eb71eea1a01889a1209"
+    },
+    {
+      "path": "src/content/bench/060-design/en.md",
+      "digest": "sha256:8b0f58be6c2fbca97aacbffef86c402ba8cc74e13865b208ebeb98e89611f222"
+    },
+    {
+      "path": "src/content/bench/070-drawing/en.md",
+      "digest": "sha256:b1a9a27edbdf1b4bf4f264653bd87aac3455607c2fbae305cc1f9d0ad3c11935"
+    },
+    {
+      "path": "src/course.yaml",
+      "digest": "sha256:788e36365f6e07f05c99de44da87b5fd54fabdc00f34a10940db4c8db22ebfb0"
+    },
+    {
+      "path": "src/shared-assets/circuits/branch-current.benchcircuit",
+      "digest": "sha256:b779a7eeff8b29716c8453b32ad6495ae09c3c647eb8c73f59fb94e47cea010e"
+    },
+    {
+      "path": "src/shared-assets/circuits/bridge-null.benchcircuit",
+      "digest": "sha256:d1af378d6312bb38fad357cc0920aa95e60b35b28b171cfafbe282d68aaee2c0"
+    },
+    {
+      "path": "src/shared-assets/circuits/clamp-walk.benchcircuit",
+      "digest": "sha256:be57e90a22bfac60d0a97a6b4eafb150233538ba75b62239d303498d5524ff5e"
+    },
+    {
+      "path": "src/shared-assets/circuits/controlled-impedance.benchcircuit",
+      "digest": "sha256:a1c3858c324f68e80ffa3c5bc3e0560f1448bd2fbb924596d5129b027f43f6d2"
+    },
+    {
+      "path": "src/shared-assets/circuits/divider-differential.benchcircuit",
+      "digest": "sha256:5430db8e17b99368303043a8067bdc7213c69aaadfea6be2853b7b8e13530999"
+    },
+    {
+      "path": "src/shared-assets/circuits/divider-loading.benchcircuit",
+      "digest": "sha256:a5a112975595116b3ff0cded210300ee3666d280fa753f2ee6f154688c71c623"
+    },
+    {
+      "path": "src/shared-assets/circuits/four-wire-sensing.benchcircuit",
+      "digest": "sha256:c53aed013f1780493dacce96813bfbfbe14dd2201da3d1dc64c6dffec4594cb3"
+    },
+    {
+      "path": "src/shared-assets/circuits/half-drawn.benchcircuit",
+      "digest": "sha256:adcb6fb9a1f78c0f83028a004f7143808089d50e4ab52327c3016ceffdd4134c"
+    },
+    {
+      "path": "src/shared-assets/circuits/leakage.benchcircuit",
+      "digest": "sha256:47d6a882428c528965bea1eae982f83880d0142ff74d25da5f633ec1fccb7697"
+    },
+    {
+      "path": "src/shared-assets/circuits/led-current-limit.benchcircuit",
+      "digest": "sha256:b49ce3d4ae9923493cc4e7cd71bec3813688fc16a23a54a0e85f932a5ea6bc2b"
+    },
+    {
+      "path": "src/shared-assets/circuits/net-sizing.benchcircuit",
+      "digest": "sha256:c42cf1761310e2cfda0d8777d5994e224a0ef46ca0bb2ecb2f583ccb1e1397f4"
+    },
+    {
+      "path": "src/shared-assets/circuits/overpower.benchcircuit",
+      "digest": "sha256:f089c35b7548bb4ba8423ea205d4233e23561fb5ae68f2be5ef7cf2aea26decf"
+    },
+    {
+      "path": "src/shared-assets/circuits/package-heat.benchcircuit",
+      "digest": "sha256:c0becca4381736d6532e803601168b3b9f69133466f4600fa6909437c8912dad"
+    },
+    {
+      "path": "src/shared-assets/circuits/power-transfer.benchcircuit",
+      "digest": "sha256:fd65f2c21c77b9f3395a3d71202848c8eea21007848a07707cd961cdc7c60c0e"
+    },
+    {
+      "path": "src/shared-assets/circuits/probe-walk.benchcircuit",
+      "digest": "sha256:24304617ab089086e071747bfd6b51bab19856abef205c452715b4fae91828e8"
+    },
+    {
+      "path": "src/shared-assets/circuits/rc-charging.benchcircuit",
+      "digest": "sha256:442f9156a7b36b89e14df0448e4b73052a3f9c1011084222077dea5bfa28f79f"
+    },
+    {
+      "path": "src/shared-assets/circuits/recovery.benchcircuit",
+      "digest": "sha256:da185533f21ac18535e29067ee6f49c2688fa203c1f65f4d2180139a546c4b7a"
+    },
+    {
+      "path": "src/shared-assets/circuits/section-adrift.benchcircuit",
+      "digest": "sha256:c0ef072cfd36cb76f5d41f759630117f5ada1a150e93ac16bccf421aa25b9887"
+    },
+    {
+      "path": "src/shared-assets/circuits/stated-midpoint.benchcircuit",
+      "digest": "sha256:fe6fda4cf4d05a12447fef6f27d899b63d340cee56c3de80543585c38e05f423"
+    },
+    {
+      "path": "src/shared-assets/circuits/stated-unreachable.benchcircuit",
+      "digest": "sha256:6253a986dd3410b50a8a40335fdbdcea8e378949503bb905cddc60e5cc353cba"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/cards/1n4001.model.sp",
+      "digest": "sha256:ba65dfc957dbc2497ca1e02b74cf646967709c951f374b2e6c1d42908a1359c9"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/cards/1n4148w.model.sp",
+      "digest": "sha256:7a690a49e517732ee6150f16595d249e566acea66680a2e6528d6400d3faa726"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/classes/ammeter.partclass",
+      "digest": "sha256:69aa303955b0fdf737bc54535327e4c1c30c1eb5faf0e70d8c07660317ba1295"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/classes/capacitor.partclass",
+      "digest": "sha256:d2858c88b4a4c3af61680f6d26a36d396c613976b788bfaaefd740de86fb6951"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/classes/conductor.partclass",
+      "digest": "sha256:7bd809e75a78cb5b3aaf0d612a7ede2eadb0de965f55883dd6f40a3565d6a905"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/classes/current-clamp.partclass",
+      "digest": "sha256:20c63de0196cb5ebf0aa04c5baf076324d49997302aefbda941318219b30b3d4"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/classes/diode.partclass",
+      "digest": "sha256:e84890fe9c7ff4b570f5eb76ad8f487f66fa0d0d0566135a48d452a6c587177b"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/classes/dmm.partclass",
+      "digest": "sha256:2f1793635a7216773b00f2469e031c051e8bfc0d9e69f5d2b27eb17483a0b0c2"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/classes/mosfet.partclass",
+      "digest": "sha256:14af97cda86f5a384e7e3c77d2f8357056ac410bec0c49fbac6440a9391988aa"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/classes/probe.partclass",
+      "digest": "sha256:eef9c5381103a0202dd753968c4cded050137e600235a18384827da30890c38b"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/classes/resistor.partclass",
+      "digest": "sha256:d43b465533105ee49e271c74c619f2f67b1636c6d8ae189404e7fd7b804cfe3f"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/classes/supply.partclass",
+      "digest": "sha256:8ddc312ba24f27f1238981dc531ed630235ca7798f79992c6c7123a942733128"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/classes/test-point.partclass",
+      "digest": "sha256:bf9dec85dc6b2a0f15cdbce2e7887a726a1aea018ae547daede04090a19c2b9e"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/classes/thermistor.partclass",
+      "digest": "sha256:0585753d47b06f8808fabdf3cf99f025195d844eaf6910c915468b2828f71a3b"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/classes/voltage-drop.partclass",
+      "digest": "sha256:d0dc985c03434af9524167381820103d615e4e60d31e06a295b05a57a5cb42b4"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/curves/mlcc-c-vs-vdc.json",
+      "digest": "sha256:0be879d0b16c80817f32b696ebcc5744bd40792aaf1d81af927ad7e8c9f8a2e8"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/library.json",
+      "digest": "sha256:48ab72615562dc1e2bfb1c50a4d88975fb12ab131ad23b2720f9832beeb40a09"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/netclasses/bench-wire.netclass",
+      "digest": "sha256:91111e7808f68dd1a82294df95305072e418e79d499c56dadc009172da2baeee"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/netclasses/hs-50r.netclass",
+      "digest": "sha256:652eb9c6a10ade64006aefb447cc1c19d978c216e8d56e2a207dbdad1f1f2cb9"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/netclasses/hs-signal.netclass",
+      "digest": "sha256:4f90c70f9695e4ce7f90bb223f1fc1e68812c4a57d21d20189d839f369ac1131"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/netclasses/power.netclass",
+      "digest": "sha256:1ad635bf016eb143df6f82fd7d985e578242610535aaf612ff4be9202e476734"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/netclasses/signal.netclass",
+      "digest": "sha256:66251ba1061e5f4c255c8cca71c94f4706d30006fa7e45bd485c9e45451c52b2"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/profiles/ammeter-bench.partprofile",
+      "digest": "sha256:3a8e8aecb52ae99d19d6c2afc11ea39c75616bd861fe9f9d00c4f8eeb41ba0a5"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/profiles/capacitor-mlcc-typical.partprofile",
+      "digest": "sha256:d94cb5cdcdcd902e700849a8478b42acd3f1e9ada3ab56884cd6224394df6443"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/profiles/clamp-handheld.partprofile",
+      "digest": "sha256:9856924c95d7daf6e464be6807d061a1de20c0ccf806f93af9e542fa06065796"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/profiles/clamp-milliamp.partprofile",
+      "digest": "sha256:0b2b751221d9e12a6e34e83684f662e834ea144233ede8757ca99a5ecc9e6fd8"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/profiles/contact-breadboard.partprofile",
+      "digest": "sha256:cb6f8a4b0778683403befbb0c7ca45e28ed5052692fb390b322a42e35e373e55"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/profiles/diode-1n4001.partprofile",
+      "digest": "sha256:ea59fe7b30497856baf72df52be2160d7b3a3066ebb564c502acb9376ccd3214"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/profiles/diode-1n4148.partprofile",
+      "digest": "sha256:5ae0650e1cd3059c617d25c967b5a362351234d4063f9f0f3fa5a579abff0dea"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/profiles/diode-1n4148w.partprofile",
+      "digest": "sha256:d0955bb00bf41087c2b582fe0ea6f56b6b342eb6cf1e1f2b9a215e20b07ed09e"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/profiles/diode-typical.partprofile",
+      "digest": "sha256:54c0bcbc6a7876c12e1ee5b0c2fb9868f1dafb6fe86fd9e36eba0d0ef47bbbdf"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/profiles/dmm-bench.partprofile",
+      "digest": "sha256:95b6aa58752fad9c5dd2760f5100e6ebf5303eae643d76528597ae0e4a6e5f98"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/profiles/dmm-budget.partprofile",
+      "digest": "sha256:3128aa5060b3371c801dc9ae7817e2cf263ec26838ab5566a6f702a2a2677ea5"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/profiles/led-green-5mm.partprofile",
+      "digest": "sha256:f45de9e6ac3e3779b810d7a5d60c7aa9737e3c3fb52fd9d8852cfbf1d5ee33f0"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/profiles/led-red-5mm.partprofile",
+      "digest": "sha256:f80a12c1884ff40be9f4b98ce3174a5c900806cf584b828229b73e003ac23cb8"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/profiles/mosfet-typical.partprofile",
+      "digest": "sha256:33efb22f6db85fbfb9de9552b410c809de72c0c708637f4667003d4e9099821d"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/profiles/probe-x1.partprofile",
+      "digest": "sha256:7fbdcd077396770793ba4736f0437ed8e97f98707c343f8220107a42b3e219f9"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/profiles/probe-x10.partprofile",
+      "digest": "sha256:6f04fc046d74af179b8db56e2d61e9ced3b88a1ca71bbca7bf517322b27804ae"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/profiles/resistor-power-25.partprofile",
+      "digest": "sha256:53685d22a03a1c5936572b81fa5b4c79eb9393f25c284f662606915c60f7b8f1"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/profiles/resistor-power.partprofile",
+      "digest": "sha256:6fa06ef45e6b1bbe71031c01f94ca766988ca5e89387e20074797d29a5d99b25"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/profiles/resistor-typical.partprofile",
+      "digest": "sha256:72229ffff01998bd2ba4446c38d8ddada3ea8e4c783708c145a3f725339f4d84"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/profiles/rtd-pt100.partprofile",
+      "digest": "sha256:f676f4105485f1d5fe5036e9e5fcbfbfaf9e130e29cc87e787f9c9f7be6f149c"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/profiles/supply-bench.partprofile",
+      "digest": "sha256:5eb315f6b42735d28b253e3d54d991c17d5a469f70297ff15b269eaadde693bf"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/profiles/test-point-post.partprofile",
+      "digest": "sha256:e3479b926a098a7aeefc421054081cdb385af285a6e860bbb9e4395b076890d1"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/profiles/thermistor-ntc-10k.partprofile",
+      "digest": "sha256:9881f29926b6c6d0b69b3f370a88e0733157cc7a348c125bbeb6e5af77a6a0f3"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/profiles/trace-cu-0r5mm.partprofile",
+      "digest": "sha256:4f58c1c04ab601058dea165cf371b7e9cccfb4d2024564bd1b50ebaf9f159ee1"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/profiles/voltage-drop-stated.partprofile",
+      "digest": "sha256:3f533d810cd053dc866a543c8800596b66b318dc9f3014d9efbb8ecb48a1944f"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/profiles/wire-cu-awg24.partprofile",
+      "digest": "sha256:bf3311069873314ac6f22af9973ad5e24b69355109842bbcfce1aba267d6349a"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/profiles/wire-cu-awg30.partprofile",
+      "digest": "sha256:6b200eaf7125c3d01e6f5ea72521d99134d568f8d83a076f384004178b688f38"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/stackups/fr4-6layer.stackup",
+      "digest": "sha256:5237879b21a658fbe2d27fc4271b4441299b158378f835cd1db5c51dcb3feedf"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/symbols/ansi/resistor.svg",
+      "digest": "sha256:1116bfc9db0c44838bb758edb197c8310fd82d5913395845a0aee18a0a16ff55"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/symbols/ansi/thermistor.svg",
+      "digest": "sha256:2195c49dba94674b87eff5942d77ef9912a9efdc2affe3673edff884dc35f8b1"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/symbols/iec/ammeter.svg",
+      "digest": "sha256:4ecfc42b4b1709e109c6b94ef320302770bc0ffd310bcc56e1603bd9fdf7734a"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/symbols/iec/capacitor-polarised.svg",
+      "digest": "sha256:ebd3e5b08b4c81f12594471b4b3d4bc2e3d0e47dd6b85ecc6f656d4f1f9b54da"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/symbols/iec/capacitor.svg",
+      "digest": "sha256:9114c86cf55a88d8e33a9aa891ee58045d0795729bd9d8f0233ed3ccd0178d69"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/symbols/iec/contact.svg",
+      "digest": "sha256:d058d3819846643895c2f0ada392f8b578064ce213fe822da4d1b016397bf9e8"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/symbols/iec/current-clamp.svg",
+      "digest": "sha256:14e322f9e8f1d3fc779d9ea9ddbe9c625e671305a9a4a2e232166cd97c67a9ee"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/symbols/iec/diode-schottky.svg",
+      "digest": "sha256:010ed8658956b249257a0cd8e681f03fac28b58ca5b71dc952c7f0e25c98a29d"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/symbols/iec/diode-zener.svg",
+      "digest": "sha256:c5b81f8d3dcf587c9c976519d8b2b14f86033e72266ba49eb4ada665c0c4348f"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/symbols/iec/diode.svg",
+      "digest": "sha256:c9413cf2f19fad4dcd3239a46c389c450b2f2f2c2f24b405bfe3917d4306990a"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/symbols/iec/dmm-bench.svg",
+      "digest": "sha256:168ca326cbf32ecd57edeac5aa45414f10cf09bbbce8fcbc6199695678cd63e4"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/symbols/iec/dmm.svg",
+      "digest": "sha256:9c0bd4dbceefc554ce993481fa9be942fb7173456f5f1e8ff9ed89bcbf9154e9"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/symbols/iec/led.svg",
+      "digest": "sha256:6ea893b19a9ddf76ed3baaba7e549c44a4033653e2b50abedaab74c4245ff4da"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/symbols/iec/mosfet-n.svg",
+      "digest": "sha256:05fbd431281ed252f9790d3dd2f85d07102391697bc6f83209301e0e59e09b41"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/symbols/iec/mosfet-p.svg",
+      "digest": "sha256:dd5e61b0a0bb38c4412ec66121c14341c519998413866b1bdf10e8a005dc2e26"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/symbols/iec/probe.svg",
+      "digest": "sha256:72c3ca399c860d1e83b04c99a5acba0287392796933bc37fbdb84dac60d40be1"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/symbols/iec/resistor.svg",
+      "digest": "sha256:5e3805ab77099888ac60c81b4f6bd68693cb644bbeec008e1339055e2709b1eb"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/symbols/iec/supply.svg",
+      "digest": "sha256:218fff802f73eb7e2d719792e54753a05d5acd136d1b692153cdbbf1b70bfb90"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/symbols/iec/test-point.svg",
+      "digest": "sha256:4d9d86c46feb857f142ebd97126c921325054fca2049dbe1e980cecda1d73bc6"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/symbols/iec/thermistor.svg",
+      "digest": "sha256:77f4c7145ffce43b4701f7e19f382e066dcfc7ec360081742322d341d6b8146f"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/symbols/iec/trace.svg",
+      "digest": "sha256:a2a519aad262fa74c5902817f1420aed2a9fb40c3a7f0b0638c5221a2573d534"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/symbols/iec/voltage-drop.svg",
+      "digest": "sha256:09226a793a6c8e9ddd7749e56013e0f202f9258ee21c24e71ba43b68d50e4c12"
+    },
+    {
+      "path": "src/shared-assets/parts/baseline/symbols/iec/wire.svg",
+      "digest": "sha256:3c6e3444dac7257ca7bed8f63c050251f9fb6e45c5218aba7aa4eb152fbd0f8a"
+    }
+  ],
+  "shippedDigest": "sha256:72a4211fc7c8687ccf48208e46a90dcadfec9707996dc80859b3b795eac5ceb4"
+}
