@@ -56,8 +56,8 @@ direct one. Four things happen in order:
 A gearbox does not create torque: it trades speed for turning force, power in
 for power out, less heat.
 
-A transformer trades volts for amps the same way. Halve the voltage, double the
-current. Neither gives you free power.
+A transformer trades volts for amps. Halve the voltage, double the current.
+Nobody expects a gearbox to produce free horsepower.
 ```
 
 ```flow
