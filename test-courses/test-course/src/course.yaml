@@ -47,6 +47,31 @@ audience: First-year electronics students who know Ohm's law and have never desi
 # be read live; the audit would list it.
 delivery: [multi-screen, single-screen]
 
+# How the course certifies (M57b): a pass on the weighted score earns the graded
+# certificate, and taking part without passing earns the participation one. One
+# of every selection: sections, attendance, a role, a practice, a block by its
+# section and stable id, and the predictions, which weigh nothing unless named.
+certification:
+  kind: graded-or-participation
+  participation:
+    sections: [01-raw-dc-transformer, 03-build-wrap-up]
+    attendance: { atLeast: 4, of: 5 }
+    answered:
+      - role: checkpoint
+        atLeast: 2
+      - block: 03-build-wrap-up/b-29d8bac0 # the exit survey
+  graded:
+    threshold: 0.6
+    components:
+      - role: accuracy
+        weight: 0.6
+      - practice: computational-thinking
+        weight: 0.2
+      - block: 03-build-bench-test/b-d2f7cf52 # where to measure
+        weight: 0.1
+      - role: prediction
+        weight: 0.1
+
 # What the course teaches, declared once (M63c). A subsection names the
 # concepts it serves in its frontmatter; its blocks inherit them unless one
 # narrows its own. 030-smoothing does both: it serves two, its opening paragraph
