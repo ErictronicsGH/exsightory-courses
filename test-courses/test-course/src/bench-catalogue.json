@@ -4207,16 +4207,16 @@
     {
       "name": "@exsight/bench-electronics",
       "kind": "bench",
-      "version": "0.1.1",
+      "version": "0.2.0",
       "path": "benches/electronics",
       "description": "The Electronics Bench: the schematic simulation. Its engine (the solver, the circuit schema, the analyses) is its own package beside it, @exsight/electronics-engine (B007); this package is the bench a player frames (its views and run, one Vue bundle speaking contract 1.0, with the library it carries: E·a-ii; the wall's state E·a-iii, the editor E·a-iv) and the .benchcircuit work: its JSON Schema and the stamp a compiler reads instead of running the engine (E·a-i).",
       "needs": {
         "packages": {
-          "@exsight/bench-contract": "^1.2.0",
+          "@exsight/bench-contract": "^1.3.0",
           "@exsight/bench-kit": "^0.1.0",
-          "@exsight/electronics-engine": "0.1.3"
+          "@exsight/electronics-engine": "0.2.0"
         },
-        "contract": "^1.2.0",
+        "contract": "^1.3.0",
         "kit": "^0.1.0"
       },
       "classes": [],
@@ -4943,13 +4943,88 @@
           }
         }
       ],
+      "beat": {
+        "schema": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "$id": "https://exsightory.com/schemas/benches/electronics/beat.schema.json",
+          "title": "Electronics Bench beat",
+          "description": "What one showing of a .benchcircuit asks of the Electronics Bench: the reveal it fires, the tool it opens on the wall, the analyses it offers. Generated from @exsight/electronics-engine's ANALYSES and OPENABLE_TOOLS. Whether a beat is true of a circuit is checked against the circuit's stamp (stamp.derived.reveals, stamp.derived.opens).",
+          "type": "object",
+          "properties": {
+            "reveal": {
+              "description": "The reveal this beat fires: the strip draws it as the act of this beat.",
+              "type": "object",
+              "properties": {
+                "part": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "The instance id, as the circuit names it."
+                },
+                "show": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "The reveal, as the part’s profile binds it."
+                }
+              },
+              "required": [
+                "part",
+                "show"
+              ],
+              "additionalProperties": false
+            },
+            "opens": {
+              "description": "A tool this beat opens on the wall, on one part.",
+              "type": "object",
+              "properties": {
+                "tool": {
+                  "type": "string",
+                  "enum": [
+                    "iv"
+                  ],
+                  "description": "The tool, as the bench names it."
+                },
+                "part": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "The instance id the tool opens on, as the circuit names it."
+                }
+              },
+              "required": [
+                "tool",
+                "part"
+              ],
+              "additionalProperties": false
+            },
+            "analyses": {
+              "description": "The analyses this beat offers, beyond the plain schematic. Absent offers every one the bench has.",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "voltage",
+                  "current",
+                  "power",
+                  "heat",
+                  "ir",
+                  "netclass"
+                ]
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "schemaFile": {
+          "file": "work/beat.schema.json",
+          "sha256": "sha256:e6445afa4f341464ba65eb66a43aba033601561fc5970760967844b6c1d7303a"
+        }
+      },
       "pins": {
         "esbuild": "0.28.2"
       },
       "release": {
-        "version": "0.1.1",
-        "at": "2026-10-21T21:08:43.315Z",
-        "digest": "sha256:b23275004e209a2bab3f9d51c46bc2b09158358f07d6fba83400c2d48d9dddab"
+        "version": "0.2.0",
+        "at": "2026-10-22T01:18:46.056Z",
+        "digest": "sha256:fbe22fe22ca77dd0c06d79241d4c7188873a5c4d7f7c683b9e8fa7dd0307c2bd"
       },
       "listed": true,
       "listing": {
@@ -5051,7 +5126,7 @@
           "authoring"
         ],
         "runsIn": {
-          "contract": "^1.2.0",
+          "contract": "^1.3.0",
           "scope": true,
           "phone": true
         },
@@ -5279,6 +5354,14 @@
         }
       },
       "changes": [
+        {
+          "version": "0.2.0",
+          "at": "2026-10-22T01:18:46.056Z",
+          "note": {
+            "en": "Contract 1.3 (B067, B072, B073). The lead moves between two frames without a reload: told to lead, a frame that followed takes the run over from the last state it was given (the view, the solved frame and the run's snapshot beside them), so its run goes on with the room's history (every hold time a part was partway through, every latch, every capacitor's charge) at the tick the room is on; its controls work, and it says its state. Told to follow, it drops its run, its controls go inert, and it draws the last frame it solved until the new leader's first state. A beat says what this showing asks (exsight.beat, work/beat.schema.json, inlined in the catalogue as beat.schema, built from the engine's ANALYSES and OPENABLE_TOOLS): its reveal and analyses reach the bench as the compiled block's did, the tool it opens is written into the view, and the same work with a new beat keeps the run, the camera and the stops, the last beat's tool closed; a beat the bench has not is refused, saying why. It says a work loading at once, and its drives take loading apart from the answer, as a player must. Driven on this build: drive-wall 57 of 57 at a desk and in the classroom (the run clock within 0.12 s of the room's across each hand-over, the follower within 250 ms, the plant seen), drive-beat 14 of 14 (a plant: a new work loses the view), drive 33, drive-edit 28, drive-profiles 27, drive-preview 34. Engine 0.2.0; the first-load budget 345,000 to 347,000 B (345,951). Needs contract ^1.3.0: a 1.2 player refuses it, so play 0.1.1 until the players move.",
+            "fr": "Contrat 1.3 (B067, B072, B073). La main passe d'un cadre à l'autre sans recharger : invité à mener, un cadre qui suivait reprend la simulation du dernier état reçu (la vue, l'image résolue et l'instantané de la simulation à côté), si bien que sa simulation continue avec l'historique de la salle (chaque durée de maintien en cours, chaque verrou, la charge de chaque condensateur) au pas où en est la salle ; ses commandes marchent et il dit son état. Invité à suivre, il abandonne sa simulation, ses commandes deviennent inertes et il affiche la dernière image résolue jusqu'au premier état du nouveau meneur. Un moment dit ce que cette présentation demande (exsight.beat, work/beat.schema.json, recopié dans le catalogue comme beat.schema, construit à partir des ANALYSES et OPENABLE_TOOLS du moteur) : sa révélation et ses analyses atteignent le banc comme celles du bloc compilé, l'outil qu'il ouvre est écrit dans la vue, et le même travail avec un nouveau moment garde la simulation, la caméra et les arrêts, l'outil du moment précédent fermé ; un moment que le banc n'a pas est refusé, avec sa raison. Il dit un travail en chargement aussitôt, et ses pilotes séparent ce chargement de la réponse, comme un lecteur doit le faire. Piloté sur cette construction : drive-wall 57 sur 57 au bureau et en salle (l'horloge à 0,12 s près de celle de la salle à chaque passation, le suiveur à moins de 250 ms, la faute plantée vue), drive-beat 14 sur 14 (une faute plantée : un nouveau travail perd la vue), drive 33, drive-edit 28, drive-profiles 27, drive-preview 34. Moteur 0.2.0 ; le budget du premier chargement passe de 345 000 à 347 000 o (345 951). Demande le contrat ^1.3.0 : un lecteur 1.2 le refuse, donc jouer la 0.1.1 jusqu'à ce que les lecteurs passent."
+          }
+        },
         {
           "version": "0.1.1",
           "at": "2026-10-21T21:08:43.315Z",
