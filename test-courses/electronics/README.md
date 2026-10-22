@@ -4,8 +4,13 @@ Not teaching material. This exists so that driving one circuit loads one circuit
 course — five subsections, thirteen demonstrations, and nothing else.
 
 The convention it is the first instance of is
-[`.claude/commons/standards/bench-fixture-courses.md`](../../../.claude/commons/standards/bench-fixture-courses.md).
-Read that before adding a bench course; this file is only the local map.
+[`.claude/commons/standards/bench-fixture-courses.md`](https://github.com/ErictronicsGH/insight-course-player/blob/main/.claude/commons/standards/bench-fixture-courses.md)
+in ExSightory. Read that before adding a bench course; this file is only the local map.
+
+**It lives in `exsight-benches` since B018 (2026-10-22)**, as `@exsight/course-electronics`, published as
+`@erictronicsgh/course-electronics` with `src/` and this file. ExSightory's `src/bench-courses/electronics/` came
+here with its history and is frozen until it is removed: the course is edited here, released, and the players move
+their pin.
 
 ## Layout
 
@@ -24,8 +29,8 @@ subsection.
 ## Compile and install
 
 ```sh
-cd src/insight
-node packages/insight-core/bin/insight-compile.js ../bench-courses/electronics/src \
+cd src/insight          # ExSightory's, beside this checkout at src/exsight-benches
+node packages/insight-core/bin/insight-compile.js ../exsight-benches/courses/electronics/src \
   --out ../../.tmp-out/bench-electronics.insightcourse
 rm -rf "$APPDATA/ExSight Studio/courses/bench-electronics"
 cp -r ../../.tmp-out/bench-electronics.insightcourse "$APPDATA/ExSight Studio/courses/bench-electronics"
@@ -55,7 +60,7 @@ renamed circuit fails a suite rather than a screenshot.
 patch bump to `libraries/baseline/` sweeps every `.benchcircuit` pin here too. Re-copy it:
 
 ```sh
-rm -rf src/bench-courses/electronics/src/shared-assets/parts/baseline
-cp -r src/insight/libraries/baseline \
-      src/bench-courses/electronics/src/shared-assets/parts/baseline
+rm -rf courses/electronics/src/shared-assets/parts/baseline
+cp -r ../insight/libraries/baseline \
+      courses/electronics/src/shared-assets/parts/baseline   # ExSightory's, until B011 gives the library its home
 ```
