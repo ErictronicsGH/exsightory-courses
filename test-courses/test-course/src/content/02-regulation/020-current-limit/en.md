@@ -66,6 +66,21 @@ transistor in its safe operating area.
 But a large inrush reads as a fault, so the supply folds back and never starts.
 Lamps and capacitive loads are the usual victims.
 
+## Which limit runs coolest?
+
+```flash
+question: A dead short is put across the output. Which kind of limit leaves the pass transistor coolest?
+options:
+  - Constant current, held at the full limit
+  - Foldback, which lowers the limit as the output voltage falls
+  - Neither, because a short draws no current
+correct: 1
+timerSeconds: 30
+onWrong: relearn
+relearnFrom: 02-regulation-current-limit
+why: What made you choose that one?
+```
+
 ## Set our limit and prove it
 
 ```checkpoint
