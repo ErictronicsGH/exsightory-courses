@@ -9,8 +9,8 @@ objectives:
 You now have a supply that steps down, rectifies, smooths, regulates and
 protects — and, more usefully, you know what each stage costs.
 
-The through-line worth keeping: **every stage in this supply trades one thing
-for another, and none of them is free.**
+The through-line worth keeping: **every stage trades one thing for another,
+and none of them is free.**
 
 ## What each stage trades away
 
@@ -18,7 +18,7 @@ for another, and none of them is free.**
 - The bridge trades two diode drops for half the smoothing capacitance
 - The capacitor trades ripple for peak diode current
 - The regulator trades heat for steadiness
-- The current limit trades a working supply under fault for a survivable one
+- The current limit trades working under a fault for surviving it
 
 ## The finished unit under load
 
@@ -36,10 +36,10 @@ pinned to the version this lecture was written against.
 
 ```analogy
 A finished instrument is an argument about which compromises you were willing to
-live with. Somebody reading your schematic five years from now is reading that
+live with. Someone reading your schematic in five years is reading that
 argument, not the components.
 
-Which is why the notes on the drawing matter as much as the drawing.
+So the notes on the drawing matter as much as the drawing.
 ```
 
 ## How far does the heatsink rise
@@ -64,14 +64,14 @@ ref: regulator-heat@1
      text column holds about half a card (crossing 538, drive 115 found it 432 px
      past the bottom of the wall at twice this length). -->
 
-- **Efficiency is poor.** At low settings a linear supply is mostly a heater.
+- **Efficiency is poor.** At low settings it is mostly a heater.
 
   > At best, efficiency is V_out / V_in: at 5 V out of 15 V in, two thirds of
   > the power heats the pass transistor.
-- **No remote sensing.** The voltage is right at the terminals, not at the load.
-  - Sensing at the load needs two more wires.
-- **Single output.** Split rails need a second supply.
-- **A slow limit.** It survives a short, not a transient.
+- **No remote sensing.** It regulates at the terminals, not the load.
+  - Load sensing needs two more wires.
+- **Single output.** Split rails need another supply.
+- **A slow limit.** It survives shorts, not transients.
 
 ## Questions on anything we covered
 

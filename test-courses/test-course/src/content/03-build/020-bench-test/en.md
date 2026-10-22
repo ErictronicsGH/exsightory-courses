@@ -21,11 +21,11 @@ caption: The bring-up bench. Dummy load, meter, scope - and nothing valuable con
 
 ## The order that matters
 
-1. **Continuity and shorts, unpowered.** Output to ground must not be a short.
+1. **Continuity, unpowered.** No short from output to ground.
 2. **Raw DC only.** Regulator out; capacitor reaches the predicted peak.
 3. **Regulator in, no load.** Output holds; pass transistor stays cool.
-4. **Dummy load, slowly.** Step the current up, watching the heatsink.
-5. **Limit test, deliberately.** Short it through an ammeter.
+4. **Dummy load, slowly.** Raise the current, watching the heatsink.
+5. **Limit test, deliberately.** Short through an ammeter.
 
 ## A pre-flight check, not a test flight
 
@@ -57,11 +57,10 @@ caption: The same load you just sized, built and powered.
 
 ## Reading the ripple
 
-With a scope on the output and the supply at full load, you are looking for two
-different things at once. Low-frequency [ripple](glossary:ripple) at twice the
-mains frequency is the smoothing capacitor talking. High-frequency noise on top
-of it is the regulator's loop, or your probe grounding, and the two are easily
-confused.
+With a scope on the output at full load, look for two things. Low-frequency
+[ripple](glossary:ripple) at twice the mains frequency is the smoothing
+capacitor talking. High-frequency noise on top is the regulator's loop, or your
+probe grounding, and the two are easily confused.
 
 ## Is that noise, or your ground lead
 
@@ -98,11 +97,11 @@ reveal:
   part: M1
   show: input_loading
 predict:
-  prompt: The divider is two equal resistors on ten volts. What does the handheld read across the lower one?
+  prompt: Two equal resistors divide ten volts. What does the handheld read across the lower one?
   options:
     - Five volts - the divider is symmetrical
-    - A little under five volts
-    - A little over five volts
+    - Just under five volts
+    - Just over five volts
     - Ten volts, because the meter is across the supply return
   correct: 1
 ```
@@ -135,37 +134,38 @@ reveal:
   part: A1
   show: burden_voltage
 predict:
-  prompt: The shunt goes from 10 mΩ to 10 Ω. What happens to the current it reports?
+  prompt: Raise the shunt from 10 mΩ to 10 Ω. What happens to the reading?
   options:
-    - Nothing - the supply and resistor set it
-    - It falls - the shunt is a tenth of the circuit now
-    - It rises - a bigger shunt develops more voltage
-    - It falls, and the clamp reports the fall too
+    - Unchanged; supply and resistor set it
+    - Falls; the shunt is a tenth of the circuit
+    - Rises; a bigger shunt drops more voltage
+    - Falls, and the clamp agrees
   correct: 1
 ```
+
+## The ammeter's shunt is in the circuit
 
 An ammeter goes *in* the branch, so its shunt is a resistor you have added: turn
 it up and the current falls.
 
 ## A clamp adds nothing, and pays in resolution
 
-A clamp goes *around* the conductor and adds nothing: solve the bench with it
-and without it and every number is identical. What it costs is resolution. A
-hundred-amp jaw reads in ten-milliamp steps, so it cannot see the error the
-ammeter is causing.
+A clamp goes *around* the conductor and adds nothing: solve the bench with and
+without it and every number is identical. It costs resolution: a hundred-amp
+jaw reads in ten-milliamp steps, too coarse to see the ammeter's error.
 
 ## A finer jaw, and the reading appears
 
-Fit the milliamp clamp in place of the hundred-amp one and nothing about the
-circuit moves - the reading appears because the instrument changed, which is the
-same lesson the two multimeters teach one page above, arriving from the side
-where the instrument was never in the way at all.
+Fit the milliamp clamp instead of the hundred-amp one and nothing in the circuit
+moves: the reading appears because the instrument changed. It is the two
+multimeters' lesson again, from the side where the instrument was never in the
+way.
 
 ## Moving the probe is moving the lead
 
 A probe is not part of the circuit, so you may move it while somebody watches.
 Where its tip sits is which node you are measuring: moving it is lifting a lead
-off one test post and putting it on the next.
+from one test post to the next.
 
 ## Only the rail is honest
 
@@ -182,8 +182,10 @@ measure:
   places: [TP1, TP2, TP3]
   correct: TP2
   timerSeconds: 30
-  explanation: A and B both lose 6.25 % to the meter, 0.42 V of 6.67 V at A and 0.21 V of 3.33 V at B. The rail loses nothing.
+  explanation: Both lose 6.25 % to the meter, 0.42 V of 6.67 V at A, 0.21 V of 3.33 V at B. The rail loses nothing.
 ```
+
+## A meter drags the node it is on
 
 A ten-megohm meter across a megohm ladder drags whichever node it is on; on the
 rail there is nothing to drag.
@@ -208,7 +210,7 @@ without cutting.
 
 A reverse-biased diode is easy to draw as a perfect switch, and it is not one.
 There is always a current: invisible beside a divider drawing five microamps,
-and the only thing that matters on a node a hundred times higher in impedance.
+dominant on a node a hundred times higher in impedance.
 
 ## Switched off, and still conducting
 
@@ -234,10 +236,9 @@ predict:
 
 ## What a power rating is actually a statement about
 
-Almost everyone reads a wattage on a resistor as an electrical limit. It is not.
-It is a thermal one, and what it is really describing is the package and how it
-is mounted - which is why two parts working equally hard can be sixty degrees
-apart.
+Almost everyone reads a resistor's wattage as an electrical limit. It is a
+thermal one: it describes the package and how it is mounted, which is why two
+parts working equally hard can be sixty degrees apart.
 
 ## Same rail, four different temperatures
 
@@ -284,31 +285,29 @@ does not move: it is a statement about the load, not the dial.
 
 ## A good supply is enormously unmatched
 
-The peak is where the load equals the source's own resistance: for this supply,
-fifty milliohms at five volts, drawing a hundred amps, thirty-three times its
+The peak is where the load equals the source's resistance: here, fifty
+milliohms at five volts, drawing a hundred amps, thirty-three times its
 absolute maximum. **A bench supply is deliberately, enormously unmatched, and
 that is what makes it a good supply.**
 
 ## At maximum power, half of it is wasted
 
-At the peak, half of everything the source produces is burnt inside it:
-efficiency at maximum power transfer is exactly fifty per cent, always. Where we
-sit, a hundred times unmatched, it is ninety-nine. Maximum power and best
-efficiency are not the same place.
+At the peak, the source burns half its power internally: efficiency at maximum
+power transfer is exactly fifty per cent, always. Where we sit, a hundred times
+unmatched, it is ninety-nine. Maximum power and best efficiency are different
+places.
 
 ## The leads are in the measurement
 
-A wire on a schematic has no resistance, which is close enough for almost
-everything, but not for a resistance thermometer. A Pt100 moves 0.385 ohms per
-degree, so two metres of AWG 24, about 0.16 ohms in each lead, is nearly a degree
-of error.
+A wire on a schematic has no resistance, close enough for almost everything but
+a resistance thermometer. A Pt100 moves 0.385 ohms per degree, so two metres of
+AWG 24, about 0.16 ohms per lead, is nearly a degree wrong.
 
 ## A wire with a length is in the answer
 
-The bench can promote a net's leads into solved elements: same net, same
-circuit, but the wire now has a length, a cross-section and a resistivity, and
-it is in the answer. Nothing about the drawing changes. What changes is that
-there is a number where there used to be an assumption.
+The bench can promote a net's leads into solved elements: the wire now has a
+length, a cross-section and a resistivity, and it is in the answer. The drawing
+does not change; a number replaces an assumption.
 
 ## Two wires against four on one sensor
 
@@ -323,14 +322,16 @@ reveal:
   part: WF1
   show: lead_resistance
 predict:
-  prompt: The two force leads are swapped for ten metres of the same wire. Which readings move?
+  prompt: Lengthen each force lead to ten metres. Which readings move?
   options:
-    - Both, because the leads are in series with everything
-    - Neither - the excitation current is set by the ten kilohms
-    - The two-wire reading only, and it goes up
-    - The four-wire reading only, because its sense leads got longer too
+    - Both; the leads are in series with everything
+    - Neither; the ten-kilohm resistor sets the current
+    - The two-wire only, and it rises
+    - The four-wire only; its sense leads grew too
   correct: 2
 ```
+
+## One meter reads the loop, one the sensor
 
 One meter sits at the binding posts, a two-wire measurement. The other has its
 own sense leads to the sensor's terminals, draws no current, and reads the
@@ -339,23 +340,22 @@ sensor, not the loop. Lengthen the force leads and watch which moves.
 ## Sense leads that carry no current
 
 The *sense* leads can be twenty metres and the reading does not move, because
-nothing flows in them; the *force* leads are the measurement. That is why
-four-wire is worth four wires, except on a ten-kilohm thermistor, where a third
+nothing flows in them; the *force* leads are the measurement. Four-wire is
+worth four wires, except on a ten-kilohm thermistor, where a third
 of an ohm is noise.
 
 ## The wire is a component, and it has a rating too
 
-A schematic draws a wire as a line, and a line has no properties. That is the one
-thing a schematic teaches people to forget, and it is why the question *how thick
-does this have to be* is usually asked for the first time in a different program,
-by a different person, weeks later.
+A schematic draws a wire as a line, and a line has no properties. So *how thick
+does this have to be* is usually first asked in a different program, by a
+different person, weeks later.
 
 ## Ask what each net has to be
 
 Turn **NetClass Mode** on and the analysis asks what each *net* has to be. From
-the solved current, the allowed temperature rise and whether the track is outer or
-inner, it returns IPC-2221's minimum cross-section, and from the copper weight
-the narrowest track allowed.
+the solved current, the allowed temperature rise and the layer, outer or inner,
+it returns IPC-2221's minimum cross-section, and from the copper weight the
+narrowest track.
 
 ## Same copper, a bigger ask
 
@@ -370,7 +370,7 @@ reveal:
   part: TR1
   show: ir_drop
 predict:
-  prompt: A hundred millimetres of this track is about twenty-five milliohms. At the current the load is drawing, what does the rail lose along it?
+  prompt: A hundred millimetres of this track is about twenty-five milliohms. At the load's current, what does the rail lose along it?
   options:
     - Nothing worth a number - copper is a conductor
     - About thirty millivolts
@@ -379,28 +379,28 @@ predict:
   correct: 2
 ```
 
+## The reading falls as the current climbs
+
 The rail is a half-millimetre track in one-ounce copper, declared a `signal` net:
-ten degrees of rise, as almost every board is designed to. Turn the supply up and
-watch its reading fall through 100 %, with nothing on the schematic moving.
+ten degrees of rise, as most boards are designed to. Turn the supply up and watch
+its reading fall through 100 %, with nothing on the schematic moving.
 
 ## A missing conductor is not a pass
 
 A net with **no conductor chosen** says what it needs, and that nothing is chosen.
-It reports no pass, because a pass against a wire that does not exist is the most
-expensive kind of wrong number. A milliamp net says **heating does not size this
+It reports no pass: a pass for a missing wire is the costliest wrong number. A milliamp net says **heating does not size this
 net**.
 
 ## A track is a piece of wire until the edge is fast enough
 
-The rail above was sized by how hot it is allowed to get. That is the only
-question a DC bench can ask of a piece of copper, and it is not the question a
-fast board is designed around.
+The rail above was sized by how hot it may get: the only question a DC bench can
+ask of copper, and not the one a fast board is designed around.
 
 ## Declare the stack-up and the edge rates
 
-Two more declarations turn the view into a high-speed one. A **stack-up** says
-what the board is made of, because impedance is a fact about the space between
-conductors. Parts declare their **edge rates**, `t_r`, off the datasheet; none
+Two more declarations make the view a high-speed one. A **stack-up** says what
+the board is made of, because impedance is a fact about the space between
+conductors. Parts declare their **edge rates**, `t_r`, from datasheets; none
 declared, none assumed.
 
 ## Two nets, two different questions
@@ -415,16 +415,14 @@ caption: Two nets, two questions, one reading each. The rail is asked what it is
 ```
 
 Both tracks are half a millimetre wide on a two-hundred-micron dielectric, and
-fifty ohms on this stack-up is about a third of a millimetre - so a wider track
-is a *lower* impedance, not a higher one, which is the way round most people
-guess wrong the first time.
+fifty ohms on this stack-up is about a third of a millimetre, so the wider track
+is a *lower* impedance: most people first guess the other way.
 
 ## A net is sized by its worst requirement
 
-The rail is a `50 Ω controlled` net. Half a millimetre of track on this stack-up
-is thirty-seven ohms, so it prints the comparison, not the heating margin: a net
-is sized by its **worst** requirement, and this one is a quarter outside
-tolerance.
+The rail is a `50 Ω controlled` net. A half-millimetre track on this stack-up is
+thirty-seven ohms, so it prints the comparison, not the heating margin: a net is
+sized by its **worst** requirement, here a quarter outside tolerance.
 
 ## Long enough to be a transmission line
 
@@ -442,8 +440,8 @@ declared on the net class, with a citation, where an author can disagree with it
 
 A 1N4148W and a 1N4001: on a schematic, a diode is its part number.
 
-Only these two carry a manufacturer's SPICE model, so the bench can show reverse
-recovery. The 1N4148 has none, and the inspector says so.
+Only these two carry a manufacturer's SPICE model, so the bench shows reverse
+recovery. The 1N4148 has none; the inspector says so.
 
 ## Reverse recovery, a factor of 750 apart
 

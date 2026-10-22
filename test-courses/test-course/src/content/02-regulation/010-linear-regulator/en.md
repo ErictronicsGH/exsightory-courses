@@ -41,10 +41,9 @@ the full load current. That is real power, and it leaves as heat:
 
 ## Thirty watts burnt to deliver ten
 
-A supply set to 5 V, drawing 2 A, fed from a 20 V rail dissipates
-(20 − 5) × 2 = **30 W**. The load receives 10 W. The regulator wastes three
-times what it delivers, and it needs a heatsink sized for the worst case, not
-the typical one.
+A supply set to 5 V at 2 A from a 20 V rail dissipates (20 − 5) × 2 =
+**30 W** to deliver 10 W: three times what reaches the load. Its heatsink must
+suit the worst case.
 
 ## Getting the heat off the transistor
 
@@ -119,22 +118,21 @@ short-tempered load, not 30 V into an easy one.
 ## A tap, not a gearbox
 
 ```analogy
-A linear regulator is a tap on a fixed-pressure water main: the flow you asked
-for, with the pressure you did not want destroyed in the tap as heat and noise.
+A linear regulator is a tap on a fixed-pressure main: the flow you asked for,
+the unwanted pressure destroyed as heat and noise.
 
 A switching regulator is a gearbox: it converts the excess instead of destroying
-it, so it runs cool, and noisier.
+it, running cool, but noisier.
 ```
 
 ## Dropout and headroom
 
 A regulator needs headroom. The [dropout voltage](glossary:dropout-voltage) is
-the minimum input-to-output difference it needs; below that, the output follows
-the input down, ripple and all.
+the minimum input-to-output difference; below that, the output follows the
+input down, ripple and all.
 
-The smoothing capacitor's ripple eats into your [headroom](glossary:headroom).
-The input at the **bottom of every ripple trough** must clear dropout, not just
-the average.
+Ripple eats into your [headroom](glossary:headroom). The input at the
+**bottom of every trough** must clear dropout, not just the average.
 
 ## Does this one regulate cleanly?
 

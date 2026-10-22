@@ -15,11 +15,11 @@ The smoothing capacitor's job is to hold the voltage up during the gaps. {concep
 ## A capacitor is a tank on the roof
 
 ```analogy
-A capacitor is a header tank on a roof: the pump runs in bursts, the tank covers
-the gaps, the tap runs steadily.
+A capacitor is a header tank: the pump runs in bursts, the tank covers the
+gaps, the tap runs steadily.
 
-A bigger tank varies less; a wider tap varies more. That is why a supply that
-looks clean unloaded can be filthy under load.
+A bigger tank varies less; a wider tap, more. So a supply clean when unloaded
+can be filthy under load.
 ```
 
 ## The parts you have been sizing, on a real board
@@ -355,10 +355,9 @@ time. Your transformer and diodes see peak currents several times the average.
 ```reveal
 seed: diode-current
 text: >-
-  This is the current through that diode: nothing for most of the half-cycle,
-  then a short pulse near the peak, several times the 1 A the circuit draws,
-  while the capacitor refills. That pulse is why a diode's datasheet gives a
-  repetitive peak current beside its average.
+  That diode carries nothing for most of the half-cycle, then a short pulse
+  near the peak, several times the 1 A load, while the capacitor refills. That
+  pulse is why its datasheet gives a repetitive peak current beside the average.
 ```
 
 ## The slope of the droop is the load current {layout=split}

@@ -57,7 +57,7 @@ A gearbox does not create torque: it trades speed for turning force, power in
 for power out, less heat.
 
 A transformer trades volts for amps the same way. Halve the voltage, double the
-current. Nobody expects a gearbox to produce free horsepower, or a transformer free watts.
+current. Neither gives you free power.
 ```
 
 ```flow

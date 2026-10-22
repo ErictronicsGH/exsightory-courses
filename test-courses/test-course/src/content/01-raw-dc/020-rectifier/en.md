@@ -31,14 +31,14 @@ simple, and it wastes half of everything you paid the transformer for.
 
 Four diodes. Both halves of the cycle are used, so the output touches zero twice
 per cycle rather than sitting at zero for half of it. That doubles the ripple
-frequency, which matters more than it sounds: it halves the capacitance you need
+frequency, which halves the capacitance you need
 downstream for the same [ripple](glossary:ripple).
 
 ## What the bridge costs: 2V~F~ and I^2^R
 
-The cost is two diode drops in the path instead of one — about 1.4 V gone before
-your circuit sees anything, so V~out~ ≈ V~peak~ − 2V~F~. The winding pays too: its
-loss grows as I^2^R, so the bridge that halves the ripple does not halve the heat.
+Two diode drops in the path instead of one: about 1.4 V gone, so
+V~out~ ≈ V~peak~ − 2V~F~. The winding pays too: its loss grows as I^2^R, so
+halving the ripple does not halve the heat.
 
 ## How high does the capacitor charge?
 
@@ -58,18 +58,17 @@ timerSeconds: 45
 ```thought-seed
 id: diode-current
 text: >-
-  Imagine the supply delivering a steady 1 A to your circuit, and a current
-  probe on one diode of the bridge. Over one half-cycle of the mains, what does
+  Imagine the supply delivering a steady 1 A, and a current probe on one
+  diode of the bridge. Over one half-cycle of the mains, what does
   the current through that diode look like? Is it ever a steady 1 A?
 ```
 
 ## A bridge is a turnstile with a toll
 
 ```analogy
-A bridge rectifier is a turnstile that funnels people walking in both directions
-into a single corridor going one way. Nobody is turned away, which is the whole
-point — but every person pays the turnstile a small toll on the way through, and
-with a bridge each one pays twice.
+A bridge rectifier is a turnstile that sends people arriving from either
+direction down a single one-way corridor. Nobody is turned away, but everyone
+pays a small toll on the way through, and with a bridge each one pays twice.
 ```
 
 ## What to read off the diode datasheet

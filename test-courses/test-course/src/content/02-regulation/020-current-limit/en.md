@@ -24,11 +24,10 @@ caption: Constant-current against foldback. The difference matters most into a d
 
 ## Constant current
 
-Below the limit the supply is a voltage source. At the limit it becomes a
-current source and the voltage falls to suit the load. Set 1 A into a short: 1 A
-at nearly 0 V.
+Below the limit the supply is a voltage source; at the limit, a current source,
+and the voltage falls to suit the load. Set 1 A into a short: 1 A at nearly 0 V.
 
-Safe for the load, but the **worst case for the regulator**: maximum dissipation.
+Safe for the load, but the **regulator's worst case**: maximum dissipation.
 
 ## Try the limit on a breadboard
 
@@ -59,12 +58,12 @@ explanation: >-
 
 ## Foldback
 
-[Foldback](glossary:foldback) limiting lowers the limit as the output voltage
-falls, so a dead short draws *less* than a mild overload, keeping the pass
-transistor in its safe operating area.
+[Foldback](glossary:foldback) lowers the limit as the output falls, so a dead
+short draws *less* than a mild overload, keeping the pass transistor in its safe
+operating area.
 
-But a large inrush reads as a fault, so the supply folds back and never starts.
-Lamps and capacitive loads are the usual victims.
+A large inrush looks like a fault: the supply folds back and never starts.
+Lamps and capacitive loads suffer most.
 
 ## Which limit runs coolest?
 

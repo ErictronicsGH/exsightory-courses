@@ -51,11 +51,11 @@ tour:
 
 ## Three constraints that fight each other
 
-Three constraints fight each other in this part:
+Three constraints fight in this part:
 
 - The transistor needs **contact area** and a short thermal path to the fins
 - The fins need **air**: clearance, and an orientation that lets convection work
-- The bracket must **hold the transistor flat**, since an air gap insulates
+- The bracket must **hold the transistor flat**: an air gap insulates
 
 ## The box, shut, as it arrives
 
@@ -174,10 +174,10 @@ tour:
 
 ## Moving something, precisely
 
-The bench supply has one moving part worth talking about, and it is not in the
-enclosure: it is the wiper on the coarse adjustment. So here is the general
-case, on a linear stage — because a leadscrew is the only mechanism in the kit
-that turns one number into two motions at once.
+The supply's one moving part worth discussing is not in the enclosure: it is
+the wiper on the coarse adjustment. So here is the general case, a linear
+stage: its leadscrew is the kit's only mechanism that turns one number into
+two motions.
 
 ## One control, two motions
 
@@ -299,17 +299,16 @@ moves because the carriage did, which is what a chain is for.
 ## A heatsink is a chimney, not a sponge
 
 ```analogy
-A heatsink is not a sponge that soaks heat up. It is a chimney.
+A heatsink is not a sponge soaking heat up. It is a chimney.
 
-Heat must leave through moving air, so the fins need room for hot air to leave
-and cool air to arrive. With its fins horizontal, it is a chimney lying on its
-side.
+Heat leaves in moving air: the fins need room for hot air out, cool air in.
+With the fins horizontal, it is a chimney on its side.
 ```
 
 ## Sizing it honestly
 
-The worst case from Part 2 is **30 W**, and each hop from junction to air has a
-resistance in °C per watt.
+Part 2's worst case is **30 W**; each hop from junction to air adds resistance
+in °C/W.
 
 At 2 °C/W total in a 25 °C room, the junction sits at 25 + (30 × 2) = **85 °C**,
 with little margin for a warm room.
