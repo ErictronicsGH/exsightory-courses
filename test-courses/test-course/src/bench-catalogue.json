@@ -5384,7 +5384,7 @@
     {
       "name": "@exsight/bench-equation",
       "kind": "bench",
-      "version": "0.1.2",
+      "version": "0.2.0",
       "path": "benches/equation",
       "description": "The Equation Bench: an equation a room reads together (its symbols, its working, its worked examples, a driven source on an instrument) and the plot beside it. Founded in E·eq-a with its arithmetic (sampling, fits, the simulated source, the graph, the block's shape; the ticks and run clock are the kit's) and its two works, .benchequation and .benchplot: their JSON Schemas and the stamp a compiler reads instead of running the bench, the equation's and the plot's checks and the equation's derived facts carried from insight-core's registry. Its views are a frame bundle (E·eq-b: Preview and View, KaTeX's fonts as files beside it); its Authoring, the equation lab, follows (E·eq-c), and nothing is released before it.",
       "needs": {
@@ -6715,9 +6715,9 @@
         "esbuild": "0.28.2"
       },
       "release": {
-        "version": "0.1.2",
-        "at": "2026-10-22T21:19:23.215Z",
-        "digest": "sha256:dddad53fa13341285f0864e4dda41bb7727eadb528d00ae8f78012664ffb226e"
+        "version": "0.2.0",
+        "at": "2026-10-22T22:04:20.369Z",
+        "digest": "sha256:281532b32d173f4cb2301f2b460b7237dbe9f068b8e16f8355be2f4e8fea3888"
       },
       "listed": true,
       "listing": {
@@ -7000,6 +7000,14 @@
         }
       },
       "changes": [
+        {
+          "version": "0.2.0",
+          "at": "2026-10-22T22:04:20.369Z",
+          "note": {
+            "en": "A plot follows the presenter (B075, crossing 673): its sliders and its sweep (playing or held, where it is, its direction and speed) are the pane's state, said by the leading frame when they change, at every end the sweep turns at and once a second while it plays, and taken by a following frame, which runs the sweep on from there by the same rule and is never ahead of the leader; a following frame's sliders, transport and parameter Reset take no input. The plot's frame no longer logs ResizeObserver loop lines while it resizes or changes view (about 30 a Preview-View toggle before): its size is measured in the next frame.",
+            "fr": "Un graphique suit le présentateur (B075, croisement 673) : ses curseurs et son balayage (en lecture ou arrêté, sa position, son sens et sa vitesse) sont l'état du volet, dits par le cadre qui mène quand ils changent, à chaque extrémité où le balayage tourne et une fois par seconde pendant la lecture, et repris par un cadre qui suit, qui poursuit le balayage à partir de là selon la même règle et n'est jamais en avance sur celui qui mène ; les curseurs, le transport et la réinitialisation des paramètres d'un cadre qui suit ne prennent aucune saisie. Le cadre du graphique n'écrit plus de lignes « ResizeObserver loop » quand il change de taille ou de vue (une trentaine à chaque bascule Aperçu-Vue auparavant) : sa taille est mesurée à l'image suivante."
+          }
+        },
         {
           "version": "0.1.2",
           "at": "2026-10-22T21:19:23.215Z",
