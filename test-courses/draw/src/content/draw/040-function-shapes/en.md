@@ -4,10 +4,9 @@ targetMinutes: 5
 
 # Curves drawn from their equations
 
-A function shape holds its equation rather than its points: the curve is fitted
-from the equation every time it is drawn, so it is exact wherever it is shown.
-These were made with `insight-draw shape`. The meter's hairspring, in the first
-lesson, is one too: a polar spiral, `r = 0.1 θ`.
+A function shape holds its equation, not its points: the curve is fitted from
+it each time it is drawn, so it is exact at any size. The first lesson's
+hairspring is one too: a polar spiral, `r = 0.1 θ`.
 
 ## An oscillation dying away
 
