@@ -21,26 +21,19 @@ caption: The bring-up bench. Dummy load, meter, scope - and nothing valuable con
 
 ## The order that matters
 
-1. **Continuity and shorts, unpowered.** Before it sees mains, check that
-   output-to-ground is not a short and that the mains earth reaches the chassis.
-2. **Raw DC only.** Power it with the regulator out of circuit, and confirm the
-   smoothing capacitor charges to the peak you predicted in Part 1.
-3. **Regulator in, no load.** Check the output holds the set voltage and that
-   the pass transistor is not warm.
-4. **Dummy load, slowly.** Bring the current up in steps, watching the output
-   voltage and the heatsink together.
-5. **Limit test, deliberately.** Short it on purpose, through an ammeter,
-   knowing what the limit should be.
+1. **Continuity and shorts, unpowered.** Output to ground must not be a short.
+2. **Raw DC only.** Regulator out; capacitor reaches the predicted peak.
+3. **Regulator in, no load.** Output holds; pass transistor stays cool.
+4. **Dummy load, slowly.** Step the current up, watching the heatsink.
+5. **Limit test, deliberately.** Short it through an ammeter.
 
 ## A pre-flight check, not a test flight
 
 ```analogy
-Bringing up a power supply is a pre-flight check, not a test flight. Every item
-is boring, every item is checked in order, and the reason the order exists is
-that each step assumes the previous one passed.
+Bringing up a power supply is a pre-flight check, not a test flight. Each item
+is checked in order, because each step assumes the previous one passed.
 
-Skipping to step four because the first three "obviously" pass is how a bench
-supply becomes a fuse tester.
+Skipping to step four is how a bench supply becomes a fuse tester.
 ```
 
 ## Size the dummy load before you build it
@@ -125,13 +118,9 @@ alt: A ten-volt supply across two one-megohm resistors in series. A probe touche
 caption: The same divider, the same meter. The clip is on the mid-node, so the reading is the top resistor's - and the sheet is where you can see that.
 ```
 
-Move the reference clip and you have not adjusted the measurement, you have
-changed which measurement it is. With the clip on the mid-node the meter is
-across the top resistor, and the number it prints is a perfectly good one for a
-quantity nobody asked about. That is the case worth drawing in full: a probe
-referenced to ground draws its tip and nothing else, exactly as every scope
-screenshot does, and a probe referenced anywhere else shows you the lead that
-made it so.
+Move the reference clip and you have changed which measurement it is. With the
+clip on the mid-node, the meter is across the top resistor, and its number is a
+perfectly good answer to a question nobody asked.
 
 ## In the branch, or around it
 
@@ -146,29 +135,24 @@ reveal:
   part: A1
   show: burden_voltage
 predict:
-  prompt: The ammeter's shunt is turned from ten milliohms to ten ohms. What happens to the current it reports?
+  prompt: The shunt goes from 10 mΩ to 10 Ω. What happens to the current it reports?
   options:
-    - Nothing - the supply and the resistor decide the current
-    - It falls, because the shunt is now a tenth of the circuit
-    - It rises, because a bigger shunt develops more voltage
-    - It falls, and the clamp beside it reports the fall too
+    - Nothing - the supply and resistor set it
+    - It falls - the shunt is a tenth of the circuit now
+    - It rises - a bigger shunt develops more voltage
+    - It falls, and the clamp reports the fall too
   correct: 1
 ```
 
-There are two ways to find out what a current is, and the difference between
-them is not accuracy. An ammeter goes *in* the branch, so it is a resistor you
-have added to the circuit you were asking about, and the voltage across that
-resistor is the price of the reading - turn its shunt up and watch the current
-you are measuring fall.
+An ammeter goes *in* the branch, so its shunt is a resistor you have added: turn
+it up and the current falls.
 
 ## A clamp adds nothing, and pays in resolution
 
-A clamp goes *around* the conductor and adds nothing at
-all: solve the bench with it and without it and every number is identical to the
-digit. What it costs instead is resolution. A hundred-amp jaw reads a hundred
-milliamps in ten-milliamp steps with fifty milliamps of uncertainty around it,
-which is a way of saying it cannot see the very error the ammeter beside it is
-causing.
+A clamp goes *around* the conductor and adds nothing: solve the bench with it
+and without it and every number is identical. What it costs is resolution. A
+hundred-amp jaw reads in ten-milliamp steps, so it cannot see the error the
+ammeter is causing.
 
 ## A finer jaw, and the reading appears
 
@@ -179,11 +163,9 @@ where the instrument was never in the way at all.
 
 ## Moving the probe is moving the lead
 
-A probe is not part of the circuit, which is why you may move it while somebody
-is watching. Where the tip sits is not a decision about the drawing - it is
-which node you are measuring - so moving it is the same act as lifting a lead
-off one test post and putting it on the next, and it is the act the whole of
-this page has been building towards.
+A probe is not part of the circuit, so you may move it while somebody watches.
+Where its tip sits is which node you are measuring: moving it is lifting a lead
+off one test post and putting it on the next.
 
 ## Only the rail is honest
 
@@ -200,13 +182,11 @@ measure:
   places: [TP1, TP2, TP3]
   correct: TP2
   timerSeconds: 30
-  explanation: A and B both look into 667 kΩ, so the meter pulls each down by the same fraction, 6.25 %. That fraction is taken from 6.67 V at A and from 3.33 V at B, so A loses 0.42 V and B loses 0.21 V. On the rail there is nothing to pull.
+  explanation: A and B both lose 6.25 % to the meter, 0.42 V of 6.67 V at A and 0.21 V of 3.33 V at B. The rail loses nothing.
 ```
 
-What the room sees is not just a different
-number. It is a different *error*: a ten-megohm meter across a megohm ladder
-drags whichever node it is on, by an amount that node's own impedance decides,
-and on the rail - fifty milliohms behind it - there is nothing to drag at all.
+A ten-megohm meter across a megohm ladder drags whichever node it is on; on the
+rail there is nothing to drag.
 
 ## One clamp, sent to three branches
 
@@ -219,19 +199,16 @@ alt: A ten-volt supply through a hundred-ohm resistor into two parallel branches
 caption: Forty milliamps in the feed, thirty in one branch and ten in the other. The clamp reads whichever you send it to; the ammeter reads the branch it is in and cannot be sent anywhere.
 ```
 
-The same is true of the jaw, and it is easier to see because a clamp changes
-nothing at all when it moves. Three branches, three different currents, one
-instrument - and the ammeter beside it stays exactly where it was soldered,
-because moving that one would mean cutting the circuit open and re-making it.
-That is the whole line: you can move what you can touch without cutting.
+A clamp changes nothing when it moves, so three branches give three different
+currents from one instrument. The ammeter stays where it was soldered, because
+moving it means cutting the circuit open. You can move what you can touch
+without cutting.
 
 ## The current that is not there
 
-A reverse-biased diode is the easiest thing in electronics to draw as a
-perfect switch, and every schematic does. It is not one. There is a current, it
-is always there, and beside a divider drawing five microamps it is a two
-thousandth - which is to say invisible, until the node it sits on is a hundred
-times higher in impedance and it is the only thing that matters.
+A reverse-biased diode is easy to draw as a perfect switch, and it is not one.
+There is always a current: invisible beside a divider drawing five microamps,
+and the only thing that matters on a node a hundred times higher in impedance.
 
 ## Switched off, and still conducting
 
@@ -286,11 +263,9 @@ caption: Run the clock and take the supply up. The 2k2 is the one paying for it,
 
 ## The most a supply can give, and why you never ask for it
 
-Every source is a voltage behind a resistance, and the resistance is the whole
-of the story. Ours is ten volts behind fifty milliohms. Hang a five-ohm dummy
-load on it and it delivers about twenty watts - which sounds like a lot until
-the bench tells you it is under four per cent of what this supply could
-theoretically produce.
+Every source is a voltage behind a resistance. Ours is ten volts behind fifty
+milliohms: a five-ohm dummy load draws about twenty watts, under four per cent
+of what this supply could theoretically produce.
 
 ## The source resistance sets the ceiling
 
@@ -303,40 +278,30 @@ alt: A ten-volt bench supply driving a single five-ohm twenty-five-watt aluminiu
 caption: Open it plain and the supply is ideal - no output resistance, so no maximum, and the readout says so. Switch on its output impedance and the theorem has terms.
 ```
 
-Turn the supply *down* and watch which numbers move - down, because at ten volts
-this load is already drawing the two amps the supply's own profile recommends as
-its ceiling, and there is nowhere up to go that a real bench would follow you.
-The delivered power falls and so does the maximum, in step, because both go as
-the square of the open-circuit voltage - so the percentage does not move at all.
-It is a statement about the load, not about the dial, and the only way to shift
-it is to change what is hanging on the terminals.
+Turn the supply *down* and the delivered power and the maximum both fall, in
+step, because both go as the square of the open-circuit voltage. The percentage
+does not move: it is a statement about the load, not the dial.
 
 ## A good supply is enormously unmatched
 
-The theorem says the peak is where the load equals the source's own resistance.
-For this supply that is a fifty-milliohm load, at five volts, drawing a hundred
-amps - a current that is thirty-three times its own absolute maximum and would
-destroy it in the time it takes to say so. **A bench supply is deliberately,
-enormously unmatched, and that is exactly what makes it a good supply.**
+The peak is where the load equals the source's own resistance: for this supply,
+fifty milliohms at five volts, drawing a hundred amps, thirty-three times its
+absolute maximum. **A bench supply is deliberately, enormously unmatched, and
+that is what makes it a good supply.**
 
 ## At maximum power, half of it is wasted
 
-And there is a second number the bench prints beside the first, because the
-first one on its own teaches the wrong lesson. At the peak, half of everything
-the source produces is burnt inside the source: the efficiency at maximum power
-transfer is exactly fifty per cent, always, for every source there has ever
-been. Where we are actually sitting - a hundred times unmatched - it is
-ninety-nine. Maximum power and best efficiency are not the same place, and only
-one of them is somewhere you would design.
+At the peak, half of everything the source produces is burnt inside it:
+efficiency at maximum power transfer is exactly fifty per cent, always. Where we
+sit, a hundred times unmatched, it is ninety-nine. Maximum power and best
+efficiency are not the same place.
 
 ## The leads are in the measurement
 
-Every wire on every schematic you have read is a line with no resistance, and
-for almost everything you will ever build that is close enough to true. A
-resistance thermometer is where it stops being true. A Pt100 is a hundred ohms
-at the ice point and moves 0.385 ohms per degree, so a tenth of an ohm is a
-quarter of a degree - and two metres of AWG 24 between the bench and the sensor
-is about 0.16 ohms, in each lead, in series with the thing you are measuring.
+A wire on a schematic has no resistance, which is close enough for almost
+everything, but not for a resistance thermometer. A Pt100 moves 0.385 ohms per
+degree, so two metres of AWG 24, about 0.16 ohms in each lead, is nearly a degree
+of error.
 
 ## A wire with a length is in the answer
 
@@ -367,20 +332,16 @@ predict:
   correct: 2
 ```
 
-Two meters are watching the same sensor here. One is clipped to the binding
-posts where the leads start, which is a two-wire measurement and the way anybody
-would do it first. The other has two sense leads of its own, running all the way
-down to the sensor's own terminals. It draws no current, so its leads drop
-nothing, so it reads the sensor and not the loop - and that is the whole of
-four-wire sensing. Lengthen the force leads and watch which of the two moves.
+One meter sits at the binding posts, a two-wire measurement. The other has its
+own sense leads to the sensor's terminals, draws no current, and reads the
+sensor, not the loop. Lengthen the force leads and watch which moves.
 
 ## Sense leads that carry no current
 
-Note which lead a longer wire is allowed to be. The *sense* leads can be twenty
-metres and the reading does not move by a digit, because nothing flows in them;
-the *force* leads are the measurement. That is why four-wire is worth four wires
-and why nobody bothers on a ten-kilohm thermistor, where a third of an ohm is
-three thousandths of a per cent and beneath everything else that is wrong.
+The *sense* leads can be twenty metres and the reading does not move, because
+nothing flows in them; the *force* leads are the measurement. That is why
+four-wire is worth four wires, except on a ten-kilohm thermistor, where a third
+of an ohm is noise.
 
 ## The wire is a component, and it has a rating too
 
@@ -391,13 +352,10 @@ by a different person, weeks later.
 
 ## Ask what each net has to be
 
-Turn **NetClass Mode** on and the analysis stops asking what each part is doing
-and asks what each *net* has to be. It needs three things nobody has to measure:
-the current the bench has already solved through the net, how much the net is
-allowed to heat, and whether it runs on the outside of the board or buried in it.
-Out comes the minimum cross-section - IPC-2221's chart done as arithmetic instead
-of read off a nomograph with a ruler - and, from the board's copper weight, the
-narrowest the track is allowed to be.
+Turn **NetClass Mode** on and the analysis asks what each *net* has to be. From
+the solved current, the allowed temperature rise and whether the track is outer or
+inner, it returns IPC-2221's minimum cross-section, and from the copper weight
+the narrowest track allowed.
 
 ## Same copper, a bigger ask
 
@@ -421,20 +379,16 @@ predict:
   correct: 2
 ```
 
-The rail here is a half-millimetre track in one-ounce copper, and it is declared
-a `signal` net: ten degrees of rise, which is what almost every board is designed
-to. As authored it is comfortably adequate. Turn the supply up and watch the
-reading on the rail fall through 100 %, without one thing on the schematic moving.
+The rail is a half-millimetre track in one-ounce copper, declared a `signal` net:
+ten degrees of rise, as almost every board is designed to. Turn the supply up and
+watch its reading fall through 100 %, with nothing on the schematic moving.
 
 ## A missing conductor is not a pass
 
-Two answers worth having on the same view. A net with **no conductor chosen yet**
-says what it needs and says that nothing has been chosen - it does not report a
-pass, because a pass against a wire that does not exist is the most expensive
-kind of wrong number. And a net carrying a milliamp says **heating does not size
-this net**, which is the honest answer for the four-wire rig above: its leads are
-AWG 24 because a thinner one breaks when you solder it, not because a thinner one
-would melt.
+A net with **no conductor chosen** says what it needs, and that nothing is chosen.
+It reports no pass, because a pass against a wire that does not exist is the most
+expensive kind of wrong number. A milliamp net says **heating does not size this
+net**.
 
 ## A track is a piece of wire until the edge is fast enough
 
@@ -444,14 +398,10 @@ fast board is designed around.
 
 ## Declare the stack-up and the edge rates
 
-Two more declarations turn the same view into the one high-speed design actually
-starts from. A **stack-up** says what the board is made of - how far the track is
-from its reference plane, and what is in between - because a schematic carries
-none of that and an impedance is a fact about the *space* between two conductors
-rather than about either of them. And the parts declare their **edge rates**:
-`t_r` at the drain, off the datasheet, with the conditions it was measured under
-and the band it was measured over. Nothing is assumed. A net whose driver
-declares no rise time gets told so, never a default.
+Two more declarations turn the view into a high-speed one. A **stack-up** says
+what the board is made of, because impedance is a fact about the space between
+conductors. Parts declare their **edge rates**, `t_r`, off the datasheet; none
+declared, none assumed.
 
 ## Two nets, two different questions
 
@@ -471,39 +421,29 @@ guess wrong the first time.
 
 ## A net is sized by its worst requirement
 
-The rail is a `50 Ω controlled` net: the fabricator will be told what it has to
-be and will test that it is. Half a millimetre of track on this stack-up is
-thirty-seven ohms, so it prints the comparison rather than the heating margin -
-not because heating stopped mattering, but because a net is sized by its **worst**
-requirement, and this one is a quarter of the way outside a tolerance while
-sitting at a fifth of its permitted rise.
+The rail is a `50 Ω controlled` net. Half a millimetre of track on this stack-up
+is thirty-seven ohms, so it prints the comparison, not the heating margin: a net
+is sized by its **worst** requirement, and this one is a quarter outside
+tolerance.
 
 ## Long enough to be a transmission line
 
-The drain net asks the other question. Nobody has told it to be fifty ohms, so
-what matters is whether the run is long enough, at the edge actually driving it,
-for any of that to matter at all. Press its length and watch: while it is short
-the reading is its heating margin, and past four metres it becomes `2.4× critical
-length` - the same track, the same board, the same edge, now a transmission line.
+The drain net asks the other question: is the run long enough, at this edge, to
+matter? While it is short the reading is its heating margin; past four metres it
+becomes `2.4× critical length`, now a transmission line.
 
 ## The one number here that is not physics
 
-The divisor in that judgement is the one number here that is **not** physics. The
-literature quotes nine different values for it, and Altium's own resources call
-the rule useless on exactly that ground - so it is declared on the net class,
-with a citation, where an author can read it and disagree with it, rather than
-sitting in the software as a constant that traces to nothing.
+The divisor in that judgement is **not** physics: the literature quotes nine
+different values, and Altium's own resources call the rule useless. So it is
+declared on the net class, with a citation, where an author can disagree with it.
 
 ## A part number is a value, and a model is a capability
 
-Two diodes, the same price, across the same rail. One is a 1N4148W and the other
-a 1N4001, and the schematic says so where a resistor would say `2k2` - because on
-every schematic ever drawn, what a diode is *is* its part number.
+A 1N4148W and a 1N4001: on a schematic, a diode is its part number.
 
-They are also the two profiles in this library with a manufacturer's own SPICE
-model behind them, which is what lets the bench show reverse recovery at all. The
-through-hole 1N4148 beside them has no published model: its forward parameters
-are fitted from the datasheet's guaranteed maxima, and the inspector says so.
+Only these two carry a manufacturer's SPICE model, so the bench can show reverse
+recovery. The 1N4148 has none, and the inspector says so.
 
 ## Reverse recovery, a factor of 750 apart
 

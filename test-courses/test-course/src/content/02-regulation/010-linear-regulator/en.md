@@ -94,9 +94,8 @@ animate:
   mode: bounce
   autoplay: true
 caption: >-
-  Press play, or drag the rail yourself. The amber area is what the regulator
-  destroys as heat, and watching it breathe as the rail sweeps is the whole
-  argument for a pre-regulator — not a sentence you have to take on trust.
+  Press play, or drag the rail yourself. The amber area is the heat the
+  regulator destroys: watch it breathe as the rail sweeps.
 ```
 
 ## What does it burn at 15 V?
@@ -120,25 +119,22 @@ short-tempered load, not 30 V into an easy one.
 ## A tap, not a gearbox
 
 ```analogy
-A linear regulator is a tap on a fixed-pressure water main. You get the flow you
-asked for, but the pressure you did not want is not sent back — it is destroyed
-in the tap, as heat and noise.
+A linear regulator is a tap on a fixed-pressure water main: the flow you asked
+for, with the pressure you did not want destroyed in the tap as heat and noise.
 
-A switching regulator, by contrast, is a gearbox: it converts the excess rather
-than destroying it. That is why switchers run cool and why they are noisier.
+A switching regulator is a gearbox: it converts the excess instead of destroying
+it, so it runs cool, and noisier.
 ```
 
 ## Dropout and headroom
 
-A regulator cannot regulate if you do not give it enough to work with. The
-[dropout voltage](glossary:dropout-voltage) is the minimum input-to-output
-difference it needs; below that the output simply follows the input down,
-ripple and all.
+A regulator needs headroom. The [dropout voltage](glossary:dropout-voltage) is
+the minimum input-to-output difference it needs; below that, the output follows
+the input down, ripple and all.
 
-That gives you a floor on [headroom](glossary:headroom) — and the smoothing
-capacitor's ripple eats into it. It is not enough for the *average* input to
-clear dropout; the input at the **bottom of every ripple trough** has to clear
-it too.
+The smoothing capacitor's ripple eats into your [headroom](glossary:headroom).
+The input at the **bottom of every ripple trough** must clear dropout, not just
+the average.
 
 ## Does this one regulate cleanly?
 

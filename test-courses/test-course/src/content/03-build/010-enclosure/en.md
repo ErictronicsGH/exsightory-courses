@@ -53,11 +53,9 @@ tour:
 
 Three constraints fight each other in this part:
 
-- The pass transistor needs **contact area** and a short thermal path to the fins
-- The fins need **air**, which means clearance and an orientation that lets
-  convection work
-- The bracket has to **hold the transistor flat** against the pad, because a
-  gap filled with air is a thermal insulator no amount of fin area will rescue
+- The transistor needs **contact area** and a short thermal path to the fins
+- The fins need **air**: clearance, and an orientation that lets convection work
+- The bracket must **hold the transistor flat**, since an air gap insulates
 
 ## The box, shut, as it arrives
 
@@ -289,10 +287,9 @@ tour:
     note: The probe never touches the screw. It rides the carriage, which rides the screw.
 ```
 
-A `screw` is the only joint in this format that does two things from one number,
-and that is not a convenience: it is what a bolt does. The `lead` is the travel
-per revolution - the number stamped on the part - so three turns at 4 mm a turn
-advances the screw twelve millimetres, and the carriage goes the same distance.
+A `screw` is the only joint that does two things from one number, as a bolt
+does. The `lead` is the travel per revolution, the number stamped on the part:
+three turns at 4 mm a turn advance the carriage twelve millimetres.
 
 ## The probe moves because the carriage did
 
@@ -304,21 +301,18 @@ moves because the carriage did, which is what a chain is for.
 ```analogy
 A heatsink is not a sponge that soaks heat up. It is a chimney.
 
-Heat arrives at the base and must leave through moving air, which means the fins
-need somewhere for hot air to go and somewhere for cool air to come from. A
-heatsink mounted with its fins horizontal is a chimney lying on its side, and it
-performs about as well as that sounds.
+Heat must leave through moving air, so the fins need room for hot air to leave
+and cool air to arrive. With its fins horizontal, it is a chimney lying on its
+side.
 ```
 
 ## Sizing it honestly
 
-We established the worst case in Part 2: **30 W** at the low end of the output
-range. The thermal path runs transistor junction to case, case to bracket,
-bracket to air, and each hop has a resistance in °C per watt.
+The worst case from Part 2 is **30 W**, and each hop from junction to air has a
+resistance in °C per watt.
 
-If the total is 2 °C/W and the room is 25 °C, the junction sits at
-25 + (30 × 2) = **85 °C** — inside spec for most parts, with very little margin
-for a warm room or a blocked vent.
+At 2 °C/W total in a 25 °C room, the junction sits at 25 + (30 × 2) = **85 °C**,
+with little margin for a warm room.
 
 ## What does a better heatsink buy you
 

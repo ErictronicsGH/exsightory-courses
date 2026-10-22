@@ -15,12 +15,11 @@ The smoothing capacitor's job is to hold the voltage up during the gaps. {concep
 ## A capacitor is a tank on the roof
 
 ```analogy
-A smoothing capacitor is a header tank on a roof. The pump runs in bursts, but
-the tap runs steadily, because the tank covers the gaps between bursts.
+A capacitor is a header tank on a roof: the pump runs in bursts, the tank covers
+the gaps, the tap runs steadily.
 
-Make the tank bigger and the pressure at the tap varies less. Open the tap
-wider and it varies more. That is the whole design trade, and it is why a supply
-that looks clean with nothing plugged in can be filthy under load.
+A bigger tank varies less; a wider tap varies more. That is why a supply that
+looks clean unloaded can be filthy under load.
 ```
 
 ## The parts you have been sizing, on a real board
@@ -341,17 +340,15 @@ simulate:
   note: A load that switches on and off — and the capacitor you would need, tracking it.
 ```
 
-Open the bench and step through it: the worked example computes the number, the
-Assumptions pane says when to stop trusting it, and the graph draws the family
-of curves for 50, 60, 100 and 400 Hz at once.
+Open the bench: the worked example computes it, and the Assumptions pane says
+when to distrust it.
 
 ## The charging pulse is the part that bites
 
-That equation is why bench supplies have physically large capacitors in them.
+That equation is why bench supplies have large capacitors in them.
 
-The charging pulse is the part that bites. The capacitor only draws current
-near the peaks, so it draws a *lot* for a short time. Your transformer and
-diodes see peak currents several times the average.
+The capacitor only draws current near the peaks, so it draws a *lot* for a short
+time. Your transformer and diodes see peak currents several times the average.
 
 ## Back to the diode at full load
 
@@ -367,7 +364,7 @@ text: >-
 ## The slope of the droop is the load current {layout=split}
 
 ```plot
-title: The capacitor's voltage, and the current that follows from its slope
+title: The capacitor's voltage and its slope
 xLabel: Time through one ripple cycle (ms)
 yLabel: Capacitor voltage (V)
 domain: [0, 20]
@@ -389,8 +386,7 @@ markers:
     label: Next peak recharges it
 caption: >-
   Sweep the cursor along the curve. The tangent is the discharge rate, and
-  i = C dV/dt says the current the load is drawing is that slope times the
-  capacitance — so the slope is not a decoration, it is the reading.
+  i = C dV/dt makes the load current that slope times C: the slope is the reading.
 readout: true
 ```
 
@@ -426,9 +422,8 @@ parameters:
     default: 2.13
     step: 0.01
 caption: >-
-  The measurements and the model on one pair of axes, which is the only way to
-  see that the model is good. Drag the predicted slope until the dashed line
-  sits on the data, and compare what you chose with the fitted value below.
+  The measurements and the model on one pair of axes. Drag the predicted slope
+  until the dashed line sits on the data, then compare it with the fitted value.
 ```
 
 ## What does a bigger capacitor do to the diodes?

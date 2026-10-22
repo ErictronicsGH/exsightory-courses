@@ -42,26 +42,22 @@ Keep [the block diagram](svg:block-diagram.svg) open while we go stage by stage.
 
 ## Step down, rectify, smooth, regulate
 
-The mains socket gives you a high alternating voltage. Your circuit wants a low,
-steady, direct one. Four things have to happen in order, and each has its own
-failure mode:
+The mains gives a high alternating voltage; your circuit wants a low, steady,
+direct one. Four things happen in order:
 
-- **Step down** the voltage, with a transformer
-- **Rectify** it, so current flows one way only
-- **Smooth** it, so it stops collapsing to zero a hundred times a second
-- **Regulate** it, so it holds still when the load changes {color=muted}
+- **Step down** with a transformer
+- **Rectify**, so current flows one way
+- **Smooth** away the zero-crossings
+- **Regulate**, so it holds when the load changes {color=muted}
 
 ## A transformer is a gearbox for voltage
 
 ```analogy
-A transformer is a gearbox for voltage. A gearbox does not create torque out of
-nothing — it trades speed for turning force, and the power going in is the power
-coming out, minus what the gears waste as heat.
+A gearbox does not create torque: it trades speed for turning force, power in
+for power out, less heat.
 
-A transformer trades volts for amps in exactly the same way. Halve the voltage
-and you double the available current, minus what the core and windings waste as
-heat. Nobody expects a gearbox to produce free horsepower, and nobody should
-expect a transformer to produce free watts.
+A transformer trades volts for amps the same way. Halve the voltage, double the
+current. Nobody expects a gearbox to produce free horsepower, or a transformer free watts.
 ```
 
 ```flow
@@ -80,10 +76,9 @@ caption: The first stage, and the only one that changes the voltage.
 focus: 0.04 0.10 0.24 0.75
 ```
 
-A transformer's ratio is fixed by its windings, so a 230 V primary and a 24 V
-secondary is a ratio of about 9.6 : 1. That ratio applies to current in the
-opposite direction, which is the part people forget when they size the fuse on
-the wrong side.
+A transformer's ratio is fixed by its windings, so a 230 V primary and 24 V
+secondary is about 9.6 : 1. The current ratio runs the opposite way, which
+people forget when they fuse the wrong side.
 
 ## Which side carries the bigger current?
 
