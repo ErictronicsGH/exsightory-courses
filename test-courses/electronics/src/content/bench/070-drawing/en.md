@@ -23,10 +23,10 @@ caption: The parts are placed and two wires are drawn. The bench names what is s
 
 ## Unfinished is not a failure {#not-a-failure}
 
-Nothing here has gone wrong. There is no ground yet because no ground has been
-drawn yet, and two legs go nowhere because they have not been wired up yet. What
-the bench must not do is call any of that a failure — and what it must not do
-either is put a number under a part on the strength of a circuit this incomplete.
+Nothing here has gone wrong. There is no ground because none has been drawn yet,
+and two legs go nowhere because they are not wired yet. The bench must not call
+that a failure, and must not put a number under a part from a circuit this
+incomplete.
 
 ## A section that is not joined to the rest
 

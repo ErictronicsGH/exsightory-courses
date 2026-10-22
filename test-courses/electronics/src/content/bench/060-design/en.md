@@ -23,14 +23,11 @@ caption: The callout does not supply anything and nothing flows through it. It i
 
 ## A requirement, not a reading {#a-requirement}
 
-Read the mark the way you would read it on a machined part. The arrow touches
-the feature, and the number on the landing is what that feature has to measure.
-It is a requirement, not a reading, and nothing on the sheet is claiming to have
-measured it.
+Read the mark as you would on a machined part: the arrow touches the feature,
+and the number is what it has to measure, not what anything measured.
 
-The answer the bench gives back is two resistances, and both of them appear
-beside the values that were set — not instead of them. The pair is the point:
-what the resistor is, and what it would have to be.
+The bench answers with two resistances beside the values set: what each
+resistor is, and what it would have to be.
 
 ## Asking for something the supply has not got
 
@@ -49,12 +46,9 @@ supply.
 
 ## Saying which rail is in the way {#which-rail}
 
-Nothing here is a mistake in the arithmetic. In a network whose only sources are
-its supplies, every node sits between them whatever the resistors are, so there
-is no answer to find and the honest thing is to say which rail is in the way.
-Notice where that sentence appears: beside the circuit, on the part it is about.
-A box in the middle of the screen would have covered the drawing you are being
-asked to read.
+Where the only sources are the supplies, every node sits between them whatever
+the resistors are, so there is no answer, only a rail in the way to name. The
+bench names it beside the part it is about, not in a box over the drawing.
 
 ## A circuit the bench had never been shown
 
@@ -73,17 +67,14 @@ ground, with the meter across the middle where nothing is at a rail at all.
 
 ## An absence printed as an absence {#an-absence}
 
-Every analysis this bench has is on the bridge too, and each of them says
-something about it rather than about the circuits it was written against. Under
-*Working hard* the four resistors read a percentage and the supply reads zero;
-the meter reads no percentage at all, because its profile states no limit to be
-a fraction of. It still prints what it is dissipating. An absence printed as an
-absence, and not as a zero.
+Every analysis works here too. Under *Working hard* the resistors read a
+percentage and the supply zero; the meter reads none, because its profile states
+no limit to be a fraction of. It still prints its dissipation: an absence
+printed as an absence, not as a zero.
 
 ## Unavailable is not quiet {#unavailable-is-not-quiet}
 
-One analysis has nothing to say here at all. *What the wire has to be* is
-answered from a net's declared class, this circuit declares none, and the bench
-says so in place of the scale rather than drawing a legend over an empty sheet.
-An analysis that is unavailable and an analysis that is merely quiet are two
-different statements, and a room is owed the difference.
+One analysis has nothing to say here. *What the wire has to be* reads a net's
+declared class; this circuit declares none, and the bench says so instead of
+drawing a legend over an empty sheet. Unavailable and quiet are different
+statements, and a room is owed the difference.

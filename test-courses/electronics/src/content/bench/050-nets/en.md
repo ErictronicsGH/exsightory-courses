@@ -35,11 +35,10 @@ predict:
 
 ## What each net has to be {#netclass-mode}
 
-Turn **NetClass Mode** on and the analysis stops asking what each part is doing
-and asks what each *net* has to be. The rail on the next sheet is a
-half-millimetre track in one-ounce copper, declared a `signal` net. Turn the
-supply up and watch the reading on the rail fall through 100 %, without one
-thing on the schematic moving.
+Turn **NetClass Mode** on: the analysis asks what each *net* has to be, not what
+each part is doing. The next rail is a half-millimetre, one-ounce track declared
+a `signal` net. Turn the supply up: the rail's reading falls through 100 %, and
+nothing on the schematic moves.
 
 ## The track never moved. What it has to be did {#net-sizing}
 
@@ -65,11 +64,10 @@ predict:
 
 ## Heat is not the question a fast board asks {#fast-board}
 
-That rail was sized by how hot it is allowed to get. That is the only question a
-DC bench can ask of a piece of copper, and it is not the question a fast board
-is designed around. On the next sheet, press the drain net's length and watch:
-while it is short the reading is its heating margin, and past four metres it
-becomes `2.4× critical length`.
+That rail was sized by how hot it may get, the only question a DC bench asks of
+copper. A fast board asks another. On the next sheet, press the drain net's
+length: short, it reads its heating margin; past four metres,
+`2.4× critical length`.
 
 ## A track is a piece of wire until the edge is fast enough {#controlled-impedance}
 

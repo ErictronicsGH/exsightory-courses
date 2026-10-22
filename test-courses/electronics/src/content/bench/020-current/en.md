@@ -44,16 +44,14 @@ alt: A ten-volt supply across three one-megohm resistors in series, with a test 
 caption: Send the probe to IN, then A, then B. Ideally 10, 6.67 and 3.33 volts; the handheld says 10.00, 6.25 and 3.12, and only the rail is honest.
 measure:
   probe: VP1
-  question: Where will the handheld read furthest below the true voltage, in volts?
+  question: Where is the handheld furthest below the truth?
   places: [TP1, TP2, TP3]
   correct: TP2
   timerSeconds: 30
-  explanation: A and B both look into 667 kΩ, so the meter pulls each down by the same fraction, 6.25 %. That fraction is taken from 6.67 V at A and from 3.33 V at B, so A loses 0.42 V and B loses 0.21 V. On the rail there is nothing to pull.
+  explanation: A and B both see 667 kΩ, so the meter drags each 6.25 %, 0.42 V off A and 0.21 V off B. The rail has nothing to drag.
 ```
 
-A ten-megohm meter across a megohm ladder drags whichever node it is on, by an
-amount that node's own impedance decides, and on the rail there is nothing to
-drag at all.
+Each node's impedance sets the drag.
 
 ## One jaw, three branches, three different currents {#clamp-walk}
 
