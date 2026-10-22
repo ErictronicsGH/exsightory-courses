@@ -73,6 +73,24 @@ ref: regulator-heat@1
 - **Single output.** Split rails need another supply.
 - **A slow limit.** It survives shorts, not transients.
 
+## Build it yourself
+
+```assignment
+title: Build it and measure it
+prompt: Build the supply, measure its ripple at 200 mA, and say why it is what it is.
+submit: file
+maxMarks: 10
+rubric:
+  - criterion: It regulates at 200 mA
+    marks: 4
+  - criterion: The ripple has its range
+    marks: 3
+  - criterion: The reason follows
+    marks: 3
+due: P7D
+dueFrom: subsection
+```
+
 ## Questions on anything we covered
 
 ```qa
