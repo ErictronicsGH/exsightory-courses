@@ -5384,7 +5384,7 @@
     {
       "name": "@exsight/bench-equation",
       "kind": "bench",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "path": "benches/equation",
       "description": "The Equation Bench: an equation a room reads together (its symbols, its working, its worked examples, a driven source on an instrument) and the plot beside it. Founded in E·eq-a with its arithmetic (sampling, fits, the simulated source, the graph, the block's shape; the ticks and run clock are the kit's) and its two works, .benchequation and .benchplot: their JSON Schemas and the stamp a compiler reads instead of running the bench, the equation's and the plot's checks and the equation's derived facts carried from insight-core's registry. Its views are a frame bundle (E·eq-b: Preview and View, KaTeX's fonts as files beside it); its Authoring, the equation lab, follows (E·eq-c), and nothing is released before it.",
       "needs": {
@@ -6715,9 +6715,9 @@
         "esbuild": "0.28.2"
       },
       "release": {
-        "version": "0.1.0",
-        "at": "2026-10-22T11:27:53.205Z",
-        "digest": "sha256:8048b58cff028a38af575a422a269ee9c3e41ecdb655b9ffc82a14c48871d1d0"
+        "version": "0.1.1",
+        "at": "2026-10-22T20:00:40.220Z",
+        "digest": "sha256:020b7c419060c5140ad1f0fad42848ed93da8fedba048754f84c668735a57d58"
       },
       "listed": true,
       "listing": {
@@ -7000,6 +7000,14 @@
         }
       },
       "changes": [
+        {
+          "version": "0.1.1",
+          "at": "2026-10-22T20:00:40.220Z",
+          "note": {
+            "en": "Authoring's header bar keeps the host's corners clear: the frame now takes host-chrome's insets onto its root (--host-inset-left, --host-inset-right, as the kit's frame does) and the bar pads its ends by them, so Save and the save note no longer run under Studio's window buttons (crossing 693).",
+            "fr": "La barre d'en-tête de la création laisse libres les coins de l'hôte : le cadre reporte désormais les retraits de host-chrome sur sa racine (--host-inset-left, --host-inset-right, comme le cadre du kit) et la barre en écarte ses extrémités, si bien qu'Enregistrer et la note d'enregistrement ne passent plus sous les boutons de fenêtre de Studio (croisement 693)."
+          }
+        },
         {
           "version": "0.1.0",
           "at": "2026-10-22T11:27:53.205Z",
