@@ -5384,7 +5384,7 @@
     {
       "name": "@exsight/bench-equation",
       "kind": "bench",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "path": "benches/equation",
       "description": "The Equation Bench: an equation a room reads together (its symbols, its working, its worked examples, a driven source on an instrument) and the plot beside it. Founded in E·eq-a with its arithmetic (sampling, fits, the simulated source, the graph, the block's shape; the ticks and run clock are the kit's) and its two works, .benchequation and .benchplot: their JSON Schemas and the stamp a compiler reads instead of running the bench, the equation's and the plot's checks and the equation's derived facts carried from insight-core's registry. Its views are a frame bundle (E·eq-b: Preview and View, KaTeX's fonts as files beside it); its Authoring, the equation lab, follows (E·eq-c), and nothing is released before it.",
       "needs": {
@@ -6715,9 +6715,9 @@
         "esbuild": "0.28.2"
       },
       "release": {
-        "version": "0.1.1",
-        "at": "2026-10-22T20:00:40.220Z",
-        "digest": "sha256:020b7c419060c5140ad1f0fad42848ed93da8fedba048754f84c668735a57d58"
+        "version": "0.1.2",
+        "at": "2026-10-22T21:19:23.215Z",
+        "digest": "sha256:dddad53fa13341285f0864e4dda41bb7727eadb528d00ae8f78012664ffb226e"
       },
       "listed": true,
       "listing": {
@@ -7000,6 +7000,14 @@
         }
       },
       "changes": [
+        {
+          "version": "0.1.2",
+          "at": "2026-10-22T21:19:23.215Z",
+          "note": {
+            "en": "A still asked wider than a reading width is composed for a wall (crossing 703): laid out at 960 CSS px (1280 beside a captured pane or for a plot) at the asked shape and drawn up to exactly the asked pixels, its formula sized by the still's own height and, on the statement alone, its symbol table only as wide as its rows, centred, so a unit sits beside its name. Studio's For a slide (1920 x 1080) now fills the slide: inked over 74 % of its height, was 36 %. Stills at or under the reading width are unchanged.",
+            "fr": "Une image fixe demandée plus large qu'une largeur de lecture est composée pour le mur (croisement 703) : mise en page à 960 px CSS (1280 à côté d'un volet capturé ou pour un graphique) à la forme demandée, puis dessinée exactement aux pixels demandés, la formule dimensionnée par la hauteur de l'image et, pour l'énoncé seul, le tableau des symboles aussi large que ses lignes, centré, si bien qu'une unité se trouve à côté de son nom. « Pour une diapositive » de Studio (1920 x 1080) remplit désormais la diapositive : encrée sur 74 % de sa hauteur, contre 36 %. Les images fixes jusqu'à la largeur de lecture ne changent pas."
+          }
+        },
         {
           "version": "0.1.1",
           "at": "2026-10-22T20:00:40.220Z",
