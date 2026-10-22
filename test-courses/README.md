@@ -6,8 +6,10 @@ nothing here is built, packaged or imported. A player loads one as it loads any 
 
 Owner's decision, 2026-10-22: *"if it is a test course then it has to be decoupled from the code base and moved into a
 different folder outside of the application src just like PBL2026, then the scope and studio can load them as required"*.
-So they live at `C:\ExSightory\courses\`, inside the project and outside `src/`, in this repository of their own, as the
-benches have theirs. ExSightory's git ignores this folder.
+So they are this folder, `test-courses/`, of the owner's course repository `ErictronicsGH/exsightory-courses`, beside
+`PBL2026/` (the owner: they are pushed into a sub folder of it, not to its root). ExSightory reads them from
+**`C:\ExSightory\courses\`**, a sparse checkout of that repository holding only this folder (and the root's README and
+`.gitignore`), inside the project and outside `src/`. ExSightory's git ignores that folder.
 
 | Folder | What it is | Committed by |
 |---|---|---|
@@ -21,21 +23,24 @@ a player reads the folder, never a package.
 
 ## Finding a course
 
-A test, a drive or a tool finds this folder by **`EXSIGHT_COURSES`** if it is set, and otherwise by walking up from
-where it runs until a folder holds `courses/README.md` with this title. Every checkout of the project, a lane's worktree
-under `lanes\` included, sits inside `C:\ExSightory`, so the walk finds it. Each repository writes that ten-line helper
-itself; there is no package to share it through.
+A test, a drive or a tool finds this folder by **`EXSIGHT_COURSES`** if it is set (the path of this `test-courses/`
+folder), and otherwise by walking up from where it runs until a folder holds `courses/test-courses/README.md` beginning
+with this title; a course is then `courses/test-courses/<name>/src`. Every checkout of the project, a lane's worktree under
+`lanes\` included, sits inside `C:\ExSightory`, so the walk finds it. Each repository writes that ten-line helper itself;
+there is no package to share it through.
 
 ```sh
 # from src/insight (Core's compiler); zero warnings is correct for electronics
-node packages/insight-core/bin/insight-compile.js ../../courses/electronics/src --out ../../.tmp-out/bench-electronics.insightcourse
+node packages/insight-core/bin/insight-compile.js ../../courses/test-courses/electronics/src --out ../../.tmp-out/bench-electronics.insightcourse
 ```
 
 ## Rules
 
-- **Commit by named paths, prefixed with the course**: `electronics: …`, `draw: …`, `test-course: …`. A lane commits only
-  the courses it owns (the table above); a change another lane needs is asked by crossing in ExSightory's
-  `.claude/crossing/`.
+- **The repository's rules hold** (its root `README.md`): name the paths in every commit, never `git add -A`; a commit
+  touches this folder only, prefixed **`test-courses: <course>: …`** (`test-courses: electronics: …`). A lane commits
+  only the courses it owns (the table above); a change another lane needs is asked by crossing in ExSightory's
+  `.claude/crossing/`. Push from `C:\ExSightory\courses` (`git pull --rebase` first: PBL2026's session pushes to the same
+  `main`).
 - **A circuit's facts come from its stamp.** After editing a circuit, stamp it again with the benches' stamping tool, or
   it compiles without its dials and probes.
 - **No code here**: no `package.json`, no scripts, no tests. A check of a course lives in the repository that runs it.
