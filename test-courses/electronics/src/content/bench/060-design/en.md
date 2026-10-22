@@ -6,9 +6,9 @@ objectives:
 
 # Saying what the voltage should be
 
-Every circuit on this bench so far has been analysed: the parts are given and
-the bench works out the answer. This one is the other way round. The number at
-the midpoint is the given, and what the resistors have to be is the answer.
+Every circuit so far has been analysed: the parts are given and the bench works
+out the answer. This one is the other way round. The number at the midpoint is
+given, and what the resistors have to be is the answer.
 
 ## The midpoint is stated, not computed {#stated-midpoint}
 
@@ -23,11 +23,11 @@ caption: The callout does not supply anything and nothing flows through it. It i
 
 ## A requirement, not a reading {#a-requirement}
 
-Read the mark as you would on a machined part: the arrow touches the feature,
-and the number is what it has to measure, not what anything measured.
+Read the mark as on a machined part: the arrow touches the feature; the number
+is what it has to measure, not what anything measured.
 
-The bench answers with two resistances beside the values set: what each
-resistor is, and what it would have to be.
+The bench answers beside the values set: what each resistor is, and what it
+would have to be.
 
 ## Asking for something the supply has not got
 
@@ -46,9 +46,9 @@ supply.
 
 ## Saying which rail is in the way {#which-rail}
 
-Where the only sources are the supplies, every node sits between them whatever
-the resistors are, so there is no answer, only a rail in the way to name. The
-bench names it beside the part it is about, not in a box over the drawing.
+Where only the supplies are sources, every node sits between them whatever the
+resistors are: there is no answer, only a rail in the way, which the bench
+names beside the part it concerns, not in a box over the drawing.
 
 ## A circuit the bench had never been shown
 
@@ -63,18 +63,18 @@ caption: Three of the four arms are a kilohm and the fourth is 1k2. Ask which wa
 
 Everything before this was a circuit this bench was built around. A bridge is
 not: two dividers side by side, read against each other rather than against
-ground, with the meter across the middle where nothing is at a rail at all.
+ground, with the meter across the middle where nothing is at a rail.
 
 ## An absence printed as an absence {#an-absence}
 
 Every analysis works here too. Under *Working hard* the resistors read a
 percentage and the supply zero; the meter reads none, because its profile states
-no limit to be a fraction of. It still prints its dissipation: an absence
+no limit. It still prints its dissipation: an absence
 printed as an absence, not as a zero.
 
 ## Unavailable is not quiet {#unavailable-is-not-quiet}
 
-One analysis has nothing to say here. *What the wire has to be* reads a net's
-declared class; this circuit declares none, and the bench says so instead of
-drawing a legend over an empty sheet. Unavailable and quiet are different
-statements, and a room is owed the difference.
+*What the wire has to be* is unavailable here: it reads a net's declared class,
+and this circuit declares none. The bench says so, and draws no legend over an
+empty sheet. Unavailable and quiet are different statements; a room is owed the
+difference.

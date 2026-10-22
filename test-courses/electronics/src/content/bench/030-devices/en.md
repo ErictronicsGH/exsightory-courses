@@ -7,7 +7,7 @@ objectives:
 # The part is not the symbol
 
 A reverse-biased diode is the easiest thing in electronics to draw as a perfect
-switch, and every schematic does. It is not one — and two diodes at the same
+switch, and every schematic does. It is not: two diodes at the same
 price differ by a factor of 750 in how long they take to stop conducting.
 
 ## A diode that is switched off, and still conducting {#leakage}

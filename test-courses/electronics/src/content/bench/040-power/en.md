@@ -61,5 +61,5 @@ caption: Open it plain and the supply is ideal - no output resistance, so no max
 
 Every source is a voltage behind a resistance. At maximum power transfer, half
 of everything the source produces is burnt inside the source — always, for every
-source there has ever been — which is why a bench supply is deliberately,
+source ever made — which is why a bench supply is deliberately,
 enormously unmatched.

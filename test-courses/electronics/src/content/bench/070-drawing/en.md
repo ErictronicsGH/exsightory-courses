@@ -7,8 +7,8 @@ objectives:
 # A circuit that is not finished being drawn
 
 Every other circuit in this fixture is finished. It has a ground, every pin goes
-somewhere, and the bench solves it. This section holds the other state — the
-one a sheet is in for the whole time somebody is drawing on it.
+somewhere, and the bench solves it. This section holds the other state: the
+one a sheet is in while somebody is drawing on it.
 
 ## Thirty seconds in {#half-drawn}
 
@@ -23,10 +23,9 @@ caption: The parts are placed and two wires are drawn. The bench names what is s
 
 ## Unfinished is not a failure {#not-a-failure}
 
-Nothing here has gone wrong. There is no ground because none has been drawn yet,
-and two legs go nowhere because they are not wired yet. The bench must not call
-that a failure, and must not put a number under a part from a circuit this
-incomplete.
+Nothing here has gone wrong. No ground has been drawn yet, and two legs go
+nowhere because they are not wired yet. The bench must not call that a
+failure, nor put a number under a part from a circuit this incomplete.
 
 ## A section that is not joined to the rest
 
@@ -40,12 +39,11 @@ caption: Every pin on the right-hand pair goes somewhere. Where none of them goe
 ```
 
 The second state is harder to see and easier to be wrong about. The divider is
-finished: it has a ground, every pin is wired, and on its own it would solve. The
-pair beside it is wired to itself and to nothing else.
+finished: it has a ground, every pin is wired, and alone it would solve. The
+pair beside it is wired only to itself.
 
 ## A path back to the ground {#a-path-to-ground}
 
-Every terminal is connected, so *is this pin wired* has nothing to say about it.
-The question that catches it is a different one — whether there is a path from
-the part back to the ground — and a room is told which parts it is about rather
-than being left to find them.
+Every terminal is connected, so *is this pin wired* has nothing to say. A
+different question catches it: whether each part has a path back to the ground.
+A room is told which parts it is about, not left to find them.

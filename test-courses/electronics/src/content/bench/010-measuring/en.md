@@ -9,7 +9,7 @@ objectives:
 Two demonstrations, both about the same thing: a meter is a component, and where
 you put it decides what you measured.
 
-## Why the meter changes the reading {#divider-loading}
+## A loaded divider {#divider-loading}
 
 ```circuit
 title: Why the meter changes the reading

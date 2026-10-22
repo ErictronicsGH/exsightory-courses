@@ -6,12 +6,12 @@ objectives:
 
 # The wire is a component
 
-Every wire on every schematic you have read is a line with no resistance. These
-three circuits are where that stops being true: first because the leads are in
-the measurement, then because the copper has to be sized, and finally because
-the edge is fast enough that the track is a transmission line.
+Every wire on every schematic is a line with no resistance. In these
+circuits that stops being true: the leads are in the measurement, the copper
+has to be sized, and the edge is fast enough that the track is a transmission
+line.
 
-## The leads are in the measurement, until you stop measuring through them {#four-wire-sensing}
+## Measuring through the leads, and around them {#four-wire-sensing}
 
 ```circuit
 title: The leads are in the measurement, until you stop measuring through them
@@ -35,12 +35,12 @@ predict:
 
 ## What each net has to be {#netclass-mode}
 
-Turn **NetClass Mode** on: the analysis asks what each *net* has to be, not what
-each part is doing. The next rail is a half-millimetre, one-ounce track declared
-a `signal` net. Turn the supply up: the rail's reading falls through 100 %, and
-nothing on the schematic moves.
+Turn **NetClass Mode** on: it asks what each *net* has to be, not what
+each part does. The next rail is a half-millimetre, one-ounce track declared a
+`signal` net. Raise the supply: its reading falls through 100 %; the schematic
+is unchanged.
 
-## The track never moved. What it has to be did {#net-sizing}
+## Sizing copper {#net-sizing}
 
 ```circuit
 title: The track never moved. What it has to be did.
@@ -64,9 +64,9 @@ predict:
 
 ## Heat is not the question a fast board asks {#fast-board}
 
-That rail was sized by how hot it may get, the only question a DC bench asks of
-copper. A fast board asks another. On the next sheet, press the drain net's
-length: short, it reads its heating margin; past four metres,
+That rail was sized for heat, the only question a DC bench asks of copper. A
+fast board asks another. On the next sheet, press the drain net's length:
+short, its heating margin; past four metres,
 `2.4× critical length`.
 
 ## A track is a piece of wire until the edge is fast enough {#controlled-impedance}

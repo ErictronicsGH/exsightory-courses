@@ -6,12 +6,11 @@ objectives:
 
 # Reading a current, and moving what reads it
 
-An ammeter is in the branch and is therefore part of it. A clamp is around the
-conductor and adds nothing — what it costs instead is resolution. The third
-circuit is the one that only moves: you can move what you can touch without
-cutting.
+An ammeter is in the branch, so it is part of it. A clamp is around the
+conductor and adds nothing; it costs resolution instead. The third circuit
+only moves: you can move what you can touch without cutting.
 
-## Two ways to read a current, and what each one costs {#branch-current}
+## What each way of reading a current costs {#branch-current}
 
 ```circuit
 title: Two ways to read a current, and what each one costs
@@ -33,7 +32,7 @@ predict:
   correct: 1
 ```
 
-## Move the probe, and the error moves with it {#probe-walk}
+## Move the probe {#probe-walk}
 
 ```circuit
 title: Move the probe, and the error moves with it
@@ -51,7 +50,7 @@ measure:
   explanation: A and B both see 667 kΩ, so the meter drags each 6.25 %, 0.42 V off A and 0.21 V off B. The rail has nothing to drag.
 ```
 
-Each node's impedance sets the drag.
+Node impedance sets the drag.
 
 ## One jaw, three branches, three different currents {#clamp-walk}
 
