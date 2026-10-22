@@ -1,6 +1,6 @@
 {
   "name": "@insight/test-course",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "description": "The format fixture: an invented course with every block type and canvas kind, released so the compiler's consumers test against one pinned copy (M69g).",
   "files": [
