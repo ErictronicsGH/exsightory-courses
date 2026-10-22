@@ -5384,16 +5384,16 @@
     {
       "name": "@exsight/bench-figure",
       "kind": "bench",
-      "version": "0.1.4",
+      "version": "0.2.0",
       "path": "benches/figure",
       "description": "The Figure Bench: a picture whose parts are named, numbered and driven. Its arithmetic is @exsight/figure-engine (B026); this package is the bench a player frames (its viewer and its Authoring, the figure lab, one Vue bundle speaking contract 1.0), and the .benchfigure work: its JSON Schema and the stamp a compiler reads instead of running the bench (E·fig3d).",
       "needs": {
         "packages": {
-          "@exsight/bench-contract": "^1.0.0",
+          "@exsight/bench-contract": "^1.2.0",
           "@exsight/bench-kit": "^0.1.0",
           "@exsight/figure-engine": "0.1.0"
         },
-        "contract": "^1.0.0",
+        "contract": "^1.2.0",
         "kit": "^0.1.0"
       },
       "classes": [],
@@ -6070,6 +6070,25 @@
                 },
                 "description": "Every picture the figure names (its image, a part's cut-out, a compared picture): its path as the fields name it → a data URL of a PNG, WebP, JPEG or SVG."
               },
+              "preview": {
+                "type": "object",
+                "properties": {
+                  "focus": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "revealed": {
+                    "type": "boolean"
+                  },
+                  "wipe": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  }
+                },
+                "additionalProperties": false,
+                "description": "The scene the author captured for the Preview (a slide, a still): focus, the part pinned, by its id; revealed, whether the names are shown; wipe, the seam between the picture and the compared one, 0 to 1. The whole picture is always drawn. None, or one naming a part the figure lacks, and the bench draws the whole figure with nothing lit."
+              },
               "stamp": {
                 "type": "object",
                 "properties": {
@@ -6254,7 +6273,7 @@
           },
           "schemaFile": {
             "file": "work/figure.schema.json",
-            "sha256": "sha256:d1a90115a8c205cc61e117d93d5e90f82b061738bfd3e586725cdea3d42d8d3e"
+            "sha256": "sha256:aa48f9c36a6022074e8e2f143386ef82dfab48433c92d10f35c463b3151318b8"
           }
         }
       ],
@@ -6262,9 +6281,9 @@
         "esbuild": "0.28.2"
       },
       "release": {
-        "version": "0.1.4",
-        "at": "2026-10-21T21:09:03.158Z",
-        "digest": "sha256:dae4e18db3266bb9fa3eaa6bde471f132f6ec4b42977c1f4e95f14e359d67cde"
+        "version": "0.2.0",
+        "at": "2026-10-22T12:36:47.556Z",
+        "digest": "sha256:454df7ee724357d7972f79daf8f1d0730db35b7a24d229fabe97d7b06d3ccb8a"
       },
       "listed": true,
       "listing": {
@@ -6367,7 +6386,7 @@
           "authoring"
         ],
         "runsIn": {
-          "contract": "^1.0.0",
+          "contract": "^1.2.0",
           "scope": true,
           "phone": true
         },
@@ -6567,6 +6586,14 @@
       },
       "changes": [
         {
+          "version": "0.2.0",
+          "at": "2026-10-22T12:36:47.556Z",
+          "note": {
+            "en": "The Preview is the scene the author captured (E·fig3d-c): Authoring's Use as preview keeps the part pinned, whether the names are shown and the seam, by ids in the work's preview member beside its stamp; with none, the whole figure as before. A still is that Preview, drawn at the size asked on a stage of its own, marks and key included, whatever view is open.",
+            "fr": "L'aperçu est la scène que l'auteur a capturée (E·fig3d-c) : « Utiliser comme aperçu » dans la création garde la partie épinglée, l'affichage des noms et la couture, par identifiants dans le membre preview de l'œuvre, à côté de son tampon ; sans capture, la figure entière comme avant. Une image fixe est cet aperçu, dessinée à la taille demandée sur une scène à part, repères et légende compris, quelle que soit la vue ouverte."
+          }
+        },
+        {
           "version": "0.1.4",
           "at": "2026-10-21T21:09:03.158Z",
           "note": {
@@ -6612,17 +6639,17 @@
     {
       "name": "@exsight/bench-model",
       "kind": "bench",
-      "version": "0.1.3",
+      "version": "0.2.0",
       "path": "benches/model",
       "description": "The 3D Bench: a model you take apart in front of the room, its parts named, hinged, measured, sectioned and exploded. Its arithmetic is @exsight/model-engine (B029); this package is the bench a player frames (its viewer and its Authoring, the model lab, one Vue bundle speaking contract 1.0), and the .benchmodel work: its JSON Schema and the stamp a compiler reads instead of running the bench or parsing its mesh (E·fig3d).",
       "needs": {
         "packages": {
-          "@exsight/bench-contract": "^1.0.0",
+          "@exsight/bench-contract": "^1.2.0",
           "@exsight/bench-kit": "^0.1.0",
           "@exsight/figure-engine": "0.1.0",
           "@exsight/model-engine": "0.1.0"
         },
-        "contract": "^1.0.0",
+        "contract": "^1.2.0",
         "kit": "^0.1.0"
       },
       "classes": [],
@@ -7143,6 +7170,107 @@
                 },
                 "description": "The mesh the model names (its src): its path as the fields name it → a data URL of a GLB."
               },
+              "preview": {
+                "type": "object",
+                "properties": {
+                  "view": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "camera": {
+                    "type": "object",
+                    "properties": {
+                      "from": {
+                        "minItems": 3,
+                        "maxItems": 3,
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        }
+                      },
+                      "zoom": {
+                        "type": "number",
+                        "exclusiveMinimum": 0
+                      },
+                      "target": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "from"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "pose": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "joints": {
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "additionalProperties": {
+                      "type": "number"
+                    }
+                  },
+                  "explode": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "section": {
+                    "type": "object",
+                    "properties": {
+                      "axis": {
+                        "type": "string",
+                        "enum": [
+                          "x",
+                          "y",
+                          "z"
+                        ]
+                      },
+                      "offset": {
+                        "type": "number"
+                      },
+                      "on": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "axis",
+                      "offset",
+                      "on"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "pinned": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "ghost": {
+                    "type": "boolean"
+                  },
+                  "ghosted": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "hidden": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                },
+                "additionalProperties": false,
+                "description": "The scene the author captured for the Preview (a slide, a still): view, a named view by its id, or camera, where the author left it (from, the direction it looks along; zoom past the fit; target, a part it frames); pose, joints, explode, section, the assembly as the author left it; pinned, ghost, ghosted, hidden, the parts by id. None, or one naming what the model lacks, and the bench draws its first authored view, or Iso, assembled and fitted."
+              },
               "stamp": {
                 "type": "object",
                 "properties": {
@@ -7246,7 +7374,7 @@
           },
           "schemaFile": {
             "file": "work/model.schema.json",
-            "sha256": "sha256:656244c489591f09a40b018967e60ba2980b30ec51c29c3d87a6e182fd69f57c"
+            "sha256": "sha256:1a0f5ba7660998f13a482feaf7cc16b2df187a7121b0a06d37bf87858819be9b"
           }
         }
       ],
@@ -7255,9 +7383,9 @@
         "esbuild": "0.28.2"
       },
       "release": {
-        "version": "0.1.3",
-        "at": "2026-10-21T21:09:20.188Z",
-        "digest": "sha256:ed84c56cee6f7ccd8ff088492f3e7c2878aaba49137984b8444ea4cf414c4d26"
+        "version": "0.2.0",
+        "at": "2026-10-22T12:37:04.368Z",
+        "digest": "sha256:a3893a308c881f3f69ba2856de27048d7511707cf1c0e8712294b82e0c369f74"
       },
       "listed": true,
       "listing": {
@@ -7360,7 +7488,7 @@
           "authoring"
         ],
         "runsIn": {
-          "contract": "^1.0.0",
+          "contract": "^1.2.0",
           "scope": true,
           "phone": false
         },
@@ -7559,6 +7687,14 @@
         }
       },
       "changes": [
+        {
+          "version": "0.2.0",
+          "at": "2026-10-22T12:37:04.368Z",
+          "note": {
+            "en": "The Preview is the scene the author captured (E·fig3d-c): Authoring's Use as preview keeps the named view, or the camera where the author left it, with the pose, joints, explode, cut and the parts lit, faded and taken away, by ids in the work's preview member beside its stamp; with none, the first view, assembled, as before. A still is that Preview on a stage of its own at the size asked, its framing at rest, whatever view is open. A second work opened in one frame is drawn by its own scene.",
+            "fr": "L'aperçu est la scène que l'auteur a capturée (E·fig3d-c) : « Utiliser comme aperçu » dans la création garde la vue nommée, ou la caméra là où l'auteur l'a laissée, avec la pose, les articulations, l'éclaté, la coupe et les pièces mises en évidence, estompées ou retirées, par identifiants dans le membre preview de l'œuvre, à côté de son tampon ; sans capture, la première vue, assemblé, comme avant. Une image fixe est cet aperçu sur une scène à part à la taille demandée, son cadrage au repos, quelle que soit la vue ouverte. Une seconde œuvre ouverte dans un même cadre est dessinée par sa propre scène."
+          }
+        },
         {
           "version": "0.1.3",
           "at": "2026-10-21T21:09:20.188Z",
