@@ -12,6 +12,7 @@ whole: its `course.yaml`, its notes, its specs and its own `.claude/`. Nothing a
 | Folder | Course |
 |---|---|
 | [`PBL2026/`](PBL2026/) | *From Sensor to Number*, Profesir's Birthday Lectures 2026 |
+| [`test-courses/`](test-courses/) | ExSight's **test courses** (`electronics`, `draw`, `test-course`): the courses Studio, Scope and the benches are tested and driven against, read from a sparse checkout at `C:\ExSightory\courses` (owner, 2026-10-22). One folder holding three, by the owner's choice; its own `README.md` says who commits which |
 
 ## Working on a course
 
