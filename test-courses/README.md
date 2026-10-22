@@ -30,8 +30,9 @@ with this title; a course is then `courses/test-courses/<name>/src`. Every check
 there is no package to share it through.
 
 ```sh
-# from src/insight (Core's compiler); zero warnings is correct for electronics
-node packages/insight-core/bin/insight-compile.js ../../courses/test-courses/electronics/src --out ../../.tmp-out/bench-electronics.insightcourse
+# from src/insight (Core's compiler); zero warnings is correct for electronics. The course path is absolute:
+# ../../courses is right from the root's src/insight and wrong from a lane worktree's (lanes/<lane>/courses)
+node packages/insight-core/bin/insight-compile.js C:/ExSightory/courses/test-courses/electronics/src --out ../../.tmp-out/bench-electronics.insightcourse
 ```
 
 ## Rules
