@@ -25,9 +25,13 @@ source, and this course is deliberately on the other side of that line.
 ## Building it
 
 ```sh
-# From src/insight/
-node packages/insight-core/bin/insight-compile.js ../test-course/src --out ../../.tmp-out/bench-psu.insightcourse
+# From ExSightory's src/insight/, in any checkout under C:\ExSightory
+node packages/insight-core/bin/insight-compile.js C:/ExSightory/courses/test-courses/test-course/src --out ../../.tmp-out/bench-psu.insightcourse
 ```
+
+A test or a tool finds it as every test course is found (`../README.md`, *Finding a course*):
+Core's resolver is `courseSrc('test-course')` in `@insight/repo-tools/courses`. It was the npm
+package `@insight/test-course` until 2026-10-22, and is content now: nothing builds or imports it.
 
 Then install it through the app's **Install a course…** button, or copy the
 package into `%APPDATA%/ExSight Studio/courses/`.
@@ -99,7 +103,7 @@ seekable. Chromium decodes it, and the app plays it.
 
 ## Watching the app render it
 
-From `src/insight/apps/desktop/`:
+From ExSightory's `src/insight/apps/desktop/` (Studio's):
 
 ```sh
 npm run build

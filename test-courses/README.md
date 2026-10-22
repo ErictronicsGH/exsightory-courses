@@ -15,7 +15,7 @@ So they are this folder, `test-courses/`, of the owner's course repository `Eric
 |---|---|---|
 | `electronics/` | The Electronics Bench's driving course: 20 stamped circuits in seven sections, and its `bench-catalogue.json` | Benches |
 | `draw/` | The Draw Bench's driving course | Benches |
-| `test-course/` | The **format** fixture: one of every block type and canvas kind (arriving from ExSightory's `src/test-course`, Core's) | Core |
+| `test-course/` | The **format** fixture: one of every block type and canvas kind, from ExSightory's `src/test-course` with its history (2026-10-22, crossing 697); `tools/` holds the two Python generators its binaries are made by, its sources as `draw/`'s `svg/` are, run by hand and by nothing else | Core |
 
 Each course is its `src/` (what a compile reads) with its README and CHANGELOG. The npm packages they were published as
 until 2026-10-22 (`@erictronicsgh/course-electronics`, `@erictronicsgh/course-draw`, `@insight/test-course`) are retired:
@@ -43,4 +43,4 @@ node packages/insight-core/bin/insight-compile.js ../../courses/test-courses/ele
   `main`).
 - **A circuit's facts come from its stamp.** After editing a circuit, stamp it again with the benches' stamping tool, or
   it compiles without its dials and probes.
-- **No code here**: no `package.json`, no scripts, no tests. A check of a course lives in the repository that runs it.
+- **No code here**: no `package.json`, no scripts, no tests (a course's asset generators, like `test-course/tools/`, are its sources, not code anything runs). A check of a course lives in the repository that runs it.
