@@ -428,5 +428,12 @@
       "digest": "sha256:3c6e3444dac7257ca7bed8f63c050251f9fb6e45c5218aba7aa4eb152fbd0f8a"
     }
   ],
-  "shippedDigest": "sha256:72a4211fc7c8687ccf48208e46a90dcadfec9707996dc80859b3b795eac5ceb4"
+  "shippedDigest": "sha256:72a4211fc7c8687ccf48208e46a90dcadfec9707996dc80859b3b795eac5ceb4",
+  "publishedAs": {
+    "name": "@erictronicsgh/course-electronics",
+    "version": "0.1.0",
+    "registry": "https://npm.pkg.github.com",
+    "integrity": "sha512-13obmCcCyAH0Ur6VkX4cb5qS3Mq8EGBLd4iacGcJ+lTr+WVVYDGNWAEee+eQuOYa1YDfjrcrn/HHyj+QTYq4qQ==",
+    "at": "2026-10-22T14:17:41.487Z"
+  }
 }

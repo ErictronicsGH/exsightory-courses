@@ -80,5 +80,12 @@
       "digest": "sha256:2b14294e2cc9aed0f63c46a8428ece3fc95b34a73685b15a535a7eeaa9511713"
     }
   ],
-  "shippedDigest": "sha256:abab1f70ad5921bace5f768c008804ff6a1aa94ba4b32cf479738d73ba7cebef"
+  "shippedDigest": "sha256:abab1f70ad5921bace5f768c008804ff6a1aa94ba4b32cf479738d73ba7cebef",
+  "publishedAs": {
+    "name": "@erictronicsgh/course-draw",
+    "version": "0.1.0",
+    "registry": "https://npm.pkg.github.com",
+    "integrity": "sha512-M7QxOJ1FZVOPCeAruEkS7+yieEz2/qTh7eKnV5fK/wUI6SMtpZUznUAUJbGB3TcQ3YJkYx7HOG4babUtDtECuA==",
+    "at": "2026-10-22T14:17:55.920Z"
+  }
 }
