@@ -1,7 +1,19 @@
 {
-  "about": "The stamps of the works the compiler builds from this course's figure and model fences, each found by its digest (crossing 581). Written by src/insight/tools/stamp-course.mjs, with each bench's own stampedText; never edited by hand.",
+  "about": "The stamps of the works the compiler builds from this course's figure, model, equation and plot fences, each found by its digest (crossing 581). Written by src/insight/tools/stamp-course.mjs, with each bench's own stampedText; never edited by hand.",
   "v": 1,
   "stamps": [
+    {
+      "v": 1,
+      "source": "sha256:273afcb2c6fbc15303664151d51dad91bdfc6b93452a2963f2edda7128872221",
+      "derived": {},
+      "diagnostics": []
+    },
+    {
+      "v": 1,
+      "source": "sha256:2df7f5e49c7e152b5831a86ba120302c497f0016229ae9267050db0f0d49671a",
+      "derived": {},
+      "diagnostics": []
+    },
     {
       "v": 1,
       "source": "sha256:539becd1663b020b157c10a980c68ceec766ce5955a24e376a1c6e868a1e709d",
@@ -210,6 +222,12 @@
           ]
         }
       ]
+    },
+    {
+      "v": 1,
+      "source": "sha256:74869917fcb04e2499d827dc05ce3f1762431e3580f6287ccd2f7c33ec1c5149",
+      "derived": {},
+      "diagnostics": []
     },
     {
       "v": 1,
@@ -553,6 +571,97 @@
             ]
           }
         ]
+      },
+      "diagnostics": []
+    },
+    {
+      "v": 1,
+      "source": "sha256:ca98fcd72dfa72fdb0b2f957ec7cf1a09a6047693ce9ecb81cfdb5c0dc00bf15",
+      "derived": {
+        "characteristics": [
+          {
+            "id": "monotonicity",
+            "kind": "monotonicity",
+            "draw": "statement",
+            "label": "falls throughout",
+            "explanation": "Over this whole range, more ripple you will accept always means less reservoir capacitance. There is no point where the trade turns around."
+          },
+          {
+            "id": "limit:Vr=0.1",
+            "kind": "limits",
+            "draw": "edge",
+            "at": 0.1,
+            "value": 0.1,
+            "label": "Vr = 0.1",
+            "explanation": "At ripple you will accept of 0.1, reservoir capacitance is 0.1."
+          },
+          {
+            "id": "limit:Vr=3",
+            "kind": "limits",
+            "draw": "edge",
+            "at": 3,
+            "value": 0.0033333333333333335,
+            "label": "Vr = 3",
+            "explanation": "At ripple you will accept of 3, reservoir capacitance is 0.00333333."
+          }
+        ],
+        "sensitivity": [
+          {
+            "example": 0,
+            "entries": [
+              {
+                "name": "I",
+                "relative": 1
+              },
+              {
+                "name": "f",
+                "relative": -1
+              },
+              {
+                "name": "Vr",
+                "relative": -1
+              }
+            ]
+          },
+          {
+            "example": 1,
+            "entries": [
+              {
+                "name": "I",
+                "relative": 1
+              },
+              {
+                "name": "f",
+                "relative": -1.0000000000000002
+              },
+              {
+                "name": "Vr",
+                "relative": -1
+              }
+            ]
+          }
+        ],
+        "rearrangements": [
+          {
+            "solveFor": "Vr",
+            "statement": "Vr = I / (2C*f)"
+          },
+          {
+            "solveFor": "I",
+            "statement": "I = 2C*f*Vr"
+          }
+        ],
+        "boundaries": [
+          {
+            "index": 0,
+            "holds": false
+          }
+        ],
+        "attestation": {
+          "origin": "user",
+          "status": "peer-reviewed",
+          "licence": "free"
+        }
       },
       "diagnostics": []
     },

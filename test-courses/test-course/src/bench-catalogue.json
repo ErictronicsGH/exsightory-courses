@@ -5382,6 +5382,1636 @@
       "neededBy": []
     },
     {
+      "name": "@exsight/bench-equation",
+      "kind": "bench",
+      "version": "0.1.0",
+      "path": "benches/equation",
+      "description": "The Equation Bench: an equation a room reads together (its symbols, its working, its worked examples, a driven source on an instrument) and the plot beside it. Founded in E·eq-a with its arithmetic (sampling, fits, the simulated source, the graph, the block's shape; the ticks and run clock are the kit's) and its two works, .benchequation and .benchplot: their JSON Schemas and the stamp a compiler reads instead of running the bench, the equation's and the plot's checks and the equation's derived facts carried from insight-core's registry. Its views are a frame bundle (E·eq-b: Preview and View, KaTeX's fonts as files beside it); its Authoring, the equation lab, follows (E·eq-c), and nothing is released before it.",
+      "needs": {
+        "packages": {
+          "@exsight/bench-contract": "^1.3.0",
+          "@exsight/bench-kit": "^0.1.0"
+        },
+        "contract": "^1.3.0",
+        "kit": "^0.1.0"
+      },
+      "classes": [],
+      "bundles": {},
+      "works": [
+        {
+          "ext": "benchequation",
+          "media": "application/json",
+          "maxBytes": 1048576,
+          "title": {
+            "en": "Equation",
+            "fr": "Équation"
+          },
+          "schema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "https://exsightory.com/schemas/benches/equation/equation.schema.json",
+            "title": "Equation Bench equation (.benchequation)",
+            "description": "An equation the Equation Bench opens: the fields of an `equation` block and the stamp the bench wrote when it saved it. A compiler checks the file against this schema, then the stamp's source against the sha256 of the document's canonical JSON without the stamp; once they match, stamp.derived is the block's derived facts and stamp.diagnostics what the equation's checks said, and the bench is never run.",
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "statement": {
+                "type": "string"
+              },
+              "caption": {
+                "type": "string"
+              },
+              "source": {
+                "type": "string"
+              },
+              "symbols": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "unit": {
+                      "type": "string"
+                    },
+                    "note": {
+                      "type": "string"
+                    },
+                    "colour": {
+                      "type": "string",
+                      "enum": [
+                        "teal",
+                        "amber",
+                        "violet",
+                        "lime",
+                        "rose",
+                        "azure",
+                        "orange",
+                        "magenta"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "label"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "highlights": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "term": {
+                      "type": "string"
+                    },
+                    "coefficient": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "note": {
+                      "type": "string"
+                    },
+                    "colour": {
+                      "type": "string",
+                      "enum": [
+                        "teal",
+                        "amber",
+                        "violet",
+                        "lime",
+                        "rose",
+                        "azure",
+                        "orange",
+                        "magenta"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "label"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "derivation": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "statement": {
+                      "type": "string"
+                    },
+                    "note": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "statement"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "assumptions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "text": {
+                      "type": "string"
+                    },
+                    "breaksWhen": {
+                      "type": "string"
+                    },
+                    "severity": {
+                      "default": "simplifying",
+                      "type": "string",
+                      "enum": [
+                        "simplifying",
+                        "limiting"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "text"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "examples": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "type": "string"
+                    },
+                    "values": {
+                      "minItems": 1,
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "value"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "note": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "values"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "example": {
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "type": "string"
+                  },
+                  "values": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "value"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "note": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "values"
+                ],
+                "additionalProperties": false
+              },
+              "rearrangements": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "solveFor": {
+                      "type": "string"
+                    },
+                    "note": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "solveFor"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "boundaries": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "when": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "note": {
+                      "type": "string"
+                    },
+                    "kind": {
+                      "default": "valid",
+                      "type": "string",
+                      "enum": [
+                        "valid",
+                        "invalid"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "when",
+                    "label"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "characteristics": {
+                "type": "object",
+                "properties": {
+                  "show": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "asymptotes",
+                        "roots",
+                        "turningPoints",
+                        "intercepts",
+                        "limits",
+                        "monotonicity",
+                        "sensitivity"
+                      ]
+                    }
+                  },
+                  "notes": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "note": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "note"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              },
+              "notes": {
+                "type": "object",
+                "properties": {
+                  "include": {
+                    "default": true,
+                    "type": "boolean"
+                  },
+                  "extra": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "meta": {
+                "type": "object",
+                "properties": {
+                  "assisted": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "field": {
+                          "type": "string"
+                        },
+                        "model": {
+                          "type": "string"
+                        },
+                        "at": {
+                          "type": "string"
+                        },
+                        "prompt": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "field",
+                        "model",
+                        "at"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              },
+              "simulate": {
+                "type": "object",
+                "properties": {
+                  "drive": {
+                    "type": "string"
+                  },
+                  "waveform": {
+                    "type": "string",
+                    "enum": [
+                      "sine",
+                      "square",
+                      "triangle",
+                      "ramp",
+                      "step",
+                      "noise"
+                    ]
+                  },
+                  "amplitude": {
+                    "type": "number"
+                  },
+                  "offset": {
+                    "default": 0,
+                    "type": "number"
+                  },
+                  "frequency": {
+                    "default": 1,
+                    "type": "number"
+                  },
+                  "seconds": {
+                    "default": 8,
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 120
+                  },
+                  "autoplay": {
+                    "default": false,
+                    "type": "boolean"
+                  },
+                  "note": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "drive",
+                  "waveform",
+                  "amplitude"
+                ],
+                "additionalProperties": false
+              },
+              "graph": {
+                "type": "object",
+                "properties": {
+                  "against": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    }
+                  },
+                  "hold": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "min": {
+                          "type": "number"
+                        },
+                        "max": {
+                          "type": "number"
+                        },
+                        "default": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "min",
+                        "max",
+                        "default"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "scale": {
+                    "type": "object",
+                    "properties": {
+                      "x": {
+                        "default": "linear",
+                        "type": "string",
+                        "enum": [
+                          "linear",
+                          "log"
+                        ]
+                      },
+                      "y": {
+                        "default": "linear",
+                        "type": "string",
+                        "enum": [
+                          "linear",
+                          "log"
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "compare": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "values": {
+                        "minItems": 2,
+                        "maxItems": 5,
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        }
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "values"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "markExamples": {
+                    "default": true,
+                    "type": "boolean"
+                  },
+                  "animate": {
+                    "type": "object",
+                    "properties": {
+                      "parameter": {
+                        "type": "string"
+                      },
+                      "seconds": {
+                        "default": 6,
+                        "type": "number",
+                        "minimum": 0.5,
+                        "maximum": 120
+                      },
+                      "mode": {
+                        "default": "bounce",
+                        "type": "string",
+                        "enum": [
+                          "loop",
+                          "bounce",
+                          "once"
+                        ]
+                      },
+                      "autoplay": {
+                        "default": false,
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "parameter"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "against",
+                  "domain"
+                ],
+                "additionalProperties": false
+              },
+              "references": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "author": {
+                      "type": "string"
+                    },
+                    "publisher": {
+                      "type": "string"
+                    },
+                    "year": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    },
+                    "locator": {
+                      "type": "string"
+                    },
+                    "note": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "provenance": {
+                "type": "object",
+                "properties": {
+                  "origin": {
+                    "default": "user",
+                    "type": "string",
+                    "enum": [
+                      "system",
+                      "user"
+                    ]
+                  },
+                  "licence": {
+                    "default": "free",
+                    "type": "string",
+                    "enum": [
+                      "free",
+                      "paid"
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "style": {
+                "type": "object",
+                "properties": {
+                  "size": {
+                    "type": "string",
+                    "enum": [
+                      "small",
+                      "normal",
+                      "large",
+                      "huge"
+                    ]
+                  },
+                  "color": {
+                    "type": "string",
+                    "enum": [
+                      "body",
+                      "primary",
+                      "muted",
+                      "amber",
+                      "teal"
+                    ]
+                  },
+                  "font": {
+                    "type": "string",
+                    "enum": [
+                      "sans",
+                      "mono",
+                      "serif"
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "preview": {
+                "type": "object",
+                "properties": {
+                  "pane": {
+                    "type": "string",
+                    "enum": [
+                      "definitions",
+                      "terms",
+                      "assumptions",
+                      "worked",
+                      "graph",
+                      "rearrangements",
+                      "origin"
+                    ]
+                  },
+                  "step": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "focus": {
+                    "type": "string",
+                    "pattern": "^(?:symbol|highlight)-\\d{1,3}$"
+                  }
+                },
+                "additionalProperties": false,
+                "description": "The scene the author captured for the Preview: the pane, the derivation's step and the symbol or term picked out, by id. None: the bench picks."
+              },
+              "stamp": {
+                "type": "object",
+                "properties": {
+                  "v": {
+                    "type": "number",
+                    "const": 1
+                  },
+                  "source": {
+                    "type": "string",
+                    "pattern": "^sha256:[0-9a-f]{64}$"
+                  },
+                  "derived": {
+                    "type": "object",
+                    "properties": {
+                      "attestation": {
+                        "type": "object",
+                        "properties": {
+                          "origin": {
+                            "type": "string",
+                            "enum": [
+                              "system",
+                              "user"
+                            ]
+                          },
+                          "status": {
+                            "type": "string",
+                            "enum": [
+                              "certified",
+                              "peer-reviewed"
+                            ]
+                          },
+                          "licence": {
+                            "type": "string",
+                            "enum": [
+                              "free",
+                              "paid"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "origin",
+                          "status",
+                          "licence"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "characteristics": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "kind": {
+                              "type": "string"
+                            },
+                            "draw": {
+                              "type": "string",
+                              "enum": [
+                                "vertical",
+                                "horizontal",
+                                "point",
+                                "edge",
+                                "statement"
+                              ]
+                            },
+                            "at": {
+                              "type": "number"
+                            },
+                            "value": {
+                              "type": "number"
+                            },
+                            "label": {
+                              "type": "string"
+                            },
+                            "explanation": {
+                              "type": "string"
+                            },
+                            "note": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "kind",
+                            "draw",
+                            "label",
+                            "explanation"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "sensitivity": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "example": {
+                              "type": "number"
+                            },
+                            "entries": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "relative": {
+                                    "type": "number"
+                                  }
+                                },
+                                "required": [
+                                  "name",
+                                  "relative"
+                                ],
+                                "additionalProperties": false
+                              }
+                            }
+                          },
+                          "required": [
+                            "example",
+                            "entries"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "rearrangements": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "solveFor": {
+                              "type": "string"
+                            },
+                            "statement": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "solveFor",
+                            "statement"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "boundaries": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "index": {
+                              "type": "number"
+                            },
+                            "from": {
+                              "type": "number"
+                            },
+                            "to": {
+                              "type": "number"
+                            },
+                            "holds": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "index",
+                            "holds"
+                          ],
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "required": [
+                      "attestation"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "diagnostics": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "severity": {
+                          "type": "string",
+                          "enum": [
+                            "error",
+                            "warning"
+                          ]
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "severity",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": [
+                  "v",
+                  "source",
+                  "derived",
+                  "diagnostics"
+                ],
+                "additionalProperties": false,
+                "description": "What the bench derived on save. source: \"sha256:\" + hex SHA-256 of the document without \"stamp\", as JSON with keys in UTF-16 code-unit order (JavaScript's plain string <) and no whitespace."
+              }
+            },
+            "required": [
+              "statement"
+            ],
+            "additionalProperties": false
+          },
+          "schemaFile": {
+            "file": "work/equation.schema.json",
+            "sha256": "sha256:97e442fbf3c1aaf5c89273c17189ceb92e5054a171f8d8ae4e60ae15e17b2596"
+          }
+        },
+        {
+          "ext": "benchplot",
+          "media": "application/json",
+          "maxBytes": 8388608,
+          "title": {
+            "en": "Plot",
+            "fr": "Graphique"
+          },
+          "schema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "https://exsightory.com/schemas/benches/equation/plot.schema.json",
+            "title": "Equation Bench plot (.benchplot)",
+            "description": "A plot the Equation Bench opens: the fields of a `plot` block, the CSV files its series name carried in \"files\", and the stamp the bench wrote when it saved it. A compiler checks the file against this schema, then the stamp's source against the sha256 of the document's canonical JSON without the stamp; once they match, stamp.diagnostics is what the plot's checks said (a plot derives nothing), and the bench is never run.",
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "caption": {
+                "type": "string"
+              },
+              "variable": {
+                "default": "x",
+                "type": "string"
+              },
+              "xLabel": {
+                "type": "string"
+              },
+              "yLabel": {
+                "type": "string"
+              },
+              "domain": {
+                "minItems": 2,
+                "maxItems": 2,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "range": {
+                "minItems": 2,
+                "maxItems": 2,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "parameters": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "min": {
+                      "type": "number"
+                    },
+                    "max": {
+                      "type": "number"
+                    },
+                    "default": {
+                      "type": "number"
+                    },
+                    "step": {
+                      "type": "number"
+                    },
+                    "unit": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "min",
+                    "max",
+                    "default"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "curves": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "expression": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "colour": {
+                      "type": "string",
+                      "enum": [
+                        "teal",
+                        "amber",
+                        "violet",
+                        "rose",
+                        "azure",
+                        "lime"
+                      ]
+                    },
+                    "dashed": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "derivative": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "tangent": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "fill": {
+                      "default": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "expression"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "series": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "type": "string"
+                    },
+                    "colour": {
+                      "type": "string",
+                      "enum": [
+                        "teal",
+                        "amber",
+                        "violet",
+                        "rose",
+                        "azure",
+                        "lime"
+                      ]
+                    },
+                    "points": {
+                      "type": "string"
+                    },
+                    "src": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "style": {
+                      "default": "points",
+                      "type": "string",
+                      "enum": [
+                        "points",
+                        "line",
+                        "both"
+                      ]
+                    },
+                    "fit": {
+                      "default": "none",
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "linear",
+                        "quadratic",
+                        "exponential"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "markers": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "at": {
+                      "type": "number"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "axis": {
+                      "default": "x",
+                      "type": "string",
+                      "enum": [
+                        "x",
+                        "y"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "at"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "animate": {
+                "type": "object",
+                "properties": {
+                  "parameter": {
+                    "type": "string"
+                  },
+                  "seconds": {
+                    "default": 6,
+                    "type": "number",
+                    "minimum": 0.5,
+                    "maximum": 120
+                  },
+                  "mode": {
+                    "default": "bounce",
+                    "type": "string",
+                    "enum": [
+                      "loop",
+                      "bounce",
+                      "once"
+                    ]
+                  },
+                  "autoplay": {
+                    "default": false,
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "parameter"
+                ],
+                "additionalProperties": false
+              },
+              "grid": {
+                "default": true,
+                "type": "boolean"
+              },
+              "readout": {
+                "default": true,
+                "type": "boolean"
+              },
+              "fixedView": {
+                "default": false,
+                "type": "boolean"
+              },
+              "aspect": {
+                "default": "wide",
+                "type": "string",
+                "enum": [
+                  "wide",
+                  "square",
+                  "tall"
+                ]
+              },
+              "references": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "author": {
+                      "type": "string"
+                    },
+                    "publisher": {
+                      "type": "string"
+                    },
+                    "year": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    },
+                    "locator": {
+                      "type": "string"
+                    },
+                    "note": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "provenance": {
+                "type": "object",
+                "properties": {
+                  "origin": {
+                    "default": "user",
+                    "type": "string",
+                    "enum": [
+                      "system",
+                      "user"
+                    ]
+                  },
+                  "licence": {
+                    "default": "free",
+                    "type": "string",
+                    "enum": [
+                      "free",
+                      "paid"
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "style": {
+                "type": "object",
+                "properties": {
+                  "size": {
+                    "type": "string",
+                    "enum": [
+                      "small",
+                      "normal",
+                      "large",
+                      "huge"
+                    ]
+                  },
+                  "color": {
+                    "type": "string",
+                    "enum": [
+                      "body",
+                      "primary",
+                      "muted",
+                      "amber",
+                      "teal"
+                    ]
+                  },
+                  "font": {
+                    "type": "string",
+                    "enum": [
+                      "sans",
+                      "mono",
+                      "serif"
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "files": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string",
+                  "pattern": "^(?!\\/)(?!.*(?:^|\\/)\\.\\.(?:\\/|$))[A-Za-z0-9._/ -]{1,200}$"
+                },
+                "additionalProperties": {
+                  "type": "string",
+                  "pattern": "^data:text\\/csv;base64,[A-Za-z0-9+/]*={0,2}$"
+                },
+                "description": "Every CSV a data series names (series[].src): its path as the field names it → a data URL of the CSV."
+              },
+              "preview": {
+                "type": "object",
+                "properties": {
+                  "domain": {
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    }
+                  },
+                  "range": {
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "additionalProperties": false,
+                "description": "The window the author captured for the Preview: domain (x from, to) and range (y from, to). None: the plot's own."
+              },
+              "stamp": {
+                "type": "object",
+                "properties": {
+                  "v": {
+                    "type": "number",
+                    "const": 1
+                  },
+                  "source": {
+                    "type": "string",
+                    "pattern": "^sha256:[0-9a-f]{64}$"
+                  },
+                  "derived": {
+                    "type": "object",
+                    "properties": {},
+                    "additionalProperties": false
+                  },
+                  "diagnostics": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "severity": {
+                          "type": "string",
+                          "enum": [
+                            "error",
+                            "warning"
+                          ]
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "array",
+                          "items": {
+                            "type": [
+                              "string",
+                              "number"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "severity",
+                        "message"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": [
+                  "v",
+                  "source",
+                  "derived",
+                  "diagnostics"
+                ],
+                "additionalProperties": false,
+                "description": "What the bench derived on save. source: \"sha256:\" + hex SHA-256 of the document without \"stamp\", as JSON with keys in UTF-16 code-unit order (JavaScript's plain string <) and no whitespace (the files included)."
+              }
+            },
+            "additionalProperties": false
+          },
+          "schemaFile": {
+            "file": "work/plot.schema.json",
+            "sha256": "sha256:8a31beafff008abc7e61382a13dcb4eff88d1813319217e9e5f42931c25d8305"
+          }
+        }
+      ],
+      "pins": {
+        "esbuild": "0.28.2"
+      },
+      "release": {
+        "version": "0.1.0",
+        "at": "2026-10-22T11:27:53.205Z",
+        "digest": "sha256:8048b58cff028a38af575a422a269ee9c3e41ecdb655b9ffc82a14c48871d1d0"
+      },
+      "listed": true,
+      "listing": {
+        "$schema": "../../standard/schema/listing.schema.json",
+        "listing": "exsight.listing/0.1",
+        "package": "@exsight/bench-equation",
+        "slug": "equation",
+        "kind": "bench",
+        "status": "in-progress",
+        "name": {
+          "en": "Equation Bench",
+          "fr": "Banc des équations"
+        },
+        "summary": {
+          "en": "An equation a room reads together: its symbols named, the part you point at lit wherever it appears, its derivation walked step by step, its curve drawn with what it does worked out, and a source that drives it while you talk.",
+          "fr": "Une équation que la salle lit ensemble : ses symboles nommés, la partie désignée éclairée partout où elle apparaît, sa démonstration parcourue pas à pas, sa courbe tracée avec ce qu’elle fait calculé, et une source qui la pilote pendant que vous parlez."
+        },
+        "purpose": {
+          "en": "A formula on a slide is read by the few who already understand it. The Equation Bench gives the rest of the room something to hold on to: each symbol's meaning and unit beside it, the term the lesson is about lit in the formula, the steps that lead to it, what the curve does and why, and which input the answer is most sensitive to. Everything on it is worked out from the equation itself, so it cannot disagree with what is written.",
+          "fr": "Une formule sur une diapositive n’est lue que par ceux qui la comprennent déjà. Le Banc des équations donne au reste de la salle de quoi s’y tenir : le sens et l’unité de chaque symbole à côté, le terme dont parle la leçon éclairé dans la formule, les étapes qui y mènent, ce que fait la courbe et pourquoi, et l’entrée à laquelle le résultat est le plus sensible. Tout y est calculé depuis l’équation elle-même, si bien que rien ne peut contredire ce qui est écrit."
+        },
+        "features": [
+          {
+            "glyph": "highlight",
+            "name": {
+              "en": "Point at a symbol",
+              "fr": "Désigner un symbole"
+            },
+            "says": {
+              "en": "Pick out a symbol or a term and it is lit everywhere it appears, the rest of the formula stepping back.",
+              "fr": "Désignez un symbole ou un terme : il s’éclaire partout où il apparaît, et le reste de la formule s’efface."
+            }
+          },
+          {
+            "glyph": "steps",
+            "name": {
+              "en": "The derivation, step by step",
+              "fr": "La démonstration, pas à pas"
+            },
+            "says": {
+              "en": "Each step of where the equation comes from, walked with the presenter's Previous and Next.",
+              "fr": "Chaque étape de l’origine de l’équation, parcourue avec le Précédent et le Suivant de l’enseignant."
+            }
+          },
+          {
+            "glyph": "trust",
+            "name": {
+              "en": "Worked out, not stated",
+              "fr": "Calculé, pas affirmé"
+            },
+            "says": {
+              "en": "Asymptotes, roots and turning points come from the equation itself; every rearrangement is checked before it is shown.",
+              "fr": "Asymptotes, racines et extremums viennent de l’équation ; chaque réarrangement est vérifié avant d’être montré."
+            }
+          },
+          {
+            "glyph": "live",
+            "name": {
+              "en": "A source that drives it",
+              "fr": "Une source qui la pilote"
+            },
+            "says": {
+              "en": "A sine, square or ramp drives one input over time, and the answer moves along the curve while you speak.",
+              "fr": "Un sinus, un carré ou une rampe pilote une entrée, et le résultat parcourt la courbe pendant que vous parlez."
+            }
+          },
+          {
+            "glyph": "dial",
+            "name": {
+              "en": "A plot with its own sliders",
+              "fr": "Un graphique avec ses curseurs"
+            },
+            "says": {
+              "en": "Curves, data and fits on one plot, its parameters on sliders, a sweep that plays, and an R² beside every fit.",
+              "fr": "Courbes, données et ajustements, des curseurs pour les paramètres, un balayage, et un R² pour chaque ajustement."
+            }
+          },
+          {
+            "glyph": "follow",
+            "name": {
+              "en": "The wall follows",
+              "fr": "Le mur suit"
+            },
+            "says": {
+              "en": "The pane, the symbol picked out, the step and the source are the presenter's, and every screen in the room follows them.",
+              "fr": "Le volet, le symbole désigné, l’étape et la source sont ceux de l’enseignant, et chaque écran de la salle les suit."
+            }
+          }
+        ],
+        "fields": [
+          "general",
+          "mathematics",
+          "physics",
+          "electricity-energy",
+          "electronics-automation",
+          "mechanics",
+          "chemistry"
+        ],
+        "views": [
+          "preview",
+          "view",
+          "authoring"
+        ],
+        "runsIn": {
+          "contract": "^1.3.0",
+          "scope": true,
+          "phone": true
+        },
+        "libraries": [],
+        "guide": [
+          {
+            "id": "what-it-is",
+            "title": {
+              "en": "What it is",
+              "fr": "Ce que c’est"
+            },
+            "paragraphs": [
+              {
+                "en": "An equation, typeset, with a table beside it naming each symbol, its meaning and its unit. Behind the details are the panes: the symbols and the terms, the assumptions it rests on, a worked example and what the answer is most sensitive to, the graph, the equation solved for something else, and the steps it comes from.",
+                "fr": "Une équation, composée, avec à côté un tableau qui nomme chaque symbole, son sens et son unité. Derrière les détails se trouvent les volets : les symboles et les termes, les hypothèses sur lesquelles elle repose, un exemple traité et l’entrée à laquelle le résultat est le plus sensible, le graphique, l’équation résolue pour autre chose, et les étapes d’où elle vient."
+              },
+              {
+                "en": "A plot is the bench's second kind of work: curves, data series and fits on one sheet, with sliders for its parameters and a sweep that plays.",
+                "fr": "Un graphique est la seconde sorte d’œuvre du banc : courbes, séries de données et ajustements sur une même feuille, avec des curseurs pour ses paramètres et un balayage qui se joue."
+              }
+            ]
+          },
+          {
+            "id": "first-five-minutes",
+            "title": {
+              "en": "The first five minutes",
+              "fr": "Les cinq premières minutes"
+            },
+            "paragraphs": [
+              {
+                "en": "In Authoring, start from a preset or type the statement. The symbols it uses are offered for you to declare, and a click on the typeset equation points at a term. What the compiler would say appears under the live preview, against the field it is about.",
+                "fr": "En Création, partez d’un modèle ou tapez l’énoncé. Les symboles qu’il utilise vous sont proposés à déclarer, et un clic sur l’équation composée désigne un terme. Ce que dirait le compilateur apparaît sous l’aperçu en direct, à côté du champ concerné."
+              },
+              {
+                "en": "Open the pane you want the slide to show, pick out a symbol if it matters, and press Use as preview: that scene is what the slide draws. Save writes the work through the app.",
+                "fr": "Ouvrez le volet que la diapositive doit montrer, désignez un symbole s’il compte, et appuyez sur Utiliser comme aperçu : cette scène est ce que la diapositive dessine. Enregistrer écrit l’œuvre par l’application."
+              }
+            ]
+          },
+          {
+            "id": "the-views",
+            "title": {
+              "en": "The views",
+              "fr": "Les vues"
+            },
+            "paragraphs": [
+              {
+                "en": "Preview is the scene on the slide, the one the author captured or, if none, the statement with its symbols. View is the whole bench with its panes, at the size a projector needs, and the wall follows the presenter's.",
+                "fr": "L’aperçu est la scène sur la diapositive, celle que l’auteur a capturée ou, à défaut, l’énoncé avec ses symboles. La vue est le banc entier avec ses volets, à la taille qu’exige un projecteur, et le mur suit celle de l’enseignant."
+              },
+              {
+                "en": "Authoring is where an equation or a plot is written and checked. ExSight Scope offers Preview and View.",
+                "fr": "La création est l’endroit où une équation ou un graphique est écrit et vérifié. ExSight Scope offre l’aperçu et la vue."
+              }
+            ]
+          }
+        ],
+        "controls": [
+          {
+            "action": {
+              "en": "Back to Preview",
+              "fr": "Revenir à l’aperçu"
+            },
+            "keys": "Esc"
+          }
+        ],
+        "accessibility": {
+          "en": "Every symbol is named in words in the table beside the formula, with its unit, so a reader who cannot see the colours reads the same list; the typeset formula carries its source for a screen reader, and the plots and the source carry their own descriptions. The panes are reached with the keyboard. The bench's own words are in English and French; the explanations of a curve's behaviour, and the compiler's messages in Authoring, are in English for now.",
+          "fr": "Chaque symbole est nommé en toutes lettres dans le tableau à côté de la formule, avec son unité : un lecteur qui ne voit pas les couleurs lit la même liste ; la formule composée porte sa source pour un lecteur d’écran, et les graphiques et la source portent leur propre description. Les volets sont accessibles au clavier. Les mots du banc sont en anglais et en français ; les explications du comportement d’une courbe, et les messages du compilateur en Création, sont pour l’instant en anglais."
+        },
+        "media": {
+          "icon": {
+            "file": "listing/icon.svg",
+            "sha256": "sha256:88f69948108cc9e42acfa5db31c9c9f40326f21c16a371999c816983859d966c",
+            "bytes": 283
+          },
+          "cover": {
+            "kind": "capture",
+            "look": "draft",
+            "alt": {
+              "en": "A capacitor's sizing equation with its symbols named in a table, and its graph pane open beside it, a square-wave source driving the load current.",
+              "fr": "L’équation de dimensionnement d’un condensateur avec ses symboles nommés dans un tableau, et son volet Graphique ouvert à côté, une source carrée pilotant le courant de charge."
+            },
+            "dark": {
+              "file": "listing/cover-dark.png",
+              "sha256": "sha256:1b30a0b1077ddf6b408702bc1e88fb5592cac257d8a936130e248c5c1d08fc82",
+              "bytes": 95156,
+              "width": 1600,
+              "height": 1000
+            },
+            "light": {
+              "file": "listing/cover-light.png",
+              "sha256": "sha256:6f26a5ee36a558fc608cd748cebf95fd1d77712529586616fc391cc240acb62b",
+              "bytes": 93763,
+              "width": 1600,
+              "height": 1000
+            }
+          },
+          "gallery": [
+            {
+              "kind": "capture",
+              "look": "draft",
+              "alt": {
+                "en": "View on the Proof pane: the third step of the derivation lit, with Back and Next under it.",
+                "fr": "Vue sur le volet Démonstration : la troisième étape éclairée, avec Précédent et Suivant dessous."
+              },
+              "caption": {
+                "en": "View: the derivation, step by step",
+                "fr": "Vue : la démonstration, pas à pas"
+              },
+              "dark": {
+                "file": "listing/gallery/1-dark.png",
+                "sha256": "sha256:f7f2922161072f46cbf1f034602f63cf631c72b7b9857f179fa67b5d3bb56de3",
+                "bytes": 72356,
+                "width": 1280,
+                "height": 800
+              },
+              "light": {
+                "file": "listing/gallery/1-light.png",
+                "sha256": "sha256:5cf2ab7c779154dfa8c14e7a35c5a126b692c4f38d9844fbb571822567dfca39",
+                "bytes": 72544,
+                "width": 1280,
+                "height": 800
+              }
+            },
+            {
+              "kind": "capture",
+              "look": "draft",
+              "alt": {
+                "en": "Authoring: the form and the YAML on the left, the live preview on the right and what the compiler would say under it.",
+                "fr": "Création : le formulaire et le YAML à gauche, l’aperçu en direct à droite et ce que dirait le compilateur dessous."
+              },
+              "caption": {
+                "en": "Authoring: write it, check it, capture its Preview",
+                "fr": "Création : l’écrire, la vérifier, capturer son aperçu"
+              },
+              "dark": {
+                "file": "listing/gallery/2-dark.png",
+                "sha256": "sha256:9f0e1f66b504c1f1d4255522d2823786c992bdb690d14d7c6e87696ddcce356a",
+                "bytes": 95291,
+                "width": 1280,
+                "height": 800
+              },
+              "light": {
+                "file": "listing/gallery/2-light.png",
+                "sha256": "sha256:be91ee971562d6eb1747004615cd8892efc698add519ea7702dc9a66d99db59e",
+                "bytes": 95467,
+                "width": 1280,
+                "height": 800
+              }
+            }
+          ],
+          "share": {
+            "kind": "capture",
+            "look": "draft",
+            "alt": {
+              "en": "The Equation Bench: a capacitor's sizing equation, typeset and coloured, with each symbol named beside it.",
+              "fr": "Le Banc des équations : l’équation de dimensionnement d’un condensateur, composée et colorée, avec chaque symbole nommé à côté."
+            },
+            "dark": {
+              "file": "listing/share-dark.png",
+              "sha256": "sha256:fe6e099f18024dd9dc5be1a9cba1e82fe74e9494d6d799426a45c45c8c00c843",
+              "bytes": 38157,
+              "width": 1680,
+              "height": 1260
+            },
+            "light": {
+              "file": "listing/share-light.png",
+              "sha256": "sha256:8d74ac9cf818941120d4303cb7d86e4b65a170ec454b530b4cfb9756108f2c12",
+              "bytes": 38314,
+              "width": 1680,
+              "height": 1260
+            }
+          }
+        }
+      },
+      "changes": [
+        {
+          "version": "0.1.0",
+          "at": "2026-10-22T11:27:53.205Z",
+          "note": {
+            "en": "The Equation Bench as a bench of its own (E·eq): an equation and a plot as works (.benchequation, .benchplot) with their schemas and the stamp a compiler reads, Core's checks and derived facts carried and held to its golden; Preview the author's captured scene, View with its panes, the wall following the presenter's pane, pick, step and source on the contract's clock, a still of the Preview; Authoring, the equation lab, saving through the player; the bench's words in English and French.",
+            "fr": "Le Banc des équations comme banc à part entière (E·eq) : une équation et un graphique comme œuvres (.benchequation, .benchplot) avec leurs schémas et le tampon qu’un compilateur lit, les vérifications et les faits dérivés de Core reportés et tenus à sa référence ; l’aperçu, scène capturée par l’auteur, la vue et ses volets, le mur qui suit le volet, la désignation, l’étape et la source de l’enseignant sur l’horloge du contrat, une image fixe de l’aperçu ; la création, le laboratoire des équations, qui enregistre par le lecteur ; les mots du banc en anglais et en français."
+          }
+        }
+      ],
+      "neededBy": []
+    },
+    {
       "name": "@exsight/bench-figure",
       "kind": "bench",
       "version": "0.2.0",
