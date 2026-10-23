@@ -1,0 +1,39 @@
+{
+  "kind": "assembly",
+  "title": { "en": "Light into a voltage", "fr": "La lumière en tension" },
+  "stage": "@exsight/bench-storyboard@0.3.0",
+  "panes": [
+    { "id": "lamp", "scene": "@exsight/lib-animation-lamp-and-light-meter@1.1.0", "title": { "en": "The lamp", "fr": "La lampe" } },
+    { "id": "circuit", "bench": "@exsight/bench-electronics@0.5.1", "work": "shared/circuits/ldr-divider.benchcircuit",
+      "title": { "en": "The divider", "fr": "Le diviseur" } }
+  ],
+  "layout": { "rows": [{ "panes": ["lamp", "circuit"], "share": [1, 2], "channels": ["wide"] }], "band": "caption" },
+  "wires": [{ "from": "lamp.illuminance", "to": "circuit.LDR1.illuminance" }],
+  "stops": [
+    { "id": "meet", "title": { "en": "A divider with an LDR", "fr": "Un diviseur à LDR" },
+      "caption": { "en": "The LDR is the top leg, a 10 kΩ resistor the bottom one. The midpoint reads the voltage between them.",
+                   "fr": "La LDR est la branche du haut, une résistance de 10 kΩ celle du bas. Le point milieu lit la tension entre elles." },
+      "length": 8, "panes": { "lamp": { "stop": "on" } }, "show": ["circuit"],
+      "set": { "lamp.dimmer": { "value": 1, "unit": "lx" } } },
+    { "id": "dim", "title": { "en": "1 lx: 0.75 V", "fr": "1 lx : 0,75 V" },
+      "caption": { "en": "In dim light the LDR is about 56 kΩ: most of the 5 V falls across it, and the midpoint reads 0.75 V.",
+                   "fr": "Dans la pénombre, la LDR fait environ 56 kΩ : l’essentiel des 5 V tombe à ses bornes, et le point milieu lit 0,75 V." },
+      "length": 6, "panes": {}, "set": { "lamp.dimmer": { "value": 1, "unit": "lx" } } },
+    { "id": "ten", "title": { "en": "10 lx: 2.07 V", "fr": "10 lx : 2,07 V" },
+      "caption": { "en": "Ten times the light: the LDR falls to about 14 kΩ and the midpoint rises to 2.07 V.",
+                   "fr": "Dix fois plus de lumière : la LDR descend à environ 14 kΩ et le point milieu monte à 2,07 V." },
+      "length": 6, "panes": {}, "set": { "lamp.dimmer": { "value": 10, "unit": "lx" } } },
+    { "id": "predict", "title": { "en": "Predict: 100 lx", "fr": "Prédire : 100 lx" },
+      "caption": { "en": "Ten times the light again. What will the midpoint read at 100 lx?",
+                   "fr": "Encore dix fois plus de lumière. Que lira le point milieu à 100 lx ?" },
+      "panes": { "lamp": { "stop": "on" } } },
+    { "id": "bright", "title": { "en": "100 lx: 3.69 V", "fr": "100 lx : 3,69 V" },
+      "caption": { "en": "Each tenfold step of light divides the LDR by about four: 56, 14, then 3.6 kΩ. The midpoint reads 3.69 V.",
+                   "fr": "Chaque pas de dix en lumière divise la LDR par environ quatre : 56, 14, puis 3,6 kΩ. Le point milieu lit 3,69 V." },
+      "length": 6, "panes": {}, "set": { "lamp.dimmer": { "value": 100, "unit": "lx" } } },
+    { "id": "yours", "title": { "en": "Turn it yourself", "fr": "À vous de tourner" },
+      "caption": { "en": "Turn the lamp’s dimmer: the LDR and the midpoint follow.",
+                   "fr": "Tournez le variateur de la lampe : la LDR et le point milieu suivent." },
+      "panes": { "lamp": { "stop": "on" } } }
+  ]
+}
