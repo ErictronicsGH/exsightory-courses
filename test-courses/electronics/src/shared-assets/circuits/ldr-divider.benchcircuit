@@ -1,0 +1,178 @@
+{
+  "id": "ldr-divider",
+  "title": "Light into a voltage",
+  "seed": 20261023,
+  "requires": {
+    "insight-baseline": "1.14.0"
+  },
+  "environment": {
+    "t_ambient_c": 25
+  },
+  "instances": [
+    {
+      "id": "V1",
+      "class": "supply",
+      "profile": "supply-bench",
+      "value": 5,
+      "at": [
+        50.8,
+        304.8
+      ],
+      "rotation": 90,
+      "label": "5 V"
+    },
+    {
+      "id": "LDR1",
+      "class": "photoresistor",
+      "profile": "photoresistor-5528",
+      "at": [
+        254,
+        190.5
+      ],
+      "rotation": 90,
+      "label": "LDR"
+    },
+    {
+      "id": "R1",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 10000,
+      "at": [
+        254,
+        381
+      ],
+      "rotation": 90,
+      "label": "10 k"
+    }
+  ],
+  "nets": [
+    {
+      "id": "vcc",
+      "terminals": [
+        "V1.p",
+        "LDR1.a"
+      ]
+    },
+    {
+      "id": "mid",
+      "terminals": [
+        "LDR1.b",
+        "R1.a"
+      ]
+    },
+    {
+      "id": "gnd",
+      "terminals": [
+        "R1.b",
+        "V1.n"
+      ],
+      "is_reference": true
+    }
+  ],
+  "effects": {},
+  "stamp": {
+    "v": 1,
+    "source": "sha256:99f7c866487eb72726381d32ff985bf07324c8fd11b4e368b17718757de40cda",
+    "libraries": {
+      "insight-baseline": "1.14.0"
+    },
+    "derived": {
+      "targets": [
+        {
+          "id": "V1",
+          "kind": "part"
+        },
+        {
+          "id": "LDR1",
+          "kind": "part"
+        },
+        {
+          "id": "R1",
+          "kind": "part"
+        },
+        {
+          "id": "vcc",
+          "kind": "net"
+        },
+        {
+          "id": "mid",
+          "kind": "net"
+        },
+        {
+          "id": "gnd",
+          "kind": "net"
+        }
+      ],
+      "sources": [
+        {
+          "id": "V1",
+          "label": "V1 · 5 V",
+          "legend": "Output voltage",
+          "unit": "V",
+          "authored": 5,
+          "min": 0,
+          "max": 24,
+          "step": 1.2
+        }
+      ],
+      "probes": [],
+      "leads": [],
+      "demands": [],
+      "locked": {
+        "values": [],
+        "profiles": []
+      },
+      "reveals": [
+        {
+          "id": "V1",
+          "offers": [
+            {
+              "bind": "output_resistance",
+              "available": true
+            },
+            {
+              "bind": "output_drift",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "R1",
+          "offers": [
+            {
+              "bind": "overpower",
+              "available": true
+            },
+            {
+              "bind": "tempco_drift",
+              "available": true
+            },
+            {
+              "bind": "thermal_settling",
+              "available": true
+            }
+          ]
+        }
+      ],
+      "opens": {
+        "iv": [
+          "R1"
+        ]
+      },
+      "instances": [
+        "V1",
+        "LDR1",
+        "R1"
+      ]
+    },
+    "diagnostics": [
+      {
+        "severity": "error",
+        "code": "parts-unknown-class",
+        "message": "No installed library declares the class \"photoresistor\".",
+        "file": "ldr-divider.benchcircuit",
+        "path": "instances.1.class"
+      }
+    ]
+  }
+}
