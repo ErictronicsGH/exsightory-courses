@@ -1,0 +1,24 @@
+<!-- Photoresistor (LDR) — IEC 60617 rectangle, 3:1, with the light it receives: two parallel arrows at 45°, down and to the right onto the body, the LED's arrows (led.svg) reversed: 14 units tail to tip, solid 8 × 7 heads. They turn with the part (body layer), as a printed LDR symbol's do: unlike an LED's emission, the light falls on it from wherever its lamp is. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-52 -26 104 52">
+  <g data-layer="thermal">
+    <rect x="-25.4" y="-9" width="50.8" height="18" rx="1" fill="var(--bench-heat)" stroke="none"/>
+  </g>
+  <g data-layer="flow">
+    <line x1="-50.8" y1="0" x2="-25.4" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="50.8" y1="0" x2="25.4" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g data-layer="body">
+    <rect x="-25.4" y="-8.5" width="50.8" height="17" stroke="var(--bench-symbol)" fill="var(--bench-sheet)" stroke-width="var(--bench-stroke, 2.4)" stroke-linejoin="round"/>
+    <line x1="-50.8" y1="0" x2="-25.4" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="50.8" y1="0" x2="25.4" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="-17.90" y1="-20.90" x2="-13.66" y2="-16.66" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <polygon points="-8.00,-11.00 -11.19,-19.13 -16.13,-14.19" fill="var(--bench-symbol)" stroke="none"/>
+    <line x1="-6.90" y1="-20.90" x2="-2.66" y2="-16.66" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <polygon points="3.00,-11.00 -0.19,-19.13 -5.13,-14.19" fill="var(--bench-symbol)" stroke="none"/>
+    <circle data-terminal="a" cx="-50.8" cy="0" r="2.6" fill="var(--bench-terminal)"/>
+    <circle data-terminal="b" cx="50.8" cy="0" r="2.6" fill="var(--bench-terminal)"/>
+  </g>
+  <g data-layer="hitbox">
+    <rect x="-52" y="-26" width="104" height="52" fill="currentColor" opacity="0"/>
+  </g>
+</svg>

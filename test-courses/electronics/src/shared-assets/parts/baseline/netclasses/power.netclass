@@ -1,10 +1,14 @@
 {
   "netclass": "power",
-  "label": "Power rail",
+  "label": {
+    "en": "Power rail",
+    "fr": "Rail d’alimentation"
+  },
   "permitted_rise_c": 20,
   "placement": "external",
   "copper_oz": 2,
   "note": {
-    "en": "A rail is allowed to run hotter than a signal, and is usually etched in heavier copper, so it needs less width for the same current on both counts. Twenty degrees over ambient is a common allowance for a rail that is not near anything temperature-sensitive; a rail beside a precision reference is not this class."
+    "en": "A rail is allowed to run hotter than a signal, and is usually etched in heavier copper, so it needs less width for the same current on both counts. Twenty degrees over ambient is a common allowance for a rail that is not near anything temperature-sensitive; a rail beside a precision reference is not this class.",
+    "fr": "Un rail a le droit de chauffer davantage qu’un signal, et il est en général gravé dans un cuivre plus épais : il lui faut donc moins de largeur pour le même courant, pour ces deux raisons. Vingt degrés au-dessus de l’ambiante est une marge courante pour un rail éloigné de tout élément sensible à la température ; un rail voisin d’une référence de précision ne relève pas de cette classe."
   }
 }

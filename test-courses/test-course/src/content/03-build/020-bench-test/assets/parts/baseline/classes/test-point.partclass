@@ -1,13 +1,19 @@
 {
   "class": "test-point",
-  "label": "Test point",
+  "label": {
+    "en": "Test point",
+    "fr": "Point de test"
+  },
   "designator": "TP",
   "category": "connections",
   "annotation": true,
   "terminals": [
     {
       "id": "pad",
-      "label": "pad",
+      "label": {
+        "en": "pad",
+        "fr": "pastille"
+      },
       "role": "terminal",
       "signal": "bidirectional"
     }
@@ -15,7 +21,10 @@
   "variants": {
     "post": {
       "symbol": "symbols/iec/test-point.svg",
-      "label": "Board test point"
+      "label": {
+        "en": "Board test point",
+        "fr": "Point de test sur carte"
+      }
     }
   },
   "fast_model": {

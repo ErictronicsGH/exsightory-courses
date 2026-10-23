@@ -3,7 +3,7 @@
   "title": "Two LEDs, each lit by the current its resistor allows",
   "seed": 20261008,
   "requires": {
-    "insight-baseline": "1.14.0"
+    "insight-baseline": "1.15.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -106,9 +106,9 @@
   "effects": {},
   "stamp": {
     "v": 1,
-    "source": "sha256:7a58f01918dbced1e3e0545a77fe3d3e300a20462877dd89afbea0a2f751d714",
+    "source": "sha256:20320e62d9b7a7b5d800725a8f1ea8f12e5207810510223efc8ad9ec0d885009",
     "libraries": {
-      "insight-baseline": "1.14.0"
+      "insight-baseline": "1.15.0"
     },
     "derived": {
       "targets": [

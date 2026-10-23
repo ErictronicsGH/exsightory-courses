@@ -2,7 +2,10 @@
   "profile": "clamp-handheld",
   "class": "current-clamp",
   "variant": "handheld",
-  "display_name": "Clamp meter (100 A)",
+  "display_name": {
+    "en": "Clamp meter (100 A)",
+    "fr": "Pince ampèremétrique (100 A)"
+  },
   "provenance": {
     "typical": true
   },
@@ -71,7 +74,8 @@
       "substitute"
     ],
     "availability": {
-      "en": "It goes around the wire, so the circuit never knows it is there — solve the same bench with the clamp on and every number is identical to the digit. What it costs instead is resolution: a hundred-amp jaw reads in ten-milliamp steps and sees nothing at all below fifty, so on a milliamp branch it is the wrong instrument and says so by showing nothing."
+      "en": "It goes around the wire, so the circuit never knows it is there — solve the same bench with the clamp on and every number is identical to the digit. What it costs instead is resolution: a hundred-amp jaw reads in ten-milliamp steps and sees nothing at all below fifty, so on a milliamp branch it is the wrong instrument and says so by showing nothing.",
+      "fr": "Elle entoure le fil, si bien que le circuit ignore sa présence — résolvez le même banc avec la pince en place et chaque nombre est identique au chiffre près. Ce qu’elle coûte en revanche, c’est la résolution : une mâchoire de cent ampères lit par pas de dix milliampères et ne voit rien du tout en dessous de cinquante ; sur une branche de quelques milliampères, c’est le mauvais instrument, et elle le dit en n’affichant rien."
     }
   }
 }

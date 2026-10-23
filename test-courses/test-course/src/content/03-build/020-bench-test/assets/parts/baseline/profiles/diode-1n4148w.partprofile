@@ -2,7 +2,10 @@
   "profile": "diode-1n4148w",
   "class": "diode",
   "variant": "signal",
-  "display_name": "1N4148W small-signal diode (SOD-123)",
+  "display_name": {
+    "en": "1N4148W small-signal diode (SOD-123)",
+    "fr": "Diode petit signal 1N4148W (SOD-123)"
+  },
   "provenance": {
     "part": "1N4148W",
     "manufacturer": "Diodes Incorporated",
@@ -63,7 +66,8 @@
     "mode": "short",
     "confidence": "typical",
     "note": {
-      "en": "Keyed on forward current rather than power, because neither the card nor its header states a power rating and a threshold on a rating nobody published would be a number this bench invented."
+      "en": "Keyed on forward current rather than power, because neither the card nor its header states a power rating and a threshold on a rating nobody published would be a number this bench invented.",
+      "fr": "Déclenché sur le courant direct plutôt que sur la puissance, car ni la fiche ni son en-tête n’indiquent de puissance nominale, et un seuil fondé sur une valeur que personne n’a publiée serait un nombre inventé par ce banc."
     }
   },
   "demonstration": {
@@ -71,7 +75,8 @@
       {
         "bind": "reverse_leakage",
         "label": {
-          "en": "Reverse leakage current"
+          "en": "Reverse leakage current",
+          "fr": "Courant de fuite inverse"
         },
         "enables_axis": "leakage",
         "quantity": "i_r",
@@ -88,17 +93,20 @@
           "typical_display": "≈ 10.4 nA — the card’s saturation current",
           "comparison": "forward current in this circuit",
           "note": {
-            "en": "A vendor’s IS is fitted to the forward curve, so it is smaller than the reverse current the part actually leaks: most of that is surface and generation leakage, which the Shockley equation has no term for."
+            "en": "A vendor’s IS is fitted to the forward curve, so it is smaller than the reverse current the part actually leaks: most of that is surface and generation leakage, which the Shockley equation has no term for.",
+            "fr": "L’IS d’un fabricant est ajusté sur la courbe directe ; il est donc plus faible que le courant inverse que le composant laisse réellement passer : l’essentiel en est une fuite de surface et de génération, dont l’équation de Shockley ne tient pas compte."
           }
         },
         "teaching_point": {
-          "en": "Reverse current is real, not zero — and the model’s figure for it is not the datasheet’s."
+          "en": "Reverse current is real, not zero — and the model’s figure for it is not the datasheet’s.",
+          "fr": "Le courant inverse est réel, pas nul — et la valeur qu’en donne le modèle n’est pas celle de la fiche technique."
         }
       },
       {
         "bind": "reverse_recovery",
         "label": {
-          "en": "Reverse recovery"
+          "en": "Reverse recovery",
+          "fr": "Recouvrement inverse"
         },
         "enables_axis": "recovery",
         "quantity": "i_r",
@@ -115,17 +123,20 @@
           "typical_display": "TT = 5.76 ns, the card’s transit time",
           "comparison": "the forward current the moment before the source reversed",
           "note": {
-            "en": "TT = 5.76 ns. The stored charge is swept out in nanoseconds, which is why a 1N4148 rectifies happily at 100 kHz and a 1N4001 does not."
+            "en": "TT = 5.76 ns. The stored charge is swept out in nanoseconds, which is why a 1N4148 rectifies happily at 100 kHz and a 1N4001 does not.",
+            "fr": "TT = 5.76 ns. La charge stockée est évacuée en quelques nanosecondes, ce qui explique qu’une 1N4148 redresse sans peine à 100 kHz, et pas une 1N4001."
           }
         },
         "teaching_point": {
-          "en": "A diode does not stop conducting the instant it is reverse-biased. It conducts backwards until the charge stored in the junction is gone, and that interval is what sets the frequency a rectifier stops working at."
+          "en": "A diode does not stop conducting the instant it is reverse-biased. It conducts backwards until the charge stored in the junction is gone, and that interval is what sets the frequency a rectifier stops working at.",
+          "fr": "Une diode ne cesse pas de conduire à l’instant où elle est polarisée en inverse. Elle conduit en sens inverse jusqu’à ce que la charge stockée dans la jonction ait disparu, et c’est cet intervalle qui fixe la fréquence à partir de laquelle un redresseur cesse de fonctionner."
         }
       },
       {
         "bind": "vf_temp_drift",
         "label": {
-          "en": "Forward voltage against temperature"
+          "en": "Forward voltage against temperature",
+          "fr": "Tension directe en fonction de la température"
         },
         "enables_axis": "vf_tempco",
         "quantity": "v_f",
@@ -133,7 +144,8 @@
           "treatment": "none"
         },
         "teaching_point": {
-          "en": "−2 mV/°C is why a diode makes a usable thermometer and a poor voltage reference."
+          "en": "−2 mV/°C is why a diode makes a usable thermometer and a poor voltage reference.",
+          "fr": "−2 mV/°C : voilà pourquoi une diode fait un thermomètre utilisable et une piètre référence de tension."
         }
       }
     ],
@@ -147,7 +159,8 @@
       "replace"
     ],
     "availability": {
-      "en": "The same die as the through-hole 1N4148, in a surface-mount body — and the reason to reach for it here is that Diodes Incorporated publish a model for it. Substituting it for the DO-35 part is the difference between a diode fitted from a datasheet and a diode a manufacturer has characterised: the reverse recovery axis only exists on this one."
+      "en": "The same die as the through-hole 1N4148, in a surface-mount body — and the reason to reach for it here is that Diodes Incorporated publish a model for it. Substituting it for the DO-35 part is the difference between a diode fitted from a datasheet and a diode a manufacturer has characterised: the reverse recovery axis only exists on this one.",
+      "fr": "La même puce que la 1N4148 traversante, dans un boîtier CMS — et la raison d’y recourir ici, c’est que Diodes Incorporated en publie un modèle. La substituer au composant en DO-35, c’est passer d’une diode ajustée d’après une fiche technique à une diode caractérisée par un fabricant : l’axe du recouvrement inverse n’existe que sur celle-ci."
     }
   },
   "spice": {

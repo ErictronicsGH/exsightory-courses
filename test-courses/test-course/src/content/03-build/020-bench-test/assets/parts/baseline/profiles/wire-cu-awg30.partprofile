@@ -2,13 +2,16 @@
   "profile": "wire-cu-awg30",
   "class": "conductor",
   "variant": "wire",
-  "display_name": "Copper wire, AWG 30",
+  "display_name": {
+    "en": "Copper wire, AWG 30",
+    "fr": "Fil de cuivre, AWG 30"
+  },
   "provenance": {
     "typical": true
   },
   "parameters": {
     "rho_ohm_m": {
-      "value": 1.68e-8,
+      "value": 1.68e-08,
       "unit": "Ω·m",
       "conditions": {
         "t_c": 20
@@ -33,9 +36,10 @@
         "t_c": 20
       },
       "source": {
-        "note": "Copper, the standard textbook value."
+        "document": "IEC 60028, International standard of resistance for copper",
+        "note": "Annealed copper at 100 % IACS, the figure IEC 60028 defines at 20 °C. A definition, so stated, and shown to four figures."
       },
-      "confidence": "typical"
+      "confidence": "stated"
     },
     "i_rating_a": {
       "value": 0.86,
@@ -68,7 +72,8 @@
     "mode": "open",
     "confidence": "typical",
     "note": {
-      "en": "Copper fuses when it cannot lose the heat. A thin trace deliberately sized to do so is a real design element, not a failure."
+      "en": "Copper fuses when it cannot lose the heat. A thin trace deliberately sized to do so is a real design element, not a failure.",
+      "fr": "Le cuivre fond quand il ne peut pas évacuer la chaleur. Une piste fine dimensionnée exprès pour cela est un véritable élément de conception, pas une défaillance."
     }
   },
   "demonstration": {
@@ -76,14 +81,16 @@
       {
         "bind": "lead_resistance",
         "label": {
-          "en": "Lead resistance in series with the measurement"
+          "en": "Lead resistance in series with the measurement",
+          "fr": "Résistance des cordons en série avec la mesure"
         },
         "quantity": "r",
         "visual": {
           "treatment": "none"
         },
         "teaching_point": {
-          "en": "Two metres of AWG 24 is about 170 mΩ. Against a 100 Ω RTD that is nearly two degrees of error, and it is exactly why four-wire sensing exists."
+          "en": "Two metres of AWG 30 is about 0.66 Ω. Against a 100 Ω RTD that is nearly two degrees of error, and it is exactly why four-wire sensing exists.",
+          "fr": "Deux mètres d’AWG 30 font environ 0.66 Ω. Face à une sonde de 100 Ω, c’est près de deux degrés d’erreur, et c’est exactement pour cela qu’existe la mesure quatre fils."
         }
       }
     ],
@@ -105,7 +112,8 @@
       "value": 0.05092601946355177,
       "unit": "mm²",
       "note": {
-        "en": "A printed table's 0.0507 mm² beside AWG 30 is this number rounded. The gauge is the declaration — the AWG series fixes the diameter exactly — so the area is derived from it rather than copied from a table and left to drift."
+        "en": "A printed table's 0.0507 mm² beside AWG 30 is this number rounded. The gauge is the declaration — the AWG series fixes the diameter exactly — so the area is derived from it rather than copied from a table and left to drift.",
+        "fr": "Les 0.0507 mm² qu’une table imprimée donne pour l’AWG 30 sont ce nombre arrondi. La jauge est la déclaration — la série AWG fixe exactement le diamètre — si bien que la section en est déduite au lieu d’être recopiée d’une table et de dériver."
       }
     }
   }

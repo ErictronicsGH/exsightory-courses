@@ -1,18 +1,27 @@
 {
   "class": "conductor",
-  "label": "Conductor",
+  "label": {
+    "en": "Conductor",
+    "fr": "Conducteur"
+  },
   "designator": "W",
   "category": "connections",
   "terminals": [
     {
       "id": "a",
-      "label": "end A",
+      "label": {
+        "en": "end A",
+        "fr": "extrémité A"
+      },
       "role": "terminal",
       "signal": "bidirectional"
     },
     {
       "id": "b",
-      "label": "end B",
+      "label": {
+        "en": "end B",
+        "fr": "extrémité B"
+      },
       "role": "terminal",
       "signal": "bidirectional"
     }
@@ -20,7 +29,10 @@
   "variants": {
     "wire": {
       "symbol": "symbols/iec/wire.svg",
-      "label": "Wire",
+      "label": {
+        "en": "Wire",
+        "fr": "Fil"
+      },
       "requires": [
         "rho_ohm_m",
         "area_mm2"
@@ -28,7 +40,10 @@
     },
     "trace": {
       "symbol": "symbols/iec/trace.svg",
-      "label": "PCB trace",
+      "label": {
+        "en": "PCB trace",
+        "fr": "Piste de circuit imprimé"
+      },
       "requires": [
         "rho_ohm_m",
         "width_mm",
@@ -37,7 +52,10 @@
     },
     "contact": {
       "symbol": "symbols/iec/contact.svg",
-      "label": "Contact",
+      "label": {
+        "en": "Contact",
+        "fr": "Contact"
+      },
       "requires": [
         "r_lumped_ohm"
       ]
@@ -69,7 +87,10 @@
         "alpha_per_c"
       ],
       "default": false,
-      "label": "Copper temperature coefficient"
+      "label": {
+        "en": "Copper temperature coefficient",
+        "fr": "Coefficient de température du cuivre"
+      }
     }
   },
   "capabilities": {

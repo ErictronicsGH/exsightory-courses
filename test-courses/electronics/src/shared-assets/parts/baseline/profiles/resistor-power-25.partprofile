@@ -2,7 +2,10 @@
   "profile": "resistor-power-25",
   "class": "resistor",
   "variant": "fixed",
-  "display_name": "Resistor (typical 25 W aluminium-clad, chassis-mounted)",
+  "display_name": {
+    "en": "Resistor (typical 25 W aluminium-clad, chassis-mounted)",
+    "fr": "Résistance (typique, 25 W à boîtier aluminium, sur châssis)"
+  },
   "provenance": {
     "typical": true
   },
@@ -52,7 +55,7 @@
       "confidence": "typical"
     },
     "alpha": {
-      "value": 0.00003,
+      "value": 3e-05,
       "unit": "1/°C",
       "conditions": {
         "t_a_c": 25
@@ -99,7 +102,8 @@
     "mode": "open",
     "confidence": "typical",
     "note": {
-      "en": "The element fuses, as it does in any wirewound. The thermal mass of the casting is why it takes half a minute rather than ten seconds to get there."
+      "en": "The element fuses, as it does in any wirewound. The thermal mass of the casting is why it takes half a minute rather than ten seconds to get there.",
+      "fr": "L’élément fond, comme dans toute résistance bobinée. C’est la masse thermique du boîtier moulé qui fait qu’il lui faut une demi-minute plutôt que dix secondes pour y arriver."
     }
   },
   "demonstration": {
@@ -107,14 +111,16 @@
       {
         "bind": "overpower",
         "label": {
-          "en": "Power dissipation against rating"
+          "en": "Power dissipation against rating",
+          "fr": "Puissance dissipée par rapport à la valeur nominale"
         },
         "quantity": "p",
         "visual": {
           "treatment": "heat"
         },
         "teaching_point": {
-          "en": "The rating on the label is the chassis's as much as the resistor's. Bolted down this part takes 25 W; loose on the bench it takes about six, and nothing about the resistor has changed."
+          "en": "The rating on the label is the chassis's as much as the resistor's. Bolted down this part takes 25 W; loose on the bench it takes about six, and nothing about the resistor has changed.",
+          "fr": "La valeur nominale de l’étiquette est autant celle du châssis que celle de la résistance. Boulonné, ce composant tient 25 W ; posé librement sur la table, environ six, et rien n’a changé dans la résistance."
         }
       }
     ],
@@ -128,7 +134,8 @@
       "replace"
     ],
     "availability": {
-      "en": "The standard dummy load for bench work — a clad wirewound and a bolt. It is the part you reach for when you want to take real current out of a supply and watch what the supply does about it."
+      "en": "The standard dummy load for bench work — a clad wirewound and a bolt. It is the part you reach for when you want to take real current out of a supply and watch what the supply does about it.",
+      "fr": "La charge fictive classique du travail de laboratoire — une bobinée sous boîtier et un boulon. C’est le composant qu’on prend quand on veut tirer un vrai courant d’une alimentation et observer ce qu’elle en fait."
     }
   },
   "pcb": {

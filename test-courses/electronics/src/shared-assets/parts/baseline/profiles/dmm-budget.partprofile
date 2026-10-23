@@ -2,7 +2,10 @@
   "profile": "dmm-budget",
   "class": "dmm",
   "variant": "handheld",
-  "display_name": "Budget DMM (3½ digit)",
+  "display_name": {
+    "en": "Budget DMM (3½ digit)",
+    "fr": "Multimètre d’entrée de gamme (3½ chiffres)"
+  },
   "provenance": {
     "typical": true
   },
@@ -69,7 +72,8 @@
       {
         "bind": "input_loading",
         "label": {
-          "en": "Input impedance loading"
+          "en": "Input impedance loading",
+          "fr": "Charge due à l’impédance d’entrée"
         },
         "enables_axis": "input_loading",
         "quantity": "v",
@@ -77,20 +81,23 @@
           "treatment": "none"
         },
         "teaching_point": {
-          "en": "10 MΩ across a 1 MΩ divider pulls the reading down by nearly a tenth. The measurement is wrong because you measured it."
+          "en": "10 MΩ across a 1 MΩ divider pulls the reading down by nearly a tenth. The measurement is wrong because you measured it.",
+          "fr": "10 MΩ en parallèle sur un diviseur de 1 MΩ font baisser la mesure de près d’un dixième. La valeur est fausse parce que vous l’avez mesurée."
         }
       },
       {
         "bind": "resolution_versus_accuracy",
         "label": {
-          "en": "Resolution against accuracy"
+          "en": "Resolution against accuracy",
+          "fr": "Résolution face à l’exactitude"
         },
         "quantity": "v",
         "visual": {
           "treatment": "none"
         },
         "teaching_point": {
-          "en": "Three and a half digits of display and ± 0.5 % ± 2 counts of accuracy are different claims. The last digit is not guaranteed."
+          "en": "Three and a half digits of display and ± 0.5 % ± 2 counts of accuracy are different claims. The last digit is not guaranteed.",
+          "fr": "Trois chiffres et demi d’affichage et une exactitude de ± 0.5 % ± 2 points sont deux affirmations différentes. Le dernier chiffre n’est pas garanti."
         }
       }
     ],
@@ -104,7 +111,8 @@
       "substitute"
     ],
     "availability": {
-      "en": "Any handheld meter you can buy is this instrument. 10 MΩ on the DC volts ranges is near-universal — it is what the input divider is built from — and it is written on the back of the meter, under the ranges, where almost nobody reads it. Three and a half digits and ± 0.5 % ± 2 counts is the accuracy that goes with it."
+      "en": "Any handheld meter you can buy is this instrument. 10 MΩ on the DC volts ranges is near-universal — it is what the input divider is built from — and it is written on the back of the meter, under the ranges, where almost nobody reads it. Three and a half digits and ± 0.5 % ± 2 counts is the accuracy that goes with it.",
+      "fr": "Tout multimètre portatif du commerce est cet instrument. 10 MΩ sur les calibres de tension continue, c’est quasi universel — c’est la valeur dont est fait le diviseur d’entrée — et c’est écrit au dos de l’appareil, sous les calibres, là où presque personne ne le lit. Trois chiffres et demi et ± 0.5 % ± 2 points, c’est l’exactitude qui va avec."
     }
   }
 }

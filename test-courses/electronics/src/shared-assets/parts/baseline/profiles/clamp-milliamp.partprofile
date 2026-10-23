@@ -2,7 +2,10 @@
   "profile": "clamp-milliamp",
   "class": "current-clamp",
   "variant": "handheld",
-  "display_name": "Milliamp clamp (2 A)",
+  "display_name": {
+    "en": "Milliamp clamp (2 A)",
+    "fr": "Pince milliampèremétrique (2 A)"
+  },
   "provenance": {
     "typical": true
   },
@@ -27,7 +30,7 @@
       "confidence": "typical"
     },
     "resolution_a": {
-      "value": 0.00001,
+      "value": 1e-05,
       "unit": "A",
       "conditions": {
         "note": "the last displayed digit, 2 A range"
@@ -71,7 +74,8 @@
       "substitute"
     ],
     "availability": {
-      "en": "The same instrument in every way that touches the circuit — which is none of them — and a different instrument in the only way that matters here. Ten microamps of resolution and a floor at a hundred: fit it in place of the 100 A jaw and the branch that was reading nothing reads a number, while the circuit underneath does not move by so much as a digit."
+      "en": "The same instrument in every way that touches the circuit — which is none of them — and a different instrument in the only way that matters here. Ten microamps of resolution and a floor at a hundred: fit it in place of the 100 A jaw and the branch that was reading nothing reads a number, while the circuit underneath does not move by so much as a digit.",
+      "fr": "Le même instrument en tout ce qui touche au circuit — c’est-à-dire en rien — et un instrument différent sur le seul point qui compte ici. Dix microampères de résolution et un seuil à cent : montez-la à la place de la mâchoire de 100 A et la branche qui n’affichait rien affiche une valeur, tandis que le circuit en dessous ne bouge pas d’un seul chiffre."
     }
   }
 }

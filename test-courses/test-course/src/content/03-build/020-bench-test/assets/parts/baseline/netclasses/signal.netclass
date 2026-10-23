@@ -1,10 +1,14 @@
 {
   "netclass": "signal",
-  "label": "Signal",
+  "label": {
+    "en": "Signal",
+    "fr": "Signal"
+  },
   "permitted_rise_c": 10,
   "placement": "external",
   "copper_oz": 1,
   "note": {
-    "en": "The default for anything that carries information rather than power. Ten degrees is the rise almost every board is designed to, and one ounce is what a two-layer board is etched on unless somebody asked for otherwise — so this is the class a net belongs to when nobody has thought about it yet, and it is deliberately the one that makes a milliamp look comfortable and an amp look wrong."
+    "en": "The default for anything that carries information rather than power. Ten degrees is the rise almost every board is designed to, and one ounce is what a two-layer board is etched on unless somebody asked for otherwise — so this is the class a net belongs to when nobody has thought about it yet, and it is deliberately the one that makes a milliamp look comfortable and an amp look wrong.",
+    "fr": "La classe par défaut pour tout ce qui transporte de l’information plutôt que de la puissance. Dix degrés est l’échauffement pour lequel presque toutes les cartes sont conçues, et une once est le cuivre d’une carte double face sauf demande contraire — c’est donc la classe d’un réseau auquel personne n’a encore réfléchi, et c’est volontairement celle qui fait paraître un milliampère confortable et un ampère déraisonnable."
   }
 }

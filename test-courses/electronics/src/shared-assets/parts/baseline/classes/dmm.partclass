@@ -1,6 +1,9 @@
 {
   "class": "dmm",
-  "label": "Digital multimeter",
+  "label": {
+    "en": "Digital multimeter",
+    "fr": "Multimètre numérique"
+  },
   "designator": "M",
   "category": "measuring",
   "instrument": true,
@@ -12,13 +15,19 @@
   "terminals": [
     {
       "id": "hi",
-      "label": "input HI",
+      "label": {
+        "en": "input HI",
+        "fr": "entrée HI"
+      },
       "role": "input_high",
       "signal": "input"
     },
     {
       "id": "lo",
-      "label": "input LO",
+      "label": {
+        "en": "input LO",
+        "fr": "entrée LO"
+      },
       "role": "input_low",
       "signal": "reference"
     }
@@ -26,11 +35,17 @@
   "variants": {
     "handheld": {
       "symbol": "symbols/iec/dmm.svg",
-      "label": "Handheld"
+      "label": {
+        "en": "Handheld",
+        "fr": "Portatif"
+      }
     },
     "bench": {
       "symbol": "symbols/iec/dmm-bench.svg",
-      "label": "Bench"
+      "label": {
+        "en": "Bench",
+        "fr": "De laboratoire"
+      }
     }
   },
   "fast_model": {
@@ -56,14 +71,20 @@
         "r_in_v_mode"
       ],
       "default": false,
-      "label": "Input impedance loading"
+      "label": {
+        "en": "Input impedance loading",
+        "fr": "Charge due à l’impédance d’entrée"
+      }
     },
     "burden": {
       "requires": [
         "r_burden_i_mode"
       ],
       "default": false,
-      "label": "Burden voltage"
+      "label": {
+        "en": "Burden voltage",
+        "fr": "Chute de tension d’insertion"
+      }
     }
   },
   "capabilities": {

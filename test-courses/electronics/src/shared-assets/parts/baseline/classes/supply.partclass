@@ -1,6 +1,9 @@
 {
   "class": "supply",
-  "label": "Bench supply",
+  "label": {
+    "en": "Bench supply",
+    "fr": "Alimentation de laboratoire"
+  },
   "designator": "V",
   "category": "sources",
   "instrument": true,
@@ -10,13 +13,19 @@
   "terminals": [
     {
       "id": "p",
-      "label": "positive",
+      "label": {
+        "en": "positive",
+        "fr": "positive"
+      },
       "role": "positive",
       "signal": "power"
     },
     {
       "id": "n",
-      "label": "negative",
+      "label": {
+        "en": "negative",
+        "fr": "négative"
+      },
       "role": "negative",
       "signal": "reference"
     }
@@ -24,7 +33,10 @@
   "variants": {
     "linear": {
       "symbol": "symbols/iec/supply.svg",
-      "label": "Linear bench supply"
+      "label": {
+        "en": "Linear bench supply",
+        "fr": "Alimentation linéaire de laboratoire"
+      }
     }
   },
   "fast_model": {
@@ -52,20 +64,29 @@
         "r_out"
       ],
       "default": false,
-      "label": "Output impedance"
+      "label": {
+        "en": "Output impedance",
+        "fr": "Impédance de sortie"
+      }
     },
     "tempco": {
       "requires": [
         "alpha"
       ],
       "default": false,
-      "label": "Output drift with temperature"
+      "label": {
+        "en": "Output drift with temperature",
+        "fr": "Dérive de la sortie avec la température"
+      }
     }
   },
   "capabilities": {
     "adjust": {
       "parameter": "v_oc",
-      "legend": "Output voltage",
+      "legend": {
+        "en": "Output voltage",
+        "fr": "Tension de sortie"
+      },
       "from": 0,
       "to": {
         "limit": "v_v",

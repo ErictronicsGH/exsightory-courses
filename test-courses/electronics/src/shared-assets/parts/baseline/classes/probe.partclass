@@ -1,25 +1,37 @@
 {
   "class": "probe",
-  "label": "Scope probe",
+  "label": {
+    "en": "Scope probe",
+    "fr": "Sonde d’oscilloscope"
+  },
   "designator": "VP",
   "category": "measuring",
   "attachment": "touch",
   "terminals": [
     {
       "id": "tip",
-      "label": "tip",
+      "label": {
+        "en": "tip",
+        "fr": "pointe"
+      },
       "role": "terminal",
       "signal": "input"
     },
     {
       "id": "ref",
-      "label": "reference clip",
+      "label": {
+        "en": "reference clip",
+        "fr": "pince de référence"
+      },
       "role": "input_low",
       "signal": "reference"
     },
     {
       "id": "lead",
-      "label": "lead to the instrument",
+      "label": {
+        "en": "lead to the instrument",
+        "fr": "cordon vers l’instrument"
+      },
       "role": "terminal",
       "signal": "output"
     }
@@ -27,7 +39,10 @@
   "variants": {
     "passive": {
       "symbol": "symbols/iec/probe.svg",
-      "label": "Passive probe"
+      "label": {
+        "en": "Passive probe",
+        "fr": "Sonde passive"
+      }
     }
   },
   "fast_model": {

@@ -1,17 +1,26 @@
 {
   "stackup": "fr4-6layer",
-  "label": "1.6 mm FR-4, six layers, ground either side of the inner signals",
+  "label": {
+    "en": "1.6 mm FR-4, six layers, ground either side of the inner signals",
+    "fr": "FR-4 1.6 mm, six couches, masse de part et d’autre des signaux internes"
+  },
   "external": {
-    "reference": ["L2 — solid ground plane"],
+    "reference": [
+      "L2 — solid ground plane"
+    ],
     "dielectric_constant": 4.3,
     "dielectric_height_mm": 0.2
   },
   "internal": {
-    "reference": ["L2 — solid ground plane", "L4 — solid ground plane"],
+    "reference": [
+      "L2 — solid ground plane",
+      "L4 — solid ground plane"
+    ],
     "dielectric_constant": 4.3,
     "dielectric_height_mm": 0.2
   },
   "note": {
-    "en": "A conventional six-layer board: signal, ground, signal, ground, signal, signal, on 1.6 mm FR-4. Two hundred microns of prepreg is what puts an outer trace one dielectric from L2, and it is the number the whole of controlled impedance turns on — halve it and every track on the board has to be half as wide to stay at the same impedance. Epsilon-r 4.3 is FR-4 at low frequency; it falls towards 4.0 by a gigahertz, which is one of several reasons a real board is measured rather than only computed."
+    "en": "A conventional six-layer board: signal, ground, signal, ground, signal, signal, on 1.6 mm FR-4. Two hundred microns of prepreg is what puts an outer trace one dielectric from L2, and it is the number the whole of controlled impedance turns on — halve it and every track on the board has to be half as wide to stay at the same impedance. Epsilon-r 4.3 is FR-4 at low frequency; it falls towards 4.0 by a gigahertz, which is one of several reasons a real board is measured rather than only computed.",
+    "fr": "Une carte six couches classique : signal, masse, signal, masse, signal, signal, sur FR-4 de 1.6 mm. Deux cents microns de préimprégné, c’est ce qui place une piste externe à un diélectrique de L2, et c’est le nombre dont dépend toute l’impédance contrôlée — divisez-le par deux et chaque piste de la carte doit être deux fois plus étroite pour garder la même impédance. Un epsilon-r de 4.3, c’est le FR-4 à basse fréquence ; il descend vers 4.0 au gigahertz, ce qui est l’une des raisons pour lesquelles une vraie carte se mesure au lieu de seulement se calculer."
   }
 }

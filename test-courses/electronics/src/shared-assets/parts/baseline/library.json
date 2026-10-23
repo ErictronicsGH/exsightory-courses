@@ -1,7 +1,7 @@
 {
   "id": "insight-baseline",
   "name": "INSIGHT baseline components",
-  "version": "1.14.0",
+  "version": "1.15.0",
   "author": "ExSight Africa",
   "licence": "Proprietary — ships with INSIGHT.",
   "licensing": {
@@ -17,6 +17,7 @@
     "classes/diode.partclass",
     "classes/mosfet.partclass",
     "classes/thermistor.partclass",
+    "classes/photoresistor.partclass",
     "classes/dmm.partclass",
     "classes/conductor.partclass",
     "classes/supply.partclass",
@@ -40,6 +41,7 @@
     "profiles/mosfet-typical.partprofile",
     "profiles/thermistor-ntc-10k.partprofile",
     "profiles/rtd-pt100.partprofile",
+    "profiles/photoresistor-5528.partprofile",
     "profiles/dmm-budget.partprofile",
     "profiles/dmm-bench.partprofile",
     "profiles/wire-cu-awg24.partprofile",
@@ -70,6 +72,7 @@
   ],
   "symbols": [
     "symbols/ansi/resistor.svg",
+    "symbols/ansi/photoresistor.svg",
     "symbols/ansi/thermistor.svg",
     "symbols/iec/capacitor-polarised.svg",
     "symbols/iec/capacitor.svg",
@@ -82,6 +85,7 @@
     "symbols/iec/led.svg",
     "symbols/iec/mosfet-n.svg",
     "symbols/iec/mosfet-p.svg",
+    "symbols/iec/photoresistor.svg",
     "symbols/iec/probe.svg",
     "symbols/iec/resistor.svg",
     "symbols/iec/supply.svg",

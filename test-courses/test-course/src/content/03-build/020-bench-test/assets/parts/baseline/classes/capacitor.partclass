@@ -1,18 +1,27 @@
 {
   "class": "capacitor",
-  "label": "Capacitor",
+  "label": {
+    "en": "Capacitor",
+    "fr": "Condensateur"
+  },
   "designator": "C",
   "category": "passives",
   "terminals": [
     {
       "id": "a",
-      "label": "terminal A",
+      "label": {
+        "en": "terminal A",
+        "fr": "borne A"
+      },
       "role": "terminal",
       "signal": "bidirectional"
     },
     {
       "id": "b",
-      "label": "terminal B",
+      "label": {
+        "en": "terminal B",
+        "fr": "borne B"
+      },
       "role": "terminal",
       "signal": "bidirectional"
     }
@@ -20,15 +29,24 @@
   "variants": {
     "ceramic": {
       "symbol": "symbols/iec/capacitor.svg",
-      "label": "Ceramic"
+      "label": {
+        "en": "Ceramic",
+        "fr": "Céramique"
+      }
     },
     "electrolytic": {
       "symbol": "symbols/iec/capacitor-polarised.svg",
-      "label": "Electrolytic"
+      "label": {
+        "en": "Electrolytic",
+        "fr": "Électrolytique"
+      }
     },
     "film": {
       "symbol": "symbols/iec/capacitor.svg",
-      "label": "Film"
+      "label": {
+        "en": "Film",
+        "fr": "Film"
+      }
     }
   },
   "fast_model": {
@@ -54,21 +72,30 @@
         "curve:c-vs-vdc"
       ],
       "default": false,
-      "label": "Capacitance versus DC bias"
+      "label": {
+        "en": "Capacitance versus DC bias",
+        "fr": "Capacité en fonction de la polarisation continue"
+      }
     },
     "esr": {
       "requires": [
         "esr"
       ],
       "default": false,
-      "label": "Series resistance"
+      "label": {
+        "en": "Series resistance",
+        "fr": "Résistance série"
+      }
     },
     "tempco": {
       "requires": [
         "alpha"
       ],
       "default": false,
-      "label": "Temperature coefficient"
+      "label": {
+        "en": "Temperature coefficient",
+        "fr": "Coefficient de température"
+      }
     },
     "tolerance": {
       "requires": [
@@ -76,13 +103,19 @@
         "c_max"
       ],
       "default": false,
-      "label": "Tolerance spread"
+      "label": {
+        "en": "Tolerance spread",
+        "fr": "Dispersion dans la tolérance"
+      }
     }
   },
   "capabilities": {
     "adjust": {
       "parameter": "c",
-      "legend": "Capacitance",
+      "legend": {
+        "en": "Capacitance",
+        "fr": "Capacité"
+      },
       "from": 1e-12,
       "to": {
         "parameter": "c_dial_max"

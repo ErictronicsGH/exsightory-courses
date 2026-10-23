@@ -1,6 +1,9 @@
 {
   "netclass": "hs-signal",
-  "label": "Fast signal, uncontrolled",
+  "label": {
+    "en": "Fast signal, uncontrolled",
+    "fr": "Signal rapide, non contrôlé"
+  },
   "permitted_rise_c": 10,
   "placement": "external",
   "copper_oz": 1,
@@ -14,6 +17,7 @@
     }
   },
   "note": {
-    "en": "A push-pull signal with no impedance specification — SPI, a chip select, a reset line. This is where the critical-length question is the real one: nobody has asked this net to be fifty ohms, so what matters is whether the run is long enough, at the edge actually driving it, for any of that to matter at all. Short, it is a piece of wire. Long, it is a transmission line, and the divisor above is somebody's opinion about how much ringing is acceptable rather than a fact about physics."
+    "en": "A push-pull signal with no impedance specification — SPI, a chip select, a reset line. This is where the critical-length question is the real one: nobody has asked this net to be fifty ohms, so what matters is whether the run is long enough, at the edge actually driving it, for any of that to matter at all. Short, it is a piece of wire. Long, it is a transmission line, and the divisor above is somebody's opinion about how much ringing is acceptable rather than a fact about physics.",
+    "fr": "Un signal push-pull sans spécification d’impédance — SPI, une sélection de boîtier, une ligne de réinitialisation. C’est ici que la question de la longueur critique est la vraie : personne n’a demandé à ce réseau de faire cinquante ohms, donc ce qui compte, c’est de savoir si le tracé est assez long, au front qui le pilote réellement, pour que tout cela ait la moindre importance. Court, c’est un bout de fil. Long, c’est une ligne de transmission, et le diviseur ci-dessus est l’opinion de quelqu’un sur la quantité d’oscillations acceptable plutôt qu’un fait physique."
   }
 }

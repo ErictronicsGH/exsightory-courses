@@ -1,6 +1,9 @@
 {
   "class": "ammeter",
-  "label": "Ammeter",
+  "label": {
+    "en": "Ammeter",
+    "fr": "Ampèremètre"
+  },
   "designator": "A",
   "category": "measuring",
   "instrument": true,
@@ -11,13 +14,19 @@
   "terminals": [
     {
       "id": "hi",
-      "label": "input HI",
+      "label": {
+        "en": "input HI",
+        "fr": "entrée HI"
+      },
       "role": "input_high",
       "signal": "bidirectional"
     },
     {
       "id": "lo",
-      "label": "input LO",
+      "label": {
+        "en": "input LO",
+        "fr": "entrée LO"
+      },
       "role": "input_low",
       "signal": "bidirectional"
     }
@@ -25,7 +34,10 @@
   "variants": {
     "bench": {
       "symbol": "symbols/iec/ammeter.svg",
-      "label": "Bench ammeter"
+      "label": {
+        "en": "Bench ammeter",
+        "fr": "Ampèremètre de laboratoire"
+      }
     }
   },
   "fast_model": {
@@ -47,13 +59,19 @@
         "r_burden_i_mode"
       ],
       "default": false,
-      "label": "Burden voltage"
+      "label": {
+        "en": "Burden voltage",
+        "fr": "Chute de tension d’insertion"
+      }
     }
   },
   "capabilities": {
     "adjust": {
       "parameter": "r_burden_i_mode",
-      "legend": "Shunt resistance",
+      "legend": {
+        "en": "Shunt resistance",
+        "fr": "Résistance du shunt"
+      },
       "from": 0.01,
       "to": {
         "parameter": "r_burden_max"

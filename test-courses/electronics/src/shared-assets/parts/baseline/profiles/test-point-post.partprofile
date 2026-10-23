@@ -2,7 +2,10 @@
   "profile": "test-point-post",
   "class": "test-point",
   "variant": "post",
-  "display_name": "Test point",
+  "display_name": {
+    "en": "Test point",
+    "fr": "Point de test"
+  },
   "provenance": {
     "typical": true
   },
@@ -16,7 +19,8 @@
     "panes": [],
     "interactions": [],
     "availability": {
-      "en": "A place on a net with a name on it. It carries no current, dissipates nothing and changes no reading — what it is for is being somewhere a probe can be sent, by a presenter who can say where out loud and a room that can see where it went."
+      "en": "A place on a net with a name on it. It carries no current, dissipates nothing and changes no reading — what it is for is being somewhere a probe can be sent, by a presenter who can say where out loud and a room that can see where it went.",
+      "fr": "Un endroit d’un nœud qui porte un nom. Il ne conduit aucun courant, ne dissipe rien et ne change aucune mesure — il sert à être un lieu où l’on peut envoyer une sonde, pour un présentateur qui peut dire où à voix haute et une salle qui voit où elle est allée."
     }
   }
 }

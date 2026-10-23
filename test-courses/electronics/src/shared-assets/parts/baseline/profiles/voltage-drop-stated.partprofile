@@ -2,7 +2,10 @@
   "profile": "voltage-drop-stated",
   "class": "voltage-drop",
   "variant": "callout",
-  "display_name": "Stated voltage",
+  "display_name": {
+    "en": "Stated voltage",
+    "fr": "Tension indiquée"
+  },
   "provenance": {
     "typical": true
   },
@@ -28,7 +31,8 @@
     "panes": [],
     "interactions": [],
     "availability": {
-      "en": "Nothing to buy and nothing to fit. It is a designer saying what the voltage at a point ought to be, and the resistors on that net are what the bench then works out."
+      "en": "Nothing to buy and nothing to fit. It is a designer saying what the voltage at a point ought to be, and the resistors on that net are what the bench then works out.",
+      "fr": "Rien à acheter, rien à monter. C’est un concepteur qui dit ce que devrait être la tension en un point, et ce sont les résistances de ce nœud que le banc calcule ensuite."
     }
   }
 }

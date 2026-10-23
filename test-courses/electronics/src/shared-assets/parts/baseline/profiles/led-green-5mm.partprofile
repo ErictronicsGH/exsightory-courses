@@ -2,7 +2,10 @@
   "profile": "led-green-5mm",
   "class": "diode",
   "variant": "led",
-  "display_name": "Green LED, 5 mm (typical)",
+  "display_name": {
+    "en": "Green LED, 5 mm (typical)",
+    "fr": "LED verte, 5 mm (typique)"
+  },
   "provenance": {
     "typical": true
   },
@@ -86,7 +89,8 @@
     "mode": "open",
     "confidence": "typical",
     "note": {
-      "en": "An overdriven LED usually fails open: the bond wire or the die gives way, and it goes dark. The trigger has a rating to be a ratio of since library 1.9.0: PD = 62.5 mW, from a representative 5 mm green indicator LED's datasheet (Kingbright WP7113GD, spec DSAE9335, Rev. V.12B, 04/02/2019). Before that \"p_ratio\" had no \"p_w\" to divide by and this part could never fail."
+      "en": "An overdriven LED usually fails open: the bond wire or the die gives way, and it goes dark. The trigger has a rating to be a ratio of since library 1.9.0: PD = 62.5 mW, from a representative 5 mm green indicator LED's datasheet (Kingbright WP7113GD, spec DSAE9335, Rev. V.12B, 04/02/2019). Before that \"p_ratio\" had no \"p_w\" to divide by and this part could never fail.",
+      "fr": "Une LED en surcharge se met en général en circuit ouvert : le fil de liaison ou la puce cède, et elle s’éteint. Depuis la bibliothèque 1.9.0, le déclencheur a une valeur nominale à laquelle se rapporter : PD = 62.5 mW, d’après la fiche technique d’une LED témoin verte de 5 mm représentative (Kingbright WP7113GD, spec DSAE9335, Rev. V.12B, 04/02/2019). Auparavant, « p_ratio » n’avait pas de « p_w » par lequel diviser, et ce composant ne pouvait jamais tomber en panne."
     }
   },
   "emission": {

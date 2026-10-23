@@ -1,0 +1,24 @@
+<!-- Photoresistor (LDR) — ANSI / IEEE Std 315 zigzag with the light it receives, the IEC drawing's two arrows raised clear of the zigzag's peaks. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-52 -26 104 52">
+  <g data-layer="thermal">
+    <rect x="-25.4" y="-9" width="50.8" height="18" rx="1" fill="var(--bench-heat)" stroke="none"/>
+  </g>
+  <g data-layer="flow">
+    <line x1="-50.8" y1="0" x2="-25.4" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="50.8" y1="0" x2="25.4" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g data-layer="body">
+    <polyline points="-25.4,0 -21.17,12 -12.7,-12 -4.23,12 4.23,-12 12.7,12 21.17,-12 25.4,0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="-50.8" y1="0" x2="-25.4" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="50.8" y1="0" x2="25.4" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="-17.90" y1="-23.90" x2="-13.66" y2="-19.66" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <polygon points="-8.00,-14.00 -11.19,-22.13 -16.13,-17.19" fill="var(--bench-symbol)" stroke="none"/>
+    <line x1="-6.90" y1="-23.90" x2="-2.66" y2="-19.66" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <polygon points="3.00,-14.00 -0.19,-22.13 -5.13,-17.19" fill="var(--bench-symbol)" stroke="none"/>
+    <circle data-terminal="a" cx="-50.8" cy="0" r="2.6" fill="var(--bench-terminal)"/>
+    <circle data-terminal="b" cx="50.8" cy="0" r="2.6" fill="var(--bench-terminal)"/>
+  </g>
+  <g data-layer="hitbox">
+    <rect x="-52" y="-26" width="104" height="52" fill="currentColor" opacity="0"/>
+  </g>
+</svg>

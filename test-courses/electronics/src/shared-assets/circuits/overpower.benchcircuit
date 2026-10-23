@@ -3,7 +3,7 @@
   "title": "Turn it up until something gives",
   "seed": 20261012,
   "requires": {
-    "insight-baseline": "1.14.0"
+    "insight-baseline": "1.15.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -87,9 +87,9 @@
   "effects": {},
   "stamp": {
     "v": 1,
-    "source": "sha256:7898e146512934305d62d419bc62bf88d4515a701a5bfb7cd990e29176a62c42",
+    "source": "sha256:8fd638a8abd8f10630fcaf75eaa28a3fd078f8f0c1bc40dd139da68ca19eeb89",
     "libraries": {
-      "insight-baseline": "1.14.0"
+      "insight-baseline": "1.15.0"
     },
     "derived": {
       "targets": [

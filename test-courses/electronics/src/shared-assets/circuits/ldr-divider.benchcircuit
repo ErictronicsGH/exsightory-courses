@@ -3,7 +3,7 @@
   "title": "Light into a voltage",
   "seed": 20261023,
   "requires": {
-    "insight-baseline": "1.14.0"
+    "insight-baseline": "1.15.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -72,9 +72,9 @@
   "effects": {},
   "stamp": {
     "v": 1,
-    "source": "sha256:99f7c866487eb72726381d32ff985bf07324c8fd11b4e368b17718757de40cda",
+    "source": "sha256:4c29e059876748923508443df2a91c0bb95e1589d91d372dd32307e1d46f69ac",
     "libraries": {
-      "insight-baseline": "1.14.0"
+      "insight-baseline": "1.15.0"
     },
     "derived": {
       "targets": [
@@ -113,11 +113,30 @@
           "min": 0,
           "max": 24,
           "step": 1.2
+        },
+        {
+          "id": "LDR1",
+          "label": "LDR1 · LDR",
+          "legend": "Light falling on it",
+          "unit": "lx",
+          "authored": 10,
+          "min": 0,
+          "max": 100,
+          "step": 1
         }
       ],
       "probes": [],
       "leads": [],
-      "demands": [],
+      "demands": [
+        {
+          "id": "mid",
+          "label": "mid",
+          "net": "mid",
+          "min": 0,
+          "max": 5,
+          "step": 0.25
+        }
+      ],
       "locked": {
         "values": [],
         "profiles": []
@@ -165,14 +184,6 @@
         "R1"
       ]
     },
-    "diagnostics": [
-      {
-        "severity": "error",
-        "code": "parts-unknown-class",
-        "message": "No installed library declares the class \"photoresistor\".",
-        "file": "ldr-divider.benchcircuit",
-        "path": "instances.1.class"
-      }
-    ]
+    "diagnostics": []
   }
 }

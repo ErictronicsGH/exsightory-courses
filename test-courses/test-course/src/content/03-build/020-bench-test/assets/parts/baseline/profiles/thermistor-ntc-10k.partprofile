@@ -2,7 +2,10 @@
   "profile": "thermistor-ntc-10k",
   "class": "thermistor",
   "variant": "ntc",
-  "display_name": "NTC thermistor, 10 kΩ at 25 °C",
+  "display_name": {
+    "en": "NTC thermistor, 10 kΩ at 25 °C",
+    "fr": "Thermistance CTN, 10 kΩ à 25 °C"
+  },
   "provenance": {
     "typical": true
   },
@@ -101,7 +104,8 @@
     },
     "confidence": "typical",
     "note": {
-      "en": "An overdriven NTC shifts permanently rather than failing outright, which is worse: it keeps reading, and reads wrong."
+      "en": "An overdriven NTC shifts permanently rather than failing outright, which is worse: it keeps reading, and reads wrong.",
+      "fr": "Une CTN surchargée dérive de façon permanente au lieu de lâcher franchement, ce qui est pire : elle continue d’indiquer une valeur, et une valeur fausse."
     }
   },
   "demonstration": {
@@ -109,7 +113,8 @@
       {
         "bind": "self_heating_error",
         "label": {
-          "en": "Self-heating measurement error"
+          "en": "Self-heating measurement error",
+          "fr": "Erreur de mesure due à l’auto-échauffement"
         },
         "enables_axis": "self_heating",
         "quantity": "t_j",
@@ -117,7 +122,8 @@
           "treatment": "heat"
         },
         "teaching_point": {
-          "en": "The current you measure it with warms it, so the sensor reads its own excitation. Halve the current and the error falls fourfold — which is the whole argument for a low sense current."
+          "en": "The current you measure it with warms it, so the sensor reads its own excitation. Halve the current and the error falls fourfold — which is the whole argument for a low sense current.",
+          "fr": "Le courant qui sert à la mesurer la chauffe, si bien que le capteur lit sa propre excitation. Divisez le courant par deux et l’erreur est divisée par quatre — c’est tout l’argument en faveur d’un faible courant de mesure."
         }
       }
     ],

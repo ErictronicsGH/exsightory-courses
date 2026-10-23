@@ -2,7 +2,10 @@
   "profile": "rtd-pt100",
   "class": "resistor",
   "variant": "fixed",
-  "display_name": "Platinum RTD, Pt100",
+  "display_name": {
+    "en": "Platinum RTD, Pt100",
+    "fr": "Sonde à résistance de platine, Pt100"
+  },
   "provenance": {
     "typical": true
   },
@@ -25,9 +28,10 @@
         "t_a_c": 0
       },
       "source": {
-        "note": "IEC 60751's European curve — 0.385 Ω per °C over the first hundred degrees, which is what makes a tenth of an ohm a quarter of a degree."
+        "document": "IEC 60751, Industrial platinum resistance thermometers and platinum temperature sensors",
+        "note": "IEC 60751 defines the European curve by this number: 0.385 Ω per °C over the first hundred degrees, which is what makes a tenth of an ohm a quarter of a degree. A definition, so stated, and shown to four figures."
       },
-      "confidence": "typical"
+      "confidence": "stated"
     },
     "r_th_ja_c_per_w": {
       "value": 200,
@@ -73,7 +77,8 @@
       {
         "bind": "tempco_drift",
         "label": {
-          "en": "What the sensor is actually reporting"
+          "en": "What the sensor is actually reporting",
+          "fr": "Ce que le capteur indique réellement"
         },
         "enables_axis": "tempco",
         "quantity": "r",
@@ -85,20 +90,23 @@
           "comparison": "the resistance of the leads carrying the measurement"
         },
         "teaching_point": {
-          "en": "The whole instrument is this: 0.385 Ω per °C. A tenth of an ohm is a quarter of a degree, which is why two metres of lead in series with the sensor is not a rounding error — it is the reading."
+          "en": "The whole instrument is this: 0.385 Ω per °C. A tenth of an ohm is a quarter of a degree, which is why two metres of lead in series with the sensor is not a rounding error — it is the reading.",
+          "fr": "Tout l’instrument tient en ceci : 0.385 Ω par °C. Un dixième d’ohm vaut un quart de degré, et c’est pourquoi deux mètres de cordon en série avec le capteur ne sont pas une erreur d’arrondi — c’est la mesure."
         }
       },
       {
         "bind": "overpower",
         "label": {
-          "en": "Self-heating from the excitation current"
+          "en": "Self-heating from the excitation current",
+          "fr": "Auto-échauffement dû au courant d’excitation"
         },
         "quantity": "p",
         "visual": {
           "treatment": "heat"
         },
         "teaching_point": {
-          "en": "A thermometer that heats itself measures itself. At 5 mW/°C, a milliamp through 100 Ω is a fifth of a milliwatt and costs a twentieth of a degree; ten milliamps costs two degrees, and the sensor is now the hottest thing in the bath."
+          "en": "A thermometer that heats itself measures itself. At 5 mW/°C, a milliamp through 100 Ω is a fifth of a milliwatt and costs a twentieth of a degree; ten milliamps costs two degrees, and the sensor is now the hottest thing in the bath.",
+          "fr": "Un thermomètre qui se chauffe lui-même se mesure lui-même. À 5 mW/°C, un milliampère dans 100 Ω représente un cinquième de milliwatt et coûte un vingtième de degré ; dix milliampères coûtent deux degrés, et le capteur devient l’objet le plus chaud du bain."
         }
       }
     ],
@@ -112,7 +120,8 @@
       "replace"
     ],
     "availability": {
-      "en": "Class A and class B elements are stocked everywhere; the class is a tolerance on the same curve."
+      "en": "Class A and class B elements are stocked everywhere; the class is a tolerance on the same curve.",
+      "fr": "Les éléments de classe A et de classe B se trouvent partout ; la classe est une tolérance sur la même courbe."
     }
   },
   "pcb": {

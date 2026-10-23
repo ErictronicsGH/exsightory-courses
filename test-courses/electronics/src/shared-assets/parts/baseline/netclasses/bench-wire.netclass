@@ -1,9 +1,13 @@
 {
   "netclass": "bench-wire",
-  "label": "Bench wiring",
+  "label": {
+    "en": "Bench wiring",
+    "fr": "Câblage de laboratoire"
+  },
   "permitted_rise_c": 30,
   "placement": "external",
   "note": {
-    "en": "Loose wire in free air, which is what everything on a bench is. It states no copper weight, and the absence is the point: wire is round and is sold by cross-section, so asking this class for a trace width is asking a question about a board that is not being built. Thirty degrees is the rise the AWG chassis-wiring tables are drawn at, which is why an AWG 24 lead is rated 3.5 A there and a great deal less on a board."
+    "en": "Loose wire in free air, which is what everything on a bench is. It states no copper weight, and the absence is the point: wire is round and is sold by cross-section, so asking this class for a trace width is asking a question about a board that is not being built. Thirty degrees is the rise the AWG chassis-wiring tables are drawn at, which is why an AWG 24 lead is rated 3.5 A there and a great deal less on a board.",
+    "fr": "Du fil volant à l’air libre, ce qu’est tout ce qui se trouve sur une table de laboratoire. Cette classe n’indique aucune épaisseur de cuivre, et cette absence est voulue : le fil est rond et se vend à la section, si bien que demander à cette classe une largeur de piste, c’est poser une question sur une carte qu’on ne fabrique pas. Trente degrés est l’échauffement auquel sont établies les tables AWG de câblage de châssis, et c’est pourquoi un fil AWG 24 y est donné pour 3.5 A, et pour bien moins sur une carte."
   }
 }

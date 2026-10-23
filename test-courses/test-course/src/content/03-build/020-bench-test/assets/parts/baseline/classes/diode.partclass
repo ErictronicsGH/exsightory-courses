@@ -1,6 +1,9 @@
 {
   "class": "diode",
-  "label": "Diode",
+  "label": {
+    "en": "Diode",
+    "fr": "Diode"
+  },
   "designator": "D",
   "category": "semiconductors",
   "typical": {
@@ -19,13 +22,19 @@
   "terminals": [
     {
       "id": "a",
-      "label": "anode",
+      "label": {
+        "en": "anode",
+        "fr": "anode"
+      },
       "role": "anode",
       "signal": "bidirectional"
     },
     {
       "id": "k",
-      "label": "cathode",
+      "label": {
+        "en": "cathode",
+        "fr": "cathode"
+      },
       "role": "cathode",
       "signal": "bidirectional"
     }
@@ -33,22 +42,34 @@
   "variants": {
     "signal": {
       "symbol": "symbols/iec/diode.svg",
-      "label": "Signal diode"
+      "label": {
+        "en": "Signal diode",
+        "fr": "Diode de signal"
+      }
     },
     "schottky": {
       "symbol": "symbols/iec/diode-schottky.svg",
-      "label": "Schottky"
+      "label": {
+        "en": "Schottky",
+        "fr": "Schottky"
+      }
     },
     "zener": {
       "symbol": "symbols/iec/diode-zener.svg",
-      "label": "Zener",
+      "label": {
+        "en": "Zener",
+        "fr": "Zener"
+      },
       "default_reveals": [
         "breakdown_region"
       ]
     },
     "led": {
       "symbol": "symbols/iec/led.svg",
-      "label": "LED"
+      "label": {
+        "en": "LED",
+        "fr": "LED"
+      }
     }
   },
   "fast_model": {
@@ -89,7 +110,10 @@
   "regions": [
     {
       "id": "breakdown",
-      "label": "Breakdown",
+      "label": {
+        "en": "Breakdown",
+        "fr": "Claquage"
+      },
       "tone": "edge",
       "when": [
         {
@@ -100,7 +124,10 @@
     },
     {
       "id": "forward",
-      "label": "Forward",
+      "label": {
+        "en": "Forward",
+        "fr": "Direct"
+      },
       "tone": "on",
       "when": [
         {
@@ -111,7 +138,10 @@
     },
     {
       "id": "reverse",
-      "label": "Reverse",
+      "label": {
+        "en": "Reverse",
+        "fr": "Inverse"
+      },
       "tone": "off",
       "when": []
     }
@@ -122,28 +152,40 @@
         "is"
       ],
       "default": false,
-      "label": "Reverse leakage"
+      "label": {
+        "en": "Reverse leakage",
+        "fr": "Fuite inverse"
+      }
     },
     "vf_tempco": {
       "requires": [
         "alpha_vf"
       ],
       "default": false,
-      "label": "Forward voltage drift"
+      "label": {
+        "en": "Forward voltage drift",
+        "fr": "Dérive de la tension directe"
+      }
     },
     "junction_cap": {
       "requires": [
         "cjo"
       ],
       "default": false,
-      "label": "Junction capacitance"
+      "label": {
+        "en": "Junction capacitance",
+        "fr": "Capacité de jonction"
+      }
     },
     "recovery": {
       "requires": [
         "tt"
       ],
       "default": false,
-      "label": "Reverse recovery"
+      "label": {
+        "en": "Reverse recovery",
+        "fr": "Recouvrement inverse"
+      }
     }
   },
   "capabilities": {

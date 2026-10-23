@@ -2,7 +2,10 @@
   "profile": "mosfet-typical",
   "class": "mosfet",
   "variant": "nmos",
-  "display_name": "N-channel MOSFET (typical)",
+  "display_name": {
+    "en": "N-channel MOSFET (typical)",
+    "fr": "MOSFET canal N (typique)"
+  },
   "provenance": {
     "typical": true
   },
@@ -93,7 +96,8 @@
       },
       "confidence": "typical",
       "note": {
-        "en": "Ten to ninety per cent, which is how a datasheet quotes it. IBIS quotes its ramp twenty to eighty, and the two are different numbers for the same edge — which is why the band is stored beside the number rather than assumed by whatever reads it."
+        "en": "Ten to ninety per cent, which is how a datasheet quotes it. IBIS quotes its ramp twenty to eighty, and the two are different numbers for the same edge — which is why the band is stored beside the number rather than assumed by whatever reads it.",
+        "fr": "De dix à quatre-vingt-dix pour cent, comme le donne une fiche technique. IBIS donne sa rampe de vingt à quatre-vingts, et ce sont deux nombres différents pour le même front — c’est pourquoi la plage est stockée à côté du nombre plutôt que supposée par ce qui le lit."
       }
     }
   },
@@ -135,7 +139,8 @@
     "mode": "short",
     "confidence": "typical",
     "note": {
-      "en": "An overheated MOSFET usually fails drain-to-source short, which puts the full supply across whatever it was switching."
+      "en": "An overheated MOSFET usually fails drain-to-source short, which puts the full supply across whatever it was switching.",
+      "fr": "Un MOSFET en surchauffe se met en général en court-circuit drain-source, ce qui applique toute l’alimentation à ce qu’il commutait."
     }
   },
   "demonstration": {
@@ -143,7 +148,8 @@
       {
         "bind": "rds_runaway",
         "label": {
-          "en": "On-resistance against junction temperature"
+          "en": "On-resistance against junction temperature",
+          "fr": "Résistance à l’état passant en fonction de la température de jonction"
         },
         "enables_axis": "rds_tempco",
         "quantity": "rds_on",
@@ -151,20 +157,23 @@
           "treatment": "heat"
         },
         "teaching_point": {
-          "en": "Current raises power, power raises temperature, temperature raises resistance, resistance raises power. This is the loop, and it is why real hardware runs away."
+          "en": "Current raises power, power raises temperature, temperature raises resistance, resistance raises power. This is the loop, and it is why real hardware runs away.",
+          "fr": "Le courant augmente la puissance, la puissance augmente la température, la température augmente la résistance, la résistance augmente la puissance. Voilà la boucle, et c’est pourquoi le matériel réel s’emballe."
         }
       },
       {
         "bind": "gate_drive_mismatch",
         "label": {
-          "en": "Gate drive against specified conditions"
+          "en": "Gate drive against specified conditions",
+          "fr": "Commande de grille face aux conditions spécifiées"
         },
         "quantity": "v_gs",
         "visual": {
           "treatment": "hatch"
         },
         "teaching_point": {
-          "en": "On-resistance is specified at 10 V on the gate. Drive it from 3.3 V logic and the stated figure does not apply — which is why so many student projects run hot."
+          "en": "On-resistance is specified at 10 V on the gate. Drive it from 3.3 V logic and the stated figure does not apply — which is why so many student projects run hot.",
+          "fr": "La résistance à l’état passant est spécifiée pour 10 V sur la grille. Commandez-le depuis une logique 3.3 V et la valeur annoncée ne s’applique plus — c’est pourquoi tant de projets d’étudiants chauffent."
         }
       }
     ],

@@ -2,7 +2,10 @@
   "profile": "probe-x10",
   "class": "probe",
   "variant": "passive",
-  "display_name": "×10 probe",
+  "display_name": {
+    "en": "×10 probe",
+    "fr": "Sonde ×10"
+  },
   "provenance": {
     "typical": true
   },
@@ -55,7 +58,8 @@
     "mode": "open",
     "confidence": "typical",
     "note": {
-      "en": "The series arm is a resistor like any other, and past its rating it goes open — which on a probe reads as an instrument that has stopped seeing anything at all."
+      "en": "The series arm is a resistor like any other, and past its rating it goes open — which on a probe reads as an instrument that has stopped seeing anything at all.",
+      "fr": "La branche série est une résistance comme une autre, et au-delà de sa valeur nominale elle s’ouvre — ce qui, sur une sonde, se traduit par un instrument qui ne voit plus rien du tout."
     }
   },
   "demonstration": {
@@ -68,7 +72,8 @@
       "substitute"
     ],
     "availability": {
-      "en": "Ninety megohms in the probe body, dividing against the meter's own ten. The meter honestly reads a tenth and the panel puts the ten back, so the number on the wall is the node's — and the divider underneath it is being loaded ten times more lightly than the bare meter loads it."
+      "en": "Ninety megohms in the probe body, dividing against the meter's own ten. The meter honestly reads a tenth and the panel puts the ten back, so the number on the wall is the node's — and the divider underneath it is being loaded ten times more lightly than the bare meter loads it.",
+      "fr": "Quatre-vingt-dix mégohms dans le corps de la sonde, en diviseur avec les dix du multimètre. Le multimètre lit honnêtement un dixième et le panneau remet le facteur dix, si bien que le nombre affiché au mur est celui du nœud — et le diviseur en dessous est chargé dix fois moins que par le multimètre seul."
     }
   }
 }

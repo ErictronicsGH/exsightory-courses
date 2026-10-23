@@ -1,13 +1,19 @@
 {
   "class": "voltage-drop",
-  "label": "Voltage drop",
+  "label": {
+    "en": "Voltage drop",
+    "fr": "Chute de tension"
+  },
   "designator": "S",
   "category": "annotations",
   "annotation": true,
   "terminals": [
     {
       "id": "at",
-      "label": "at",
+      "label": {
+        "en": "at",
+        "fr": "point"
+      },
       "role": "terminal",
       "signal": "bidirectional"
     }
@@ -15,7 +21,10 @@
   "variants": {
     "callout": {
       "symbol": "symbols/iec/voltage-drop.svg",
-      "label": "Stated voltage"
+      "label": {
+        "en": "Stated voltage",
+        "fr": "Tension indiquée"
+      }
     }
   },
   "fast_model": {

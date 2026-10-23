@@ -2,7 +2,10 @@
   "profile": "ammeter-bench",
   "class": "ammeter",
   "variant": "bench",
-  "display_name": "Bench ammeter (switchable shunt)",
+  "display_name": {
+    "en": "Bench ammeter (switchable shunt)",
+    "fr": "Ampèremètre de laboratoire (shunt commutable)"
+  },
   "provenance": {
     "typical": true
   },
@@ -53,7 +56,8 @@
       {
         "bind": "burden_voltage",
         "label": {
-          "en": "Burden voltage"
+          "en": "Burden voltage",
+          "fr": "Chute de tension d’insertion"
         },
         "enables_axis": "burden",
         "quantity": "v",
@@ -61,7 +65,8 @@
           "treatment": "none"
         },
         "teaching_point": {
-          "en": "An ammeter is a resistor you put in the branch you are measuring. Turn the shunt up and the reading falls — not because the circuit changed its mind, but because the instrument is now a tenth of the circuit."
+          "en": "An ammeter is a resistor you put in the branch you are measuring. Turn the shunt up and the reading falls — not because the circuit changed its mind, but because the instrument is now a tenth of the circuit.",
+          "fr": "Un ampèremètre est une résistance que l’on place dans la branche à mesurer. Augmentez le shunt et la mesure baisse — non que le circuit ait changé d’avis, mais parce que l’instrument représente désormais un dixième du circuit."
         }
       }
     ],
@@ -74,7 +79,8 @@
       "substitute"
     ],
     "availability": {
-      "en": "In the branch, and that is the whole difference. The shunt is on a dial from 10 mΩ to 10 Ω, and every position of it is a trade: a bigger shunt resolves a smaller current and takes more of the voltage that was driving the branch. The clamp beside it takes nothing and cannot see anything small — between them is the reason both are on a bench."
+      "en": "In the branch, and that is the whole difference. The shunt is on a dial from 10 mΩ to 10 Ω, and every position of it is a trade: a bigger shunt resolves a smaller current and takes more of the voltage that was driving the branch. The clamp beside it takes nothing and cannot see anything small — between them is the reason both are on a bench.",
+      "fr": "Dans la branche, et c’est là toute la différence. Le shunt se règle de 10 mΩ à 10 Ω, et chacune de ses positions est un compromis : un shunt plus grand résout un courant plus faible et prélève davantage de la tension qui alimentait la branche. La pince à côté ne prélève rien et ne voit rien de petit — c’est entre les deux que se trouve la raison pour laquelle les deux ont leur place sur un banc."
     }
   }
 }

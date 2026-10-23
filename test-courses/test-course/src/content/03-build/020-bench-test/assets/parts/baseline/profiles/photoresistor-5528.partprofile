@@ -1,0 +1,103 @@
+{
+  "profile": "photoresistor-5528",
+  "class": "photoresistor",
+  "variant": "cds",
+  "display_name": {
+    "en": "LDR Φ5, 10–20 kΩ at 10 lx",
+    "fr": "Photorésistance Φ5, 10–20 kΩ à 10 lx"
+  },
+  "provenance": {
+    "part": "5528-type Φ5 CdS cell",
+    "document": "The Breadboard Bench's market table of CdS cells (market.cds-photoresistors 0.4.0), the Φ5 size, type 5528",
+    "retrieved": "2026-10-12"
+  },
+  "parameters": {
+    "r10": {
+      "value": 14142,
+      "unit": "Ω",
+      "conditions": {
+        "illuminance_lx": 10
+      },
+      "source": {
+        "note": "The geometric centre √(10 000 × 20 000) of the stated band, 10–20 kΩ at 10 lx (illuminant A, 2856 K, after 2 h at 400–600 lx). The Breadboard's 5528 cell takes the same value (market.cds-photoresistors 0.4.0)."
+      },
+      "confidence": "typical"
+    },
+    "r10_min": {
+      "value": 10000,
+      "unit": "Ω",
+      "conditions": {
+        "illuminance_lx": 10
+      },
+      "source": {
+        "note": "The bottom of the stated band at 10 lx."
+      },
+      "confidence": "stated"
+    },
+    "r10_max": {
+      "value": 20000,
+      "unit": "Ω",
+      "conditions": {
+        "illuminance_lx": 10
+      },
+      "source": {
+        "note": "The top of the stated band at 10 lx."
+      },
+      "confidence": "stated"
+    },
+    "gamma": {
+      "value": 0.6,
+      "dimensionless": true,
+      "conditions": {
+        "illuminance_lx": "10 to 100"
+      },
+      "source": {
+        "note": "γ = lg(R10 / R100), the slope of resistance against light between 10 and 100 lx; no tolerance stated."
+      },
+      "confidence": "stated"
+    },
+    "r_dark": {
+      "value": 1000000,
+      "unit": "Ω",
+      "source": {
+        "note": "The stated minimum dark resistance, 10 s after the 10 lx light is switched off, taken by the law as the resistance in the dark (a real cell keeps rising in longer darkness)."
+      },
+      "confidence": "stated",
+      "conditions": {
+        "after_dark_s": 10,
+        "from_illuminance_lx": 10
+      }
+    },
+    "illuminance": {
+      "value": 10,
+      "unit": "lx",
+      "source": {
+        "note": "Where the dial starts: the 10 lx the cell is specified at."
+      },
+      "confidence": "typical",
+      "conditions": {
+        "illuminant": "A (2856 K)"
+      }
+    },
+    "illuminance_dial_max": {
+      "value": 100,
+      "unit": "lx",
+      "source": {
+        "note": "The top of the dial: the datasheet characterises the cell between 10 and 100 lx (R10 and γ) and in the dark, and the bench does not extrapolate past what it states. The end of the knob, not a rating, so a parameter and not in \"limits\"."
+      },
+      "confidence": "stated",
+      "conditions": {
+        "illuminant": "A (2856 K)"
+      }
+    }
+  },
+  "limits": {
+    "absolute_max": {
+      "p_w": 0.1,
+      "v_v": 150
+    },
+    "recommended": {
+      "t_j_c": 70
+    }
+  }
+}

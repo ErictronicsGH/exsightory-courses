@@ -2,7 +2,10 @@
   "profile": "resistor-power",
   "class": "resistor",
   "variant": "fixed",
-  "display_name": "Resistor (typical 5 W, heatsunk)",
+  "display_name": {
+    "en": "Resistor (typical 5 W, heatsunk)",
+    "fr": "Résistance (typique, 5 W, sur dissipateur)"
+  },
   "provenance": {
     "typical": true
   },
@@ -52,7 +55,7 @@
       "confidence": "typical"
     },
     "alpha": {
-      "value": 0.00003,
+      "value": 3e-05,
       "unit": "1/°C",
       "conditions": {
         "t_a_c": 25
@@ -99,7 +102,8 @@
     "mode": "open",
     "confidence": "typical",
     "note": {
-      "en": "A wirewound part opens when the element fuses, and the larger thermal mass is why it takes longer to get there."
+      "en": "A wirewound part opens when the element fuses, and the larger thermal mass is why it takes longer to get there.",
+      "fr": "Une résistance bobinée s’ouvre quand l’élément fond, et sa masse thermique plus grande explique qu’il lui faille plus longtemps pour y arriver."
     }
   },
   "demonstration": {
@@ -107,20 +111,23 @@
       {
         "bind": "overpower",
         "label": {
-          "en": "Power dissipation against rating"
+          "en": "Power dissipation against rating",
+          "fr": "Puissance dissipée par rapport à la valeur nominale"
         },
         "quantity": "p",
         "visual": {
           "treatment": "heat"
         },
         "teaching_point": {
-          "en": "This part and an 0805 can sit at the same fraction of their ratings and be sixty degrees apart. A rating is a thermal statement about a package, not an electrical one about a resistor."
+          "en": "This part and an 0805 can sit at the same fraction of their ratings and be sixty degrees apart. A rating is a thermal statement about a package, not an electrical one about a resistor.",
+          "fr": "Ce composant et une 0805 peuvent être à la même fraction de leur valeur nominale et avoir soixante degrés d’écart. Une valeur nominale est un énoncé thermique sur un boîtier, pas un énoncé électrique sur une résistance."
         }
       },
       {
         "bind": "thermal_settling",
         "label": {
-          "en": "The climb to failure, slowed"
+          "en": "The climb to failure, slowed",
+          "fr": "La montée vers la défaillance, ralentie"
         },
         "quantity": "t_j",
         "transform": {
@@ -135,11 +142,13 @@
           "typical_display": "one second of the part’s own time per ten on the transport",
           "comparison": "the hold time this profile declares before it fails",
           "note": {
-            "en": "The thermal mass is unchanged. Only the clock the room reads it against is stretched."
+            "en": "The thermal mass is unchanged. Only the clock the room reads it against is stretched.",
+            "fr": "La masse thermique est inchangée. Seule l’horloge à laquelle la salle la rapporte est étirée."
           }
         },
         "teaching_point": {
-          "en": "A part that fails three seconds after the rating is crossed fails while somebody is still saying the sentence. Stretched, the room watches the temperature climb and can say where it stops before it does not."
+          "en": "A part that fails three seconds after the rating is crossed fails while somebody is still saying the sentence. Stretched, the room watches the temperature climb and can say where it stops before it does not.",
+          "fr": "Un composant qui lâche trois secondes après le dépassement de sa valeur nominale lâche pendant qu’on est encore en train de finir sa phrase. Au ralenti, la salle voit la température monter et peut dire où elle devrait s’arrêter avant de constater qu’elle ne s’arrête pas."
         }
       }
     ],
@@ -153,7 +162,8 @@
       "replace"
     ],
     "availability": {
-      "en": "5 W wirewound in TO-220 is a stock item; the heatsink is the part people forget to order."
+      "en": "5 W wirewound in TO-220 is a stock item; the heatsink is the part people forget to order.",
+      "fr": "Une bobinée de 5 W en TO-220 est un article courant ; le dissipateur est la pièce qu’on oublie de commander."
     }
   },
   "pcb": {

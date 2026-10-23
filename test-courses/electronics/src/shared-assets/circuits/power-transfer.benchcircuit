@@ -3,7 +3,7 @@
   "title": "The most this supply could ever give",
   "seed": 20261012,
   "requires": {
-    "insight-baseline": "1.14.0"
+    "insight-baseline": "1.15.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -54,9 +54,9 @@
   "effects": {},
   "stamp": {
     "v": 1,
-    "source": "sha256:2f007c76392b60e229b8b123a5470ab492aa5e999e94dc23ba9f5fc3b9f7a0db",
+    "source": "sha256:d5c0a6b2b092d934424b108cd9ed13575462888676abdd661d21244ebdafc969",
     "libraries": {
-      "insight-baseline": "1.14.0"
+      "insight-baseline": "1.15.0"
     },
     "derived": {
       "targets": [

@@ -1,0 +1,95 @@
+{
+  "class": "photoresistor",
+  "label": {
+    "en": "Photoresistor",
+    "fr": "Photorésistance"
+  },
+  "designator": "LDR",
+  "category": "sensors",
+  "terminals": [
+    {
+      "id": "a",
+      "label": {
+        "en": "terminal A",
+        "fr": "borne A"
+      },
+      "role": "terminal",
+      "signal": "bidirectional"
+    },
+    {
+      "id": "b",
+      "label": {
+        "en": "terminal B",
+        "fr": "borne B"
+      },
+      "role": "terminal",
+      "signal": "bidirectional"
+    }
+  ],
+  "variants": {
+    "cds": {
+      "symbol": "symbols/iec/photoresistor.svg",
+      "label": {
+        "en": "CdS cell",
+        "fr": "Cellule CdS"
+      },
+      "alternates": {
+        "ansi": "symbols/ansi/photoresistor.svg"
+      }
+    }
+  },
+  "fast_model": {
+    "equation": "expression",
+    "expression": "v * ((illuminance / 10)^gamma / r10 + step((illuminance / 10)^gamma / r10, 1 / r_dark) * (1 / r_dark - (illuminance / 10)^gamma / r10))",
+    "value_parameter": "r10",
+    "requires": [
+      "r10",
+      "gamma",
+      "r_dark",
+      "illuminance"
+    ],
+    "optional": [],
+    "outputs": [
+      "v",
+      "i",
+      "r",
+      "p"
+    ]
+  },
+  "ideality_axes": {
+    "tolerance": {
+      "requires": [
+        "r10_min",
+        "r10_max"
+      ],
+      "default": false,
+      "label": {
+        "en": "Tolerance spread",
+        "fr": "Dispersion dans la tolérance"
+      }
+    }
+  },
+  "capabilities": {
+    "adjust": {
+      "parameter": "illuminance",
+      "legend": {
+        "en": "Light falling on it",
+        "fr": "Éclairement reçu"
+      },
+      "from": 0,
+      "to": {
+        "parameter": "illuminance_dial_max"
+      },
+      "stops": 100
+    },
+    "panes": [
+      "operating",
+      "ideality"
+    ],
+    "interactions": [
+      "probe",
+      "substitute",
+      "replace"
+    ]
+  }
+}

@@ -1,6 +1,9 @@
 {
   "netclass": "hs-50r",
-  "label": "50 Ω controlled",
+  "label": {
+    "en": "50 Ω controlled",
+    "fr": "50 Ω, impédance contrôlée"
+  },
   "permitted_rise_c": 10,
   "placement": "external",
   "copper_oz": 1,
@@ -10,6 +13,7 @@
     "tolerance_pct": 10
   },
   "note": {
-    "en": "A controlled-impedance net: the fabricator is told what this track has to be and tests that it is. Ten per cent is the tolerance one will normally hold to. On the outer layer of this stack-up fifty ohms is a track about a third of a millimetre wide, which is worth knowing before drawing one half a millimetre wide out of habit. There is deliberately no critical-length rule here: on a net that declares a target, the advice from every source is to stop reasoning about critical length and design to the target instead, and the reading follows that — it says what this track actually is against what it was asked to be."
+    "en": "A controlled-impedance net: the fabricator is told what this track has to be and tests that it is. Ten per cent is the tolerance one will normally hold to. On the outer layer of this stack-up fifty ohms is a track about a third of a millimetre wide, which is worth knowing before drawing one half a millimetre wide out of habit. There is deliberately no critical-length rule here: on a net that declares a target, the advice from every source is to stop reasoning about critical length and design to the target instead, and the reading follows that — it says what this track actually is against what it was asked to be.",
+    "fr": "Un réseau à impédance contrôlée : on indique au fabricant de circuits ce que cette piste doit valoir, et il le vérifie. Dix pour cent est la tolérance qu’il tiendra normalement. Sur la couche externe de cet empilement, cinquante ohms correspondent à une piste d’environ un tiers de millimètre de large, ce qu’il vaut mieux savoir avant d’en dessiner une d’un demi-millimètre par habitude. Il n’y a volontairement pas de règle de longueur critique ici : sur un réseau qui déclare une cible, toutes les sources conseillent de cesser de raisonner en longueur critique et de concevoir pour la cible, et la mesure suit ce conseil — elle indique ce que vaut réellement cette piste au regard de ce qu’on lui demandait."
   }
 }

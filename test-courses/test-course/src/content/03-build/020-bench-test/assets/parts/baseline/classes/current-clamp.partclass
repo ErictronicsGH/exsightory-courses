@@ -1,6 +1,9 @@
 {
   "class": "current-clamp",
-  "label": "Current clamp",
+  "label": {
+    "en": "Current clamp",
+    "fr": "Pince ampèremétrique"
+  },
   "designator": "CP",
   "category": "measuring",
   "instrument": true,
@@ -13,7 +16,10 @@
   "terminals": [
     {
       "id": "jaw",
-      "label": "jaw",
+      "label": {
+        "en": "jaw",
+        "fr": "mâchoire"
+      },
       "role": "terminal",
       "signal": "input"
     }
@@ -21,7 +27,10 @@
   "variants": {
     "handheld": {
       "symbol": "symbols/iec/current-clamp.svg",
-      "label": "Clamp-on"
+      "label": {
+        "en": "Clamp-on",
+        "fr": "À pince"
+      }
     }
   },
   "fast_model": {

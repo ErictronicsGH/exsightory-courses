@@ -1,24 +1,36 @@
 {
   "class": "mosfet",
-  "label": "MOSFET",
+  "label": {
+    "en": "MOSFET",
+    "fr": "MOSFET"
+  },
   "designator": "Q",
   "category": "semiconductors",
   "terminals": [
     {
       "id": "d",
-      "label": "drain",
+      "label": {
+        "en": "drain",
+        "fr": "drain"
+      },
       "role": "drain",
       "signal": "bidirectional"
     },
     {
       "id": "g",
-      "label": "gate",
+      "label": {
+        "en": "gate",
+        "fr": "grille"
+      },
       "role": "gate",
       "signal": "input"
     },
     {
       "id": "s",
-      "label": "source",
+      "label": {
+        "en": "source",
+        "fr": "source"
+      },
       "role": "source",
       "signal": "bidirectional"
     }
@@ -26,11 +38,17 @@
   "variants": {
     "nmos": {
       "symbol": "symbols/iec/mosfet-n.svg",
-      "label": "N-channel"
+      "label": {
+        "en": "N-channel",
+        "fr": "Canal N"
+      }
     },
     "pmos": {
       "symbol": "symbols/iec/mosfet-p.svg",
-      "label": "P-channel"
+      "label": {
+        "en": "P-channel",
+        "fr": "Canal P"
+      }
     }
   },
   "fast_model": {
@@ -92,7 +110,10 @@
   "regions": [
     {
       "id": "cutoff",
-      "label": "Cutoff",
+      "label": {
+        "en": "Cutoff",
+        "fr": "Blocage"
+      },
       "tone": "off",
       "when": [
         {
@@ -103,7 +124,10 @@
     },
     {
       "id": "triode",
-      "label": "Triode",
+      "label": {
+        "en": "Triode",
+        "fr": "Ohmique (triode)"
+      },
       "tone": "on",
       "when": [
         {
@@ -114,7 +138,10 @@
     },
     {
       "id": "saturation",
-      "label": "Saturation",
+      "label": {
+        "en": "Saturation",
+        "fr": "Saturation"
+      },
       "tone": "edge",
       "when": []
     }
@@ -125,14 +152,20 @@
         "alpha_rds"
       ],
       "default": false,
-      "label": "On-resistance versus temperature"
+      "label": {
+        "en": "On-resistance versus temperature",
+        "fr": "Résistance à l’état passant en fonction de la température"
+      }
     },
     "self_heating": {
       "requires": [
         "r_th_ja_c_per_w"
       ],
       "default": false,
-      "label": "Self-heating"
+      "label": {
+        "en": "Self-heating",
+        "fr": "Auto-échauffement"
+      }
     },
     "gate_charge": {
       "requires": [
@@ -140,7 +173,10 @@
         "cgd"
       ],
       "default": false,
-      "label": "Gate capacitance"
+      "label": {
+        "en": "Gate capacitance",
+        "fr": "Capacité de grille"
+      }
     }
   },
   "capabilities": {

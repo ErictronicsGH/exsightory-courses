@@ -2,7 +2,10 @@
   "profile": "supply-bench",
   "class": "supply",
   "variant": "linear",
-  "display_name": "Bench supply (typical linear)",
+  "display_name": {
+    "en": "Bench supply (typical linear)",
+    "fr": "Alimentation de laboratoire (linéaire typique)"
+  },
   "provenance": {
     "typical": true
   },
@@ -33,7 +36,7 @@
       "confidence": "typical"
     },
     "alpha": {
-      "value": -0.00005,
+      "value": -5e-05,
       "unit": "1/°C",
       "conditions": {
         "t_a_c": 25
@@ -71,7 +74,8 @@
       {
         "bind": "output_resistance",
         "label": {
-          "en": "The resistor inside the supply"
+          "en": "The resistor inside the supply",
+          "fr": "La résistance cachée dans l’alimentation"
         },
         "enables_axis": "output_impedance",
         "quantity": "r_out",
@@ -84,17 +88,20 @@
         "context": {
           "comparison": "the load resistance this supply is driving",
           "note": {
-            "en": "Every source has one. A bench supply hides it behind a regulator; a battery wears it on its terminals."
+            "en": "Every source has one. A bench supply hides it behind a regulator; a battery wears it on its terminals.",
+            "fr": "Toute source en a une. Une alimentation de laboratoire la cache derrière un régulateur ; une pile la porte à ses bornes."
           }
         },
         "teaching_point": {
-          "en": "A supply is not a voltage — it is a voltage behind a resistance, and the schematic never draws the resistance. Fifty milliohms is nothing at ten milliamps and half a volt at ten amps."
+          "en": "A supply is not a voltage — it is a voltage behind a resistance, and the schematic never draws the resistance. Fifty milliohms is nothing at ten milliamps and half a volt at ten amps.",
+          "fr": "Une alimentation n’est pas une tension — c’est une tension derrière une résistance, et le schéma ne dessine jamais la résistance. Cinquante milliohms, ce n’est rien à dix milliampères, et c’est un demi-volt à dix ampères."
         }
       },
       {
         "bind": "output_drift",
         "label": {
-          "en": "Output drift with temperature"
+          "en": "Output drift with temperature",
+          "fr": "Dérive de la sortie avec la température"
         },
         "enables_axis": "tempco",
         "quantity": "v_oc",
@@ -102,7 +109,8 @@
           "treatment": "none"
         },
         "teaching_point": {
-          "en": "The rail a whole measurement is referenced to moves with the room. −50 ppm/°C is 0.5 mV on a 10 V rail across a lecture theatre warming up."
+          "en": "The rail a whole measurement is referenced to moves with the room. −50 ppm/°C is 0.5 mV on a 10 V rail across a lecture theatre warming up.",
+          "fr": "Le rail auquel toute une mesure est référencée bouge avec la salle. −50 ppm/°C, c’est 0.5 mV sur un rail de 10 V dans un amphithéâtre qui se réchauffe."
         }
       }
     ],
@@ -115,7 +123,8 @@
       "substitute"
     ],
     "availability": {
-      "en": "Any bench supply with a sense terminal behaves like this. A USB brick does not — its output impedance is an order of magnitude worse and its regulation is a different shape."
+      "en": "Any bench supply with a sense terminal behaves like this. A USB brick does not — its output impedance is an order of magnitude worse and its regulation is a different shape.",
+      "fr": "Toute alimentation de laboratoire dotée d’une borne de mesure à distance (sense) se comporte ainsi. Un bloc d’alimentation USB, non — son impédance de sortie est pire d’un ordre de grandeur et sa régulation a une tout autre allure."
     }
   }
 }

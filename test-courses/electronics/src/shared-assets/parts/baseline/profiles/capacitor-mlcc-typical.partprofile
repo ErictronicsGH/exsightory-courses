@@ -2,13 +2,16 @@
   "profile": "capacitor-mlcc-typical",
   "class": "capacitor",
   "variant": "ceramic",
-  "display_name": "MLCC, X5R (typical)",
+  "display_name": {
+    "en": "MLCC, X5R (typical)",
+    "fr": "MLCC, X5R (typique)"
+  },
   "provenance": {
     "typical": true
   },
   "parameters": {
     "c": {
-      "value": 0.00001,
+      "value": 1e-05,
       "unit": "F",
       "conditions": {
         "t_a_c": 25,
@@ -21,7 +24,7 @@
       "confidence": "typical"
     },
     "c_min": {
-      "value": 0.000009,
+      "value": 9e-06,
       "unit": "F",
       "conditions": {
         "t_a_c": 25,
@@ -34,7 +37,7 @@
       "confidence": "typical"
     },
     "c_max": {
-      "value": 0.000011,
+      "value": 1.1e-05,
       "unit": "F",
       "conditions": {
         "t_a_c": 25,
@@ -100,7 +103,8 @@
     "mode": "short",
     "confidence": "typical",
     "note": {
-      "en": "An over-voltage ceramic punches through and fails short, which puts the supply straight into whatever it was decoupling."
+      "en": "An over-voltage ceramic punches through and fails short, which puts the supply straight into whatever it was decoupling.",
+      "fr": "Un condensateur céramique en surtension est perforé et se met en court-circuit, ce qui envoie l’alimentation directement dans ce qu’il découplait."
     }
   },
   "demonstration": {
@@ -111,7 +115,8 @@
       {
         "bind": "bias_collapse",
         "label": {
-          "en": "Capacitance under DC bias"
+          "en": "Capacitance under DC bias",
+          "fr": "Capacité sous polarisation continue"
         },
         "enables_axis": "bias_derating",
         "quantity": "c_effective",
@@ -121,11 +126,13 @@
         "context": {
           "comparison": "10 µF on the packet",
           "note": {
-            "en": "The derating curve is in every X5R datasheet."
+            "en": "The derating curve is in every X5R datasheet.",
+            "fr": "La courbe de déclassement figure dans toutes les fiches techniques X5R."
           }
         },
         "teaching_point": {
-          "en": "A 10 µF X5R at half its rated voltage is nearer 5 µF, and at its rating nearer 2. Decisive in a supply filter, invisible in every simulator."
+          "en": "A 10 µF X5R at half its rated voltage is nearer 5 µF, and at its rating nearer 2. Decisive in a supply filter, invisible in every simulator.",
+          "fr": "Un X5R de 10 µF à la moitié de sa tension nominale fait plutôt 5 µF, et à sa tension nominale plutôt 2. Décisif dans un filtre d’alimentation, invisible dans tous les simulateurs."
         }
       }
     ],

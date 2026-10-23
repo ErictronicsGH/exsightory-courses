@@ -2,7 +2,10 @@
   "profile": "contact-breadboard",
   "class": "conductor",
   "variant": "contact",
-  "display_name": "Breadboard contact",
+  "display_name": {
+    "en": "Breadboard contact",
+    "fr": "Contact de plaque d’essai"
+  },
   "provenance": {
     "typical": true
   },
@@ -35,14 +38,16 @@
       {
         "bind": "contact_variability",
         "label": {
-          "en": "Contact resistance, and how much it varies"
+          "en": "Contact resistance, and how much it varies",
+          "fr": "Résistance de contact, et sa variabilité"
         },
         "quantity": "r",
         "visual": {
           "treatment": "hatch"
         },
         "teaching_point": {
-          "en": "A breadboard contact is between 10 mΩ and half an ohm, and which one it is today is not knowable. That is why a prototype works intermittently and the schematic never explains it."
+          "en": "A breadboard contact is between 10 mΩ and half an ohm, and which one it is today is not knowable. That is why a prototype works intermittently and the schematic never explains it.",
+          "fr": "Un contact de plaque d’essai fait entre 10 mΩ et un demi-ohm, et impossible de savoir lequel aujourd’hui. C’est pourquoi un prototype fonctionne par intermittence sans que le schéma l’explique jamais."
         }
       }
     ],

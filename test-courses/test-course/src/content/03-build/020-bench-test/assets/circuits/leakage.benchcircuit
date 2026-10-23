@@ -3,7 +3,7 @@
   "title": "A diode that is switched off, and still conducting",
   "seed": 20261010,
   "requires": {
-    "insight-baseline": "1.14.0"
+    "insight-baseline": "1.15.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -87,9 +87,9 @@
   "effects": {},
   "stamp": {
     "v": 1,
-    "source": "sha256:8e247a2f0e659d8f83684fce697043721861180c4c35e597f919ca1159af51dd",
+    "source": "sha256:e2cec42e134041a824b96c5da03216263a6834a7881b4c888b3c47fcd50180e0",
     "libraries": {
-      "insight-baseline": "1.14.0"
+      "insight-baseline": "1.15.0"
     },
     "derived": {
       "targets": [

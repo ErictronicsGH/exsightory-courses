@@ -3,7 +3,7 @@
   "title": "A capacitor charged through a resistor",
   "seed": 20261008,
   "requires": {
-    "insight-baseline": "1.14.0"
+    "insight-baseline": "1.15.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -75,9 +75,9 @@
   "effects": {},
   "stamp": {
     "v": 1,
-    "source": "sha256:edb557000b49c95bee33c408f9e926b14830dcea72ccbeb8a75129936014cfc4",
+    "source": "sha256:0bdddabc413abc4524d04bd26af14b8be69f014ee710a423926125aaf3473385",
     "libraries": {
-      "insight-baseline": "1.14.0"
+      "insight-baseline": "1.15.0"
     },
     "derived": {
       "targets": [

@@ -2,13 +2,16 @@
   "profile": "diode-typical",
   "class": "diode",
   "variant": "signal",
-  "display_name": "Small-signal diode (typical)",
+  "display_name": {
+    "en": "Small-signal diode (typical)",
+    "fr": "Diode petit signal (typique)"
+  },
   "provenance": {
     "typical": true
   },
   "parameters": {
     "is": {
-      "value": 2.5e-9,
+      "value": 2.5e-09,
       "unit": "A",
       "conditions": {
         "t_a_c": 25
@@ -96,7 +99,8 @@
     "mode": "short",
     "confidence": "typical",
     "note": {
-      "en": "A punched-through junction usually fails short, which is far more dangerous downstream than an open."
+      "en": "A punched-through junction usually fails short, which is far more dangerous downstream than an open.",
+      "fr": "Une jonction perforée se met en général en court-circuit, ce qui est bien plus dangereux en aval qu’un circuit ouvert."
     }
   },
   "demonstration": {
@@ -104,7 +108,8 @@
       {
         "bind": "reverse_leakage",
         "label": {
-          "en": "Reverse leakage current"
+          "en": "Reverse leakage current",
+          "fr": "Courant de fuite inverse"
         },
         "enables_axis": "leakage",
         "quantity": "i_r",
@@ -121,17 +126,20 @@
           "typical_display": "≈ 2.5 nA at 25 °C — this profile’s saturation current",
           "comparison": "forward current in this circuit",
           "note": {
-            "en": "Leakage roughly doubles every 10 °C. A datasheet quotes nearer 25 nA at 20 V, because most of a real diode’s reverse current creeps across the surface and no saturation-current model has it."
+            "en": "Leakage roughly doubles every 10 °C. A datasheet quotes nearer 25 nA at 20 V, because most of a real diode’s reverse current creeps across the surface and no saturation-current model has it.",
+            "fr": "La fuite double à peu près tous les 10 °C. Une fiche technique annonce plutôt 25 nA sous 20 V, car l’essentiel du courant inverse d’une diode réelle chemine en surface, et aucun modèle de courant de saturation n’en tient compte."
           }
         },
         "teaching_point": {
-          "en": "Reverse current is real, not zero. Negligible in a rectifier; decisive in a sample-and-hold or a long-integration front end."
+          "en": "Reverse current is real, not zero. Negligible in a rectifier; decisive in a sample-and-hold or a long-integration front end.",
+          "fr": "Le courant inverse est réel, pas nul. Négligeable dans un redresseur ; décisif dans un échantillonneur-bloqueur ou un étage d’entrée à longue intégration."
         }
       },
       {
         "bind": "vf_temp_drift",
         "label": {
-          "en": "Forward voltage against temperature"
+          "en": "Forward voltage against temperature",
+          "fr": "Tension directe en fonction de la température"
         },
         "enables_axis": "vf_tempco",
         "quantity": "v_f",
@@ -139,7 +147,8 @@
           "treatment": "none"
         },
         "teaching_point": {
-          "en": "−2 mV/°C is why a diode makes a usable thermometer and a poor voltage reference."
+          "en": "−2 mV/°C is why a diode makes a usable thermometer and a poor voltage reference.",
+          "fr": "−2 mV/°C : voilà pourquoi une diode fait un thermomètre utilisable et une piètre référence de tension."
         }
       }
     ],

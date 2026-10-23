@@ -1,18 +1,27 @@
 {
   "class": "resistor",
-  "label": "Resistor",
+  "label": {
+    "en": "Resistor",
+    "fr": "Résistance"
+  },
   "designator": "R",
   "category": "passives",
   "terminals": [
     {
       "id": "a",
-      "label": "terminal A",
+      "label": {
+        "en": "terminal A",
+        "fr": "borne A"
+      },
       "role": "terminal",
       "signal": "bidirectional"
     },
     {
       "id": "b",
-      "label": "terminal B",
+      "label": {
+        "en": "terminal B",
+        "fr": "borne B"
+      },
       "role": "terminal",
       "signal": "bidirectional"
     }
@@ -20,7 +29,10 @@
   "variants": {
     "fixed": {
       "symbol": "symbols/iec/resistor.svg",
-      "label": "Fixed resistor",
+      "label": {
+        "en": "Fixed resistor",
+        "fr": "Résistance fixe"
+      },
       "alternates": {
         "ansi": "symbols/ansi/resistor.svg"
       }
@@ -62,7 +74,10 @@
         "alpha"
       ],
       "default": false,
-      "label": "Temperature coefficient"
+      "label": {
+        "en": "Temperature coefficient",
+        "fr": "Coefficient de température"
+      }
     },
     "tolerance": {
       "requires": [
@@ -70,20 +85,29 @@
         "r_max"
       ],
       "default": false,
-      "label": "Tolerance spread"
+      "label": {
+        "en": "Tolerance spread",
+        "fr": "Dispersion dans la tolérance"
+      }
     },
     "self_heating": {
       "requires": [
         "r_th_ja_c_per_w"
       ],
       "default": false,
-      "label": "Self-heating"
+      "label": {
+        "en": "Self-heating",
+        "fr": "Auto-échauffement"
+      }
     }
   },
   "capabilities": {
     "adjust": {
       "parameter": "r",
-      "legend": "Resistance",
+      "legend": {
+        "en": "Resistance",
+        "fr": "Résistance"
+      },
       "from": 1,
       "to": {
         "parameter": "r_dial_max"

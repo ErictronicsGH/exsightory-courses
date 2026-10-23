@@ -3,7 +3,7 @@
   "title": "A divider whose midpoint is stated, not computed",
   "seed": 1,
   "requires": {
-    "insight-baseline": "1.14.0"
+    "insight-baseline": "1.15.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -83,9 +83,9 @@
   "effects": {},
   "stamp": {
     "v": 1,
-    "source": "sha256:64c8ae9724bc388eeaee2f0eb7a9c18518e826bdc6e613656b60f9a5e44138c9",
+    "source": "sha256:7277ad121e3baf5420f05a79325cd0f41f1bbf39927149105ad75879e676ed04",
     "libraries": {
-      "insight-baseline": "1.14.0"
+      "insight-baseline": "1.15.0"
     },
     "derived": {
       "targets": [

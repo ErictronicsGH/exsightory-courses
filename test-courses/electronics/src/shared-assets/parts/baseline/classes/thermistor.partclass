@@ -1,18 +1,27 @@
 {
   "class": "thermistor",
-  "label": "Thermistor",
+  "label": {
+    "en": "Thermistor",
+    "fr": "Thermistance"
+  },
   "designator": "RT",
   "category": "sensors",
   "terminals": [
     {
       "id": "a",
-      "label": "terminal A",
+      "label": {
+        "en": "terminal A",
+        "fr": "borne A"
+      },
       "role": "terminal",
       "signal": "bidirectional"
     },
     {
       "id": "b",
-      "label": "terminal B",
+      "label": {
+        "en": "terminal B",
+        "fr": "borne B"
+      },
       "role": "terminal",
       "signal": "bidirectional"
     }
@@ -20,7 +29,10 @@
   "variants": {
     "ntc": {
       "symbol": "symbols/iec/thermistor.svg",
-      "label": "NTC",
+      "label": {
+        "en": "NTC",
+        "fr": "CTN"
+      },
       "alternates": {
         "ansi": "symbols/ansi/thermistor.svg"
       }
@@ -50,7 +62,10 @@
         "r_th_ja_c_per_w"
       ],
       "default": false,
-      "label": "Self-heating error"
+      "label": {
+        "en": "Self-heating error",
+        "fr": "Erreur d’auto-échauffement"
+      }
     },
     "tolerance": {
       "requires": [
@@ -58,13 +73,19 @@
         "r0_max"
       ],
       "default": false,
-      "label": "Tolerance spread"
+      "label": {
+        "en": "Tolerance spread",
+        "fr": "Dispersion dans la tolérance"
+      }
     }
   },
   "capabilities": {
     "adjust": {
       "parameter": "r0",
-      "legend": "Resistance at 25 °C",
+      "legend": {
+        "en": "Resistance at 25 °C",
+        "fr": "Résistance à 25 °C"
+      },
       "from": 10,
       "to": {
         "parameter": "r0_dial_max"
