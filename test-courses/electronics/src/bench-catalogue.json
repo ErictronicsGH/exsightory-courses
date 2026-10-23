@@ -4,7 +4,7 @@
     {
       "name": "@exsight/bench-electronics",
       "kind": "bench",
-      "version": "0.2.0",
+      "version": "0.2.2",
       "path": "benches/electronics",
       "description": "The Electronics Bench: the schematic simulation. Its engine (the solver, the circuit schema, the analyses) is its own package beside it, @exsight/electronics-engine (B007); this package is the bench a player frames (its views and run, one Vue bundle speaking contract 1.0, with the library it carries: E·a-ii; the wall's state E·a-iii, the editor E·a-iv) and the .benchcircuit work: its JSON Schema and the stamp a compiler reads instead of running the engine (E·a-i).",
       "needs": {
@@ -819,9 +819,9 @@
         "esbuild": "0.28.2"
       },
       "release": {
-        "version": "0.2.0",
-        "at": "2026-10-22T01:18:46.056Z",
-        "digest": "sha256:fbe22fe22ca77dd0c06d79241d4c7188873a5c4d7f7c683b9e8fa7dd0307c2bd"
+        "version": "0.2.2",
+        "at": "2026-10-23T10:32:39.358Z",
+        "digest": "sha256:a60e4a4f08419b974d89fc7189196c19c613d037565907885f8ec524a4a0bffa"
       },
       "listed": true,
       "listing": {
@@ -1151,6 +1151,22 @@
         }
       },
       "changes": [
+        {
+          "version": "0.2.2",
+          "at": "2026-10-23T10:32:39.358Z",
+          "note": {
+            "en": "A view the player does not offer is absent, not drawn shut (B074, crossing 668 §2): Scope's preview,view draws no Edit; one offered that this frame cannot open yet (following the room) is drawn shut, saying when; contract 1.3",
+            "fr": "Une vue que le lecteur n'offre pas est absente, non dessinée fermée (B074) : sans Édition sous l'aperçu et la vue de Scope ; une vue offerte que ce cadre ne peut pas encore ouvrir est dessinée fermée, en disant quand"
+          }
+        },
+        {
+          "version": "0.2.1",
+          "at": "2026-10-23T08:08:17.352Z",
+          "note": {
+            "en": "Its panes are a script of their own (E·a-ii-d): Measure, Full View, the IV tool and the Equivalent, with their computations, are bench-panes.js and bench-panes.css, fetched the first time one of them is opened. The first load is 324,605 B gzipped, was 346,220 (budget 326,000, was 347,000); the panes are 26 KB gzipped when first opened. Nothing else changes: the same contract, work and views.",
+            "fr": "Ses panneaux sont un script à part (E·a-ii-d) : Mesure, Vue complète, l'outil IV et l'Équivalent, avec leurs calculs, sont bench-panes.js et bench-panes.css, chargés la première fois que l'un d'eux est ouvert. Le premier chargement est de 324 605 o compressés, au lieu de 346 220 (budget 326 000, au lieu de 347 000) ; les panneaux font 26 Ko compressés à leur première ouverture. Rien d'autre ne change : le même contrat, le même travail et les mêmes vues."
+          }
+        },
         {
           "version": "0.2.0",
           "at": "2026-10-22T01:18:46.056Z",

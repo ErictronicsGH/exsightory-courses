@@ -20,16 +20,16 @@
     {
       "name": "@exsight/bench-draw",
       "kind": "bench",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "path": "benches/draw",
       "description": "The Draw Bench: a drawing the room watches being made, step by step, and the editor it is made in. Its arithmetic is @exsight/draw-engine (B023); this package is the bench a player frames (the viewer for Preview and View, the editor as Authoring, one Vue bundle speaking contract 1.1), and the .benchdrawing work: its JSON Schema and the stamp a compiler reads instead of running the bench (E·draw).",
       "needs": {
         "packages": {
-          "@exsight/bench-contract": "^1.0.0",
+          "@exsight/bench-contract": "^1.2.0",
           "@exsight/bench-kit": "^0.1.0",
           "@exsight/draw-engine": "0.2.1"
         },
-        "contract": "^1.1.0",
+        "contract": "^1.2.0",
         "kit": "^0.1.0"
       },
       "classes": [],
@@ -3813,9 +3813,9 @@
         "ajv": "8.20.0"
       },
       "release": {
-        "version": "0.1.2",
-        "at": "2026-10-21T21:08:26.317Z",
-        "digest": "sha256:9cacb0bec04b10a0555a823d28df8d7206462330c131426db21fff7e9b1e40c7"
+        "version": "0.1.3",
+        "at": "2026-10-23T10:33:17.126Z",
+        "digest": "sha256:c73b5c35ad03cd5af2e599df0a875d3e99aadda4480031e43b061666641c9980"
       },
       "listed": true,
       "listing": {
@@ -3918,7 +3918,7 @@
           "authoring"
         ],
         "runsIn": {
-          "contract": "^1.1.0",
+          "contract": "^1.2.0",
           "scope": true,
           "phone": true
         },
@@ -4178,6 +4178,14 @@
       },
       "changes": [
         {
+          "version": "0.1.3",
+          "at": "2026-10-23T10:33:17.126Z",
+          "note": {
+            "en": "Contract 1.2 (B071c): a player sends the bench its look; the tests and drives read the test courses where they now live",
+            "fr": "Contrat 1.2 (B071c) : le lecteur envoie son apparence au banc ; les tests et parcours lisent les cours de test là où ils sont"
+          }
+        },
+        {
           "version": "0.1.2",
           "at": "2026-10-21T21:08:26.317Z",
           "note": {
@@ -4207,7 +4215,7 @@
     {
       "name": "@exsight/bench-electronics",
       "kind": "bench",
-      "version": "0.2.0",
+      "version": "0.2.2",
       "path": "benches/electronics",
       "description": "The Electronics Bench: the schematic simulation. Its engine (the solver, the circuit schema, the analyses) is its own package beside it, @exsight/electronics-engine (B007); this package is the bench a player frames (its views and run, one Vue bundle speaking contract 1.0, with the library it carries: E·a-ii; the wall's state E·a-iii, the editor E·a-iv) and the .benchcircuit work: its JSON Schema and the stamp a compiler reads instead of running the engine (E·a-i).",
       "needs": {
@@ -5022,9 +5030,9 @@
         "esbuild": "0.28.2"
       },
       "release": {
-        "version": "0.2.0",
-        "at": "2026-10-22T01:18:46.056Z",
-        "digest": "sha256:fbe22fe22ca77dd0c06d79241d4c7188873a5c4d7f7c683b9e8fa7dd0307c2bd"
+        "version": "0.2.2",
+        "at": "2026-10-23T10:32:39.358Z",
+        "digest": "sha256:a60e4a4f08419b974d89fc7189196c19c613d037565907885f8ec524a4a0bffa"
       },
       "listed": true,
       "listing": {
@@ -5355,6 +5363,22 @@
       },
       "changes": [
         {
+          "version": "0.2.2",
+          "at": "2026-10-23T10:32:39.358Z",
+          "note": {
+            "en": "A view the player does not offer is absent, not drawn shut (B074, crossing 668 §2): Scope's preview,view draws no Edit; one offered that this frame cannot open yet (following the room) is drawn shut, saying when; contract 1.3",
+            "fr": "Une vue que le lecteur n'offre pas est absente, non dessinée fermée (B074) : sans Édition sous l'aperçu et la vue de Scope ; une vue offerte que ce cadre ne peut pas encore ouvrir est dessinée fermée, en disant quand"
+          }
+        },
+        {
+          "version": "0.2.1",
+          "at": "2026-10-23T08:08:17.352Z",
+          "note": {
+            "en": "Its panes are a script of their own (E·a-ii-d): Measure, Full View, the IV tool and the Equivalent, with their computations, are bench-panes.js and bench-panes.css, fetched the first time one of them is opened. The first load is 324,605 B gzipped, was 346,220 (budget 326,000, was 347,000); the panes are 26 KB gzipped when first opened. Nothing else changes: the same contract, work and views.",
+            "fr": "Ses panneaux sont un script à part (E·a-ii-d) : Mesure, Vue complète, l'outil IV et l'Équivalent, avec leurs calculs, sont bench-panes.js et bench-panes.css, chargés la première fois que l'un d'eux est ouvert. Le premier chargement est de 324 605 o compressés, au lieu de 346 220 (budget 326 000, au lieu de 347 000) ; les panneaux font 26 Ko compressés à leur première ouverture. Rien d'autre ne change : le même contrat, le même travail et les mêmes vues."
+          }
+        },
+        {
           "version": "0.2.0",
           "at": "2026-10-22T01:18:46.056Z",
           "note": {
@@ -5384,7 +5408,7 @@
     {
       "name": "@exsight/bench-equation",
       "kind": "bench",
-      "version": "0.2.0",
+      "version": "0.2.1",
       "path": "benches/equation",
       "description": "The Equation Bench: an equation a room reads together (its symbols, its working, its worked examples, a driven source on an instrument) and the plot beside it. Founded in E·eq-a with its arithmetic (sampling, fits, the simulated source, the graph, the block's shape; the ticks and run clock are the kit's) and its two works, .benchequation and .benchplot: their JSON Schemas and the stamp a compiler reads instead of running the bench, the equation's and the plot's checks and the equation's derived facts carried from insight-core's registry. Its views are a frame bundle (E·eq-b: Preview and View, KaTeX's fonts as files beside it); its Authoring, the equation lab, follows (E·eq-c), and nothing is released before it.",
       "needs": {
@@ -6715,8 +6739,8 @@
         "esbuild": "0.28.2"
       },
       "release": {
-        "version": "0.2.0",
-        "at": "2026-10-22T22:04:20.369Z",
+        "version": "0.2.1",
+        "at": "2026-10-23T10:24:24.360Z",
         "digest": "sha256:281532b32d173f4cb2301f2b460b7237dbe9f068b8e16f8355be2f4e8fea3888"
       },
       "listed": true,
@@ -7001,6 +7025,14 @@
       },
       "changes": [
         {
+          "version": "0.2.1",
+          "at": "2026-10-23T10:24:24.360Z",
+          "note": {
+            "en": "Rebuilt over the kit's token sheet as Studio's is now (8b43ab84: --ux-weight-regular retired with the old Draw editor); its own source is 0.2.0's",
+            "fr": "Reconstruit sur la feuille de jetons du kit telle qu'est celle de Studio (8b43ab84 : --ux-weight-regular retiré avec l'ancien éditeur Draw) ; sa source est celle de la 0.2.0"
+          }
+        },
+        {
           "version": "0.2.0",
           "at": "2026-10-22T22:04:20.369Z",
           "note": {
@@ -7038,7 +7070,7 @@
     {
       "name": "@exsight/bench-figure",
       "kind": "bench",
-      "version": "0.2.0",
+      "version": "0.2.2",
       "path": "benches/figure",
       "description": "The Figure Bench: a picture whose parts are named, numbered and driven. Its arithmetic is @exsight/figure-engine (B026); this package is the bench a player frames (its viewer and its Authoring, the figure lab, one Vue bundle speaking contract 1.0), and the .benchfigure work: its JSON Schema and the stamp a compiler reads instead of running the bench (E·fig3d).",
       "needs": {
@@ -7935,9 +7967,9 @@
         "esbuild": "0.28.2"
       },
       "release": {
-        "version": "0.2.0",
-        "at": "2026-10-22T12:36:47.556Z",
-        "digest": "sha256:454df7ee724357d7972f79daf8f1d0730db35b7a24d229fabe97d7b06d3ccb8a"
+        "version": "0.2.2",
+        "at": "2026-10-23T10:34:54.761Z",
+        "digest": "sha256:b5b5f202d106c97bf61e55ee2ebde7d428a3e7c0a18cce48855cded5e3f525a9"
       },
       "listed": true,
       "listing": {
@@ -8240,6 +8272,22 @@
       },
       "changes": [
         {
+          "version": "0.2.2",
+          "at": "2026-10-23T10:34:54.761Z",
+          "note": {
+            "en": "The kit's token sheet as Studio's is now (--ux-weight-regular retired); capture-compiled reads the test courses where they now live",
+            "fr": "La feuille de jetons du kit telle qu'est celle de Studio (--ux-weight-regular retiré) ; capture-compiled lit les cours de test là où ils sont"
+          }
+        },
+        {
+          "version": "0.2.1",
+          "at": "2026-10-22T17:39:43.668Z",
+          "note": {
+            "en": "Rebuilt over the kit's Vue host and host-work (R4b-iii: a still at a moment, for a bench built at 1.4); source unchanged. It speaks ^1.2.0, so it is asked for no moment, and plays as 0.2.0 did.",
+            "fr": "Reconstruit sur l'hôte Vue et le host-work du kit (R4b-iii : une image à un moment, pour un banc construit en 1.4) ; source inchangée. Il parle ^1.2.0 : aucun moment ne lui est demandé, et il joue comme la 0.2.0."
+          }
+        },
+        {
           "version": "0.2.0",
           "at": "2026-10-22T12:36:47.556Z",
           "note": {
@@ -8293,7 +8341,7 @@
     {
       "name": "@exsight/bench-model",
       "kind": "bench",
-      "version": "0.2.0",
+      "version": "0.2.2",
       "path": "benches/model",
       "description": "The 3D Bench: a model you take apart in front of the room, its parts named, hinged, measured, sectioned and exploded. Its arithmetic is @exsight/model-engine (B029); this package is the bench a player frames (its viewer and its Authoring, the model lab, one Vue bundle speaking contract 1.0), and the .benchmodel work: its JSON Schema and the stamp a compiler reads instead of running the bench or parsing its mesh (E·fig3d).",
       "needs": {
@@ -9037,9 +9085,9 @@
         "esbuild": "0.28.2"
       },
       "release": {
-        "version": "0.2.0",
-        "at": "2026-10-22T12:37:04.368Z",
-        "digest": "sha256:a3893a308c881f3f69ba2856de27048d7511707cf1c0e8712294b82e0c369f74"
+        "version": "0.2.2",
+        "at": "2026-10-23T10:35:10.832Z",
+        "digest": "sha256:2b9800e1e839cf2dce3d35dc1b93efb32eb3aabc9d5b58bb29a993131008c68c"
       },
       "listed": true,
       "listing": {
@@ -9341,6 +9389,22 @@
         }
       },
       "changes": [
+        {
+          "version": "0.2.2",
+          "at": "2026-10-23T10:35:10.832Z",
+          "note": {
+            "en": "The kit's token sheet as Studio's is now (--ux-weight-regular retired); capture-compiled reads the test courses where they now live",
+            "fr": "La feuille de jetons du kit telle qu'est celle de Studio (--ux-weight-regular retiré) ; capture-compiled lit les cours de test là où ils sont"
+          }
+        },
+        {
+          "version": "0.2.1",
+          "at": "2026-10-22T17:40:00.863Z",
+          "note": {
+            "en": "Rebuilt over the kit's Vue host and host-work (R4b-iii: a still at a moment, for a bench built at 1.4); source unchanged. It speaks ^1.2.0, so it is asked for no moment, and plays as 0.2.0 did.",
+            "fr": "Reconstruit sur l'hôte Vue et le host-work du kit (R4b-iii : une image à un moment, pour un banc construit en 1.4) ; source inchangée. Il parle ^1.2.0 : aucun moment ne lui est demandé, et il joue comme la 0.2.0."
+          }
+        },
         {
           "version": "0.2.0",
           "at": "2026-10-22T12:37:04.368Z",
