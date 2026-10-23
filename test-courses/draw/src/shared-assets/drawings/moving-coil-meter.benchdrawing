@@ -181,5 +181,38 @@
       "say": "Switch the current off, and the hairspring swings the pointer back to zero",
       "play": ["zero"]
     }
-  ]
+  ],
+  "stamp": {
+    "v": 1,
+    "source": "sha256:ce186ed04571b909d744edc02ed597bfb00f8f715106527cb80246c2b244706e",
+    "derived": {
+      "steps": [
+        {
+          "id": "frame",
+          "say": "The axis, and the circle the pole faces are shaped to"
+        },
+        {
+          "id": "poles",
+          "say": "A permanent magnet: north on the left, south on the right"
+        },
+        {
+          "id": "coil",
+          "say": "A soft-iron core, and the coil wound round it"
+        },
+        {
+          "id": "pointer",
+          "say": "The pointer turns with the coil, and the construction circle goes"
+        },
+        {
+          "id": "spring",
+          "say": "A hairspring opposes the turn, so the pointer settles where its torque balances the coil's"
+        },
+        {
+          "id": "zero",
+          "say": "Switch the current off, and the hairspring swings the pointer back to zero"
+        }
+      ]
+    },
+    "diagnostics": []
+  }
 }

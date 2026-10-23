@@ -109,5 +109,26 @@
       "say": "Load the free end: the beam bends, and the top face stretches the gauge",
       "draw": ["force", "label-force", "bent"]
     }
-  ]
+  ],
+  "stamp": {
+    "v": 1,
+    "source": "sha256:38df1607323083637649b75e36288b228a17a108a89e8daaa923c1f302341456",
+    "derived": {
+      "steps": [
+        {
+          "id": "beam",
+          "say": "A beam held at one end"
+        },
+        {
+          "id": "gauge",
+          "say": "A strain gauge bonded to its top face, its grid along the beam"
+        },
+        {
+          "id": "load",
+          "say": "Load the free end: the beam bends, and the top face stretches the gauge"
+        }
+      ]
+    },
+    "diagnostics": []
+  }
 }

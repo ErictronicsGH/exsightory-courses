@@ -87,5 +87,26 @@
       "say": "The oscillation stays inside its envelope, touching it once every half-cycle",
       "draw": ["wave"]
     }
-  ]
+  ],
+  "stamp": {
+    "v": 1,
+    "source": "sha256:8057b1b8b57a9de23324bb7d7994efaf037b80ffa153c2009c4165158e21c678",
+    "derived": {
+      "steps": [
+        {
+          "id": "axis",
+          "say": "Time runs to the right"
+        },
+        {
+          "id": "envelope",
+          "say": "The envelope: the amplitude falls by the same fraction in every equal interval of time"
+        },
+        {
+          "id": "wave",
+          "say": "The oscillation stays inside its envelope, touching it once every half-cycle"
+        }
+      ]
+    },
+    "diagnostics": []
+  }
 }

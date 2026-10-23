@@ -155,5 +155,30 @@
       "say": "Balance: R3 is adjusted until the galvanometer reads zero",
       "draw": ["meter"]
     }
-  ]
+  ],
+  "stamp": {
+    "v": 1,
+    "source": "sha256:dd3f9fbb86a6ef88066a574321a8c690f6d63a4d4e55ff944833705a35051a89",
+    "derived": {
+      "steps": [
+        {
+          "id": "arms",
+          "say": "Four arms in a ring: three known resistors and the unknown, Rx"
+        },
+        {
+          "id": "supply",
+          "say": "The supply across the top and bottom corners"
+        },
+        {
+          "id": "detector",
+          "say": "A galvanometer across the middle: it reads zero when the bridge balances"
+        },
+        {
+          "id": "balance",
+          "say": "Balance: R3 is adjusted until the galvanometer reads zero"
+        }
+      ]
+    },
+    "diagnostics": []
+  }
 }

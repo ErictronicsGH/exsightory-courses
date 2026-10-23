@@ -11861,5 +11861,54 @@
       "say": "Band 10 of 10",
       "draw": ["band-10"]
     }
-  ]
+  ],
+  "stamp": {
+    "v": 1,
+    "source": "sha256:f7ea2c9e8b9eed21a1d9b14bd03982bc520648b3d4464361b6509cf242455f1d",
+    "derived": {
+      "steps": [
+        {
+          "id": "band-1",
+          "say": "Band 1 of 10"
+        },
+        {
+          "id": "band-2",
+          "say": "Band 2 of 10"
+        },
+        {
+          "id": "band-3",
+          "say": "Band 3 of 10"
+        },
+        {
+          "id": "band-4",
+          "say": "Band 4 of 10"
+        },
+        {
+          "id": "band-5",
+          "say": "Band 5 of 10"
+        },
+        {
+          "id": "band-6",
+          "say": "Band 6 of 10"
+        },
+        {
+          "id": "band-7",
+          "say": "Band 7 of 10"
+        },
+        {
+          "id": "band-8",
+          "say": "Band 8 of 10"
+        },
+        {
+          "id": "band-9",
+          "say": "Band 9 of 10"
+        },
+        {
+          "id": "band-10",
+          "say": "Band 10 of 10"
+        }
+      ]
+    },
+    "diagnostics": []
+  }
 }

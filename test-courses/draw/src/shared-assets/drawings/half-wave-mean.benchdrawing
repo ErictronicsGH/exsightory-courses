@@ -77,5 +77,26 @@
       "say": "A rectangle of the same area over the same time: its height is the mean, two over pi of the peak",
       "draw": ["mean-rect", "label-mean"]
     }
-  ]
+  ],
+  "stamp": {
+    "v": 1,
+    "source": "sha256:347bad1a6b8b7d301eeebb28b1a99324eef17ba3aaf9ce2a6986f6d5352ef9a8",
+    "derived": {
+      "steps": [
+        {
+          "id": "axis",
+          "say": "Time runs to the right"
+        },
+        {
+          "id": "half-cycle",
+          "say": "Half a cycle of a sine, and the area under it"
+        },
+        {
+          "id": "mean",
+          "say": "A rectangle of the same area over the same time: its height is the mean, two over pi of the peak"
+        }
+      ]
+    },
+    "diagnostics": []
+  }
 }

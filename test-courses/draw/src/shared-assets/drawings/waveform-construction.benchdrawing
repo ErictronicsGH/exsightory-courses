@@ -286,5 +286,42 @@
       "in": "linked",
       "pace": "slow"
     }
-  ]
+  ],
+  "stamp": {
+    "v": 1,
+    "source": "sha256:2b500b3a399ce04f674a18362ca25aab9bdbaab2c924a7fa3cce71acc4fc6558",
+    "derived": {
+      "steps": [
+        {
+          "id": "axes",
+          "say": "The axes: time across, voltage up"
+        },
+        {
+          "id": "phasor",
+          "say": "A phasor of length Vm turns in its circle"
+        },
+        {
+          "id": "spokes",
+          "say": "Mark where it points every thirty degrees"
+        },
+        {
+          "id": "project",
+          "say": "Carry each height across to its time"
+        },
+        {
+          "id": "wave",
+          "say": "Join the heights: the sine wave"
+        },
+        {
+          "id": "rewind",
+          "say": "Rub the wave out, and turn the phasor back to the start"
+        },
+        {
+          "id": "turn",
+          "say": "Let it turn: its height, carried across, draws the wave point by point"
+        }
+      ]
+    },
+    "diagnostics": []
+  }
 }

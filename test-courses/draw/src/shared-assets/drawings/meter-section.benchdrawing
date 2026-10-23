@@ -519,5 +519,34 @@
       "draw": ["pivot", "pointer", "scale", "ticks", "label-scale", "label-pointer"],
       "hide": ["centre-h", "centre-v", "face-circle"]
     }
-  ]
+  ],
+  "stamp": {
+    "v": 1,
+    "source": "sha256:86555d7b9307885fcae582f8bbc30ff6c67b7698829e71c1b7b1955f5553cbf7",
+    "derived": {
+      "steps": [
+        {
+          "id": "frame",
+          "say": "The centre lines, and the circle the pole faces are turned to"
+        },
+        {
+          "id": "magnet",
+          "say": "A permanent magnet, its poles shaped to that circle"
+        },
+        {
+          "id": "core",
+          "say": "A soft-iron core fills the middle, leaving an even gap"
+        },
+        {
+          "id": "coil",
+          "say": "The coil lies in the gap: current in on one side, out on the other"
+        },
+        {
+          "id": "pointer",
+          "say": "The coil turns, and carries the pointer across the scale"
+        }
+      ]
+    },
+    "diagnostics": []
+  }
 }

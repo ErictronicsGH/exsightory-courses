@@ -139,5 +139,30 @@
       "draw": ["heat"],
       "hide": ["mounting-plane"]
     }
-  ]
+  ],
+  "stamp": {
+    "v": 1,
+    "source": "sha256:036c3dd28f52d4f0e5e0bb7faf5d90a7dba5f01da874641b0037c9a98de6a029",
+    "derived": {
+      "steps": [
+        {
+          "id": "plane",
+          "say": "The mounting plane, and the heatsink's base on it"
+        },
+        {
+          "id": "fins",
+          "say": "Fins, to give the heat a large surface to leave by"
+        },
+        {
+          "id": "part",
+          "say": "The pass transistor, its metal tab bolted flat against the base"
+        },
+        {
+          "id": "heat",
+          "say": "Its dissipation flows up through the base and out of the fins"
+        }
+      ]
+    },
+    "diagnostics": []
+  }
 }

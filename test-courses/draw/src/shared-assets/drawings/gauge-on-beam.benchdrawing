@@ -280,5 +280,34 @@
       "draw": ["tension", "label-tension", "compression", "label-compression"],
       "hide": ["neutral-axis", "bent-axis"]
     }
-  ]
+  ],
+  "stamp": {
+    "v": 1,
+    "source": "sha256:37caf49b1a66de69e4ad52455c3ca7d90b4ab4b8337175d791ab124c75769e40",
+    "derived": {
+      "steps": [
+        {
+          "id": "beam",
+          "say": "A beam, fixed in a wall at one end"
+        },
+        {
+          "id": "gauge",
+          "say": "A strain gauge bonded to its top face, near the wall"
+        },
+        {
+          "id": "load",
+          "say": "A load at the free end, and the axis of the beam"
+        },
+        {
+          "id": "bend",
+          "say": "The beam bends, and its axis curves down"
+        },
+        {
+          "id": "strain",
+          "say": "The top face stretches and the bottom one squeezes, and the gauge stretches with the top"
+        }
+      ]
+    },
+    "diagnostics": []
+  }
 }
