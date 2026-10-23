@@ -1,7 +1,7 @@
 {
   "kind": "assembly",
   "title": { "en": "Light into a voltage", "fr": "La lumière en tension" },
-  "stage": "@exsight/bench-storyboard@0.3.0",
+  "stage": "@exsight/bench-storyboard@0.4.0",
   "panes": [
     { "id": "lamp", "scene": "@exsight/lib-animation-lamp-and-light-meter@1.1.0", "title": { "en": "The lamp", "fr": "La lampe" } },
     { "id": "circuit", "bench": "@exsight/bench-electronics@0.5.1", "work": "shared/circuits/ldr-divider.benchcircuit",
