@@ -739,6 +739,815 @@
       ]
     },
     {
+      "name": "@exsight/bench-breadboard",
+      "kind": "bench",
+      "version": "0.2.8",
+      "path": "benches/breadboard",
+      "description": "The Breadboard Bench: the physical electronics lab. Its plug-in, its behaviour classes (the switching supply, the resistive-curve sensor, the breadboard), the conductors, the component builders and the CdS market rules; built as a standalone page, a Studio widget and the Component Editor.",
+      "needs": {
+        "packages": {
+          "@exsight/standard": "^0.1.0",
+          "@exsight/bench-contract": "^1.5.0",
+          "@exsight/bench-kit": "^0.1.0",
+          "@exsight/lab-kit": "^0.1.0"
+        },
+        "standard": "^0.1.0",
+        "contract": "^1.5.0",
+        "kit": "^0.1.0",
+        "lab-kit": "^0.1.0"
+      },
+      "classes": [
+        "instrument.dc-supply.switching@1",
+        "sensor.resistive-curve@1",
+        "board.breadboard@1"
+      ],
+      "bundles": {
+        "@exsight/lib-breadboard-boards": "^0.1.0",
+        "@exsight/lib-breadboard-supplies": "^0.1.0",
+        "@exsight/lib-breadboard-photoresistors": "^0.1.0",
+        "@exsight/lib-breadboard-thermistors": "^0.1.0",
+        "@exsight/lib-breadboard-wires-and-leads": "^0.1.0"
+      },
+      "works": [
+        {
+          "ext": "breadboard",
+          "media": "application/json",
+          "maxBytes": 1048576,
+          "title": {
+            "en": "Breadboard build",
+            "fr": "Montage sur plaque"
+          },
+          "challenge": true,
+          "goal": {
+            "name": "breadboard-goal",
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "$id": "https://exsight.example/schema/breadboard-goal.schema.json",
+              "title": "breadboard-goal",
+              "type": "object",
+              "description": "breadboard-goal (B049; crossings 403 §3, 484): what a challenge asks, as measured behaviour, never an answer circuit. parts: the component ids an attempt may hold (the library offers only these; a jumper or a test lead is a conductor, never a part, and is always offered). criteria: each a measurement of one part, by its designator, at a supply setting when given (else the supply's own), its value in SI units (A, V) and its tolerance either way, said in English and French. The bench's pure check (challenge.mjs) solves the attempt and says which are met",
+              "properties": {
+                "parts": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[a-z0-9][a-z0-9_-]*([.][a-z0-9][a-z0-9_-]*)+$"
+                  },
+                  "minItems": 1,
+                  "maxItems": 32
+                },
+                "criteria": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 16,
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "pattern": "^(?!(attempt|parts)$)[a-z][a-z0-9-]{0,63}$"
+                      },
+                      "measure": {
+                        "type": "object",
+                        "properties": {
+                          "quantity": {
+                            "enum": [
+                              "current",
+                              "voltage"
+                            ]
+                          },
+                          "of": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,11}$"
+                          },
+                          "at": {
+                            "type": "object",
+                            "properties": {
+                              "vSet": {
+                                "type": "number",
+                                "minimum": 0,
+                                "maximum": 100
+                              },
+                              "iLim": {
+                                "type": "number",
+                                "exclusiveMinimum": 0,
+                                "maximum": 20
+                              }
+                            },
+                            "required": [
+                              "vSet"
+                            ],
+                            "additionalProperties": false
+                          }
+                        },
+                        "required": [
+                          "quantity",
+                          "of"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "value": {
+                        "type": "number",
+                        "minimum": -1000,
+                        "maximum": 1000
+                      },
+                      "tol": {
+                        "type": "number",
+                        "exclusiveMinimum": 0,
+                        "maximum": 1000
+                      },
+                      "en": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 300
+                      },
+                      "fr": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 300
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "measure",
+                      "value",
+                      "tol",
+                      "en",
+                      "fr"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "parts",
+                "criteria"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      ],
+      "pins": {
+        "three": "0.185.1",
+        "esbuild": "0.28.2"
+      },
+      "release": {
+        "version": "0.2.8",
+        "at": "2026-10-23T21:45:54.770Z",
+        "digest": "sha256:97ee97ed0e721f5644aa3d41f1f84ead8321d43f6d6f4237fb25b440bb3408dc"
+      },
+      "listed": true,
+      "listing": {
+        "$schema": "../../standard/schema/listing.schema.json",
+        "listing": "exsight.listing/0.1",
+        "package": "@exsight/bench-breadboard",
+        "slug": "breadboard",
+        "kind": "bench",
+        "status": "in-progress",
+        "name": {
+          "en": "Breadboard Bench",
+          "fr": "Banc de prototypage"
+        },
+        "summary": {
+          "en": "A physical electronics lab in 3D: a workbench with its supply and meters, a breadboard, and real parts with real leads. Build a circuit hole by hole, switch it on, and watch the voltage and current where they are.",
+          "fr": "Un laboratoire d’électronique en 3D : un établi avec son alimentation et ses appareils de mesure, une plaque d’essai et de vrais composants avec leurs pattes. Montez un circuit trou par trou, mettez-le sous tension, et voyez la tension et le courant là où ils sont."
+        },
+        "purpose": {
+          "en": "A schematic says what a circuit is; a breadboard is where students first get it wrong. This bench puts the board, the leads and the supply in front of the whole room, so the mistakes people make on a real bench (a lead one row off, a part shorted by its own strip, a wire going nowhere) are made, seen and fixed before anyone touches the real thing.",
+          "fr": "Un schéma dit ce qu’est un circuit ; la plaque d’essai est l’endroit où les étudiants se trompent pour la première fois. Ce banc met la plaque, les pattes et l’alimentation devant toute la salle, pour que les erreurs d’un vrai banc (une patte décalée d’une rangée, un composant court-circuité par sa propre bande, un fil qui ne mène nulle part) soient faites, vues et corrigées avant de toucher au vrai matériel."
+        },
+        "features": [
+          {
+            "glyph": "parts",
+            "name": {
+              "en": "Real parts, real leads",
+              "fr": "Vrais composants, vraies pattes"
+            },
+            "says": {
+              "en": "Parts stand in the holes on their own leads, bent and placed as on a real board.",
+              "fr": "Les composants tiennent dans les trous par leurs pattes, pliées et placées comme sur une vraie plaque."
+            }
+          },
+          {
+            "glyph": "live",
+            "name": {
+              "en": "Live readings",
+              "fr": "Mesures en direct"
+            },
+            "says": {
+              "en": "Point at a hole and read its voltage and the current through it, as the circuit runs.",
+              "fr": "Pointez un trou et lisez sa tension et le courant qui le traverse, pendant que le circuit tourne."
+            }
+          },
+          {
+            "glyph": "follow",
+            "name": {
+              "en": "Current you can follow",
+              "fr": "Un courant qu’on suit"
+            },
+            "says": {
+              "en": "Current runs along the wires and strips, faster where there is more of it.",
+              "fr": "Le courant parcourt les fils et les bandes, plus vite là où il est plus fort."
+            }
+          },
+          {
+            "glyph": "highlight",
+            "name": {
+              "en": "Potential on the board",
+              "fr": "Le potentiel sur la plaque"
+            },
+            "says": {
+              "en": "Every powered strip and rail is marked in its net’s colour, a different one for each potential.",
+              "fr": "Chaque bande et chaque rail alimentés prennent la couleur de leur nœud, une par potentiel."
+            }
+          },
+          {
+            "glyph": "fault",
+            "name": {
+              "en": "Wiring mistakes shown",
+              "fr": "Erreurs de câblage montrées"
+            },
+            "says": {
+              "en": "A lead alone in its strip, a part shorted by its strip, a short across the supply: each one is marked.",
+              "fr": "Patte seule dans sa bande, composant court-circuité par sa bande, alimentation en court-circuit : tout est signalé."
+            }
+          },
+          {
+            "glyph": "rotate",
+            "name": {
+              "en": "2D, 2.5D and 3D",
+              "fr": "2D, 2,5D et 3D"
+            },
+            "says": {
+              "en": "Saved cameras for the room, the bench, the plan and the worktop, down to 5 mm.",
+              "fr": "Des caméras enregistrées pour la salle, le banc, le plan et le plan de travail, jusqu’à 5 mm."
+            }
+          }
+        ],
+        "fields": [
+          "electronics-automation",
+          "electricity-energy",
+          "physics"
+        ],
+        "views": [
+          "preview",
+          "view",
+          "edit",
+          "authoring"
+        ],
+        "runsIn": {
+          "contract": "^1.5.0",
+          "scope": true,
+          "phone": false
+        },
+        "libraries": [
+          {
+            "package": "@exsight/lib-breadboard-boards",
+            "required": true
+          },
+          {
+            "package": "@exsight/lib-breadboard-supplies",
+            "required": true
+          },
+          {
+            "package": "@exsight/lib-breadboard-wires-and-leads",
+            "required": true
+          },
+          {
+            "package": "@exsight/lib-breadboard-photoresistors",
+            "required": false
+          },
+          {
+            "package": "@exsight/lib-breadboard-thermistors",
+            "required": false
+          }
+        ],
+        "guide": [
+          {
+            "id": "what-it-is",
+            "title": {
+              "en": "What it is",
+              "fr": "Ce que c’est"
+            },
+            "paragraphs": [
+              {
+                "en": "A workbench in a lab room: an anti-static mat on the worktop, a bench supply and meters on the shelf, and a breadboard. Parts are added from the library beside the bench and stand in the board’s holes by their leads.",
+                "fr": "Un établi dans une salle de laboratoire : un tapis antistatique sur le plan de travail, une alimentation et des appareils de mesure sur l’étagère, et une plaque d’essai. Les composants viennent de la bibliothèque à côté du banc et tiennent dans les trous de la plaque par leurs pattes."
+              },
+              {
+                "en": "The circuit is solved as it is built. Switch the supply’s output on and the board shows which strips carry a potential, where the current runs, and where the wiring is wrong.",
+                "fr": "Le circuit est calculé à mesure qu’il est monté. Allumez la sortie de l’alimentation : la plaque montre quelles bandes ont un potentiel, où passe le courant et où le câblage est faux."
+              }
+            ]
+          },
+          {
+            "id": "first-five-minutes",
+            "title": {
+              "en": "The first five minutes",
+              "fr": "Les cinq premières minutes"
+            },
+            "paragraphs": [
+              {
+                "en": "Open Authoring. Take a breadboard from the library and drop it on the mat, then a photoresistor and a 10 kΩ resistor. Stand their leads in two strips that share a row.",
+                "fr": "Ouvrez Création. Prenez une plaque d’essai dans la bibliothèque et posez-la sur le tapis, puis une photorésistance et une résistance de 10 kΩ. Plantez leurs pattes dans deux bandes qui partagent une rangée."
+              },
+              {
+                "en": "Run test leads from the supply’s + and − to the board’s rails, and jumpers from the rails to the divider. Set 3.3 V and switch the output on.",
+                "fr": "Tirez des cordons de l’alimentation, + et −, jusqu’aux rails de la plaque, puis des straps des rails au diviseur. Réglez 3,3 V et allumez la sortie."
+              },
+              {
+                "en": "In View, point at the hole where the two parts meet: it reads the divider’s voltage. Change the light on the photoresistor and watch the reading and the current follow.",
+                "fr": "En Vue, pointez le trou où les deux composants se rejoignent : il donne la tension du diviseur. Changez l’éclairement de la photorésistance et regardez la mesure et le courant suivre."
+              }
+            ]
+          },
+          {
+            "id": "the-four-views",
+            "title": {
+              "en": "The four views",
+              "fr": "Les quatre vues"
+            },
+            "paragraphs": [
+              {
+                "en": "Preview is what a slide shows: the bench as its author left it, live, with nothing to operate. View lets the room look around and read the circuit. Edit lets a student move parts and wires in the lesson’s circuit. Authoring adds the library, so parts can be added and the lesson’s circuit saved.",
+                "fr": "Aperçu est ce qu’une diapositive montre : le banc tel que l’auteur l’a laissé, en direct, sans rien à manipuler. Vue permet à la salle de regarder autour et de lire le circuit. Édition permet à un étudiant de déplacer composants et fils dans le circuit de la leçon. Création ajoute la bibliothèque, pour ajouter des composants et enregistrer le circuit de la leçon."
+              },
+              {
+                "en": "ExSight Scope offers Preview, View and Edit. Authoring is in ExSight Studio only.",
+                "fr": "ExSight Scope propose Aperçu, Vue et Édition. Création n’existe que dans ExSight Studio."
+              }
+            ]
+          }
+        ],
+        "controls": [
+          {
+            "action": {
+              "en": "Every key of the bench",
+              "fr": "Toutes les touches du banc"
+            },
+            "keys": "?"
+          },
+          {
+            "action": {
+              "en": "Room camera",
+              "fr": "Caméra de la salle"
+            },
+            "keys": "1"
+          },
+          {
+            "action": {
+              "en": "Bench camera",
+              "fr": "Caméra du banc"
+            },
+            "keys": "2"
+          },
+          {
+            "action": {
+              "en": "2D, laid out",
+              "fr": "2D, disposé"
+            },
+            "keys": "3"
+          },
+          {
+            "action": {
+              "en": "3D",
+              "fr": "3D"
+            },
+            "keys": "5"
+          },
+          {
+            "action": {
+              "en": "Workbench camera: the worktop and the shelf",
+              "fr": "Caméra Établi : le plan de travail et l’étagère"
+            },
+            "keys": "7"
+          },
+          {
+            "action": {
+              "en": "Worktop camera: the worktop alone, as close as 5 mm",
+              "fr": "Caméra Plan de travail : le plan seul, jusqu’à 5 mm"
+            },
+            "keys": "8"
+          },
+          {
+            "action": {
+              "en": "Home camera",
+              "fr": "Caméra d’accueil"
+            },
+            "keys": "H"
+          },
+          {
+            "action": {
+              "en": "Camera profiles panel",
+              "fr": "Panneau des profils de caméra"
+            },
+            "keys": "C"
+          },
+          {
+            "action": {
+              "en": "Labels on every part",
+              "fr": "Étiquettes sur chaque composant"
+            },
+            "keys": "L"
+          },
+          {
+            "action": {
+              "en": "Grid on the mat",
+              "fr": "Grille sur le tapis"
+            },
+            "keys": "G"
+          },
+          {
+            "action": {
+              "en": "Snap to the step",
+              "fr": "Accrocher au pas"
+            },
+            "keys": "S"
+          },
+          {
+            "action": {
+              "en": "Move free of the grid",
+              "fr": "Déplacer hors de la grille"
+            },
+            "keys": "Alt + Drag"
+          },
+          {
+            "action": {
+              "en": "Add a second one; the shelf’s stays",
+              "fr": "Un second exemplaire ; celui de l’étagère reste"
+            },
+            "keys": "Ctrl + Drop"
+          },
+          {
+            "action": {
+              "en": "Remove the selected part or wire",
+              "fr": "Retirer le composant ou le fil sélectionné"
+            },
+            "keys": "Delete"
+          },
+          {
+            "action": {
+              "en": "Cancel placing a part, or close the open menu",
+              "fr": "Annuler la pose d’un composant, ou fermer le menu ouvert"
+            },
+            "keys": "Esc"
+          },
+          {
+            "action": {
+              "en": "Light or dark room",
+              "fr": "Salle claire ou sombre"
+            },
+            "keys": "Alt + D"
+          },
+          {
+            "action": {
+              "en": "Look around",
+              "fr": "Regarder autour"
+            },
+            "touch": {
+              "en": "Two fingers: pinch to zoom, drag to pan. One finger never moves the view.",
+              "fr": "Deux doigts : pincer pour zoomer, glisser pour déplacer. Un seul doigt ne bouge jamais la vue."
+            }
+          }
+        ],
+        "accessibility": {
+          "en": "Every key is listed on the bench itself (press ?), and every control can be reached with the keyboard. Each part is named by its value and class, and the readings are printed with their units. One finger never moves the picture, so reaching for a control on a touch screen does not lose the view. Phones are not supported yet.",
+          "fr": "Chaque touche est listée sur le banc lui-même (touche ?), et chaque commande est accessible au clavier. Chaque composant est nommé par sa valeur et sa classe, et les mesures sont écrites avec leurs unités. Un seul doigt ne bouge jamais l’image : chercher une commande sur un écran tactile ne fait pas perdre la vue. Les téléphones ne sont pas encore pris en charge."
+        },
+        "media": {
+          "icon": {
+            "file": "listing/icon.svg",
+            "sha256": "sha256:6a29e6089f8a908dc8cdb160c35316eb928cd095f70adf320c74048110218008",
+            "bytes": 336
+          },
+          "cover": {
+            "kind": "capture",
+            "look": "draft",
+            "alt": {
+              "en": "A breadboard close up: a photoresistor and a resistor stand in its holes, red jumpers run to the rail, and the powered strips are marked in colour.",
+              "fr": "Une plaque d’essai de près : une photorésistance et une résistance plantées dans ses trous, des straps rouges vers le rail, et les bandes alimentées marquées en couleur."
+            },
+            "dark": {
+              "file": "listing/cover-dark.png",
+              "sha256": "sha256:58bd702bdcd2a582efdf8fd763af0e3d7cd4c632c018dfa937cd4d42ed601d5d",
+              "bytes": 1235084,
+              "width": 1600,
+              "height": 1000
+            },
+            "light": {
+              "file": "listing/cover-light.png",
+              "sha256": "sha256:2ff45b79d84d5734b328b9dc3fc7cb301e7e49a92ea75a97fa6d94b94b69d333",
+              "bytes": 1188663,
+              "width": 1600,
+              "height": 1000
+            }
+          },
+          "gallery": [
+            {
+              "kind": "capture",
+              "look": "draft",
+              "alt": {
+                "en": "Authoring: the parts library on the left beside the bench, the supply and meters on the shelf, and the breadboard on the mat.",
+                "fr": "Création : la bibliothèque de composants à gauche du banc, l’alimentation et les appareils sur l’étagère, et la plaque d’essai sur le tapis."
+              },
+              "caption": {
+                "en": "Authoring: the library beside the bench",
+                "fr": "Création : la bibliothèque à côté du banc"
+              },
+              "dark": {
+                "file": "listing/gallery/1-dark.png",
+                "sha256": "sha256:123dd88b807bab9382b24ff3c5d8d658711d161c8bf8d37560cf0fe058f5b092",
+                "bytes": 776449,
+                "width": 1600,
+                "height": 1000
+              },
+              "light": {
+                "file": "listing/gallery/1-light.png",
+                "sha256": "sha256:889f841e3859eebb17165bc37a9acfd91bc0ca662705bb9fc57163d090e55b81",
+                "bytes": 811463,
+                "width": 1600,
+                "height": 1000
+              }
+            },
+            {
+              "kind": "capture",
+              "look": "draft",
+              "alt": {
+                "en": "View: a hole on the breadboard is pointed at, and a readout beside it gives its voltage and the current through it.",
+                "fr": "Vue : un trou de la plaque est pointé, et une étiquette à côté donne sa tension et le courant qui le traverse."
+              },
+              "caption": {
+                "en": "View: a hole and its live reading",
+                "fr": "Vue : un trou et sa mesure en direct"
+              },
+              "dark": {
+                "file": "listing/gallery/2-dark.png",
+                "sha256": "sha256:72c00bddfe4884308bb8711d1330e84820cfc7a53fee68e2ba1fd9ff6c1bf44e",
+                "bytes": 1336868,
+                "width": 1600,
+                "height": 1000
+              },
+              "light": {
+                "file": "listing/gallery/2-light.png",
+                "sha256": "sha256:c9bac9caa413256b1393f4c2bbc17162851718491144b02ec4a685484230dd29",
+                "bytes": 1292826,
+                "width": 1600,
+                "height": 1000
+              }
+            }
+          ],
+          "share": {
+            "kind": "capture",
+            "look": "draft",
+            "alt": {
+              "en": "The Breadboard Bench: a breadboard close up with a photoresistor, a resistor and red jumpers, its powered strips marked in colour.",
+              "fr": "Le Banc de prototypage : une plaque d’essai de près avec une photorésistance, une résistance et des straps rouges, ses bandes alimentées marquées en couleur."
+            },
+            "dark": {
+              "file": "listing/share-dark.png",
+              "sha256": "sha256:65514d8b2af70056364be61c06708c06232c94a5f0e363af286dc888e8418259",
+              "bytes": 1526742,
+              "width": 1680,
+              "height": 1260
+            },
+            "light": {
+              "file": "listing/share-light.png",
+              "sha256": "sha256:f4a2002c6fb7090b8090dd5b759e94ccc46f164a744e8cbcee1a97bbe6bb6bb4",
+              "bytes": 1464942,
+              "width": 1680,
+              "height": 1260
+            }
+          }
+        },
+        "samples": [
+          {
+            "library": "@exsight/lib-breadboard-photoresistors",
+            "id": "ldr-on-the-rails",
+            "title": {
+              "en": "A light-dependent resistor on the rails",
+              "fr": "Une photorésistance sur les rails"
+            }
+          }
+        ]
+      },
+      "changes": [
+        {
+          "version": "0.2.8",
+          "at": "2026-10-23T21:45:54.770Z",
+          "note": {
+            "en": "The loading screen names the Breadboard Bench, in English and French (it said Electronics Bench, the room's name for its station). A drive now holds the boot as a host sees it: a mood sent while the lab is built is the one it ends in, and from ready to shown the pane always draws the splash or the work and says loading first.",
+            "fr": "L'écran de chargement nomme le Banc de prototypage, en anglais et en français (il disait Banc d'électronique, le nom du poste dans la salle). Un parcours vérifie désormais le démarrage tel qu'un hôte le voit : une ambiance envoyée pendant la construction du laboratoire est celle qu'il garde, et du signal prêt jusqu'à l'affichage le panneau dessine toujours l'écran de démarrage ou le travail, et dit d'abord qu'il charge."
+          }
+        },
+        {
+          "version": "0.2.7",
+          "at": "2026-10-23T20:46:45.967Z",
+          "note": {
+            "en": "Rebuilt over the kit 0.1.7, the runtime and frame it bundles",
+            "fr": "Reconstruit sur le kit 0.1.7, le moteur et le cadre qu'il embarque"
+          }
+        },
+        {
+          "version": "0.2.6",
+          "at": "2026-10-23T19:50:27.164Z",
+          "note": {
+            "en": "Rebuilt over the kit 0.1.6 (the shell's transport stops)",
+            "fr": "Reconstruit sur le kit 0.1.6 (les étapes du transport du cadre)"
+          }
+        },
+        {
+          "version": "0.2.5",
+          "at": "2026-10-23T19:39:54.990Z",
+          "note": {
+            "en": "Rebuilt over the kit 0.1.5 (B041b: the phone's foot strip, Fit and Turn) and the lab kit's touchTurn; its first-load budget 722,000 B (measured 721,311 B)",
+            "fr": "Reconstruit sur le kit 0.1.5 (B041b : la bande du bas sur téléphone, Cadrer et Tourner) et le touchTurn du kit du laboratoire ; son budget de premier chargement passe à 722 000 o (mesuré 721 311 o)"
+          }
+        },
+        {
+          "version": "0.2.4",
+          "at": "2026-10-23T18:32:52.157Z",
+          "note": {
+            "en": "Rebuilt over the kit 0.1.4 (B041a: Preview takes a hand on a phone); its first-load budget 721,000 B (measured 720,050 B); its test host offers ?views= and ?log=0",
+            "fr": "Reconstruit sur le kit 0.1.4 (B041a : l'aperçu se prend en main sur un téléphone) ; son budget de premier chargement passe à 721 000 o (mesuré 720 050 o) ; son hôte de test offre ?views= et ?log=0"
+          }
+        },
+        {
+          "version": "0.2.3",
+          "at": "2026-10-23T18:13:17.928Z",
+          "note": {
+            "en": "Rebuilt over the kit's runtime 0.1.3 (the stage door, Storyboard SBa); its first-load budget 716,000 → 718,000 B by what was measured (717,601 B).",
+            "fr": "Reconstruit sur le moteur du kit 0.1.3 (la porte de scène, Storyboard SBa) ; son budget de premier chargement passe de 716 000 à 718 000 o d'après la mesure (717 601 o)."
+          }
+        },
+        {
+          "version": "0.2.2",
+          "at": "2026-10-23T17:59:19.445Z",
+          "note": {
+            "en": "Rebuilt over the kit 0.1.2 and the standard 0.1.7; its listing as main holds it (the library channel, B022c)",
+            "fr": "Reconstruit sur le kit 0.1.2 et le standard 0.1.7 ; sa fiche telle que main la tient (le canal des bibliothèques, B022c)"
+          }
+        },
+        {
+          "version": "0.2.1",
+          "at": "2026-10-23T16:15:37.085Z",
+          "note": {
+            "en": "Rebuilt over the kit's runtime 0.1.1 (R5c); its first-load budget 716,000 B, by what was measured (715,008 B)",
+            "fr": "Reconstruit sur le moteur du kit 0.1.1 (R5c) ; son budget de premier chargement passe à 716 000 o, mesuré (715 008 o)"
+          }
+        },
+        {
+          "version": "0.2.0",
+          "at": "2026-10-23T14:41:13.487Z",
+          "note": {
+            "en": "The Breadboard takes a challenge (B049; crossings 403, 484, 491, 562): a .breadboard with a top-level goal, measured behaviour (breadboard-goal: the parts an attempt may hold, and criteria, each a current or a voltage of one part at a supply setting, a value and a tolerance, in English and French), never an answer circuit. Its works[0] declares challenge true and the goal's schema, which the catalogue inlines. In Edit the library offers only the goal's parts (jumpers and test leads always), and a card at the stage's bottom left lists the criteria: Check sends contract 1.5's attempt (the instances and wires as JSON with no whitespace, each component by its id, never id@version, at most 12,000 characters), and the host's result is drawn beside each criterion, met or not yet with what was measured and what was asked; every criterion met is the one green state, a change after the check marks it as of the check, and a host that only records is said as sent and not checked here. The check, src/challenge.mjs, is pure (no DOM, no clock): it solves the attempt with the bench's own DC solver and classes, finds an impossible goal from the goal alone, and is bundled on its own as dist/check/challenge.mjs for a host's re-run. Its ready says contract 1.5.0, so a 1.4 player refuses it: take the contract with it. The first-load budget 710,000 → 711,000 B (710,010 measured: the kit's attempt and the contract's two checks). Driven 24/24 in a stand-in player, dark English and light French, measured in pixels.",
+            "fr": "Le Breadboard prend un défi (B049 ; croisements 403, 484, 491, 562) : un .breadboard avec un goal de premier niveau, un comportement mesuré (breadboard-goal : les composants qu'une tentative peut contenir, et des critères, chacun un courant ou une tension d'un composant à un réglage d'alimentation, une valeur et une tolérance, en anglais et en français), jamais un circuit-réponse. Son works[0] déclare challenge true et le schéma du but, que le catalogue intègre. En Édition la bibliothèque ne propose que les composants du but (fils de liaison et cordons toujours), et une carte en bas à gauche de la scène liste les critères : Vérifier envoie la tentative du contrat 1.5 (les instances et les fils en JSON sans espaces, chaque composant par son identifiant, jamais id@version, 12 000 caractères au plus), et le résultat de l'hôte est dessiné à côté de chaque critère, atteint ou pas encore avec ce qui a été mesuré et ce qui était demandé ; tous les critères atteints est le seul état vert, un changement après la vérification la marque comme datant de la vérification, et un hôte qui ne fait qu'enregistrer est dit envoyé et non vérifié ici. La vérification, src/challenge.mjs, est pure (sans DOM, sans horloge) : elle résout la tentative avec le solveur continu et les classes du banc, trouve un but impossible à partir du but seul, et est empaquetée seule en dist/check/challenge.mjs pour qu'un hôte la relance. Son ready dit le contrat 1.5.0, donc un lecteur 1.4 le refuse : prenez le contrat avec lui. Le budget du premier chargement passe de 710 000 à 711 000 o (710 010 mesurés : la tentative du kit et les deux vérifications du contrat). Conduit 24/24 dans un lecteur de remplacement, sombre en anglais et clair en français, mesuré en pixels."
+          }
+        },
+        {
+          "version": "0.1.14",
+          "at": "2026-10-23T12:09:19.537Z",
+          "note": {
+            "en": "Rebuilt over the kit (B012b): the shell's still waits for a still source that answers a promise of a canvas (a bench that draws in the DOM); the Breadboard's canvas is cut in the same task as before. work 30/30, play 41/41.",
+            "fr": "Reconstruit sur le kit (B012b) : l'image fixe de l'enveloppe attend une source qui répond par la promesse d'un canevas (un banc qui dessine dans le DOM) ; le canevas du Breadboard est découpé dans la même tâche qu'avant. work 30/30, play 41/41."
+          }
+        },
+        {
+          "version": "0.1.13",
+          "at": "2026-10-23T11:04:37.093Z",
+          "note": {
+            "en": "Rebuilt over its supplies library: the supply's schematic symbol names a profile the Electronics Bench's library has (profile:supply-bench, B011); it named none",
+            "fr": "Reconstruit sur sa bibliothèque d'alimentations : le symbole schématique de l'alimentation nomme un profil que la bibliothèque du banc Électronique possède (profile:supply-bench, B011) ; il n'en nommait aucun"
+          }
+        },
+        {
+          "version": "0.1.12",
+          "at": "2026-10-23T10:33:01.627Z",
+          "note": {
+            "en": "Contract 1.3 (B071c): the lead handed to another frame and back with no reload, the parts and the circuit carrying on from the presenter's last state; says loading before its first answer",
+            "fr": "Contrat 1.3 (B071c) : la main passée à un autre cadre et rendue sans rechargement, les composants et le circuit repartant du dernier état du présentateur ; dit le chargement avant sa première réponse"
+          }
+        },
+        {
+          "version": "0.1.11",
+          "at": "2026-10-23T00:10:32.603Z",
+          "note": {
+            "en": "Its picture is held still only once the view has been fitted to the stage (B050): when a panel docks beside the stage, the lab fits its camera on its next frame and whenStable waits for that fit, so a point read for a click is where the click lands. Properties' sub-tabs (Placement, Settings, …) are one tab stop, moved between with the arrow keys, Home and End, as its tabs are. Every Breadboard drive moved to the bench as it is: 26 runs green twice in a row.",
+            "fr": "Son image n'est tenue pour immobile qu'une fois la vue ajustée à la scène (B050) : quand un panneau s'ancre à côté de la scène, le laboratoire ajuste sa caméra à l'image suivante et whenStable attend cet ajustement, si bien qu'un point lu pour un clic est là où le clic tombe. Les sous-onglets des propriétés (Placement, Réglages, …) sont un seul arrêt de tabulation, parcourus avec les flèches, Début et Fin, comme ses onglets. Chaque pilote du banc Breadboard suit le banc tel qu'il est : 26 passages au vert deux fois de suite."
+          }
+        },
+        {
+          "version": "0.1.10",
+          "at": "2026-10-22T19:21:36.340Z",
+          "note": {
+            "en": "Keeps time by the runtime's one clock (R4c): every delay, repeat, frame loop and tween of the bench and its lab is the clock's, so a still at a moment, a drive's step and the presenter's hold move them with the story. The pointer's hover is thinned by the moves' own times.",
+            "fr": "Garde le temps de l'horloge unique du runtime (R4c) : chaque délai, répétition, boucle d'images et transition du banc et de son laboratoire suit cette horloge, si bien qu'une image fixe à un instant, le pas d'un pilote et la pause du présentateur les déplacent avec l'histoire. Le survol du pointeur est espacé selon l'heure propre de ses mouvements."
+          }
+        },
+        {
+          "version": "0.1.9",
+          "at": "2026-10-22T17:35:19.918Z",
+          "note": {
+            "en": "Rebuilt over the kit's runtime with its story face and still at a moment (R4b-ii, R4b-iii); first-load budget 708,000 to 710,000 B gzipped (708,425 measured: the runtime's share). It has no story and speaks ^1.1.0, so it says and is asked nothing new.",
+            "fr": "Reconstruit sur le moteur du kit avec son récit présenté au lecteur et son image à un moment (R4b-ii, R4b-iii) ; budget du premier chargement de 708 000 à 710 000 o compressés (708 425 mesurés : la part du moteur). Il n'a pas de récit et parle ^1.1.0 : il ne dit et ne reçoit rien de nouveau."
+          }
+        },
+        {
+          "version": "0.1.8",
+          "at": "2026-10-22T17:11:46.964Z",
+          "note": {
+            "en": "Rebuilt over R4b-ii's runtime (the story's face to the player); source unchanged. The Breadboard has no story, so it says nothing new.",
+            "fr": "Reconstruit sur le moteur de R4b-ii (le récit présenté au lecteur) ; source inchangée. Le Breadboard n’a pas de récit : il ne dit rien de nouveau."
+          }
+        },
+        {
+          "version": "0.1.7",
+          "at": "2026-10-22T13:15:33.980Z",
+          "note": {
+            "en": "Rebuilt, its own source unchanged (R4b-i): its bundle carries the runtime that hands a pane the cues a story's stop points at and hides a pane a stop does not show. The Breadboard offers no cues yet, so it plays as before.",
+            "fr": "Reconstruit, sa propre source inchangée (R4b-i) : son paquet porte le moteur d'exécution qui transmet à un volet les repères qu'un arrêt de l'histoire désigne et masque un volet qu'un arrêt ne montre pas. Le Breadboard n'offre encore aucun repère : il se joue comme avant."
+          }
+        },
+        {
+          "version": "0.1.6",
+          "at": "2026-10-22T07:34:26.036Z",
+          "note": {
+            "en": "Rebuilt over the kit's runtime with its one clock and the director (R4a): the source is unchanged; the bundle carries ctx.clock, ctx.timeline and ctx.at",
+            "fr": "Reconstruit sur le moteur du kit avec son horloge unique et le directeur (R4a) : la source est inchangée ; le paquet porte ctx.clock, ctx.timeline et ctx.at"
+          }
+        },
+        {
+          "version": "0.1.5",
+          "at": "2026-10-22T01:12:25.506Z",
+          "note": {
+            "en": "Rebuilt, its source unchanged: the kit it bundles now takes contract 1.3's lead and follow, hands an opener a work's beat and whether it is the same work again, and says a work loading for a bench built at 1.3 (B067, B072, B073). The Breadboard still speaks contract ^1.1.0, so no player sends it any of them and it says no loading: it plays exactly as 0.1.4 did, and takes them when its contract moves (B071c).",
+            "fr": "Reconstruit, sa source inchangée : le kit qu'il embarque accepte désormais lead et follow du contrat 1.3, passe à un ouvreur le moment d'un travail et s'il s'agit du même travail, et dit un travail en chargement pour un banc construit en 1.3 (B067, B072, B073). Le Breadboard parle toujours le contrat ^1.1.0, donc aucun lecteur ne lui envoie rien de tout cela et il ne dit aucun chargement : il joue exactement comme la 0.1.4, et les prendra quand son contrat avancera (B071c)."
+          }
+        },
+        {
+          "version": "0.1.4",
+          "at": "2026-10-21T23:18:39.244Z",
+          "note": {
+            "en": "A following wall's camera select names the presenter's camera: the state's camera says which one the presenter's list names (shown), and the wall's list names it too, where it had named its own guard's Workbench while showing the presenter's pose (crossing 586 §2). A state without it leaves the wall's list its own.",
+            "fr": "La liste des caméras d'un mur qui suit nomme la caméra du présentateur : la caméra de l'état dit celle que nomme la liste du présentateur (shown), et la liste du mur la nomme aussi, là où elle nommait l'établi de sa propre garde tout en montrant la vue du présentateur (croisement 586 §2). Un état sans elle laisse au mur sa propre liste."
+          }
+        },
+        {
+          "version": "0.1.3",
+          "at": "2026-10-21T22:53:06.909Z",
+          "note": {
+            "en": "Embedded in a player (Studio, Scope, any frame), the top bar names no app: the ExSight mark and \"ExSight Studio\" are drawn only where the bench is a page of its own, since inside the app they repeat the app's own name (owner, 2026-10-21). The frame's colours are Studio's roles over its token sheet, so its chrome follows the player's mood now and every direction and high contrast once a 1.2 player sends its look; reduced motion is read live; the lab starts in the player's mood. Contract ^1.1.0, so today's players play it.",
+            "fr": "Intégré dans un lecteur (Studio, Scope, tout cadre), la barre du haut ne nomme aucune application : la marque ExSight et « ExSight Studio » ne sont dessinées que lorsque le banc est une page à part entière, car dans l'application elles répètent son propre nom (propriétaire, 2026-10-21). Les couleurs du cadre sont les rôles de Studio, donc son habillage suit l'humeur du lecteur dès maintenant, et chaque direction et le contraste élevé dès qu'un lecteur 1.2 envoie son apparence ; le mouvement réduit est lu en direct ; le labo démarre dans l'humeur du lecteur. Contrat ^1.1.0, donc les lecteurs actuels le lisent."
+          }
+        },
+        {
+          "version": "0.1.2",
+          "at": "2026-10-21T15:55:58.816Z",
+          "note": {
+            "en": "It names the page a player frames, exsight.entry, carried in its signed record (crossing 557): a player reads where to start from the record and never guesses it from a build's folders.",
+            "fr": "Il nomme la page qu'un lecteur encadre, exsight.entry, portée dans son enregistrement signé (croisement 557) : un lecteur lit d'où partir dans l'enregistrement et ne le devine jamais d'après les dossiers d'une construction."
+          }
+        },
+        {
+          "version": "0.1.1",
+          "at": "2026-10-21T11:30:12.471Z",
+          "note": {
+            "en": "Rebuilt, its own source unchanged (E·draw): its bundle carries contract 1.1's validator and the kit's half of it (the file-offer it does not send), and it still says contract 1.0.0, so a 1.0 player plays it as before.",
+            "fr": "Reconstruit, sa propre source inchangée (E·draw) : son paquet porte le validateur du contrat 1.1 et la moitié du kit qui lui revient (le file-offer qu'il n'envoie pas), et il annonce toujours le contrat 1.0.0 ; un lecteur 1.0 le joue comme avant."
+          }
+        },
+        {
+          "version": "0.1.0",
+          "at": "2026-10-21T06:13:46.616Z",
+          "note": {
+            "en": "First signed release, speaking contract 1.0 (D5): the bench says ready, sends its state (the camera, the selection, every instrument's settings, firmware and glass, and the solved circuit) at most once a frame and only when it changed, and a wall that receives state-set follows without solving. Authoring's Save goes through the player as work-save, and a refused save says why on the work card. It ships its widget build, its listing and its pictures.",
+            "fr": "Première version signée, qui parle le contrat 1.0 (D5) : le banc dit ready, envoie son état (la caméra, la sélection, les réglages, le micrologiciel et l'affichage de chaque instrument, et le circuit résolu) au plus une fois par image et seulement s'il a changé, et un mur qui reçoit state-set suit sans résoudre. L'enregistrement de la vue Création passe par le lecteur en work-save, et un enregistrement refusé dit pourquoi sur la carte du travail. Il livre sa version widget, sa fiche et ses images."
+          }
+        }
+      ],
+      "samples": [
+        {
+          "id": "ldr-on-the-rails",
+          "title": {
+            "en": "A light-dependent resistor on the rails",
+            "fr": "Une photorésistance sur les rails"
+          },
+          "package": "@exsight/lib-breadboard-photoresistors",
+          "version": "0.1.0",
+          "path": "samples/ldr-on-the-rails/ldr-on-the-rails.breadboard",
+          "sha256": "sha256:4e5244c4d951676e9c80a39b3b63e3a866370eb5ad76ef6fbf2785d552ba8fb1",
+          "bytes": 4431
+        }
+      ],
+      "neededBy": [
+        "@exsight/lib-breadboard-boards",
+        "@exsight/lib-breadboard-photoresistors",
+        "@exsight/lib-breadboard-supplies",
+        "@exsight/lib-breadboard-thermistors",
+        "@exsight/lib-breadboard-wires-and-leads"
+      ]
+    },
+    {
       "name": "@exsight/bench-draw",
       "kind": "bench",
       "version": "0.1.3",
@@ -7328,6 +8137,1286 @@
             "en": "The Electronics Bench as a frame bundle played by contract 1.0: Preview the author's captured scene (else the whole circuit), View with its run, analyses, IV curve, Measure, Full View and a wall that follows the presenter, Edit and Authoring saving the circuit stamped through the player; played as Studio, Scope and a phone.",
             "fr": "Le Banc d'électronique en paquet de cadre joué par le contrat 1.0 : l'aperçu est la scène capturée par l'auteur (sinon le circuit entier), la vue a sa simulation, ses analyses, la courbe I-V, la mesure, la vue complète et un mur qui suit l'enseignant, l'édition et la création enregistrent le circuit tamponné par le lecteur ; joué comme Studio, Scope et un téléphone."
           }
+        }
+      ],
+      "neededBy": [
+        "@exsight/lib-electronics-baseline"
+      ]
+    },
+    {
+      "name": "@exsight/bench-electronics",
+      "kind": "bench",
+      "version": "0.5.1",
+      "path": "benches/electronics",
+      "description": "The Electronics Bench: the schematic simulation. Its engine (the solver, the circuit schema, the analyses) is its own package beside it, @exsight/electronics-engine (B007); this package is the bench a player frames (its views and run, one Vue bundle speaking contract 1.0, with the library it carries: E·a-ii; the wall's state E·a-iii, the editor E·a-iv) and the .benchcircuit work: its JSON Schema and the stamp a compiler reads instead of running the engine (E·a-i).",
+      "needs": {
+        "packages": {
+          "@exsight/bench-contract": "^1.3.0",
+          "@exsight/bench-kit": "^0.1.0",
+          "@exsight/electronics-engine": "0.3.0"
+        },
+        "contract": "^1.3.0",
+        "kit": "^0.1.0"
+      },
+      "classes": [],
+      "bundles": {},
+      "works": [
+        {
+          "ext": "benchcircuit",
+          "media": "application/json",
+          "maxBytes": 1048576,
+          "title": {
+            "en": "Circuit",
+            "fr": "Circuit"
+          },
+          "schema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "https://exsightory.com/schemas/benches/electronics/circuit.schema.json",
+            "title": "Electronics Bench circuit (.benchcircuit)",
+            "description": "A circuit the Electronics Bench opens. Generated from @exsight/electronics-engine's benchCircuitSchema (its input side). \"stamp\" is what the bench derived when it saved the file, bound to the sha256 of the document's canonical JSON without the stamp: a course's reveal, opens and measure answers are checked against stamp.derived (reveals, opens, probes) once the digest matches, and never by running the engine.",
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9-]*$"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "seed": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "requires": {
+                "default": {},
+                "type": "object",
+                "propertyNames": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "additionalProperties": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "environment": {
+                "type": "object",
+                "properties": {
+                  "t_ambient_c": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "t_ambient_c"
+                ],
+                "additionalProperties": false
+              },
+              "display": {
+                "default": {
+                  "value_notation": "decimal",
+                  "show_unit": true
+                },
+                "type": "object",
+                "properties": {
+                  "value_notation": {
+                    "default": "decimal",
+                    "type": "string",
+                    "enum": [
+                      "decimal",
+                      "letter"
+                    ]
+                  },
+                  "show_unit": {
+                    "default": true,
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "instances": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                    },
+                    "class": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "profile": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "variant": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "value": {
+                      "type": "number"
+                    },
+                    "at": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    "rotation": {
+                      "default": 0,
+                      "type": "number"
+                    },
+                    "label": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "label_at": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    "differential": {
+                      "type": "boolean",
+                      "const": true
+                    },
+                    "around": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z][A-Za-z0-9_-]*\\.[a-z][a-z0-9_]*$"
+                    },
+                    "passing_a": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "class",
+                    "profile",
+                    "at"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "nets": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                    },
+                    "terminals": {
+                      "minItems": 1,
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "pattern": "^[A-Za-z][A-Za-z0-9_-]*\\.[a-z][a-z0-9_]*$"
+                      }
+                    },
+                    "is_reference": {
+                      "type": "boolean"
+                    },
+                    "junction": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z][A-Za-z0-9_-]*\\.[a-z][a-z0-9_]*$"
+                    },
+                    "class": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "terminals"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "segments": {
+                "default": [],
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                    },
+                    "net": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "between": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "string",
+                          "pattern": "^[A-Za-z][A-Za-z0-9_-]*\\.[a-z][a-z0-9_]*$"
+                        },
+                        {
+                          "type": "string",
+                          "pattern": "^[A-Za-z][A-Za-z0-9_-]*\\.[a-z][a-z0-9_]*$"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    "class": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "profile": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "length_m": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "net",
+                    "between",
+                    "class",
+                    "profile",
+                    "length_m"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "effects": {
+                "default": {},
+                "type": "object",
+                "propertyNames": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "additionalProperties": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              },
+              "effects_global": {
+                "default": [],
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "under_construction": {
+                "default": false,
+                "type": "boolean"
+              },
+              "locked": {
+                "default": {
+                  "values": [],
+                  "profiles": []
+                },
+                "type": "object",
+                "properties": {
+                  "values": {
+                    "default": [],
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "profiles": {
+                    "default": [],
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                },
+                "additionalProperties": false
+              },
+              "preview": {
+                "type": "object",
+                "properties": {
+                  "parts": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                    }
+                  },
+                  "nets": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "frame": {
+                    "type": "object",
+                    "properties": {
+                      "x": {
+                        "type": "number"
+                      },
+                      "y": {
+                        "type": "number"
+                      },
+                      "width": {
+                        "type": "number",
+                        "exclusiveMinimum": 0
+                      },
+                      "height": {
+                        "type": "number",
+                        "exclusiveMinimum": 0
+                      }
+                    },
+                    "required": [
+                      "x",
+                      "y",
+                      "width",
+                      "height"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "additionalProperties": false
+              },
+              "stamp": {
+                "type": "object",
+                "properties": {
+                  "v": {
+                    "type": "number",
+                    "const": 1
+                  },
+                  "source": {
+                    "type": "string",
+                    "pattern": "^sha256:[0-9a-f]{64}$"
+                  },
+                  "libraries": {
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string"
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  },
+                  "derived": {
+                    "type": "object",
+                    "properties": {
+                      "targets": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "kind": {
+                              "type": "string",
+                              "enum": [
+                                "part",
+                                "net"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "kind"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "sources": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "label": {
+                              "type": "string"
+                            },
+                            "legend": {
+                              "type": "string"
+                            },
+                            "unit": {
+                              "type": "string"
+                            },
+                            "authored": {
+                              "type": "number"
+                            },
+                            "min": {
+                              "type": "number"
+                            },
+                            "max": {
+                              "type": "number"
+                            },
+                            "step": {
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "label",
+                            "legend",
+                            "unit",
+                            "authored",
+                            "min",
+                            "max",
+                            "step"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "probes": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "label": {
+                              "type": "string"
+                            },
+                            "authored": {
+                              "type": "string"
+                            },
+                            "destinations": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "label": {
+                                    "type": "string"
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "kind": {
+                                    "type": "string",
+                                    "enum": [
+                                      "point",
+                                      "net",
+                                      "branch"
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "id",
+                                  "label",
+                                  "kind"
+                                ],
+                                "additionalProperties": false
+                              }
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "label",
+                            "destinations"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "leads": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "label": {
+                              "type": "string"
+                            },
+                            "net": {
+                              "type": "string"
+                            },
+                            "authored": {
+                              "type": "number"
+                            },
+                            "unit": {
+                              "type": "string"
+                            },
+                            "stops": {
+                              "type": "array",
+                              "items": {
+                                "type": "number"
+                              }
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "label",
+                            "net",
+                            "authored",
+                            "unit",
+                            "stops"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "demands": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "label": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "net": {
+                              "type": "string"
+                            },
+                            "min": {
+                              "type": "number"
+                            },
+                            "max": {
+                              "type": "number"
+                            },
+                            "step": {
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "label",
+                            "net",
+                            "min",
+                            "max",
+                            "step"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "locked": {
+                        "type": "object",
+                        "properties": {
+                          "values": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "profiles": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "required": [
+                          "values",
+                          "profiles"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "reveals": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "offers": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "bind": {
+                                    "type": "string"
+                                  },
+                                  "available": {
+                                    "type": "boolean"
+                                  },
+                                  "reason": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "bind",
+                                  "available"
+                                ],
+                                "additionalProperties": false
+                              }
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "offers"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "opens": {
+                        "type": "object",
+                        "propertyNames": {
+                          "type": "string"
+                        },
+                        "additionalProperties": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "instances": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "required": [
+                      "targets",
+                      "sources",
+                      "probes",
+                      "leads",
+                      "demands",
+                      "locked",
+                      "reveals",
+                      "opens",
+                      "instances"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "diagnostics": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "severity": {
+                          "type": "string",
+                          "enum": [
+                            "error",
+                            "warning"
+                          ]
+                        },
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "file": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "severity",
+                        "code",
+                        "message",
+                        "file"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": [
+                  "v",
+                  "source",
+                  "libraries",
+                  "derived",
+                  "diagnostics"
+                ],
+                "additionalProperties": false,
+                "description": "What the bench derived on save. source: \"sha256:\" + hex SHA-256 of the document without \"stamp\", as JSON with keys in UTF-16 code-unit order (JavaScript's plain string <) and no whitespace. libraries: the { id: version } the facts were derived against."
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "seed",
+              "environment",
+              "instances",
+              "nets"
+            ],
+            "additionalProperties": false
+          },
+          "schemaFile": {
+            "file": "work/circuit.schema.json",
+            "sha256": "sha256:ffa5f1b86dc543ebac5ec5e5cac66acfc9a81dc1db27a863885fd430dfd90274"
+          }
+        }
+      ],
+      "beat": {
+        "schema": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "$id": "https://exsightory.com/schemas/benches/electronics/beat.schema.json",
+          "title": "Electronics Bench beat",
+          "description": "What one showing of a .benchcircuit asks of the Electronics Bench: the reveal it fires, the tool it opens on the wall, the analyses it offers. Generated from @exsight/electronics-engine's ANALYSES and OPENABLE_TOOLS. Whether a beat is true of a circuit is checked against the circuit's stamp (stamp.derived.reveals, stamp.derived.opens).",
+          "type": "object",
+          "properties": {
+            "reveal": {
+              "description": "The reveal this beat fires: the strip draws it as the act of this beat.",
+              "type": "object",
+              "properties": {
+                "part": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "The instance id, as the circuit names it."
+                },
+                "show": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "The reveal, as the part’s profile binds it."
+                }
+              },
+              "required": [
+                "part",
+                "show"
+              ],
+              "additionalProperties": false
+            },
+            "opens": {
+              "description": "A tool this beat opens on the wall, on one part.",
+              "type": "object",
+              "properties": {
+                "tool": {
+                  "type": "string",
+                  "enum": [
+                    "iv"
+                  ],
+                  "description": "The tool, as the bench names it."
+                },
+                "part": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "The instance id the tool opens on, as the circuit names it."
+                }
+              },
+              "required": [
+                "tool",
+                "part"
+              ],
+              "additionalProperties": false
+            },
+            "analyses": {
+              "description": "The analyses this beat offers, beyond the plain schematic. Absent offers every one the bench has.",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "voltage",
+                  "current",
+                  "power",
+                  "heat",
+                  "ir",
+                  "netclass"
+                ]
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "schemaFile": {
+          "file": "work/beat.schema.json",
+          "sha256": "sha256:e6445afa4f341464ba65eb66a43aba033601561fc5970760967844b6c1d7303a"
+        }
+      },
+      "pins": {
+        "esbuild": "0.28.2"
+      },
+      "release": {
+        "version": "0.5.1",
+        "at": "2026-10-23T21:48:16.405Z",
+        "digest": "sha256:3508c29ce4cb05266987259cd3f88dc4b347fb895671c91c90fd29496629f125"
+      },
+      "listed": true,
+      "listing": {
+        "$schema": "../../standard/schema/listing.schema.json",
+        "listing": "exsight.listing/0.1",
+        "package": "@exsight/bench-electronics",
+        "slug": "electronics",
+        "kind": "bench",
+        "status": "ready",
+        "name": {
+          "en": "Electronics Bench",
+          "fr": "Banc d’électronique"
+        },
+        "summary": {
+          "en": "A schematic that is solved as you look at it: run the circuit, read its voltages, currents, power and heat on the sheet, probe it, see a part's curve and where it sits, and draw your own.",
+          "fr": "Un schéma résolu sous vos yeux : faites tourner le circuit, lisez ses tensions, courants, puissances et échauffements sur la feuille, sondez-le, voyez la courbe d’un composant et son point de fonctionnement, et dessinez le vôtre."
+        },
+        "purpose": {
+          "en": "A circuit on a slide is a drawing: the student is told what the current is and has to believe it. On a bench it is measured, but the room cannot see the meter and nobody can see the current. The Electronics Bench solves the drawing itself, so every number is on the part it belongs to, the current moves where it flows, a probe reads what a probe would, and an exaggeration says by how much it exaggerates.",
+          "fr": "Un circuit sur une diapositive est un dessin : on dit à l’étudiant ce que vaut le courant, et il doit le croire. Sur un banc on le mesure, mais la salle ne voit pas l’appareil et personne ne voit le courant. Le Banc d’électronique résout le dessin lui-même : chaque valeur est sur le composant auquel elle appartient, le courant se déplace là où il circule, une sonde lit ce qu’une sonde lirait, et une exagération dit de combien elle exagère."
+        },
+        "features": [
+          {
+            "glyph": "live",
+            "name": {
+              "en": "Solved as it runs",
+              "fr": "Résolu pendant qu’il tourne"
+            },
+            "says": {
+              "en": "Run, rewind and reset; every reading is computed by the engine, and the bench says so.",
+              "fr": "Lancer, rembobiner, réinitialiser ; chaque valeur est calculée par le moteur, et le banc le dit."
+            }
+          },
+          {
+            "glyph": "heat",
+            "name": {
+              "en": "Voltage, current, power, heat",
+              "fr": "Tension, courant, puissance, chaleur"
+            },
+            "says": {
+              "en": "Read on the sheet: the current moving where it flows, each part's load against its rating, its heat.",
+              "fr": "Lus sur la feuille : le courant qui circule, la charge de chaque pièce face à ses limites, sa chaleur."
+            }
+          },
+          {
+            "glyph": "highlight",
+            "name": {
+              "en": "A part's own curve",
+              "fr": "La courbe d’un composant"
+            },
+            "says": {
+              "en": "The IV curve of the part you choose, the load line the circuit puts on it, and its point Q.",
+              "fr": "La courbe I-V du composant choisi, la droite de charge que le circuit lui impose, et son point Q."
+            }
+          },
+          {
+            "glyph": "point",
+            "name": {
+              "en": "Probes and real meters",
+              "fr": "Sondes et vrais appareils"
+            },
+            "says": {
+              "en": "Ideal probes A and B that load nothing, and the circuit's own meters, which load it as real ones do.",
+              "fr": "Des sondes idéales A et B qui ne chargent rien, et les appareils du circuit, qui le chargent comme en vrai."
+            }
+          },
+          {
+            "glyph": "follow",
+            "name": {
+              "en": "The wall follows",
+              "fr": "Le mur suit"
+            },
+            "says": {
+              "en": "Presented, the wall draws the presenter's circuit, run and choices, with no controls of its own.",
+              "fr": "En présentation, le mur montre le circuit, la simulation et les choix de l’enseignant, sans commandes à lui."
+            }
+          },
+          {
+            "glyph": "construct",
+            "name": {
+              "en": "Draw your own circuit",
+              "fr": "Dessinez votre circuit"
+            },
+            "says": {
+              "en": "Place, wire, ground, turn and remove parts, then save; Authoring also chooses what a slide shows.",
+              "fr": "Placez, câblez, mettez à la masse, tournez, retirez, enregistrez ; Création choisit ce que montre la diapositive."
+            }
+          }
+        ],
+        "fields": [
+          "electronics-automation",
+          "electricity-energy",
+          "physics"
+        ],
+        "views": [
+          "preview",
+          "view",
+          "edit",
+          "authoring"
+        ],
+        "runsIn": {
+          "contract": "^1.3.0",
+          "scope": true,
+          "phone": true
+        },
+        "libraries": [
+          {
+            "package": "@exsight/lib-electronics-baseline",
+            "required": true
+          }
+        ],
+        "guide": [
+          {
+            "id": "what-it-is",
+            "title": {
+              "en": "What it is",
+              "fr": "Ce que c’est"
+            },
+            "paragraphs": [
+              {
+                "en": "A schematic on a sheet, solved by the bench's own engine. Every part prints its designator, its value and the reading the chosen analysis asks for: Voltage, Current, Power, Stress (its load as a share of its rating) or IR view (its temperature from what it dissipates). The numbers are computed, never measured, and the bench says so.",
+                "fr": "Un schéma sur une feuille, résolu par le moteur du banc. Chaque composant affiche son repère, sa valeur et la grandeur que l’analyse choisie demande : Tension, Courant, Puissance, Contrainte (sa charge rapportée à ses limites) ou Vue IR (sa température d’après ce qu’il dissipe). Les valeurs sont calculées, jamais mesurées, et le banc le dit."
+              },
+              {
+                "en": "The work is one .benchcircuit file. The bench carries its parts: a bench supply, resistors, a capacitor, diodes (three named ones authored from their datasheets) and red and green LEDs, a MOSFET, temperature sensors (an NTC and a Pt100), a test point, and the meters a bench has: an ammeter, a current clamp, a multimeter and a scope probe.",
+                "fr": "Le travail est un seul fichier .benchcircuit. Le banc porte ses composants : une alimentation de laboratoire, des résistances, un condensateur, des diodes (trois références réelles, établies d’après leurs fiches techniques) et des LED rouge et verte, un MOSFET, des capteurs de température (une CTN et une Pt100), un point de test, et les appareils d’un banc : ampèremètre, pince ampèremétrique, multimètre et sonde d’oscilloscope."
+              }
+            ]
+          },
+          {
+            "id": "first-five-minutes",
+            "title": {
+              "en": "The first five minutes",
+              "fr": "Les cinq premières minutes"
+            },
+            "paragraphs": [
+              {
+                "en": "Open a circuit in View. Drive is open on the right: press Run, and the clock moves; Rewind goes back to the start keeping your changes, and Reset puts the circuit back as the course wrote it. Choose Current in the bar along the bottom and the dots follow the current, faster where there is more.",
+                "fr": "Ouvrez un circuit en Vue. Le panneau de pilotage est ouvert à droite : appuyez sur Lancer, et l’horloge avance ; Rembobiner revient au début en gardant vos changements, et Réinitialiser remet le circuit tel que le cours l’a écrit. Choisissez Courant dans la barre du bas : les points suivent le courant, plus vite là où il est plus fort."
+              },
+              {
+                "en": "Choose a part on the sheet to see its card. Open IV curve with a diode chosen to see its curve and where the circuit puts it. Open Measure to place probe A and probe B, or to read the circuit's own meters.",
+                "fr": "Choisissez un composant sur la feuille pour voir sa fiche. Ouvrez la courbe I-V avec une diode choisie pour voir sa courbe et l’endroit où le circuit la place. Ouvrez Mesure pour poser les sondes A et B, ou lire les appareils du circuit."
+              },
+              {
+                "en": "Open Edit. Press a part in the list, then the sheet, to place it; press a pin, then another, to wire them. G grounds a pin, R turns the chosen part, Delete removes it. The line above the list always says what your next press does. Save when it is drawn.",
+                "fr": "Ouvrez l’édition. Appuyez sur un composant de la liste, puis sur la feuille, pour le placer ; appuyez sur une broche, puis sur une autre, pour les relier. G relie une broche à la masse, R tourne le composant choisi, Suppr le retire. La ligne au-dessus de la liste dit toujours ce que fera votre prochain appui. Enregistrez une fois le dessin fini."
+              }
+            ]
+          },
+          {
+            "id": "the-views",
+            "title": {
+              "en": "The views",
+              "fr": "Les vues"
+            },
+            "paragraphs": [
+              {
+                "en": "Preview is what a slide shows: the parts and wires the author put in it at full ink and the rest faint, or the whole circuit when the author chose nothing. View is the bench: run it, read it, probe it; presented, the wall follows the presenter. Edit draws and saves the circuit, and Authoring adds Show in the Preview.",
+                "fr": "Aperçu est ce que montre une diapositive : les composants et les fils que l’auteur y a mis, en pleine encre, le reste estompé, ou le circuit entier si l’auteur n’a rien choisi. Vue est le banc : le faire tourner, le lire, le sonder ; en présentation, le mur suit l’enseignant. Édition dessine et enregistre le circuit, et Création ajoute Montrer dans l’aperçu."
+              },
+              {
+                "en": "ExSight Scope offers Preview, View and Edit, and a phone Preview. Authoring is in ExSight Studio only. Every word of the bench follows the room's language, English or French: its controls, its refusals and the names, legends and teaching points of its parts' library, with a course's own words (its title, caption and question). A number keeps its point in every language (5.00 V).",
+                "fr": "ExSight Scope propose Aperçu, Vue et Édition, et l’Aperçu sur téléphone. Création n’existe que dans ExSight Studio. Chaque mot du banc suit la langue de la salle, anglais ou français : ses commandes, ses refus et les noms, légendes et points pédagogiques de sa bibliothèque de composants, avec les mots du cours (titre, légende et question). Un nombre garde son point dans toutes les langues (5.00 V)."
+              }
+            ]
+          }
+        ],
+        "controls": [
+          {
+            "action": {
+              "en": "Turn the chosen part",
+              "fr": "Tourner le composant choisi"
+            },
+            "keys": "R, Shift + R the other way"
+          },
+          {
+            "action": {
+              "en": "Remove the chosen part, or unwire a net",
+              "fr": "Retirer le composant choisi, ou défaire un réseau"
+            },
+            "keys": "Delete or Backspace"
+          },
+          {
+            "action": {
+              "en": "Ground a pin (Edit)",
+              "fr": "Relier une broche à la masse (Édition)"
+            },
+            "keys": "G, then press the pin"
+          },
+          {
+            "action": {
+              "en": "Keep placing the same part (Edit)",
+              "fr": "Continuer à placer le même composant (Édition)"
+            },
+            "keys": "Shift while pressing the sheet"
+          },
+          {
+            "action": {
+              "en": "Open a part's controls (View)",
+              "fr": "Ouvrir les commandes d’un composant (Vue)"
+            },
+            "keys": "Double-click the part"
+          },
+          {
+            "action": {
+              "en": "Cancel what you started, then the choice",
+              "fr": "Annuler ce qui est commencé, puis le choix"
+            },
+            "keys": "Esc"
+          },
+          {
+            "action": {
+              "en": "Back to Preview, with nothing to cancel",
+              "fr": "Revenir à l’aperçu, sans rien à annuler"
+            },
+            "keys": "Esc"
+          }
+        ],
+        "accessibility": {
+          "en": "The sheet is one image named by the circuit's description, and a part's curve is said in words: Q, the load line and the temperatures. What the editor will do next, saving and its outcome are announced. On and off are never shown by colour alone. Every control is a real button a keyboard reaches. Under reduced motion the current's dots stand still.",
+          "fr": "La feuille est une image nommée par la description du circuit, et la courbe d’un composant est dite en mots : Q, la droite de charge et les températures. Ce que l’éditeur fera ensuite, l’enregistrement et son résultat sont annoncés. Marche et arrêt ne sont jamais montrés par la seule couleur. Chaque commande est un vrai bouton que le clavier atteint. Si les animations sont réduites, les points du courant restent immobiles."
+        },
+        "looks": [
+          "dark",
+          "light"
+        ],
+        "media": {
+          "icon": {
+            "file": "listing/icon.svg",
+            "sha256": "sha256:50ff29a33f811c691890cbf70d7c766a5ca7493c6bc1af0b8396ee91578c1056",
+            "bytes": 310
+          },
+          "cover": {
+            "kind": "capture",
+            "look": "draft",
+            "alt": {
+              "en": "Two LEDs lit by their resistors' currents, running with Current on: dots follow the current, each part prints its current, the panel lists them busiest first.",
+              "fr": "Deux LED allumées par le courant de leur résistance, en marche avec Courant : des points suivent le courant, chaque composant l’affiche, le panneau les classe."
+            },
+            "dark": {
+              "file": "listing/cover-dark.png",
+              "sha256": "sha256:413a724df28c87e5652edea3df256be9c969ce5d528b68a2b1401f9a4f033e04",
+              "bytes": 153779,
+              "width": 1600,
+              "height": 1000
+            },
+            "light": {
+              "file": "listing/cover-light.png",
+              "sha256": "sha256:c200cd97c9ea84b3d1448d464da489d4d56c3f66513385ed1d34bf80eba089bf",
+              "bytes": 168910,
+              "width": 1600,
+              "height": 1000
+            }
+          },
+          "gallery": [
+            {
+              "kind": "capture",
+              "look": "draft",
+              "alt": {
+                "en": "The IV curve of D1, a red LED, on a log scale: its curve, the load line the circuit puts on it and Q at 2 V and 20 mA; on the left, D1's card with the profiles it can be swapped for.",
+                "fr": "La courbe I-V de D1, une LED rouge, en échelle log : sa courbe, la droite de charge et Q à 2 V et 20 mA ; à gauche, la fiche de D1 et ses modèles de rechange."
+              },
+              "caption": {
+                "en": "View: a part's curve, and where the circuit puts it",
+                "fr": "Vue : la courbe d’un composant, et où le circuit la place"
+              },
+              "dark": {
+                "file": "listing/gallery/1-dark.png",
+                "sha256": "sha256:323a9ff29b61f12697a9ce6cd5b65f8a0b44814711628572fa78f78bb923e69e",
+                "bytes": 145717,
+                "width": 1280,
+                "height": 800
+              },
+              "light": {
+                "file": "listing/gallery/1-light.png",
+                "sha256": "sha256:0a22291d30376931336bfdf91527aba82c4cc6bdb4b3ed8485158258afa546b7",
+                "bytes": 152877,
+                "width": 1280,
+                "height": 800
+              }
+            },
+            {
+              "kind": "capture",
+              "look": "draft",
+              "alt": {
+                "en": "Authoring on a voltage divider: R2 chosen and shown in the Preview, beside Save, the sheet's Ground, Turn and Remove, and the list of parts by group.",
+                "fr": "Création sur un pont diviseur : R2 choisie et montrée dans l’aperçu, à côté d’Enregistrer, des boutons Masse, Tourner et Retirer, et de la liste des composants par groupe."
+              },
+              "caption": {
+                "en": "Authoring: draw it, and choose what the slide shows",
+                "fr": "Création : dessinez-le, et choisissez ce que montre la diapositive"
+              },
+              "dark": {
+                "file": "listing/gallery/2-dark.png",
+                "sha256": "sha256:67422b8f1ad237d796591c8003c40f77c9f37716c172235803bb3a76f07afbb8",
+                "bytes": 60343,
+                "width": 1280,
+                "height": 800
+              },
+              "light": {
+                "file": "listing/gallery/2-light.png",
+                "sha256": "sha256:c96e2abf0774008ddec5d6b50adce83f605b395bed525550563e7370fe4cac69",
+                "bytes": 62877,
+                "width": 1280,
+                "height": 800
+              }
+            }
+          ],
+          "share": {
+            "kind": "capture",
+            "look": "draft",
+            "alt": {
+              "en": "The Electronics Bench: four-wire sensing of a resistance thermometer, an ammeter and two meters, as a slide shows it.",
+              "fr": "Le Banc d’électronique : mesure quatre fils d’une sonde à résistance, un ampèremètre et deux multimètres, comme une diapositive la montre."
+            },
+            "dark": {
+              "file": "listing/share-dark.png",
+              "sha256": "sha256:c4bb53fd3a5eed5f99734d8e8c97f2be6d7a2fce8f8b79464292ae62de842362",
+              "bytes": 126126,
+              "width": 1680,
+              "height": 1260
+            },
+            "light": {
+              "file": "listing/share-light.png",
+              "sha256": "sha256:c8acf152cdd26e17c331342c14704a115ff697d330ca49cc3cf966f53543d2f1",
+              "bytes": 154302,
+              "width": 1680,
+              "height": 1260
+            }
+          }
+        },
+        "samples": [
+          {
+            "library": "@exsight/lib-electronics-baseline",
+            "id": "divider-loading",
+            "title": {
+              "en": "A divider, loaded",
+              "fr": "Un diviseur chargé"
+            }
+          }
+        ]
+      },
+      "changes": [
+        {
+          "version": "0.5.1",
+          "at": "2026-10-23T21:48:16.405Z",
+          "note": {
+            "en": "The run's clock holds still: seconds with two decimals always, the whole seconds padded with faint zeros (001.23 s), m:ss.ss past 999.99 s at the same width; nothing in the circuit bar moves or resizes while a run ticks (the state, the clock, the dilation note, the ambient each hold the box of their widest spelling, in tabular figures), nor Run/Pause in the drive panel, a folded knob's value or a probe's figure (crossing 772).",
+            "fr": "L'horloge de la marche ne bouge plus : des secondes à deux décimales toujours, les secondes entières complétées de zéros pâles (001.23 s), m:ss.ss au-delà de 999.99 s à la même largeur ; rien ne bouge ni ne change de taille dans la barre du circuit pendant la marche (l'état, l'horloge, la note de ralenti, l'ambiante gardent chacun la place de leur forme la plus large, en chiffres tabulaires), ni Lancer/Pause dans le panneau de pilotage, la valeur d'un bouton replié ou le chiffre d'une sonde (croisement 772)."
+          }
+        },
+        {
+          "version": "0.5.0",
+          "at": "2026-10-23T18:11:30.159Z",
+          "note": {
+            "en": "Ready: every word of the bench in English and French, the circuit editor too, under a guard against new English; the listing says so and is ready (E·a-vi-d).",
+            "fr": "Prêt : chaque mot du banc en anglais et en français, l'éditeur de circuit aussi, sous un garde contre tout nouvel anglais ; la fiche le dit et est prête (E·a-vi-d)."
+          }
+        },
+        {
+          "version": "0.4.1",
+          "at": "2026-10-23T17:47:48.320Z",
+          "note": {
+            "en": "The part card's name wraps rather than being cut: French names run longer.",
+            "fr": "Le nom du composant sur sa fiche passe à la ligne au lieu d'être coupé : les noms français sont plus longs."
+          }
+        },
+        {
+          "version": "0.4.0",
+          "at": "2026-10-23T17:43:47.726Z",
+          "note": {
+            "en": "The bench in English and French: every word of Preview, View and Edit from its words table (a guard refuses new English), the engine's refusals and the work checks said in French, the library's words in the room's language (baseline 1.15.0, electronics-engine 0.3.0). A wired dial takes the wire's value as it comes (R5 D8); the LDR in its library (R5b). First load 358,000 B.",
+            "fr": "Le banc en anglais et en français : chaque mot de l'aperçu, de la vue et de l'édition vient de sa table de mots (un garde refuse tout nouvel anglais), les refus du moteur et les contrôles du travail dits en français, les mots de la bibliothèque dans la langue de la salle (base 1.15.0, electronics-engine 0.3.0). Un cadran câblé prend la valeur du fil telle qu'elle arrive (R5 D8) ; la LDR dans sa bibliothèque (R5b). Premier chargement 358 000 o."
+          }
+        },
+        {
+          "version": "0.3.2",
+          "at": "2026-10-23T14:41:45.426Z",
+          "note": {
+            "en": "Rebuilt over the kit and contract 1.5 (B049): the runtime's host-play carries an attempt and its result, and every bench bundles it; nothing of this bench changes, and its ready still says the contract it was built for.",
+            "fr": "Reconstruit sur le kit et le contrat 1.5 (B049) : le host-play du moteur porte une tentative et son résultat, et chaque banc l'empaquette ; rien de ce banc ne change, et son ready dit toujours le contrat pour lequel il a été construit."
+          }
+        },
+        {
+          "version": "0.3.1",
+          "at": "2026-10-23T14:16:53.458Z",
+          "note": {
+            "en": "The circuit bar fits a pane down to 640 px (its words shorten, and narrower it wraps rather than cut a control); the knob draws in the widget and in a pane, locked when another bench's wire sets it.",
+            "fr": "La barre du circuit tient dans un volet jusqu'à 640 px (ses mots raccourcissent, et plus étroite elle passe à la ligne au lieu de couper une commande) ; le bouton rotatif s'affiche dans le widget et dans un volet, verrouillé quand le fil d'un autre banc le règle."
+          }
+        },
+        {
+          "version": "0.3.0",
+          "at": "2026-10-23T13:30:33.436Z",
+          "note": {
+            "en": "The bench mounts as a pane of the runtime (B012): mount(stage, ctx) on the door, beside other benches in an assembly, joined by the ports its work declares: each source's dial in, each net's voltage and each part's current out after every solve, selection both ways; a wired dial is held and shown linked. Every timer is on the kit's one clock (kit/runtime/time.js), which the page beats when the bench plays alone. Alone in its widget it plays as before.",
+            "fr": "Le banc se monte comme un panneau du moteur d'exécution (B012) : mount(stage, ctx) sur la porte, à côté d'autres bancs dans un assemblage, reliés par les ports que son œuvre déclare : le réglage de chaque source en entrée, la tension de chaque réseau et le courant de chaque composant en sortie après chaque résolution, la sélection dans les deux sens ; un réglage câblé est tenu et montré lié. Chaque minuterie suit l'horloge unique du kit, que la page fait battre quand le banc joue seul. Seul dans son widget, il joue comme avant."
+          }
+        },
+        {
+          "version": "0.2.2",
+          "at": "2026-10-23T10:32:39.358Z",
+          "note": {
+            "en": "A view the player does not offer is absent, not drawn shut (B074, crossing 668 §2): Scope's preview,view draws no Edit; one offered that this frame cannot open yet (following the room) is drawn shut, saying when; contract 1.3",
+            "fr": "Une vue que le lecteur n'offre pas est absente, non dessinée fermée (B074) : sans Édition sous l'aperçu et la vue de Scope ; une vue offerte que ce cadre ne peut pas encore ouvrir est dessinée fermée, en disant quand"
+          }
+        },
+        {
+          "version": "0.2.1",
+          "at": "2026-10-23T08:08:17.352Z",
+          "note": {
+            "en": "Its panes are a script of their own (E·a-ii-d): Measure, Full View, the IV tool and the Equivalent, with their computations, are bench-panes.js and bench-panes.css, fetched the first time one of them is opened. The first load is 324,605 B gzipped, was 346,220 (budget 326,000, was 347,000); the panes are 26 KB gzipped when first opened. Nothing else changes: the same contract, work and views.",
+            "fr": "Ses panneaux sont un script à part (E·a-ii-d) : Mesure, Vue complète, l'outil IV et l'Équivalent, avec leurs calculs, sont bench-panes.js et bench-panes.css, chargés la première fois que l'un d'eux est ouvert. Le premier chargement est de 324 605 o compressés, au lieu de 346 220 (budget 326 000, au lieu de 347 000) ; les panneaux font 26 Ko compressés à leur première ouverture. Rien d'autre ne change : le même contrat, le même travail et les mêmes vues."
+          }
+        },
+        {
+          "version": "0.2.0",
+          "at": "2026-10-22T01:18:46.056Z",
+          "note": {
+            "en": "Contract 1.3 (B067, B072, B073). The lead moves between two frames without a reload: told to lead, a frame that followed takes the run over from the last state it was given (the view, the solved frame and the run's snapshot beside them), so its run goes on with the room's history (every hold time a part was partway through, every latch, every capacitor's charge) at the tick the room is on; its controls work, and it says its state. Told to follow, it drops its run, its controls go inert, and it draws the last frame it solved until the new leader's first state. A beat says what this showing asks (exsight.beat, work/beat.schema.json, inlined in the catalogue as beat.schema, built from the engine's ANALYSES and OPENABLE_TOOLS): its reveal and analyses reach the bench as the compiled block's did, the tool it opens is written into the view, and the same work with a new beat keeps the run, the camera and the stops, the last beat's tool closed; a beat the bench has not is refused, saying why. It says a work loading at once, and its drives take loading apart from the answer, as a player must. Driven on this build: drive-wall 57 of 57 at a desk and in the classroom (the run clock within 0.12 s of the room's across each hand-over, the follower within 250 ms, the plant seen), drive-beat 14 of 14 (a plant: a new work loses the view), drive 33, drive-edit 28, drive-profiles 27, drive-preview 34. Engine 0.2.0; the first-load budget 345,000 to 347,000 B (345,951). Needs contract ^1.3.0: a 1.2 player refuses it, so play 0.1.1 until the players move.",
+            "fr": "Contrat 1.3 (B067, B072, B073). La main passe d'un cadre à l'autre sans recharger : invité à mener, un cadre qui suivait reprend la simulation du dernier état reçu (la vue, l'image résolue et l'instantané de la simulation à côté), si bien que sa simulation continue avec l'historique de la salle (chaque durée de maintien en cours, chaque verrou, la charge de chaque condensateur) au pas où en est la salle ; ses commandes marchent et il dit son état. Invité à suivre, il abandonne sa simulation, ses commandes deviennent inertes et il affiche la dernière image résolue jusqu'au premier état du nouveau meneur. Un moment dit ce que cette présentation demande (exsight.beat, work/beat.schema.json, recopié dans le catalogue comme beat.schema, construit à partir des ANALYSES et OPENABLE_TOOLS du moteur) : sa révélation et ses analyses atteignent le banc comme celles du bloc compilé, l'outil qu'il ouvre est écrit dans la vue, et le même travail avec un nouveau moment garde la simulation, la caméra et les arrêts, l'outil du moment précédent fermé ; un moment que le banc n'a pas est refusé, avec sa raison. Il dit un travail en chargement aussitôt, et ses pilotes séparent ce chargement de la réponse, comme un lecteur doit le faire. Piloté sur cette construction : drive-wall 57 sur 57 au bureau et en salle (l'horloge à 0,12 s près de celle de la salle à chaque passation, le suiveur à moins de 250 ms, la faute plantée vue), drive-beat 14 sur 14 (une faute plantée : un nouveau travail perd la vue), drive 33, drive-edit 28, drive-profiles 27, drive-preview 34. Moteur 0.2.0 ; le budget du premier chargement passe de 345 000 à 347 000 o (345 951). Demande le contrat ^1.3.0 : un lecteur 1.2 le refuse, donc jouer la 0.1.1 jusqu'à ce que les lecteurs passent."
+          }
+        },
+        {
+          "version": "0.1.1",
+          "at": "2026-10-21T21:08:43.315Z",
+          "note": {
+            "en": "Its work schema describes the stamp's source digest as the code has always computed it (crossing 577): the canonical JSON's keys in UTF-16 code-unit order, JavaScript's plain string <, not code-point order. No check changes; a compiler written from the description now sorts as the bench does.",
+            "fr": "Le schéma de son œuvre décrit l'empreinte source du tampon comme le code l'a toujours calculée (croisement 577) : les clés du JSON canonique dans l'ordre des unités de code UTF-16, le < ordinaire de JavaScript, et non dans l'ordre des points de code. Aucune vérification ne change ; un compilateur écrit d'après la description trie désormais comme le banc."
+          }
+        },
+        {
+          "version": "0.1.0",
+          "at": "2026-10-21T20:50:15.201Z",
+          "note": {
+            "en": "The Electronics Bench as a frame bundle played by contract 1.0: Preview the author's captured scene (else the whole circuit), View with its run, analyses, IV curve, Measure, Full View and a wall that follows the presenter, Edit and Authoring saving the circuit stamped through the player; played as Studio, Scope and a phone.",
+            "fr": "Le Banc d'électronique en paquet de cadre joué par le contrat 1.0 : l'aperçu est la scène capturée par l'auteur (sinon le circuit entier), la vue a sa simulation, ses analyses, la courbe I-V, la mesure, la vue complète et un mur qui suit l'enseignant, l'édition et la création enregistrent le circuit tamponné par le lecteur ; joué comme Studio, Scope et un téléphone."
+          }
+        }
+      ],
+      "samples": [
+        {
+          "id": "divider-loading",
+          "title": {
+            "en": "A divider, loaded",
+            "fr": "Un diviseur chargé"
+          },
+          "package": "@exsight/lib-electronics-baseline",
+          "version": "1.15.0",
+          "path": "samples/divider-loading/divider-loading.benchcircuit",
+          "sha256": "sha256:7ceebe5954f552b540cd21ab1c1cce0a58f835b3f673b71832993db44a7a0a53",
+          "bytes": 1860
         }
       ],
       "neededBy": [

@@ -50,7 +50,7 @@ Then build it on the breadboard before you trust it with the supply.
 
 ```bench
 title: Build the dummy load on a breadboard
-package: "@exsight/bench-breadboard@0.1.3"
+package: "@exsight/bench-breadboard@0.2.8"
 alt: A breadboard with the bench supply, a power resistor across its rails, and two leads to the meter.
 caption: The same load you just sized, built and powered.
 ```
