@@ -1,10 +1,10 @@
 {
   "kind": "assembly",
   "title": { "en": "Light into a voltage", "fr": "La lumière en tension" },
-  "stage": "@exsight/bench-storyboard@0.11.0",
+  "stage": "@exsight/bench-storyboard@0.12.2",
   "panes": [
-    { "id": "lamp", "scene": "@exsight/lib-animation-lamp-and-light-meter@1.1.0", "title": { "en": "The lamp", "fr": "La lampe" } },
-    { "id": "circuit", "bench": "@exsight/bench-electronics@0.6.0", "work": "shared/circuits/ldr-divider.benchcircuit",
+    { "id": "lamp", "scene": "@exsight/lib-animation-lamp-and-light-meter@1.2.0", "title": { "en": "The lamp", "fr": "La lampe" } },
+    { "id": "circuit", "bench": "@exsight/bench-electronics@0.8.2", "work": "shared/circuits/ldr-divider.benchcircuit",
       "title": { "en": "The divider", "fr": "Le diviseur" } }
   ],
   "layout": { "rows": [{ "panes": ["lamp", "circuit"], "share": [1, 2], "channels": ["wide"] }], "band": "caption" },
