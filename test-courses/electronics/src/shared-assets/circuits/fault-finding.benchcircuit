@@ -1,0 +1,443 @@
+{
+  "id": "fault-finding",
+  "title": "Find the fault by moving the probe",
+  "seed": 20261010,
+  "requires": {
+    "insight-baseline": "1.16.0"
+  },
+  "environment": {
+    "t_ambient_c": 25
+  },
+  "instances": [
+    {
+      "id": "V1",
+      "class": "supply",
+      "profile": "supply-bench",
+      "value": 10,
+      "at": [
+        50.8,
+        381
+      ],
+      "rotation": 90,
+      "label": "10 V"
+    },
+    {
+      "id": "R1",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 1000000,
+      "at": [
+        304.8,
+        152.4
+      ],
+      "rotation": 90,
+      "label": "1 M"
+    },
+    {
+      "id": "R2",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 1000000,
+      "at": [
+        304.8,
+        381
+      ],
+      "rotation": 90,
+      "label": "1 M"
+    },
+    {
+      "id": "R3",
+      "class": "resistor",
+      "profile": "resistor-typical",
+      "value": 1000000,
+      "at": [
+        304.8,
+        609.6
+      ],
+      "rotation": 90,
+      "label": "1 M"
+    },
+    {
+      "id": "TP1",
+      "class": "test-point",
+      "profile": "test-point-post",
+      "at": [
+        660.4,
+        25.4
+      ],
+      "rotation": 270,
+      "label": "IN"
+    },
+    {
+      "id": "TP2",
+      "class": "test-point",
+      "profile": "test-point-post",
+      "at": [
+        660.4,
+        254
+      ],
+      "rotation": 270,
+      "label": "A"
+    },
+    {
+      "id": "TP3",
+      "class": "test-point",
+      "profile": "test-point-post",
+      "at": [
+        660.4,
+        482.6
+      ],
+      "rotation": 270,
+      "label": "B"
+    },
+    {
+      "id": "VP1",
+      "class": "probe",
+      "profile": "probe-x1",
+      "at": [
+        482.6,
+        76.2
+      ],
+      "label": "Probe"
+    },
+    {
+      "id": "M1",
+      "class": "dmm",
+      "profile": "dmm-budget",
+      "at": [
+        965.2,
+        609.6
+      ],
+      "label": "DMM"
+    }
+  ],
+  "nets": [
+    {
+      "id": "vin",
+      "terminals": [
+        "V1.p",
+        "R1.a",
+        "TP1.pad",
+        "VP1.tip"
+      ]
+    },
+    {
+      "id": "na",
+      "terminals": [
+        "R1.b",
+        "R2.a",
+        "TP2.pad"
+      ]
+    },
+    {
+      "id": "nb",
+      "terminals": [
+        "R2.b",
+        "R3.a",
+        "TP3.pad"
+      ]
+    },
+    {
+      "id": "sense",
+      "terminals": [
+        "VP1.lead",
+        "M1.hi"
+      ]
+    },
+    {
+      "id": "gnd",
+      "terminals": [
+        "R3.b",
+        "V1.n",
+        "M1.lo",
+        "VP1.ref"
+      ],
+      "is_reference": true
+    }
+  ],
+  "effects": {
+    "M1": [
+      "input_loading"
+    ]
+  },
+  "locked": {
+    "values": [],
+    "profiles": [],
+    "faults": [
+      "M1"
+    ]
+  },
+  "faults": [
+    {
+      "id": "r1-open",
+      "instance": "R1",
+      "kind": "open",
+      "reason": {
+        "en": "A cracked solder joint under R1: no current reaches the chain.",
+        "fr": "Une soudure fissurée sous R1 : aucun courant n’atteint la chaîne."
+      }
+    },
+    {
+      "id": "r2-short",
+      "instance": "R2",
+      "kind": "short",
+      "reason": {
+        "en": "A solder bridge across R2: its two ends are one node.",
+        "fr": "Un pont de soudure sur R2 : ses deux extrémités forment un seul nœud."
+      }
+    },
+    {
+      "id": "r3-drift",
+      "instance": "R3",
+      "kind": "drift",
+      "value": 3300000,
+      "reason": {
+        "en": "R3 ran hot for years and drifted from 1 MΩ to 3.3 MΩ.",
+        "fr": "R3 a chauffé pendant des années et a dérivé de 1 MΩ à 3,3 MΩ."
+      }
+    },
+    {
+      "id": "v1-reversed",
+      "instance": "V1",
+      "kind": "reversed",
+      "reason": {
+        "en": "The supply leads were swapped at the terminals: every node reads negative.",
+        "fr": "Les fils de l’alimentation ont été inversés aux bornes : chaque nœud lit une tension négative."
+      }
+    }
+  ],
+  "stamp": {
+    "v": 1,
+    "source": "sha256:001342358ebd1987dc1288019ad777201ddd85b1af291a9ec30918d17a9a713d",
+    "libraries": {
+      "insight-baseline": "1.16.0"
+    },
+    "derived": {
+      "targets": [
+        {
+          "id": "V1",
+          "kind": "part"
+        },
+        {
+          "id": "R1",
+          "kind": "part"
+        },
+        {
+          "id": "R2",
+          "kind": "part"
+        },
+        {
+          "id": "R3",
+          "kind": "part"
+        },
+        {
+          "id": "TP1",
+          "kind": "part"
+        },
+        {
+          "id": "TP2",
+          "kind": "part"
+        },
+        {
+          "id": "TP3",
+          "kind": "part"
+        },
+        {
+          "id": "VP1",
+          "kind": "part"
+        },
+        {
+          "id": "M1",
+          "kind": "part"
+        },
+        {
+          "id": "vin",
+          "kind": "net"
+        },
+        {
+          "id": "na",
+          "kind": "net"
+        },
+        {
+          "id": "nb",
+          "kind": "net"
+        },
+        {
+          "id": "sense",
+          "kind": "net"
+        },
+        {
+          "id": "gnd",
+          "kind": "net"
+        }
+      ],
+      "sources": [
+        {
+          "id": "V1",
+          "label": "V1 · 10 V",
+          "legend": "Output voltage",
+          "unit": "V",
+          "authored": 10,
+          "min": 0,
+          "max": 24,
+          "step": 1.2
+        }
+      ],
+      "probes": [
+        {
+          "id": "VP1",
+          "label": "VP1",
+          "authored": "TP1",
+          "destinations": [
+            {
+              "id": "TP1",
+              "label": "TP1",
+              "name": "IN",
+              "kind": "point"
+            },
+            {
+              "id": "TP2",
+              "label": "TP2",
+              "name": "A",
+              "kind": "point"
+            },
+            {
+              "id": "TP3",
+              "label": "TP3",
+              "name": "B",
+              "kind": "point"
+            },
+            {
+              "id": "gnd",
+              "label": "gnd",
+              "kind": "net"
+            }
+          ]
+        }
+      ],
+      "leads": [],
+      "demands": [
+        {
+          "id": "TP2",
+          "label": "TP2",
+          "name": "A",
+          "net": "na",
+          "min": 0,
+          "max": 10,
+          "step": 0.5
+        },
+        {
+          "id": "TP3",
+          "label": "TP3",
+          "name": "B",
+          "net": "nb",
+          "min": 0,
+          "max": 10,
+          "step": 0.5
+        }
+      ],
+      "locked": {
+        "values": [],
+        "profiles": []
+      },
+      "reveals": [
+        {
+          "id": "V1",
+          "offers": [
+            {
+              "bind": "output_resistance",
+              "available": true
+            },
+            {
+              "bind": "output_drift",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "R1",
+          "offers": [
+            {
+              "bind": "overpower",
+              "available": true
+            },
+            {
+              "bind": "tempco_drift",
+              "available": true
+            },
+            {
+              "bind": "thermal_settling",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "R2",
+          "offers": [
+            {
+              "bind": "overpower",
+              "available": true
+            },
+            {
+              "bind": "tempco_drift",
+              "available": true
+            },
+            {
+              "bind": "thermal_settling",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "R3",
+          "offers": [
+            {
+              "bind": "overpower",
+              "available": true
+            },
+            {
+              "bind": "tempco_drift",
+              "available": true
+            },
+            {
+              "bind": "thermal_settling",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "M1",
+          "offers": [
+            {
+              "bind": "input_loading",
+              "available": true
+            },
+            {
+              "bind": "resolution_versus_accuracy",
+              "available": true
+            }
+          ]
+        }
+      ],
+      "opens": {
+        "iv": [
+          "R1",
+          "R2",
+          "R3"
+        ]
+      },
+      "instances": [
+        "V1",
+        "R1",
+        "R2",
+        "R3",
+        "TP1",
+        "TP2",
+        "TP3",
+        "VP1",
+        "M1"
+      ]
+    },
+    "diagnostics": []
+  }
+}
