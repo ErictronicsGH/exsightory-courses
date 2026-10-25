@@ -11088,18 +11088,20 @@
     {
       "name": "@exsight/bench-figure",
       "kind": "bench",
-      "version": "0.2.2",
+      "version": "0.2.11",
       "path": "benches/figure",
       "description": "The Figure Bench: a picture whose parts are named, numbered and driven. Its arithmetic is @exsight/figure-engine (B026); this package is the bench a player frames (its viewer and its Authoring, the figure lab, one Vue bundle speaking contract 1.0), and the .benchfigure work: its JSON Schema and the stamp a compiler reads instead of running the bench (E·fig3d).",
       "needs": {
         "packages": {
-          "@exsight/bench-contract": "^1.2.0",
+          "@exsight/bench-contract": "^1.3.0",
           "@exsight/bench-kit": "^0.1.0",
+          "@exsight/draw-engine": "0.3.2",
           "@exsight/figure-engine": "0.1.0"
         },
-        "contract": "^1.2.0",
+        "contract": "^1.3.0",
         "kit": "^0.1.0"
       },
+      "entry": "dist/widget/index.html",
       "classes": [],
       "bundles": {},
       "works": [
@@ -11770,9 +11772,9 @@
                 },
                 "additionalProperties": {
                   "type": "string",
-                  "pattern": "^data:image\\/(?:png|webp|jpeg|svg\\+xml);base64,[A-Za-z0-9+/]+={0,2}$"
+                  "pattern": "^data:(?:image\\/(?:png|webp|jpeg|svg\\+xml)|application\\/json);base64,[A-Za-z0-9+/]+={0,2}$"
                 },
-                "description": "Every picture the figure names (its image, a part's cut-out, a compared picture): its path as the fields name it → a data URL of a PNG, WebP, JPEG or SVG."
+                "description": "Every picture the figure names (its image, a part's cut-out, a compared picture, a drawing): its path as the fields name it → a data URL of a PNG, WebP, JPEG or SVG, or of a drawing's JSON at a path that ends .benchdrawing (M59l)."
               },
               "preview": {
                 "type": "object",
@@ -11936,7 +11938,8 @@
                           "type": "string",
                           "enum": [
                             "error",
-                            "warning"
+                            "warning",
+                            "info"
                           ]
                         },
                         "message": {
@@ -11977,7 +11980,7 @@
           },
           "schemaFile": {
             "file": "work/figure.schema.json",
-            "sha256": "sha256:aa48f9c36a6022074e8e2f143386ef82dfab48433c92d10f35c463b3151318b8"
+            "sha256": "sha256:6720f45ac8bcb627c5ee81592d9816a2cf12a46fe14dbf4c4f406d29f76a8784"
           }
         }
       ],
@@ -11985,9 +11988,9 @@
         "esbuild": "0.28.2"
       },
       "release": {
-        "version": "0.2.2",
-        "at": "2026-10-23T10:34:54.761Z",
-        "digest": "sha256:b5b5f202d106c97bf61e55ee2ebde7d428a3e7c0a18cce48855cded5e3f525a9"
+        "version": "0.2.11",
+        "at": "2026-10-25T05:15:32.128Z",
+        "digest": "sha256:8e5a48f21d4071b4e63383584ac2a1f2f09af141d1641ff945708ab1f79cbc3e"
       },
       "listed": true,
       "listing": {
@@ -12090,7 +12093,7 @@
           "authoring"
         ],
         "runsIn": {
-          "contract": "^1.2.0",
+          "contract": "^1.3.0",
           "scope": true,
           "phone": true
         },
@@ -12286,9 +12289,97 @@
               "height": 1260
             }
           }
-        }
+        },
+        "samples": [
+          {
+            "id": "power-supply-walk",
+            "title": {
+              "en": "A walk round a power-supply board",
+              "fr": "Un tour d'une carte d'alimentation"
+            }
+          },
+          {
+            "id": "moving-coil-meter",
+            "title": {
+              "en": "Inside a moving-coil meter, over a drawing",
+              "fr": "L'intérieur d'un galvanomètre à cadre mobile, sur un dessin"
+            }
+          }
+        ]
       },
       "changes": [
+        {
+          "version": "0.2.11",
+          "at": "2026-10-25T05:15:32.128Z",
+          "note": {
+            "en": "Rebuilt over kit 0.1.20 (the tokens copy at Studio's e022a9535 (M58z: dark's field edges, --ip-edge-control, at 3:1 in every direction)); the drawing sample's test reads this bench's source, not its build, so it no longer races the gate's build of it. No content changed.",
+            "fr": "Reconstruit sur le kit 0.1.20 (la copie des jetons suit la feuille de Studio à e022a9535 (M58z : les bords des champs en sombre, --ip-edge-control, à 3:1 dans chaque direction)) ; le test de l'exemple du dessin lit la source de ce banc et non sa construction, et ne court plus contre la construction du gate. Aucun contenu changé."
+          }
+        },
+        {
+          "version": "0.2.10",
+          "at": "2026-10-25T04:32:28.836Z",
+          "note": {
+            "en": "A drawing as a figure's picture (M59l): a figure's image may name a .benchdrawing, carried in its files as a data URL of the drawing's JSON and opened only as the Draw Bench saved it (its stamp fresh). The figure annotates it with its own callouts, leaders, tour and measurement over vector line art written from the draw engine's own elements (draw-engine 0.3.2's pictureNodes, its inks tokens), re-inked per surface: desk dark and light, live; the wall; high contrast. The artboard is the figure's aspect; a drawing made to scale measures with no scale bar (the sample's coil, 12 mm); a part named like a drawing item takes that item's own edge, so its leader stops at the drawing's outline; the drawing's steps are shown whole and said not played, an information diagnostic (stamp severity info). The drawing's reader and writer travel with Authoring's script, loaded only for a figure over a drawing; first-load budget 98,000 → 100,000 B. A sample, the moving-coil meter over its drawing, and tools/drive-drawing.cjs (two windows, 17 checks). zod 4.5.1 → 4.6.7 (GHSA-mrhx-c7xc-m3w5). Its tools read the Draw Bench built (exsight.devReads), so the gate builds that bench first. M59l's own 0.2.8 was never published; main's 0.2.8 and 0.2.9 stand.",
+            "fr": "Un dessin comme image d'une figure (M59l) : l'image d'une figure peut nommer un .benchdrawing, porté dans ses fichiers comme une URL data du JSON du dessin et ouvert seulement tel que le banc de dessin l'a enregistré (son empreinte à jour). La figure l'annote avec ses propres légendes, repères, visite et mesures sur un dessin au trait vectoriel écrit à partir des éléments du moteur de dessin (pictureNodes de draw-engine 0.3.2, ses encres en jetons), ré-encré par surface : bureau sombre et clair, en direct ; le mur ; contraste élevé. Le plan de travail donne le format de la figure ; un dessin à l'échelle se mesure sans barre d'échelle (la bobine de l'exemple, 12 mm) ; une partie qui porte le nom d'un élément du dessin prend le contour de cet élément, et son repère s'arrête au contour du dessin ; les étapes du dessin sont montrées entières et dites non jouées, un diagnostic d'information (gravité info dans l'empreinte). Le lecteur et l'écrivain du dessin voyagent avec le script de Création, chargé seulement pour une figure sur un dessin ; budget du premier chargement 98 000 → 100 000 o. Un exemple, le galvanomètre à cadre mobile sur son dessin, et tools/drive-drawing.cjs (deux fenêtres, 17 vérifications). zod 4.5.1 → 4.6.7 (GHSA-mrhx-c7xc-m3w5). Ses outils lisent le banc de dessin construit (exsight.devReads), donc la porte construit ce banc d’abord. La 0.2.8 propre à M59l n’a jamais été publiée ; les 0.2.8 et 0.2.9 de main restent."
+          }
+        },
+        {
+          "version": "0.2.9",
+          "at": "2026-10-24T23:13:29.920Z",
+          "note": {
+            "en": "zod 4.5.1 → 4.6.7 (GHSA-mrhx-c7xc-m3w5: zod below 4.6.6 could exhaust memory validating oversized constrained collections); no other change.",
+            "fr": "zod 4.5.1 → 4.6.7 (GHSA-mrhx-c7xc-m3w5 : en dessous de 4.6.6, zod pouvait épuiser la mémoire en validant des collections contraintes trop grandes) ; aucun autre changement."
+          }
+        },
+        {
+          "version": "0.2.8",
+          "at": "2026-10-24T22:01:11.040Z",
+          "note": {
+            "en": "Rebuilt over kit 0.1.19 (its tokens copy follows Studio's sheet at 1f928b75b); no content changed.",
+            "fr": "Reconstruit sur le kit 0.1.19 (sa copie des jetons suit la feuille de Studio à 1f928b75b) ; aucun contenu changé."
+          }
+        },
+        {
+          "version": "0.2.7",
+          "at": "2026-10-24T09:30:21.267Z",
+          "note": {
+            "en": "Rebuilt over kit 0.1.18: the frame's Symbols IEC | US switch (B064; not offered, this bench draws no schematic) and Studio's tokens at cae41f10b (design-tokens 0.2.17). Nothing of the bench changed.",
+            "fr": "Reconstruit sur le kit 0.1.18 : le sélecteur Symboles CEI | US du cadre (B064 ; non offert, ce banc ne dessine pas de schéma) et les jetons de Studio à cae41f10b (design-tokens 0.2.17). Rien du banc n'a changé."
+          }
+        },
+        {
+          "version": "0.2.6",
+          "at": "2026-10-24T08:39:03.487Z",
+          "note": {
+            "en": "Rebuilt over contract 1.6.0 (its validator knows panes) and kit 0.1.17 (Studio's tokens at 7c25a2ea; the kit frame's test ids and the fold's [hidden], where it carries them). Nothing of the bench's own changed.",
+            "fr": "Reconstruit sur le contrat 1.6.0 (son validateur connaît panes) et le kit 0.1.17 (les jetons de Studio à 7c25a2ea ; les data-testid du cadre du kit et le [hidden] du repli, là où il les porte). Rien de propre au banc n'a changé."
+          }
+        },
+        {
+          "version": "0.2.5",
+          "at": "2026-10-23T22:03:17.485Z",
+          "note": {
+            "en": "Authoring edits the work a player sends after it says ready: a frame opened in Authoring previews a work built from a fence, and a save of it untouched keeps alt and every field (crossings 778, 798). A leader says its state once its work is shown, and speaks contract 1.3 so a frame once handed a state-set takes the lead back when told: every pane chip it presses then says its state, and the wall follows.",
+            "fr": "La création modifie l'œuvre qu'un lecteur envoie après le ready : un cadre ouvert en création prévisualise une œuvre construite depuis un bloc, et l'enregistrer sans retouche garde alt et chaque champ (croisements 778, 798). Le cadre qui mène dit son état dès que son œuvre est montrée, et parle le contrat 1.3, de sorte qu'un cadre à qui l'on a donné un state-set reprend la main quand on le lui dit : chaque onglet de volet pressé dit alors son état, et le mur suit."
+          }
+        },
+        {
+          "version": "0.2.4",
+          "at": "2026-10-23T17:15:35.635Z",
+          "note": {
+            "en": "A sample of its own (M60-2): a walk round a power-supply board, on its photograph, shipped in samples/ and named in its listing, so the website opens the bench working; it opens alone in View (tools/sample-drive.cjs). The listing gains its samples; nothing the bench draws changes.",
+            "fr": "Un exemple à lui (M60-2) : un tour d'une carte d'alimentation, sur sa photographie, livré dans samples/ et nommé dans sa fiche, pour que le site ouvre le banc en marche ; il s'ouvre seul en Vue (tools/sample-drive.cjs). La fiche prend ses exemples ; rien de ce que dessine le banc ne change."
+          }
+        },
+        {
+          "version": "0.2.3",
+          "at": "2026-10-23T14:42:30.141Z",
+          "note": {
+            "en": "Rebuilt over the kit and contract 1.5 (B049): the runtime's host-play carries an attempt and its result, and every bench bundles it; nothing of this bench changes, and its ready still says the contract it was built for.",
+            "fr": "Reconstruit sur le kit et le contrat 1.5 (B049) : le host-play du moteur porte une tentative et son résultat, et chaque banc l'empaquette ; rien de ce banc ne change, et son ready dit toujours le contrat pour lequel il a été construit."
+          }
+        },
         {
           "version": "0.2.2",
           "at": "2026-10-23T10:34:54.761Z",
@@ -12352,6 +12443,32 @@
             "en": "First release: the Figure Bench as a frame bundle, played by contract 1.0 (E·fig3d). Preview and View are the figure viewer that was Studio's and Scope's (canvas FigureBench), Authoring is the figure lab that was Studio's, saving through the player. The figure's view is the bench's own state (the pane, the pinned part, the tour's stop, the names shown, the wipe), its tour the stops, the presenter's clock its step. A .benchfigure carries its pictures; its JSON Schema ships, and Save stamps what the bench derives (each part's number, anchor, centroid, bounds and measurements) with the source's digest, so a compiler reads the stamp and never runs the bench. First load 88.5 KB gzipped.",
             "fr": "Première version : le Banc des figures en paquet de cadre, joué selon le contrat 1.0 (E·fig3d). Aperçu et Vue sont la visionneuse de figures qui était celle de Studio et de Scope (FigureBench du canevas), Création est l'atelier des figures qui était celui de Studio, et enregistre par le lecteur. La vue de la figure est l'état propre du banc (le volet, la partie épinglée, l'étape du parcours, les noms affichés, le volet de comparaison), son parcours les arrêts, l'horloge de l'enseignant son étape. Un .benchfigure contient ses images ; son schéma JSON est livré, et Enregistrer estampille ce que le banc calcule (le numéro, l'ancre, le centroïde, les bornes et les mesures de chaque partie) avec l'empreinte de la source, pour qu'un compilateur lise l'estampille sans jamais exécuter le banc. Premier chargement : 88,5 Ko compressés."
           }
+        }
+      ],
+      "samples": [
+        {
+          "id": "power-supply-walk",
+          "title": {
+            "en": "A walk round a power-supply board",
+            "fr": "Un tour d'une carte d'alimentation"
+          },
+          "package": "@exsight/bench-figure",
+          "version": "0.2.11",
+          "path": "samples/power-supply-walk/power-supply-walk.benchfigure",
+          "sha256": "sha256:eabb4490cf600c28bceaaaead340d3f5d1ea896d57a30ed9fe6a9b95a8e44b7a",
+          "bytes": 757437
+        },
+        {
+          "id": "moving-coil-meter",
+          "title": {
+            "en": "Inside a moving-coil meter, over a drawing",
+            "fr": "L'intérieur d'un galvanomètre à cadre mobile, sur un dessin"
+          },
+          "package": "@exsight/bench-figure",
+          "version": "0.2.11",
+          "path": "samples/moving-coil-meter/moving-coil-meter.benchfigure",
+          "sha256": "sha256:da562bcfa5900465abcf47c78f0c2bb8547f059c3987756dcd7e9cd3e06f3240",
+          "bytes": 11575
         }
       ],
       "neededBy": []
