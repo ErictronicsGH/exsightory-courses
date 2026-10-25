@@ -43,16 +43,24 @@
     "accuracy_v_pct": {
       "value": 0.5,
       "dimensionless": true,
+      "conditions": {
+        "function": "DC V",
+        "t_a": "23 °C ± 5 °C"
+      },
       "source": {
-        "note": "± 0.5 % of reading, representative of a handheld."
+        "note": "± 0.5 % of reading on every DC volts range, the figure handheld 3½-digit datasheets state; a typical value for the class, not one meter’s; the one-year figure."
       },
       "confidence": "typical"
     },
     "accuracy_v_counts": {
       "value": 2,
       "dimensionless": true,
+      "conditions": {
+        "function": "DC V",
+        "t_a": "23 °C ± 5 °C"
+      },
       "source": {
-        "note": "± 2 counts, representative of a handheld."
+        "note": "+ 2 counts of the last digit on the range in use: 20 mV on the 20 V range, the half of the accuracy that dominates near the bottom of a range; the one-year figure."
       },
       "confidence": "typical"
     }
