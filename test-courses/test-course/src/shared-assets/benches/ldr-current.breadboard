@@ -1,0 +1,239 @@
+{
+  "title": {
+    "en": "Light the path",
+    "fr": "Ouvrir le chemin"
+  },
+  "sentence": {
+    "en": "Put the LDR where the supply drives 0.35 mA through it at 5 V.",
+    "fr": "Placez la photorésistance là où l’alimentation y fait passer 0,35 mA sous 5 V."
+  },
+  "version": 1,
+  "lesson": {
+    "presented": {
+      "run": [
+        "view",
+        "edit"
+      ],
+      "adjust": [
+        "view",
+        "edit"
+      ],
+      "probes": [
+        "view",
+        "edit"
+      ],
+      "edit": [
+        "edit"
+      ],
+      "camera": [
+        "view",
+        "edit"
+      ],
+      "overlays": [
+        "preview",
+        "view",
+        "edit"
+      ],
+      "faults": [
+        "edit"
+      ]
+    },
+    "study": {
+      "run": [
+        "view",
+        "edit"
+      ],
+      "adjust": [
+        "view",
+        "edit"
+      ],
+      "probes": [
+        "view",
+        "edit"
+      ],
+      "edit": [
+        "edit"
+      ],
+      "camera": [
+        "preview",
+        "view",
+        "edit"
+      ],
+      "overlays": [
+        "view",
+        "edit"
+      ]
+    },
+    "scope": {
+      "run": [
+        "view"
+      ],
+      "adjust": [
+        "view"
+      ],
+      "camera": [
+        "view"
+      ],
+      "overlays": [
+        "view"
+      ]
+    }
+  },
+  "design": {
+    "view": "3d",
+    "others": [
+      "2d"
+    ]
+  },
+  "mat": {
+    "tone": "blue"
+  },
+  "goal": {
+    "parts": [
+      "exsight.supply.sw3005",
+      "exsight.breadboard.full-830",
+      "exsight.ldr.5mm-5528"
+    ],
+    "criteria": [
+      {
+        "id": "ldr-current",
+        "measure": {
+          "quantity": "current",
+          "of": "LDR1",
+          "at": {
+            "vSet": 5
+          }
+        },
+        "value": 0.00035,
+        "tol": 0.00005,
+        "en": "At 5 V, the LDR carries 0.35 mA.",
+        "fr": "Sous 5 V, la photorésistance conduit 0,35 mA."
+      },
+      {
+        "id": "ldr-voltage",
+        "measure": {
+          "quantity": "voltage",
+          "of": "LDR1",
+          "at": {
+            "vSet": 5
+          }
+        },
+        "value": 5,
+        "tol": 0.1,
+        "en": "At 5 V, the whole 5 V is across the LDR.",
+        "fr": "Sous 5 V, les 5 V entiers sont aux bornes de la photorésistance."
+      }
+    ]
+  },
+  "instances": [
+    {
+      "instance": "PSU1",
+      "component": "exsight.supply.sw3005@0.2.3",
+      "place": {
+        "on": "shelf",
+        "at": [
+          -615,
+          191
+        ],
+        "rotation": 0
+      },
+      "start": {
+        "power": "off",
+        "output": "off",
+        "vSet": 5,
+        "iLim": 0.1
+      },
+      "constraints": {
+        "vSet": {
+          "cap": [
+            0,
+            12
+          ]
+        },
+        "iLim": {
+          "lock": 0.1
+        },
+        "ovpLevel": {
+          "lock": 13
+        },
+        "trace": {
+          "current": "after-measuring",
+          "convention": {
+            "lock": "conventional"
+          }
+        },
+        "damage": "graded",
+        "representation": "auto",
+        "turnScale": {
+          "encVCoarse": "range",
+          "encVFine": "vernier",
+          "encACoarse": "range",
+          "encAFine": "vernier"
+        },
+        "faults": [],
+        "faultsInSession": [
+          "ventsBlocked",
+          "mainsFuse",
+          "loosePost",
+          "calibrationDrift"
+        ]
+      }
+    },
+    {
+      "instance": "BB1",
+      "component": "exsight.breadboard.full-830@1.0.0",
+      "place": {
+        "on": "worktop",
+        "at": [
+          -300,
+          -75
+        ],
+        "rotation": 0
+      },
+      "start": {},
+      "constraints": {}
+    }
+  ],
+  "wires": [
+    {
+      "instance": "TL1",
+      "conductor": "testlead-bb-025",
+      "length": 1000,
+      "colour": "red",
+      "plugs": [
+        "banana-4mm",
+        "pin-angle"
+      ],
+      "ends": [
+        {
+          "on": "PSU1",
+          "at": "pos"
+        },
+        {
+          "on": "BB1",
+          "at": "front+3"
+        }
+      ]
+    },
+    {
+      "instance": "TL2",
+      "conductor": "testlead-bb-025",
+      "length": 1000,
+      "colour": "black",
+      "plugs": [
+        "banana-4mm",
+        "pin-angle"
+      ],
+      "ends": [
+        {
+          "on": "PSU1",
+          "at": "neg"
+        },
+        {
+          "on": "BB1",
+          "at": "front−3"
+        }
+      ]
+    }
+  ]
+}

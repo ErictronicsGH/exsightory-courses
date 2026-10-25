@@ -39,6 +39,14 @@ alt: A bench supply on a breadboard, set to 5 V with its current limit at 0.1 A,
 caption: The limit you set is the most the load can draw, whatever it asks for.
 ```
 
+```challenge
+title: Light the path
+package: "@exsight/bench-breadboard@0.2.8"
+work: shared/benches/ldr-current.breadboard
+alt: A bench supply at 5 V beside an empty breadboard, and a light-dependent resistor to place so the supply drives 0.35 mA through it.
+caption: A load far under the limit draws only what it needs, and the limit never acts.
+```
+
 ## What happens into a dead short?
 
 ```poe
