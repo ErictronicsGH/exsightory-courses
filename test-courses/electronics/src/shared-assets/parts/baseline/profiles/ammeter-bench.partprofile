@@ -39,6 +39,30 @@
         "note": "A 19999-count display."
       },
       "confidence": "typical"
+    },
+    "accuracy_i_pct": {
+      "value": 0.2,
+      "dimensionless": true,
+      "conditions": {
+        "function": "DC A",
+        "t_a": "23 °C ± 5 °C"
+      },
+      "source": {
+        "note": "± 0.2 % of reading on the DC current ranges, a typical figure for a 4½-digit bench ammeter; the shunt’s own tolerance and drift are most of it; the one-year figure."
+      },
+      "confidence": "typical"
+    },
+    "accuracy_i_counts": {
+      "value": 5,
+      "dimensionless": true,
+      "conditions": {
+        "function": "DC A",
+        "t_a": "23 °C ± 5 °C"
+      },
+      "source": {
+        "note": "+ 5 counts of the last digit on the range in use: 0.5 mA on the 2 A range; the one-year figure."
+      },
+      "confidence": "typical"
     }
   },
   "limits": {

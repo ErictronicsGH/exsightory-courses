@@ -3,7 +3,7 @@
   "title": "Two ways to read a current, and what each one costs",
   "seed": 20261010,
   "requires": {
-    "insight-baseline": "1.15.0"
+    "insight-baseline": "1.16.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -87,9 +87,9 @@
   },
   "stamp": {
     "v": 1,
-    "source": "sha256:a83346e60c2d82e17a661fd8cc5b380e2296da89ca04a0244b1c06be7503b2a0",
+    "source": "sha256:ec4c5ebd85262ef641c7408baa09f4d07e84841e77d9736db8dcaf00515e6dcf",
     "libraries": {
-      "insight-baseline": "1.15.0"
+      "insight-baseline": "1.16.0"
     },
     "derived": {
       "targets": [

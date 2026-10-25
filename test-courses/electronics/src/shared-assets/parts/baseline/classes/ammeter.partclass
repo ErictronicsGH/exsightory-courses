@@ -46,7 +46,10 @@
       "r_burden_i_mode",
       "digits"
     ],
-    "optional": [],
+    "optional": [
+      "accuracy_i_pct",
+      "accuracy_i_counts"
+    ],
     "outputs": [
       "reading",
       "v",

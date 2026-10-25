@@ -43,16 +43,24 @@
     "accuracy_v_pct": {
       "value": 0.0035,
       "dimensionless": true,
+      "conditions": {
+        "function": "DC V",
+        "t_a": "23 °C ± 5 °C"
+      },
       "source": {
-        "note": "± 0.0035 % of reading, representative of a bench meter."
+        "note": "± 0.0035 % of reading on the 10 V range, the one-year figure 6½-digit bench meters state; a typical value for the class."
       },
       "confidence": "typical"
     },
     "accuracy_v_counts": {
       "value": 5,
       "dimensionless": true,
+      "conditions": {
+        "function": "DC V",
+        "t_a": "23 °C ± 5 °C"
+      },
       "source": {
-        "note": "± 5 counts, representative of a bench meter."
+        "note": "+ 5 counts: the datasheets’ ± 0.0005 % of range, which on the 10 V range is 50 µV, five of its 10 µV counts; the one-year figure."
       },
       "confidence": "typical"
     }

@@ -3,7 +3,7 @@
   "title": "A bridge, and the circuit the bench had never been shown",
   "seed": 20260920,
   "requires": {
-    "insight-baseline": "1.15.0"
+    "insight-baseline": "1.16.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -119,9 +119,9 @@
   "effects": {},
   "stamp": {
     "v": 1,
-    "source": "sha256:e4c3ce39f8a7df85bc79ac75357146b64cd7b08f3003dd4501db22934db8fd94",
+    "source": "sha256:774c498c8e11c083c795adf0bee432fa96ef58640fac6ee18b7d961c7e6bcade",
     "libraries": {
-      "insight-baseline": "1.15.0"
+      "insight-baseline": "1.16.0"
     },
     "derived": {
       "targets": [

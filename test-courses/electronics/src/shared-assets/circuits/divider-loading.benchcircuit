@@ -3,7 +3,7 @@
   "title": "Why the meter changes the reading",
   "seed": 20261010,
   "requires": {
-    "insight-baseline": "1.15.0"
+    "insight-baseline": "1.16.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -115,9 +115,9 @@
   "effects": {},
   "stamp": {
     "v": 1,
-    "source": "sha256:217c9a5194777000fe59eb89b1553277ac378b856a7710949e9b7e97b0114ee1",
+    "source": "sha256:4750eb74ac320e15d462b6fbc88c5029023f455c4207273a946f8901ce148df3",
     "libraries": {
-      "insight-baseline": "1.15.0"
+      "insight-baseline": "1.16.0"
     },
     "derived": {
       "targets": [
