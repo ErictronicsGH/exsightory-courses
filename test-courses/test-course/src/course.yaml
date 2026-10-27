@@ -24,6 +24,10 @@ tutor:
   shortBio: >-
     Ada has designed bench supplies for twenty years and runs the Institute's
     first-year electronics lab. An invented author, for an invented course.
+  # How to reach the author, on the course outro (M52b, crossing 805): drawn as
+  # text, never a link. The platform's address and no other (no off-platform
+  # contact, owner 2026-09-30): the course's own page, where its messages are.
+  contact: exsightory.com/courses/bench-psu
 
 # The picture behind the details page's title (M64): 2400 × 500, one per theme,
 # cut from the owner's two lab photographs at exactly the window his course
@@ -37,6 +41,13 @@ banner:
 cover: shared-assets/cover.png
 
 footer: The Fenwick Institute for Applied Electronics
+
+# What the author says on the course outro, after the last beat (M52b, crossing
+# 805): a few lines for the room, at most 200 characters, beside the contact.
+outro:
+  closing: >-
+    Thank you for building this supply with me. Keep it on your bench, and
+    measure before you trust it.
 
 # Who the course is for, in a sentence (M63c): the frame the Authoring
 # Compiler reads every suggestion against.
