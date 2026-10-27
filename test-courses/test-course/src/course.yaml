@@ -28,6 +28,14 @@ tutor:
   # text, never a link. The platform's address and no other (no off-platform
   # contact, owner 2026-09-30): the course's own page, where its messages are.
   contact: exsightory.com/courses/bench-psu
+  # The author's own page (crossing 1005): what the author writes about
+  # themself, each field to its limit's width. The platform adds the rest.
+  role: Senior Lecturer in Electronics
+  institution: The Fenwick Institute
+  qualifications: ["PhD, Power Electronics", "MEng, Electrical Engineering"]
+  teachingSince: 2006
+  specialties: [Power supplies, Lab practice, Measurement]
+  languages: [en, fr]
 
 # The picture behind the details page's title (M64): 2400 × 500, one per theme,
 # cut from the owner's two lab photographs at exactly the window his course

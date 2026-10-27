@@ -625,25 +625,31 @@ def tutor_photo(path):
     synthetic, and a stock face would be somebody's likeness in a test corpus.
     A JPEG extension with PNG bytes would be a lie, so this is written as PNG
     and course.yaml points at it.
+
+    1000 × 1000 (crossing 1005): the author's page draws it 626 px tall on a
+    1080 wall, and the compiler advises on one under 800 × 800. The 320 px
+    drawing, scaled, so the portrait is the one every drive has seen.
     """
-    c = Canvas(320, 320, SURFACE)
-    for y in range(320):
-        for x in range(320):
-            t = (x + y) / 640
+    n = 1000
+    s = n / 320
+    c = Canvas(n, n, SURFACE)
+    for y in range(n):
+        for x in range(n):
+            t = (x + y) / (2 * n)
             c.set(x, y, (int(18 + t * 14), int(26 + t * 22), int(34 + t * 30)))
 
-    cx, cy = 160, 132
-    for y in range(320):
-        for x in range(320):
-            if math.hypot(x - cx, y - cy) < 58:
+    cx, cy = 160 * s, 132 * s
+    for y in range(n):
+        for x in range(n):
+            if math.hypot(x - cx, y - cy) < 58 * s:
                 c.blend(x, y, TEAL, 0.30)
-    for y in range(190, 320):
-        w = 96 + (y - 190) * 0.5
-        for x in range(int(160 - w), int(160 + w)):
-            if 0 <= x < 320:
+    for y in range(int(190 * s), n):
+        w = 96 * s + (y - 190 * s) * 0.5
+        for x in range(int(cx - w), int(cx + w)):
+            if 0 <= x < n:
                 c.blend(x, y, TEAL, 0.22)
 
-    text(c, 122, 250, "AF", TEXT, 5)
+    text(c, int(122 * s), int(250 * s), "AF", TEXT, 16)
     return c.write_png(path)
 
 
