@@ -3,7 +3,7 @@
   "title": "Light into a voltage",
   "seed": 20261023,
   "requires": {
-    "insight-baseline": "1.16.0"
+    "insight-baseline": "1.17.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -72,9 +72,9 @@
   "effects": {},
   "stamp": {
     "v": 1,
-    "source": "sha256:cc2e1076f001bae25b7159c1af457f41bbe9894d5f228bc36fe808c08d5d393a",
+    "source": "sha256:e4462d0631866198182639287453524ba10023419f25c4177d4e48cc4e255591",
     "libraries": {
-      "insight-baseline": "1.16.0"
+      "insight-baseline": "1.17.0"
     },
     "derived": {
       "targets": [

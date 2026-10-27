@@ -1,7 +1,7 @@
 {
   "id": "insight-baseline",
   "name": "INSIGHT baseline components",
-  "version": "1.16.0",
+  "version": "1.17.0",
   "author": "ExSight Africa",
   "licence": "Proprietary — ships with INSIGHT.",
   "licensing": {
@@ -21,6 +21,7 @@
     "classes/dmm.partclass",
     "classes/conductor.partclass",
     "classes/supply.partclass",
+    "classes/function-generator.partclass",
     "classes/probe.partclass",
     "classes/test-point.partclass",
     "classes/ammeter.partclass",
@@ -49,6 +50,7 @@
     "profiles/trace-cu-0r5mm.partprofile",
     "profiles/contact-breadboard.partprofile",
     "profiles/supply-bench.partprofile",
+    "profiles/function-generator-bench.partprofile",
     "profiles/probe-x1.partprofile",
     "profiles/probe-x10.partprofile",
     "profiles/test-point-post.partprofile",
@@ -80,6 +82,7 @@
     "symbols/iec/diode-schottky.svg",
     "symbols/iec/diode-zener.svg",
     "symbols/iec/diode.svg",
+    "symbols/iec/function-generator.svg",
     "symbols/iec/dmm-bench.svg",
     "symbols/iec/dmm.svg",
     "symbols/iec/led.svg",

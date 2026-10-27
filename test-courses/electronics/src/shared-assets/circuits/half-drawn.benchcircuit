@@ -3,7 +3,7 @@
   "title": "A supply and two resistors, thirty seconds in",
   "seed": 20261010,
   "requires": {
-    "insight-baseline": "1.16.0"
+    "insight-baseline": "1.17.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -66,9 +66,9 @@
   "under_construction": true,
   "stamp": {
     "v": 1,
-    "source": "sha256:e7bb1361f28173f6e3465c8bf3ac5c1fe1f63df42e5a7819c1abc9add351dfc8",
+    "source": "sha256:3c7b9b33a78a407f59c3e831d1f789c9c8429305c9a70eb863234be2a51e69f1",
     "libraries": {
-      "insight-baseline": "1.16.0"
+      "insight-baseline": "1.17.0"
     },
     "derived": {
       "targets": [

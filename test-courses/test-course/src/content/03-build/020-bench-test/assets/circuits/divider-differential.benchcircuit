@@ -3,7 +3,7 @@
   "title": "Where the clip goes decides what you measured",
   "seed": 20261010,
   "requires": {
-    "insight-baseline": "1.16.0"
+    "insight-baseline": "1.17.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -116,9 +116,9 @@
   "effects": {},
   "stamp": {
     "v": 1,
-    "source": "sha256:c273a178991fec29826c69ff2ce7f5bd2e1f014cca1104a66300743389d164fa",
+    "source": "sha256:39ab8be77dc52e0754afce4957c7c8553061fcb1d52f981e446585dee1e59e5b",
     "libraries": {
-      "insight-baseline": "1.16.0"
+      "insight-baseline": "1.17.0"
     },
     "derived": {
       "targets": [

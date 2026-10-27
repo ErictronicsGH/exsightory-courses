@@ -3,7 +3,7 @@
   "title": "A finished divider, and a pair that is not joined to it yet",
   "seed": 20261010,
   "requires": {
-    "insight-baseline": "1.16.0"
+    "insight-baseline": "1.17.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -112,9 +112,9 @@
   "under_construction": true,
   "stamp": {
     "v": 1,
-    "source": "sha256:7ac9d84e4f22a973d1baf64b4981487323aa5fe4837895b429f58077490a5ca5",
+    "source": "sha256:c15d19a35cd32aad0b85a8845a4952f36bbda85616d26fcdbb02e729700b5063",
     "libraries": {
-      "insight-baseline": "1.16.0"
+      "insight-baseline": "1.17.0"
     },
     "derived": {
       "targets": [

@@ -1,0 +1,103 @@
+{
+  "class": "function-generator",
+  "label": {
+    "en": "Function generator",
+    "fr": "Générateur de fonctions"
+  },
+  "designator": "G",
+  "category": "sources",
+  "instrument": true,
+  "non_ideal_requires": [
+    "r_out"
+  ],
+  "waveforms": [
+    "sine",
+    "square",
+    "pulse"
+  ],
+  "terminals": [
+    {
+      "id": "p",
+      "label": {
+        "en": "output",
+        "fr": "sortie"
+      },
+      "role": "positive",
+      "signal": "output"
+    },
+    {
+      "id": "n",
+      "label": {
+        "en": "common",
+        "fr": "commun"
+      },
+      "role": "negative",
+      "signal": "reference"
+    }
+  ],
+  "variants": {
+    "bench": {
+      "symbol": "symbols/iec/function-generator.svg",
+      "label": {
+        "en": "Bench function generator",
+        "fr": "Générateur de fonctions de laboratoire"
+      }
+    }
+  },
+  "fast_model": {
+    "equation": "source",
+    "value_parameter": "v_oc",
+    "requires": [
+      "v_oc"
+    ],
+    "optional": [
+      "r_out",
+      "alpha"
+    ],
+    "outputs": [
+      "v",
+      "i",
+      "p",
+      "v_oc",
+      "r_out"
+    ]
+  },
+  "ideality_axes": {
+    "output_impedance": {
+      "requires": [
+        "r_out"
+      ],
+      "default": false,
+      "label": {
+        "en": "Output impedance",
+        "fr": "Impédance de sortie"
+      }
+    }
+  },
+  "capabilities": {
+    "adjust": {
+      "parameter": "v_oc",
+      "legend": {
+        "en": "Amplitude (peak)",
+        "fr": "Amplitude (crête)"
+      },
+      "from": 0,
+      "to": {
+        "limit": "v_v",
+        "of": "recommended"
+      },
+      "stops": 20
+    },
+    "reveals": [
+      "output_resistance"
+    ],
+    "panes": [
+      "operating",
+      "ideality"
+    ],
+    "interactions": [
+      "probe",
+      "substitute"
+    ]
+  }
+}

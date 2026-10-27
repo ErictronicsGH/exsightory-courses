@@ -1,0 +1,91 @@
+{
+  "profile": "function-generator-bench",
+  "class": "function-generator",
+  "variant": "bench",
+  "display_name": {
+    "en": "Function generator (typical bench)",
+    "fr": "Générateur de fonctions (laboratoire typique)"
+  },
+  "provenance": {
+    "typical": true
+  },
+  "parameters": {
+    "v_oc": {
+      "value": 1,
+      "unit": "V",
+      "conditions": {
+        "t_a_c": 25,
+        "i_a": 0
+      },
+      "source": {
+        "note": "The open-circuit peak, which is how a generator's display states its amplitude (into a high impedance). The circuit sets it per instance; this is only the value an instance inherits when it says nothing."
+      },
+      "confidence": "typical"
+    },
+    "r_out": {
+      "value": 50,
+      "unit": "Ω",
+      "conditions": {
+        "t_a_c": 25,
+        "f_khz": 1
+      },
+      "source": {
+        "note": "The 50 Ω source impedance every bench function generator is built to, so it matches a 50 Ω cable and load."
+      },
+      "confidence": "typical"
+    }
+  },
+  "limits": {
+    "absolute_max": {
+      "i_a": 0.4,
+      "v_v": 20,
+      "t_j_c": 70
+    },
+    "recommended": {
+      "i_a": 0.2,
+      "v_v": 10
+    }
+  },
+  "demonstration": {
+    "reveals": [
+      {
+        "bind": "output_resistance",
+        "label": {
+          "en": "The 50 Ω inside the generator",
+          "fr": "Les 50 Ω dans le générateur"
+        },
+        "enables_axis": "output_impedance",
+        "quantity": "r_out",
+        "transform": {
+          "type": "materialise"
+        },
+        "visual": {
+          "treatment": "outline"
+        },
+        "context": {
+          "comparison": "the load the generator is driving",
+          "note": {
+            "en": "A generator's amplitude is what it makes into an open circuit. Into a 50 Ω load it shows half of it.",
+            "fr": "L’amplitude d’un générateur est ce qu’il produit à vide. Sur une charge de 50 Ω, il n’en donne que la moitié."
+          }
+        },
+        "teaching_point": {
+          "en": "The display says the open-circuit peak. Behind the output sits 50 Ω, so a 50 Ω load halves the wave and a 1 kΩ load takes about 5 % off it.",
+          "fr": "L’affichage indique la crête à vide. Derrière la sortie se trouvent 50 Ω : une charge de 50 Ω divise l’onde par deux, une charge de 1 kΩ lui retire environ 5 %."
+        }
+      }
+    ],
+    "panes": [
+      "operating",
+      "ideality"
+    ],
+    "interactions": [
+      "probe",
+      "substitute"
+    ],
+    "availability": {
+      "en": "Every bench function generator has a 50 Ω output. A sound card or a microcontroller pin driving a circuit does not, and its impedance is whatever its output stage happens to be.",
+      "fr": "Tout générateur de fonctions de laboratoire a une sortie de 50 Ω. Une carte son ou une broche de microcontrôleur qui pilote un circuit, non : son impédance est celle de son étage de sortie."
+    }
+  }
+}
