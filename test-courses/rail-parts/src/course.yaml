@@ -1,0 +1,52 @@
+# A course of many short parts, for the contents rail's windowing of parts (crossing 1022).
+#
+# Text only: no assets, no benches, no questions. Zero warnings is correct for this course.
+id: rail-parts
+title: 'Taking Readings: Many Parts'
+subtitle: 'Nine short parts'
+version: 1.0.0
+languages: [en]
+
+tutor:
+  name: The test-courses fixture
+
+footer: An invented course for the contents rail.
+delivery: [multi-screen, single-screen]
+
+chapters:
+  - id: 01-safety
+    title: 'Part 1: Safety'
+    order: 1
+    ads: []
+  - id: 02-the-meter
+    title: 'Part 2: The meter'
+    order: 2
+    ads: []
+  - id: 03-the-leads
+    title: 'Part 3: The leads'
+    order: 3
+    ads: []
+  - id: 04-voltage
+    title: 'Part 4: Voltage'
+    order: 4
+    ads: []
+  - id: 05-current
+    title: 'Part 5: Current'
+    order: 5
+    ads: []
+  - id: 06-resistance
+    title: 'Part 6: Resistance'
+    order: 6
+    ads: []
+  - id: 07-continuity
+    title: 'Part 7: Continuity'
+    order: 7
+    ads: []
+  - id: 08-recording
+    title: 'Part 8: Recording'
+    order: 8
+    ads: []
+  - id: 09-reporting
+    title: 'Part 9: Reporting'
+    order: 9
+    ads: []

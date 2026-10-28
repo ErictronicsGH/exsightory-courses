@@ -1,0 +1,28 @@
+# A course with one long part, for the contents rail's windowing of sections (crossing 1022).
+#
+# Text only: no assets, no benches, no questions. Zero warnings is correct for this course.
+id: rail-long
+title: 'Taking Readings: a Long Part'
+subtitle: 'Three parts, the middle one long'
+version: 1.0.0
+languages: [en]
+
+tutor:
+  name: The test-courses fixture
+
+footer: An invented course for the contents rail.
+delivery: [multi-screen, single-screen]
+
+chapters:
+  - id: 01-setup
+    title: 'Part 1: Setting up'
+    order: 1
+    ads: []
+  - id: 02-readings
+    title: 'Part 2: Taking readings of voltage, current and resistance on a live and a dead circuit, safely'
+    order: 2
+    ads: []
+  - id: 03-records
+    title: 'Part 3: Recording'
+    order: 3
+    ads: []
