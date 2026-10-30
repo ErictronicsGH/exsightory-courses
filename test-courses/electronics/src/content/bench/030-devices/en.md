@@ -77,3 +77,52 @@ caption: Settled across the supply, it is full. Open it in View to see a charge 
 
 A capacitor holds a charge on its plates, and its charge bulbs grow as it
 fills.
+
+## Light into a voltage {#ldr-divider}
+
+```circuit
+title: Light into a voltage
+circuit: shared/circuits/ldr-divider.benchcircuit
+libraries:
+  - shared/parts/baseline/library.json
+alt: A five-volt bench supply across a light-dependent resistor above a fixed resistor to ground; the junction between them is the midpoint.
+caption: The LDR's resistance falls as the light rises, so the midpoint's voltage rises with the light. Step through it, or turn the lamp in View.
+stops:
+  - id: lamp-low
+    title: The lamp is low
+    caption: "A dim room, 5 lx: the LDR is high, so the midpoint sits low."
+    view:
+      sources:
+        LDR1: 5
+      flow: true
+  - id: the-loop
+    title: The current's loop
+    caption: One current, from the supply through the LDR and R1, and back.
+    view:
+      sources:
+        LDR1: 5
+    trace:
+      loop: [V1, vcc, LDR1, mid, R1, gnd]
+    quiet: []
+  - id: the-midpoint
+    title: The midpoint
+    caption: "The midpoint holds its voltage, steady: an ADC reads it and draws no current from it."
+    view:
+      sources:
+        LDR1: 5
+    trace:
+      net: mid
+    quiet: []
+  - id: lamp-up
+    title: Turn the lamp up
+    caption: "100 lx: the LDR falls, the current rises, and the midpoint with it."
+    view:
+      sources:
+        LDR1: 100
+    trace:
+      loop: [V1, vcc, LDR1, mid, R1, gnd]
+    quiet: []
+```
+
+A divider turns a resistance into a voltage. The LDR's resistance follows the
+light, so the midpoint does too.
