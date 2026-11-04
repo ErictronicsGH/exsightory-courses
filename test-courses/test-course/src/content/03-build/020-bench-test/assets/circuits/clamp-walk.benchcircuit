@@ -3,7 +3,7 @@
   "title": "One jaw, three branches, three different currents",
   "seed": 20261010,
   "requires": {
-    "insight-baseline": "1.17.0"
+    "insight-baseline": "1.21.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -117,9 +117,9 @@
   "effects": {},
   "stamp": {
     "v": 1,
-    "source": "sha256:59977f4d6560888b8f327bfcce86f078a6c234732585eaa87b92099fb3e32678",
+    "source": "sha256:b5a529a232baa52b54ff87b52c96dff2c611655405c5990ccc786dcd7dfc3341",
     "libraries": {
-      "insight-baseline": "1.17.0"
+      "insight-baseline": "1.21.0"
     },
     "derived": {
       "targets": [

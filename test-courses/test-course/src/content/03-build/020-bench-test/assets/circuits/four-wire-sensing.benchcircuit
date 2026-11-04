@@ -3,7 +3,7 @@
   "title": "The leads are in the measurement, until you stop measuring through them",
   "seed": 20261010,
   "requires": {
-    "insight-baseline": "1.17.0"
+    "insight-baseline": "1.21.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -165,9 +165,9 @@
   "effects": {},
   "stamp": {
     "v": 1,
-    "source": "sha256:1b0a71fd6f38c82983a2ef7a758a527ea57715b070bec5fcada09d29c1de1254",
+    "source": "sha256:d3039a6f0ed84c6ad8a729808673e83e91486b65310cd3d465a727ffa3870a72",
     "libraries": {
-      "insight-baseline": "1.17.0"
+      "insight-baseline": "1.21.0"
     },
     "derived": {
       "targets": [

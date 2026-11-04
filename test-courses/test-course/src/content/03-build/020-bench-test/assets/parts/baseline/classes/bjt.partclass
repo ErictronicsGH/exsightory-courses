@@ -1,0 +1,109 @@
+{
+  "class": "bjt",
+  "label": {
+    "en": "Bipolar transistor",
+    "fr": "Transistor bipolaire"
+  },
+  "designator": "Q",
+  "category": "semiconductors",
+  "terminals": [
+    {
+      "id": "c",
+      "label": {
+        "en": "collector",
+        "fr": "collecteur"
+      },
+      "role": "collector",
+      "signal": "bidirectional"
+    },
+    {
+      "id": "b",
+      "label": {
+        "en": "base",
+        "fr": "base"
+      },
+      "role": "base",
+      "signal": "input"
+    },
+    {
+      "id": "e",
+      "label": {
+        "en": "emitter",
+        "fr": "émetteur"
+      },
+      "role": "emitter",
+      "signal": "bidirectional"
+    }
+  ],
+  "variants": {
+    "npn": {
+      "symbol": "symbols/iec/bjt-npn.svg",
+      "label": {
+        "en": "NPN",
+        "fr": "NPN"
+      }
+    },
+    "pnp": {
+      "symbol": "symbols/iec/bjt-pnp.svg",
+      "label": {
+        "en": "PNP",
+        "fr": "PNP"
+      }
+    }
+  },
+  "fast_model": {
+    "equation": "ebers-moll",
+    "requires": [
+      "is",
+      "bf",
+      "br"
+    ],
+    "optional": [
+      "n",
+      "alpha_vf",
+      "r_th_ja_c_per_w"
+    ],
+    "outputs": [
+      "i_c",
+      "i_b",
+      "i_e",
+      "v_ce",
+      "v_be",
+      "p"
+    ]
+  },
+  "ideality_axes": {
+    "leakage": {
+      "requires": [
+        "is"
+      ],
+      "default": false,
+      "label": {
+        "en": "Junction leakage",
+        "fr": "Fuite des jonctions"
+      }
+    },
+    "self_heating": {
+      "requires": [
+        "r_th_ja_c_per_w"
+      ],
+      "default": false,
+      "label": {
+        "en": "Self-heating",
+        "fr": "Auto-échauffement"
+      }
+    }
+  },
+  "capabilities": {
+    "reveals": [],
+    "panes": [
+      "operating",
+      "ideality"
+    ],
+    "interactions": [
+      "probe",
+      "substitute",
+      "replace"
+    ]
+  }
+}

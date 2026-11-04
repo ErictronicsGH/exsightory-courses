@@ -3,7 +3,7 @@
   "title": "Four resistors, one rail, four different lives",
   "seed": 20261012,
   "requires": {
-    "insight-baseline": "1.17.0"
+    "insight-baseline": "1.21.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -114,9 +114,9 @@
   "effects": {},
   "stamp": {
     "v": 1,
-    "source": "sha256:63f882b12f9bbca25daba23d7487c8b616aa74d76136482a392dd6c83a62fab2",
+    "source": "sha256:1f2ba793dadc4eb150665ba0e7f499e1e8f31f4755c3492b1331bd34082d49b4",
     "libraries": {
-      "insight-baseline": "1.17.0"
+      "insight-baseline": "1.21.0"
     },
     "derived": {
       "targets": [

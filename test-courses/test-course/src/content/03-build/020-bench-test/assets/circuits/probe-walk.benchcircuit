@@ -3,7 +3,7 @@
   "title": "Move the probe, and the error moves with it",
   "seed": 20261010,
   "requires": {
-    "insight-baseline": "1.17.0"
+    "insight-baseline": "1.21.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -162,9 +162,9 @@
   },
   "stamp": {
     "v": 1,
-    "source": "sha256:d7c8e26f9f9d854857d79ce4e6263fd949a2cf216a4132e25d312db6893713cd",
+    "source": "sha256:b6dd8f6ccf5b5f55d64de04213808ddf323800678ba99f0b465e055bcf9b4393",
     "libraries": {
-      "insight-baseline": "1.17.0"
+      "insight-baseline": "1.21.0"
     },
     "derived": {
       "targets": [

@@ -1,0 +1,156 @@
+{
+  "profile": "bjt-2n3906",
+  "class": "bjt",
+  "variant": "pnp",
+  "polarity": "pnp",
+  "display_name": {
+    "en": "2N3906 small-signal PNP transistor (TO-92)",
+    "fr": "Transistor PNP petit signal 2N3906 (TO-92)"
+  },
+  "provenance": {
+    "part": "2N3906",
+    "manufacturer": "onsemi",
+    "document": "2N3906/D",
+    "revision": "Rev. 4, February 2010",
+    "retrieved": "2026-10-24"
+  },
+  "parameters": {
+    "bf": {
+      "min": 100,
+      "max": 300,
+      "dimensionless": true,
+      "conditions": {
+        "i_c_a": 0.01,
+        "v_ce_v": 1,
+        "t_a_c": 25
+      },
+      "source": {
+        "document": "onsemi, 2N3906/D",
+        "revision": "Rev. 4, February 2010",
+        "table": "Electrical characteristics",
+        "note": "hFE 100 to 300 at IC = 10 mA, VCE = 1.0 V (pulse test). The bench draws the midpoint, 200."
+      },
+      "confidence": "stated"
+    },
+    "is": {
+      "value": 2.2993e-15,
+      "unit": "A",
+      "conditions": {
+        "i_c_a": 0.01,
+        "i_b_a": 0.001,
+        "t_a_c": 25
+      },
+      "source": {
+        "document": "onsemi, 2N3906/D",
+        "revision": "Rev. 4, February 2010",
+        "table": "Electrical characteristics",
+        "note": "VBE(sat) 0.65 V to 0.85 V at IC = 10 mA, IB = 1.0 mA."
+      },
+      "confidence": "derived",
+      "derivation": "IS from the base-emitter saturation voltage: VBE(sat) is 0.65 V to 0.85 V at IC = 10 mA, IB = 1 mA, so the midpoint 0.75 V carries IE = 11 mA through the emitter junction, IS·e^(VBE/Vt)·(1 + 1/βF) = IE with βF = 200 and n = 1; the collector junction's share, e^(−VCE(sat)/Vt), is under 0.1 % and left out. IS = 2.2993e-15 A at Vt = 25.693 mV.",
+      "note": {
+        "en": "onsemi publishes no SPICE model on this sheet, so IS is fitted from the one table row that puts a junction voltage beside a current. It gives VBE = 0.689 V at 1 mA, a few tens of millivolts above what a bench meter reads on a real 2N3906.",
+        "fr": "onsemi ne publie aucun modèle SPICE sur cette fiche : IS est donc ajusté sur la seule ligne du tableau qui met une tension de jonction en face d’un courant. Il donne VBE = 0.689 V à 1 mA, quelques dizaines de millivolts au-dessus de ce qu’un multimètre lit sur un vrai 2N3906."
+      }
+    },
+    "br": {
+      "value": 1,
+      "dimensionless": true,
+      "source": {
+        "note": "Inverse-mode current gain, class-representative for a small-signal planar transistor: the 2N3906 sheet states none. Read only when the collector junction conducts, in saturation or with the part reversed."
+      },
+      "confidence": "typical",
+      "note": {
+        "en": "Ebers–Moll here has no collector resistance, so in saturation it reads VCE(sat) near 65 mV at a forced gain of ten, where the sheet guarantees ≤ 0.25 V: the ohmic drop is what the model leaves out.",
+        "fr": "Ebers–Moll n’a ici aucune résistance de collecteur : en saturation il lit VCE(sat) près de 65 mV pour un gain forcé de dix, quand la fiche garantit ≤ 0.25 V. C’est la chute ohmique que le modèle omet."
+      }
+    },
+    "t_r": {
+      "max": 3.5e-08,
+      "unit": "s",
+      "terminal": "c",
+      "band": "10_90",
+      "conditions": {
+        "v_cc_v": 3,
+        "i_c_a": 0.01,
+        "i_b_a": 0.001,
+        "t_a_c": 25
+      },
+      "source": {
+        "document": "onsemi, 2N3906/D",
+        "revision": "Rev. 4, February 2010",
+        "table": "Electrical characteristics",
+        "note": "Switching characteristics: tr ≤ 35 ns at VCC = 3.0 V, VBE(off) = 0.5 V, IC = 10 mA, IB1 = 1.0 mA, at the collector of the sheet’s test circuit; ten to ninety per cent, as a datasheet quotes an edge."
+      },
+      "confidence": "stated"
+    }
+  },
+  "limits": {
+    "absolute_max": {
+      "v_ce_v": 40,
+      "v_cb_v": 40,
+      "v_eb_v": 5,
+      "i_c_a": 0.2,
+      "p_w": 0.625,
+      "t_j_c": 150
+    },
+    "recommended": {
+      "v_ce_v": 30,
+      "i_c_a": 0.1,
+      "p_w": 0.3125
+    }
+  },
+  "physical": {
+    "thermal": {
+      "r_th_ja_c_per_w": {
+        "value": 200,
+        "unit": "°C/W",
+        "conditions": {
+          "mount": "TO-92, free air"
+        },
+        "source": {
+          "document": "onsemi, 2N3906/D",
+          "revision": "Rev. 4, February 2010",
+          "note": "RθJA ≤ 200 °C/W, thermal characteristics."
+        },
+        "confidence": "stated"
+      }
+    }
+  },
+  "damage": {
+    "trigger": {
+      "quantity": "p_ratio",
+      "threshold": 1,
+      "hold_s": 1
+    },
+    "mode": "short",
+    "confidence": "typical",
+    "note": {
+      "en": "An overdriven small-signal transistor usually fails collector to emitter short. PD = 625 mW at 25 °C ambient is stated, so \"p_ratio\" has a rating to be a ratio of.",
+      "fr": "Un transistor petit signal en surcharge se met en général en court-circuit collecteur-émetteur. PD = 625 mW à 25 °C ambiants est indiqué, si bien que « p_ratio » a une valeur nominale à laquelle se rapporter."
+    }
+  },
+  "demonstration": {
+    "reveals": [],
+    "panes": [
+      "operating",
+      "ideality"
+    ],
+    "interactions": [
+      "probe",
+      "substitute",
+      "replace"
+    ],
+    "availability": {
+      "en": "The general-purpose PNP every kit and parts drawer has, in TO-92. Its complement is the 2N3904.",
+      "fr": "Le PNP d’usage général que contient tout kit et tout tiroir de composants, en TO-92. Son complémentaire est le 2N3904."
+    }
+  },
+  "pcb": {
+    "package": {
+      "code": "TO-92",
+      "mount": "through_hole",
+      "hand_solderable": true
+    }
+  }
+}

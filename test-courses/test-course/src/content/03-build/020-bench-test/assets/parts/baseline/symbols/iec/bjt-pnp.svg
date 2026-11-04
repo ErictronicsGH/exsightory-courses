@@ -1,0 +1,24 @@
+<!-- PNP bipolar transistor — the emitter arrow points in, at the base. Which way it points is which device this is, so it turns with the part (M25-19l). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-52 -52 104 104">
+  <g data-layer="thermal">
+    <rect x="-14.7" y="-27" width="28.7" height="54" rx="1" fill="var(--bench-heat)" stroke="none"/>
+  </g>
+  <g data-layer="flow">
+    <polyline points="12.7,-50.8 12.7,-25.4" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="12.7,25.4 12.7,50.8" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="-38.1" y1="0" x2="-12.7" y2="0" stroke="var(--bench-flow)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g data-layer="body">
+    <line x1="-38.1" y1="0" x2="-12.7" y2="0" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="-12.7" y1="-15" x2="-12.7" y2="15" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="-12.7,-7 12.7,-25.4 12.7,-50.8" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="-12.7,7 12.7,25.4 12.7,50.8" stroke="var(--bench-symbol)" fill="none" stroke-width="var(--bench-stroke, 2.4)" stroke-linecap="round" stroke-linejoin="round"/>
+    <polygon points="-3.81,13.44 0.32,21.37 5.02,14.89" fill="var(--bench-symbol)" stroke="none"/>
+    <circle data-terminal="c" cx="12.7" cy="-50.8" r="2.6" fill="var(--bench-terminal)"/>
+    <circle data-terminal="b" cx="-38.1" cy="0" r="2.6" fill="var(--bench-terminal)"/>
+    <circle data-terminal="e" cx="12.7" cy="50.8" r="2.6" fill="var(--bench-terminal)"/>
+  </g>
+  <g data-layer="hitbox">
+    <rect x="-52" y="-52" width="104" height="104" fill="currentColor" opacity="0"/>
+  </g>
+</svg>

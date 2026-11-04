@@ -1,0 +1,111 @@
+{
+  "class": "inductor",
+  "label": {
+    "en": "Inductor",
+    "fr": "Bobine"
+  },
+  "designator": "L",
+  "category": "passives",
+  "terminals": [
+    {
+      "id": "a",
+      "label": {
+        "en": "terminal A",
+        "fr": "borne A"
+      },
+      "role": "terminal",
+      "signal": "bidirectional"
+    },
+    {
+      "id": "b",
+      "label": {
+        "en": "terminal B",
+        "fr": "borne B"
+      },
+      "role": "terminal",
+      "signal": "bidirectional"
+    }
+  ],
+  "variants": {
+    "wound": {
+      "symbol": "symbols/iec/inductor.svg",
+      "label": {
+        "en": "Wound",
+        "fr": "Bobinée"
+      }
+    }
+  },
+  "fast_model": {
+    "equation": "inductive",
+    "value_parameter": "l",
+    "requires": [
+      "l"
+    ],
+    "optional": [
+      "dcr",
+      "alpha"
+    ],
+    "outputs": [
+      "v",
+      "i",
+      "l_effective"
+    ]
+  },
+  "ideality_axes": {
+    "dcr": {
+      "requires": [
+        "dcr"
+      ],
+      "default": false,
+      "label": {
+        "en": "Winding resistance",
+        "fr": "Résistance du bobinage"
+      }
+    },
+    "tolerance": {
+      "requires": [
+        "l_min",
+        "l_max"
+      ],
+      "default": false,
+      "label": {
+        "en": "Tolerance spread",
+        "fr": "Dispersion dans la tolérance"
+      }
+    },
+    "tempco": {
+      "requires": [
+        "alpha"
+      ],
+      "default": false,
+      "label": {
+        "en": "Temperature coefficient",
+        "fr": "Coefficient de température"
+      }
+    }
+  },
+  "capabilities": {
+    "adjust": {
+      "parameter": "l",
+      "legend": {
+        "en": "Inductance",
+        "fr": "Inductance"
+      },
+      "from": 0.000001,
+      "to": {
+        "parameter": "l_dial_max"
+      },
+      "series": "E12"
+    },
+    "reveals": [],
+    "panes": [
+      "operating",
+      "ideality"
+    ],
+    "interactions": [
+      "probe",
+      "substitute",
+      "replace"
+    ]
+  }
+}

@@ -113,7 +113,7 @@
         "transform": {
           "type": "time",
           "factor": 1000000,
-          "badge": "×10⁶ slower"
+          "badge": { "en": "×10⁶ slower", "fr": "×10⁶ plus lent" }
         },
         "visual": {
           "treatment": "flow_density",
