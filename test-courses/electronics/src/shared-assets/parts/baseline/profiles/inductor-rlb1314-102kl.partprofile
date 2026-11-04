@@ -1,0 +1,112 @@
+{
+  "profile": "inductor-rlb1314-102kl",
+  "class": "inductor",
+  "variant": "wound",
+  "display_name": {
+    "en": "1 mH radial inductor, RLB1314-102KL",
+    "fr": "Inductance radiale 1 mH, RLB1314-102KL"
+  },
+  "provenance": {
+    "part": "RLB1314-102KL",
+    "manufacturer": "Bourns",
+    "document": "RLB Series Radial Lead Inductors",
+    "revision": "REV. 02/26",
+    "retrieved": "2026-10-24"
+  },
+  "parameters": {
+    "l": {
+      "value": 0.001,
+      "unit": "H",
+      "conditions": {
+        "f_hz": 1000,
+        "t_a_c": 25
+      },
+      "source": {
+        "document": "Bourns, RLB Series Radial Lead Inductors",
+        "revision": "REV. 02/26",
+        "table": "Electrical Characteristics - RLB1314 Series",
+        "note": "1000.0 µH ±10 %, L measured at 1 kHz."
+      },
+      "confidence": "stated"
+    },
+    "l_min": {
+      "value": 0.0009,
+      "unit": "H",
+      "conditions": {
+        "f_hz": 1000,
+        "t_a_c": 25
+      },
+      "source": {
+        "document": "Bourns, RLB Series Radial Lead Inductors",
+        "revision": "REV. 02/26",
+        "table": "Electrical Characteristics - RLB1314 Series",
+        "note": "The K code, ±10 %, around the nominal."
+      },
+      "confidence": "stated"
+    },
+    "l_max": {
+      "value": 0.0011,
+      "unit": "H",
+      "conditions": {
+        "f_hz": 1000,
+        "t_a_c": 25
+      },
+      "source": {
+        "document": "Bourns, RLB Series Radial Lead Inductors",
+        "revision": "REV. 02/26",
+        "table": "Electrical Characteristics - RLB1314 Series",
+        "note": "The K code, ±10 %, around the nominal."
+      },
+      "confidence": "stated"
+    },
+    "dcr": {
+      "max": 1.3,
+      "unit": "Ω",
+      "conditions": {
+        "t_a_c": 25
+      },
+      "source": {
+        "document": "Bourns, RLB Series Radial Lead Inductors",
+        "revision": "REV. 02/26",
+        "table": "Electrical Characteristics - RLB1314 Series",
+        "note": "RDC ≤ 1.300 Ω. A guaranteed maximum, which is the winding a worst-case part has."
+      },
+      "confidence": "stated",
+      "note": {
+        "en": "A millihenry of wire on a ferrite drum is a metre or two of thin copper, and this is its resistance. Beside a 100 Ω resistor it moves an RL time constant by about 1.3 %; beside 10 Ω, by a tenth.",
+        "fr": "Un millihenry de fil sur un tambour de ferrite, c’est un mètre ou deux de cuivre fin, et voici sa résistance. À côté d’une résistance de 100 Ω elle déplace la constante de temps d’un circuit RL d’environ 1,3 % ; à côté de 10 Ω, d’un dixième."
+      }
+    }
+  },
+  "limits": {
+    "absolute_max": {
+      "t_j_c": 125
+    },
+    "recommended": {
+      "i_a": 0.31
+    }
+  },
+  "demonstration": {
+    "reveals": [],
+    "panes": [
+      "operating",
+      "ideality"
+    ],
+    "interactions": [
+      "probe",
+      "substitute",
+      "replace"
+    ],
+    "availability": {
+      "en": "A drum-core radial choke of the kind a parts drawer holds, rated 0.31 A for a 20 °C rise. Its self-resonance, 1.6 MHz at the least, is far above anything the bench switches, which is why the profile carries no capacitance.",
+      "fr": "Une self radiale sur tambour, de celles que contient un tiroir de composants, donnée pour 0,31 A à 20 °C d’échauffement. Sa résonance propre, 1,6 MHz au moins, est bien au-dessus de tout ce que le banc commute : c’est pourquoi le profil ne porte aucune capacité."
+    }
+  },
+  "pcb": {
+    "package": {
+      "code": "RLB1314",
+      "mount": "through_hole",
+      "hand_solderable": true
+    }
+  }
+}

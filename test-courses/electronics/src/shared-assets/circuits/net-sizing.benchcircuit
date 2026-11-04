@@ -3,7 +3,7 @@
   "title": "The track never moved. What it has to be did.",
   "seed": 20261010,
   "requires": {
-    "insight-baseline": "1.17.0"
+    "insight-baseline": "1.21.0"
   },
   "environment": {
     "t_ambient_c": 25
@@ -94,9 +94,9 @@
   "effects": {},
   "stamp": {
     "v": 1,
-    "source": "sha256:8794b536b8431bb4a900755e06c76194229d457c02eb060fb26c4c347aa228db",
+    "source": "sha256:724faecfcb38aedd880c049ea7094f61656ddbf4592d4f790e11558cf61ca7ef",
     "libraries": {
-      "insight-baseline": "1.17.0"
+      "insight-baseline": "1.21.0"
     },
     "derived": {
       "targets": [

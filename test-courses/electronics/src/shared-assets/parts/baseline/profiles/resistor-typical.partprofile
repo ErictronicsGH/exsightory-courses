@@ -150,7 +150,7 @@
         "transform": {
           "type": "time",
           "factor": 10,
-          "badge": "×10 slower"
+          "badge": { "en": "×10 slower", "fr": "×10 plus lent" }
         },
         "visual": {
           "treatment": "none"

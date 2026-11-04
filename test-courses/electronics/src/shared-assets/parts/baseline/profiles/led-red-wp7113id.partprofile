@@ -1,0 +1,141 @@
+{
+  "profile": "led-red-wp7113id",
+  "class": "diode",
+  "variant": "led",
+  "display_name": {
+    "en": "WP7113ID red LED, 5 mm",
+    "fr": "LED rouge WP7113ID, 5 mm"
+  },
+  "provenance": {
+    "part": "WP7113ID",
+    "manufacturer": "Kingbright",
+    "document": "DSAF0012 / 1101005042",
+    "revision": "Rev. V.14A, 01/08/2026",
+    "retrieved": "2026-10-24"
+  },
+  "parameters": {
+    "is": {
+      "value": 8.7433e-19,
+      "unit": "A",
+      "conditions": {
+        "i_f_a": 0.01,
+        "t_a_c": 25
+      },
+      "source": {
+        "document": "Kingbright, WP7113ID, spec DSAF0012 / 1101005042",
+        "revision": "Rev. V.14A, 01/08/2026",
+        "table": "Electrical / optical characteristics",
+        "note": "VF 1.9 V typical, 2.3 V maximum, at IF = 10 mA; the sheet states its tolerance as ±0.1 V."
+      },
+      "confidence": "derived",
+      "derivation": "IS solved from the stated typical forward point, VF = 1.9 V at IF = 10 mA, with N = 2 and no series resistance: IS = IF / (e^(VF/(N·Vt)) − 1) = 8.7433e-19 A at Vt = 25.693 mV. One point fixes one unknown; N is the class’s.",
+      "note": {
+        "en": "Fitted at the sheet’s own test current, 10 mA, and nowhere else: the forward-current curve stops at 20 mA and is a figure, not a table. The fit reads 1.936 V at 20 mA, where a real part, with its few ohms of bulk resistance, reads a little higher.",
+        "fr": "Ajusté au courant d’essai de la fiche, 10 mA, et nulle part ailleurs : la courbe du courant direct s’arrête à 20 mA, et c’est une figure, pas un tableau. L’ajustement lit 1.936 V à 20 mA, là où un vrai composant, avec ses quelques ohms de résistance de volume, lit un peu plus."
+      }
+    },
+    "n": {
+      "value": 2.0,
+      "dimensionless": true,
+      "source": {
+        "note": "Emission coefficient of a GaAsP-on-GaP junction, class-representative: the sheet gives one forward point, which fixes IS and leaves N to the class."
+      },
+      "confidence": "typical"
+    },
+    "alpha_vf": {
+      "value": -0.0019,
+      "unit": "V/°C",
+      "conditions": {
+        "i_f_a": 0.01
+      },
+      "source": {
+        "document": "Kingbright, WP7113ID, spec DSAF0012 / 1101005042",
+        "revision": "Rev. V.14A, 01/08/2026",
+        "table": "Electrical / optical characteristics",
+        "note": "TCV −1.9 mV/°C typical at IF = 10 mA, −10 °C ≤ T ≤ 85 °C."
+      },
+      "confidence": "stated"
+    }
+  },
+  "limits": {
+    "absolute_max": {
+      "v_r_v": 5,
+      "i_f_a": 0.03,
+      "p_w": 0.075,
+      "t_j_c": 125
+    },
+    "recommended": {
+      "i_f_a": 0.02
+    }
+  },
+  "physical": {
+    "thermal": {
+      "r_th_ja_c_per_w": {
+        "value": 560,
+        "unit": "°C/W",
+        "conditions": {
+          "mount": "FR4, 16 mm² pad per lead"
+        },
+        "source": {
+          "document": "Kingbright, WP7113ID, spec DSAF0012 / 1101005042",
+          "revision": "Rev. V.14A, 01/08/2026",
+          "note": "Rth JA = 560 °C/W, absolute maximum ratings, note 2."
+        },
+        "confidence": "stated"
+      }
+    }
+  },
+  "damage": {
+    "trigger": {
+      "quantity": "p_ratio",
+      "threshold": 1,
+      "hold_s": 1
+    },
+    "mode": "open",
+    "confidence": "typical",
+    "note": {
+      "en": "An overdriven LED usually fails open: the bond wire or the die gives way, and it goes dark. PD = 75 mW is stated, so \"p_ratio\" has a rating to be a ratio of.",
+      "fr": "Une LED en surcharge se met en général en circuit ouvert : le fil de liaison ou la puce cède, et elle s’éteint. PD = 75 mW est indiqué, si bien que « p_ratio » a une valeur nominale à laquelle se rapporter."
+    }
+  },
+  "emission": {
+    "hue": "red",
+    "full": {
+      "value": 0.01,
+      "unit": "A",
+      "conditions": {
+        "t_a_c": 25
+      },
+      "source": {
+        "document": "Kingbright, WP7113ID, spec DSAF0012 / 1101005042",
+        "revision": "Rev. V.14A, 01/08/2026",
+        "table": "Selection guide",
+        "note": "Iv 25 mcd minimum, 50 typical, at 10 mA: the current the sheet states its brightness at."
+      },
+      "confidence": "stated"
+    }
+  },
+  "demonstration": {
+    "reveals": [],
+    "panes": [
+      "operating",
+      "ideality"
+    ],
+    "interactions": [
+      "probe",
+      "substitute",
+      "replace"
+    ],
+    "availability": {
+      "en": "A high-efficiency red indicator, GaAsP on GaP, peak 627 nm, in the 5 mm diffused lens every kit has. Its recommended 20 mA is the end of the sheet’s own curves, a margin under the 30 mA it is rated for.",
+      "fr": "Un témoin rouge haute efficacité, GaAsP sur GaP, crête à 627 nm, dans la lentille diffusante de 5 mm que contient tout kit. Ses 20 mA recommandés sont le bout des courbes de la fiche, une marge sous les 30 mA pour lesquels elle est donnée."
+    }
+  },
+  "pcb": {
+    "package": {
+      "code": "T-1 3/4",
+      "mount": "through_hole",
+      "hand_solderable": true
+    }
+  }
+}

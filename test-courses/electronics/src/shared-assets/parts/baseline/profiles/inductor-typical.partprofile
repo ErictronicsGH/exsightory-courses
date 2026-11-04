@@ -1,0 +1,80 @@
+{
+  "profile": "inductor-typical",
+  "class": "inductor",
+  "variant": "wound",
+  "display_name": {
+    "en": "Inductor, ferrite drum (typical)",
+    "fr": "Bobine, tambour en ferrite (typique)"
+  },
+  "provenance": {
+    "typical": true
+  },
+  "parameters": {
+    "l": {
+      "value": 0.01,
+      "unit": "H",
+      "conditions": {
+        "t_a_c": 25,
+        "f_khz": 1
+      },
+      "source": {
+        "note": "Nominal; the circuit overrides it per instance."
+      },
+      "confidence": "typical"
+    },
+    "l_dial_max": {
+      "value": 0.1,
+      "unit": "H",
+      "conditions": {
+        "t_a_c": 25
+      },
+      "source": {
+        "note": "The top of the dial: 100 mH, about the largest value a radial ferrite drum of this kind is commonly made in. It is the end of the knob, a specification of the range the part comes in rather than a rating, which is why it is a parameter and not in \"limits\"."
+      },
+      "confidence": "typical"
+    },
+    "dcr": {
+      "value": 12,
+      "unit": "Ω",
+      "conditions": {
+        "t_a_c": 25
+      },
+      "source": {
+        "note": "Winding resistance representative of a 10 mH radial drum rated near 100 mA: thin wire, many turns."
+      },
+      "confidence": "typical"
+    },
+    "alpha": {
+      "value": 0.0002,
+      "unit": "1/°C",
+      "conditions": {
+        "t_a_c": 25
+      },
+      "source": {
+        "note": "A ferrite core's inductance drifts upward with temperature, a few hundred ppm/°C below its Curie point."
+      },
+      "confidence": "typical"
+    }
+  },
+  "limits": {
+    "absolute_max": {
+      "i_a": 0.15,
+      "t_j_c": 105
+    },
+    "recommended": {
+      "i_a": 0.1,
+      "t_j_c": 85
+    }
+  },
+  "demonstration": {
+    "panes": [
+      "operating",
+      "ideality"
+    ],
+    "interactions": [
+      "probe",
+      "substitute",
+      "replace"
+    ]
+  }
+}
