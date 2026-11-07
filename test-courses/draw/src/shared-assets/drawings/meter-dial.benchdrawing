@@ -1,0 +1,92 @@
+{
+  "format": 1,
+  "artboard": {
+    "width": 16000,
+    "height": 9000
+  },
+  "layers": [
+    {
+      "id": "picture",
+      "items": ["dial"]
+    },
+    {
+      "id": "reading",
+      "items": ["pointer", "pivot", "label-pointer", "label-reading"]
+    }
+  ],
+  "items": {
+    "dial": {
+      "shape": "image",
+      "src": "images/meter-dial.png",
+      "at": [1600, 500],
+      "size": [12800, 8000]
+    },
+    "pointer": {
+      "shape": "path",
+      "d": [
+        ["M", 8000, 7540],
+        ["L", 9047, 2856]
+      ],
+      "line": "thin",
+      "stroke": {
+        "cap": "butt",
+        "end": "arrow"
+      }
+    },
+    "pivot": {
+      "shape": "path",
+      "d": [
+        ["M", 8144, 7540],
+        ["C", 8144, 7620, 8080, 7684, 8000, 7684],
+        ["C", 7920, 7684, 7856, 7620, 7856, 7540],
+        ["C", 7856, 7460, 7920, 7396, 8000, 7396],
+        ["C", 8080, 7396, 8144, 7460, 8144, 7540],
+        ["Z"]
+      ],
+      "stroke": "none",
+      "fill": {
+        "ink": "contrast"
+      }
+    },
+    "label-pointer": {
+      "shape": "text",
+      "at": [9447, 3156],
+      "text": "pointer"
+    },
+    "label-reading": {
+      "shape": "text",
+      "at": [11200, 8800],
+      "text": "reads 6.4 V"
+    }
+  },
+  "steps": [
+    {
+      "id": "dial",
+      "say": "The dial as photographed: a scale of fifty divisions, a mirror strip below it",
+      "draw": ["dial"]
+    },
+    {
+      "id": "pointer",
+      "say": "The pointer, drawn over the picture, stands at 6.4 V",
+      "draw": ["pointer", "pivot", "label-pointer", "label-reading"]
+    }
+  ],
+  "stamp": {
+    "v": 1,
+    "source": "sha256:74bf0cf64261145fbc24c88cab5813b5e5f30eb9850c512941fc1d743cea6a66",
+    "derived": {
+      "steps": [
+        {
+          "id": "dial",
+          "say": "The dial as photographed: a scale of fifty divisions, a mirror strip below it"
+        },
+        {
+          "id": "pointer",
+          "say": "The pointer, drawn over the picture, stands at 6.4 V"
+        }
+      ],
+      "files": ["images/meter-dial.png"]
+    },
+    "diagnostics": []
+  }
+}

@@ -11,8 +11,9 @@ be measured at the ceiling (performance budgets §4c).
 
 ## Five thousand segments at the ceiling
 
-```drawing
+```bench
 title: Five thousand segments
-src: shared/drawings/size-ceiling.benchdrawing
+package: "@exsight/bench-draw@0.1.49"
+work: shared/drawings/size-ceiling.benchdrawing
 alt: A grid of a thousand short wavy strokes, forty across and twenty-five down, most in the ground's opposite and every fourth in a colour.
 ```

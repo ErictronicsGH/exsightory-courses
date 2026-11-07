@@ -4,18 +4,19 @@
     {
       "name": "@exsight/bench-draw",
       "kind": "bench",
-      "version": "0.1.3",
+      "version": "0.1.49",
       "path": "benches/draw",
       "description": "The Draw Bench: a drawing the room watches being made, step by step, and the editor it is made in. Its arithmetic is @exsight/draw-engine (B023); this package is the bench a player frames (the viewer for Preview and View, the editor as Authoring, one Vue bundle speaking contract 1.1), and the .benchdrawing work: its JSON Schema and the stamp a compiler reads instead of running the bench (E·draw).",
       "needs": {
         "packages": {
-          "@exsight/bench-contract": "^1.2.0",
+          "@exsight/bench-contract": "^1.19.0",
           "@exsight/bench-kit": "^0.1.0",
-          "@exsight/draw-engine": "0.2.1"
+          "@exsight/draw-engine": "0.19.0"
         },
-        "contract": "^1.2.0",
+        "contract": "^1.19.0",
         "kit": "^0.1.0"
       },
+      "entry": "dist/widget/index.html",
       "classes": [],
       "bundles": {},
       "works": [
@@ -48,6 +49,29 @@
                   "height": {
                     "type": "number",
                     "exclusiveMinimum": 0
+                  },
+                  "scale": {
+                    "type": "object",
+                    "properties": {
+                      "length": {
+                        "type": "number",
+                        "exclusiveMinimum": 0
+                      },
+                      "unit": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 16
+                      }
+                    },
+                    "required": [
+                      "length",
+                      "unit"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "grid": {
+                    "type": "number",
+                    "exclusiveMinimum": 0
                   }
                 },
                 "required": [
@@ -66,11 +90,24 @@
                       "type": "string",
                       "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
                     },
+                    "name": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 64
+                    },
                     "kind": {
                       "type": "string",
                       "enum": [
                         "construction"
                       ]
+                    },
+                    "hidden": {
+                      "type": "boolean",
+                      "const": true
+                    },
+                    "locked": {
+                      "type": "boolean",
+                      "const": true
                     },
                     "items": {
                       "type": "array",
@@ -989,6 +1026,9 @@
                           "type": "number",
                           "minimum": 0
                         },
+                        "rotation": {
+                          "type": "number"
+                        },
                         "line": {
                           "type": "string",
                           "enum": [
@@ -1105,6 +1145,14 @@
                             "ink"
                           ],
                           "additionalProperties": false
+                        },
+                        "contents": {
+                          "minItems": 1,
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                          }
                         },
                         "enter": {
                           "type": "object",
@@ -1429,6 +1477,9 @@
                           "minItems": 2,
                           "maxItems": 2
                         },
+                        "rotation": {
+                          "type": "number"
+                        },
                         "line": {
                           "type": "string",
                           "enum": [
@@ -1545,6 +1596,14 @@
                             "ink"
                           ],
                           "additionalProperties": false
+                        },
+                        "contents": {
+                          "minItems": 1,
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                          }
                         },
                         "enter": {
                           "type": "object",
@@ -1981,6 +2040,14 @@
                             "ink"
                           ],
                           "additionalProperties": false
+                        },
+                        "contents": {
+                          "minItems": 1,
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                          }
                         },
                         "enter": {
                           "type": "object",
@@ -2479,6 +2546,14 @@
                           ],
                           "additionalProperties": false
                         },
+                        "contents": {
+                          "minItems": 1,
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                          }
+                        },
                         "enter": {
                           "type": "object",
                           "properties": {
@@ -2800,6 +2875,9 @@
                         "size": {
                           "type": "number",
                           "exclusiveMinimum": 0
+                        },
+                        "rotation": {
+                          "type": "number"
                         },
                         "ink": {
                           "type": "string",
@@ -3306,6 +3384,14 @@
                           ],
                           "additionalProperties": false
                         },
+                        "contents": {
+                          "minItems": 1,
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                          }
+                        },
                         "enter": {
                           "type": "object",
                           "properties": {
@@ -3593,6 +3679,337 @@
                         "scale"
                       ],
                       "additionalProperties": false
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "shape": {
+                          "type": "string",
+                          "const": "image"
+                        },
+                        "src": {
+                          "type": "string",
+                          "pattern": "^(?!.*(?:^|\\/)\\.\\.?(?:\\/|$))(?![a-z][a-z0-9+.-]*:)[A-Za-z0-9_][A-Za-z0-9_ .()-]*(?:\\/[A-Za-z0-9_][A-Za-z0-9_ .()-]*)*\\.(?:png|jpe?g|webp)$"
+                        },
+                        "at": {
+                          "type": "array",
+                          "prefixItems": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ],
+                          "items": false,
+                          "minItems": 2,
+                          "maxItems": 2
+                        },
+                        "size": {
+                          "type": "array",
+                          "prefixItems": [
+                            {
+                              "type": "number",
+                              "exclusiveMinimum": 0
+                            },
+                            {
+                              "type": "number",
+                              "exclusiveMinimum": 0
+                            }
+                          ],
+                          "items": false,
+                          "minItems": 2,
+                          "maxItems": 2
+                        },
+                        "rotation": {
+                          "type": "number"
+                        },
+                        "enter": {
+                          "type": "object",
+                          "properties": {
+                            "as": {
+                              "type": "string"
+                            },
+                            "pace": {},
+                            "ease": {},
+                            "by": {
+                              "type": "string",
+                              "enum": [
+                                "length",
+                                "x",
+                                "y"
+                              ]
+                            },
+                            "from": {
+                              "type": "string",
+                              "enum": [
+                                "left",
+                                "right",
+                                "top",
+                                "bottom"
+                              ]
+                            },
+                            "about": {
+                              "anyOf": [
+                                {
+                                  "type": "array",
+                                  "prefixItems": [
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "number"
+                                    }
+                                  ],
+                                  "items": false,
+                                  "minItems": 2,
+                                  "maxItems": 2
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "item": {
+                                      "type": "string",
+                                      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                    },
+                                    "at": {
+                                      "type": "string",
+                                      "enum": [
+                                        "start",
+                                        "end",
+                                        "centre"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "item",
+                                    "at"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "as"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "exit": {
+                          "type": "object",
+                          "properties": {
+                            "as": {
+                              "type": "string"
+                            },
+                            "pace": {},
+                            "ease": {},
+                            "by": {
+                              "type": "string",
+                              "enum": [
+                                "length",
+                                "x",
+                                "y"
+                              ]
+                            },
+                            "from": {
+                              "type": "string",
+                              "enum": [
+                                "left",
+                                "right",
+                                "top",
+                                "bottom"
+                              ]
+                            },
+                            "about": {
+                              "anyOf": [
+                                {
+                                  "type": "array",
+                                  "prefixItems": [
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "number"
+                                    }
+                                  ],
+                                  "items": false,
+                                  "minItems": 2,
+                                  "maxItems": 2
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "item": {
+                                      "type": "string",
+                                      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                    },
+                                    "at": {
+                                      "type": "string",
+                                      "enum": [
+                                        "start",
+                                        "end",
+                                        "centre"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "item",
+                                    "at"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "as"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "motion": {
+                          "type": "object",
+                          "propertyNames": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                          },
+                          "additionalProperties": {
+                            "type": "object",
+                            "properties": {
+                              "rotate": {
+                                "type": "number"
+                              },
+                              "move": {
+                                "anyOf": [
+                                  {
+                                    "type": "array",
+                                    "prefixItems": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ],
+                                    "items": false,
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "along": {
+                                        "type": "string",
+                                        "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                      },
+                                      "by": {
+                                        "type": "string",
+                                        "enum": [
+                                          "length",
+                                          "x",
+                                          "y"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "along"
+                                    ],
+                                    "additionalProperties": false
+                                  }
+                                ]
+                              },
+                              "scale": {
+                                "anyOf": [
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "array",
+                                    "prefixItems": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ],
+                                    "items": false,
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                  }
+                                ]
+                              },
+                              "ink": {
+                                "type": "string",
+                                "enum": [
+                                  "teal",
+                                  "amber",
+                                  "violet",
+                                  "lime",
+                                  "rose",
+                                  "azure",
+                                  "orange",
+                                  "magenta",
+                                  "contrast"
+                                ]
+                              },
+                              "about": {
+                                "anyOf": [
+                                  {
+                                    "type": "array",
+                                    "prefixItems": [
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ],
+                                    "items": false,
+                                    "minItems": 2,
+                                    "maxItems": 2
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "item": {
+                                        "type": "string",
+                                        "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+                                      },
+                                      "at": {
+                                        "type": "string",
+                                        "enum": [
+                                          "start",
+                                          "end",
+                                          "centre"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "item",
+                                      "at"
+                                    ],
+                                    "additionalProperties": false
+                                  }
+                                ]
+                              },
+                              "pace": {},
+                              "ease": {},
+                              "repeat": {},
+                              "back": {
+                                "type": "boolean"
+                              }
+                            },
+                            "additionalProperties": {}
+                          }
+                        }
+                      },
+                      "required": [
+                        "shape",
+                        "src",
+                        "at",
+                        "size"
+                      ],
+                      "additionalProperties": false
                     }
                   ]
                 }
@@ -3731,6 +4148,14 @@
                           ],
                           "additionalProperties": false
                         }
+                      },
+                      "files": {
+                        "minItems": 1,
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "pattern": "^(?!.*(?:^|\\/)\\.\\.?(?:\\/|$))(?![a-z][a-z0-9+.-]*:)[A-Za-z0-9_][A-Za-z0-9_ .()-]*(?:\\/[A-Za-z0-9_][A-Za-z0-9_ .()-]*)*\\.(?:png|jpe?g|webp)$"
+                        }
                       }
                     },
                     "required": [
@@ -3788,7 +4213,7 @@
           },
           "schemaFile": {
             "file": "work/drawing.schema.json",
-            "sha256": "sha256:0377109f2be9e529e44d561ab558bf03d369987fe0bbae542f3dd1c654fd4722"
+            "sha256": "sha256:e09bf9616d335da0c692b284f4da986ec7f0046a1b474b515a7eefa5c30f01d5"
           }
         }
       ],
@@ -3797,9 +4222,23 @@
         "ajv": "8.20.0"
       },
       "release": {
-        "version": "0.1.3",
-        "at": "2026-10-23T10:33:17.126Z",
-        "digest": "sha256:c73b5c35ad03cd5af2e599df0a875d3e99aadda4480031e43b061666641c9980"
+        "version": "0.1.49",
+        "at": "2026-11-07T08:02:48.518Z",
+        "digest": "sha256:9300a2ad52bf5d1a141620f8e5432041b4ae77c0c108afe013f64c8bb8b822d6",
+        "cost": {
+          "heapMB": 2.2,
+          "gpuMB": 0,
+          "contexts": 0
+        },
+        "interfaces": {
+          "provides": {
+            "work/benchdrawing": "1.3.0"
+          },
+          "needs": {
+            "contract": "^1.19.0",
+            "kit": "^1.0.0"
+          }
+        }
       },
       "listed": true,
       "listing": {
@@ -3807,6 +4246,9 @@
         "listing": "exsight.listing/0.1",
         "package": "@exsight/bench-draw",
         "slug": "draw",
+        "formerSlugs": [
+          "drawing"
+        ],
         "kind": "bench",
         "status": "in-progress",
         "name": {
@@ -3902,7 +4344,7 @@
           "authoring"
         ],
         "runsIn": {
-          "contract": "^1.2.0",
+          "contract": "^1.19.0",
           "scope": true,
           "phone": true
         },
@@ -4158,9 +4600,386 @@
               "height": 1260
             }
           }
-        }
+        },
+        "samples": [
+          {
+            "id": "moving-coil-meter",
+            "title": {
+              "en": "A moving-coil meter, drawn in steps",
+              "fr": "Un galvanomètre à cadre mobile, dessiné par étapes"
+            }
+          }
+        ]
       },
       "changes": [
+        {
+          "version": "0.1.49",
+          "at": "2026-11-07T08:02:48.518Z",
+          "note": {
+            "en": "PowerClip in the editor (draw-engine 0.19.0, M59s-ii): Place inside (Shift+I), refused under the pointer in words by a shape that cannot hold; a right-button drag dropped on a shape offers Place inside or Drop a copy; Edit contents (Shift+E, or a double click) dims the rest and shows the contents whole, Escape or a click outside closes it; Extract contents (Shift+X)",
+            "fr": "PowerClip dans l'éditeur (draw-engine 0.19.0, M59s-ii) : Placer dans (Maj+I), refusé sous le pointeur, en mots, par une forme qui ne peut rien contenir ; un glisser du bouton droit déposé sur une forme propose Placer dans ou Déposer une copie ; Modifier le contenu (Maj+E, ou un double-clic) estompe le reste et montre le contenu en entier, Échap ou un clic à l'extérieur le referme ; Extraire le contenu (Maj+X)"
+          }
+        },
+        {
+          "version": "0.1.48",
+          "at": "2026-11-07T07:12:31.990Z",
+          "note": {
+            "en": "PowerClip on the wall, in Study and in Preview (draw-engine 0.18.0, M59s): a shape that holds a picture paints it inside its outline, its line drawn over it; the drawing work's interface 1.3.0 (contents)",
+            "fr": "PowerClip au mur, en Étude et en Aperçu (draw-engine 0.18.0, M59s) : une forme qui contient une image la peint dans son contour, son trait par-dessus ; l'interface du travail de dessin 1.3.0 (contents)"
+          }
+        },
+        {
+          "version": "0.1.47",
+          "at": "2026-11-06T23:00:52.096Z",
+          "note": {
+            "en": "On draw-engine 0.17.1 (the figure picture restored) and kit 0.1.49",
+            "fr": "Sur draw-engine 0.17.1 (l'image de figure rétablie) et le kit 0.1.49"
+          }
+        },
+        {
+          "version": "0.1.46",
+          "at": "2026-11-06T22:47:23.135Z",
+          "note": {
+            "en": "Place image…: put a PNG, JPEG or WebP picture in a drawing, kept beside it in the course (M59r-ii)",
+            "fr": "Placer une image… : mettre une image PNG, JPEG ou WebP dans un dessin, gardée à côté de lui dans le cours (M59r-ii)"
+          }
+        },
+        {
+          "version": "0.1.45",
+          "at": "2026-11-06T21:52:21.045Z",
+          "note": {
+            "en": "A slide's still of a drawing now shows its pictures; one that could not be given is drawn as its outline (M59r)",
+            "fr": "L'image fixe d'un dessin sur une diapositive montre maintenant ses images ; une image indisponible est tracée par son contour (M59r)"
+          }
+        },
+        {
+          "version": "0.1.44",
+          "at": "2026-11-06T17:39:46.675Z",
+          "note": {
+            "en": "M59r: a picture reaches the frame. The pictures a drawing names are asked of the player (contract 1.18) and painted where the author put them; one the course does not hold is drawn as its outline and said in words. Needs contract 1.18.",
+            "fr": "M59r : une image atteint le cadre. Les images qu'un dessin nomme sont demandées au lecteur (contrat 1.18) et peintes là où l'auteur les a mises ; une image que le cours ne contient pas est tracée par son contour et dite en mots. Demande le contrat 1.18."
+          }
+        },
+        {
+          "version": "0.1.43",
+          "at": "2026-11-06T16:07:16.361Z",
+          "note": {
+            "en": "M59r-i: a picture in a drawing (work format 1.2.0): the image item, drawn as its rectangle in the construction line until its file reaches the frame, chosen by a press inside it, moved and sized as any item; the drawing's stamp lists its pictures; the properties panel shows no line or fill for one. 0.1.42's new files back to LF",
+            "fr": "M59r-i : une image dans un dessin (format de travail 1.2.0) : l’élément image, dessiné comme son rectangle en trait de construction jusqu’à ce que son fichier atteigne le cadre, choisi par un appui à l’intérieur, déplacé et dimensionné comme tout élément ; le cachet du dessin liste ses images ; le panneau des propriétés n’en montre ni trait ni remplissage. Fins de ligne des nouveaux fichiers de la 0.1.42 rendues en LF"
+          }
+        },
+        {
+          "version": "0.1.42",
+          "at": "2026-11-06T15:25:09.814Z",
+          "note": {
+            "en": "M59o: the editor's Animation section: how what is chosen arrives, leaves and moves, picked from the engine's lists and previewed on the sheet where the author works; a turn's or a growth's point and a move's end or path placed on the drawing; a step's Plays and Timing in the step list; folded until opened; the first load 93.3 KB gzipped (budget 94,000 B)",
+            "fr": "M59o : la section Animation de l’éditeur : comment ce qui est choisi arrive, part et bouge, choisi dans les listes du moteur et prévisualisé sur la feuille où l’auteur travaille ; le point d’une rotation ou d’une croissance, et la fin ou le tracé d’un déplacement, placés sur le dessin ; Joue et Minutage d’une étape dans la liste des étapes ; repliée jusqu’à son ouverture ; le premier chargement 93,3 Ko compressés (budget 94 000 o)"
+          }
+        },
+        {
+          "version": "0.1.41",
+          "at": "2026-11-06T13:34:34.964Z",
+          "note": {
+            "en": "M59n: every entrance, exit and motion played on the presenter's clock: a wipe, a growth, a shrink and a fly as well as the trace and the fade, an ink motion's blend, a connector following what it joins with no item built again; under reduced motion each step whole; the first load 93.3 KB gzipped (budget 94,000 B)",
+            "fr": "M59n : chaque entrée, sortie et mouvement joué sur l’horloge du présentateur : un balayage, une croissance, un rétrécissement et un vol en plus du tracé et du fondu, le mélange d’un mouvement d’encre, un connecteur qui suit ce qu’il relie sans rien reconstruire ; en mouvement réduit chaque étape entière ; le premier chargement 93,3 Ko compressés (budget 94 000 o)"
+          }
+        },
+        {
+          "version": "0.1.40",
+          "at": "2026-11-06T12:27:03.194Z",
+          "note": {
+            "en": "B114: a pen click's frame measured as it is (2-4 ms, never a refresh), and a save never stamped under a held button: the size ceiling's 300-500 ms hitches gone",
+            "fr": "B114 : l’image d’un clic de la plume mesurée telle qu’elle est (2 à 4 ms, jamais un rafraîchissement), et un enregistrement jamais estampillé sous un bouton tenu : les accrocs de 300 à 500 ms au plafond de taille disparus"
+          }
+        },
+        {
+          "version": "0.1.39",
+          "at": "2026-11-06T11:06:32.659Z",
+          "note": {
+            "en": "Export print (M59k-ii): the drawing as its steps on A4, each step's drawing with its words beneath, one SVG a page, offered through the player's save dialog",
+            "fr": "Exporter pour l’impression (M59k-ii) : le dessin en étapes sur A4, le dessin de chaque étape avec son intitulé dessous, un SVG par page, proposé par la boîte d’enregistrement du lecteur"
+          }
+        },
+        {
+          "version": "0.1.38",
+          "at": "2026-11-06T10:50:29.872Z",
+          "note": {
+            "en": "The step list in the editor (M59k-i): a new step from what is chosen, its words suggested and its field open; rename, reorder by drag or Alt+arrows, Draw here, Rub out here, delete, each one undo step; what no step draws and construction still showing at the end counted and marked on the sheet before the compiler warns; Play steps: the wall's own viewer over the sheet, a step or all of them in turn, held by a scrubber, the wall's pixels",
+            "fr": "La liste des étapes dans l’éditeur (M59k-i) : une nouvelle étape depuis la sélection, son intitulé suggéré et son champ ouvert ; renommer, réordonner par glisser ou Alt+flèches, Tracer ici, Effacer ici, supprimer, chacun une étape d’annulation ; ce qu’aucune étape ne trace et la construction encore visible à la fin comptés et marqués sur la feuille avant l’avertissement du compilateur ; Jouer les étapes : la visionneuse du mur sur la feuille, une étape ou toutes tour à tour, tenue par un curseur, les pixels du mur"
+          }
+        },
+        {
+          "version": "0.1.37",
+          "at": "2026-11-06T09:49:30.732Z",
+          "note": {
+            "en": "M59j: layers, groups, align and distribute in the editor. A click chooses a group, Ctrl+click and a double-click one item in it, a marquee takes a group only whole; Ctrl+G and Ctrl+Shift+G. Align (six edges, to the selection or the page) and Space evenly in the properties panel. The layers list at the foot of a dock over the sheet's right edge, top layer first: add, rename in place, reorder by its grip or Alt+arrows, hide (not drawn, not chosen), lock (drawn, not chosen), construction, move what is chosen here, delete. The editor's messages float over the sheet: the Function tool's typing error hangs from its field, an import's notice is a card at the sheet's lower left; the bar's rows never change height. work/benchdrawing 1.1.0: a layer's name, hidden and locked.",
+            "fr": "M59j : calques, groupes, alignement et répartition dans l'éditeur. Un clic choisit un groupe, Ctrl+clic et un double-clic un élément du groupe, un lasso ne prend un groupe qu'entier ; Ctrl+G et Ctrl+Maj+G. Aligner (six bords, sur la sélection ou la page) et Espacer dans le panneau des propriétés. La liste des calques au pied d'un volet sur le bord droit de la feuille, le calque du dessus en premier : ajouter, renommer sur place, réordonner par sa poignée ou Alt+flèches, masquer (ni dessiné ni sélectionnable), verrouiller (dessiné, non sélectionnable), construction, déplacer la sélection ici, supprimer. Les messages de l'éditeur flottent sur la feuille : l'erreur de saisie de l'outil Fonction pend sous son champ, l'avis d'import est une carte en bas à gauche ; les rangées de la barre ne changent jamais de hauteur. work/benchdrawing 1.1.0 : le nom, hidden et locked d'un calque."
+          }
+        },
+        {
+          "version": "0.1.36",
+          "at": "2026-11-06T09:01:30.579Z",
+          "note": {
+            "en": "A slant's arrow leans inside its point, so a label beside a shape stays clear of it zoomed out; a frame a pen press fell in is measured as the press's",
+            "fr": "La flèche d'inclinaison se place à l'intérieur de son point, pour qu'une étiquette à côté d'une forme reste dégagée en zoom arrière ; une image où tombe un clic de la plume est mesurée comme celle du clic"
+          }
+        },
+        {
+          "version": "0.1.35",
+          "at": "2026-11-06T08:36:56.508Z",
+          "note": {
+            "en": "The sheet has no box of its own: the paper sits on the page, lifted by its edge and a soft shadow",
+            "fr": "La feuille n'a plus de cadre à elle : le papier repose sur la page, détaché par son bord et une ombre légère"
+          }
+        },
+        {
+          "version": "0.1.34",
+          "at": "2026-11-06T08:33:48.055Z",
+          "note": {
+            "en": "The editor organised: the drawing's bar in one order always (history, file, the Preview's capture, snapping at its right end); an options row under it for the tool in hand, or a sentence on how to use it; the properties panel over the sheet's right edge only while something is chosen, foldable to a tab, the line types drawn as they are; nothing moves the sheet when something is chosen",
+            "fr": "L'éditeur organisé : la barre du dessin toujours dans le même ordre (historique, fichier, capture de l'aperçu, magnétisme à son extrémité droite) ; une rangée d'options dessous pour l'outil en main, ou une phrase sur son usage ; le panneau des propriétés sur le bord droit de la feuille seulement quand un élément est choisi, repliable en onglet, les types de trait dessinés tels qu'ils sont ; rien ne déplace la feuille quand on choisit"
+          }
+        },
+        {
+          "version": "0.1.33",
+          "at": "2026-11-06T07:52:32.160Z",
+          "note": {
+            "en": "The properties panel (M59g): a selection's line type, ink, width, ends, fill, tint, corner, caps, joins and dashes set over the sheet, no dialog; a mixed selection shown as mixed; inks named, never by colour alone; a choice one undo step, a typed number one for all its keys; on draw-engine 0.9.0",
+            "fr": "Le panneau des propriétés (M59g) : le type de trait, l'encre, la largeur, les extrémités, le remplissage, la teinte, le coin, les bouts, les jonctions et les tirets d'une sélection réglés au-dessus de la feuille, sans dialogue ; une sélection mixte montrée comme telle ; les encres nommées, jamais par la seule couleur ; un choix, une annulation, un nombre saisi, une seule pour toutes ses touches ; sur draw-engine 0.9.0"
+          }
+        },
+        {
+          "version": "0.1.32",
+          "at": "2026-11-05T12:44:34.898Z",
+          "note": {
+            "en": "Released on kit 0.1.47 (contract 1.17's watched, B097), its first-load budget raised by what the kit bundles; nothing it draws changes",
+            "fr": "Publié sur le kit 0.1.47 (le watched du contrat 1.17, B097), son budget de premier chargement relevé de ce que le kit embarque ; rien de ce qu'il dessine ne change"
+          }
+        },
+        {
+          "version": "0.1.31",
+          "at": "2026-11-05T11:18:53.975Z",
+          "note": {
+            "en": "Rebuilt on kit 0.1.46 (contract 1.16: let go and come back); its first-load budget moved by what the kit's runtime added.",
+            "fr": "Reconstruit sur le kit 0.1.46 (contrat 1.16 : lâcher la salle et revenir) ; son budget de premier chargement suit ce que le runtime du kit a ajouté."
+          }
+        },
+        {
+          "version": "0.1.30",
+          "at": "2026-11-05T09:03:25.760Z",
+          "note": {
+            "en": "Rebuilt on kit 0.1.45: the stage's caption in the theme's own colours.",
+            "fr": "Reconstruit sur le kit 0.1.45 : la légende de la scène aux couleurs du thème."
+          }
+        },
+        {
+          "version": "0.1.29",
+          "at": "2026-11-04T23:12:41.435Z",
+          "note": {
+            "en": "Rebuilt on kit 0.1.44 (B090a's Replay fix)",
+            "fr": "Reconstruit sur le kit 0.1.44 (la correction de Rejouer de B090a)"
+          }
+        },
+        {
+          "version": "0.1.28",
+          "at": "2026-11-04T19:26:32.002Z",
+          "note": {
+            "en": "A shared page beside the bundled one (B111b): the bench as modules of one build, the kit, Vue and the contract loaded by the player's import map; its interfaces declared and held at release (B110b); rebuilt on kit 0.1.43.",
+            "fr": "Une page partagée à côté de la page groupée (B111b) : le banc en modules d'une seule construction, le kit, Vue et le contrat chargés par la table d'imports du lecteur ; ses interfaces déclarées et tenues à chaque version (B110b) ; reconstruit sur le kit 0.1.43."
+          }
+        },
+        {
+          "version": "0.1.27",
+          "at": "2026-11-04T07:28:51.070Z",
+          "note": {
+            "en": "Built on kit 0.1.42 (contract 1.15, B089d-iii: a student alone, the explain beat, the transport's acts off)",
+            "fr": "Construit sur le kit 0.1.42 (contrat 1.15, B089d-iii : un élève seul, le temps d'explication, les actions du transport désactivées)"
+          }
+        },
+        {
+          "version": "0.1.26",
+          "at": "2026-11-04T06:03:11.696Z",
+          "note": {
+            "en": "Built on kit 0.1.41 (contract 1.14, B095: the presenter's notes); its first-load budget raised by what the contract's checker grew",
+            "fr": "Construit sur le kit 0.1.41 (contrat 1.14, B095 : les notes du présentateur) ; son budget de premier chargement relevé de ce qu'a grandi le contrôle du contrat"
+          }
+        },
+        {
+          "version": "0.1.25",
+          "at": "2026-11-01T08:36:33.218Z",
+          "note": {
+            "en": "Rebuilt on kit 0.1.39 (contract 1.13's answer and tally in the runtime); nothing it draws changes.",
+            "fr": "Reconstruit sur le kit 0.1.39 (la réponse et le décompte du contrat 1.13 dans le moteur) ; rien de ce qu’il dessine ne change."
+          }
+        },
+        {
+          "version": "0.1.24",
+          "at": "2026-11-01T01:47:07.255Z",
+          "note": {
+            "en": "Rebuilt on contract 1.13; nothing it draws changes; its first-load budget raised for the contract's checker.",
+            "fr": "Reconstruit sur le contrat 1.13 ; rien de ce qu'il dessine ne change ; son budget de premier chargement relevé pour le vérificateur du contrat."
+          }
+        },
+        {
+          "version": "0.1.23",
+          "at": "2026-10-31T13:44:30.574Z",
+          "note": {
+            "en": "Rebuilt on kit 0.1.36 and contract 1.12; nothing it draws changes. Its first-load budget raised by what the contract adds to every bench (about 700 B gzipped)",
+            "fr": "Reconstruit sur le kit 0.1.36 et le contrat 1.12 ; rien de ce qu'il dessine ne change. Son budget de premier chargement relevé de ce que le contrat ajoute à chaque banc (environ 700 o compressés)"
+          }
+        },
+        {
+          "version": "0.1.22",
+          "at": "2026-10-31T02:02:43.565Z",
+          "note": {
+            "en": "Rebuilt on kit 0.1.32 (B089a round 3: the frame offers light/dark and the language only on a bench's own page); nothing the bench draws changes.",
+            "fr": "Reconstruit sur le kit 0.1.32 (B089a version 3 : le cadre n'offre clair/sombre et la langue que sur la page propre d'un banc) ; rien de ce que dessine le banc ne change."
+          }
+        },
+        {
+          "version": "0.1.21",
+          "at": "2026-10-30T12:07:45.151Z",
+          "note": {
+            "en": "The listing names the former slug \"drawing\" (crossing 1176), so the store's row under it finds this bench; nothing in the bench changes",
+            "fr": "La fiche nomme l'ancien identifiant « drawing » (croisement 1176), pour que la ligne de la boutique sous ce nom retrouve ce banc ; rien ne change dans le banc"
+          }
+        },
+        {
+          "version": "0.1.20",
+          "at": "2026-10-29T11:18:40.262Z",
+          "note": {
+            "en": "Re-cut on kit 0.1.29 (B081): the kit now carries the host's picture beat (contract 1.11) to a bench, and the first-load budget is raised by what it adds. This bench says an older contract, so it is not sent the word; nothing changes for a player",
+            "fr": "Recompilé sur le kit 0.1.29 (B081) : le kit porte désormais le moment-image de l'hôte (contrat 1.11) jusqu'au banc, et le budget du premier chargement augmente de ce qu'il ajoute. Ce banc dit un contrat plus ancien, il ne reçoit donc pas le mot ; rien ne change pour un lecteur"
+          }
+        },
+        {
+          "version": "0.1.19",
+          "at": "2026-10-29T02:07:49.296Z",
+          "note": {
+            "en": "Mirror and patterns. Flip horizontally (Shift+H) and vertically (Shift+V) about the selection's middle. Mirror (M): click a line to mirror about, or two points, Shift turning the line in 15° steps, as a copy or in place; a mirrored rectangle is still a rectangle, and a mirrored label still reads forwards. Rectangular pattern (Shift+R): copies in rows and columns at a typed spacing, one row a step and repeat. Circular pattern (Shift+C): copies turned about a clicked centre through a typed angle. Each is previewed on the drawing as it is typed or pointed, inside a frame even for sixty copies of a gear's tooth, has no dialog, and lays its copies grouped with the original in one undo step. Over draw-engine 0.8.0.",
+            "fr": "Symétrie et répétitions. Retourner horizontalement (Maj+H) et verticalement (Maj+V) autour du milieu de la sélection. Symétrie (M) : cliquer sur une ligne servant d'axe, ou deux points, Maj tournant l'axe par pas de 15°, en copie ou sur place ; un rectangle retourné reste un rectangle, et une étiquette retournée se lit toujours à l'endroit. Répétition rectangulaire (Maj+R) : des copies en lignes et en colonnes à l'espacement saisi, une seule ligne répétant un pas. Répétition circulaire (Maj+C) : des copies tournées autour d'un centre cliqué sur l'angle saisi. Chacune est prévisualisée sur le dessin pendant la saisie ou le pointage, en une image même pour soixante copies d'une dent d'engrenage, sans boîte de dialogue, et pose ses copies groupées avec l'original en une seule annulation. Sur draw-engine 0.8.0."
+          }
+        },
+        {
+          "version": "0.1.18",
+          "at": "2026-10-28T16:42:17.964Z",
+          "note": {
+            "en": "The pencil (B): draw freehand, and on release the stroke becomes a path of few points that looks like what was drawn, every point of the stroke within the smoothing's distance of it, ready to edit with Edit points (N). Corners stay corners; a stroke released where it began is closed. Smoothing in three steps on the bar: Fine, Medium and Smooth. The stroke is painted as it is drawn, inside a frame, and kept in one undo step. Over draw-engine 0.7.0.",
+            "fr": "Le crayon (B) : dessiner à main levée ; au relâchement, le trait devient un tracé de peu de points qui ressemble à ce qui a été dessiné, chaque point du trait à la distance du lissage, prêt à être modifié avec Modifier les points (N). Les angles restent des angles ; un trait relâché là où il a commencé est fermé. Le lissage en trois crans dans la barre : Fin, Moyen et Lisse. Le trait est peint pendant qu'il se dessine, en une image, et gardé en une seule annulation. Sur draw-engine 0.7.0."
+          }
+        },
+        {
+          "version": "0.1.17",
+          "at": "2026-10-28T01:10:03.069Z",
+          "note": {
+            "en": "The pen (P) and the node tool (N): a path drawn anchor by anchor (a click a corner, a drag a smooth point, the first point closes it, an open end continues it, Esc or Enter finishes, Backspace takes the last point back), and a path's points and handles edited on the drawing (a smooth point's handles kept in line, Alt breaks them, Alt+click switches smooth and corner, a double click on the line adds a point, Delete removes points and the curve is refitted). A shape whose points are edited becomes a path and says so. Over draw-engine 0.6.0.",
+            "fr": "La plume (P) et l'outil de modification des points (N) : un tracé dessiné point par point (un clic pour un angle, un glissé pour un point lisse, le premier point le ferme, une extrémité libre le prolonge, Échap ou Entrée termine, Retour arrière reprend le dernier point), et les points et poignées d'un tracé modifiés sur le dessin (les poignées d'un point lisse restent alignées, Alt les sépare, Alt+clic bascule entre lisse et angle, un double clic sur la ligne ajoute un point, Suppr retire des points et la courbe est réajustée). Une forme dont on modifie les points devient un tracé, et le dit. Sur draw-engine 0.6.0."
+          }
+        },
+        {
+          "version": "0.1.16",
+          "at": "2026-10-27T15:39:24.446Z",
+          "note": {
+            "en": "Rebuilt on kit 0.1.26 and contract 1.8.0 (B080): the kit's host-play carries contract 1.8's step check (checkFrom). This bench says no step (its ready keeps its own contract), so nothing it does changes. The first-load budget rises by what the check adds.",
+            "fr": "Reconstruit sur le kit 0.1.26 et le contrat 1.8.0 (B080) : le host-play du kit porte le contrôle du pas du contrat 1.8 (checkFrom). Ce banc ne dit aucun pas (son ready garde son propre contrat), donc rien de ce qu'il fait ne change. Le budget du premier chargement monte de ce qu'ajoute le contrôle."
+          }
+        },
+        {
+          "version": "0.1.15",
+          "at": "2026-10-27T10:25:39.394Z",
+          "note": {
+            "en": "The turn and skew handles hold on any fill and clear a label beside the shape (crossing 919): two-tone handles, a ring of the paper round a core in the selection's hue, fitted per theme; the glyphs straddle their point; 24 px targets; a hollow centre of turning; the scale handles in the same two tones.",
+            "fr": "Les poignées de rotation et d'inclinaison se lisent sur tout remplissage et dégagent l'étiquette voisine de la forme (croisement 919) : des poignées en deux tons, un anneau couleur papier autour d'un cœur dans la teinte de la sélection, ajusté pour chaque thème ; les glyphes chevauchent leur point ; des cibles de 24 px ; un centre de rotation creux ; les poignées d'échelle dans les mêmes deux tons."
+          }
+        },
+        {
+          "version": "0.1.14",
+          "at": "2026-10-27T06:20:53.489Z",
+          "note": {
+            "en": "Rotate and skew on the second click (M59f-ii), CorelDraw's gesture: a click on what is already chosen swaps the eight scale handles for four rotate handles at the corners, four skew handles on the sides and the centre of turning, which is dragged anywhere and snaps as a point does; the next click, or Shift+S, gives the scale handles back. Shift turns and slants in 15° steps; [ and ] turn by 15°, Ctrl+[ and Ctrl+] slant by 15°, each key named in the handles' tooltips. A turned rectangle, ellipse or label stays itself; what a slant makes a path is said on the status line, and undo takes it back. Every turn and slant frame of two hundred items inside one. Over draw-engine 0.5.0.",
+            "fr": "Rotation et inclinaison au second clic (M59f-ii), le geste de CorelDraw : un clic sur ce qui est déjà sélectionné remplace les huit poignées d'échelle par quatre poignées de rotation aux coins, quatre poignées d'inclinaison sur les côtés et le centre de rotation, qui se glisse n'importe où et s'aimante comme un point ; le clic suivant, ou Maj+S, rend les poignées d'échelle. Maj tourne et incline par pas de 15° ; [ et ] tournent de 15°, Ctrl+[ et Ctrl+] inclinent de 15°, chaque touche nommée dans l'infobulle des poignées. Un rectangle, une ellipse ou une étiquette tournés restent eux-mêmes ; ce qu'une inclinaison rend tracé est dit dans la barre d'état, et l'annulation le rétablit. Chaque image d'une rotation ou d'une inclinaison de deux cents éléments tient dans une image. Sur draw-engine 0.5.0."
+          }
+        },
+        {
+          "version": "0.1.13",
+          "at": "2026-10-25T17:52:33.853Z",
+          "note": {
+            "en": "Rebuilt on kit 0.1.25: the runtime's clock steps on a timer when its frame is not drawn, so the bench comes up where it had said ready and waited (crossing 897), and a leading frame says its state undrawn (892 §1).",
+            "fr": "Reconstruit sur le kit 0.1.25 : l'horloge du runtime avance sur une minuterie quand son cadre n'est pas dessiné, si bien que le banc se monte là où il disait ready puis attendait (croisement 897), et un cadre qui mène dit son état sans être dessiné (892 §1)."
+          }
+        },
+        {
+          "version": "0.1.12",
+          "at": "2026-10-25T11:18:28.750Z",
+          "note": {
+            "en": "The shape tools and snapping (M59f). Seven tools on the rail, each with its key in its tooltip: Line (L), Arrow (A), Rectangle (R), Ellipse (E), Polygon (Y), Text (T) and Function (F). Each draws on the sheet, painted live by the wall's painter in a layer of its own, and commits once, chosen; the tool stays. Snapping to the grid, to the drawing's anchors and midpoints, and to 15° with Shift, with the guide drawn while it holds; Alt suspends it; the grid's pitch is the drawing's, set in the bar. Eight handles stretch the selection about the opposite one (a polygon and a text grow whole; past 200 items the outline is dragged). Text is typed on the sheet; a double click edits a label. The Function tool's equation, form and domain are typed in a bar over the sheet and redrawn as the author types, a typing error named under its field. Convert to path (Ctrl+Q). Over draw-engine 0.4.0.",
+            "fr": "Les outils de forme et le magnétisme (M59f). Sept outils sur le rail, chacun avec sa touche dans son infobulle : Ligne (L), Flèche (A), Rectangle (R), Ellipse (E), Polygone (Y), Texte (T) et Fonction (F). Chacun dessine sur la feuille, peint en direct par le peintre du mur dans une couche à lui, et valide une fois, sélectionné ; l'outil reste. Magnétisme à la grille, aux points et aux milieux du dessin, et à 15° avec Maj, le guide dessiné tant qu'il retient ; Alt le suspend ; le pas de la grille est celui du dessin, réglé dans la barre. Huit poignées étirent la sélection autour de la poignée opposée (un polygone et un texte grandissent entiers ; au-delà de 200 éléments, c'est le contour qui est glissé). Le texte se saisit sur la feuille ; un double-clic modifie une étiquette. L'équation, la forme et le domaine de l'outil Fonction se saisissent dans une barre au-dessus de la feuille et sont redessinés à la frappe, une erreur de saisie nommée sous son champ. Convertir en tracé (Ctrl+Q). Sur draw-engine 0.4.0."
+          }
+        },
+        {
+          "version": "0.1.11",
+          "at": "2026-10-25T07:15:46.680Z",
+          "note": {
+            "en": "Released to carry what it costs mounted (SBh-i): its JS heap, the GPU memory its WebGL holds and its WebGL contexts, measured in View with its sample on the GPU by tools/cost.cjs and signed in this record.",
+            "fr": "Publié pour porter ce qu'il coûte, monté (SBh-i) : son tas JS, la mémoire GPU que tient son WebGL et ses contextes WebGL, mesurés en vue Lecture avec son exemple sur le GPU par tools/cost.cjs et signés dans cet enregistrement."
+          }
+        },
+        {
+          "version": "0.1.10",
+          "at": "2026-10-25T05:10:45.365Z",
+          "note": {
+            "en": "Rebuilt over kit 0.1.20 (the tokens copy at Studio's e022a9535 (M58z: dark's field edges, --ip-edge-control, at 3:1 in every direction)); no content changed.",
+            "fr": "Reconstruit sur le kit 0.1.20 (la copie des jetons suit la feuille de Studio à e022a9535 (M58z : les bords des champs en sombre, --ip-edge-control, à 3:1 dans chaque direction)) ; aucun contenu changé."
+          }
+        },
+        {
+          "version": "0.1.9",
+          "at": "2026-10-25T04:32:09.011Z",
+          "note": {
+            "en": "Over draw-engine 0.3.2, merging two branches' work. Over draw-engine 0.3.1 (M59l): the Draw Bench opens a drawing made to scale (artboard.scale { length, unit }, one drawing unit on the real thing), which a figure over the drawing measures with; its work schema says so. Nothing the bench draws changes. Import SVG or DXF… (M59q): the editor's import reads a drawing made in a CAD program as well as one from a drawing editor, telling them apart by the file's content, never its name, on draw-engine 0.3.2's importDxf; a DWG or a binary DXF is refused in a sentence that says to save it as ASCII DXF. Its report is summed in DXF's own words. The picker offers .dxf beside .svg. zod 4.5.1 → 4.6.7 (GHSA-mrhx-c7xc-m3w5). The branches' own 0.1.7 records were never published; main's 0.1.7 and 0.1.8 stand.",
+            "fr": "Sur draw-engine 0.3.2, en fusionnant le travail de deux branches. Sur draw-engine 0.3.1 (M59l) : le banc de dessin ouvre un dessin à l'échelle (artboard.scale { length, unit }, une unité de dessin sur l'objet réel), avec laquelle une figure sur ce dessin mesure ; son schéma de travail le dit. Rien de ce que dessine le banc ne change. Importer un SVG ou un DXF… (M59q) : l'importation de l'éditeur lit un dessin fait dans un logiciel de CAO comme un dessin venu d'un éditeur de dessin, en les distinguant par le contenu du fichier, jamais par son nom, avec importDxf de draw-engine 0.3.2 ; un DWG ou un DXF binaire est refusé par une phrase qui demande de l'enregistrer en DXF ASCII. Son rapport est résumé avec les mots du DXF. Le sélecteur propose .dxf à côté de .svg. zod 4.5.1 → 4.6.7 (GHSA-mrhx-c7xc-m3w5). Les 0.1.7 propres aux branches n’ont jamais été publiées ; les 0.1.7 et 0.1.8 de main restent."
+          }
+        },
+        {
+          "version": "0.1.8",
+          "at": "2026-10-24T23:12:52.557Z",
+          "note": {
+            "en": "zod 4.5.1 → 4.6.7 (GHSA-mrhx-c7xc-m3w5: zod below 4.6.6 could exhaust memory validating oversized constrained collections); no other change.",
+            "fr": "zod 4.5.1 → 4.6.7 (GHSA-mrhx-c7xc-m3w5 : en dessous de 4.6.6, zod pouvait épuiser la mémoire en validant des collections contraintes trop grandes) ; aucun autre changement."
+          }
+        },
+        {
+          "version": "0.1.7",
+          "at": "2026-10-24T22:00:35.447Z",
+          "note": {
+            "en": "Rebuilt over kit 0.1.19 (its tokens copy follows Studio's sheet at 1f928b75b); no content changed.",
+            "fr": "Reconstruit sur le kit 0.1.19 (sa copie des jetons suit la feuille de Studio à 1f928b75b) ; aucun contenu changé."
+          }
+        },
+        {
+          "version": "0.1.6",
+          "at": "2026-10-24T09:29:43.125Z",
+          "note": {
+            "en": "Rebuilt over kit 0.1.18: the frame's Symbols IEC | US switch (B064; not offered, this bench draws no schematic) and Studio's tokens at cae41f10b (design-tokens 0.2.17). Nothing of the bench changed.",
+            "fr": "Reconstruit sur le kit 0.1.18 : le sélecteur Symboles CEI | US du cadre (B064 ; non offert, ce banc ne dessine pas de schéma) et les jetons de Studio à cae41f10b (design-tokens 0.2.17). Rien du banc n'a changé."
+          }
+        },
+        {
+          "version": "0.1.5",
+          "at": "2026-10-24T08:38:22.371Z",
+          "note": {
+            "en": "Rebuilt over contract 1.6.0 (its validator knows panes) and kit 0.1.17 (Studio's tokens at 7c25a2ea; the kit frame's test ids and the fold's [hidden], where it carries them). Nothing of the bench's own changed.",
+            "fr": "Reconstruit sur le contrat 1.6.0 (son validateur connaît panes) et le kit 0.1.17 (les jetons de Studio à 7c25a2ea ; les data-testid du cadre du kit et le [hidden] du repli, là où il les porte). Rien de propre au banc n'a changé."
+          }
+        },
+        {
+          "version": "0.1.4",
+          "at": "2026-10-23T17:14:26.783Z",
+          "note": {
+            "en": "A sample of its own (M60-2): the moving-coil meter of the draw test course, drawn in six steps, shipped in samples/ and named in its listing, so the website opens the bench working; it opens alone in View (tools/sample-drive.cjs). The listing gains its samples; nothing the bench draws changes.",
+            "fr": "Un exemple à lui (M60-2) : le galvanomètre à cadre mobile du cours d'essai de dessin, dessiné en six étapes, livré dans samples/ et nommé dans sa fiche, pour que le site ouvre le banc en marche ; il s'ouvre seul en Vue (tools/sample-drive.cjs). La fiche prend ses exemples ; rien de ce que dessine le banc ne change."
+          }
+        },
         {
           "version": "0.1.3",
           "at": "2026-10-23T10:33:17.126Z",
@@ -4192,6 +5011,20 @@
             "en": "First release: the Draw Bench as a frame bundle, played by contract 1.1 (E·draw). Preview is the scene a slide shows: the author's capture (Use as preview in Authoring), else the finished drawing framed on what is drawn; a still is that scene. View is the drawing made step by step: Back, Next, zoom and pan where nobody presents; the presenter's step and draw-on clock where somebody does, the steps its stops titled by their sentences, and a wall that follows the presenter's state. Authoring is the editor, loaded only when it opens: saving through the player (work-save) with the stamp a compiler reads, Import SVG from the browser's picker or a drop, Export SVG offered to the player (file-offer). It opens a .benchdrawing and ships its JSON Schema. A drawing the bench saved opens with no check run again (first load 80.8 KB gzipped); any other is checked in full. Every word in English and French.",
             "fr": "Première version : le banc de dessin en paquet de cadre, joué selon le contrat 1.1 (E·draw). L'aperçu est la scène que montre une diapositive : la capture de l'auteur (Utiliser comme aperçu dans la création), sinon le dessin terminé cadré sur ce qui est dessiné ; une image fixe est cette scène. La vue est le dessin fait étape par étape : précédent, suivant, zoom et déplacement quand personne ne présente ; l'étape et l'horloge de tracé de l'enseignant quand quelqu'un présente, les étapes en arrêts titrés par leurs phrases, et un mur qui suit l'état de l'enseignant. La création est l'éditeur, chargé seulement à son ouverture : l'enregistrement passe par le lecteur (work-save) avec l'empreinte qu'un compilateur lit, l'import SVG par le sélecteur du navigateur ou un dépôt, l'export SVG proposé au lecteur (file-offer). Il ouvre un .benchdrawing et livre son schéma JSON. Un dessin enregistré par le banc s'ouvre sans nouvelle vérification (premier chargement 80,8 Ko compressés) ; tout autre est vérifié en entier. Chaque mot en anglais et en français."
           }
+        }
+      ],
+      "samples": [
+        {
+          "id": "moving-coil-meter",
+          "title": {
+            "en": "A moving-coil meter, drawn in steps",
+            "fr": "Un galvanomètre à cadre mobile, dessiné par étapes"
+          },
+          "package": "@exsight/bench-draw",
+          "version": "0.1.49",
+          "path": "samples/moving-coil-meter/moving-coil-meter.benchdrawing",
+          "sha256": "sha256:f7accad8f3b378275eb6c970a2ec400d3cbde4df3d0031f07d2bde3fd33d0c27",
+          "bytes": 4807
         }
       ],
       "neededBy": []

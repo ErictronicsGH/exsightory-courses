@@ -9,9 +9,14 @@
 # meter's pointer). `030-imported` holds three drawn in LibreOffice Draw and imported
 # from SVG (M59b); their sources, and the script that made them, are in `../svg/`.
 # `040-function-shapes` holds two drawn from equations with `insight-draw shape`
-# (M59p), and the meter's hairspring is a third.
+# (M59p), and the meter's hairspring is a third. `050-picture` holds a dial
+# photographed as a PNG beside the drawing, with a pointer drawn over it (M59r):
+# the picture the compiler packages and the hosts' drives read off the screen.
+# Every drawing is a `bench` fence of one bench-draw version (a `drawing` fence
+# still compiles to 0.1.3, before pictures), its entry in bench-catalogue.json.
 #
-# Zero warnings is correct for this course.
+# Zero errors. Nine warnings, all from audit rules newer than the course (no
+# objectives or learner action in 010-040, no delivery:); nothing else is correct.
 id: bench-draw
 title: The Draw Bench
 subtitle: Line art for teaching, drawn one step at a time
