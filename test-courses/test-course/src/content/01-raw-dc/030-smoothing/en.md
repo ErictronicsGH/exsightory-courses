@@ -301,12 +301,12 @@ examples:
       - name: Vr
         value: 1
   - label: Worst case
-    note: Full load, 60 Hz mains, and a ripple budget a linear regulator will actually tolerate.
+    note: Full load on 50 Hz mains, the slower and so the harder case, and a ripple budget a linear regulator will actually tolerate.
     values:
       - name: I
         value: 3
       - name: f
-        value: 60
+        value: 50
       - name: Vr
         value: 0.4
 boundaries:
