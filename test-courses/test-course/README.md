@@ -21,6 +21,7 @@ source, and this course is deliberately on the other side of that line.
 | Transcripts | a subsection script with all three cue tokens and `includeInExport: true`, plus a chapter-level one its sibling falls back to |
 | Model pipeline | ships an **STL**, so the compiler's mesh-conversion path is exercised end to end and the app loads the resulting GLB |
 | Text style | a `theme.yaml`, a heading and inline spans styled in `01-raw-dc/010-transformer` |
+| Self-Test (LL1a) | `smoothing-trade` destined for Self-Test and complete (knowledge, learn, an explanation and a misconception per wrong choice), `regulator-heat` destined for it and incomplete (six parts named, the build still passes), and `01-raw-dc/040-why-the-ripple-halves`, a section marked `role: explanation` |
 
 ## Building it
 

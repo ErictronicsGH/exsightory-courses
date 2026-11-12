@@ -28,10 +28,23 @@ heatsink-rise:
         The junction is hotter still, by the dissipation times the junction-to-case
         and case-to-sink resistances.
 
+# Destined for Self-Test, and complete (LL1a): its knowledge mapping, a place to learn, and on its version an
+# explanation and a misconception for each wrong choice. The explanation is outside the version's digest, so adding
+# it to a version that has shipped is no edit.
 smoothing-trade:
   type: flash
   subjectTags: [smoothing, ripple]
   difficulty: easy
+  destinations: [self-test, lecture]
+  knowledge:
+    subject: electronics
+    topic: power supplies
+    subtopic: smoothing
+    objectives: [Size a reservoir capacitor for a given load current and ripple.]
+    concepts: [reservoir-capacitor]
+    prerequisites: [ripple]
+  learn:
+    - { kind: course, id: bench-psu@1.0.0, section: 01-raw-dc-smoothing, relevance: where the trade is taught }
   versions:
     1:
       question: Doubling the smoothing capacitor roughly does what to the ripple?
@@ -41,11 +54,21 @@ smoothing-trade:
         - Leaves it unchanged
       correct: 1
       timerSeconds: 30
+      explain:
+        ref: { kind: course, id: bench-psu@1.0.0, section: 01-raw-dc-why-the-ripple-halves }
+        distractors:
+          - { choice: a, misconception: ripple-grows-with-capacitance }
+          - { choice: c, misconception: capacitor-only-filters-noise }
 
+# Destined for Self-Test and incomplete (LL1a): no topic, objectives, concepts, place to learn or explanation. The
+# compiler names each, and keeps it out of a Self-Test paper; the build still passes, and the lecture still asks it.
 regulator-heat:
   type: multi-select
   subjectTags: [linear-regulators, thermal]
   difficulty: medium
+  destinations: [self-test, lecture]
+  knowledge:
+    subject: electronics
   versions:
     1:
       question: Which of these would make this supply run cooler at a 2 A load?

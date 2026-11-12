@@ -121,7 +121,7 @@ chapters:
     title: 'Part 1: From the wall to raw DC'
     summary: Understand the mains input and how to obtain a stable DC source.
     order: 1
-    scheduledMinutes: 75
+    scheduledMinutes: 80
     ads: []
   - id: 02-regulation
     title: 'Part 2: Regulation and protection'
