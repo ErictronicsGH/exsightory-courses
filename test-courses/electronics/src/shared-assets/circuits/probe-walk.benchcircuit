@@ -162,7 +162,7 @@
   },
   "stamp": {
     "v": 1,
-    "source": "sha256:b6dd8f6ccf5b5f55d64de04213808ddf323800678ba99f0b465e055bcf9b4393",
+    "source": "sha256:d6578796369b1f3613141d47650ce8aa1e9a765cd735dd3380ec5f9cc197a34b",
     "libraries": {
       "insight-baseline": "1.21.1"
     },

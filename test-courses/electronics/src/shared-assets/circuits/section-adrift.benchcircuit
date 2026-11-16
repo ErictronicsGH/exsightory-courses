@@ -112,7 +112,7 @@
   "under_construction": true,
   "stamp": {
     "v": 1,
-    "source": "sha256:d5310e9410c43a8605813010ee0d30f61fecec52549455c39c09cc82f41ead94",
+    "source": "sha256:d716c12ffb305605a32ac23ffb73498fdc4852f01b1ecd828da082fcadce8154",
     "libraries": {
       "insight-baseline": "1.21.1"
     },

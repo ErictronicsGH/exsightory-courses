@@ -72,7 +72,7 @@
   "effects": {},
   "stamp": {
     "v": 1,
-    "source": "sha256:38f798f0238d3e9b60d18c8c1e8110458a985253199fb10f22e571a77e9f618e",
+    "source": "sha256:64f308bb8e42a228842751a9ddb2b2b413ac7ade5e782bf28e25eec7ff63215a",
     "libraries": {
       "insight-baseline": "1.21.1"
     },

@@ -89,7 +89,7 @@
   },
   "stamp": {
     "v": 1,
-    "source": "sha256:834071980d3b21fffdbfbde8f7d830ff419851ea3b204a678d12b6ed40003fbf",
+    "source": "sha256:e6339284fbfff32bccbc90fb4444b3dacbe2fcac998ec1454e1a94a5c23b94c9",
     "libraries": {
       "insight-baseline": "1.21.1"
     },
