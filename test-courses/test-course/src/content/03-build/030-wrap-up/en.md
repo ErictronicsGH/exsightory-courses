@@ -17,6 +17,9 @@ and none of them is free.**
 - The transformer trades volts for amps
 - The bridge trades two diode drops for half the smoothing capacitance
 - The capacitor trades ripple for peak diode current
+
+## And the last two stages
+
 - The regulator trades heat for steadiness
 - The current limit trades working under a fault for surviving it
 

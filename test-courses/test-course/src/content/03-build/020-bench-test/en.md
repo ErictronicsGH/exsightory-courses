@@ -24,6 +24,9 @@ caption: The bring-up bench. Dummy load, meter, scope - and nothing valuable con
 1. **Continuity, unpowered.** No short from output to ground.
 2. **Raw DC only.** Regulator out; capacitor reaches the predicted peak.
 3. **Regulator in, no load.** Output holds; pass transistor stays cool.
+
+## Then load it, then limit it
+
 4. **Dummy load, slowly.** Raise the current, watching the heatsink.
 5. **Limit test, deliberately.** Short through an ammeter.
 
