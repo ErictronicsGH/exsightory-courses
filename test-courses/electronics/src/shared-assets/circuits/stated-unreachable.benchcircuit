@@ -3,7 +3,7 @@
   "title": "A midpoint stated above the rail",
   "seed": 1,
   "requires": {
-    "insight-baseline": "1.21.0"
+    "insight-baseline": "1.21.1"
   },
   "environment": {
     "t_ambient_c": 25
@@ -91,7 +91,7 @@
     "v": 1,
     "source": "sha256:834071980d3b21fffdbfbde8f7d830ff419851ea3b204a678d12b6ed40003fbf",
     "libraries": {
-      "insight-baseline": "1.21.0"
+      "insight-baseline": "1.21.1"
     },
     "derived": {
       "targets": [
