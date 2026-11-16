@@ -39,6 +39,8 @@ alt: A bench supply on a breadboard, set to 5 V with its current limit at 0.1 A,
 caption: The limit you set is the most the load can draw, whatever it asks for.
 ```
 
+## Light the path
+
 ```challenge
 title: Light the path
 package: "@exsight/bench-breadboard@0.2.8"

@@ -62,8 +62,10 @@ caption: The same load you just sized, built and powered.
 
 With a scope on the output at full load, look for two things. Low-frequency
 [ripple](glossary:ripple) at twice the mains frequency is the smoothing
-capacitor talking. High-frequency noise on top is the regulator's loop, or your
-probe grounding, and the two are easily confused.
+capacitor talking.
+
+High-frequency noise on top is the regulator's loop, or your probe grounding,
+and the two are easily confused.
 
 ## Is that noise, or your ground lead
 
