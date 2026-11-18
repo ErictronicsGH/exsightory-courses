@@ -109,7 +109,7 @@
   ],
   "stamp": {
     "v": 1,
-    "source": "sha256:3481b6a59a8780d6020dc349c0e346071a2cc046fac6a0dadb459322deb38695",
+    "source": "sha256:5df0f2fd2f68996ec39d8fab71951c5625db68f235a5232c1ec220b2f47cdcb2",
     "libraries": {
       "insight-baseline": "1.21.1"
     },
