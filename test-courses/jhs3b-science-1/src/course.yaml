@@ -5,7 +5,7 @@ version: 1.0.0
 title:
   en: Integrated Science, Paper 1 (rehearsal)
   fr: Sciences intégrées, épreuve 1 (répétition)
-language: en
+languages: [en]
 subjects:
   - integrated-science
   - bece
